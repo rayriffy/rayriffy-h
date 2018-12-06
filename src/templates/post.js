@@ -9,7 +9,6 @@ class PostTemplate extends React.Component {
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
     const except = (post.ext_except !== "") ? post.ext_except.split(',').map(Number)  : []
     const exclude = (post.exclude !== "") ? post.exclude.split(',').map(Number)  : []
-    console.log(exclude)
     return (
       <div>
         <Helmet
