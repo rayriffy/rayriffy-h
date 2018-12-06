@@ -17,11 +17,11 @@ class PostTemplate extends React.Component {
         <Grid container spacing={24}>
         {posts.map(({ node }) => {
           const title = node.path
-          const fileext = node.nh_is_jpg === "0" ? ".png" : ".jpg";
+          const except = (node.ext_except !== "") ? node.ext_except.split(',').map(Number)  : []
           return (
             <Grid item xs={12} sm={6} md={4} alignItems='center'>
               <a href={node.path} target="_blank">
-                <img src={"https://i.nhentai.net/galleries/" + node.nh_id + "/1" + fileext} /><br />{title}
+                <img src={"https://i.nhentai.net/galleries/" + node.nh_id + "/1" + ((node.nh_is_jpg === "0") ? ((except.includes(1) === true) ? ".jpg" : ".png") : ((except.includes(1) === true) ? ".png" : ".jpg"))} /><br />{title}
               </a>
             </Grid>
           )
@@ -48,6 +48,8 @@ export const pageQuery = graphql`
           nh_id
           nh_pages
           nh_is_jpg
+          ext_except
+          exclude
         }
       }
     }
