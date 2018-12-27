@@ -23,7 +23,7 @@ class PostTemplate extends React.Component {
             const except = (node.ext_except !== "") ? node.ext_except.split(',').map(Number)  : []
             return (
               <Grid item xs={12} sm={6} md={4}>
-                <a href={node.path} target="_blank">
+                <a href={"/" + node.path} target="_blank">
                 <LazyLoad><img src={"https://i.nhentai.net/galleries/" + node.nh_id + "/1" + ((node.nh_is_jpg === "0") ? ((except.includes(1) === true) ? ".jpg" : ".png") : ((except.includes(1) === true) ? ".png" : ".jpg"))} /></LazyLoad><br />{title}
                 </a>
               </Grid>
@@ -45,7 +45,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allDataJson (sort: { fields: [path], order: DESC }) {
+    allDataJson {
       edges {
         node {
           path
