@@ -7,6 +7,8 @@ module.exports = {
   },
   pathPrefix: '/',
   plugins: [
+    `gatsby-plugin-netlify`,
+    `gatsby-plugin-netlify-cache`,
     `gatsby-transformer-json`,
     {
       resolve: `gatsby-source-filesystem`,
