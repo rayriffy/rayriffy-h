@@ -35,7 +35,7 @@
     "react-typography": "^0.16.18",
     "typeface-merriweather": "0.0.43",
     "typeface-montserrat": "0.0.43",
-    "typography": "^0.16.17"
+    "typography": "^0.16.18"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
