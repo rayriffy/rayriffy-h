@@ -1254,5 +1254,21 @@
     "nh_is_jpg": "1",
     "ext_except": "",
     "exclude": "23"
+  },
+  {
+    "path": "282",
+    "nh_id": "1002272",
+    "nh_pages": "11",
+    "nh_is_jpg": "1",
+    "ext_except": "",
+    "exclude": ""
+  },
+  {
+    "path": "283",
+    "nh_id": "741609",
+    "nh_pages": "24",
+    "nh_is_jpg": "1",
+    "ext_except": "",
+    "exclude": "23,24"
   }
 ]
