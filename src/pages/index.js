@@ -1,6 +1,5 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import { Link,graphql } from 'gatsby'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import Card from '@material-ui/core/Card';
