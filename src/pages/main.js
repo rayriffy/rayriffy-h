@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 
 import LazyLoad from 'react-lazyload';
 
-class AscPage extends React.Component {
+class MainPage extends React.Component {
   render() {
     const posts = this.props.data.allDataJson.edges
     const siteTitle = this.props.data.site.siteMetadata.title
@@ -23,7 +23,7 @@ class AscPage extends React.Component {
             const except = (node.ext_except !== "") ? node.ext_except.split(',').map(Number)  : []
             return (
               <Grid item xs={12} sm={6} md={4}>
-                <a href={"/" + node.path} target="_blank">
+                <a href={node.path} target="_blank">
                 <LazyLoad><img src={"https://i.nhentai.net/galleries/" + node.nh_id + "/1" + ((node.nh_is_jpg === "0") ? ((except.includes(1) === true) ? ".jpg" : ".png") : ((except.includes(1) === true) ? ".png" : ".jpg"))} /></LazyLoad><br />{title}
                 </a>
               </Grid>
@@ -36,16 +36,16 @@ class AscPage extends React.Component {
   }
 }
 
-export default AscPage
+export default MainPage
 
-export const ascQuery = graphql`
+export const pageQuery = graphql`
   query {
     site {
       siteMetadata {
         title
       }
     }
-    allDataJson {
+    allDataJson (sort: { fields: [path], order: DESC }) {
       edges {
         node {
           path

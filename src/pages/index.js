@@ -1,60 +1,64 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { Link,graphql } from 'gatsby'
-import Style from '../components/style.module.css'
-import Grid from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper'
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
-import LazyLoad from 'react-lazyload';
+import LazyLoad from 'react-lazyload'
 
-class PostTemplate extends React.Component {
+class MainPage extends React.Component {
   render() {
-    const posts = this.props.data.allDataJson.edges
     const siteTitle = this.props.data.site.siteMetadata.title
     return (
-      <div className={Style.container}>
+      <div style={{backgroundColor: '#D1321C'}}>
         <Helmet
-          htmlAttributes={{ lang: 'en' }}
-          title={`${siteTitle}`}
+        htmlAttributes={{ lang: 'en' }}
+        title={`${siteTitle}`}
         />
-        
-          <Grid container spacing={24} alignItems='center'>
-          {posts.map(({ node }) => {
-            const title = node.path
-            const except = (node.ext_except !== "") ? node.ext_except.split(',').map(Number)  : []
-            return (
-              <Grid item xs={12} sm={6} md={4}>
-                <a href={node.path} target="_blank">
-                <LazyLoad><img src={"https://i.nhentai.net/galleries/" + node.nh_id + "/1" + ((node.nh_is_jpg === "0") ? ((except.includes(1) === true) ? ".jpg" : ".png") : ((except.includes(1) === true) ? ".png" : ".jpg"))} /></LazyLoad><br />{title}
-                </a>
-              </Grid>
-            )
-          })}
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+          style={{height: '100vh'}}
+        >
+          <Grid item xs={10} sm={4}>
+            <Card>
+              <CardContent>
+                <Typography color="textSecondary" gutterBottom>
+                  WARNING!
+                </Typography>
+                <Typography variant="h5" component="h2">
+                  Are you legally classified as an adult?
+                </Typography>
+                <Typography component="p">
+                You must be classified as an adult and legally allowed to view the contents of this site in the country you are currently located.
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button size="small" href="//blog.rayriffy.com">Exit</Button>
+                <Button size="small" href="/main">Yes, I can legally enter.</Button>
+              </CardActions>
+            </Card>
           </Grid>
-        
+        </Grid>
       </div>
     );
   }
 }
 
-export default PostTemplate
+export default MainPage
 
-export const pageQuery = graphql`
+export const indexQuery = graphql`
   query {
     site {
       siteMetadata {
         title
-      }
-    }
-    allDataJson (sort: { fields: [path], order: DESC }) {
-      edges {
-        node {
-          path
-          nh_id
-          nh_pages
-          nh_is_jpg
-          ext_except
-          exclude
-        }
       }
     }
   }
