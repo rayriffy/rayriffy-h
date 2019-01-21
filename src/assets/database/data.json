@@ -1289,22 +1289,14 @@
   },
   {
     "path": "286",
-    "nh_id": "1344653",
-    "nh_pages": "22",
-    "nh_is_jpg": "1",
+    "nh_id": "891754",
+    "nh_pages": "4",
+    "nh_is_jpg": "0",
     "ext_except": "",
     "exclude": ""
   },
   {
     "path": "287",
-    "nh_id": "891754",
-    "nh_pages": "4",
-    "nh_is_jpg": "1",
-    "ext_except": "",
-    "exclude": ""
-  },
-  {
-    "path": "288",
     "nh_id": "870000",
     "nh_pages": "5",
     "nh_is_jpg": "1",
