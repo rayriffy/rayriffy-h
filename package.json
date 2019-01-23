@@ -41,7 +41,7 @@
     "eslint": "^5.12.1",
     "eslint-plugin-react": "^7.12.4",
     "gh-pages": "^2.0.1",
-    "prettier": "^1.16.0"
+    "prettier": "^1.16.1"
   },
   "homepage": "https://rayriffy.com",
   "keywords": [
