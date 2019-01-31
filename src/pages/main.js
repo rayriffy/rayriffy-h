@@ -1,6 +1,6 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import { Link,graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import Style from '../components/style.module.css'
 import Grid from '@material-ui/core/Grid';
 
