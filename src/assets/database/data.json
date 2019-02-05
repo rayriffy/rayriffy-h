@@ -1398,5 +1398,21 @@
     "nh_is_jpg": "1",
     "ext_except": "",
     "exclude": ""
+  },
+  {
+    "path": "300",
+    "nh_id": "1308312",
+    "nh_pages": "31",
+    "nh_is_jpg": "1",
+    "ext_except": "",
+    "exclude": "28, 29, 30, 31"
+  },
+  {
+    "path": "301",
+    "nh_id": "1093769",
+    "nh_pages": "14",
+    "nh_is_jpg": "1",
+    "ext_except": "",
+    "exclude": ""
   }
 ]
