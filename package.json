@@ -25,6 +25,18 @@
     "react-helmet": "^5.2.0",
     "react-lazyload": "^2.5.0"
   },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.13.0",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "prettier": "^1.16.4"
+  },
   "homepage": "https://h.rayriffy.com",
   "keywords": [
     "gatsby"
@@ -37,6 +49,8 @@
   },
   "scripts": {
     "dev": "gatsby develop --https",
-    "build": "gatsby build"
+    "build": "gatsby build",
+    "format": "prettier --write --no-semi --list-different './src/**/*.js'",
+    "lint": "eslint ./src/**/*.js"
   }
 }

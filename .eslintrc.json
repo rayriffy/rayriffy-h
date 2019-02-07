@@ -1,0 +1,46 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["standard", "prettier", "prettier/standard"],
+  "plugins": ["prettier", "standard", "promise", "node", "import"],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 125,
+        "tabWidth": 2,
+        "singleQuote": true,
+        "trailingComma": "all",
+        "bracketSpacing": false,
+        "semi": false,
+        "useTabs": false,
+        "parser": "babylon",
+        "jsxBracketSameLine": true
+      }
+    ],
+    "eqeqeq": ["error", "always"],
+    "space-before-function-paren": 0,
+    "generator-star-spacing": 0,
+    "promise/always-return": "error",
+    "promise/no-return-wrap": "error",
+    "promise/param-names": "error",
+    "promise/catch-or-return": "error",
+    "promise/no-native": "off",
+    "promise/no-nesting": "warn",
+    "promise/no-promise-in-callback": "warn",
+    "promise/no-callback-in-promise": "warn",
+    "promise/avoid-new": "warn",
+    "promise/no-new-statics": "error",
+    "promise/no-return-in-finally": "warn",
+    "promise/valid-params": "warn"
+  }
+}

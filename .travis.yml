@@ -1,11 +1,6 @@
 language: node_js
-
-os:
-  - linux
-
+os: linux
 node_js:
   - "lts/*"
-
 script:
-  - npm install
-  - npm run lint
+  - yarn run lint
