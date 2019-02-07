@@ -1,6 +1,6 @@
 {
   "parser": "babel-eslint",
-  "extends": ["standard", "prettier", "prettier/standard"],
+  "extends": ["standard", "prettier", "prettier/standard", "plugin:react/recommended"],
   "plugins": ["prettier", "standard", "promise", "node", "import"],
   "parserOptions": {
     "sourceType": "module",

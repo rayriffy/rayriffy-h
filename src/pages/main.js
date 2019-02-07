@@ -1,10 +1,11 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import { graphql } from 'gatsby'
+import {graphql} from 'gatsby'
 import Style from '../components/style.module.css'
-import Grid from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid'
 
-import LazyLoad from 'react-lazyload';
+import LazyLoad from 'react-lazyload'
 
 class MainPage extends React.Component {
   render() {
@@ -12,27 +13,40 @@ class MainPage extends React.Component {
     const siteTitle = this.props.data.site.siteMetadata.title
     return (
       <div className={Style.container}>
-        <Helmet
-          htmlAttributes={{ lang: 'en' }}
-          title={`${siteTitle}`}
-        />
-        
-          <Grid container spacing={24} alignItems='center'>
-          {posts.map(({ node }) => {
+        <Helmet htmlAttributes={{lang: 'en'}} title={`${siteTitle}`} />
+
+        <Grid container spacing={24} alignItems="center">
+          {posts.map(({node}) => {
             const title = node.path
-            const except = (node.ext_except !== "") ? node.ext_except.split(',').map(Number)  : []
+            const except = node.ext_except !== '' ? node.ext_except.split(',').map(Number) : []
             return (
-              <Grid item xs={12} sm={6} md={4}>
-                <a href={"/" + node.path} target="_blank">
-                <LazyLoad><img src={"https://i.nhentai.net/galleries/" + node.nh_id + "/1" + ((node.nh_is_jpg === "0") ? ((except.includes(1) === true) ? ".jpg" : ".png") : ((except.includes(1) === true) ? ".png" : ".jpg"))} /></LazyLoad><br />{title}
+              <Grid item xs={12} sm={6} md={4} key="grid">
+                <a href={'/' + node.path} target="_blank" rel="noopener noreferrer">
+                  <LazyLoad>
+                    <img
+                      src={
+                        'https://i.nhentai.net/galleries/' +
+                        node.nh_id +
+                        '/1' +
+                        (node.nh_is_jpg === '0'
+                          ? except.includes(1) === true
+                            ? '.jpg'
+                            : '.png'
+                          : except.includes(1) === true
+                          ? '.png'
+                          : '.jpg')
+                      }
+                    />
+                  </LazyLoad>
+                  <br />
+                  {title}
                 </a>
               </Grid>
             )
           })}
-          </Grid>
-        
+        </Grid>
       </div>
-    );
+    )
   }
 }
 
@@ -45,7 +59,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allDataJson (sort: { fields: [path], order: DESC }) {
+    allDataJson(sort: {fields: [path], order: DESC}) {
       edges {
         node {
           path
@@ -59,3 +73,16 @@ export const pageQuery = graphql`
     }
   }
 `
+
+MainPage.propTypes = {
+  data: PropTypes.shape({
+    allDataJson: PropTypes.shape({
+      edges: PropTypes.array,
+    }),
+    site: PropTypes.shape({
+      siteMetadata: PropTypes.shape({
+        title: PropTypes.string,
+      }),
+    }),
+  }),
+}
