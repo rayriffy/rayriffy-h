@@ -1422,5 +1422,29 @@
     "nh_is_jpg": "1",
     "ext_except": "",
     "exclude": ""
+  },
+  {
+    "path": "303",
+    "nh_id": "903683",
+    "nh_pages": "23",
+    "nh_is_jpg": "1",
+    "ext_except": "",
+    "exclude": "2, 20, 21, 22, 23"
+  },
+  {
+    "path": "304",
+    "nh_id": "1362329",
+    "nh_pages": "20",
+    "nh_is_jpg": "1",
+    "ext_except": "",
+    "exclude": ""
+  },
+  {
+    "path": "305",
+    "nh_id": "1362629",
+    "nh_pages": "11",
+    "nh_is_jpg": "1",
+    "ext_except": "",
+    "exclude": ""
   }
 ]
