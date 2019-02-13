@@ -1435,7 +1435,7 @@
     "path": "304",
     "nh_id": "1362329",
     "nh_pages": "20",
-    "nh_is_jpg": "1",
+    "nh_is_jpg": "0",
     "ext_except": "",
     "exclude": ""
   },
@@ -1443,6 +1443,22 @@
     "path": "305",
     "nh_id": "1362629",
     "nh_pages": "11",
+    "nh_is_jpg": "1",
+    "ext_except": "",
+    "exclude": ""
+  },
+  {
+    "path": "306",
+    "nh_id": "1364023",
+    "nh_pages": "26",
+    "nh_is_jpg": "1",
+    "ext_except": "",
+    "exclude": ""
+  },
+  {
+    "path": "307",
+    "nh_id": "1364012",
+    "nh_pages": "20",
     "nh_is_jpg": "1",
     "ext_except": "",
     "exclude": ""
