@@ -1462,5 +1462,13 @@
     "nh_is_jpg": "1",
     "ext_except": "",
     "exclude": ""
+  },
+  {
+    "path": "308",
+    "nh_id": "1366021",
+    "nh_pages": "17",
+    "nh_is_jpg": "1",
+    "ext_except": "",
+    "exclude": ""
   }
 ]
