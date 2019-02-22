@@ -10,6 +10,10 @@ export default class PostTemplate extends React.Component {
     const except = post.ext_except !== '' ? post.ext_except.split(',').map(Number) : []
     const exclude = post.exclude !== '' ? post.exclude.split(',').map(Number) : []
 
+    const imgStyle = {
+      width: '100%',
+    }
+
     return (
       <div>
         <Helmet htmlAttributes={{lang: 'en'}} title={`${post.path} · ${siteTitle}`} />
@@ -17,6 +21,7 @@ export default class PostTemplate extends React.Component {
           if (exclude.includes(i + 1) !== true) {
             return (
               <img
+                style={imgStyle}
                 src={
                   'https://i.nhentai.net/galleries/' +
                   post.nh_id +
