@@ -17,7 +17,7 @@
     "gatsby-plugin-sharp": "^2.0.20",
     "gatsby-source-filesystem": "^2.0.21",
     "gatsby-transformer-json": "^2.1.8",
-    "gatsby-transformer-sharp": "^2.1.13",
+    "gatsby-transformer-sharp": "^2.1.14",
     "lodash": "^4.17.11",
     "prismjs": "^1.15.0",
     "react": "^16.8.3",
