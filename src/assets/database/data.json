@@ -1524,7 +1524,7 @@
     "nh_id": "1065904",
     "nh_pages": "27",
     "nh_is_jpg": "1",
-    "ext_except": "",
+    "ext_except": "20, 10, 24, 11, 12, 21, 7, 6, 14, 3, 9, 19, 16, 17",
     "exclude": ""
   },
   {
@@ -1532,6 +1532,30 @@
     "nh_id": "669478",
     "nh_pages": "15",
     "nh_is_jpg": "1",
+    "ext_except": "",
+    "exclude": ""
+  },
+  {
+    "path": "316",
+    "nh_id": "1357799",
+    "nh_pages": "18",
+    "nh_is_jpg": "1",
+    "ext_except": "",
+    "exclude": ""
+  },
+  {
+    "path": "317",
+    "nh_id": "1368678",
+    "nh_pages": "20",
+    "nh_is_jpg": "1",
+    "ext_except": "",
+    "exclude": ""
+  },
+  {
+    "path": "318",
+    "nh_id": "1364010",
+    "nh_pages": "26",
+    "nh_is_jpg": "0",
     "ext_except": "",
     "exclude": ""
   }
