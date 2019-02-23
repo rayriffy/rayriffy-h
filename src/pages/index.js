@@ -13,8 +13,8 @@ class IndexPage extends React.Component {
   render() {
     const siteTitle = this.props.data.site.siteMetadata.title
     return (
-      <div style={{backgroundColor: '#D1321C'}}>
-        <Helmet htmlAttributes={{lang: 'en'}} title={`${siteTitle}`} />
+      <div>
+        <Helmet htmlAttributes={{lang: 'en', style: 'background-color : #D1321C'}} title={`${siteTitle}`} />
         <Grid container direction="row" justify="center" alignItems="center" style={{height: '100vh'}}>
           <Grid item xs={10} sm={4}>
             <Card>
