@@ -16,7 +16,7 @@
     "gatsby-plugin-react-helmet": "^3.0.9",
     "gatsby-plugin-sharp": "^2.0.28",
     "gatsby-source-filesystem": "^2.0.27",
-    "gatsby-transformer-json": "^2.1.10",
+    "gatsby-transformer-json": "^2.1.11",
     "gatsby-transformer-sharp": "^2.1.17",
     "lodash": "^4.17.11",
     "prismjs": "^1.15.0",
