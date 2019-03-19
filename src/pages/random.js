@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import {graphql} from 'gatsby'
+import {Link, graphql} from 'gatsby'
 import Style from '../components/style.module.css'
 
 import Grid from '@material-ui/core/Grid'
@@ -22,7 +22,7 @@ class RandomPage extends React.Component {
 
         <Grid container spacing={24} alignItems="center">
           <Grid item xs={12} sm={6} md={4} key="grid">
-            <a href={'/' + node.path} target="_blank" rel="noopener noreferrer">
+            <Link to={'/' + node.path} target="_blank" rel="noopener noreferrer">
               <LazyLoad>
                 <img
                   src={
@@ -41,7 +41,7 @@ class RandomPage extends React.Component {
               </LazyLoad>
               <br />
               {title}
-            </a>
+            </Link>
           </Grid>
         </Grid>
       </div>
