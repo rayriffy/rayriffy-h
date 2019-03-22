@@ -5,8 +5,6 @@ import Helmet from 'react-helmet'
 import {Link, graphql} from 'gatsby'
 import Style from '../components/style.module.css'
 
-import Grid from '@material-ui/core/Grid'
-
 import LazyLoad from 'react-lazyload'
 
 class RandomPage extends React.Component {
@@ -14,36 +12,34 @@ class RandomPage extends React.Component {
     const node = _.sample(this.props.data.allDataJson.edges).node
     const siteTitle = this.props.data.site.siteMetadata.title
 
-    const title = node.path
     const except = node.ext_except !== '' ? node.ext_except.split(',').map(Number) : []
+
+    const imgStyle = {
+      width: '100%',
+    }
     return (
       <div className={Style.container}>
-        <Helmet htmlAttributes={{lang: 'en'}} title={`${siteTitle}`} />
+        <Helmet htmlAttributes={{lang: 'en'}} title={`Random · ${siteTitle}`} />
 
-        <Grid container spacing={24} alignItems="center">
-          <Grid item xs={12} sm={6} md={4} key="grid">
-            <Link to={'/' + node.path} target="_blank" rel="noopener noreferrer">
-              <LazyLoad>
-                <img
-                  src={
-                    'https://i.nhentai.net/galleries/' +
-                    node.nh_id +
-                    '/1' +
-                    (node.nh_is_jpg === '0'
-                      ? except.includes(1) === true
-                        ? '.jpg'
-                        : '.png'
-                      : except.includes(1) === true
-                      ? '.png'
-                      : '.jpg')
-                  }
-                />
-              </LazyLoad>
-              <br />
-              {title}
-            </Link>
-          </Grid>
-        </Grid>
+        <Link to={'/' + node.path} target="_blank" rel="noopener noreferrer">
+          <LazyLoad>
+            <img
+              style={imgStyle}
+              src={
+                'https://i.nhentai.net/galleries/' +
+                node.nh_id +
+                '/1' +
+                (node.nh_is_jpg === '0'
+                  ? except.includes(1) === true
+                    ? '.jpg'
+                    : '.png'
+                  : except.includes(1) === true
+                  ? '.png'
+                  : '.jpg')
+              }
+            />
+          </LazyLoad>
+        </Link>
       </div>
     )
   }
