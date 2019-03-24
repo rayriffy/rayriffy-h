@@ -1774,5 +1774,37 @@
     "nh_is_jpg": "1",
     "ext_except": "",
     "exclude": ""
+  },
+  {
+    "path": "346",
+    "nh_id": "1385747",
+    "nh_pages": "21",
+    "nh_is_jpg": "1",
+    "ext_except": "",
+    "exclude": ""
+  },
+  {
+    "path": "347",
+    "nh_id": "1181179",
+    "nh_pages": "20",
+    "nh_is_jpg": "1",
+    "ext_except": "",
+    "exclude": ""
+  },
+  {
+    "path": "348",
+    "nh_id": "904701",
+    "nh_pages": "22",
+    "nh_is_jpg": "1",
+    "ext_except": "",
+    "exclude": ""
+  },
+  {
+    "path": "349",
+    "nh_id": "1172377",
+    "nh_pages": "27",
+    "nh_is_jpg": "1",
+    "ext_except": "",
+    "exclude": ""
   }
 ]
