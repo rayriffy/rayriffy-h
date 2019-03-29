@@ -1827,7 +1827,7 @@
     "path": "352",
     "nh_id": "267035",
     "nh_pages": "23",
-    "nh_is_jpg": "1",
+    "nh_is_jpg": "0",
     "ext_except": "",
     "exclude": "23"
   },
@@ -1836,7 +1836,7 @@
     "nh_id": "1386951",
     "nh_pages": "22",
     "nh_is_jpg": "0",
-    "ext_except": "",
+    "ext_except": "19, 20",
     "exclude": "23"
   },
   {
