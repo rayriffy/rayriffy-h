@@ -7,7 +7,7 @@
     "url": "https://github.com/rayriffy/rayriffy-h/issues"
   },
   "dependencies": {
-    "@material-ui/core": "^3.9.2",
+    "@material-ui/core": "^3.9.3",
     "gatsby": "^2.3.3",
     "gatsby-plugin-google-analytics": "^2.0.18",
     "gatsby-plugin-manifest": "^2.0.25",
