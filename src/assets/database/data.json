@@ -1825,14 +1825,6 @@
   },
   {
     "path": "352",
-    "nh_id": "267035",
-    "nh_pages": "23",
-    "nh_is_jpg": "0",
-    "ext_except": "",
-    "exclude": "23"
-  },
-  {
-    "path": "353",
     "nh_id": "1386951",
     "nh_pages": "22",
     "nh_is_jpg": "0",
@@ -1840,7 +1832,7 @@
     "exclude": "23"
   },
   {
-    "path": "354",
+    "path": "353",
     "nh_id": "792531",
     "nh_pages": "33",
     "nh_is_jpg": "1",
@@ -1848,11 +1840,43 @@
     "exclude": "32, 33"
   },
   {
-    "path": "355",
+    "path": "354",
     "nh_id": "997232",
     "nh_pages": "26",
     "nh_is_jpg": "1",
     "ext_except": "",
     "exclude": ""
+  },
+  {
+    "path": "355",
+    "nh_id": "1388842",
+    "nh_pages": "22",
+    "nh_is_jpg": "1",
+    "ext_except": "",
+    "exclude": ""
+  },
+  {
+    "path": "356",
+    "nh_id": "1387724",
+    "nh_pages": "23",
+    "nh_is_jpg": "1",
+    "ext_except": "",
+    "exclude": "23"
+  },
+  {
+    "path": "357",
+    "nh_id": "1390187",
+    "nh_pages": "19",
+    "nh_is_jpg": "1",
+    "ext_except": "",
+    "exclude": "2"
+  },
+  {
+    "path": "358",
+    "nh_id": "1390179",
+    "nh_pages": "23",
+    "nh_is_jpg": "1",
+    "ext_except": "",
+    "exclude": "2"
   }
 ]
