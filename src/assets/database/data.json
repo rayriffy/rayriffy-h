@@ -1902,5 +1902,21 @@
     "nh_is_jpg": "1",
     "ext_except": "",
     "exclude": "9"
+  },
+  {
+    "path": "362",
+    "nh_id": "1393666",
+    "nh_pages": "18",
+    "nh_is_jpg": "1",
+    "ext_except": "",
+    "exclude": ""
+  },
+  {
+    "path": "363",
+    "nh_id": "732083",
+    "nh_pages": "25",
+    "nh_is_jpg": "1",
+    "ext_except": "",
+    "exclude": ""
   }
 ]
