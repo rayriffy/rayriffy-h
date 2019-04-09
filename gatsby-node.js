@@ -1,6 +1,7 @@
 const _ = require('lodash')
 const axios = require('axios')
 const Promise = require('bluebird')
+const fs = require('fs')
 const path = require('path')
 const {createFilePath} = require('gatsby-source-filesystem')
 const {TaskQueue} = require('cwait')
@@ -84,6 +85,67 @@ exports.createPages = ({graphql, actions}) => {
                 },
               })
             }
+          })
+
+          // Create own static api
+          const apiPath = 'api'
+          const healthyResults = _.filter(result, o => o.status === 'success')
+          const chunks = _.chunk(healthyResults, 10)
+
+          if (!fs.existsSync('./public/api')) {
+            fs.mkdirSync('./public/api', function(err) {
+              if (err) {
+                console.log(err)
+                reject(err)
+              }
+            })
+          }
+          if (!fs.existsSync('./public/api/list')) {
+            fs.mkdirSync('./public/api/list', function(err) {
+              if (err) {
+                console.log(err)
+                reject(err)
+              }
+            })
+          }
+
+          // API Status
+          fs.writeFile(
+            `public/${apiPath}/status.json`,
+            JSON.stringify({
+              status: 'success',
+              code: 201,
+              data: {
+                time: Date.now(),
+                list: {
+                  length: chunks.length,
+                },
+              },
+            }),
+            function(err) {
+              if (err) {
+                console.log(err)
+                reject(err)
+              }
+            },
+          )
+
+          // API Listing
+          _.each(chunks, (chunk, i) => {
+            let out = {
+              status: 'success',
+              code: 201,
+              data: [],
+            }
+            _.each(chunk, node => {
+              out.data.push(node.data.raw)
+            })
+            fs.writeFile(`public/${apiPath}/list/${i + 1}.json`, JSON.stringify(out), function(err) {
+              if (err) {
+                console.log(err)
+                reject(err)
+              }
+            })
           })
         }),
     )
