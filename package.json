@@ -52,6 +52,7 @@
   },
   "scripts": {
     "dev": "gatsby develop --https",
+    "dev:net": "gatsby develop -H 0.0.0.0",
     "build": "gatsby build",
     "format": "prettier --write --no-semi --list-different './src/**/*.js'",
     "lint": "eslint ./src/**/*.js"
