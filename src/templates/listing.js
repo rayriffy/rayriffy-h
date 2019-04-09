@@ -1,4 +1,5 @@
 import React from 'react'
+import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 import {graphql} from 'gatsby'
 
@@ -22,7 +23,8 @@ export default class ListingTemplate extends React.Component {
     }
 
     return (
-      <App title={siteTitle} subtitle={`listing`} htmlTitle={siteTitle}>
+      <App title={siteTitle} subtitle={`listing`}>
+        <Helmet htmlAttributes={{lang: 'en'}} title={`${siteTitle}`} />
         <Row gutter={16} type="flex" justify="space-around" align="middle" key="grid-row">
           {raw.map(node => {
             if (node.status === 'success') {

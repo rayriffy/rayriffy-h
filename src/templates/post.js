@@ -1,4 +1,5 @@
 import React from 'react'
+import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 import {graphql} from 'gatsby'
 
@@ -18,7 +19,8 @@ export default class PostTemplate extends React.Component {
     const pages = raw.images.pages
 
     return (
-      <App title={siteTitle} subtitle={`viewing`} htmlTitle={`${raw.title.pretty} · ${siteTitle}`}>
+      <App title={siteTitle} subtitle={`viewing`}>
+        <Helmet htmlAttributes={{lang: 'en'}} title={`${raw.title.pretty} · ${siteTitle}`} />
         <Row style={{maxHeight: '460px'}} key="row-meta">
           <Col
             xs={{span: 10, offset: 2}}

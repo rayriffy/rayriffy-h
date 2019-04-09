@@ -1,5 +1,4 @@
 import React from 'react'
-import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 
 import {Row, Layout, Typography, Divider} from 'antd'
@@ -12,10 +11,9 @@ const {Title} = Typography
 
 export class App extends React.Component {
   render() {
-    const {title, subtitle, htmlTitle, children} = this.props
+    const {title, subtitle, children} = this.props
     return (
       <Layout>
-        <Helmet htmlAttributes={{lang: 'en'}} title={`${htmlTitle}`} />
         <Content className={appStyle.container}>
           <Row>
             <Title className={appStyle.title}>{title}</Title>
@@ -36,5 +34,4 @@ App.propTypes = {
   children: PropTypes.any,
   title: PropTypes.string,
   subtitle: PropTypes.string,
-  htmlTitle: PropTypes.string,
 }
