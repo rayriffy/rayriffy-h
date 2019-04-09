@@ -11,6 +11,8 @@ export default class PostTemplate extends React.Component {
 
     const {raw} = this.props.pageContext
 
+    console.log(raw)
+
     const imgStyle = {
       width: '100%',
     }
@@ -48,7 +50,7 @@ export const pageQuery = graphql`
 
 PostTemplate.propTypes = {
   pageContext: PropTypes.shape({
-    raw: PropTypes.object(),
+    raw: PropTypes.object,
   }),
   data: PropTypes.shape({
     dataJson: PropTypes.object,

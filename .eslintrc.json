@@ -29,6 +29,7 @@
     ],
     "eqeqeq": ["error", "always"],
     "space-before-function-paren": 0,
-    "generator-star-spacing": 0
+    "generator-star-spacing": 0,
+    "no-return-await": "off"
   }
 }

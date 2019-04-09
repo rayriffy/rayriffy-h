@@ -3,6 +3,9 @@ const axios = require('axios')
 const Promise = require('bluebird')
 const path = require('path')
 const {createFilePath} = require('gatsby-source-filesystem')
+const {TaskQueue} = require('cwait')
+
+const MAX_SIMULTANEOUS_DOWNLOADS = 5
 
 exports.createPages = ({graphql, actions}) => {
   const {createPage} = actions
@@ -28,7 +31,7 @@ exports.createPages = ({graphql, actions}) => {
             reject(result.errors)
           }
 
-          const res = []
+          // const res = []
           const getRawData = async id => {
             try {
               const out = await axios.get(`https://nh-express-git-master.rayriffy.now.sh/api/gallery/${id}`)
@@ -39,8 +42,8 @@ exports.createPages = ({graphql, actions}) => {
                   raw: out.data,
                 },
               }
-            } catch {
-              console.log(`cannot process ${id}`)
+            } catch (err) {
+              console.log(`cannot process ${id} with code ${err.code}`)
               return {
                 status: 'failure',
                 data: {
@@ -50,11 +53,17 @@ exports.createPages = ({graphql, actions}) => {
             }
           }
 
-          _.each(result.data.allDataJson.edges, edge => {
-            res.push(getRawData(edge.node.nh_id))
-          })
+          // _.each(result.data.allDataJson.edges, edge => {
+          //   res.push(getRawData(edge.node.nh_id))
+          // })
 
-          await Promise.all(res)
+          // await Promise.all(res)
+
+          const queue = new TaskQueue(Promise, MAX_SIMULTANEOUS_DOWNLOADS)
+
+          const res = await Promise.all(
+            result.data.allDataJson.edges.map(queue.wrap(async edge => await getRawData(edge.node.nh_id))),
+          )
 
           return res
         })

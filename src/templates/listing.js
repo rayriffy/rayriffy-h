@@ -59,7 +59,7 @@ export const pageQuery = graphql`
 
 MainPage.propTypes = {
   pageContext: PropTypes.shape({
-    raw: PropTypes.object(),
+    raw: PropTypes.object,
   }),
   data: PropTypes.shape({
     site: PropTypes.shape({
