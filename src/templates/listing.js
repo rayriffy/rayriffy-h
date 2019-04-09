@@ -20,15 +20,16 @@ class MainPage extends React.Component {
         <Helmet htmlAttributes={{lang: 'en'}} title={`${siteTitle}`} />
 
         <Grid container spacing={24} alignItems="center">
-          {_.each(raw, async node => {
+          {raw.map(node => {
             if (node.status === 'success') {
+              console.log(node)
               return (
-                <Grid item xs={12} sm={6} md={4} key="grid">
+                <Grid item xs={12} sm={6} md={4} key={`grid-${node.data.id}`}>
                   <a href={`/c/${node.data.id}`} target="_blank" rel="noopener noreferrer">
                     <LazyLoad>
                       <img
-                        src={`https://i.nhentai.net/galleries/${node.data.raw.media_id}/cover.${
-                          node.data.raw.images.cover.t === 'p' ? '.png' : '.jpg'
+                        src={`https://t.nhentai.net/galleries/${node.data.raw.media_id}/cover.${
+                          node.data.raw.images.cover.t === 'p' ? 'png' : 'jpg'
                         }`}
                       />
                     </LazyLoad>
@@ -59,7 +60,7 @@ export const pageQuery = graphql`
 
 MainPage.propTypes = {
   pageContext: PropTypes.shape({
-    raw: PropTypes.object,
+    raw: PropTypes.array,
   }),
   data: PropTypes.shape({
     site: PropTypes.shape({

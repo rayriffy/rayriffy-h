@@ -5,7 +5,7 @@ const path = require('path')
 const {createFilePath} = require('gatsby-source-filesystem')
 const {TaskQueue} = require('cwait')
 
-const MAX_SIMULTANEOUS_DOWNLOADS = 5
+const MAX_SIMULTANEOUS_DOWNLOADS = 3
 
 exports.createPages = ({graphql, actions}) => {
   const {createPage} = actions
@@ -31,7 +31,6 @@ exports.createPages = ({graphql, actions}) => {
             reject(result.errors)
           }
 
-          // const res = []
           const getRawData = async id => {
             try {
               const out = await axios.get(`https://nh-express-git-master.rayriffy.now.sh/api/gallery/${id}`)
@@ -53,12 +52,6 @@ exports.createPages = ({graphql, actions}) => {
             }
           }
 
-          // _.each(result.data.allDataJson.edges, edge => {
-          //   res.push(getRawData(edge.node.nh_id))
-          // })
-
-          // await Promise.all(res)
-
           const queue = new TaskQueue(Promise, MAX_SIMULTANEOUS_DOWNLOADS)
 
           const res = await Promise.all(
@@ -73,6 +66,15 @@ exports.createPages = ({graphql, actions}) => {
           // Create list page
           createPage({
             path: `main`,
+            component: path.resolve('./src/templates/listing.js'),
+            context: {
+              raw: result.reverse(),
+            },
+          })
+
+          // Create list page ascending (optional)
+          createPage({
+            path: `asc`,
             component: path.resolve('./src/templates/listing.js'),
             context: {
               raw: result,

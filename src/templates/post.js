@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {graphql} from 'gatsby'
 import Helmet from 'react-helmet'
-import _ from 'lodash'
 
 export default class PostTemplate extends React.Component {
   render() {
@@ -15,15 +14,17 @@ export default class PostTemplate extends React.Component {
       width: '100%',
     }
 
+    const pages = raw.images.pages
+
     return (
       <div>
         <Helmet htmlAttributes={{lang: 'en'}} title={`${raw.title.pretty} · ${siteTitle}`} />
-        {_.each(raw.images.pages, (page, i) => {
+        {pages.map((page, i) => {
           if (!post.exclude.includes(i + 1)) {
             return (
               <img
                 style={imgStyle}
-                src={`https://i.nhentai.net/galleries/${raw.media_id}/${i + 1}.${page.t === 'p' ? '.png' : '.jpg'}`}
+                src={`https://i.nhentai.net/galleries/${raw.media_id}/${i + 1}.${page.t.toString === 'p' ? 'png' : 'jpg'}`}
               />
             )
           }
