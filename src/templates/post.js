@@ -11,8 +11,6 @@ export default class PostTemplate extends React.Component {
 
     const {raw} = this.props.pageContext
 
-    console.log(raw)
-
     const imgStyle = {
       width: '100%',
     }
