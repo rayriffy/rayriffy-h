@@ -65,19 +65,10 @@ exports.createPages = ({graphql, actions}) => {
 
           // Create list page
           createPage({
-            path: `main`,
+            path: `listing`,
             component: path.resolve('./src/templates/listing.js'),
             context: {
               raw: result.reverse(),
-            },
-          })
-
-          // Create list page ascending (optional)
-          createPage({
-            path: `asc`,
-            component: path.resolve('./src/templates/listing.js'),
-            context: {
-              raw: result,
             },
           })
 

@@ -10,7 +10,7 @@ import {App} from '../components/app'
 
 const {Meta} = Card
 
-class MainPage extends React.Component {
+export default class ListingTemplate extends React.Component {
   render() {
     const siteTitle = this.props.data.site.siteMetadata.title
 
@@ -82,8 +82,6 @@ class MainPage extends React.Component {
   }
 }
 
-export default MainPage
-
 export const pageQuery = graphql`
   query {
     site {
@@ -94,7 +92,7 @@ export const pageQuery = graphql`
   }
 `
 
-MainPage.propTypes = {
+ListingTemplate.propTypes = {
   pageContext: PropTypes.shape({
     raw: PropTypes.array,
   }),

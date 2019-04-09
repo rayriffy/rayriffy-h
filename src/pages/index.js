@@ -20,7 +20,7 @@ class IndexPage extends React.Component {
                 <a href="https://rayriffy.com" key="button-close">
                   <Icon type="close-circle" />
                 </a>,
-                <a href="/main" key="button-go">
+                <a href="/listing" key="button-go">
                   <Icon type="check-circle" />
                 </a>,
               ]}>
