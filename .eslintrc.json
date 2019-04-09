@@ -1,7 +1,7 @@
 {
   "parser": "babel-eslint",
   "extends": ["standard", "prettier", "prettier/standard", "plugin:react/recommended"],
-  "plugins": ["prettier", "standard", "promise", "node", "import"],
+  "plugins": ["prettier", "standard", "node", "import"],
   "parserOptions": {
     "sourceType": "module",
     "ecmaFeatures": {
@@ -30,17 +30,6 @@
     "eqeqeq": ["error", "always"],
     "space-before-function-paren": 0,
     "generator-star-spacing": 0,
-    "promise/always-return": "error",
-    "promise/no-return-wrap": "error",
-    "promise/param-names": "error",
-    "promise/catch-or-return": "error",
-    "promise/no-native": "off",
-    "promise/no-nesting": "warn",
-    "promise/no-promise-in-callback": "warn",
-    "promise/no-callback-in-promise": "warn",
-    "promise/avoid-new": "warn",
-    "promise/no-new-statics": "error",
-    "promise/no-return-in-finally": "warn",
-    "promise/valid-params": "warn"
+    "no-return-await": "off"
   }
 }

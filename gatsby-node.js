@@ -1,10 +1,14 @@
 const _ = require('lodash')
+const axios = require('axios')
 const Promise = require('bluebird')
 const path = require('path')
-const { createFilePath } = require('gatsby-source-filesystem')
+const {createFilePath} = require('gatsby-source-filesystem')
+const {TaskQueue} = require('cwait')
 
-exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions
+const MAX_SIMULTANEOUS_DOWNLOADS = 3
+
+exports.createPages = ({graphql, actions}) => {
+  const {createPage} = actions
 
   return new Promise((resolve, reject) => {
     resolve(
@@ -14,44 +18,92 @@ exports.createPages = ({ graphql, actions }) => {
             allDataJson {
               edges {
                 node {
-                  path
                   nh_id
-                  nh_pages
-                  nh_is_jpg
                 }
               }
             }
           }
-        `
-      ).then(result => {
-        if (result.errors) {
-          console.log(result.errors)
-          reject(result.errors)
-        }
+        `,
+      )
+        .then(async result => {
+          if (result.errors) {
+            console.log(result.errors)
+            reject(result.errors)
+          }
 
-        const posts = result.data.allDataJson.edges;
+          const getRawData = async id => {
+            try {
+              const out = await axios.get(`https://nh-express-git-master.rayriffy.now.sh/api/gallery/${id}`)
+              return {
+                status: 'success',
+                data: {
+                  id: id,
+                  raw: out.data,
+                },
+              }
+            } catch (err) {
+              console.log(`cannot process ${id} with code ${err.code}`)
+              return {
+                status: 'failure',
+                data: {
+                  id: id,
+                },
+              }
+            }
+          }
 
-        // Create pages.
-        _.each(posts, (post, index) => {
+          const queue = new TaskQueue(Promise, MAX_SIMULTANEOUS_DOWNLOADS)
 
+          const res = await Promise.all(
+            result.data.allDataJson.edges.map(queue.wrap(async edge => await getRawData(edge.node.nh_id))),
+          )
+
+          return res
+        })
+        .then(result => {
+          const pathPrefix = 'c/'
+
+          // Create list page
           createPage({
-            path: post.node.path,
-            component: path.resolve('./src/templates/post.js'),
+            path: `main`,
+            component: path.resolve('./src/templates/listing.js'),
             context: {
-              slug: post.node.path,
+              raw: result.reverse(),
             },
           })
-        })
-      })
+
+          // Create list page ascending (optional)
+          createPage({
+            path: `asc`,
+            component: path.resolve('./src/templates/listing.js'),
+            context: {
+              raw: result,
+            },
+          })
+
+          // Create each post
+          _.each(result, node => {
+            if (node.status === 'success') {
+              createPage({
+                path: `${pathPrefix}${node.data.id}`,
+                component: path.resolve('./src/templates/post.js'),
+                context: {
+                  id: node.data.id,
+                  raw: node.data.raw,
+                },
+              })
+            }
+          })
+        }),
     )
   })
 }
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
+exports.onCreateNode = ({node, actions, getNode}) => {
+  const {createNodeField} = actions
 
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
+    const value = createFilePath({node, getNode})
     createNodeField({
       name: `slug`,
       node,
