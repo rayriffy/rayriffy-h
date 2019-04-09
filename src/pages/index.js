@@ -1,47 +1,38 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
 import {graphql} from 'gatsby'
-import Grid from '@material-ui/core/Grid'
-import Card from '@material-ui/core/Card'
-import CardActions from '@material-ui/core/CardActions'
-import CardContent from '@material-ui/core/CardContent'
-import Button from '@material-ui/core/Button'
-import Typography from '@material-ui/core/Typography'
+
+import {Row, Col, Card, Typography, Icon} from 'antd'
+
+import {App} from '../components/app'
+
+const {Title} = Typography
 
 class IndexPage extends React.Component {
   render() {
     const siteTitle = this.props.data.site.siteMetadata.title
     return (
-      <div style={{backgroundColor: '#D1321C'}}>
-        <Helmet htmlAttributes={{lang: 'en'}} title={`${siteTitle}`} />
-        <Grid container direction="row" justify="center" alignItems="center" style={{height: '100vh'}}>
-          <Grid item xs={10} sm={4}>
-            <Card>
-              <CardContent>
-                <Typography color="textSecondary" gutterBottom>
-                  WARNING!
-                </Typography>
-                <Typography variant="h5" component="h2">
-                  Are you legally classified as an adult?
-                </Typography>
-                <Typography component="p">
-                  You must be classified as an adult and legally allowed to view the contents of this site in the country you
-                  are currently located.
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button size="small" href="//blog.rayriffy.com">
-                  Exit
-                </Button>
-                <Button size="small" href="/main">
-                  Yes, I can legally enter.
-                </Button>
-              </CardActions>
+      <App title={siteTitle} subtitle={`locked`} htmlTitle={siteTitle}>
+        <Row style={{height: '100vh'}}>
+          <Col xs={{span: 20, offset: 2}} sm={{span: 16, offset: 4}} md={{span: 12, offset: 6}} lg={{span: 8, offset: 8}}>
+            <Card
+              actions={[
+                <a href="https://rayriffy.com" key="button-close">
+                  <Icon type="close-circle" />
+                </a>,
+                <a href="/main" key="button-go">
+                  <Icon type="check-circle" />
+                </a>,
+              ]}>
+              <Title level={2}>Are you legally classified as an adult?</Title>
+              <p>
+                You must be classified as an adult and legally allowed to view the contents of this site in the country you
+                are currently located.
+              </p>
             </Card>
-          </Grid>
-        </Grid>
-      </div>
+          </Col>
+        </Row>
+      </App>
     )
   }
 }

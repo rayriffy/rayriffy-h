@@ -1,13 +1,12 @@
 {
   "name": "rayriffy-h",
   "description": "NSFW",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "author": "Phumrapee Limpianchop <contact@rayriffy.com>",
   "bugs": {
     "url": "https://github.com/rayriffy/rayriffy-h/issues"
   },
   "dependencies": {
-    "@material-ui/core": "^3.9.3",
     "antd": "^3.16.2",
     "axios": "^0.18.0",
     "cwait": "^1.1.2",

@@ -10,7 +10,9 @@ export default class HTML extends React.Component {
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
           <link rel="preconnect" href="https://i.nhentai.net" />
+          <link rel="preconnect" href="https://t.nhentai.net" />
           <link rel="dns-prefetch" href="https://i.nhentai.net" />
+          <link rel="dns-prefetch" href="https://t.nhentai.net" />
           {this.props.headComponents}
         </head>
         <body {...this.props.bodyAttributes}>

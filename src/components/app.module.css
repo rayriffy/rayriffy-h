@@ -1,0 +1,24 @@
+.container {
+  padding: 0 25px;
+}
+
+.title {
+  font-size: 38px !important;
+  font-weight: 700 !important;
+  margin-bottom: 5px !important;
+  margin-top: 60px;
+  display: inline-block;
+}
+
+.divider {
+  margin-top: 0px;
+}
+
+.subtitle {
+  display: inline;
+  color: rgba(0, 0, 0, 0.45) !important;
+}
+
+.footer {
+  text-align: center;
+}
