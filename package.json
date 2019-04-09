@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^3.9.3",
+    "antd": "^3.16.2",
     "axios": "^0.18.0",
     "cwait": "^1.1.2",
     "gatsby": "^2.3.15",
