@@ -8,6 +8,13 @@ Demo
 
 https://h.rayriffy.com
 
+Screenshots
+-----------
+
+![locked](img/locked.jpeg)
+![view](img/viewing.jpeg)
+![notfound](img/notfound.jpeg)
+
 Requirements
 ------------
 
