@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
@@ -22,7 +21,6 @@ class MainPage extends React.Component {
         <Grid container spacing={24} alignItems="center">
           {raw.map(node => {
             if (node.status === 'success') {
-              console.log(node)
               return (
                 <Grid item xs={12} sm={6} md={4} key={`grid-${node.data.id}`}>
                   <a href={`/c/${node.data.id}`} target="_blank" rel="noopener noreferrer">
