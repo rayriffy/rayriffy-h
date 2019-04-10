@@ -74,9 +74,11 @@ export class Post extends React.Component {
               {raw.tags.map(tag => {
                 if (tag.type === 'tag') {
                   return (
-                    <Tag color="blue" key={`tag-${raw.id}-${tag.id}`}>
-                      {tag.name}
-                    </Tag>
+                    <a href={`/t/${tag.id}`}>
+                      <Tag color="blue" key={`tag-${raw.id}-${tag.id}`}>
+                        {tag.name}
+                      </Tag>
+                    </a>
                   )
                 }
               })}

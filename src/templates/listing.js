@@ -15,7 +15,7 @@ export default class ListingTemplate extends React.Component {
   render() {
     const siteTitle = this.props.data.site.siteMetadata.title
 
-    const {raw} = this.props.pageContext
+    const {raw, subtitle} = this.props.pageContext
 
     const success = () => {
       const hide = message.loading('Action in progress..', 0)
@@ -23,7 +23,7 @@ export default class ListingTemplate extends React.Component {
     }
 
     return (
-      <App title={siteTitle} subtitle={`listing`}>
+      <App title={siteTitle} subtitle={subtitle}>
         <Helmet htmlAttributes={{lang: 'en'}} title={`${siteTitle}`} />
         <Row gutter={16} type="flex" justify="space-around" align="middle" key="grid-row">
           {raw.map(node => {
@@ -62,15 +62,19 @@ export default class ListingTemplate extends React.Component {
                         description={node.data.raw.tags.map(tag => {
                           if (tag.type === 'tag') {
                             return (
-                              <Tag color="blue" key={`tag-${node.data.id}-${tag.id}`}>
-                                {tag.name}
-                              </Tag>
+                              <a href={`/t/${tag.id}`}>
+                                <Tag color="blue" key={`tag-${node.data.id}-${tag.id}`}>
+                                  {tag.name}
+                                </Tag>
+                              </a>
                             )
                           } else if (tag.type === 'parody') {
                             return (
-                              <Tag color="orange" key={`parody-${node.data.id}-${tag.id}`}>
-                                {tag.name}
-                              </Tag>
+                              <a href={`/p/${tag.id}`}>
+                                <Tag color="orange" key={`parody-${node.data.id}-${tag.id}`}>
+                                  {tag.name}
+                                </Tag>
+                              </a>
                             )
                           }
                         })}
@@ -101,6 +105,7 @@ export const pageQuery = graphql`
 ListingTemplate.propTypes = {
   pageContext: PropTypes.shape({
     raw: PropTypes.array,
+    subtitle: PropTypes.string,
   }),
   data: PropTypes.shape({
     site: PropTypes.shape({

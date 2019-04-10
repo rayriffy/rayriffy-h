@@ -81,32 +81,78 @@ exports.createPages = ({graphql, actions}) => {
           return res
         })
         .then(result => {
-          const pathPrefix = 'c/'
+          const pathPrefix = 'r/'
+          const healthyResults = _.filter(result, o => o.status === 'success')
 
           // Create list page
           createPage({
             path: `listing`,
             component: path.resolve('./src/templates/listing.js'),
             context: {
-              raw: result.reverse(),
+              subtitle: `listing`,
+              raw: healthyResults.reverse(),
             },
           })
 
           // Create each post
-          _.each(result, node => {
-            if (node.status === 'success') {
-              createPage({
-                path: `${pathPrefix}${node.data.id}`,
-                component: path.resolve('./src/templates/post.js'),
-                context: {
-                  id: node.data.id,
-                  raw: node.data.raw,
-                },
-              })
-            }
+          _.each(healthyResults, node => {
+            createPage({
+              path: `${pathPrefix}${node.data.id}`,
+              component: path.resolve('./src/templates/post.js'),
+              context: {
+                id: node.data.id,
+                raw: node.data.raw,
+              },
+            })
           })
 
-          const healthyResults = _.filter(result, o => o.status === 'success')
+          // Process for each category
+          const tagStack = [
+            {prefix: 't', name: 'tag'},
+            {prefix: 'p', name: 'parody'},
+            {prefix: 'a', name: 'artist'},
+            {prefix: 'g', name: 'groups'},
+            {prefix: 'c', name: 'character'},
+            {prefix: 'l', name: 'language'},
+          ]
+
+          const uniqueFilter = (nodes, type) => {
+            const res = []
+            _.each(healthyResults, node => {
+              _.each(node.data.raw.tags, tag => {
+                if (tag.type === type) {
+                  if (_.isEmpty(_.filter(nodes, {id: tag.id}))) {
+                    res.push(tag)
+                  }
+                }
+              })
+            })
+            return res
+          }
+
+          const createSlugPages = (pathPrefix, nodes, name) => {
+            _.each(nodes, tag => {
+              const qualifiedResults = []
+              _.each(healthyResults, node => {
+                if (!_.isEmpty(_.filter(node.data.raw.tags, {id: tag.id}))) qualifiedResults.push(node)
+              })
+              createPage({
+                path: `${pathPrefix}/${tag.id}`,
+                component: path.resolve('./src/templates/listing.js'),
+                context: {
+                  subtitle: `${name}/${tag.name}`,
+                  raw: qualifiedResults,
+                },
+              })
+            })
+          }
+
+          _.each(tagStack, tag => {
+            const nodes = uniqueFilter(healthyResults, tag.name)
+            // Listing
+            // All pages
+            createSlugPages(tag.prefix, nodes, tag.name)
+          })
 
           // Put into cache
           fs.writeFile(`.tmp/crawler.json`, JSON.stringify(healthyResults), function(err) {
