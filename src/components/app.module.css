@@ -6,11 +6,15 @@ html, body {
   padding: 0 25px;
 }
 
+.header {
+  margin-top: 60px;
+  margin-bottom: 5px !important;
+}
+
 .title {
   font-size: 38px !important;
   font-weight: 700 !important;
-  margin-bottom: 5px !important;
-  margin-top: 60px;
+  margin-bottom: 0 !important;
   display: inline-block;
 }
 

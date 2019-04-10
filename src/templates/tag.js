@@ -17,16 +17,15 @@ export default class TagTemplate extends React.Component {
 
     const {raw, subtitle, prefix} = this.props.pageContext
 
-    const alphabet = `abcdefghijklmnopqrstuvwxyz`.split('')
     const nodes = _.sortBy(raw, node => node.name)
 
     const sortedNodes = {}
-    _.each(alphabet, letter => {
-      sortedNodes[letter] = []
-    })
     _.each(nodes, node => {
+      if (_.isEmpty(sortedNodes[node.name.charAt(0).toLowerCase()])) sortedNodes[node.name.charAt(0).toLowerCase()] = []
       sortedNodes[node.name.charAt(0).toLowerCase()].push(node)
     })
+
+    console.log(sortedNodes)
 
     const success = () => {
       const hide = message.loading('Action in progress..', 0)
@@ -44,34 +43,30 @@ export default class TagTemplate extends React.Component {
             md={{span: 4, offset: 2}}
             lg={{span: 4, offset: 3}}
             xl={{span: 4, offset: 4}}>
-            <Anchor affix={false} style={{backgroundColor: 'transparent'}}>
-              {alphabet.map(letter => {
-                if (sortedNodes[letter].length !== 0) {
-                  return <Link href={`#${letter}`} key={`anchor-${letter}`} title={letter.toUpperCase()} />
-                }
+            <Anchor style={{backgroundColor: 'transparent'}}>
+              {Object.keys(sortedNodes).map(key => {
+                return <Link href={`#${key}`} key={`anchor-${key}`} title={key.toUpperCase()} />
               })}
             </Anchor>
           </Col>
           <Col xs={{span: 20}} sm={{span: 18}} md={{span: 16}} lg={{span: 14}} xl={{span: 12}}>
-            {alphabet.map(letter => {
-              if (sortedNodes[letter].length !== 0) {
-                return (
-                  <Card id={letter} style={{margin: '20px 5px', borderRadius: '10px'}} key={`col-${letter}`}>
-                    <Title level={3}>{letter.toUpperCase()}</Title>
-                    <List
-                      bordered
-                      dataSource={sortedNodes[letter]}
-                      renderItem={item => (
-                        <List.Item>
-                          <a href={`/${prefix}/${item.id}`} onClick={success}>
-                            {item.name}
-                          </a>
-                        </List.Item>
-                      )}
-                    />
-                  </Card>
-                )
-              }
+            {Object.keys(sortedNodes).map(key => {
+              return (
+                <Card id={key} style={{margin: '20px 5px', borderRadius: '10px'}} key={`col-${key}`}>
+                  <Title level={3}>{key.toUpperCase()}</Title>
+                  <List
+                    bordered
+                    dataSource={sortedNodes[key]}
+                    renderItem={item => (
+                      <List.Item>
+                        <a href={`/${prefix}/${item.id}`} onClick={success}>
+                          {item.name}
+                        </a>
+                      </List.Item>
+                    )}
+                  />
+                </Card>
+              )
             })}
           </Col>
         </Row>
