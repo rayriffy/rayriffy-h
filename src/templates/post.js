@@ -90,9 +90,7 @@ export default class PostTemplate extends React.Component {
                   key={`image-${raw.id}-${i + 1}`}>
                   <img
                     style={{width: '100%'}}
-                    src={`https://i.nhentai.net/galleries/${raw.media_id}/${i + 1}.${
-                      page.t.toString === 'p' ? 'png' : 'jpg'
-                    }`}
+                    src={`https://i.nhentai.net/galleries/${raw.media_id}/${i + 1}.${page.t === 'p' ? 'png' : 'jpg'}`}
                   />
                 </Col>
               )

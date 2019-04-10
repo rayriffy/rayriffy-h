@@ -109,7 +109,7 @@ exports.createPages = ({graphql, actions}) => {
           const healthyResults = _.filter(result, o => o.status === 'success')
 
           // Put into cache
-          fs.writeFile(`.tmp/crawler.json`, JSON.stringify(healthyResults), function (err) {
+          fs.writeFile(`.tmp/crawler.json`, JSON.stringify(healthyResults), function(err) {
             if (err) {
               console.log(err)
               reject(err)
