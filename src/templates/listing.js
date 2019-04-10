@@ -42,11 +42,7 @@ export default class ListingTemplate extends React.Component {
                       style={{borderRadius: '10px'}}
                       hoverable
                       cover={
-                        <LazyLoad
-                          width={node.data.raw.images.cover.w}
-                          height={node.data.raw.images.cover.h}
-                          offsetVertical={node.data.raw.images.cover.h * 5}
-                          debounce={false}>
+                        <LazyLoad>
                           <img
                             style={{borderRadius: '10px 10px 0 0'}}
                             alt="cover"
