@@ -116,12 +116,12 @@ exports.createPages = ({graphql, actions}) => {
             {prefix: 'l', name: 'language'},
           ]
 
-          const uniqueFilter = (nodes, type) => {
+          const tagFilter = (nodes, type) => {
             const res = []
-            _.each(healthyResults, node => {
+            _.each(nodes, node => {
               _.each(node.data.raw.tags, tag => {
                 if (tag.type === type) {
-                  if (_.isEmpty(_.filter(nodes, {id: tag.id}))) {
+                  if (_.isEmpty(_.filter(res, node => node.id === tag.id))) {
                     res.push(tag)
                   }
                 }
@@ -148,8 +148,17 @@ exports.createPages = ({graphql, actions}) => {
           }
 
           _.each(tagStack, tag => {
-            const nodes = uniqueFilter(healthyResults, tag.name)
+            const nodes = tagFilter(healthyResults, tag.name)
             // Listing
+            createPage({
+              path: `${tag.prefix}`,
+              component: path.resolve('./src/templates/tag.js'),
+              context: {
+                prefix: tag.prefix,
+                subtitle: `${tag.name}`,
+                raw: nodes,
+              },
+            })
             // All pages
             createSlugPages(tag.prefix, nodes, tag.name)
           })
