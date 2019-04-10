@@ -37,7 +37,7 @@ export default class ListingTemplate extends React.Component {
                   lg={{span: 6}}
                   xl={{span: 4}}
                   key={`grid-${node.data.id}`}>
-                  <a href={`/c/${node.data.id}`} onClick={success}>
+                  <a href={`/r/${node.data.id}`} onClick={success}>
                     <Card
                       style={{borderRadius: '10px'}}
                       hoverable
