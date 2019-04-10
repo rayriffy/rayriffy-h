@@ -34,13 +34,32 @@ exports.createPages = ({graphql, actions}) => {
 
           const getRawData = async id => {
             try {
-              const out = await axios.get(`https://nh-express-git-master.rayriffy.now.sh/api/gallery/${id}`)
-              return {
-                status: 'success',
-                data: {
-                  id: id,
-                  raw: out.data,
-                },
+              let isCacheFound = false
+              let cacheRes
+              // Read file from cache
+              if (fs.existsSync('.tmp/crawler.json')) {
+                const reader = fs.readFileSync('.tmp/crawler.json', 'utf8')
+                const objects = JSON.parse(reader)
+
+                _.each(objects, object => {
+                  if (object.data.id === id && object.status === 'success') {
+                    isCacheFound = true
+                    cacheRes = object
+                  }
+                })
+              }
+
+              if (isCacheFound) {
+                return cacheRes
+              } else {
+                const out = await axios.get(`https://nh-express-git-master.rayriffy.now.sh/api/gallery/${id}`)
+                return {
+                  status: 'success',
+                  data: {
+                    id: id,
+                    raw: out.data,
+                  },
+                }
               }
             } catch (err) {
               console.log(`cannot process ${id} with code ${err.code}`)
@@ -87,9 +106,18 @@ exports.createPages = ({graphql, actions}) => {
             }
           })
 
+          const healthyResults = _.filter(result, o => o.status === 'success')
+
+          // Put into cache
+          fs.writeFile(`.tmp/crawler.json`, JSON.stringify(healthyResults), function (err) {
+            if (err) {
+              console.log(err)
+              reject(err)
+            }
+          })
+
           // Create own static api
           const apiPath = 'api'
-          const healthyResults = _.filter(result, o => o.status === 'success')
           const chunks = _.chunk(healthyResults, 10)
 
           if (!fs.existsSync('./public/api')) {

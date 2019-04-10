@@ -8,7 +8,12 @@ module.exports = {
   pathPrefix: '/',
   plugins: [
     `gatsby-plugin-netlify`,
-    `gatsby-plugin-netlify-cache`,
+    {
+      resolve: 'gatsby-plugin-netlify-cache',
+      options: {
+        extraDirsToCache: ['.tmp'],
+      },
+    },
     `gatsby-transformer-json`,
     {
       resolve: `gatsby-source-filesystem`,

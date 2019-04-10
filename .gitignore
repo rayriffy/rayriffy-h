@@ -7,3 +7,4 @@ public
 yarn.lock
 yarn-error.log
 .firebase/
+.tmp/
