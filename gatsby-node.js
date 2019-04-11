@@ -90,13 +90,13 @@ exports.createPages = ({graphql, actions}) => {
            */
           const healthyResults = _.filter(result, o => o.status === 'success')
           const tagStack = {
-            artist: {prefix: 'a', name: 'artist', color: 'magenta'},
-            category: {prefix: 'ca', name: 'category', color: 'purple'},
-            character: {prefix: 'c', name: 'character', color: 'volcano'},
-            group: {prefix: 'g', name: 'group', color: 'cyan'},
-            language: {prefix: 'l', name: 'language', color: 'green'},
-            parody: {prefix: 'p', name: 'parody', color: 'orange'},
             tag: {prefix: 't', name: 'tag', color: 'blue'},
+            artist: {prefix: 'a', name: 'artist', color: 'magenta'},
+            character: {prefix: 'c', name: 'character', color: 'volcano'},
+            parody: {prefix: 'p', name: 'parody', color: 'orange'},
+            group: {prefix: 'g', name: 'group', color: 'cyan'},
+            category: {prefix: 'ca', name: 'category', color: 'purple'},
+            language: {prefix: 'l', name: 'language', color: 'green'},
           }
 
           /**

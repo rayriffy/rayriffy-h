@@ -16,6 +16,11 @@ export class Slug extends React.Component {
       sortedTags[tag.type].push(tag)
     })
 
+    const orderedTags = {}
+    _.each(Object.keys(tagStack), key => {
+      if (!_.isEmpty(sortedTags[key])) orderedTags[key] = sortedTags[key]
+    })
+
     const success = () => {
       const hide = message.loading('Action in progress..', 0)
       setTimeout(hide, 2500)
@@ -23,10 +28,10 @@ export class Slug extends React.Component {
 
     return (
       <Collapse style={{backgroundColor: 'transparent'}} bordered={false} defaultActiveKey={['meta-tag']}>
-        {Object.keys(sortedTags).map(key => {
+        {Object.keys(orderedTags).map(key => {
           return (
             <Panel header={_.capitalize(key)} key={`meta-${key}`}>
-              {sortedTags[key].map(tag => {
+              {orderedTags[key].map(tag => {
                 return (
                   <a href={`/${tagStack[tag.type].prefix}/${tag.id}`} onClick={success} key={`tag-${id}-${tag.id}`}>
                     <Tag color={tagStack[tag.type].color}>{tag.name}</Tag>
