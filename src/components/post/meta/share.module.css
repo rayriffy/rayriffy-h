@@ -1,0 +1,25 @@
+.share {
+  margin-right: 10px;
+}
+
+.container {
+  margin: 20px 0;
+}
+
+.image {
+  border-radius: 10px;
+  width: 100%;
+}
+
+.title {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.buttonContainer {
+  margin-top: 25px;
+}
+
+.button {
+  width: 100%;
+}

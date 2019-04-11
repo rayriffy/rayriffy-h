@@ -5,6 +5,8 @@ import {StaticQuery, graphql} from 'gatsby'
 
 import {Collapse, Tag, message} from 'antd'
 
+import slugStyle from './slug.module.css'
+
 const {Panel} = Collapse
 
 export class Slug extends React.Component {
@@ -46,7 +48,7 @@ export class Slug extends React.Component {
           })
 
           return (
-            <Collapse style={{backgroundColor: 'transparent'}} bordered={false} defaultActiveKey={['meta-tag']}>
+            <Collapse className={slugStyle.collapse} bordered={false} defaultActiveKey={['meta-tag']}>
               {Object.keys(orderedTags).map(key => {
                 const stack = _.filter(tagStack, o => o.node.name === key)[0]
                 return (
@@ -61,23 +63,6 @@ export class Slug extends React.Component {
                   </Panel>
                 )
               })}
-              {/* {tagStack.map(edge => {
-                return (
-                  <Panel header={_.capitalize(edge.node.name)} key={`meta-${edge.node.name}`}>
-                    {
-                      if (!_.isEmpty(orderedTags[edge.node.name])) {
-                        orderedTags[edge.node.name].map(tag => {
-                          return (
-                            <a href={`/${edge.node.prefix}/${tag.id}`} onClick={success} key={`tag-${id}-${tag.id}`}>
-                              <Tag color={edge.node.color}>{tag.name}</Tag>
-                            </a>
-                          )
-                        })
-                      }
-                    }
-                  </Panel>
-                )
-              })} */}
             </Collapse>
           )
         }}
