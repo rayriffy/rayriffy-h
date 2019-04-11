@@ -11,7 +11,6 @@
     "axios": "^0.18.0",
     "cwait": "^1.1.2",
     "gatsby": "^2.3.17",
-    "gatsby-plugin-create-client-paths": "^2.0.5",
     "gatsby-plugin-google-analytics": "^2.0.18",
     "gatsby-plugin-manifest": "^2.0.29",
     "gatsby-plugin-netlify": "^2.0.13",

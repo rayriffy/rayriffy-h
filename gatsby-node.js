@@ -3,7 +3,6 @@ const axios = require('axios')
 const Promise = require('bluebird')
 const fs = require('fs')
 const path = require('path')
-const {createFilePath} = require('gatsby-source-filesystem')
 const {TaskQueue} = require('cwait')
 
 const MAX_SIMULTANEOUS_DOWNLOADS = 3
@@ -268,15 +267,14 @@ exports.createPages = ({graphql, actions}) => {
   })
 }
 
-exports.onCreateNode = ({node, actions, getNode}) => {
-  const {createNodeField} = actions
+/**
+ * Generate page from dynamic URLs that match RegExp
+ */
+exports.onCreatePage = async ({page, actions}) => {
+  const {createPage} = actions
 
-  if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({node, getNode})
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    })
+  if (page.path.match(/^\/g/)) {
+    page.matchPath = '/g/*'
+    createPage(page)
   }
 }
