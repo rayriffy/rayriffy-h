@@ -113,6 +113,17 @@ exports.createPages = ({graphql, actions}) => {
           })
 
           /**
+           * Create custom page
+           */
+          createPage({
+            path: `custom`,
+            component: path.resolve('./src/templates/custom.js'),
+            context: {
+              tagStack,
+            },
+          })
+
+          /**
            * Create gallery pages
            */
           const postPrefix = 'r'
