@@ -11,12 +11,12 @@ export default class PostTemplate extends React.Component {
     const post = this.props.data.dataJson
     const siteTitle = this.props.data.site.siteMetadata.title
 
-    const {raw} = this.props.pageContext
+    const {raw, tagStack} = this.props.pageContext
 
     return (
-      <App title={siteTitle} subtitle={`viewing`}>
+      <App title={siteTitle} subtitle={`viewing`} tagStack={tagStack}>
         <Helmet htmlAttributes={{lang: 'en'}} title={`${raw.title.pretty} · ${siteTitle}`} />
-        <Post raw={raw} post={post} />
+        <Post raw={raw} post={post} tagStack={tagStack} />
       </App>
     )
   }
@@ -38,6 +38,7 @@ export const pageQuery = graphql`
 PostTemplate.propTypes = {
   pageContext: PropTypes.shape({
     raw: PropTypes.object,
+    tagStack: PropTypes.object,
   }),
   data: PropTypes.shape({
     dataJson: PropTypes.object,

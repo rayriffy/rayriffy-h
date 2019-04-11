@@ -1,4 +1,6 @@
+import _ from 'lodash'
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import {Col, Icon, Drawer, List, Typography} from 'antd'
 
@@ -22,6 +24,8 @@ export class Nav extends React.Component {
   }
 
   render() {
+    const {tagStack} = this.props
+
     const menuStack = [
       {
         name: 'Home',
@@ -31,31 +35,14 @@ export class Nav extends React.Component {
         name: 'Custom',
         url: '/custom',
       },
-      {
-        name: 'Tags',
-        url: '/t',
-      },
-      {
-        name: 'Character',
-        url: '/c',
-      },
-      {
-        name: 'Parody',
-        url: '/p',
-      },
-      {
-        name: 'Artist',
-        url: '/a',
-      },
-      {
-        name: 'Language',
-        url: '/l',
-      },
-      {
-        name: 'Group',
-        url: '/g',
-      },
     ]
+
+    _.each(Object.keys(tagStack), key => {
+      menuStack.push({
+        name: _.capitalize(tagStack[key].name),
+        url: `/${tagStack[key].prefix}`,
+      })
+    })
 
     return (
       <Col span={2}>
@@ -84,4 +71,8 @@ export class Nav extends React.Component {
       </Col>
     )
   }
+}
+
+Nav.propTypes = {
+  tagStack: PropTypes.object,
 }

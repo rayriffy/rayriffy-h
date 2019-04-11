@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 import axios from 'axios'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
 
-import {Row, Col, Typography, Tag, Button, Icon, Modal, Skeleton, Collapse, message} from 'antd'
+import {Row, Col, Typography, Button, Icon, Modal, Skeleton} from 'antd'
+
+import {Slug} from './meta/slug'
 
 import metaStyle from './meta.module.css'
 
 const {Title, Text} = Typography
-const {Panel} = Collapse
 
 export class Meta extends React.Component {
   state = {visible: false, isLoading: true, hits: null, error: false, isCopied: false}
@@ -42,12 +43,7 @@ export class Meta extends React.Component {
 
   render() {
     const {visible, isLoading, error, hits, isCopied} = this.state
-    const {raw} = this.props
-
-    const success = () => {
-      const hide = message.loading('Action in progress..', 0)
-      setTimeout(hide, 2500)
-    }
+    const {raw, tagStack} = this.props
 
     return (
       <Row className={metaStyle.container} key="row-meta">
@@ -73,19 +69,7 @@ export class Meta extends React.Component {
             <Title level={3}>{raw.title.pretty}</Title>
           </Row>
           <Row key="meta-tag">
-            <Collapse style={{backgroundColor: 'transparent'}} bordered={false} defaultActiveKey={['meta-tag']}>
-              <Panel header="Tag" key="meta-tag">
-                {raw.tags.map(tag => {
-                  if (tag.type === 'tag') {
-                    return (
-                      <a href={`/t/${tag.id}`} onClick={success} key={`tag-${raw.id}-${tag.id}`}>
-                        <Tag color="blue">{tag.name}</Tag>
-                      </a>
-                    )
-                  }
-                })}
-              </Panel>
-            </Collapse>
+            <Slug id={raw.id} tags={raw.tags} tagStack={tagStack} />
           </Row>
           <Row key="meta-buttons" className={metaStyle.button}>
             <Button
@@ -152,4 +136,5 @@ export class Meta extends React.Component {
 
 Meta.propTypes = {
   raw: PropTypes.object,
+  tagStack: PropTypes.object,
 }

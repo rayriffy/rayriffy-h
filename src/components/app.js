@@ -13,7 +13,7 @@ const {Title} = Typography
 
 export class App extends React.Component {
   render() {
-    const {title, subtitle, children, navigation = true} = this.props
+    const {title, subtitle, children, navigation = true, tagStack} = this.props
 
     return (
       <Layout>
@@ -23,7 +23,7 @@ export class App extends React.Component {
               <Title className={appStyle.title}>{title}</Title>
               {subtitle && <Title level={3} className={appStyle.subtitle}>{` ${subtitle}`}</Title>}
             </Col>
-            {navigation && <Nav />}
+            {navigation && <Nav tagStack={tagStack} />}
           </Row>
           <Divider className={appStyle.divider} />
           {children}
@@ -41,4 +41,5 @@ App.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
   navigation: PropTypes.bool,
+  tagStack: PropTypes.object,
 }

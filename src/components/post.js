@@ -8,11 +8,11 @@ import {Read} from './post/read'
 
 export class Post extends React.Component {
   render() {
-    const {raw, post = {exclude: []}} = this.props
+    const {raw, post = {exclude: []}, tagStack} = this.props
 
     return (
       <div>
-        <Meta raw={raw} />
+        <Meta raw={raw} tagStack={tagStack} />
         <Divider>
           <Icon type="book" theme="outlined" />
         </Divider>
@@ -25,4 +25,5 @@ export class Post extends React.Component {
 Post.propTypes = {
   raw: PropTypes.object,
   post: PropTypes.object,
+  tagStack: PropTypes.object,
 }

@@ -14,10 +14,6 @@ const {Title, Text} = Typography
 class CustomPage extends React.Component {
   state = {state: 0, subtitle: 'custom', inputValue: 0, raw: {}}
 
-  // constructor (props) {
-  //   super(props)
-  // }
-
   find = async id => {
     this.setState({
       state: 1,

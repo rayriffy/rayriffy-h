@@ -81,8 +81,16 @@ exports.createPages = ({graphql, actions}) => {
           return res
         })
         .then(result => {
-          const pathPrefix = 'r/'
           const healthyResults = _.filter(result, o => o.status === 'success')
+          const tagStack = {
+            artist: {prefix: 'a', name: 'artist', color: 'magenta'},
+            category: {prefix: 'ca', name: 'category', color: 'purple'},
+            character: {prefix: 'c', name: 'character', color: 'volcano'},
+            group: {prefix: 'g', name: 'group', color: 'cyan'},
+            language: {prefix: 'l', name: 'language', color: 'green'},
+            parody: {prefix: 'p', name: 'parody', color: 'orange'},
+            tag: {prefix: 't', name: 'tag', color: 'blue'},
+          }
 
           // Create list page
           createPage({
@@ -91,31 +99,25 @@ exports.createPages = ({graphql, actions}) => {
             context: {
               subtitle: `listing`,
               raw: healthyResults.reverse(),
+              tagStack,
             },
           })
 
           // Create each post
+          const postPrefix = 'r'
           _.each(healthyResults, node => {
             createPage({
-              path: `${pathPrefix}${node.data.id}`,
+              path: `${postPrefix}/${node.data.id}`,
               component: path.resolve('./src/templates/post.js'),
               context: {
                 id: node.data.id,
                 raw: node.data.raw,
+                tagStack,
               },
             })
           })
 
           // Process for each category
-          const tagStack = [
-            {prefix: 't', name: 'tag'},
-            {prefix: 'p', name: 'parody'},
-            {prefix: 'a', name: 'artist'},
-            {prefix: 'g', name: 'groups'},
-            {prefix: 'c', name: 'character'},
-            {prefix: 'l', name: 'language'},
-          ]
-
           const tagFilter = (nodes, type) => {
             const res = []
             _.each(nodes, node => {
@@ -142,25 +144,27 @@ exports.createPages = ({graphql, actions}) => {
                 context: {
                   subtitle: `${name}/${tag.name}`,
                   raw: qualifiedResults,
+                  tagStack,
                 },
               })
             })
           }
 
-          _.each(tagStack, tag => {
-            const nodes = tagFilter(healthyResults, tag.name)
+          _.each(Object.keys(tagStack), key => {
+            const nodes = tagFilter(healthyResults, key)
             // Listing
             createPage({
-              path: `${tag.prefix}`,
+              path: `${tagStack[key].prefix}`,
               component: path.resolve('./src/templates/tag.js'),
               context: {
-                prefix: tag.prefix,
-                subtitle: `${tag.name}`,
+                prefix: tagStack[key].prefix,
+                subtitle: `${tagStack[key].name}`,
                 raw: nodes,
+                tagStack,
               },
             })
             // All pages
-            createSlugPages(tag.prefix, nodes, tag.name)
+            createSlugPages(tagStack[key].prefix, nodes, key)
           })
 
           // Put into cache
