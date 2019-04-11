@@ -31,7 +31,7 @@ export default class TagTemplate extends React.Component {
     }
 
     return (
-      <App title={siteTitle} subtitle={subtitle}>
+      <App title={siteTitle} subtitle={subtitle} tagStack={tagStack}>
         <Helmet htmlAttributes={{lang: 'en'}} title={`${siteTitle}`} tagStack={tagStack} />
         <BackTop />
         <Row gutter={16}>
