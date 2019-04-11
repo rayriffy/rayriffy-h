@@ -32,6 +32,10 @@ exports.createPages = ({graphql, actions}) => {
             reject(result.errors)
           }
 
+          /**
+           * Functions for query data from NHentai API
+           * @param {int} id Gallery ID
+           */
           const getRawData = async id => {
             try {
               let isCacheFound = false
@@ -52,6 +56,7 @@ exports.createPages = ({graphql, actions}) => {
               if (isCacheFound) {
                 return cacheRes
               } else {
+                // Using reverse proxy server to avoid CORS issue
                 const out = await axios.get(`https://nh-express-git-master.rayriffy.now.sh/api/gallery/${id}`)
                 return {
                   status: 'success',
@@ -73,7 +78,6 @@ exports.createPages = ({graphql, actions}) => {
           }
 
           const queue = new TaskQueue(Promise, MAX_SIMULTANEOUS_DOWNLOADS)
-
           const res = await Promise.all(
             result.data.allDataJson.edges.map(queue.wrap(async edge => await getRawData(edge.node.nh_id))),
           )
@@ -81,6 +85,9 @@ exports.createPages = ({graphql, actions}) => {
           return res
         })
         .then(result => {
+          /**
+           * Filter errors and assign contants
+           */
           const healthyResults = _.filter(result, o => o.status === 'success')
           const tagStack = {
             artist: {prefix: 'a', name: 'artist', color: 'magenta'},
@@ -92,7 +99,9 @@ exports.createPages = ({graphql, actions}) => {
             tag: {prefix: 't', name: 'tag', color: 'blue'},
           }
 
-          // Create list page
+          /**
+           * Create listing page
+           */
           createPage({
             path: `listing`,
             component: path.resolve('./src/templates/listing.js'),
@@ -103,7 +112,9 @@ exports.createPages = ({graphql, actions}) => {
             },
           })
 
-          // Create each post
+          /**
+           * Create gallery pages
+           */
           const postPrefix = 'r'
           _.each(healthyResults, node => {
             createPage({
@@ -117,7 +128,11 @@ exports.createPages = ({graphql, actions}) => {
             })
           })
 
-          // Process for each category
+          /**
+           * Filter only tags object with specified types
+           * @param {object} nodes  healthyTags
+           * @param {string} type   Tag type
+           */
           const tagFilter = (nodes, type) => {
             const res = []
             _.each(nodes, node => {
@@ -132,6 +147,12 @@ exports.createPages = ({graphql, actions}) => {
             return res
           }
 
+          /**
+           * Create listing pages for each tags
+           * @param {string} pathPrefix   Tag path prefix
+           * @param {object} nodes  Filtered tag object
+           * @param {string} name        Tag name
+           */
           const createSlugPages = (pathPrefix, nodes, name) => {
             _.each(nodes, tag => {
               const qualifiedResults = []
@@ -150,9 +171,12 @@ exports.createPages = ({graphql, actions}) => {
             })
           }
 
+          /**
+           * Creating tag listing and pages recursively
+           */
           _.each(Object.keys(tagStack), key => {
             const nodes = tagFilter(healthyResults, key)
-            // Listing
+            createSlugPages(tagStack[key].prefix, nodes, key)
             createPage({
               path: `${tagStack[key].prefix}`,
               component: path.resolve('./src/templates/tag.js'),
@@ -163,11 +187,11 @@ exports.createPages = ({graphql, actions}) => {
                 tagStack,
               },
             })
-            // All pages
-            createSlugPages(tagStack[key].prefix, nodes, key)
           })
 
-          // Put into cache
+          /**
+           * Put all healthy results into cache
+           */
           fs.writeFile(`.tmp/crawler.json`, JSON.stringify(healthyResults), function(err) {
             if (err) {
               console.log(err)
@@ -175,7 +199,9 @@ exports.createPages = ({graphql, actions}) => {
             }
           })
 
-          // Create own static api
+          /**
+           * Preparing to generate API
+           */
           const apiPath = 'api'
           const chunks = _.chunk(healthyResults, 10)
 
@@ -196,7 +222,9 @@ exports.createPages = ({graphql, actions}) => {
             })
           }
 
-          // API Status
+          /**
+           * Generate API status page
+           */
           fs.writeFile(
             `public/${apiPath}/status.json`,
             JSON.stringify({
@@ -217,7 +245,9 @@ exports.createPages = ({graphql, actions}) => {
             },
           )
 
-          // API Listing
+          /**
+           * Generate API listing pages
+           */
           _.each(chunks, (chunk, i) => {
             let out = {
               status: 'success',
