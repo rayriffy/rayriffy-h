@@ -13,7 +13,7 @@ class IndexPage extends React.Component {
   render() {
     const siteTitle = this.props.data.site.siteMetadata.title
     return (
-      <App title={siteTitle} subtitle={`locked`}>
+      <App title={siteTitle} subtitle={`locked`} navigation={false}>
         <Helmet htmlAttributes={{lang: 'en'}} title={`${siteTitle}`} />
         <Row>
           <Col xs={{span: 20, offset: 2}} sm={{span: 16, offset: 4}} md={{span: 12, offset: 6}} lg={{span: 8, offset: 8}}>

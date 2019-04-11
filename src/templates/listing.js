@@ -37,47 +37,43 @@ export default class ListingTemplate extends React.Component {
                   lg={{span: 6}}
                   xl={{span: 4}}
                   key={`grid-${node.data.id}`}>
-                  <a href={`/r/${node.data.id}`} onClick={success}>
-                    <Card
-                      style={{borderRadius: '10px'}}
-                      hoverable
-                      cover={
+                  <Card
+                    style={{borderRadius: '10px'}}
+                    hoverable
+                    cover={
+                      <a href={`/r/${node.data.id}`} onClick={success}>
                         <LazyLoad>
                           <img
-                            style={{borderRadius: '10px 10px 0 0'}}
+                            style={{borderRadius: '10px 10px 0 0', width: '100%'}}
                             alt="cover"
                             src={`https://t.nhentai.net/galleries/${node.data.raw.media_id}/cover.${
                               node.data.raw.images.cover.t === 'p' ? 'png' : 'jpg'
                             }`}
                           />
                         </LazyLoad>
-                      }
-                      key={`card-${node.data.id}`}>
-                      <Meta
-                        title={node.data.raw.title.pretty}
-                        description={node.data.raw.tags.map(tag => {
-                          if (tag.type === 'tag') {
-                            return (
-                              <a href={`/t/${tag.id}`}>
-                                <Tag color="blue" key={`tag-${node.data.id}-${tag.id}`}>
-                                  {tag.name}
-                                </Tag>
-                              </a>
-                            )
-                          } else if (tag.type === 'parody') {
-                            return (
-                              <a href={`/p/${tag.id}`}>
-                                <Tag color="orange" key={`parody-${node.data.id}-${tag.id}`}>
-                                  {tag.name}
-                                </Tag>
-                              </a>
-                            )
-                          }
-                        })}
-                        meta={`meta-${node.data.id}`}
-                      />
-                    </Card>
-                  </a>
+                      </a>
+                    }
+                    key={`card-${node.data.id}`}>
+                    <Meta
+                      title={node.data.raw.title.pretty}
+                      description={node.data.raw.tags.map(tag => {
+                        if (tag.type === 'tag') {
+                          return (
+                            <a href={`/t/${tag.id}`} key={`tag-${node.data.id}-${tag.id}`}>
+                              <Tag color="blue">{tag.name}</Tag>
+                            </a>
+                          )
+                        } else if (tag.type === 'parody') {
+                          return (
+                            <a href={`/p/${tag.id}`} key={`parody-${node.data.id}-${tag.id}`}>
+                              <Tag color="orange">{tag.name}</Tag>
+                            </a>
+                          )
+                        }
+                      })}
+                      key={`meta-${node.data.id}`}
+                    />
+                  </Card>
                 </Col>
               )
             }

@@ -1,0 +1,21 @@
+.container {
+  max-height: 460px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.slug {
+  margin-right: 8;
+  display: inline;
+}
+
+.button {
+  margin-top: 20px;
+}
+
+.share {
+  margin-right: 10px;
+}

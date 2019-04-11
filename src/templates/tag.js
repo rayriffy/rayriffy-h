@@ -25,8 +25,6 @@ export default class TagTemplate extends React.Component {
       sortedNodes[node.name.charAt(0).toLowerCase()].push(node)
     })
 
-    console.log(sortedNodes)
-
     const success = () => {
       const hide = message.loading('Action in progress..', 0)
       setTimeout(hide, 2500)
