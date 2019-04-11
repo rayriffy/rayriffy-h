@@ -43,7 +43,7 @@ export class Meta extends React.Component {
 
   render() {
     const {visible, isLoading, error, hits, isCopied} = this.state
-    const {raw, tagStack} = this.props
+    const {raw} = this.props
 
     return (
       <Row className={metaStyle.container} key="row-meta">
@@ -69,7 +69,7 @@ export class Meta extends React.Component {
             <Title level={3}>{raw.title.pretty}</Title>
           </Row>
           <Row key="meta-tag">
-            <Slug id={raw.id} tags={raw.tags} tagStack={tagStack} />
+            <Slug id={raw.id} tags={raw.tags} />
           </Row>
           <Row key="meta-buttons" className={metaStyle.button}>
             <Button
@@ -136,5 +136,4 @@ export class Meta extends React.Component {
 
 Meta.propTypes = {
   raw: PropTypes.object,
-  tagStack: PropTypes.object,
 }

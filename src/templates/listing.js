@@ -12,16 +12,16 @@ export default class ListingTemplate extends React.Component {
   render() {
     const siteTitle = this.props.data.site.siteMetadata.title
 
-    const {raw, subtitle, tagStack} = this.props.pageContext
+    const {raw, subtitle} = this.props.pageContext
 
     return (
-      <App title={siteTitle} subtitle={subtitle} tagStack={tagStack}>
+      <App title={siteTitle} subtitle={subtitle}>
         <Helmet htmlAttributes={{lang: 'en'}} title={`${siteTitle}`} />
         <Row gutter={16} type="flex" justify="space-around" align="middle" key="grid-row">
           {raw.map(node => {
             if (node.status === 'success') {
               const {raw} = node.data
-              return <Poster raw={raw} key={`poster-${raw.id}`} tagStack={tagStack} />
+              return <Poster raw={raw} key={`poster-${raw.id}`} />
             }
           })}
         </Row>
@@ -44,7 +44,6 @@ ListingTemplate.propTypes = {
   pageContext: PropTypes.shape({
     raw: PropTypes.array,
     subtitle: PropTypes.string,
-    tagStack: PropTypes.object,
   }),
   data: PropTypes.shape({
     site: PropTypes.shape({

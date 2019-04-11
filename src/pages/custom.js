@@ -51,11 +51,10 @@ class CustomPage extends React.Component {
   render() {
     const siteTitle = this.props.data.site.siteMetadata.title
 
-    const {tagStack} = this.props.pageContext
     const {state, subtitle, inputValue, raw} = this.state
 
     return (
-      <App title={siteTitle} subtitle={subtitle} tagStack={tagStack}>
+      <App title={siteTitle} subtitle={subtitle}>
         <Helmet htmlAttributes={{lang: 'en'}} title={`${subtitle} · ${siteTitle}`} />
         {state === 4 ? (
           <Post raw={raw} />
@@ -117,9 +116,6 @@ export const indexQuery = graphql`
 `
 
 CustomPage.propTypes = {
-  pageContext: PropTypes.shape({
-    tagStack: PropTypes.object,
-  }),
   location: PropTypes.object,
   data: PropTypes.shape({
     site: PropTypes.shape({

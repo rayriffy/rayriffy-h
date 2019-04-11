@@ -15,7 +15,7 @@ export default class TagTemplate extends React.Component {
   render() {
     const siteTitle = this.props.data.site.siteMetadata.title
 
-    const {raw, subtitle, prefix, tagStack} = this.props.pageContext
+    const {raw, subtitle, prefix} = this.props.pageContext
 
     const nodes = _.sortBy(raw, node => node.name)
 
@@ -31,8 +31,8 @@ export default class TagTemplate extends React.Component {
     }
 
     return (
-      <App title={siteTitle} subtitle={subtitle} tagStack={tagStack}>
-        <Helmet htmlAttributes={{lang: 'en'}} title={`${siteTitle}`} tagStack={tagStack} />
+      <App title={siteTitle} subtitle={subtitle}>
+        <Helmet htmlAttributes={{lang: 'en'}} title={`${siteTitle}`} />
         <BackTop />
         <Row gutter={16}>
           <Col
@@ -88,7 +88,6 @@ TagTemplate.propTypes = {
     prefix: PropTypes.string,
     raw: PropTypes.array,
     subtitle: PropTypes.string,
-    tagStack: PropTypes.object,
   }),
   data: PropTypes.shape({
     site: PropTypes.shape({

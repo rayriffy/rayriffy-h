@@ -1,0 +1,9 @@
+[
+  {"prefix": "t", "name": "tag", "color": "blue"},
+  {"prefix": "a", "name": "artist", "color": "magenta"},
+  {"prefix": "c", "name": "character", "color": "volcano"},
+  {"prefix": "p", "name": "parody", "color": "orange"},
+  {"prefix": "g", "name": "group", "color": "cyan"},
+  {"prefix": "ca", "name": "category", "color": "purple"},
+  {"prefix": "l", "name": "language", "color": "green"}
+]

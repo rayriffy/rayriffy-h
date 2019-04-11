@@ -23,6 +23,14 @@ exports.createPages = ({graphql, actions}) => {
                 }
               }
             }
+            allTagJson {
+              edges {
+                node {
+                  prefix
+                  name
+                }
+              }
+            }
           }
         `,
       )
@@ -78,7 +86,9 @@ exports.createPages = ({graphql, actions}) => {
           }
 
           const queue = new TaskQueue(Promise, MAX_SIMULTANEOUS_DOWNLOADS)
-          const res = await Promise.all(
+          const res = {}
+          res.tags = result.data.allTagJson
+          res.data = await Promise.all(
             result.data.allDataJson.edges.map(queue.wrap(async edge => await getRawData(edge.node.nh_id))),
           )
 
@@ -88,16 +98,8 @@ exports.createPages = ({graphql, actions}) => {
           /**
            * Filter errors and assign contants
            */
-          const healthyResults = _.filter(result, o => o.status === 'success')
-          const tagStack = {
-            tag: {prefix: 't', name: 'tag', color: 'blue'},
-            artist: {prefix: 'a', name: 'artist', color: 'magenta'},
-            character: {prefix: 'c', name: 'character', color: 'volcano'},
-            parody: {prefix: 'p', name: 'parody', color: 'orange'},
-            group: {prefix: 'g', name: 'group', color: 'cyan'},
-            category: {prefix: 'ca', name: 'category', color: 'purple'},
-            language: {prefix: 'l', name: 'language', color: 'green'},
-          }
+          const healthyResults = _.filter(result.data, o => o.status === 'success')
+          const tagStack = result.tags.edges
 
           /**
            * Create listing page
@@ -108,18 +110,6 @@ exports.createPages = ({graphql, actions}) => {
             context: {
               subtitle: `listing`,
               raw: healthyResults.reverse(),
-              tagStack,
-            },
-          })
-
-          /**
-           * Create custom page
-           */
-          createPage({
-            path: `custom`,
-            component: path.resolve('./src/templates/custom.js'),
-            context: {
-              tagStack,
             },
           })
 
@@ -134,7 +124,6 @@ exports.createPages = ({graphql, actions}) => {
               context: {
                 id: node.data.id,
                 raw: node.data.raw,
-                tagStack,
               },
             })
           })
@@ -164,7 +153,7 @@ exports.createPages = ({graphql, actions}) => {
            * @param {object} nodes  Filtered tag object
            * @param {string} name        Tag name
            */
-          const createSlugPages = (pathPrefix, nodes, name) => {
+          const createSlugPages = (pathPrefix, name, nodes) => {
             _.each(nodes, tag => {
               const qualifiedResults = []
               _.each(healthyResults, node => {
@@ -185,17 +174,16 @@ exports.createPages = ({graphql, actions}) => {
           /**
            * Creating tag listing and pages recursively
            */
-          _.each(Object.keys(tagStack), key => {
-            const nodes = tagFilter(healthyResults, key)
-            createSlugPages(tagStack[key].prefix, nodes, key)
+          _.each(tagStack, edge => {
+            const nodes = tagFilter(healthyResults, edge.node.name)
+            createSlugPages(edge.node.prefix, edge.node.name, nodes)
             createPage({
-              path: `${tagStack[key].prefix}`,
+              path: `${edge.node.prefix}`,
               component: path.resolve('./src/templates/tag.js'),
               context: {
-                prefix: tagStack[key].prefix,
-                subtitle: `${tagStack[key].name}`,
+                prefix: edge.node.prefix,
+                subtitle: `${edge.node.name}`,
                 raw: nodes,
-                tagStack,
               },
             })
           })
