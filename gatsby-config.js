@@ -9,6 +9,10 @@ module.exports = {
   plugins: [
     `gatsby-plugin-netlify`,
     {
+      resolve: `gatsby-plugin-create-client-paths`,
+      options: {prefixes: [`/g/*`]},
+    },
+    {
       resolve: 'gatsby-plugin-netlify-cache',
       options: {
         extraDirsToCache: ['.tmp'],
