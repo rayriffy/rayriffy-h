@@ -26,7 +26,8 @@
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.0",
-    "react-lazyload": "^2.5.0"
+    "react-lazyload": "^2.5.0",
+    "reactn": "^1.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
