@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import {DarkThemeConsumer} from '../../context/DarkTheme'
+
 import {Row, Col, Typography} from 'antd'
 
 import {Slug} from './meta/slug'
@@ -28,20 +30,28 @@ export class Meta extends React.Component {
             src={`https://t.nhentai.net/galleries/${raw.media_id}/cover.${raw.images.cover.t === 'p' ? 'png' : 'jpg'}`}
           />
         </Col>
-        <Col
-          xs={{span: 12, offset: 1}}
-          sm={{span: 11, offset: 1}}
-          md={{span: 10, offset: 1}}
-          lg={{span: 9, offset: 1}}
-          key="col-meta">
-          <Row key="meta-title">
-            <Title level={3}>{raw.title.pretty}</Title>
-          </Row>
-          <Row key="meta-tag">
-            <Slug id={raw.id} tags={raw.tags} />
-          </Row>
-          <Share id={raw.id} key="meta-share" />
-        </Col>
+        <DarkThemeConsumer>
+          {dark => {
+            return (
+              <Col
+                xs={{span: 12, offset: 1}}
+                sm={{span: 11, offset: 1}}
+                md={{span: 10, offset: 1}}
+                lg={{span: 9, offset: 1}}
+                key="col-meta">
+                <Row key="meta-title">
+                  <Title level={3} style={{color: dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}}>
+                    {raw.title.pretty}
+                  </Title>
+                </Row>
+                <Row key="meta-tag">
+                  <Slug id={raw.id} tags={raw.tags} />
+                </Row>
+                <Share id={raw.id} key="meta-share" />
+              </Col>
+            )
+          }}
+        </DarkThemeConsumer>
       </Row>
     )
   }

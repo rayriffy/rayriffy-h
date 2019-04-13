@@ -3,6 +3,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {StaticQuery, graphql} from 'gatsby'
 
+import {DarkThemeConsumer} from '../../../context/DarkTheme'
+
 import {Collapse, Tag, message} from 'antd'
 
 import slugStyle from './slug.module.css'
@@ -48,22 +50,33 @@ export class Slug extends React.Component {
           })
 
           return (
-            <Collapse className={slugStyle.collapse} bordered={false} defaultActiveKey={['meta-tag']}>
-              {Object.keys(orderedTags).map(key => {
-                const stack = _.filter(tagStack, o => o.node.name === key)[0]
+            <DarkThemeConsumer>
+              {dark => {
                 return (
-                  <Panel header={_.capitalize(stack.node.name)} key={`meta-${stack.node.name}`}>
-                    {orderedTags[key].map(tag => {
+                  <Collapse className={slugStyle.collapse} bordered={false} defaultActiveKey={['meta-tag']}>
+                    {Object.keys(orderedTags).map(key => {
+                      const stack = _.filter(tagStack, o => o.node.name === key)[0]
                       return (
-                        <a href={`/${stack.node.prefix}/${tag.id}`} onClick={success} key={`tag-${id}-${tag.id}`}>
-                          <Tag color={stack.node.color}>{tag.name}</Tag>
-                        </a>
+                        <Panel
+                          header={
+                            <div style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.85)'}}>{_.capitalize(stack.node.name)}</div>
+                          }
+                          showArrow={false}
+                          key={`meta-${stack.node.name}`}>
+                          {orderedTags[key].map(tag => {
+                            return (
+                              <a href={`/${stack.node.prefix}/${tag.id}`} onClick={success} key={`tag-${id}-${tag.id}`}>
+                                <Tag color={stack.node.color}>{tag.name}</Tag>
+                              </a>
+                            )
+                          })}
+                        </Panel>
                       )
                     })}
-                  </Panel>
+                  </Collapse>
                 )
-              })}
-            </Collapse>
+              }}
+            </DarkThemeConsumer>
           )
         }}
       />

@@ -5,6 +5,8 @@ import PropTypes from 'prop-types'
 import {graphql} from 'gatsby'
 import axios from 'axios'
 
+import {DarkThemeConsumer} from '../../context/DarkTheme'
+
 import {Row, Col, Card, Typography, Skeleton} from 'antd'
 
 import {App} from '../../components/app'
@@ -30,12 +32,6 @@ class GalleryPage extends React.Component {
     }
   }
 
-  updateInputValue = val => {
-    this.setState({
-      inputValue: val.target.value,
-    })
-  }
-
   componentDidMount() {
     const {location} = this.props
 
@@ -58,33 +54,50 @@ class GalleryPage extends React.Component {
         {state === 4 ? (
           <Post raw={raw} />
         ) : (
-          <Row>
-            <Col xs={{span: 20, offset: 2}} sm={{span: 16, offset: 4}} md={{span: 12, offset: 6}} lg={{span: 8, offset: 8}}>
-              {state === 0 || state === 3 ? (
-                <Card>
-                  <Row>
-                    <Title level={2}>Gallery</Title>
-                    {state === 0 ? (
-                      <p>
-                        Usage <Text code>{siteUrl}/g/:id</Text>
-                      </p>
+          <DarkThemeConsumer>
+            {dark => {
+              return (
+                <Row>
+                  <Col
+                    xs={{span: 20, offset: 2}}
+                    sm={{span: 16, offset: 4}}
+                    md={{span: 12, offset: 6}}
+                    lg={{span: 8, offset: 8}}>
+                    {state === 0 || state === 3 ? (
+                      <Card style={{backgroundColor: dark ? '#3c3c3d' : '#fff'}}>
+                        <Row>
+                          <Title level={2} style={{color: dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}}>
+                            Gallery
+                          </Title>
+                          {state === 0 ? (
+                            <p style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}}>
+                              Usage{' '}
+                              <Text code style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}}>
+                                {siteUrl}/g/:id
+                              </Text>
+                            </p>
+                          ) : (
+                            <p style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}}>Your request ID is not found</p>
+                          )}
+                        </Row>
+                      </Card>
+                    ) : state === 1 ? (
+                      <Card style={{backgroundColor: dark ? '#3c3c3d' : '#fff'}}>
+                        <Row>
+                          <Title level={2} style={{color: dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}}>
+                            Gallery
+                          </Title>
+                          <Skeleton active />
+                        </Row>
+                      </Card>
                     ) : (
-                      <p>Your request ID is not found</p>
+                      <div>any</div>
                     )}
-                  </Row>
-                </Card>
-              ) : state === 1 ? (
-                <Card>
-                  <Row>
-                    <Title level={2}>Gallery</Title>
-                    <Skeleton active />
-                  </Row>
-                </Card>
-              ) : (
-                <div>any</div>
-              )}
-            </Col>
-          </Row>
+                  </Col>
+                </Row>
+              )
+            }}
+          </DarkThemeConsumer>
         )}
       </App>
     )

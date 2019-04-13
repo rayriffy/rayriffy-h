@@ -1,7 +1,3 @@
-html, body {
-  background-color: #f0f2f5;
-}
-
 .container {
   padding: 0 25px;
 }
@@ -22,11 +18,7 @@ html, body {
   margin-top: 0px;
 }
 
-.subtitle {
-  display: inline;
-  color: rgba(0, 0, 0, 0.45) !important;
-}
-
 .footer {
   text-align: center;
+  background-color: transparent;
 }

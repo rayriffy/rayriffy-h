@@ -1,7 +1,7 @@
 {
   "parser": "babel-eslint",
   "extends": ["standard", "prettier", "prettier/standard", "plugin:react/recommended"],
-  "plugins": ["prettier", "standard", "node", "import"],
+  "plugins": ["prettier", "standard", "node", "import", "react-hooks"],
   "parserOptions": {
     "sourceType": "module",
     "ecmaFeatures": {
@@ -30,6 +30,8 @@
     "eqeqeq": ["error", "always"],
     "space-before-function-paren": 0,
     "generator-star-spacing": 0,
-    "no-return-await": "off"
+    "no-return-await": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }

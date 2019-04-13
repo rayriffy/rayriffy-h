@@ -1,8 +1,11 @@
 import _ from 'lodash'
 import React from 'react'
+import PropTypes from 'prop-types'
 import {StaticQuery, graphql} from 'gatsby'
 
-import {Col, Icon, Drawer, List, Typography} from 'antd'
+import {DarkThemeConsumer} from '../context/DarkTheme'
+
+import {Col, Icon, Drawer, List, Typography, Switch} from 'antd'
 
 import navStyle from './nav.module.css'
 
@@ -24,6 +27,8 @@ export class Nav extends React.Component {
   }
 
   render() {
+    const {toggleDark} = this.props
+
     return (
       <StaticQuery
         query={graphql`
@@ -57,33 +62,57 @@ export class Nav extends React.Component {
             })
           })
           return (
-            <Col span={2}>
-              <Icon className={navStyle.icon} type="more" onClick={this.showDrawer} />
-              <Drawer
-                title={
-                  <Title level={2} className={navStyle.title}>
-                    Menu
-                  </Title>
-                }
-                placement="left"
-                closable={false}
-                onClose={this.onClose}
-                visible={this.state.visible}>
-                <List
-                  dataSource={menuStack}
-                  renderItem={item => (
-                    <List.Item>
-                      <a href={item.url}>
-                        <Text>{item.name}</Text>
-                      </a>
-                    </List.Item>
-                  )}
-                />
-              </Drawer>
-            </Col>
+            <DarkThemeConsumer>
+              {dark => {
+                return (
+                  <Col span={2}>
+                    <Icon
+                      className={navStyle.icon}
+                      type="more"
+                      onClick={this.showDrawer}
+                      style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}}
+                    />
+                    <Drawer
+                      title={
+                        <Title level={2} className={navStyle.title}>
+                          Menu
+                        </Title>
+                      }
+                      placement="left"
+                      closable={false}
+                      onClose={this.onClose}
+                      visible={this.state.visible}>
+                      <List
+                        dataSource={menuStack}
+                        renderItem={item => (
+                          <List.Item>
+                            <a href={item.url}>
+                              <Text>{item.name}</Text>
+                            </a>
+                          </List.Item>
+                        )}
+                      />
+                      <div style={{marginTop: '20px'}}>
+                        <Switch
+                          checked={dark}
+                          onChange={() => toggleDark()}
+                          checkedChildren={<Icon type="check" />}
+                          unCheckedChildren={<Icon type="close" />}
+                        />{' '}
+                        <Text strong>Dark Mode</Text>
+                      </div>
+                    </Drawer>
+                  </Col>
+                )
+              }}
+            </DarkThemeConsumer>
           )
         }}
       />
     )
   }
+}
+
+Nav.propTypes = {
+  toggleDark: PropTypes.func,
 }

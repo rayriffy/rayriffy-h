@@ -9,9 +9,13 @@
   "dependencies": {
     "antd": "^3.16.2",
     "axios": "^0.18.0",
+    "babel-plugin-import": "^1.11.0",
     "cwait": "^1.1.2",
+    "eslint-plugin-react-hooks": "^1.6.0",
     "gatsby": "^2.3.19",
+    "gatsby-plugin-antd": "^2.0.2",
     "gatsby-plugin-google-analytics": "^2.0.18",
+    "gatsby-plugin-less": "^2.0.12",
     "gatsby-plugin-manifest": "^2.0.29",
     "gatsby-plugin-netlify": "^2.0.13",
     "gatsby-plugin-netlify-cache": "^1.1.0",
@@ -20,14 +24,16 @@
     "gatsby-source-filesystem": "^2.0.29",
     "gatsby-transformer-json": "^2.1.11",
     "gatsby-transformer-sharp": "^2.1.18",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
+    "local-storage": "^1.4.2",
     "lodash": "^4.17.11",
     "prismjs": "^1.16.0",
     "react": "^16.8.6",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.0",
-    "react-lazyload": "^2.5.0",
-    "reactn": "^1.0.0"
+    "react-lazyload": "^2.5.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",

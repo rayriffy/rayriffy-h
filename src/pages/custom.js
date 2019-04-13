@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import {graphql} from 'gatsby'
 import axios from 'axios'
 
+import {DarkThemeConsumer} from '../context/DarkTheme'
+
 import {Row, Col, Card, Typography, Icon, Input, Skeleton} from 'antd'
 
 import {App} from '../components/app'
@@ -59,44 +61,62 @@ class CustomPage extends React.Component {
         {state === 4 ? (
           <Post raw={raw} />
         ) : (
-          <Row>
-            <Col xs={{span: 20, offset: 2}} sm={{span: 16, offset: 4}} md={{span: 12, offset: 6}} lg={{span: 8, offset: 8}}>
-              {state === 0 || state === 3 ? (
-                <Card
-                  actions={[
-                    <a href="/" key="button-close">
-                      <Icon type="close-circle" />
-                    </a>,
-                    <a key="button-go" onClick={() => this.find(inputValue)}>
-                      <Icon type="check-circle" />
-                    </a>,
-                  ]}>
-                  <Row>
-                    <Title level={2}>Custom</Title>
-                    {state === 0 ? (
-                      <p>
-                        Input your code here <Text code>https://nhentai.net/g/:id</Text>
-                      </p>
+          <DarkThemeConsumer>
+            {dark => {
+              return (
+                <Row>
+                  <Col
+                    xs={{span: 20, offset: 2}}
+                    sm={{span: 16, offset: 4}}
+                    md={{span: 12, offset: 6}}
+                    lg={{span: 8, offset: 8}}>
+                    {state === 0 || state === 3 ? (
+                      <Card
+                        style={{backgroundColor: dark ? '#3c3c3d' : '#fff'}}
+                        actions={[
+                          <a href="/" key="button-close">
+                            <Icon type="close-circle" />
+                          </a>,
+                          <a key="button-go" onClick={() => this.find(inputValue)}>
+                            <Icon type="check-circle" />
+                          </a>,
+                        ]}>
+                        <Row>
+                          <Title level={2} style={{color: dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}}>
+                            Custom
+                          </Title>
+                          {state === 0 ? (
+                            <p style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}}>
+                              Input your code here{' '}
+                              <Text code style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}}>
+                                https://nhentai.net/g/:id
+                              </Text>
+                            </p>
+                          ) : (
+                            <p style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}}>Your request ID is not found</p>
+                          )}
+                        </Row>
+                        <Row>
+                          <Input placeholder="000000" size="large" onChange={this.updateInputValue} />
+                        </Row>
+                      </Card>
+                    ) : state === 1 ? (
+                      <Card style={{backgroundColor: dark ? '#3c3c3d' : '#fff'}}>
+                        <Row>
+                          <Title level={2} style={{color: dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}}>
+                            Custom
+                          </Title>
+                          <Skeleton active />
+                        </Row>
+                      </Card>
                     ) : (
-                      <p>Your request ID is not found</p>
+                      <div>any</div>
                     )}
-                  </Row>
-                  <Row>
-                    <Input placeholder="000000" size="large" onChange={this.updateInputValue} />
-                  </Row>
-                </Card>
-              ) : state === 1 ? (
-                <Card>
-                  <Row>
-                    <Title level={2}>Custom</Title>
-                    <Skeleton active />
-                  </Row>
-                </Card>
-              ) : (
-                <div>any</div>
-              )}
-            </Col>
-          </Row>
+                  </Col>
+                </Row>
+              )
+            }}
+          </DarkThemeConsumer>
         )}
       </App>
     )

@@ -1,37 +1,74 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Helmet from 'react-helmet'
+import LocalStorage from 'local-storage'
+
+import {DarkThemeProvider} from '../context/DarkTheme'
 
 import {Row, Col, Layout, Typography, Divider} from 'antd'
-import 'antd/dist/antd.css'
 
 import {Nav} from './nav'
 
 import appStyle from './app.module.css'
 
 const {Footer, Content} = Layout
-const {Title} = Typography
+const {Title, Text} = Typography
 
 export class App extends React.Component {
+  state = {dark: LocalStorage.get('dark')}
+
+  toggleDark = () => {
+    let newState = !LocalStorage('dark')
+    LocalStorage.set('dark', newState)
+    this.setState({dark: newState})
+  }
+
+  componentDidMount = () => {
+    if (LocalStorage('dark') === null) {
+      LocalStorage.set('dark', false)
+      this.setState({dark: false})
+    }
+  }
+
   render() {
-    const {title, subtitle, children, navigation = true, tagStack} = this.props
+    const {dark} = this.state
+    const {title, subtitle, children, navigation = true} = this.props
 
     return (
-      <Layout>
-        <Content className={appStyle.container}>
-          <Row className={appStyle.header} type="flex" justify="space-between" align="bottom">
-            <Col span={navigation ? 22 : 24}>
-              <Title className={appStyle.title}>{title}</Title>
-              {subtitle && <Title level={3} className={appStyle.subtitle}>{` ${subtitle}`}</Title>}
-            </Col>
-            {navigation && <Nav tagStack={tagStack} />}
-          </Row>
-          <Divider className={appStyle.divider} />
-          {children}
-        </Content>
-        <Footer className={appStyle.footer}>
-          Built with love by <a href="https://facebook.com/rayriffy">r4yr1ffy</a>
-        </Footer>
-      </Layout>
+      <DarkThemeProvider value={dark}>
+        <Helmet>
+          <style>
+            {`body {
+              background-color: ${dark ? '#272728' : '#f0f2f5'}
+            }`}
+          </style>
+        </Helmet>
+        <Layout style={{backgroundColor: dark ? '#272728' : '#f0f2f5'}}>
+          <Content className={appStyle.container}>
+            <Row className={appStyle.header} type="flex" justify="space-between" align="bottom">
+              <Col span={navigation ? 22 : 24}>
+                <Title style={{color: dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}} className={appStyle.title}>
+                  {title}
+                </Title>
+                {subtitle && (
+                  <Title
+                    level={3}
+                    style={{color: dark ? '#a7a7a8' : 'rgba(0, 0, 0, 0.45)', display: 'inline'}}>{` ${subtitle}`}</Title>
+                )}
+              </Col>
+              {navigation && <Nav toggleDark={this.toggleDark} />}
+            </Row>
+            <Divider className={appStyle.divider} />
+            {children}
+          </Content>
+          <Footer className={appStyle.footer}>
+            <Text style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}}>Built with love by</Text>{' '}
+            <a href="https://facebook.com/rayriffy" style={{color: dark ? '#3784f7' : '#1890ff'}}>
+              r4yr1ffy
+            </a>
+          </Footer>
+        </Layout>
+      </DarkThemeProvider>
     )
   }
 }
@@ -41,5 +78,6 @@ App.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
   navigation: PropTypes.bool,
-  tagStack: PropTypes.object,
+  dark: PropTypes.bool,
+  toggledark: PropTypes.func,
 }
