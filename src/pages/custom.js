@@ -62,7 +62,7 @@ class CustomPage extends React.Component {
           <Post raw={raw} />
         ) : (
           <AppContextConsumer>
-            {dark => {
+            {({dark}) => {
               return (
                 <Row>
                   <Col
