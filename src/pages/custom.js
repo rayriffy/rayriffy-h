@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import {graphql} from 'gatsby'
 import axios from 'axios'
 
-import {AppContextConsumer} from '../context/DarkTheme'
+import {AppContextConsumer} from '../context/AppContext'
 
 import {Row, Col, Card, Typography, Icon, Input, Skeleton} from 'antd'
 
