@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import {graphql} from 'gatsby'
 import axios from 'axios'
 
-import {DarkThemeConsumer} from '../../context/DarkTheme'
+import {AppContextConsumer} from '../../context/AppContext'
 
 import {Row, Col, Card, Typography, Skeleton} from 'antd'
 
@@ -54,8 +54,9 @@ class GalleryPage extends React.Component {
         {state === 4 ? (
           <Post raw={raw} />
         ) : (
-          <DarkThemeConsumer>
-            {dark => {
+          <AppContextConsumer>
+            {({dark}) => {
+              console.log(dark)
               return (
                 <Row>
                   <Col
@@ -97,7 +98,7 @@ class GalleryPage extends React.Component {
                 </Row>
               )
             }}
-          </DarkThemeConsumer>
+          </AppContextConsumer>
         )}
       </App>
     )

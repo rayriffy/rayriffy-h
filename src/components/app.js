@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import LocalStorage from 'local-storage'
 
-import {DarkThemeProvider} from '../context/DarkTheme'
+import {AppContextProvider} from '../context/AppContext'
 
 import {Row, Col, Layout, Typography, Divider} from 'antd'
 
@@ -35,7 +35,7 @@ export class App extends React.Component {
     const {title, subtitle, children, navigation = true} = this.props
 
     return (
-      <DarkThemeProvider value={dark}>
+      <AppContextProvider value={{dark: dark}}>
         <Helmet>
           <style>
             {`body {
@@ -68,7 +68,7 @@ export class App extends React.Component {
             </a>
           </Footer>
         </Layout>
-      </DarkThemeProvider>
+      </AppContextProvider>
     )
   }
 }

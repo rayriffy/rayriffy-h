@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import {graphql} from 'gatsby'
 import axios from 'axios'
 
-import {DarkThemeConsumer} from '../context/DarkTheme'
+import {AppContextConsumer} from '../context/DarkTheme'
 
 import {Row, Col, Card, Typography, Icon, Input, Skeleton} from 'antd'
 
@@ -61,7 +61,7 @@ class CustomPage extends React.Component {
         {state === 4 ? (
           <Post raw={raw} />
         ) : (
-          <DarkThemeConsumer>
+          <AppContextConsumer>
             {dark => {
               return (
                 <Row>
@@ -116,7 +116,7 @@ class CustomPage extends React.Component {
                 </Row>
               )
             }}
-          </DarkThemeConsumer>
+          </AppContextConsumer>
         )}
       </App>
     )

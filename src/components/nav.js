@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {StaticQuery, graphql} from 'gatsby'
 
-import {DarkThemeConsumer} from '../context/DarkTheme'
+import {AppContextConsumer} from '../context/AppContext'
 
 import {Col, Icon, Drawer, List, Typography, Switch} from 'antd'
 
@@ -62,8 +62,8 @@ export class Nav extends React.Component {
             })
           })
           return (
-            <DarkThemeConsumer>
-              {dark => {
+            <AppContextConsumer>
+              {({dark}) => {
                 return (
                   <Col span={2}>
                     <Icon
@@ -105,7 +105,7 @@ export class Nav extends React.Component {
                   </Col>
                 )
               }}
-            </DarkThemeConsumer>
+            </AppContextConsumer>
           )
         }}
       />

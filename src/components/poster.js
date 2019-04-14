@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {StaticQuery, graphql} from 'gatsby'
 
-import {DarkThemeConsumer} from '../context/DarkTheme'
+import {AppContextConsumer} from '../context/AppContext'
 
 import {Col, Card, Tag, message} from 'antd'
 
@@ -43,8 +43,8 @@ export class Poster extends React.Component {
           const tagStack = data.allTagJson.edges
 
           return (
-            <DarkThemeConsumer>
-              {dark => {
+            <AppContextConsumer>
+              {({dark}) => {
                 return (
                   <Col
                     className={posterStyle.container}
@@ -92,7 +92,7 @@ export class Poster extends React.Component {
                   </Col>
                 )
               }}
-            </DarkThemeConsumer>
+            </AppContextConsumer>
           )
         }}
       />

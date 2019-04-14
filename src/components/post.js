@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import {DarkThemeConsumer} from '../context/DarkTheme'
+import {AppContextConsumer} from '../context/AppContext'
 
 import {Icon, Divider} from 'antd'
 
@@ -15,15 +15,15 @@ export class Post extends React.Component {
     return (
       <div>
         <Meta raw={raw} />
-        <DarkThemeConsumer>
-          {dark => {
+        <AppContextConsumer>
+          {({dark}) => {
             return (
               <Divider>
                 <Icon type="book" theme="outlined" style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.85)'}} />
               </Divider>
             )
           }}
-        </DarkThemeConsumer>
+        </AppContextConsumer>
         <Read raw={raw} post={post} />
       </div>
     )

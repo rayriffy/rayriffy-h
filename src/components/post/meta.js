@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import {DarkThemeConsumer} from '../../context/DarkTheme'
+import {AppContextConsumer} from '../../context/AppContext'
 
 import {Row, Col, Typography} from 'antd'
 
@@ -30,8 +30,8 @@ export class Meta extends React.Component {
             src={`https://t.nhentai.net/galleries/${raw.media_id}/cover.${raw.images.cover.t === 'p' ? 'png' : 'jpg'}`}
           />
         </Col>
-        <DarkThemeConsumer>
-          {dark => {
+        <AppContextConsumer>
+          {({dark}) => {
             return (
               <Col
                 xs={{span: 12, offset: 1}}
@@ -51,7 +51,7 @@ export class Meta extends React.Component {
               </Col>
             )
           }}
-        </DarkThemeConsumer>
+        </AppContextConsumer>
       </Row>
     )
   }

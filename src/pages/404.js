@@ -3,7 +3,7 @@ import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 import {graphql} from 'gatsby'
 
-import {DarkThemeConsumer} from '../context/DarkTheme'
+import {AppContextConsumer} from '../context/AppContext'
 
 import {Row, Col, Card, Typography} from 'antd'
 
@@ -18,8 +18,8 @@ export default class NotFoundPage extends React.Component {
     return (
       <App title={`${siteTitle}`} subtitle={`error`}>
         <Helmet htmlAttributes={{lang: 'en'}} title={`Not Found · ${siteTitle}`} />
-        <DarkThemeConsumer>
-          {dark => {
+        <AppContextConsumer>
+          {({dark}) => {
             return (
               <Row>
                 <Col
@@ -39,7 +39,7 @@ export default class NotFoundPage extends React.Component {
               </Row>
             )
           }}
-        </DarkThemeConsumer>
+        </AppContextConsumer>
       </App>
     )
   }

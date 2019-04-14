@@ -3,7 +3,7 @@ import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 import {graphql} from 'gatsby'
 
-import {DarkThemeConsumer} from '../context/DarkTheme'
+import {AppContextConsumer} from '../context/DarkTheme'
 
 import {Row, Col, Card, Typography, Icon} from 'antd'
 
@@ -17,8 +17,8 @@ class IndexPage extends React.Component {
     return (
       <App title={siteTitle} subtitle={`locked`} navigation={false}>
         <Helmet htmlAttributes={{lang: 'en'}} title={`${siteTitle}`} />
-        <DarkThemeConsumer>
-          {dark => {
+        <AppContextConsumer>
+          {({dark}) => {
             return (
               <Row>
                 <Col
@@ -48,7 +48,7 @@ class IndexPage extends React.Component {
               </Row>
             )
           }}
-        </DarkThemeConsumer>
+        </AppContextConsumer>
       </App>
     )
   }

@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {StaticQuery, graphql} from 'gatsby'
 
-import {DarkThemeConsumer} from '../../../context/DarkTheme'
+import {AppContextConsumer} from '../../../context/AppContext'
 
 import {Collapse, Tag, message} from 'antd'
 
@@ -50,8 +50,8 @@ export class Slug extends React.Component {
           })
 
           return (
-            <DarkThemeConsumer>
-              {dark => {
+            <AppContextConsumer>
+              {({dark}) => {
                 return (
                   <Collapse className={slugStyle.collapse} bordered={false} defaultActiveKey={['meta-tag']}>
                     {Object.keys(orderedTags).map(key => {
@@ -76,7 +76,7 @@ export class Slug extends React.Component {
                   </Collapse>
                 )
               }}
-            </DarkThemeConsumer>
+            </AppContextConsumer>
           )
         }}
       />

@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 import {graphql} from 'gatsby'
 
-import {DarkThemeConsumer} from '../context/DarkTheme'
+import {AppContextConsumer} from '../context/DarkTheme'
 
 import {Row, Col, Card, message, Typography, List, Anchor} from 'antd'
 
@@ -35,8 +35,8 @@ export default class TagTemplate extends React.Component {
     return (
       <App title={siteTitle} subtitle={subtitle}>
         <Helmet htmlAttributes={{lang: 'en'}} title={`${siteTitle}`} />
-        <DarkThemeConsumer>
-          {dark => {
+        <AppContextConsumer>
+          {({dark}) => {
             return (
               <Row gutter={16}>
                 <Col
@@ -87,7 +87,7 @@ export default class TagTemplate extends React.Component {
               </Row>
             )
           }}
-        </DarkThemeConsumer>
+        </AppContextConsumer>
       </App>
     )
   }
