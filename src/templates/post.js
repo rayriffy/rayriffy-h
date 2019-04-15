@@ -7,17 +7,28 @@ import {App} from '../components/app'
 import {Post} from '../components/post'
 
 export default class PostTemplate extends React.Component {
+  state = {mounted: false}
+
+  componentDidMount = () => {
+    this.setState({mounted: true})
+  }
+
   render() {
     const post = this.props.data.dataJson
     const siteTitle = this.props.data.site.siteMetadata.title
 
     const {raw} = this.props.pageContext
+    const {mounted} = this.state
 
     return (
-      <App title={siteTitle} subtitle={`viewing`}>
-        <Helmet htmlAttributes={{lang: 'en'}} title={`${raw.title.pretty} · ${siteTitle}`} />
-        <Post raw={raw} post={post} />
-      </App>
+      <div>
+        {mounted && (
+          <App title={siteTitle} subtitle={`viewing`}>
+            <Helmet htmlAttributes={{lang: 'en'}} title={`${raw.title.pretty} · ${siteTitle}`} />
+            <Post raw={raw} post={post} />
+          </App>
+        )}
+      </div>
     )
   }
 }

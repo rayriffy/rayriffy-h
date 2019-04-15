@@ -15,7 +15,7 @@ import {Post} from '../../components/post'
 const {Title, Text} = Typography
 
 class GalleryPage extends React.Component {
-  state = {state: 0, subtitle: 'gallery', raw: {}}
+  state = {mounted: false, state: 0, subtitle: 'gallery', raw: {}}
 
   find = async id => {
     this.setState({
@@ -40,67 +40,70 @@ class GalleryPage extends React.Component {
     if (!_.isEmpty(requestedID)) {
       this.find(requestedID)
     }
+
+    this.setState({mounted: true})
   }
 
   render() {
     const siteTitle = this.props.data.site.siteMetadata.title
     const siteUrl = this.props.data.site.siteMetadata.siteUrl
 
-    const {state, subtitle, raw} = this.state
+    const {mounted, state, subtitle, raw} = this.state
 
     return (
-      <App title={siteTitle} subtitle={subtitle}>
-        <Helmet htmlAttributes={{lang: 'en'}} title={`${subtitle} · ${siteTitle}`} />
-        {state === 4 ? (
-          <Post raw={raw} />
-        ) : (
-          <AppContextConsumer>
-            {({dark}) => {
-              console.log(dark)
-              return (
-                <Row>
-                  <Col
-                    xs={{span: 20, offset: 2}}
-                    sm={{span: 16, offset: 4}}
-                    md={{span: 12, offset: 6}}
-                    lg={{span: 8, offset: 8}}>
-                    {state === 0 || state === 3 ? (
-                      <Card style={{backgroundColor: dark ? '#3c3c3d' : '#fff'}}>
-                        <Row>
-                          <Title level={2} style={{color: dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}}>
-                            Gallery
-                          </Title>
-                          {state === 0 ? (
-                            <p style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}}>
-                              Usage{' '}
-                              <Text code style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}}>
-                                {siteUrl}/g/:id
-                              </Text>
-                            </p>
+      <div>
+        {mounted && (
+          <App title={siteTitle} subtitle={subtitle}>
+            <Helmet htmlAttributes={{lang: 'en'}} title={`${subtitle} · ${siteTitle}`} />
+            {state === 4 ? (
+              <Post raw={raw} />
+            ) : (
+              <AppContextConsumer>
+                {({dark}) => {
+                  return (
+                    <Row>
+                      <Col
+                        xs={{span: 20, offset: 2}}
+                        sm={{span: 16, offset: 4}}
+                        md={{span: 12, offset: 6}}
+                        lg={{span: 8, offset: 8}}>
+                        <Card style={{backgroundColor: `${dark ? '#3c3c3d' : '#fff'}`}}>
+                          <Row>
+                            <Title level={2} style={{color: `${dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}`}}>
+                              Gallery
+                            </Title>
+                          </Row>
+                          {state === 1 ? (
+                            <Row>
+                              <Skeleton active />
+                            </Row>
                           ) : (
-                            <p style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}}>Your request ID is not found</p>
+                            <Row>
+                              {state === 0 ? (
+                                <p style={{color: `${dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}`}}>
+                                  {console.log(dark)}
+                                  Usage{' '}
+                                  <Text code style={{color: `${dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}`}}>
+                                    {siteUrl}/g/:id
+                                  </Text>
+                                </p>
+                              ) : (
+                                <p style={{color: `${dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}`}}>
+                                  Your request ID is not found
+                                </p>
+                              )}
+                            </Row>
                           )}
-                        </Row>
-                      </Card>
-                    ) : state === 1 ? (
-                      <Card style={{backgroundColor: dark ? '#3c3c3d' : '#fff'}}>
-                        <Row>
-                          <Title level={2} style={{color: dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}}>
-                            Gallery
-                          </Title>
-                          <Skeleton active />
-                        </Row>
-                      </Card>
-                    ) : (
-                      <div>any</div>
-                    )}
-                  </Col>
-                </Row>
-              )
-            }}
-          </AppContextConsumer>
+                        </Card>
+                      </Col>
+                    </Row>
+                  )
+                }}
+              </AppContextConsumer>
+            )}
+          </App>
         )}
-      </App>
+      </div>
     )
   }
 }
