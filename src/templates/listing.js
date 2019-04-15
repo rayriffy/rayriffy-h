@@ -9,34 +9,23 @@ import {App} from '../components/app'
 import {Poster} from '../components/poster'
 
 export default class ListingTemplate extends React.Component {
-  state = {mounted: false}
-
-  componentDidMount = () => {
-    this.setState({mounted: true})
-  }
-
   render() {
     const siteTitle = this.props.data.site.siteMetadata.title
 
     const {raw, subtitle} = this.props.pageContext
-    const {mounted} = this.state
 
     return (
-      <div>
-        {mounted && (
-          <App title={siteTitle} subtitle={subtitle}>
-            <Helmet htmlAttributes={{lang: 'en'}} title={`${siteTitle}`} />
-            <Row gutter={16} type="flex" justify="space-around" align="middle" key="grid-row">
-              {raw.map(node => {
-                if (node.status === 'success') {
-                  const {raw} = node.data
-                  return <Poster raw={raw} key={`poster-${raw.id}`} />
-                }
-              })}
-            </Row>
-          </App>
-        )}
-      </div>
+      <App title={siteTitle} subtitle={subtitle}>
+        <Helmet htmlAttributes={{lang: 'en'}} title={`${siteTitle}`} />
+        <Row gutter={16} type="flex" justify="space-around" align="middle" key="grid-row">
+          {raw.map(node => {
+            if (node.status === 'success') {
+              const {raw} = node.data
+              return <Poster raw={raw} key={`poster-${raw.id}`} />
+            }
+          })}
+        </Row>
+      </App>
     )
   }
 }
