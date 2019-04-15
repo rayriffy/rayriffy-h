@@ -12,8 +12,6 @@ import {Row, Col, Card, Typography, Skeleton} from 'antd'
 import {App} from '../../components/app'
 import {Post} from '../../components/post'
 
-import darkStyle from '../../style/dark.module.css'
-
 const {Title, Text} = Typography
 
 class GalleryPage extends React.Component {
@@ -69,9 +67,9 @@ class GalleryPage extends React.Component {
                         sm={{span: 16, offset: 4}}
                         md={{span: 12, offset: 6}}
                         lg={{span: 8, offset: 8}}>
-                        <Card className={dark ? darkStyle.card : ''}>
+                        <Card style={{backgroundColor: `${dark ? '#3c3c3d' : '#fff'}`}}>
                           <Row>
-                            <Title level={2} className={dark ? darkStyle.cardTitle : ''}>
+                            <Title level={2} style={{color: `${dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}`}}>
                               Gallery
                             </Title>
                           </Row>
@@ -82,15 +80,17 @@ class GalleryPage extends React.Component {
                           ) : (
                             <Row>
                               {state === 0 ? (
-                                <p className={dark ? darkStyle.cardContent : ''}>
+                                <p style={{color: `${dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}`}}>
                                   {console.log(dark)}
                                   Usage{' '}
-                                  <Text code className={dark ? darkStyle.cardCode : ''}>
+                                  <Text code style={{color: `${dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}`}}>
                                     {siteUrl}/g/:id
                                   </Text>
                                 </p>
                               ) : (
-                                <p className={dark ? darkStyle.cardContent : ''}>Your request ID is not found</p>
+                                <p style={{color: `${dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}`}}>
+                                  Your request ID is not found
+                                </p>
                               )}
                             </Row>
                           )}
