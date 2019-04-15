@@ -14,6 +14,10 @@
   display: inline-block;
 }
 
+.subtitle {
+  color: rgba(0, 0, 0, 0.45) !important;
+}
+
 .divider {
   margin-top: 0px;
 }

@@ -61,7 +61,7 @@ export class App extends React.Component {
                   {subtitle && (
                     <Title
                       level={3}
-                      className={dark ? darkStyle.appSubtitle : null}
+                      className={dark ? darkStyle.appSubtitle : appStyle.subtitle}
                       style={{display: 'inline'}}>{` ${subtitle}`}</Title>
                   )}
                 </Col>
