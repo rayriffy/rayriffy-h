@@ -97,18 +97,18 @@ class CustomPage extends React.Component {
                         ) : (
                           <div>
                             <Row>
-                              <p className={dark ? darkStyle.cardContent : null}>
+                              <div className={dark ? darkStyle.cardContent : null}>
                                 {state === 0 ? (
-                                  <div>
+                                  <p>
                                     Input your code here{' '}
                                     <Text code className={dark ? darkStyle.cardContent : null}>
                                       https://nhentai.net/g/:id
                                     </Text>
-                                  </div>
+                                  </p>
                                 ) : (
-                                  <div>Your request ID is not found</div>
+                                  <p>Your request ID is not found</p>
                                 )}
-                              </p>
+                              </div>
                             </Row>
                             <Row>
                               <Input placeholder="000000" size="large" onChange={this.updateInputValue} />

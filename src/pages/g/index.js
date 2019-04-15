@@ -77,18 +77,18 @@ class GalleryPage extends React.Component {
                         </Row>
                       ) : (
                         <Row>
-                          <p className={dark ? darkStyle.cardContent : null}>
+                          <div className={dark ? darkStyle.cardContent : null}>
                             {state === 0 ? (
-                              <div>
+                              <p>
                                 Usage{' '}
                                 <Text code className={dark ? darkStyle.cardContent : null}>
                                   {siteUrl}/g/:id
                                 </Text>
-                              </div>
+                              </p>
                             ) : (
-                              <div>Your request ID is not found</div>
+                              <p>Your request ID is not found</p>
                             )}
-                          </p>
+                          </div>
                         </Row>
                       )}
                     </Card>
