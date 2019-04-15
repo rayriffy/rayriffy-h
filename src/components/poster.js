@@ -9,6 +9,7 @@ import {Col, Card, Tag, message} from 'antd'
 
 import LazyLoad from 'react-lazyload'
 
+import darkStyle from '../styles/dark.module.css'
 import posterStyle from './poster.module.css'
 
 const {Meta} = Card
@@ -55,8 +56,7 @@ export class Poster extends React.Component {
                     xl={{span: 4}}
                     key={`grid-${raw.id}`}>
                     <Card
-                      style={{backgroundColor: dark ? '#3c3c3d' : '#fff'}}
-                      className={posterStyle.card}
+                      className={[posterStyle.card, dark ? darkStyle.card : null].join(' ')}
                       hoverable
                       cover={
                         <a href={`/r/${raw.id}`} onClick={success}>
@@ -73,7 +73,7 @@ export class Poster extends React.Component {
                       }
                       key={`card-${raw.id}`}>
                       <Meta
-                        title={<div style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}}>{raw.title.pretty}</div>}
+                        title={<div className={dark ? darkStyle.whiteText : null}>{raw.title.pretty}</div>}
                         description={filterTags.map(filterTag => {
                           return raw.tags.map(tag => {
                             const stack = _.filter(tagStack, o => o.node.name === filterTag)[0]

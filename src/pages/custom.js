@@ -11,10 +11,12 @@ import {Row, Col, Card, Typography, Icon, Input, Skeleton} from 'antd'
 import {App} from '../components/app'
 import {Post} from '../components/post'
 
+import darkStyle from '../styles/dark.module.css'
+
 const {Title, Text} = Typography
 
 class CustomPage extends React.Component {
-  state = {mounted: false, state: 0, subtitle: 'custom', inputValue: 0, raw: {}}
+  state = {state: 0, subtitle: 'custom', inputValue: 0, raw: {}}
 
   find = async id => {
     this.setState({
@@ -48,83 +50,80 @@ class CustomPage extends React.Component {
     if (getParams(location) !== null) {
       this.find(getParams(location))
     }
-
-    this.setState({mounted: true})
   }
 
   render() {
     const siteTitle = this.props.data.site.siteMetadata.title
 
-    const {mounted, state, subtitle, inputValue, raw} = this.state
+    const {state, subtitle, inputValue, raw} = this.state
 
     return (
-      <div>
-        {mounted && (
-          <App title={siteTitle} subtitle={subtitle}>
-            <Helmet htmlAttributes={{lang: 'en'}} title={`${subtitle} · ${siteTitle}`} />
-            {state === 4 ? (
-              <Post raw={raw} />
-            ) : (
-              <AppContextConsumer>
-                {({dark}) => {
-                  return (
-                    <Row>
-                      <Col
-                        xs={{span: 20, offset: 2}}
-                        sm={{span: 16, offset: 4}}
-                        md={{span: 12, offset: 6}}
-                        lg={{span: 8, offset: 8}}>
-                        {state === 0 || state === 3 ? (
-                          <Card
-                            style={{backgroundColor: dark ? '#3c3c3d' : '#fff'}}
-                            actions={[
+      <App title={siteTitle} subtitle={subtitle}>
+        <Helmet htmlAttributes={{lang: 'en'}} title={`${subtitle} · ${siteTitle}`} />
+        {state === 4 ? (
+          <Post raw={raw} />
+        ) : (
+          <AppContextConsumer>
+            {({dark}) => {
+              return (
+                <Row>
+                  <Col
+                    xs={{span: 20, offset: 2}}
+                    sm={{span: 16, offset: 4}}
+                    md={{span: 12, offset: 6}}
+                    lg={{span: 8, offset: 8}}>
+                    <Card
+                      className={dark ? darkStyle.card : null}
+                      actions={
+                        state !== 1
+                          ? [
                               <a href="/" key="button-close">
                                 <Icon type="close-circle" />
                               </a>,
                               <a key="button-go" onClick={() => this.find(inputValue)}>
                                 <Icon type="check-circle" />
                               </a>,
-                            ]}>
+                            ]
+                          : null
+                      }>
+                      <Row>
+                        <Title level={2} className={dark ? darkStyle.cardTitle : null}>
+                          Custom
+                        </Title>
+                        {state === 1 ? (
+                          <Row>
+                            <Skeleton active />
+                          </Row>
+                        ) : (
+                          <div>
                             <Row>
-                              <Title level={2} style={{color: dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}}>
-                                Custom
-                              </Title>
-                              {state === 0 ? (
-                                <p style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}}>
-                                  Input your code here{' '}
-                                  <Text code style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}}>
-                                    https://nhentai.net/g/:id
-                                  </Text>
-                                </p>
-                              ) : (
-                                <p style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}}>Your request ID is not found</p>
-                              )}
+                              <p className={dark ? darkStyle.cardContent : null}>
+                                {state === 0 ? (
+                                  <div>
+                                    Input your code here{' '}
+                                    <Text code className={dark ? darkStyle.cardContent : null}>
+                                      https://nhentai.net/g/:id
+                                    </Text>
+                                  </div>
+                                ) : (
+                                  <div>Your request ID is not found</div>
+                                )}
+                              </p>
                             </Row>
                             <Row>
                               <Input placeholder="000000" size="large" onChange={this.updateInputValue} />
                             </Row>
-                          </Card>
-                        ) : state === 1 ? (
-                          <Card style={{backgroundColor: dark ? '#3c3c3d' : '#fff'}}>
-                            <Row>
-                              <Title level={2} style={{color: dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}}>
-                                Custom
-                              </Title>
-                              <Skeleton active />
-                            </Row>
-                          </Card>
-                        ) : (
-                          <div>any</div>
+                          </div>
                         )}
-                      </Col>
-                    </Row>
-                  )
-                }}
-              </AppContextConsumer>
-            )}
-          </App>
+                      </Row>
+                    </Card>
+                  </Col>
+                </Row>
+              )
+            }}
+          </AppContextConsumer>
         )}
-      </div>
+      </App>
     )
   }
 }

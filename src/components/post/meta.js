@@ -8,6 +8,7 @@ import {Row, Col, Typography} from 'antd'
 import {Slug} from './meta/slug'
 import {Share} from './meta/share'
 
+import darkStyle from '../../styles/dark.module.css'
 import metaStyle from './meta.module.css'
 
 const {Title} = Typography
@@ -40,7 +41,7 @@ export class Meta extends React.Component {
                 lg={{span: 9, offset: 1}}
                 key="col-meta">
                 <Row key="meta-title">
-                  <Title level={3} style={{color: dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}}>
+                  <Title level={3} className={dark ? darkStyle.metaTitle : null}>
                     {raw.title.pretty}
                   </Title>
                 </Row>

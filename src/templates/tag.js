@@ -10,21 +10,16 @@ import {Row, Col, Card, message, Typography, List, Anchor} from 'antd'
 
 import {App} from '../components/app'
 
+import darkStyle from '../styles/dark.module.css'
+
 const {Title} = Typography
 const {Link} = Anchor
 
 export default class TagTemplate extends React.Component {
-  state = {mounted: false}
-
-  componentDidMount = () => {
-    this.setState({mounted: true})
-  }
-
   render() {
     const siteTitle = this.props.data.site.siteMetadata.title
 
     const {raw, subtitle, prefix} = this.props.pageContext
-    const {mounted} = this.state
 
     const nodes = _.sortBy(raw, node => node.name)
 
@@ -40,66 +35,60 @@ export default class TagTemplate extends React.Component {
     }
 
     return (
-      <div>
-        {mounted && (
-          <App title={siteTitle} subtitle={subtitle}>
-            <Helmet htmlAttributes={{lang: 'en'}} title={`${siteTitle}`} />
-            <AppContextConsumer>
-              {({dark}) => {
-                return (
-                  <Row gutter={16}>
-                    <Col
-                      xs={{span: 4, offset: 0}}
-                      sm={{span: 4, offset: 1}}
-                      md={{span: 4, offset: 2}}
-                      lg={{span: 4, offset: 3}}
-                      xl={{span: 4, offset: 4}}>
-                      <Anchor style={{backgroundColor: 'transparent'}}>
-                        {Object.keys(sortedNodes).map(key => {
-                          return (
-                            <Link
-                              href={`#${key}`}
-                              key={`anchor-${key}`}
-                              title={<div style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}}>{key.toUpperCase()}</div>}
-                            />
-                          )
-                        })}
-                      </Anchor>
-                    </Col>
-                    <Col xs={{span: 20}} sm={{span: 18}} md={{span: 16}} lg={{span: 14}} xl={{span: 12}}>
-                      {Object.keys(sortedNodes).map(key => {
-                        return (
-                          <Card
-                            id={key}
-                            style={{margin: '20px 5px', borderRadius: '10px', backgroundColor: dark ? '#3c3c3d' : '#fff'}}
-                            key={`col-${key}`}>
-                            <Title level={3} style={{color: dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}}>
-                              {key.toUpperCase()}
-                            </Title>
-                            <List
-                              dataSource={sortedNodes[key]}
-                              renderItem={item => (
-                                <List.Item>
-                                  <a
-                                    href={`/${prefix}/${item.id}`}
-                                    onClick={success}
-                                    style={{color: dark ? '#3784f7' : '#1890ff'}}>
-                                    {item.name}
-                                  </a>
-                                </List.Item>
-                              )}
-                            />
-                          </Card>
-                        )
-                      })}
-                    </Col>
-                  </Row>
-                )
-              }}
-            </AppContextConsumer>
-          </App>
-        )}
-      </div>
+      <App title={siteTitle} subtitle={subtitle}>
+        <Helmet htmlAttributes={{lang: 'en'}} title={`${siteTitle}`} />
+        <AppContextConsumer>
+          {({dark}) => {
+            return (
+              <Row gutter={16}>
+                <Col
+                  xs={{span: 4, offset: 0}}
+                  sm={{span: 4, offset: 1}}
+                  md={{span: 4, offset: 2}}
+                  lg={{span: 4, offset: 3}}
+                  xl={{span: 4, offset: 4}}>
+                  <Anchor style={{backgroundColor: 'transparent'}}>
+                    {Object.keys(sortedNodes).map(key => {
+                      return (
+                        <Link
+                          href={`#${key}`}
+                          key={`anchor-${key}`}
+                          title={<div className={dark ? darkStyle.whiteText : null}>{key.toUpperCase()}</div>}
+                        />
+                      )
+                    })}
+                  </Anchor>
+                </Col>
+                <Col xs={{span: 20}} sm={{span: 18}} md={{span: 16}} lg={{span: 14}} xl={{span: 12}}>
+                  {Object.keys(sortedNodes).map(key => {
+                    return (
+                      <Card
+                        id={key}
+                        className={dark ? darkStyle.card : null}
+                        style={{margin: '20px 5px', borderRadius: '10px'}}
+                        key={`col-${key}`}>
+                        <Title level={3} className={dark ? darkStyle.cardTitle : null}>
+                          {key.toUpperCase()}
+                        </Title>
+                        <List
+                          dataSource={sortedNodes[key]}
+                          renderItem={item => (
+                            <List.Item>
+                              <a href={`/${prefix}/${item.id}`} onClick={success} className={darkStyle.link}>
+                                {item.name}
+                              </a>
+                            </List.Item>
+                          )}
+                        />
+                      </Card>
+                    )
+                  })}
+                </Col>
+              </Row>
+            )
+          }}
+        </AppContextConsumer>
+      </App>
     )
   }
 }
