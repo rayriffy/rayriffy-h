@@ -56,7 +56,6 @@ class GalleryPage extends React.Component {
         ) : (
           <AppContextConsumer>
             {({dark}) => {
-              console.log(dark)
               return (
                 <Row>
                   <Col
@@ -64,14 +63,21 @@ class GalleryPage extends React.Component {
                     sm={{span: 16, offset: 4}}
                     md={{span: 12, offset: 6}}
                     lg={{span: 8, offset: 8}}>
-                    {state === 0 || state === 3 ? (
-                      <Card style={{backgroundColor: `${dark ? '#3c3c3d' : '#fff'}`}}>
+                    <Card style={{backgroundColor: `${dark ? '#3c3c3d' : '#fff'}`}}>
+                      <Row>
+                        <Title level={2} style={{color: `${dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}`}}>
+                          Gallery
+                        </Title>
+                      </Row>
+                      {state === 1 ? (
                         <Row>
-                          <Title level={2} style={{color: `${dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}`}}>
-                            Gallery
-                          </Title>
+                          <Skeleton active />
+                        </Row>
+                      ) : (
+                        <Row>
                           {state === 0 ? (
                             <p style={{color: `${dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}`}}>
+                              {console.log(dark)}
                               Usage{' '}
                               <Text code style={{color: `${dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}`}}>
                                 {siteUrl}/g/:id
@@ -81,19 +87,8 @@ class GalleryPage extends React.Component {
                             <p style={{color: `${dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}`}}>Your request ID is not found</p>
                           )}
                         </Row>
-                      </Card>
-                    ) : state === 1 ? (
-                      <Card style={{backgroundColor: `${dark ? '#3c3c3d' : '#fff'}`}}>
-                        <Row>
-                          <Title level={2} style={{color: `${dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}`}}>
-                            Gallery
-                          </Title>
-                          <Skeleton active />
-                        </Row>
-                      </Card>
-                    ) : (
-                      <div>any</div>
-                    )}
+                      )}
+                    </Card>
                   </Col>
                 </Row>
               )
