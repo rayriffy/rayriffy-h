@@ -65,27 +65,27 @@ class GalleryPage extends React.Component {
                     md={{span: 12, offset: 6}}
                     lg={{span: 8, offset: 8}}>
                     {state === 0 || state === 3 ? (
-                      <Card style={{backgroundColor: dark ? '#3c3c3d' : '#fff'}}>
+                      <Card style={{backgroundColor: `${dark ? '#3c3c3d' : '#fff'}`}}>
                         <Row>
-                          <Title level={2} style={{color: dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}}>
+                          <Title level={2} style={{color: `${dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}`}}>
                             Gallery
                           </Title>
                           {state === 0 ? (
-                            <p style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}}>
+                            <p style={{color: `${dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}`}}>
                               Usage{' '}
-                              <Text code style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}}>
+                              <Text code style={{color: `${dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}`}}>
                                 {siteUrl}/g/:id
                               </Text>
                             </p>
                           ) : (
-                            <p style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}}>Your request ID is not found</p>
+                            <p style={{color: `${dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}`}}>Your request ID is not found</p>
                           )}
                         </Row>
                       </Card>
                     ) : state === 1 ? (
-                      <Card style={{backgroundColor: dark ? '#3c3c3d' : '#fff'}}>
+                      <Card style={{backgroundColor: `${dark ? '#3c3c3d' : '#fff'}`}}>
                         <Row>
-                          <Title level={2} style={{color: dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}}>
+                          <Title level={2} style={{color: `${dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}`}}>
                             Gallery
                           </Title>
                           <Skeleton active />
