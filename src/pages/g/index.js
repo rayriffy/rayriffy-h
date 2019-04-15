@@ -12,6 +12,8 @@ import {Row, Col, Card, Typography, Skeleton} from 'antd'
 import {App} from '../../components/app'
 import {Post} from '../../components/post'
 
+import darkStyle from '../../style/dark.module.css'
+
 const {Title, Text} = Typography
 
 class GalleryPage extends React.Component {
@@ -63,9 +65,9 @@ class GalleryPage extends React.Component {
                     sm={{span: 16, offset: 4}}
                     md={{span: 12, offset: 6}}
                     lg={{span: 8, offset: 8}}>
-                    <Card style={{backgroundColor: `${dark ? '#3c3c3d' : '#fff'}`}}>
+                    <Card className={dark ? darkStyle.card : ''}>
                       <Row>
-                        <Title level={2} style={{color: `${dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}`}}>
+                        <Title level={2} className={dark ? darkStyle.cardTitle : ''}>
                           Gallery
                         </Title>
                       </Row>
@@ -76,15 +78,15 @@ class GalleryPage extends React.Component {
                       ) : (
                         <Row>
                           {state === 0 ? (
-                            <p style={{color: `${dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}`}}>
+                            <p className={dark ? darkStyle.cardContent : ''}>
                               {console.log(dark)}
                               Usage{' '}
-                              <Text code style={{color: `${dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}`}}>
+                              <Text code className={dark ? darkStyle.cardCode : ''}>
                                 {siteUrl}/g/:id
                               </Text>
                             </p>
                           ) : (
-                            <p style={{color: `${dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}`}}>Your request ID is not found</p>
+                            <p className={dark ? darkStyle.cardContent : ''}>Your request ID is not found</p>
                           )}
                         </Row>
                       )}

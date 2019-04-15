@@ -1,0 +1,11 @@
+.card {
+  background-color: #3c3c3d;
+}
+
+.cardTitle {
+  color: #e1e1e1 !important;
+}
+
+.cardContent, .cardCode {
+  color: #fff !important;
+}
