@@ -28,7 +28,7 @@ export class Nav extends React.Component {
   }
 
   render() {
-    const {toggleDark} = this.props
+    const {toggle} = this.props
 
     return (
       <StaticQuery
@@ -64,7 +64,7 @@ export class Nav extends React.Component {
           })
           return (
             <AppContextConsumer>
-              {({dark}) => {
+              {({dark, blur}) => {
                 return (
                   <Col span={2}>
                     <Icon
@@ -95,11 +95,20 @@ export class Nav extends React.Component {
                       <div style={{marginTop: '20px'}}>
                         <Switch
                           checked={dark}
-                          onChange={() => toggleDark()}
+                          onChange={() => toggle('dark')}
                           checkedChildren={<Icon type="check" />}
                           unCheckedChildren={<Icon type="close" />}
                         />{' '}
                         <Text strong>Dark Mode</Text>
+                      </div>
+                      <div style={{marginTop: '10px'}}>
+                        <Switch
+                          checked={blur}
+                          onChange={() => toggle('blur')}
+                          checkedChildren={<Icon type="check" />}
+                          unCheckedChildren={<Icon type="close" />}
+                        />{' '}
+                        <Text strong>Safe Mode</Text>
                       </div>
                     </Drawer>
                   </Col>
@@ -114,5 +123,5 @@ export class Nav extends React.Component {
 }
 
 Nav.propTypes = {
-  toggleDark: PropTypes.func,
+  toggle: PropTypes.func,
 }

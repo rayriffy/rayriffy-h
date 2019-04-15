@@ -18,22 +18,23 @@ export class Meta extends React.Component {
     const {raw} = this.props
 
     return (
-      <Row className={metaStyle.container} key="row-meta">
-        <Col
-          xs={{span: 10, offset: 0}}
-          sm={{span: 8, offset: 2}}
-          md={{span: 6, offset: 4}}
-          lg={{span: 4, offset: 6}}
-          key="col-cover">
-          <img
-            alt="cover"
-            className={metaStyle.image}
-            src={`https://t.nhentai.net/galleries/${raw.media_id}/cover.${raw.images.cover.t === 'p' ? 'png' : 'jpg'}`}
-          />
-        </Col>
-        <AppContextConsumer>
-          {({dark}) => {
-            return (
+      <AppContextConsumer>
+        {({dark, blur}) => {
+          return (
+            <Row className={metaStyle.container} key="row-meta">
+              <Col
+                xs={{span: 10, offset: 0}}
+                sm={{span: 8, offset: 2}}
+                md={{span: 6, offset: 4}}
+                lg={{span: 4, offset: 6}}
+                key="col-cover">
+                <img
+                  alt="cover"
+                  style={{filter: blur ? 'blur(10px)' : null}}
+                  className={metaStyle.image}
+                  src={`https://t.nhentai.net/galleries/${raw.media_id}/cover.${raw.images.cover.t === 'p' ? 'png' : 'jpg'}`}
+                />
+              </Col>
               <Col
                 xs={{span: 12, offset: 1}}
                 sm={{span: 11, offset: 1}}
@@ -50,10 +51,10 @@ export class Meta extends React.Component {
                 </Row>
                 <Share id={raw.id} key="meta-share" />
               </Col>
-            )
-          }}
-        </AppContextConsumer>
-      </Row>
+            </Row>
+          )
+        }}
+      </AppContextConsumer>
     )
   }
 }

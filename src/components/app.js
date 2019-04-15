@@ -16,12 +16,13 @@ const {Footer, Content} = Layout
 const {Title, Text} = Typography
 
 export class App extends React.Component {
-  state = {mounted: false, dark: LocalStorage.get('dark')}
+  state = {mounted: false, dark: LocalStorage.get('dark'), blur: LocalStorage.get('blur')}
 
-  toggleDark = () => {
-    let newState = !LocalStorage('dark')
-    LocalStorage.set('dark', newState)
-    this.setState({dark: newState})
+  toggle = id => {
+    let newState = !LocalStorage(id)
+    LocalStorage.set(id, newState)
+    if (id === 'dark') this.setState({dark: newState})
+    else if (id === 'blur') this.setState({blur: newState})
   }
 
   componentDidMount = () => {
@@ -30,15 +31,20 @@ export class App extends React.Component {
       this.setState({dark: false})
     }
 
+    if (LocalStorage('blur') === null) {
+      LocalStorage.set('blur', false)
+      this.setState({blur: false})
+    }
+
     this.setState({mounted: true})
   }
 
   render() {
-    const {mounted, dark} = this.state
+    const {mounted, dark, blur} = this.state
     const {title, subtitle, children, navigation = true} = this.props
 
     return (
-      <AppContextProvider value={{dark: dark}}>
+      <AppContextProvider value={{dark: dark, blur: blur}}>
         <Helmet>
           <style>
             {`body {
@@ -59,7 +65,7 @@ export class App extends React.Component {
                       style={{display: 'inline'}}>{` ${subtitle}`}</Title>
                   )}
                 </Col>
-                {navigation && <Nav toggleDark={this.toggleDark} />}
+                {navigation && <Nav toggle={this.toggle} />}
               </Row>
               <Divider className={appStyle.divider} />
               {children}
