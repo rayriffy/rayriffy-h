@@ -17,7 +17,7 @@ import darkStyle from '../../style/dark.module.css'
 const {Title, Text} = Typography
 
 class GalleryPage extends React.Component {
-  state = {state: 0, subtitle: 'gallery', raw: {}}
+  state = {mounted: false, state: 0, subtitle: 'gallery', raw: {}}
 
   find = async id => {
     this.setState({
@@ -42,62 +42,68 @@ class GalleryPage extends React.Component {
     if (!_.isEmpty(requestedID)) {
       this.find(requestedID)
     }
+
+    this.setState({mounted: true})
   }
 
   render() {
     const siteTitle = this.props.data.site.siteMetadata.title
     const siteUrl = this.props.data.site.siteMetadata.siteUrl
 
-    const {state, subtitle, raw} = this.state
+    const {mounted, state, subtitle, raw} = this.state
 
     return (
-      <App title={siteTitle} subtitle={subtitle}>
-        <Helmet htmlAttributes={{lang: 'en'}} title={`${subtitle} · ${siteTitle}`} />
-        {state === 4 ? (
-          <Post raw={raw} />
-        ) : (
-          <AppContextConsumer>
-            {({dark}) => {
-              return (
-                <Row>
-                  <Col
-                    xs={{span: 20, offset: 2}}
-                    sm={{span: 16, offset: 4}}
-                    md={{span: 12, offset: 6}}
-                    lg={{span: 8, offset: 8}}>
-                    <Card className={dark ? darkStyle.card : ''}>
-                      <Row>
-                        <Title level={2} className={dark ? darkStyle.cardTitle : ''}>
-                          Gallery
-                        </Title>
-                      </Row>
-                      {state === 1 ? (
-                        <Row>
-                          <Skeleton active />
-                        </Row>
-                      ) : (
-                        <Row>
-                          {state === 0 ? (
-                            <p className={dark ? darkStyle.cardContent : ''}>
-                              {console.log(dark)}
-                              Usage{' '}
-                              <Text code className={dark ? darkStyle.cardCode : ''}>
-                                {siteUrl}/g/:id
-                              </Text>
-                            </p>
+      <div>
+        {mounted && (
+          <App title={siteTitle} subtitle={subtitle}>
+            <Helmet htmlAttributes={{lang: 'en'}} title={`${subtitle} · ${siteTitle}`} />
+            {state === 4 ? (
+              <Post raw={raw} />
+            ) : (
+              <AppContextConsumer>
+                {({dark}) => {
+                  return (
+                    <Row>
+                      <Col
+                        xs={{span: 20, offset: 2}}
+                        sm={{span: 16, offset: 4}}
+                        md={{span: 12, offset: 6}}
+                        lg={{span: 8, offset: 8}}>
+                        <Card className={dark ? darkStyle.card : ''}>
+                          <Row>
+                            <Title level={2} className={dark ? darkStyle.cardTitle : ''}>
+                              Gallery
+                            </Title>
+                          </Row>
+                          {state === 1 ? (
+                            <Row>
+                              <Skeleton active />
+                            </Row>
                           ) : (
-                            <p className={dark ? darkStyle.cardContent : ''}>Your request ID is not found</p>
+                            <Row>
+                              {state === 0 ? (
+                                <p className={dark ? darkStyle.cardContent : ''}>
+                                  {console.log(dark)}
+                                  Usage{' '}
+                                  <Text code className={dark ? darkStyle.cardCode : ''}>
+                                    {siteUrl}/g/:id
+                                  </Text>
+                                </p>
+                              ) : (
+                                <p className={dark ? darkStyle.cardContent : ''}>Your request ID is not found</p>
+                              )}
+                            </Row>
                           )}
-                        </Row>
-                      )}
-                    </Card>
-                  </Col>
-                </Row>
-              )
-            }}
-          </AppContextConsumer>
+                        </Card>
+                      </Col>
+                    </Row>
+                  )
+                }}
+              </AppContextConsumer>
+            )}
+          </App>
         )}
-      </App>
+      </div>
     )
   }
 }
