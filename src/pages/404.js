@@ -9,6 +9,8 @@ import {Row, Col, Card, Typography} from 'antd'
 
 import {App} from '../components/app'
 
+import darkStyle from '../styles/dark.module.css'
+
 const {Title} = Typography
 
 export default class NotFoundPage extends React.Component {
@@ -27,11 +29,11 @@ export default class NotFoundPage extends React.Component {
                   sm={{span: 16, offset: 4}}
                   md={{span: 12, offset: 6}}
                   lg={{span: 8, offset: 8}}>
-                  <Card style={{backgroundColor: dark ? '#3c3c3d' : '#fff'}}>
-                    <Title level={2} style={{color: dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}}>
+                  <Card className={dark ? darkStyle.card : null}>
+                    <Title level={2} className={dark ? darkStyle.cardTitle : null}>
                       Not found
                     </Title>
-                    <p style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}}>
+                    <p className={dark ? darkStyle.cardContent : null}>
                       You just hit a route that doesn&#39;t exist... the sadness.
                     </p>
                   </Card>

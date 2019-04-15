@@ -7,6 +7,7 @@ import {AppContextConsumer} from '../../../context/AppContext'
 
 import {Collapse, Tag, message} from 'antd'
 
+import darkStyle from '../../../styles/dark.module.css'
 import slugStyle from './slug.module.css'
 
 const {Panel} = Collapse
@@ -58,9 +59,7 @@ export class Slug extends React.Component {
                       const stack = _.filter(tagStack, o => o.node.name === key)[0]
                       return (
                         <Panel
-                          header={
-                            <div style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.85)'}}>{_.capitalize(stack.node.name)}</div>
-                          }
+                          header={<div className={dark ? darkStyle.whiteText : null}>{_.capitalize(stack.node.name)}</div>}
                           showArrow={false}
                           key={`meta-${stack.node.name}`}>
                           {orderedTags[key].map(tag => {

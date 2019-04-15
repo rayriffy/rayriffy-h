@@ -10,6 +10,7 @@ import {Row, Col, Layout, Typography, Divider} from 'antd'
 import {Nav} from './nav'
 
 import appStyle from './app.module.css'
+import darkStyle from '../styles/dark.module.css'
 
 const {Footer, Content} = Layout
 const {Title, Text} = Typography
@@ -50,13 +51,12 @@ export class App extends React.Component {
             <Content className={appStyle.container}>
               <Row className={appStyle.header} type="flex" justify="space-between" align="bottom">
                 <Col span={navigation ? 22 : 24}>
-                  <Title style={{color: dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}} className={appStyle.title}>
-                    {title}
-                  </Title>
+                  <Title className={[appStyle.title, dark ? darkStyle.appTitle : null].join(' ')}>{title}</Title>
                   {subtitle && (
                     <Title
                       level={3}
-                      style={{color: dark ? '#a7a7a8' : 'rgba(0, 0, 0, 0.45)', display: 'inline'}}>{` ${subtitle}`}</Title>
+                      className={dark ? darkStyle.appSubtitle : null}
+                      style={{display: 'inline'}}>{` ${subtitle}`}</Title>
                   )}
                 </Col>
                 {navigation && <Nav toggleDark={this.toggleDark} />}
@@ -65,8 +65,8 @@ export class App extends React.Component {
               {children}
             </Content>
             <Footer className={appStyle.footer}>
-              <Text style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}}>Built with love by</Text>{' '}
-              <a href="https://facebook.com/rayriffy" style={{color: dark ? '#3784f7' : '#1890ff'}}>
+              <Text className={dark ? darkStyle.whiteText : null}>Built with love by</Text>{' '}
+              <a href="https://facebook.com/rayriffy" className={dark ? darkStyle.link : null}>
                 r4yr1ffy
               </a>
             </Footer>

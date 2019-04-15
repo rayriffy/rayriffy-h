@@ -12,6 +12,8 @@ import {Row, Col, Card, Typography, Skeleton} from 'antd'
 import {App} from '../../components/app'
 import {Post} from '../../components/post'
 
+import darkStyle from '../../styles/dark.module.css'
+
 const {Title, Text} = Typography
 
 class GalleryPage extends React.Component {
@@ -63,9 +65,9 @@ class GalleryPage extends React.Component {
                     sm={{span: 16, offset: 4}}
                     md={{span: 12, offset: 6}}
                     lg={{span: 8, offset: 8}}>
-                    <Card style={{backgroundColor: `${dark ? '#3c3c3d' : '#fff'}`}}>
+                    <Card className={dark ? darkStyle.card : null}>
                       <Row>
-                        <Title level={2} style={{color: `${dark ? '#e1e1e1' : 'rgba(0, 0, 0, 0.85)'}`}}>
+                        <Title level={2} className={dark ? darkStyle.cardTitle : null}>
                           Gallery
                         </Title>
                       </Row>
@@ -75,17 +77,18 @@ class GalleryPage extends React.Component {
                         </Row>
                       ) : (
                         <Row>
-                          {state === 0 ? (
-                            <p style={{color: `${dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}`}}>
-                              {console.log(dark)}
-                              Usage{' '}
-                              <Text code style={{color: `${dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}`}}>
-                                {siteUrl}/g/:id
-                              </Text>
-                            </p>
-                          ) : (
-                            <p style={{color: `${dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}`}}>Your request ID is not found</p>
-                          )}
+                          <p className={dark ? darkStyle.cardContent : null}>
+                            {state === 0 ? (
+                              <div>
+                                Usage{' '}
+                                <Text code className={dark ? darkStyle.cardContent : null}>
+                                  {siteUrl}/g/:id
+                                </Text>
+                              </div>
+                            ) : (
+                              <div>Your request ID is not found</div>
+                            )}
+                          </p>
                         </Row>
                       )}
                     </Card>

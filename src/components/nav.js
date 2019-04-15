@@ -7,6 +7,7 @@ import {AppContextConsumer} from '../context/AppContext'
 
 import {Col, Icon, Drawer, List, Typography, Switch} from 'antd'
 
+import darkStyle from '../styles/dark.module.css'
 import navStyle from './nav.module.css'
 
 const {Title, Text} = Typography
@@ -67,10 +68,9 @@ export class Nav extends React.Component {
                 return (
                   <Col span={2}>
                     <Icon
-                      className={navStyle.icon}
+                      className={[navStyle.icon, dark ? darkStyle.whiteText : null].join(' ')}
                       type="more"
                       onClick={this.showDrawer}
-                      style={{color: dark ? '#fff' : 'rgba(0, 0, 0, 0.65)'}}
                     />
                     <Drawer
                       title={
