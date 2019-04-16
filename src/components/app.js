@@ -32,8 +32,8 @@ export class App extends React.Component {
     }
 
     if (LocalStorage('blur') === null) {
-      LocalStorage.set('blur', false)
-      this.setState({blur: false})
+      LocalStorage.set('blur', true)
+      this.setState({blur: true})
     }
 
     this.setState({mounted: true})
