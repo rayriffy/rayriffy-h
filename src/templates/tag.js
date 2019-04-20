@@ -10,7 +10,7 @@ import {Row, Col, Card, message, Typography, List, Anchor} from 'antd'
 
 import {App} from '../components/app'
 
-import darkStyle from '../styles/dark.module.css'
+import {themes} from '../themes.js'
 
 const {Title} = Typography
 const {Link} = Anchor
@@ -38,7 +38,7 @@ export default class TagTemplate extends React.Component {
       <App title={siteTitle} subtitle={subtitle}>
         <Helmet htmlAttributes={{lang: 'en'}} title={`${siteTitle}`} />
         <AppContextConsumer>
-          {({dark}) => {
+          {({color}) => {
             return (
               <Row gutter={16}>
                 <Col
@@ -53,7 +53,9 @@ export default class TagTemplate extends React.Component {
                         <Link
                           href={`#${key}`}
                           key={`anchor-${key}`}
-                          title={<div className={dark ? darkStyle.whiteText : null}>{key.toUpperCase()}</div>}
+                          title={
+                            <div className={color in themes ? themes[color].style.whiteText : null}>{key.toUpperCase()}</div>
+                          }
                         />
                       )
                     })}
@@ -64,17 +66,20 @@ export default class TagTemplate extends React.Component {
                     return (
                       <Card
                         id={key}
-                        className={dark ? darkStyle.card : null}
+                        className={color in themes ? themes[color].style.card : null}
                         style={{margin: '20px 5px', borderRadius: '10px'}}
                         key={`col-${key}`}>
-                        <Title level={3} className={dark ? darkStyle.cardTitle : null}>
+                        <Title level={3} className={color in themes ? themes[color].style.cardTitle : null}>
                           {key.toUpperCase()}
                         </Title>
                         <List
                           dataSource={sortedNodes[key]}
                           renderItem={item => (
                             <List.Item>
-                              <a href={`/${prefix}/${item.id}`} onClick={success} className={darkStyle.link}>
+                              <a
+                                href={`/${prefix}/${item.id}`}
+                                onClick={success}
+                                className={color in themes && themes[color].style.link}>
                                 {item.name}
                               </a>
                             </List.Item>

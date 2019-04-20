@@ -9,7 +9,7 @@ import {Col, Card, Tag, message} from 'antd'
 
 import LazyLoad from 'react-lazyload'
 
-import darkStyle from '../styles/dark.module.css'
+import {themes} from '../themes.js'
 import posterStyle from './poster.module.css'
 
 const {Meta} = Card
@@ -45,7 +45,7 @@ export class Poster extends React.Component {
 
           return (
             <AppContextConsumer>
-              {({dark, blur}) => {
+              {({color, blur}) => {
                 return (
                   <Col
                     className={posterStyle.container}
@@ -56,7 +56,7 @@ export class Poster extends React.Component {
                     xl={{span: 4}}
                     key={`grid-${raw.id}`}>
                     <Card
-                      className={[posterStyle.card, dark ? darkStyle.card : null].join(' ')}
+                      className={[posterStyle.card, color in themes ? themes[color].style.card : null].join(' ')}
                       hoverable
                       cover={
                         <a href={`/r/${raw.id}`} onClick={success}>
@@ -74,7 +74,9 @@ export class Poster extends React.Component {
                       }
                       key={`card-${raw.id}`}>
                       <Meta
-                        title={<div className={dark ? darkStyle.whiteText : null}>{raw.title.pretty}</div>}
+                        title={
+                          <div className={color in themes ? themes[color].style.whiteText : null}>{raw.title.pretty}</div>
+                        }
                         description={filterTags.map(filterTag => {
                           return raw.tags.map(tag => {
                             const stack = _.filter(tagStack, o => o.node.name === filterTag)[0]

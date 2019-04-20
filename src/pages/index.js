@@ -9,7 +9,7 @@ import {Row, Col, Card, Typography, Icon} from 'antd'
 
 import {App} from '../components/app'
 
-import darkStyle from '../styles/dark.module.css'
+import {themes} from '../themes.js'
 
 const {Title} = Typography
 
@@ -21,7 +21,7 @@ class IndexPage extends React.Component {
       <App title={siteTitle} subtitle={`locked`} navigation={false}>
         <Helmet htmlAttributes={{lang: 'en'}} title={`${siteTitle}`} />
         <AppContextConsumer>
-          {({dark}) => {
+          {({color}) => {
             return (
               <Row>
                 <Col
@@ -30,7 +30,7 @@ class IndexPage extends React.Component {
                   md={{span: 12, offset: 6}}
                   lg={{span: 8, offset: 8}}>
                   <Card
-                    className={dark ? darkStyle.card : null}
+                    className={color in themes ? themes[color].style.card : null}
                     actions={[
                       <a href="https://rayriffy.com" key="button-close">
                         <Icon type="close-circle" />
@@ -39,10 +39,10 @@ class IndexPage extends React.Component {
                         <Icon type="check-circle" />
                       </a>,
                     ]}>
-                    <Title level={2} className={dark ? darkStyle.cardTitle : null}>
+                    <Title level={2} className={color in themes ? themes[color].style.cardTitle : null}>
                       Are you legally classified as an adult?
                     </Title>
-                    <p className={dark ? darkStyle.cardContent : null}>
+                    <p className={color in themes ? themes[color].style.cardContent : null}>
                       You must be classified as an adult and legally allowed to view the contents of this site in the country
                       you are currently located.
                     </p>

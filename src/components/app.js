@@ -10,25 +10,32 @@ import {Row, Col, Layout, Typography, Divider} from 'antd'
 import {Nav} from './nav'
 
 import appStyle from './app.module.css'
-import darkStyle from '../styles/dark.module.css'
 
+import {themes} from '../themes.js'
 const {Footer, Content} = Layout
 const {Title, Text} = Typography
 
 export class App extends React.Component {
-  state = {mounted: false, dark: LocalStorage.get('dark'), blur: LocalStorage.get('blur')}
+  state = {mounted: false, color: LocalStorage.get('color').color, blur: LocalStorage.get('blur')}
 
   toggle = id => {
     let newState = !LocalStorage(id)
     LocalStorage.set(id, newState)
-    if (id === 'dark') this.setState({dark: newState})
-    else if (id === 'blur') this.setState({blur: newState})
+    if (id === 'dark') {
+      if (!LocalStorage('dark')) {
+        this.setState({color: 'dark'})
+        LocalStorage.set('color', {color: 'dark'})
+      } else {
+        this.setState({color: null})
+        LocalStorage.set('color', {color: null})
+      }
+    } else if (id === 'blur') this.setState({blur: newState})
   }
 
   componentDidMount = () => {
-    if (LocalStorage('dark') === null) {
-      LocalStorage.set('dark', false)
-      this.setState({dark: false})
+    if (LocalStorage('color') === null) {
+      LocalStorage.set('color', null)
+      this.setState({color: null})
     }
 
     if (LocalStorage('blur') === null) {
@@ -40,28 +47,30 @@ export class App extends React.Component {
   }
 
   render() {
-    const {mounted, dark, blur} = this.state
+    const {mounted, color, blur} = this.state
     const {title, subtitle, children, navigation = true} = this.props
 
     return (
-      <AppContextProvider value={{dark: dark, blur: blur}}>
+      <AppContextProvider value={{color, blur}}>
         <Helmet>
           <style>
             {`body {
-              background-color: ${dark ? '#272728' : '#f0f2f5'}
+              background-color: ${color in themes ? themes[color].bg : '#f0f2f5'}
             }`}
           </style>
         </Helmet>
         {mounted && (
-          <Layout style={{backgroundColor: dark ? '#272728' : '#f0f2f5'}}>
+          <Layout style={{backgroundColor: color in themes ? themes[color].bg : '#f0f2f5'}}>
             <Content className={appStyle.container}>
               <Row className={appStyle.header} type="flex" justify="space-between" align="bottom">
                 <Col span={navigation ? 22 : 24}>
-                  <Title className={[appStyle.title, dark ? darkStyle.appTitle : null].join(' ')}>{title}</Title>
+                  <Title className={[appStyle.title, color in themes ? themes[color].style.appTitle : null].join(' ')}>
+                    {title}
+                  </Title>
                   {subtitle && (
                     <Title
                       level={3}
-                      className={dark ? darkStyle.appSubtitle : appStyle.subtitle}
+                      className={color in themes ? themes[color].style.appSubtitle : appStyle.subtitle}
                       style={{display: 'inline'}}>{` ${subtitle}`}</Title>
                   )}
                 </Col>
@@ -71,8 +80,8 @@ export class App extends React.Component {
               {children}
             </Content>
             <Footer className={appStyle.footer}>
-              <Text className={dark ? darkStyle.whiteText : null}>Built with love by</Text>{' '}
-              <a href="https://facebook.com/rayriffy" className={dark ? darkStyle.link : null}>
+              <Text className={color in themes ? themes[color].style.whiteText : null}>Built with love by</Text>{' '}
+              <a href="https://facebook.com/rayriffy" className={color in themes ? themes[color].style.link : null}>
                 r4yr1ffy
               </a>
             </Footer>
@@ -89,6 +98,6 @@ App.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
   navigation: PropTypes.bool,
-  dark: PropTypes.bool,
+  color: PropTypes.string,
   toggledark: PropTypes.func,
 }

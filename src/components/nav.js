@@ -7,7 +7,7 @@ import {AppContextConsumer} from '../context/AppContext'
 
 import {Col, Icon, Drawer, List, Typography, Switch} from 'antd'
 
-import darkStyle from '../styles/dark.module.css'
+import {themes} from '../themes.js'
 import navStyle from './nav.module.css'
 
 const {Title, Text} = Typography
@@ -64,11 +64,11 @@ export class Nav extends React.Component {
           })
           return (
             <AppContextConsumer>
-              {({dark, blur}) => {
+              {({color, blur}) => {
                 return (
                   <Col span={2}>
                     <Icon
-                      className={[navStyle.icon, dark ? darkStyle.whiteText : null].join(' ')}
+                      className={[navStyle.icon, color in themes ? themes[color].style.whiteText : null].join(' ')}
                       type="more"
                       onClick={this.showDrawer}
                     />
@@ -94,7 +94,7 @@ export class Nav extends React.Component {
                       />
                       <div style={{marginTop: '20px'}}>
                         <Switch
-                          checked={dark}
+                          checked={color === 'dark'}
                           onChange={() => toggle('dark')}
                           checkedChildren={<Icon type="check" />}
                           unCheckedChildren={<Icon type="close" />}

@@ -8,7 +8,7 @@ import {Icon, Divider} from 'antd'
 import {Meta} from './post/meta'
 import {Read} from './post/read'
 
-import darkStyle from '../styles/dark.module.css'
+import {themes} from '../themes.js'
 
 export class Post extends React.Component {
   render() {
@@ -18,10 +18,10 @@ export class Post extends React.Component {
       <div>
         <Meta raw={raw} />
         <AppContextConsumer>
-          {({dark}) => {
+          {({color}) => {
             return (
               <Divider>
-                <Icon type="book" theme="outlined" className={dark ? darkStyle.whiteText : null} />
+                <Icon type="book" theme="outlined" className={color in themes ? themes[color].style.whiteText : null} />
               </Divider>
             )
           }}

@@ -1,20 +1,20 @@
-import _ from 'lodash'
-import React from 'react'
-import PropTypes from 'prop-types'
-import {StaticQuery, graphql} from 'gatsby'
+import _ from "lodash"
+import React from "react"
+import PropTypes from "prop-types"
+import { StaticQuery, graphql } from "gatsby"
 
-import {AppContextConsumer} from '../../../context/AppContext'
+import { AppContextConsumer } from "../../../context/AppContext"
 
-import {Collapse, Tag, message} from 'antd'
+import { Collapse, Tag, message } from "antd"
 
-import darkStyle from '../../../styles/dark.module.css'
-import slugStyle from './slug.module.css'
+import { themes } from "../../../themes.js"
+import slugStyle from "./slug.module.css"
 
-const {Panel} = Collapse
+const { Panel } = Collapse
 
 export class Slug extends React.Component {
   render() {
-    const {id, tags} = this.props
+    const { id, tags } = this.props
 
     const sortedTags = {}
     _.each(tags, tag => {
@@ -23,7 +23,7 @@ export class Slug extends React.Component {
     })
 
     const success = () => {
-      const hide = message.loading('Action in progress..', 0)
+      const hide = message.loading("Action in progress..", 0)
       setTimeout(hide, 2500)
     }
 
@@ -52,16 +52,21 @@ export class Slug extends React.Component {
 
           return (
             <AppContextConsumer>
-              {({dark}) => {
+              {({ color }) => {
                 return (
-                  <Collapse className={slugStyle.collapse} bordered={false} defaultActiveKey={['meta-tag']}>
+                  <Collapse className={slugStyle.collapse} bordered={false} defaultActiveKey={["meta-tag"]}>
                     {Object.keys(orderedTags).map(key => {
                       const stack = _.filter(tagStack, o => o.node.name === key)[0]
                       return (
                         <Panel
-                          header={<div className={dark ? darkStyle.whiteText : null}>{_.capitalize(stack.node.name)}</div>}
+                          header={
+                            <div className={color in themes ? themes[color].style.whiteText : null}>
+                              {_.capitalize(stack.node.name)}
+                            </div>
+                          }
                           showArrow={false}
-                          key={`meta-${stack.node.name}`}>
+                          key={`meta-${stack.node.name}`}
+                        >
                           {orderedTags[key].map(tag => {
                             return (
                               <a href={`/${stack.node.prefix}/${tag.id}`} onClick={success} key={`tag-${id}-${tag.id}`}>
@@ -85,5 +90,5 @@ export class Slug extends React.Component {
 
 Slug.propTypes = {
   id: PropTypes.number,
-  tags: PropTypes.array,
+  tags: PropTypes.array
 }

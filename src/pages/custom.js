@@ -11,7 +11,7 @@ import {Row, Col, Card, Typography, Icon, Input, Skeleton} from 'antd'
 import {App} from '../components/app'
 import {Post} from '../components/post'
 
-import darkStyle from '../styles/dark.module.css'
+import {themes} from '../themes.js'
 
 const {Title, Text} = Typography
 
@@ -64,7 +64,7 @@ class CustomPage extends React.Component {
           <Post raw={raw} />
         ) : (
           <AppContextConsumer>
-            {({dark}) => {
+            {({color}) => {
               return (
                 <Row>
                   <Col
@@ -73,7 +73,7 @@ class CustomPage extends React.Component {
                     md={{span: 12, offset: 6}}
                     lg={{span: 8, offset: 8}}>
                     <Card
-                      className={dark ? darkStyle.card : null}
+                      className={color in themes ? themes[color].style.card : null}
                       actions={
                         state !== 1
                           ? [
@@ -87,7 +87,7 @@ class CustomPage extends React.Component {
                           : null
                       }>
                       <Row>
-                        <Title level={2} className={dark ? darkStyle.cardTitle : null}>
+                        <Title level={2} className={color in themes ? themes[color].style.cardTitle : null}>
                           Custom
                         </Title>
                         {state === 1 ? (
@@ -97,11 +97,11 @@ class CustomPage extends React.Component {
                         ) : (
                           <div>
                             <Row>
-                              <div className={dark ? darkStyle.cardContent : null}>
+                              <div className={color in themes ? themes[color].style.cardContent : null}>
                                 {state === 0 ? (
                                   <p>
                                     Input your code here{' '}
-                                    <Text code className={dark ? darkStyle.cardContent : null}>
+                                    <Text code className={color in themes ? themes[color].style.cardContent : null}>
                                       https://nhentai.net/g/:id
                                     </Text>
                                   </p>

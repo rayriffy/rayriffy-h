@@ -1,0 +1,42 @@
+/* App */
+
+.appTitle {
+    color: #000000 !important;
+}
+
+.appSubtitle {
+    color: #616161 !important;
+}
+
+/* Card */
+
+.card {
+    background: #ffc400 !important;
+}
+
+.cardTitle {
+    color: #000000 !important;
+}
+
+.cardContent,
+.cardCode {
+    color: #000000;
+}
+
+/* Meta */
+
+.metaTitle {
+    color: #000000 !important;
+}
+
+/* Link */
+
+.link {
+    color: #3784f7;
+}
+
+/* Misc */
+
+.whiteText {
+    color: #000000 !important;
+}
