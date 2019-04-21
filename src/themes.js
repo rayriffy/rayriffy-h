@@ -7,7 +7,7 @@ export const themes = {
     bg: "#272728",
     style: darkStyle
   },
-  yellow: {
+  x: {
     bg: "#ffea00",
     style: yellowStyle
   },
