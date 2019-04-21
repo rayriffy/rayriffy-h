@@ -38,7 +38,7 @@ export class App extends React.Component {
 
   componentDidMount = () => {
     if (LocalStorage('color') === null) {
-      LocalStorage.set('color', null)
+      LocalStorage.set('color', {color: null})
       this.setState({color: null})
     }
 
