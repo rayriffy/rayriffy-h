@@ -4850,10 +4850,10 @@ gatsby-cli@^2.5.12:
     yargs "^12.0.5"
     yurnalist "^1.0.2"
 
-gatsby-link@^2.0.16:
-  version "2.0.16"
-  resolved "https://registry.yarnpkg.com/gatsby-link/-/gatsby-link-2.0.16.tgz#5d140e43f3aec6dd59e01c1468d77a54092370c5"
-  integrity sha512-2CWQeRtkidpi6uEMoq9KRkssqh66ybSWTeQ7W2as7uqldaFlZDOJxkpqf3C3n207iQxxcsY6vzvMgjtGzucv/Q==
+gatsby-link@^2.0.17:
+  version "2.0.17"
+  resolved "https://registry.yarnpkg.com/gatsby-link/-/gatsby-link-2.0.17.tgz#f6129a942c9138466fceb25cce89d579f3a62f85"
+  integrity sha512-PAvQTAwjebiwzso2PeLGT/P365q4iqE62YYY0heK46VKMvhSklCOx0MjldYsUjp0lvtU23plwwVabitmBuPztQ==
   dependencies:
     "@babel/runtime" "^7.0.0"
     "@types/reach__router" "^1.0.0"
@@ -5023,10 +5023,10 @@ gatsby-transformer-sharp@^2.1.18:
     probe-image-size "^4.0.0"
     sharp "^0.21.3"
 
-gatsby@^2.3.33:
-  version "2.3.33"
-  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.3.33.tgz#721d9b1197fb5c46a33b72d3806d5869d83dbfb1"
-  integrity sha512-Z9JIHk02mtfGhcamP43kERzOiAmvb5MHm/EUHDcghkjtUlEHUcV87sY01wcOkkCQBOdLsnyCwhWZ+3+uFYhgqA==
+gatsby@^2.3.34:
+  version "2.3.34"
+  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.3.34.tgz#3901e1c91eeca00d096cfc5a5fae6dc21ca4ec15"
+  integrity sha512-IyaP4JF2DiVSnqQ45Gbrm0KWywEvyWat5/U42r66YweFMf/c2lFA2oxWtfLFCQBl681xk/7+ZGleE9UnK/f9ZA==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     "@babel/core" "^7.0.0"
@@ -5084,7 +5084,7 @@ gatsby@^2.3.33:
     fs-exists-cached "1.0.0"
     fs-extra "^5.0.0"
     gatsby-cli "^2.5.12"
-    gatsby-link "^2.0.16"
+    gatsby-link "^2.0.17"
     gatsby-plugin-page-creator "^2.0.12"
     gatsby-react-router-scroll "^2.0.7"
     gatsby-telemetry "^1.0.9"
