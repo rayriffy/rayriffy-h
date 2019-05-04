@@ -78,7 +78,6 @@ export class App extends React.Component {
             </Footer>
           </Layout>
         )}
-        \
       </AppContextProvider>
     )
   }
