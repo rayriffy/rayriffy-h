@@ -9,7 +9,7 @@
   "dependencies": {
     "antd": "^3.17.0",
     "axios": "^0.18.0",
-    "babel-plugin-import": "^1.11.0",
+    "babel-plugin-import": "^1.11.2",
     "cwait": "^1.1.2",
     "eslint-plugin-react-hooks": "^1.6.0",
     "gatsby": "^2.4.3",
