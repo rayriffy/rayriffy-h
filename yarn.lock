@@ -9667,10 +9667,10 @@ react-lazy-load@^3.0.13:
     lodash.throttle "^4.0.0"
     prop-types "^15.5.8"
 
-react-lazyload@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/react-lazyload/-/react-lazyload-2.5.0.tgz#7ed20bf0408dc684c10e808060e51d904cc0ab8d"
-  integrity sha512-RkEwpJDqEUVkXodxBXAI/UDyGYUBTZCU9kdG0Lwmg8BIv8zDvP+exFwUzc7wP4HX6n33CCsz+cjG2FpwdRoxpw==
+react-lazyload@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/react-lazyload/-/react-lazyload-2.6.0.tgz#49c556f0832874a2be14307fbb8e9d59e7739d0d"
+  integrity sha512-6SlZ2eIre/c8cpW+yhdlZm8I4M9nNWPzk+yMit35TwM44cnvWCGli0T/D367esj2yVmXvwTMGYTyI9ZTN8j1cg==
 
 react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
