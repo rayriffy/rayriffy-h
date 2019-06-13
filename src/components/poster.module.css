@@ -10,3 +10,8 @@
   border-radius: 10px 10px 0 0 !important;
   width: 100%;
 }
+
+.cardCover {
+  border-radius: 10px 10px 0 0 !important;
+  overflow: hidden;
+}

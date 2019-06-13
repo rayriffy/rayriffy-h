@@ -59,7 +59,7 @@ export class Poster extends React.Component {
                       className={[posterStyle.card, dark ? darkStyle.card : null].join(' ')}
                       hoverable
                       cover={
-                        <a href={`/r/${raw.id}`} onClick={success}>
+                        <a href={`/r/${raw.id}`} onClick={success} className={posterStyle.cardCover}>
                           <LazyLoad>
                             <img
                               className={posterStyle.cover}
