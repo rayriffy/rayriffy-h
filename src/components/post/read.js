@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import {LazyLoadImage} from 'react-lazy-load-image-component'
+
 import {AppContextConsumer} from '../../context/AppContext'
 
 import {Row, Col} from 'antd'
@@ -23,14 +25,16 @@ export class Read extends React.Component {
                   return (
                     <Col
                       xs={{span: 24, offset: 0}}
-                      sm={{span: 22, offset: 1}}
+                      sm={{span: 24, offset: 0}}
                       md={{span: 20, offset: 2}}
                       lg={{span: 16, offset: 4}}
                       xl={{span: 12, offset: 6}}
                       key={`image-${raw.id}-${i + 1}`}>
-                      <img
+                      <LazyLoadImage
                         className={readStyle.image}
                         style={{filter: blur ? 'blur(15px)' : null}}
+                        width={page.w}
+                        height={page.h}
                         src={`https://i.nhentai.net/galleries/${raw.media_id}/${i + 1}.${page.t === 'p' ? 'png' : 'jpg'}`}
                       />
                     </Col>
