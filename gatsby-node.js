@@ -6,6 +6,7 @@ const path = require('path')
 const {TaskQueue} = require('cwait')
 
 const MAX_SIMULTANEOUS_DOWNLOADS = 3
+const PREFETCH_GIST = 'https://gist.githubusercontent.com/rayriffy/09554279046d2fda29c125e0a16dc695/raw/crawler.json'
 
 exports.createPages = ({graphql, actions}) => {
   const {createPage} = actions
@@ -84,6 +85,20 @@ exports.createPages = ({graphql, actions}) => {
             }
           }
 
+          // Download file from cache if cache does not exist
+          if (!fs.existsSync('.tmp/crawler.json')) {
+            console.log('[info] Downloading prefetch cache from Gist...')
+            const gistCache = await axios.get(PREFETCH_GIST)
+
+            await fs.writeFile(`.tmp/crawler.json`, JSON.stringify(gistCache.data), function(err) {
+              if (err) {
+                console.log(err)
+                reject(err)
+              }
+            })
+          }
+
+          // Begin to fetch data
           const queue = new TaskQueue(Promise, MAX_SIMULTANEOUS_DOWNLOADS)
           const res = {}
           res.tags = result.data.allTagJson

@@ -25,7 +25,7 @@ export class Read extends React.Component {
                   return (
                     <Col
                       xs={{span: 24, offset: 0}}
-                      sm={{span: 24, offset: 0}}
+                      sm={{span: 22, offset: 1}}
                       md={{span: 20, offset: 2}}
                       lg={{span: 16, offset: 4}}
                       xl={{span: 12, offset: 6}}
