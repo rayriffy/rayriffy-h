@@ -50,7 +50,6 @@ exports.createPages = ({graphql, actions, reporter}) => {
               let cacheRes
               // Read file from cache
               if (fs.existsSync('.tmp/crawler.json')) {
-                reporter.info(`Downloading prefetched data from GitHub Gist`)
                 const reader = fs.readFileSync('.tmp/crawler.json', 'utf8')
                 const objects = JSON.parse(reader)
 
@@ -88,7 +87,7 @@ exports.createPages = ({graphql, actions, reporter}) => {
 
           // Download file from cache if cache does not exist
           if (!fs.existsSync('.tmp/crawler.json')) {
-            console.log('[info] Downloading prefetch cache from Gist...')
+            reporter.info(`Downloading prefetched data from GitHub Gist`)
             const gistCache = await axios.get(PREFETCH_GIST)
 
             await fs.writeFile(`.tmp/crawler.json`, JSON.stringify(gistCache.data), function(err) {
@@ -97,6 +96,8 @@ exports.createPages = ({graphql, actions, reporter}) => {
                 reject(err)
               }
             })
+          } else {
+            reporter.info(`Found cache! Skipping prefetch stage`)
           }
 
           // Begin to fetch data
