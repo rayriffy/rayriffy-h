@@ -8,7 +8,7 @@ const {TaskQueue} = require('cwait')
 const MAX_SIMULTANEOUS_DOWNLOADS = 3
 const PREFETCH_GIST = 'https://gist.githubusercontent.com/rayriffy/09554279046d2fda29c125e0a16dc695/raw/crawler.json'
 
-exports.createPages = ({graphql, actions}) => {
+exports.createPages = ({graphql, actions, reporter}) => {
   const {createPage} = actions
 
   return new Promise((resolve, reject) => {
@@ -50,6 +50,7 @@ exports.createPages = ({graphql, actions}) => {
               let cacheRes
               // Read file from cache
               if (fs.existsSync('.tmp/crawler.json')) {
+                reporter.info(`Downloading prefetched data from GitHub Gist`)
                 const reader = fs.readFileSync('.tmp/crawler.json', 'utf8')
                 const objects = JSON.parse(reader)
 
@@ -75,7 +76,7 @@ exports.createPages = ({graphql, actions}) => {
                 }
               }
             } catch (err) {
-              console.log(`cannot process ${id} with code ${err.code}`)
+              reporter.warn(`cannot process ${id} with code ${err.code}`)
               return {
                 status: 'failure',
                 data: {
