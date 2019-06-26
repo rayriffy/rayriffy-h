@@ -13,6 +13,7 @@ export class Read extends React.Component {
   render() {
     const {raw, post} = this.props
 
+    const {exclude = []} = post
     const pages = raw.images.pages
 
     return (
@@ -21,7 +22,7 @@ export class Read extends React.Component {
           return (
             <Row key="row-images">
               {pages.map((page, i) => {
-                if (!post.exclude.includes(i + 1)) {
+                if (!exclude.includes(i + 1)) {
                   return (
                     <Col
                       xs={{span: 24, offset: 0}}
