@@ -34,7 +34,7 @@ exports.createPages = async ({graphql, actions, reporter}) => {
   )
 
   if (result.errors) {
-    console.error(result.errors)
+    reporter.error(result.errors)
     throw result.errors
   }
 
@@ -45,7 +45,7 @@ exports.createPages = async ({graphql, actions, reporter}) => {
   const fshandler = err => {
     if (err) {
       if (err) {
-        console.log(err)
+        reporter.log(err)
         throw err
       }
     }
