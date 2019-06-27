@@ -39,6 +39,19 @@ exports.createPages = async ({graphql, actions, reporter}) => {
   }
 
   /**
+   * Handler function for file sync
+   * @param {err} id Error information
+   */
+  const fshandler = err => {
+    if (err) {
+      if (err) {
+        console.log(err)
+        throw err
+      }
+    }
+  }
+
+  /**
    * Functions for query data from NHentai API
    * @param {int} id Gallery ID
    */
@@ -88,12 +101,11 @@ exports.createPages = async ({graphql, actions, reporter}) => {
     reporter.info(`Downloading prefetched data from GitHub Gist`)
     const gistCache = await axios.get(PREFETCH_GIST)
 
-    await fs.writeFile(`.tmp/crawler.json`, JSON.stringify(gistCache.data), function(err) {
-      if (err) {
-        console.log(err)
-        throw err
-      }
-    })
+    if (!fs.existsSync('.tmp')) {
+      fs.mkdirSync('.tmp', fshandler)
+    }
+
+    await fs.writeFile(`.tmp/crawler.json`, JSON.stringify(gistCache.data), fshandler)
   } else {
     reporter.info(`Found cache! Skipping prefetch stage`)
   }
@@ -202,12 +214,7 @@ exports.createPages = async ({graphql, actions, reporter}) => {
   /**
    * Put all healthy results into cache
    */
-  fs.writeFile(`.tmp/crawler.json`, JSON.stringify(healthyResults), function(err) {
-    if (err) {
-      console.error(err)
-      throw err
-    }
-  })
+  fs.writeFile(`.tmp/crawler.json`, JSON.stringify(healthyResults), fshandler)
 
   /**
    * Preparing to generate API
@@ -216,20 +223,10 @@ exports.createPages = async ({graphql, actions, reporter}) => {
   const chunks = _.chunk(healthyResults, 10)
 
   if (!fs.existsSync('./public/api')) {
-    fs.mkdirSync('./public/api', function(err) {
-      if (err) {
-        console.error(err)
-        throw err
-      }
-    })
+    fs.mkdirSync('./public/api', fshandler)
   }
   if (!fs.existsSync('./public/api/list')) {
-    fs.mkdirSync('./public/api/list', function(err) {
-      if (err) {
-        console.error(err)
-        throw err
-      }
-    })
+    fs.mkdirSync('./public/api/list', fshandler)
   }
 
   /**
@@ -247,12 +244,7 @@ exports.createPages = async ({graphql, actions, reporter}) => {
         },
       },
     }),
-    function(err) {
-      if (err) {
-        console.error(err)
-        throw err
-      }
-    },
+    fshandler,
   )
 
   /**
@@ -267,12 +259,7 @@ exports.createPages = async ({graphql, actions, reporter}) => {
     _.each(chunk, node => {
       out.data.push(node.data.raw)
     })
-    fs.writeFile(`public/${apiPath}/list/${i + 1}.json`, JSON.stringify(out), function(err) {
-      if (err) {
-        console.error(err)
-        throw err
-      }
-    })
+    fs.writeFile(`public/${apiPath}/list/${i + 1}.json`, JSON.stringify(out), fshandler)
   })
 }
 

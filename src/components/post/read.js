@@ -13,8 +13,10 @@ export class Read extends React.Component {
   render() {
     const {raw, post} = this.props
 
-    const {exclude = []} = post
+    let {exclude = []} = post
     const pages = raw.images.pages
+
+    if (exclude === null) exclude = []
 
     return (
       <AppContextConsumer>
