@@ -5426,10 +5426,10 @@ gatsby-transformer-json@^2.1.11:
     "@babel/runtime" "^7.0.0"
     bluebird "^3.5.0"
 
-gatsby-transformer-sharp@^2.1.21:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-2.2.0.tgz#b48431b8ac19f3d1e8bb90faa54b1e5cbb1af555"
-  integrity sha512-5M+1I2r+x4UBTTQapzCGYX8bO2OOFRF7NqE2emXBqquepqi7IdiUahK6c5/C0vXwpvTnXgHZt8xg13zuRm8rKw==
+gatsby-transformer-sharp@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-2.2.1.tgz#5bc9c0d22e04c842df0b098e103d9655e051806d"
+  integrity sha512-KmUqtvt3ry8bL6RMfHwMgRH4AJcDOJgGMTyLeULUScDoKTSriColPhbXMmJzM4Gsq3NUNqJkRo9qvNxBqnSWtQ==
   dependencies:
     "@babel/runtime" "^7.0.0"
     bluebird "^3.5.0"
