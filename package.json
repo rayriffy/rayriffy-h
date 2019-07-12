@@ -20,7 +20,7 @@
     "gatsby-plugin-netlify": "^2.0.17",
     "gatsby-plugin-netlify-cache": "^1.2.0",
     "gatsby-plugin-react-helmet": "^3.0.12",
-    "gatsby-plugin-sharp": "^2.2.2",
+    "gatsby-plugin-sharp": "^2.2.6",
     "gatsby-source-filesystem": "^2.1.2",
     "gatsby-transformer-json": "^2.1.11",
     "gatsby-transformer-sharp": "^2.2.1",
