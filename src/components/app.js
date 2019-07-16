@@ -19,7 +19,7 @@ export class App extends React.Component {
   state = {mounted: false, dark: LocalStorage.get('dark'), blur: LocalStorage.get('blur')}
 
   toggle = id => {
-    let newState = !LocalStorage(id)
+    const newState = !LocalStorage(id)
     LocalStorage.set(id, newState)
     if (id === 'dark') this.setState({dark: newState})
     else if (id === 'blur') this.setState({blur: newState})
