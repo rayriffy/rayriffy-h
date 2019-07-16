@@ -251,7 +251,7 @@ exports.createPages = async ({graphql, actions, reporter}) => {
    * Generate API listing pages
    */
   _.each(chunks, (chunk, i) => {
-    let out = {
+    const out = {
       status: 'success',
       code: 201,
       data: [],
