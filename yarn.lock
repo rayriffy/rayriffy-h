@@ -5288,10 +5288,10 @@ gatsby-plugin-google-analytics@^2.1.4:
   dependencies:
     "@babel/runtime" "^7.0.0"
 
-gatsby-plugin-less@^2.0.13:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-less/-/gatsby-plugin-less-2.1.0.tgz#68f313160e0573a07c890bf71ca8a750380f0a71"
-  integrity sha512-yC+EFaUARdg3k1YbQI4Z84qhIwuQSftvuKVKP0bKz0l1P/FgobLQpdV/mPtj0CtWXZRhCiNgQd6fs64b2RPtEg==
+gatsby-plugin-less@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-less/-/gatsby-plugin-less-2.1.2.tgz#e31b2366110e3d91e5ed757f80d92c6f5f9e1a22"
+  integrity sha512-lABwFLg0gdEqPVcEYKiNXxBXZBYyupzgWzMdLyLvNuIQEPOJdM62OVXTyDamdG/okK35X9gX2XucS0FlR3HKoA==
   dependencies:
     "@babel/runtime" "^7.0.0"
     less-loader "^4.1.0"
