@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 import {graphql} from 'gatsby'
 
-import {Row, Pagination} from 'antd'
+import {Row, Pagination, BackTop} from 'antd'
 
 import {App} from '../components/app'
 import {Poster} from '../components/poster'
@@ -32,20 +32,26 @@ const ListingTemplate = props => {
   }, [])
 
   return (
-    <App title={siteTitle} subtitle={subtitle}>
-      <Helmet htmlAttributes={{lang: 'en'}} title={`${siteTitle}`} />
-      <Row gutter={16} type="flex" justify="space-around" align="middle" key="grid-row">
-        {render.map(node => {
-          if (node.status === 'success') {
-            const {raw} = node.data
-            return <Poster raw={raw} key={`poster-${raw.id}`} />
-          }
-        })}
-      </Row>
-      <Row type="flex" justify="center">
-        <Pagination defaultCurrent={1} current={page} defaultPageSize={20} total={raw.length} onChange={changePage} />
-      </Row>
-    </App>
+    <>
+      <App title={siteTitle} subtitle={subtitle}>
+        <Helmet htmlAttributes={{lang: 'en'}} title={`${siteTitle}`} />
+        <Row type="flex" justify="center">
+          <Pagination defaultCurrent={1} current={page} defaultPageSize={20} total={raw.length} onChange={changePage} />
+        </Row>
+        <Row gutter={16} type="flex" justify="space-around" align="middle" key="grid-row">
+          {render.map(node => {
+            if (node.status === 'success') {
+              const {raw} = node.data
+              return <Poster raw={raw} key={`poster-${raw.id}`} />
+            }
+          })}
+        </Row>
+        <Row type="flex" justify="center">
+          <Pagination defaultCurrent={1} current={page} defaultPageSize={20} total={raw.length} onChange={changePage} />
+        </Row>
+      </App>
+      <BackTop />
+    </>
   )
 }
 
