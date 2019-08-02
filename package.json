@@ -23,7 +23,7 @@
     "gatsby-plugin-sharp": "^2.2.9",
     "gatsby-source-filesystem": "^2.1.8",
     "gatsby-transformer-json": "^2.2.2",
-    "gatsby-transformer-sharp": "^2.2.4",
+    "gatsby-transformer-sharp": "^2.2.5",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "local-storage": "^2.0.0",
