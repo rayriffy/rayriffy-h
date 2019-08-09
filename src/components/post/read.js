@@ -11,12 +11,11 @@ import readStyle from './read.module.css'
 
 export class Read extends React.Component {
   render() {
-    const {raw, post} = this.props
+    const {raw, exclude = []} = this.props
 
-    let {exclude = []} = post
     const pages = raw.images.pages
 
-    if (exclude === null) exclude = []
+    console.log(exclude)
 
     return (
       <AppContextConsumer>
@@ -55,4 +54,5 @@ export class Read extends React.Component {
 Read.propTypes = {
   raw: PropTypes.object,
   post: PropTypes.object,
+  exclude: PropTypes.arrayOf(PropTypes.number),
 }

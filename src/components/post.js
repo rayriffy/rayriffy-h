@@ -12,7 +12,7 @@ import darkStyle from '../styles/dark.module.css'
 
 export class Post extends React.Component {
   render() {
-    const {raw, post = {exclude: []}} = this.props
+    const {raw, exclude = []} = this.props
 
     return (
       <div>
@@ -26,7 +26,7 @@ export class Post extends React.Component {
             )
           }}
         </AppContextConsumer>
-        <Read raw={raw} post={post} />
+        <Read raw={raw} exclude={exclude} />
       </div>
     )
   }
@@ -34,5 +34,5 @@ export class Post extends React.Component {
 
 Post.propTypes = {
   raw: PropTypes.object,
-  post: PropTypes.object,
+  exclude: PropTypes.arrayOf(PropTypes.number),
 }

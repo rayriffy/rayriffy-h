@@ -5,6 +5,8 @@ const fs = require('fs')
 const path = require('path')
 const {TaskQueue} = require('cwait')
 
+const {rawData} = require('./src/assets/database')
+
 const MAX_SIMULTANEOUS_DOWNLOADS = 3
 const PREFETCH_GIST = 'https://gist.githubusercontent.com/rayriffy/09554279046d2fda29c125e0a16dc695/raw/crawler.json'
 
@@ -14,13 +16,6 @@ exports.createPages = async ({graphql, actions, reporter}) => {
   const result = await graphql(
     `
       {
-        allDataJson {
-          edges {
-            node {
-              nh_id
-            }
-          }
-        }
         allTagJson {
           edges {
             node {
@@ -54,8 +49,9 @@ exports.createPages = async ({graphql, actions, reporter}) => {
   /**
    * Functions for query data from NHentai API
    * @param {int} id Gallery ID
+   * @param {array} exclude Exlucde pages
    */
-  const getRawData = async id => {
+  const getRawData = async (id, exclude) => {
     try {
       let isCacheFound = false
       let cacheRes
@@ -73,7 +69,13 @@ exports.createPages = async ({graphql, actions, reporter}) => {
       }
 
       if (isCacheFound) {
-        return cacheRes
+        return {
+          ...cacheRes,
+          data: {
+            ...cacheRes.data,
+            exclude: exclude,
+          },
+        }
       } else {
         // Using reverse proxy server to avoid CORS issue
         const out = await axios.get(`https://nh-express-git-master.rayriffy.now.sh/api/gallery/${id}`)
@@ -81,6 +83,7 @@ exports.createPages = async ({graphql, actions, reporter}) => {
           status: 'success',
           data: {
             id: id,
+            exclude: exclude,
             raw: out.data,
           },
         }
@@ -115,7 +118,7 @@ exports.createPages = async ({graphql, actions, reporter}) => {
   const fetchedData = {}
   fetchedData.tags = result.data.allTagJson
   fetchedData.data = await Promise.all(
-    result.data.allDataJson.edges.map(queue.wrap(async edge => await getRawData(edge.node.nh_id))),
+    rawData.map(queue.wrap(async item => await getRawData(item.code ? item.code : item, item.exclude ? item.exclude : []))),
   )
 
   /**
@@ -147,6 +150,7 @@ exports.createPages = async ({graphql, actions, reporter}) => {
       context: {
         id: node.data.id,
         raw: node.data.raw,
+        exclude: node.data.exclude,
       },
     })
   })
