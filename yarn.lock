@@ -1520,10 +1520,10 @@ ansi-styles@^3.2.0, ansi-styles@^3.2.1:
   dependencies:
     color-convert "^1.9.0"
 
-antd@^3.21.2, antd@^3.9.0:
-  version "3.21.2"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-3.21.2.tgz#83232e12ea0257bc6103cf5a23a716290c863831"
-  integrity sha512-KwqFhr7UpZGVCB4l7uZj74LgFVGQqdqLULY9QCGgIubiSFcqPl5dzvIz/bIEdqdiYvS72zX+nD0qmQiI5W95kg==
+antd@^3.21.4, antd@^3.9.0:
+  version "3.21.4"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-3.21.4.tgz#6e5e8c6edde25ddce0aa1c666f0d6ef8d04e821e"
+  integrity sha512-ZtX2UAEewrWUepl4sT6TeJw91A98bgl4VGTjRIKfwzNW1GKGKKf4iI9bA6oCyMt/C4QEFsSsmkBwfBqT+N+Xzg==
   dependencies:
     "@ant-design/create-react-context" "^0.2.4"
     "@ant-design/icons" "~2.1.1"
@@ -5201,10 +5201,10 @@ functional-red-black-tree@^1.0.1:
   resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=
 
-gatsby-cli@^2.7.28:
-  version "2.7.28"
-  resolved "https://registry.yarnpkg.com/gatsby-cli/-/gatsby-cli-2.7.28.tgz#f620b68e0c0759025e61fbc7f5125cc506f1b8d4"
-  integrity sha512-jPAh0ycXMg2l1s2DUAmZmc5O2VuKf6ZU13RPu4sSvFeZIRxNHWFeJ7gTh2ncNKMZ0faUaIqb2PjDjQNsLNq/dA==
+gatsby-cli@^2.7.30:
+  version "2.7.30"
+  resolved "https://registry.yarnpkg.com/gatsby-cli/-/gatsby-cli-2.7.30.tgz#201b7e7eab147a31e488f9faa3108fe516b76aae"
+  integrity sha512-xHl8oYM+NipEFv5zlDTPYSoMnP0qq0+VCzZ2yvrxh9E0oaFXBuM3BrCz4C3iDoZygsCtkXD4lzNTyTYZ0LAr9Q==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     "@babel/runtime" "^7.0.0"
@@ -5354,10 +5354,10 @@ gatsby-plugin-react-helmet@^3.1.3:
   dependencies:
     "@babel/runtime" "^7.0.0"
 
-gatsby-plugin-sharp@^2.2.10:
-  version "2.2.10"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-sharp/-/gatsby-plugin-sharp-2.2.10.tgz#94f3f62faa939a1337baa168b1735ce9381b4c50"
-  integrity sha512-vI50vew5oYgiWIkZ7VZJ/KhW+JM8bjEvo5CXokqDtzKkrh9eyGBMEqykDyQKPXShdnPYEgo0ZKTRIiGL/u++1A==
+gatsby-plugin-sharp@^2.2.11:
+  version "2.2.11"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-sharp/-/gatsby-plugin-sharp-2.2.11.tgz#ba614776e624e66a687d294373b2f452503cde75"
+  integrity sha512-LlQDd8XydRgSUb428Ucqw5rwVno4weK6o8osFu6exAaIb4O9hmhnR8bOdu5QQ+7KkLiMxAjf1c+arOEmfAaAVg==
   dependencies:
     "@babel/runtime" "^7.0.0"
     async "^2.1.2"
@@ -5452,10 +5452,10 @@ gatsby-transformer-sharp@^2.2.6:
     semver "^5.6.0"
     sharp "^0.22.1"
 
-gatsby@^2.13.55:
-  version "2.13.55"
-  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.13.55.tgz#dfef1a2154c5526799b0f455f711c47f2116bc03"
-  integrity sha512-nhsOc7ZH9gtn8xjFMh0FZobe3hsDN4OEPKaOJ+L43JE2D5Hq1YB5T2SeSQ4e6524v8GU/ij0wxIXEibMYtpygA==
+gatsby@^2.13.60:
+  version "2.13.60"
+  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.13.60.tgz#f1fea7dfed0637f118c88c18ea9f290c7fd62c6c"
+  integrity sha512-t1Ek0jio8YvADcYwaV9ZYe9a4uAnR2H7o1ZDFx9BBvl0ZRwy6M0sBAEacXB5tS53F4n/md5Bt/Fz261Gen/uYg==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     "@babel/core" "^7.0.0"
@@ -5470,6 +5470,7 @@ gatsby@^2.13.55:
     "@reach/router" "^1.1.1"
     address "1.0.3"
     autoprefixer "^9.6.0"
+    axios "^0.19.0"
     babel-core "7.0.0-bridge.0"
     babel-eslint "^9.0.0"
     babel-loader "^8.0.0"
@@ -5513,7 +5514,7 @@ gatsby@^2.13.55:
     flat "^4.0.0"
     fs-exists-cached "1.0.0"
     fs-extra "^5.0.0"
-    gatsby-cli "^2.7.28"
+    gatsby-cli "^2.7.30"
     gatsby-core-utils "^1.0.4"
     gatsby-graphiql-explorer "^0.2.3"
     gatsby-link "^2.2.4"
@@ -5556,7 +5557,7 @@ gatsby@^2.13.55:
     raw-loader "^0.5.1"
     react-dev-utils "^4.2.3"
     react-error-overlay "^3.0.0"
-    react-hot-loader "^4.12.5"
+    react-hot-loader "^4.12.11"
     redux "^4.0.0"
     redux-thunk "^2.3.0"
     semver "^5.6.0"
@@ -10100,10 +10101,10 @@ react-helmet@^5.2.1:
     react-fast-compare "^2.0.2"
     react-side-effect "^1.1.0"
 
-react-hot-loader@^4.12.5:
-  version "4.12.6"
-  resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.12.6.tgz#bd7a41501b02576638031482474a72bac453587d"
-  integrity sha512-tRXWgF5MhQSEXX3EHIplCOWCzSg+ye7ddHeQLt7Z+CaZMeEfeCL2/uSGITIzWXOQYhefnLX8IZtr2cff4xIrww==
+react-hot-loader@^4.12.11:
+  version "4.12.11"
+  resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.12.11.tgz#06bd618d0a7343c8afa4a31206844f651193bae5"
+  integrity sha512-ySsg1hPwr/5dkZCJVp1nZRbwbpbEQ+3e2+bn/D681Wvr9+o+5bLKkTGq0TXskj8HgCS3ScysXddOng9Cg+JKzw==
   dependencies:
     fast-levenshtein "^2.0.6"
     global "^4.3.0"
@@ -10111,7 +10112,7 @@ react-hot-loader@^4.12.5:
     loader-utils "^1.1.0"
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
-    shallowequal "^1.0.2"
+    shallowequal "^1.1.0"
     source-map "^0.7.3"
 
 react-is@^16.7.0, react-is@^16.8.1:
