@@ -7,7 +7,7 @@
     "url": "https://github.com/rayriffy/rayriffy-h/issues"
   },
   "dependencies": {
-    "antd": "^3.23.1",
+    "antd": "^3.23.2",
     "axios": "^0.19.0",
     "babel-plugin-import": "^1.12.1",
     "cwait": "^1.1.2",
