@@ -12,7 +12,7 @@
     "babel-plugin-import": "^1.12.1",
     "cwait": "^1.1.2",
     "eslint-plugin-react-hooks": "^2.0.1",
-    "gatsby": "^2.15.9",
+    "gatsby": "^2.15.13",
     "gatsby-plugin-antd": "^2.0.2",
     "gatsby-plugin-google-analytics": "^2.1.14",
     "gatsby-plugin-less": "^3.0.5",
