@@ -22,7 +22,7 @@
     "gatsby-plugin-react-helmet": "^3.1.7",
     "gatsby-plugin-sharp": "^2.2.20",
     "gatsby-source-filesystem": "^2.1.22",
-    "gatsby-transformer-json": "^2.2.7",
+    "gatsby-transformer-json": "^2.2.8",
     "gatsby-transformer-sharp": "^2.2.14",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
