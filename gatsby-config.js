@@ -7,44 +7,22 @@ module.exports = {
   },
   pathPrefix: '/',
   plugins: [
-    {
-      resolve: 'gatsby-plugin-antd',
-      options: {
-        style: true,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-less`,
-      options: {
-        javascriptEnabled: true,
-        modifyVars: {
-          'primary-color': '#1890ff',
-          'info-color': '#1890ff',
-          'success-color': '#52c41a',
-          'processing-color': '#1890ff',
-          'error-color': '#f5222d',
-          'highlight-color': '#f5222d',
-          'warning-color': '#faad14',
-          'normal-color': '#d9d9d9',
-          white: '#fff',
-          black: '#000',
-          'body-background': '#f0f2f5',
-          'layout-body-background': '#f0f2f5',
-        },
-      },
-    },
-    `gatsby-plugin-netlify`,
-    {
-      resolve: 'gatsby-plugin-netlify-cache',
-      options: {
-        extraDirsToCache: ['.tmp'],
-      },
-    },
+    `gatsby-plugin-styled-components`,
     `gatsby-transformer-json`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `./src/assets/database/`,
+        path: `${__dirname}/content/database`,
+        name: `database`,
+        ignore: [`**/.*`],
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/pages`,
+        name: 'pages',
+        ignore: [`**/.*`],
       },
     },
     `gatsby-transformer-sharp`,
@@ -66,6 +44,20 @@ module.exports = {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: `UA-85367836-4`,
+      },
+    },
+    `gatsby-plugin-netlify`,
+    {
+      resolve: 'gatsby-plugin-netlify-cache',
+      options: {
+        extraDirsToCache: ['.tmp'],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-typescript`,
+      options: {
+        isTSX: true,
+        allExtensions: true,
       },
     },
   ],

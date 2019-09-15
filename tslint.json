@@ -1,0 +1,13 @@
+{
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier", "tslint-eslint-rules"],
+  "rules": {
+    "interface-name": false,
+    "array-type": false,
+    "eqeqeq": ["error", "always"],
+    "space-before-function-paren": [true, "always"],
+    "whitespace": [true, "check-module"]
+  },
+  "rulesDirectory": [
+    "node_modules/tslint-eslint-rules/dist/rules"
+  ]
+}

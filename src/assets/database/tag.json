@@ -1,9 +1,0 @@
-[
-  {"prefix": "ta", "name": "tag", "color": "blue"},
-  {"prefix": "ar", "name": "artist", "color": "magenta"},
-  {"prefix": "ch", "name": "character", "color": "volcano"},
-  {"prefix": "pa", "name": "parody", "color": "orange"},
-  {"prefix": "gr", "name": "group", "color": "cyan"},
-  {"prefix": "ca", "name": "category", "color": "purple"},
-  {"prefix": "la", "name": "language", "color": "green"}
-]

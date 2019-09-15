@@ -1,11 +1,16 @@
 {
   "parser": "babel-eslint",
   "extends": ["standard", "prettier", "prettier/standard", "plugin:react/recommended"],
-  "plugins": ["prettier", "standard", "node", "import", "react-hooks"],
+  "plugins": ["prettier", "standard"],
   "parserOptions": {
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
+    "sourceType": "module"
+  },
+  "settings": {
+    "react": {
+      "createClass": "createReactClass",
+      "pragma": "React",
+      "version": "16.7",
+      "flowVersion": "0.53"
     }
   },
   "env": {
@@ -19,7 +24,7 @@
         "printWidth": 125,
         "tabWidth": 2,
         "singleQuote": true,
-        "trailingComma": "all",
+        "trailingComma": "es5",
         "bracketSpacing": false,
         "semi": false,
         "useTabs": false,
@@ -30,8 +35,6 @@
     "eqeqeq": ["error", "always"],
     "space-before-function-paren": 0,
     "generator-star-spacing": 0,
-    "no-return-await": "off",
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "off"
+    "strict": 1
   }
 }
