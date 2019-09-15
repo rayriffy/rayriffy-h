@@ -7,4 +7,3 @@ require('ts-node').register({
 })
 
 exports.wrapPageElement = require('./src/server/wrapPageElement').wrapPageElement
-exports.onClientEntry = require('./src/server/onClientEntry').onClientEntry

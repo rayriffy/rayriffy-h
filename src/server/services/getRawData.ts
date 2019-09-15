@@ -44,8 +44,8 @@ const mockRaw: IHentai = {
 export const getRawData = async (id: number, exclude: number[], reporter: Reporter): Promise<IFetchedRaw> => {
   try {
     // Read file from cache
-    if (fs.existsSync('../../../.tmp/crawler.json')) {
-      const reader = fs.readFileSync('../../../.tmp/crawler.json', 'utf8')
+    if (fs.existsSync('./.tmp/crawler.json')) {
+      const reader = fs.readFileSync('./.tmp/crawler.json', 'utf8')
       const cache: IFetchedRaw[] = JSON.parse(reader)
 
       const filter = _.head(_.filter(cache, o => o.data.id === id && o.status === 'success'))
@@ -57,6 +57,15 @@ export const getRawData = async (id: number, exclude: number[], reporter: Report
             data: {
               ...filter.data,
               exclude,
+            },
+          }
+        } else {
+          return {
+            status: 'failure',
+            data: {
+              id,
+              exclude: [],
+              raw: mockRaw,
             },
           }
         }
@@ -73,6 +82,15 @@ export const getRawData = async (id: number, exclude: number[], reporter: Report
           },
         }
       }
+    } else {
+      return {
+        status: 'failure',
+        data: {
+          id,
+          exclude: [],
+          raw: mockRaw,
+        },
+      }
     }
   } catch (err) {
     reporter.warn(`cannot process ${id} with code ${err.code}`)
@@ -84,13 +102,5 @@ export const getRawData = async (id: number, exclude: number[], reporter: Report
         raw: mockRaw,
       },
     }
-  }
-  return {
-    status: 'failure',
-    data: {
-      id,
-      exclude: [],
-      raw: mockRaw,
-    },
   }
 }

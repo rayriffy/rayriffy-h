@@ -12,7 +12,7 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/content/database`,
+        path: `${__dirname}/contents/database`,
         name: `database`,
         ignore: [`**/.*`],
       },

@@ -17,7 +17,7 @@ import { IFetchedRaw } from '../core/@types/IFetchedRaw'
 import { IHentai } from '../core/@types/IHentai'
 import { ITag } from '../core/@types/ITag'
 
-const ROOT_DIR = '../..'
+const ROOT_DIR = '.'
 
 const MAX_SIMULTANEOUS_DOWNLOADS = 3
 const PREFETCH_GIST = 'https://gist.githubusercontent.com/rayriffy/09554279046d2fda29c125e0a16dc695/raw/crawler.json'
