@@ -5,7 +5,8 @@
     "array-type": false,
     "eqeqeq": ["error", "always"],
     "space-before-function-paren": [true, "always"],
-    "whitespace": [true, "check-module"]
+    "whitespace": [true, "check-module"],
+    "object-literal-sort-keys": false
   },
   "rulesDirectory": [
     "node_modules/tslint-eslint-rules/dist/rules"

@@ -1,4 +1,6 @@
-const tags = [
+import { IDatabaseTag } from '../../src/server/@types/IDatabaseTag'
+
+const tags: IDatabaseTag[] = [
   {
     color: 'blue',
     name: 'tag',
