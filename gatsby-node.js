@@ -6,6 +6,6 @@ require('ts-node').register({
   },
 })
 
-// typescript files
-exports.createPages = require('./src/server/createPages')
-exports.onCreatePage = require('./src/server/onCreatePage')
+exports.createPages = require('./src/server/createPages').createPages
+exports.onCreatePage = require('./src/server/onCreatePage').onCreatePage
+exports.onCreateWebpackConfig = require('./src/server/onCreateWebpackConfig').onCreateWebpackConfig
