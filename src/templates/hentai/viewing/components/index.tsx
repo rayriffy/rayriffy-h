@@ -1,8 +1,18 @@
 import React from 'react'
 
-const HentaiViewingComponent: React.FC = props => {
+import { Box } from 'rebass'
+
+import Reader from '../../../../core/components/reader'
+
+import { IProps } from '../@types/IProps'
+
+const HentaiViewingComponent: React.FC<IProps> = props => {
+  const {raw, tagStack} = props.pageContext
+
   return (
-    <>OK</>
+    <Box>
+      <Reader raw={raw} tagStack={tagStack} />
+    </Box>
   )
 }
 

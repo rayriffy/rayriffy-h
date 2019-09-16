@@ -1,3 +1,5 @@
+import { ITagType } from './ITagType'
+
 export interface IDatabaseTag 
 {
   color: {
@@ -5,6 +7,6 @@ export interface IDatabaseTag
     background: string
     text: string
   },
-  name: string
+  name: ITagType
   prefix: string
 }

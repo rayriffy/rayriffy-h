@@ -187,9 +187,8 @@ exports.createPages = async ({actions, reporter}) => {
       path: `r/${node.data.id}`,
       component: path.resolve(`./src/templates/hentai/viewing/components/index.tsx`),
       context: {
-        id: node.data.id,
-        raw: node.data.raw,
-        exclude: node.data.exclude,
+        raw: node,
+        tagStack
       },
     })
   })
@@ -216,7 +215,7 @@ exports.createPages = async ({actions, reporter}) => {
         context: {
           subtitle: `${name}/${tag.name}`,
           raw: qualifiedResults,
-          tagStack,
+          tagStack: listingTagStack,
         },
       })
     })

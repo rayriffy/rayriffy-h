@@ -29,6 +29,8 @@ const BluredImage = styled(Image)`
   filter: blur(15px);
   overflow: hidden;
   border-radius: 8px 8px 0 0;
+
+  width: 100%;
 `
 
 const FooterBox = styled(Box)`
