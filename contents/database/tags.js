@@ -1,6 +1,4 @@
-import { IDatabaseTag } from '../../src/server/@types/IDatabaseTag'
-
-const tags: IDatabaseTag[] = [
+module.exports = [
   {
     color: 'blue',
     name: 'tag',
@@ -37,5 +35,3 @@ const tags: IDatabaseTag[] = [
     prefix: 'la',
   }
 ]
-
-export default tags

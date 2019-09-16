@@ -1,4 +1,4 @@
-const codes = [
+module.exports = [
   140232,
   183270,
   220112,
@@ -569,5 +569,3 @@ const codes = [
     exclude: [2, 12, 14],
   },
 ]
-
-export default codes

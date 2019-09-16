@@ -1,10 +1,11 @@
-require('source-map-support').install()
-require('ts-node').register({
-  compilerOptions: {
-    module: 'commonjs',
-    target: 'es2017',
-  },
-})
+import App from './src/app/components'
 
-exports.wrapPageElement = require('./src/server/wrapPageElement').wrapPageElement
-exports.onClientEntry = require('./src/server/onClientEntry').onClientEntry
+export const wrapPageElement = ({ element, props }) => {
+  return <App {...props}>{element}</App>
+}
+
+export const onClientEntry = () => {
+  if (process.env.NODE_ENV !== `production`) {
+    require(`preact/debug`)
+  }
+}
