@@ -9,6 +9,8 @@ const databaseCodes = require('./contents/database/codes')
 const databaseTags = require('./contents/database/tags')
 
 const MAX_SIMULTANEOUS_DOWNLOADS = 3
+const ITEMS_PER_PAGE = 20
+
 const PREFETCH_GIST = 'https://gist.githubusercontent.com/rayriffy/09554279046d2fda29c125e0a16dc695/raw/crawler.json'
 
 exports.createPages = async ({actions, reporter}) => {
@@ -148,29 +150,41 @@ exports.createPages = async ({actions, reporter}) => {
   /**
    * Filter errors and assign constants
    */
-  const healthyResults = _.filter(fetchedData.codes, o => o.status === 'success')
+  const healthyResults = _.filter(fetchedData.codes, o => o.status === 'success').reverse()
 
   const tagStack = fetchedData.tags
+
+  // Listing is use only 'tag' and 'parody'
+  const listingTagStack = _.filter(tagStack, tag => tag.name === 'parody' || tag.name === 'tag')
 
   /**
    * Create listing page
    */
-  createPage({
-    path: `listing`,
-    component: path.resolve(`./src/templates/hentai/listing/components/index.tsx`),
-    context: {
-      subtitle: `listing`,
-      raw: healthyResults.reverse(),
-    },
+  const hentaiListingChunks = _.chunk(healthyResults, ITEMS_PER_PAGE)
+
+  hentaiListingChunks.map((chunk, i) => {
+    createPage({
+      path: i === 0 ? `/` : `/p/${i + 1}`,
+      component: path.resolve(`./src/templates/hentai/listing/components/index.tsx`),
+      context: {
+        subtitle: `listing`,
+        raw: chunk,
+        page: {
+          current: i + 1,
+          max: hentaiListingChunks.length,
+        },
+        tagStack: listingTagStack,
+      },
+    })
   })
+
 
   /**
    * Create gallery pages
    */
-  const postPrefix = 'r'
-  _.each(healthyResults, node => {
+  healthyResults.map(node => {
     createPage({
-      path: `${postPrefix}/${node.data.id}`,
+      path: `r/${node.data.id}`,
       component: path.resolve(`./src/templates/hentai/viewing/components/index.tsx`),
       context: {
         id: node.data.id,
@@ -186,11 +200,11 @@ exports.createPages = async ({actions, reporter}) => {
    * @param {object} nodes  Filtered tag object
    * @param {string} name        Tag name
    */
-  const createSlugPages = (pathPrefix, name, nodes) => {
-    _.each(nodes, tag => {
+  const createSlugPages = (pathPrefix, name, tags) => {
+    tags.map(tag => {
       const qualifiedResults = []
 
-      _.each(healthyResults, node => {
+      healthyResults.map(node => {
         if (node) {
           if (!_.isEmpty(_.filter(node.data.raw.tags, o => o.id === tag.id))) { qualifiedResults.push(node) }
         }
@@ -216,8 +230,8 @@ exports.createPages = async ({actions, reporter}) => {
   const tagFilter = (nodes, type) => {
     const res = []
   
-    _.each(nodes, node => {
-      _.each(node.data.raw.tags, tag => {
+    nodes.map(node => {
+      node.data.raw.tags.map(tag => {
         if (tag.type === type) {
           if (_.isEmpty(_.filter(res, o => o.id === tag.id))) {
             res.push(tag)
@@ -232,19 +246,19 @@ exports.createPages = async ({actions, reporter}) => {
   /**
    * Creating tag listing and pages recursively
    */
-  _.each(tagStack, node => {
+  tagStack.map(tag => {
     // Find all possible tags
-    const nodes = tagFilter(healthyResults, node.name)
+    const nodes = tagFilter(healthyResults, tag.name)
 
     // Create hentai listings by tag
-    createSlugPages(node.prefix, node.name, nodes)
+    createSlugPages(tag.prefix, tag.name, nodes)
 
     createPage({
-      path: `${node.prefix}`,
+      path: `${tag.prefix}`,
       component: path.resolve(`./src/templates/tag/listing/components/index.tsx`),
       context: {
-        prefix: node.prefix,
-        subtitle: `${node.name}`,
+        prefix: tag.prefix,
+        subtitle: `${tag.name}`,
         raw: nodes,
       },
     })
@@ -259,7 +273,7 @@ exports.createPages = async ({actions, reporter}) => {
    * Preparing to generate API
    */
   const apiPath = 'api'
-  const chunks = _.chunk(healthyResults, 10)
+  const apiChunks = _.chunk(healthyResults, ITEMS_PER_PAGE)
 
   if (!fs.existsSync(`./public/api`)) {
     fs.mkdirSync(`./public/api`)
@@ -279,7 +293,7 @@ exports.createPages = async ({actions, reporter}) => {
       data: {
         time: Date.now(),
         list: {
-          length: chunks.length,
+          length: apiChunks.length,
         },
       },
     }),
@@ -289,17 +303,19 @@ exports.createPages = async ({actions, reporter}) => {
   /**
    * Generate API listing pages
    */
-  _.each(chunks, (chunk, i) => {
+  apiChunks.map((chunk, i) => {
     const out = {
       status: 'success',
       code: 201,
       data: [],
     }
-    _.each(chunk, node => {
+
+    chunk.map(node => {
       if (node) {
         out.data.push(node.data.raw)
       }
     })
+
     fs.writeFile(`./public/${apiPath}/list/${i + 1}.json`, JSON.stringify(out), fshandler)
   })
 }
