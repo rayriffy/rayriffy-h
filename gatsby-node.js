@@ -39,7 +39,12 @@ exports.createPages = async ({actions, reporter}) => {
     reporter.info(`Found cache! Skipping prefetch stage`)
   }
 
-  const getRawData = async (id, exclude, reporter) => {
+  /**
+   * Featch raw data from cache or API
+   * @param {number} pathPrefix   Tag path prefix
+   * @param {array}  exclude      Exclude pages
+   */
+  const getRawData = async (id, exclude) => {
     const mockRaw = {
       id: 0,
       media_id: 0,
@@ -141,7 +146,7 @@ exports.createPages = async ({actions, reporter}) => {
   }
 
   /**
-   * Filter errors and assign contants
+   * Filter errors and assign constants
    */
   const healthyResults = _.filter(fetchedData.codes, o => o.status === 'success')
 
@@ -203,6 +208,11 @@ exports.createPages = async ({actions, reporter}) => {
     })
   }
 
+  /**
+   * Filter only tags object with specified types
+   * @param {object} nodes All fetched object
+   * @param {string} type Type of tag
+   */
   const tagFilter = (nodes, type) => {
     const res = []
   
