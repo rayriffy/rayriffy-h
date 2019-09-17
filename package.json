@@ -34,7 +34,6 @@
     "gatsby-transformer-sharp": "^2.2.14",
     "local-storage": "^2.0.0",
     "lodash": "^4.17.15",
-    "preact": "^10.0.0-rc.3",
     "react": "^16.9.0",
     "react-collapse": "^4.0.3",
     "react-copy-to-clipboard": "^5.0.1",
@@ -76,6 +75,7 @@
     "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 gatsby develop --https",
     "dev:net": "gatsby develop -H 0.0.0.0 -p 3000",
     "format": "yarn test:lint --fix",
+    "serve": "gatsby serve",
     "test": "yarn test:lint && yarn test:types",
     "test:lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
     "test:types": "tsc"
