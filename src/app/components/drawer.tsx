@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 import { Link } from 'gatsby'
+import Switch from 'react-switch'
 
 import { FaAngleDoubleRight as RightIcon, FaBars as MenuIcon, FaHeart as LoveIcon } from 'react-icons/fa'
 import Drawer from 'react-motion-drawer'
@@ -9,6 +10,8 @@ import { Box, Flex, Text } from 'rebass'
 import styled from 'styled-components'
 
 import Divider from '../../core/components/divider'
+
+import { SafeMode } from '../context'
 
 const Wrapper = styled(Box)`
   width: 100%;
@@ -24,6 +27,7 @@ const TransparentLink = styled(Link)`
 
 const DrawerComponent: React.FC = () => {
   const [open, setOpen] = useState(false)
+  const [safeMode, setSafeMode] = useContext(SafeMode)
 
   const menuStacks = [
     {
@@ -125,6 +129,19 @@ const DrawerComponent: React.FC = () => {
                   </Box>
                 )
               })}
+            </Box>
+            <Box py={2}>
+              <Text fontSize={20} fontWeight={600} py={2}>Settings</Text>
+              <Box py={2}>
+                <Flex>
+                  <Box>
+                    <Switch height={18} width={40} checked={safeMode} onChange={() => setSafeMode(prev => !prev)} />
+                  </Box>
+                  <Box px={2}>
+                    <Text fontSize={14}>Safe mode</Text>
+                  </Box>
+                </Flex>
+              </Box>
             </Box>
           </Box>
           <Box py={3}>

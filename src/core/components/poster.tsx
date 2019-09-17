@@ -1,17 +1,24 @@
 import _ from 'lodash'
-import React from 'react'
+import React, { useContext } from 'react'
 
 import { Link } from 'gatsby'
+import LazyLoad from 'react-lazyload'
 
 import { Box, Card, Flex, Image, Text } from 'rebass'
 import styled from 'styled-components'
 
 import Slug from './slug'
 
+import { SafeMode } from '../../app/context'
+
 import { filterTagByType } from '../services/filterTagByType'
 import { filterTagStackByType } from '../services/filterTagStackByType'
 
 import { IPosterProps } from '../@types/IPosterProps'
+
+interface IBluredImageProps {
+  blur: boolean
+}
 
 const BorderedCard = styled(Card)`
   border-radius: 8px;
@@ -26,19 +33,22 @@ const CoverBox = styled(Box)`
 `
 
 const BluredImage = styled(Image)`
-  filter: blur(15px);
   overflow: hidden;
   border-radius: 8px 8px 0 0;
 
   width: 100%;
+
+  ${(props: IBluredImageProps) => props.blur && `filter: blur(15px);`}
 `
 
 const FooterBox = styled(Box)`
-border-radius: 0 0 8px 8px;
+  border-radius: 0 0 8px 8px;
 `
 
 const PosterComponent: React.FC<IPosterProps> = props => {
   const {raw, tagStack} = props
+
+  const [safeMode] = useContext(SafeMode)
 
   const language = _.head(_.filter(filterTagByType(raw.tags, 'language'), tag => tag.name !== 'translated'))
   const tags = filterTagByType(raw.tags, 'tag')
@@ -52,7 +62,9 @@ const PosterComponent: React.FC<IPosterProps> = props => {
       <BorderedCard>
         <CoverBox>
           <Link to={`/r/${raw.id}`}>
-            <BluredImage src={`https://t.nhentai.net/galleries/${raw.media_id}/cover.jpg`} />
+            <LazyLoad height={raw.images.thumbnail.h}>
+              <BluredImage blur={safeMode} src={`https://t.nhentai.net/galleries/${raw.media_id}/cover.${raw.images.thumbnail.t === 'p' ? 'png' : 'jpg'}`} />
+            </LazyLoad>
           </Link>
         </CoverBox>
         <Box p={3}>

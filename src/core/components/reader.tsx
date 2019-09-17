@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React from 'react'
+import React, { useContext } from 'react'
 
 import { Box, Flex, Image, Text } from 'rebass'
 import styled from 'styled-components'
@@ -7,6 +7,8 @@ import styled from 'styled-components'
 import Collapse from './collapse'
 import Divider from './divider'
 import Slug from './slug'
+
+import { SafeMode } from '../../app/context'
 
 import { filterTagByType } from '../services/filterTagByType'
 
@@ -16,13 +18,20 @@ const ImageBox = styled(Box)`
   overflow: hidden;
 `
 
+interface IBluredImageProps {
+  blur: boolean
+}
+
 const BluredImage = styled(Image)`
-  filter: blur(15px);
   width: 100%;
+
+  ${(props: IBluredImageProps) => props.blur && `filter: blur(15px);`}
 `
 
 const ReaderComponent: React.FC<IReaderProps> = props => {
   const {raw, tagStack} = props
+
+  const [safeMode] = useContext(SafeMode)
 
   const hentai = raw.data.raw
 
@@ -34,7 +43,7 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
             <Flex flexWrap={`wrap`}>
               <Box width={3 / 7} p={[2, 3]}>
                 <ImageBox>
-                  <BluredImage src={`https://t.nhentai.net/galleries/${hentai.media_id}/cover.${hentai.images.cover.t === 'p' ? 'png' : 'jpg'}`} />
+                  <BluredImage blur={safeMode} src={`https://t.nhentai.net/galleries/${hentai.media_id}/cover.${hentai.images.cover.t === 'p' ? 'png' : 'jpg'}`} />
                 </ImageBox>
               </Box>
               <Box width={4 / 7} p={[2, 3]}>
@@ -74,7 +83,7 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
             {hentai.images.pages.map((page, i) => {
               return (
                 <ImageBox key={`reader-${raw.data.id}-page-${i + 1}`}>
-                  <BluredImage src={`https://i.nhentai.net/galleries/${hentai.media_id}/${i + 1}.${page.t === 'p' ? 'png' : 'jpg'}`} />
+                  <BluredImage blur={safeMode} src={`https://i.nhentai.net/galleries/${hentai.media_id}/${i + 1}.${page.t === 'p' ? 'png' : 'jpg'}`} />
                 </ImageBox>
               )
             })}
