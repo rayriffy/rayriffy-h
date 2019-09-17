@@ -77,7 +77,9 @@ const DrawerComponent: React.FC = () => {
 
   return (
     <Box>
-      <MenuIcon size={`20px`} onClick={() => setOpen(true)} />
+      <Box onClick={() => setOpen(true)}>
+        <MenuIcon size={`20px`} />
+      </Box>
       <Drawer
         open={open}
         width={300}
