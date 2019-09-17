@@ -3,6 +3,8 @@ import React from 'react'
 import { Box, Flex, Text } from 'rebass'
 import { createGlobalStyle } from 'styled-components'
 
+import Divider from '../../core/components/divider'
+
 const GlobalStyle = createGlobalStyle`
   html {
     background-color: rgb(245, 245, 245);
@@ -26,6 +28,7 @@ const AppComponent: React.FC = props => {
           <Text fontSize={42} fontWeight={700}>Riffy H</Text>
           <Text fontSize={30} fontWeight={600} color={`rgba(0, 0, 0, 0.45)`} px={2} pb={2}>subtitle</Text>
         </Flex>
+        <Divider py={1} />
       </Box>
       <Box>
         {children}

@@ -5,6 +5,7 @@ import { Box, Flex, Image, Text } from 'rebass'
 import styled from 'styled-components'
 
 import Collapse from './collapse'
+import Divider from './divider'
 import Slug from './slug'
 
 import { filterTagByType } from '../services/filterTagByType'
@@ -39,20 +40,23 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
               <Box width={4 / 7} p={[2, 3]}>
                 <Text fontSize={22} fontWeight={600} color={`rgba(0, 0, 0, 0.85)`}>{hentai.title.pretty}</Text>
                 <Box py={2}>
-                  {tagStack.map(stack => {
+                  {tagStack.map((stack, i) => {
                     const res = filterTagByType(hentai.tags, stack.name)
 
                     if (!_.isEmpty(res)) {
                       return (
-                        <Collapse key={`collapse-${hentai.id}-${stack.name}`} title={_.upperFirst(stack.name)} defaultState={stack.name === 'tag'}>
-                          <Flex flexWrap={`wrap`}>
-                            {res.map(tag => {
-                              return (
-                                <Slug key={`slug-${hentai.id}-${stack.name}-${tag.id}`} border={stack.color.border} background={stack.color.background} text={stack.color.text} link={`/${stack.prefix}/${tag.id}`}>{tag.name}</Slug>
-                              )
-                            })}
-                          </Flex>
-                        </Collapse>
+                        <Box>
+                          {i !== 0 ? <Divider py={1} /> : null}
+                          <Collapse key={`collapse-${hentai.id}-${stack.name}`} title={_.upperFirst(stack.name)} defaultState={stack.name === 'tag'}>
+                            <Flex flexWrap={`wrap`}>
+                              {res.map(tag => {
+                                return (
+                                  <Slug key={`slug-${hentai.id}-${stack.name}-${tag.id}`} border={stack.color.border} background={stack.color.background} text={stack.color.text} link={`/${stack.prefix}/${tag.id}`}>{tag.name}</Slug>
+                                )
+                              })}
+                            </Flex>
+                          </Collapse>
+                        </Box>
                       )
                     } else {
                       return null
