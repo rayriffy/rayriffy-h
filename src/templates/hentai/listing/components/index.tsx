@@ -11,7 +11,7 @@ const HentaiListingComponent: React.FC<IProps> = props => {
   const {raw, tagStack, page} = props.pageContext
 
   return (
-    <Box>
+    <Box pt={2}>
       <Flex justifyContent={`center`}>
         <Box width={18 / 24} py={3}>
           <Pagination current={page.current} max={page.max} prefix={`/`} />

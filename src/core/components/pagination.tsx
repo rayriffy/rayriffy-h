@@ -29,12 +29,6 @@ const TransparentLink = styled(Link)`
       return `color: rgba(0, 0, 0, 0.5);`
     }
   }}
-
-  // @media (prefers-color-scheme: dark) {
-  //   & {
-  //     color: rgb(255, 255, 255);
-  //   }
-  // }
 `
 
 const PaginationComponent: React.FC<IProps> = props => {

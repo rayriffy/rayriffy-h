@@ -45,9 +45,9 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
 
                     if (!_.isEmpty(res)) {
                       return (
-                        <Box>
+                        <Box key={`collapse-${hentai.id}-${stack.name}`}>
                           {i !== 0 ? <Divider py={1} /> : null}
-                          <Collapse key={`collapse-${hentai.id}-${stack.name}`} title={_.upperFirst(stack.name)} defaultState={stack.name === 'tag'}>
+                          <Collapse title={_.upperFirst(stack.name)} defaultState={stack.name === 'tag'}>
                             <Flex flexWrap={`wrap`}>
                               {res.map(tag => {
                                 return (
