@@ -1,6 +1,6 @@
 const _ = require('lodash')
 
-const axios = require('lodash')
+const axios = require('axios')
 const {TaskQueue} = require('cwait')
 const fs = require('fs')
 const path = require('path')
