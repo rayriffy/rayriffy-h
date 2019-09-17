@@ -3,13 +3,21 @@ import React from 'react'
 
 import { Link } from 'gatsby'
 
-import { Box, Text } from 'rebass'
+import { Box, Card, Flex, Text } from 'rebass'
 import styled from 'styled-components'
+
+import Divider from '../../../../core/components/divider'
 
 import { IProps } from '../@types/IProps'
 
 const TransparentLink = styled(Link)`
   text-decoration: none;
+`
+
+const CoverCard = styled(Card)`
+  border-radius: 8px;
+
+  border: 1px solid #e8e8e8;
 `
 
 const TagListingComponent: React.FC<IProps> = props => {
@@ -21,28 +29,41 @@ const TagListingComponent: React.FC<IProps> = props => {
 
   return (
     <Box pt={1}>
-      {alphabet.map(text => {
-        const filteredTags = _.filter(processedTags, o => _.startsWith(o.name, text))
+      <Flex justifyContent={`center`}>
+        <Box width={[22 / 24, 18 / 24, 14 / 24, 10 / 24]}>
+        {alphabet.map(text => {
+          const filteredTags = _.filter(processedTags, o => _.startsWith(o.name, text))
 
-        if (!_.isEmpty(filteredTags)) {
-          return (
-            <Box py={3} key={`tag-${prefix}-${text}`}>
-              <Text fontSize={26} fontWeight={600}>{text.toUpperCase()}</Text>
-              {filteredTags.map(tag => {
-                return (
-                  <Box key={`tag-${prefix}-${text}-${tag.id}`}>
-                    <TransparentLink to={`/${prefix}/${tag.id}`}>
-                      <Text>{tag.name}</Text>
-                    </TransparentLink>
+          if (!_.isEmpty(filteredTags)) {
+            return (
+              <Box py={3} key={`tag-${prefix}-${text}`}>
+                <CoverCard backgroundColor={`white`} p={3}>
+                  <Box p={2}>
+                    <Text fontSize={26} fontWeight={600}>{text.toUpperCase()}</Text>
                   </Box>
-                )
-              })}
-            </Box>
-          )
-        } else {
-          return null
-        }
-      })}
+                  <Box p={2}>
+                    {filteredTags.map((tag, i) => {
+                      return (
+                        <Box key={`tag-${prefix}-${text}-${tag.id}`}>
+                          {i !== 0 ? <Divider /> : null}
+                          <Box py={3}>
+                            <TransparentLink to={`/${prefix}/${tag.id}`}>
+                              <Text fontSize={14} color={`#3784f7`}>{tag.name}</Text>
+                            </TransparentLink>
+                          </Box>
+                        </Box>
+                      )
+                    })}
+                  </Box>
+                </CoverCard>
+              </Box>
+            )
+          } else {
+            return null
+          }
+        })}
+        </Box>
+      </Flex>
     </Box>
   )
 }
