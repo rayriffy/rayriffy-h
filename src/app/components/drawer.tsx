@@ -76,7 +76,7 @@ const DrawerComponent: React.FC = () => {
       <MenuIcon size={`20px`} onClick={() => setOpen(true)} />
       <Drawer
         open={open}
-        width={340}
+        width={300}
         right={true}
         noTouchOpen={true}
         onChange={(state: boolean) => setOpen(state)}
