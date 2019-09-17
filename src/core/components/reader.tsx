@@ -1,6 +1,8 @@
 import _ from 'lodash'
 import React, { useContext } from 'react'
 
+import LazyLoad from 'react-lazyload'
+
 import { Box, Flex, Image, Text } from 'rebass'
 import styled from 'styled-components'
 
@@ -43,7 +45,9 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
             <Flex flexWrap={`wrap`}>
               <Box width={3 / 7} p={[2, 3]}>
                 <ImageBox>
-                  <BluredImage blur={safeMode} src={`https://t.nhentai.net/galleries/${hentai.media_id}/cover.${hentai.images.cover.t === 'p' ? 'png' : 'jpg'}`} />
+                  <LazyLoad height={hentai.images.cover.h}>
+                    <BluredImage blur={safeMode} src={`https://t.nhentai.net/galleries/${hentai.media_id}/cover.${hentai.images.cover.t === 'p' ? 'png' : 'jpg'}`} />
+                  </LazyLoad>
                 </ImageBox>
               </Box>
               <Box width={4 / 7} p={[2, 3]}>
@@ -83,7 +87,9 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
             {hentai.images.pages.map((page, i) => {
               return (
                 <ImageBox key={`reader-${raw.data.id}-page-${i + 1}`}>
-                  <BluredImage blur={safeMode} src={`https://i.nhentai.net/galleries/${hentai.media_id}/${i + 1}.${page.t === 'p' ? 'png' : 'jpg'}`} />
+                  <LazyLoad height={page.h}>
+                    <BluredImage blur={safeMode} src={`https://i.nhentai.net/galleries/${hentai.media_id}/${i + 1}.${page.t === 'p' ? 'png' : 'jpg'}`} />
+                  </LazyLoad>
                 </ImageBox>
               )
             })}

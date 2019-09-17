@@ -62,8 +62,8 @@ const PosterComponent: React.FC<IPosterProps> = props => {
       <BorderedCard>
         <CoverBox>
           <Link to={`/r/${raw.id}`}>
-            <LazyLoad height={raw.images.thumbnail.h}>
-              <BluredImage blur={safeMode} src={`https://t.nhentai.net/galleries/${raw.media_id}/cover.${raw.images.thumbnail.t === 'p' ? 'png' : 'jpg'}`} />
+            <LazyLoad height={raw.images.cover.h}>
+              <BluredImage blur={safeMode} src={`https://t.nhentai.net/galleries/${raw.media_id}/cover.${raw.images.cover.t === 'p' ? 'png' : 'jpg'}`} />
             </LazyLoad>
           </Link>
         </CoverBox>
