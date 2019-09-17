@@ -1,5 +1,6 @@
 import { IDatabaseTag } from '../../../../core/@types/IDatabaseTag'
 import { IFetchedRaw } from '../../../../core/@types/IFetchedRaw'
+import { ITag } from '../../../../core/@types/ITag'
 
 export interface IProps {
   pageContext: {
@@ -8,6 +9,8 @@ export interface IProps {
       current: number
       max: number
     }
+    prefix: string
+    tag: ITag
     tagStack: IDatabaseTag[]
   }
 }

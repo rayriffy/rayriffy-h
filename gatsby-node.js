@@ -209,14 +209,25 @@ exports.createPages = async ({actions, reporter}) => {
         }
       })
 
-      createPage({
-        path: `${pathPrefix}/${tag.id}`,
-        component: path.resolve(`./src/templates/tag/viewing/components/index.tsx`),
-        context: {
-          subtitle: `${name}/${tag.name}`,
-          raw: qualifiedResults,
-          tagStack: listingTagStack,
-        },
+
+      const qualifiedResultChunks = _.chunk(qualifiedResults, ITEMS_PER_PAGE)
+
+      qualifiedResultChunks.map((chunk, i) => {
+        createPage({
+          path: i === 0 ? `${pathPrefix}/${tag.id}` : `${pathPrefix}/${tag.id}/p/${i + 1}`,
+          component: path.resolve(`./src/templates/tag/viewing/components/index.tsx`),
+          context: {
+            subtitle: `${name}/${tag.name}`,
+            raw: chunk,
+            page: {
+              current: i + 1,
+              max: qualifiedResultChunks.length,
+            },
+            prefix: pathPrefix,
+            tag: tag,
+            tagStack: listingTagStack,
+          },
+        })
       })
     })
   }

@@ -8,13 +8,13 @@ import Poster from '../../../../core/components/poster'
 import { IProps } from '../@types/IProps'
 
 const TagViewingComponent: React.FC<IProps> = props => {
-  const {raw, tagStack, page} = props.pageContext
+  const {raw, tagStack, page, tag, prefix} = props.pageContext
 
   return (
     <Box>
       <Flex justifyContent={`center`}>
         <Box width={18 / 24} py={3}>
-          <Pagination current={page.current} max={page.max} prefix={`/`} />
+          <Pagination current={page.current} max={page.max} prefix={`/${prefix}/${tag.id}/`} />
         </Box>
       </Flex>
       <Flex justifyContent={`center`}>
@@ -28,7 +28,7 @@ const TagViewingComponent: React.FC<IProps> = props => {
       </Flex>
       <Flex justifyContent={`center`}>
         <Box width={18 / 24} py={3}>
-          <Pagination current={page.current} max={page.max} prefix={`/`} />
+          <Pagination current={page.current} max={page.max} prefix={`/${prefix}/${tag.id}/`} />
         </Box>
       </Flex>
     </Box>

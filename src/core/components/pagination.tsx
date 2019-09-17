@@ -42,7 +42,7 @@ const PaginationComponent: React.FC<IProps> = props => {
       <Flex justifyContent={`center`}>
         {Array.from({length: pageLength}, (_, i) => (
           <Box key={`pagination-${startPoint + i}`} px={3}>
-            <TransparentLink to={`${startPoint + i === 0 ? `${prefix}` : `${prefix === '/' ? '' : prefix}/p/${startPoint + i + 1}`}`} start={startPoint} index={i} current={current}>
+            <TransparentLink to={startPoint + i === 0 ? prefix : `${prefix}p/${startPoint + i + 1}`} start={startPoint} index={i} current={current}>
               {startPoint + i + 1}
             </TransparentLink>
           </Box>
