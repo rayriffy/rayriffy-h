@@ -9,6 +9,8 @@ import Drawer from 'react-motion-drawer'
 import { Box, Flex, Text } from 'rebass'
 import styled from 'styled-components'
 
+import tagStack from '../../../contents/database/tags'
+
 import Divider from '../../core/components/divider'
 import TransparentLink from '../../core/components/transparentLink'
 
@@ -20,6 +22,10 @@ const Wrapper = styled(Box)`
   overflow: auto;
 
   background: #fff;
+`
+
+const CapitalizedText = styled(Text)`
+  text-transform: capitalize;
 `
 
 const DrawerComponent: React.FC = () => {
@@ -38,49 +44,23 @@ const DrawerComponent: React.FC = () => {
 
   const menuStacks = [
     {
-      name: 'Listing',
+      name: 'listing',
       prefix: '',
     },
     {
-      name: 'Custom',
+      name: 'custom',
       prefix: 'custom',
     },
     {
-      name: 'Search',
+      name: 'search',
       prefix: 'search',
     },
   ]
 
-  const tagStacks = [
-    {
-      name: 'Tag',
-      prefix: 'ta',
-    },
-    {
-      name: 'Artist',
-      prefix: 'ar',
-    },
-    {
-      name: 'Character',
-      prefix: 'ch',
-    },
-    {
-      name: 'Parody',
-      prefix: 'pa',
-    },
-    {
-      name: 'Group',
-      prefix: 'gr',
-    },
-    {
-      name: 'Category',
-      prefix: 'ca',
-    },
-    {
-      name: 'Language',
-      prefix: 'la',
-    }
-  ]
+  const tagStacks = tagStack.map(o => ({
+    name: o.name,
+    prefix: o.prefix
+  }))
 
   return (
     <Box>
@@ -117,7 +97,7 @@ const DrawerComponent: React.FC = () => {
                     {i !== 0 ? <Divider /> : null}
                     <Box py={2}>
                       <TransparentLink to={`/${stack.prefix}`}>
-                        <Text fontSize={14} color={`rgba(0, 0, 0, 0.65)`} py={1}>{stack.name}</Text>
+                        <CapitalizedText fontSize={14} color={`rgba(0, 0, 0, 0.65)`} py={1}>{stack.name}</CapitalizedText>
                       </TransparentLink>
                     </Box>
                   </Box>
@@ -132,7 +112,7 @@ const DrawerComponent: React.FC = () => {
                     {i !== 0 ? <Divider /> : null}
                     <Box py={2}>
                       <TransparentLink to={`/${stack.prefix}`}>
-                        <Text fontSize={14} color={`rgba(0, 0, 0, 0.65)`} py={1}>{stack.name}</Text>
+                        <CapitalizedText fontSize={14} color={`rgba(0, 0, 0, 0.65)`} py={1}>{stack.name}</CapitalizedText>
                       </TransparentLink>
                     </Box>
                   </Box>

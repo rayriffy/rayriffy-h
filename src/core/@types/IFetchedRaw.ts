@@ -3,7 +3,7 @@ import { IHentai } from './IHentai'
 export interface IFetchedRaw {
   status: string
   data: {
-    id: number
+    id: number | string
     exclude: number[]
     raw: IHentai
   }
