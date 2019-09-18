@@ -30,7 +30,7 @@
     "gatsby-plugin-styled-components": "^3.1.5",
     "gatsby-plugin-typescript": "^2.1.7",
     "gatsby-plugin-typography": "^2.3.7",
-    "gatsby-source-filesystem": "^2.1.22",
+    "gatsby-source-filesystem": "^2.1.24",
     "gatsby-transformer-json": "^2.2.8",
     "gatsby-transformer-sharp": "^2.2.14",
     "local-storage": "^2.0.0",
