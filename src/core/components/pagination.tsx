@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { Link } from 'gatsby'
-
 import { Box, Flex } from 'rebass'
 import styled from 'styled-components'
+
+import Link from '../../core/components/transparentLink'
 
 interface IProps {
   max: number

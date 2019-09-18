@@ -1,18 +1,13 @@
 import _ from 'lodash'
 import React from 'react'
 
-import { Link } from 'gatsby'
-
 import { Box, Card, Flex, Text } from 'rebass'
 import styled from 'styled-components'
 
 import Divider from '../../../../core/components/divider'
+import TransparentLink from '../../../../core/components/transparentLink'
 
 import { IProps } from '../@types/IProps'
-
-const TransparentLink = styled(Link)`
-  text-decoration: none;
-`
 
 const CoverCard = styled(Card)`
   border-radius: 8px;

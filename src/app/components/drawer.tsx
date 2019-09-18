@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 
-import { Link } from 'gatsby'
 import { set as lsSet } from 'local-storage'
 import Switch from 'react-switch'
 
@@ -11,6 +10,7 @@ import { Box, Flex, Text } from 'rebass'
 import styled from 'styled-components'
 
 import Divider from '../../core/components/divider'
+import TransparentLink from '../../core/components/transparentLink'
 
 import { SafeMode } from '../context'
 
@@ -20,10 +20,6 @@ const Wrapper = styled(Box)`
   overflow: auto;
 
   background: #fff;
-`
-
-const TransparentLink = styled(Link)`
-  text-decoration: none;
 `
 
 const DrawerComponent: React.FC = () => {

@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { Link } from 'gatsby'
-
 import { Box, Text } from 'rebass'
 import styled from 'styled-components'
+
+import TransparentLink from '../../core/components/transparentLink'
 
 import { ISlugProps } from '../@types/ISlugProps'
 
@@ -16,10 +16,6 @@ const BorderedSlug = styled(Box)<IBorderedSlug>`
   border: 1px solid #d9d9d9;
 
   border-color: ${props => props.border};
-`
-
-const TransparentLink = styled(Link)`
-  text-decoration: none;
 `
 
 const SlugComponent: React.FC<ISlugProps> = props => {
