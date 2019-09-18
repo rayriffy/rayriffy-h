@@ -1,16 +1,13 @@
 import _ from 'lodash'
-import React, { useContext } from 'react'
+import React from 'react'
 
-import LazyLoad from 'react-lazyload'
-
-import { Box, Flex, Image, Text } from 'rebass'
+import { Box, Flex, Text } from 'rebass'
 import styled from 'styled-components'
 
+import BluredImage from './bluredImage'
 import Collapse from './collapse'
 import Divider from './divider'
 import Slug from './slug'
-
-import { SafeMode } from '../../app/context'
 
 import { filterTagByType } from '../services/filterTagByType'
 
@@ -20,20 +17,8 @@ const ImageBox = styled(Box)`
   overflow: hidden;
 `
 
-interface IBluredImageProps {
-  blur: boolean
-}
-
-const BluredImage = styled(Image)`
-  width: 100%;
-
-  ${(props: IBluredImageProps) => props.blur && `filter: blur(15px);`}
-`
-
 const ReaderComponent: React.FC<IReaderProps> = props => {
   const {raw, tagStack} = props
-
-  const [safeMode] = useContext(SafeMode)
 
   const hentai = raw.data.raw
 
@@ -45,9 +30,7 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
             <Flex flexWrap={`wrap`}>
               <Box width={3 / 7} p={[2, 3]}>
                 <ImageBox>
-                  <LazyLoad height={hentai.images.cover.h}>
-                    <BluredImage blur={safeMode} src={`https://t.nhentai.net/galleries/${hentai.media_id}/cover.${hentai.images.cover.t === 'p' ? 'png' : 'jpg'}`} />
-                  </LazyLoad>
+                  <BluredImage height={hentai.images.cover.h} src={`https://t.nhentai.net/galleries/${hentai.media_id}/cover.${hentai.images.cover.t === 'p' ? 'png' : 'jpg'}`} />
                 </ImageBox>
               </Box>
               <Box width={4 / 7} p={[2, 3]}>
@@ -88,9 +71,7 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
               if (!raw.data.exclude.includes(i + 1)) {
                 return (
                   <ImageBox key={`reader-${raw.data.id}-page-${i + 1}`}>
-                    <LazyLoad height={page.h}>
-                      <BluredImage blur={safeMode} src={`https://i.nhentai.net/galleries/${hentai.media_id}/${i + 1}.${page.t === 'p' ? 'png' : 'jpg'}`} />
-                    </LazyLoad>
+                    <BluredImage height={page.h} src={`https://i.nhentai.net/galleries/${hentai.media_id}/${i + 1}.${page.t === 'p' ? 'png' : 'jpg'}`} />
                   </ImageBox>
                 )
               } else {
