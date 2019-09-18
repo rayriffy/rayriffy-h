@@ -144,7 +144,7 @@ const DrawerComponent: React.FC = () => {
               <Box py={2}>
                 <Flex>
                   <Box>
-                    <Switch height={18} width={40} checked={safeMode} onChange={toggleSafeMode} />
+                    <Switch height={18} width={40} checked={safeMode === undefined ? true : safeMode} onChange={toggleSafeMode} />
                   </Box>
                   <Box px={2}>
                     <Text fontSize={14}>Safe mode</Text>
