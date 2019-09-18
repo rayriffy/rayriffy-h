@@ -1,11 +1,13 @@
 import _ from 'lodash'
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 
 import { Box, Card, Flex, Text } from 'rebass'
 import styled from 'styled-components'
 
 import Divider from '../../../../core/components/divider'
 import TransparentLink from '../../../../core/components/transparentLink'
+
+import { Subtitle } from '../../../../app/context'
 
 import { IProps } from '../@types/IProps'
 
@@ -16,11 +18,19 @@ const CoverCard = styled(Card)`
 `
 
 const TagListingComponent: React.FC<IProps> = props => {
-  const {prefix, raw} = props.pageContext
+  const {prefix, raw, subtitle} = props.pageContext
+
+  const [, setSubtitle] = useContext(Subtitle)
 
   const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
   const processedTags = _.sortBy(raw.map(o => ({id: o.id, name: o.name})), o => o.name)
+
+  useEffect(() => {
+    if (setSubtitle) {
+      setSubtitle(`${subtitle}`)
+    }
+  }, [])
 
   return (
     <Box pt={1}>

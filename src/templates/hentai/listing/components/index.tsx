@@ -1,14 +1,24 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 
 import { Box, Flex } from 'rebass'
 
 import Pagination from '../../../../core/components/pagination'
 import Poster from '../../../../core/components/poster'
 
+import { Subtitle } from '../../../../app/context'
+
 import { IProps } from '../@types/IProps'
 
 const HentaiListingComponent: React.FC<IProps> = props => {
   const {raw, tagStack, page} = props.pageContext
+
+  const [, setSubtitle] = useContext(Subtitle)
+
+  useEffect(() => {
+    if (setSubtitle) {
+      setSubtitle(`listing`)
+    }
+  }, [])
 
   return (
     <Box pt={2}>

@@ -12,5 +12,6 @@ export interface IProps {
     prefix: string
     tag: ITag
     tagStack: IDatabaseTag[]
+    subtitle: string
   }
 }

@@ -1,14 +1,24 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 
 import { Box, Flex } from 'rebass'
 
 import Pagination from '../../../../core/components/pagination'
 import Poster from '../../../../core/components/poster'
 
+import { Subtitle } from '../../../../app/context'
+
 import { IProps } from '../@types/IProps'
 
 const TagViewingComponent: React.FC<IProps> = props => {
-  const {raw, tagStack, page, tag, prefix} = props.pageContext
+  const {raw, tagStack, page, tag, prefix, subtitle} = props.pageContext
+
+  const [, setSubtitle] = useContext(Subtitle)
+
+  useEffect(() => {
+    if (setSubtitle) {
+      setSubtitle(`${subtitle}`)
+    }
+  }, [])
 
   return (
     <Box>

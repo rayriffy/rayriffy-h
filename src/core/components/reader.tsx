@@ -70,9 +70,9 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
             {hentai.images.pages.map((page, i) => {
               if (!raw.data.exclude.includes(i + 1)) {
                 return (
-                  <ImageBox key={`reader-${raw.data.id}-page-${i + 1}`}>
+                  <CoverBox key={`reader-${raw.data.id}-page-${i + 1}`}>
                     <BluredImage height={page.h} src={`https://i.nhentai.net/galleries/${hentai.media_id}/${i + 1}.${page.t === 'p' ? 'png' : 'jpg'}`} />
-                  </ImageBox>
+                  </CoverBox>
                 )
               } else {
                 return null
