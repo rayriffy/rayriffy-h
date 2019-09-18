@@ -42,16 +42,18 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
                     if (!_.isEmpty(res)) {
                       return (
                         <Box key={`collapse-${hentai.id}-${stack.name}`}>
-                          {i !== 0 ? <Divider py={1} /> : null}
-                          <Collapse title={_.upperFirst(stack.name)} defaultState={stack.name === 'tag'}>
-                            <Flex flexWrap={`wrap`}>
-                              {res.map(tag => {
-                                return (
-                                  <Slug key={`slug-${hentai.id}-${stack.name}-${tag.id}`} border={stack.color.border} background={stack.color.background} text={stack.color.text} link={`/${stack.prefix}/${tag.id}`}>{tag.name}</Slug>
-                                )
-                              })}
-                            </Flex>
-                          </Collapse>
+                          {i !== 0 ? <Divider /> : null}
+                          <Box py={1}>
+                            <Collapse title={_.upperFirst(stack.name)} defaultState={stack.name === 'tag'}>
+                              <Flex flexWrap={`wrap`}>
+                                {res.map(tag => {
+                                  return (
+                                    <Slug key={`slug-${hentai.id}-${stack.name}-${tag.id}`} border={stack.color.border} background={stack.color.background} text={stack.color.text} link={`/${stack.prefix}/${tag.id}`}>{tag.name}</Slug>
+                                  )
+                                })}
+                              </Flex>
+                            </Collapse>
+                          </Box>
                         </Box>
                       )
                     } else {
