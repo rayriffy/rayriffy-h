@@ -90,7 +90,7 @@ const DrawerComponent: React.FC = () => {
       </Box>
       <Drawer
         open={open}
-        width={300}
+        width={275}
         right={true}
         noTouchOpen={true}
         onChange={(state: boolean) => setOpen(state)}
