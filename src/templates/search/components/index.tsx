@@ -1,6 +1,10 @@
 import React from 'react'
 
-const SearchComponent = props => {
+import { IProps } from '../@types/IProps'
+
+const SearchComponent: React.FC<IProps> = props => {
+  const {raw} = props
+
   return (
     <>OK</>
   )
