@@ -29,7 +29,10 @@ const DrawerComponent: React.FC = () => {
   const toggleSafeMode = () => {
     const newState = !safeMode
 
-    setSafeMode(newState)
+    if (setSafeMode) {
+      setSafeMode(newState)
+    }
+
     lsSet<boolean>('blur', newState)
   }
 
