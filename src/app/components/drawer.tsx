@@ -9,7 +9,7 @@ import Drawer from 'react-motion-drawer'
 import { Box, Flex, Text } from 'rebass'
 import styled from 'styled-components'
 
-import tagStack from '../../../contents/database/tags'
+import tagStack from '../../contents/database/tags'
 
 import Divider from '../../core/components/divider'
 import TransparentLink from '../../core/components/transparentLink'

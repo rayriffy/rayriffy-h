@@ -11,9 +11,9 @@ https://h.rayriffy.com
 Screenshots
 -----------
 
-![locked](contents/img/locked.jpg)
-![view](contents/img/viewing.jpg)
-![notfound](contents/img/notfound.jpg)
+![locked](src/contents/img/locked.jpg)
+![view](src/contents/img/viewing.jpg)
+![notfound](src/contents/img/notfound.jpg)
 
 Requirements
 ------------

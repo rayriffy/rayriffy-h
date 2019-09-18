@@ -11,6 +11,8 @@ import Slug from './slug'
 import { filterTagByType } from '../services/filterTagByType'
 import { filterTagStackByType } from '../services/filterTagStackByType'
 
+import allTagStack from '../../contents/database/tags'
+
 import BluredImage from './bluredImage'
 
 import { IPosterProps } from '../@types/IPosterProps'
@@ -36,7 +38,9 @@ const FooterBox = styled(Box)`
 `
 
 const PosterComponent: React.FC<IPosterProps> = props => {
-  const {raw, tagStack} = props
+  const {raw} = props
+
+  const tagStack = _.filter(allTagStack, tag => tag.name === 'parody' || tag.name === 'tag')
 
   const language = _.head(_.filter(filterTagByType(raw.tags, 'language'), tag => tag.name !== 'translated'))
   const tags = filterTagByType(raw.tags, 'tag')

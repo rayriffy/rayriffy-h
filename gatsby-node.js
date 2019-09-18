@@ -5,8 +5,8 @@ const {TaskQueue} = require('cwait')
 const fs = require('fs')
 const path = require('path')
 
-const databaseCodes = require('./contents/database/codes')
-const databaseTags = require('./contents/database/tags')
+const databaseCodes = require('./src/contents/database/codes')
+const databaseTags = require('./src/contents/database/tags')
 
 const MAX_SIMULTANEOUS_DOWNLOADS = 3
 const ITEMS_PER_PAGE = 20
@@ -154,9 +154,6 @@ exports.createPages = async ({actions, reporter}) => {
 
   const tagStack = fetchedData.tags
 
-  // Listing is use only 'tag' and 'parody'
-  const listingTagStack = _.filter(tagStack, tag => tag.name === 'parody' || tag.name === 'tag')
-
   /**
    * Create listing page
    */
@@ -173,7 +170,6 @@ exports.createPages = async ({actions, reporter}) => {
           current: i + 1,
           max: hentaiListingChunks.length,
         },
-        tagStack: listingTagStack,
       },
     })
   })
@@ -184,11 +180,10 @@ exports.createPages = async ({actions, reporter}) => {
    */
   healthyResults.map(node => {
     createPage({
-      path: `r/${node.data.id}`,
+      path: `/r/${node.data.id}`,
       component: path.resolve(`./src/templates/hentai/viewing/components/index.tsx`),
       context: {
         raw: node,
-        tagStack
       },
     })
   })
@@ -214,7 +209,7 @@ exports.createPages = async ({actions, reporter}) => {
 
       qualifiedResultChunks.map((chunk, i) => {
         createPage({
-          path: i === 0 ? `${pathPrefix}/${tag.id}` : `${pathPrefix}/${tag.id}/p/${i + 1}`,
+          path: i === 0 ? `/${pathPrefix}/${tag.id}` : `${pathPrefix}/${tag.id}/p/${i + 1}`,
           component: path.resolve(`./src/templates/tag/viewing/components/index.tsx`),
           context: {
             subtitle: `${name}/${tag.name}`,
@@ -225,7 +220,6 @@ exports.createPages = async ({actions, reporter}) => {
             },
             prefix: pathPrefix,
             tag: tag,
-            tagStack: listingTagStack,
           },
         })
       })
@@ -264,7 +258,7 @@ exports.createPages = async ({actions, reporter}) => {
     createSlugPages(tag.prefix, tag.name, nodes)
 
     createPage({
-      path: `${tag.prefix}`,
+      path: `/${tag.prefix}`,
       component: path.resolve(`./src/templates/tag/listing/components/index.tsx`),
       context: {
         prefix: tag.prefix,
@@ -328,16 +322,4 @@ exports.createPages = async ({actions, reporter}) => {
 
     fs.writeFile(`./public/${apiPath}/list/${i + 1}.json`, JSON.stringify(out), fshandler)
   })
-}
-
-/**
- * Generate page from dynamic URLs that match RegExp
- */
-exports.onCreatePage = async ({page, actions}) => {
-  const {createPage} = actions
-
-  if (page.path.match(/^\/g/)) {
-    page.matchPath = '/g/*'
-    createPage(page)
-  }
 }

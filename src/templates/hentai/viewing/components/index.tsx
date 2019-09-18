@@ -9,7 +9,7 @@ import { Subtitle } from '../../../../app/context'
 import { IProps } from '../@types/IProps'
 
 const HentaiViewingComponent: React.FC<IProps> = props => {
-  const {raw, tagStack} = props.pageContext
+  const {raw} = props.pageContext
 
   const [, setSubtitle] = useContext(Subtitle)
 
@@ -21,7 +21,7 @@ const HentaiViewingComponent: React.FC<IProps> = props => {
 
   return (
     <Box>
-      <Reader raw={raw} tagStack={tagStack} />
+      <Reader raw={raw} />
     </Box>
   )
 }

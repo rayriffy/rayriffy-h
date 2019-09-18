@@ -1,4 +1,3 @@
-import { IDatabaseTag } from '../../../../core/@types/IDatabaseTag'
 import { IFetchedRaw } from '../../../../core/@types/IFetchedRaw'
 import { ITag } from '../../../../core/@types/ITag'
 
@@ -11,7 +10,6 @@ export interface IProps {
     }
     prefix: string
     tag: ITag
-    tagStack: IDatabaseTag[]
     subtitle: string
   }
 }

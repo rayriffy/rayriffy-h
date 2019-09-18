@@ -12,7 +12,7 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/contents/database`,
+        path: `${__dirname}/src/contents/database`,
         name: `database`,
         ignore: [`**/.*`],
       },
@@ -24,6 +24,10 @@ module.exports = {
         name: 'pages',
         ignore: [`**/.*`],
       },
+    },
+    {
+      resolve: `gatsby-plugin-create-client-paths`,
+      options: { prefixes: [`/g/*`] },
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,

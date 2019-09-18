@@ -9,6 +9,8 @@ import Collapse from './collapse'
 import Divider from './divider'
 import Slug from './slug'
 
+import tagStack from '../../contents/database/tags'
+
 import { filterTagByType } from '../services/filterTagByType'
 
 import { IReaderProps } from '../@types/IReaderProps'
@@ -18,7 +20,7 @@ const CoverBox = styled(Box)`
 `
 
 const ReaderComponent: React.FC<IReaderProps> = props => {
-  const {raw, tagStack} = props
+  const {raw} = props
 
   const hentai = raw.data.raw
 
