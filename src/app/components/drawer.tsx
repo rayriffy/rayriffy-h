@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 
 import { Link } from 'gatsby'
+import { set as lsSet } from 'local-storage'
 import Switch from 'react-switch'
 
 import { FaAngleDoubleRight as RightIcon, FaBars as MenuIcon, FaHeart as LoveIcon } from 'react-icons/fa'
@@ -28,6 +29,13 @@ const TransparentLink = styled(Link)`
 const DrawerComponent: React.FC = () => {
   const [open, setOpen] = useState(false)
   const [safeMode, setSafeMode] = useContext(SafeMode)
+
+  const toggleSafeMode = () => {
+    const newState = !safeMode
+
+    setSafeMode(newState)
+    lsSet<boolean>('blur', newState)
+  }
 
   const menuStacks = [
     {
@@ -137,7 +145,7 @@ const DrawerComponent: React.FC = () => {
               <Box py={2}>
                 <Flex>
                   <Box>
-                    <Switch height={18} width={40} checked={safeMode} onChange={() => setSafeMode(prev => !prev)} />
+                    <Switch height={18} width={40} checked={safeMode} onChange={toggleSafeMode} />
                   </Box>
                   <Box px={2}>
                     <Text fontSize={14}>Safe mode</Text>
