@@ -1,9 +1,9 @@
-rayriffy-h
-==========
+Riffy H
+=======
 
-NHentai gallery viewer using GatsbyJS
+The missing piece of NHentai
 
-Demo
+Live
 ----
 
 https://h.rayriffy.com
@@ -11,9 +11,11 @@ https://h.rayriffy.com
 Screenshots
 -----------
 
-![locked](src/contents/img/locked.jpg)
-![view](src/contents/img/viewing.jpg)
-![notfound](src/contents/img/notfound.jpg)
+<div style="display: flex; width: 100%;">
+  <img style="box-sizing: border-box; padding: 0 10px;" src="src/contents/img/locked.jpg" />
+  <img style="box-sizing: border-box; padding: 0 10px;" src="src/contents/img/viewing.jpg" />
+  <img style="box-sizing: border-box; padding: 0 10px;" src="src/contents/img/notfound.jpg">
+</div>
 
 Requirements
 ------------
@@ -24,13 +26,6 @@ Installation
 ------------
 
 ```sh
-$ npm install
-$ npm run dev
-```
-
-or just use yarn
-
-```sh
 $ yarn
 $ yarn dev
 ```
@@ -38,7 +33,7 @@ $ yarn dev
 Where's all query from
 ----------------------
 
-We query data from a custom JSON database [here](src/assets/database/data.json)
+We query data from a custom database [here](src/contents/database/code.js)
 
 Contributing
 ------------
