@@ -1,37 +1,20 @@
 const _ = require('lodash')
+
 const axios = require('axios')
-const Promise = require('bluebird')
+const {TaskQueue} = require('cwait')
 const fs = require('fs')
 const path = require('path')
-const {TaskQueue} = require('cwait')
 
-const {rawData} = require('./src/assets/database')
+const databaseCodes = require('./src/contents/database/codes')
+const databaseTags = require('./src/contents/database/tags')
 
 const MAX_SIMULTANEOUS_DOWNLOADS = 3
+const ITEMS_PER_PAGE = 20
+
 const PREFETCH_GIST = 'https://gist.githubusercontent.com/rayriffy/09554279046d2fda29c125e0a16dc695/raw/crawler.json'
 
-exports.createPages = async ({graphql, actions, reporter}) => {
+exports.createPages = async ({actions, reporter}) => {
   const {createPage} = actions
-
-  const result = await graphql(
-    `
-      {
-        allTagJson {
-          edges {
-            node {
-              prefix
-              name
-            }
-          }
-        }
-      }
-    `,
-  )
-
-  if (result.errors) {
-    reporter.error(result.errors)
-    throw result.errors
-  }
 
   /**
    * Handler function for file sync
@@ -39,52 +22,106 @@ exports.createPages = async ({graphql, actions, reporter}) => {
    */
   const fshandler = err => {
     if (err) {
-      if (err) {
-        reporter.log(err)
-        throw err
-      }
+      reporter.log(err)
+      throw err
     }
   }
 
+  // Download file from cache if cache does not exist
+  if (!fs.existsSync(`./.tmp/crawler.json`)) {
+    reporter.info(`Downloading prefetched data from GitHub Gist`)
+    const gistCache = await axios.get(PREFETCH_GIST)
+
+    if (!fs.existsSync(`./.tmp`)) {
+      fs.mkdirSync(`./.tmp`)
+    }
+
+    await fs.writeFile(`./.tmp/crawler.json`, JSON.stringify(gistCache.data), fshandler)
+  } else {
+    reporter.info(`Found cache! Skipping prefetch stage`)
+  }
+
   /**
-   * Functions for query data from NHentai API
-   * @param {int} id Gallery ID
-   * @param {array} exclude Exlucde pages
+   * Featch raw data from cache or API
+   * @param {number} pathPrefix   Tag path prefix
+   * @param {array}  exclude      Exclude pages
    */
   const getRawData = async (id, exclude) => {
+    const mockRaw = {
+      id: 0,
+      media_id: 0,
+      title: {
+        english: '',
+        japanese: '',
+        pretty: '',
+      },
+      images: {
+        cover: {
+          t: 'j',
+          w: 0,
+          h: 0,
+        },
+        pages: [],
+        thumbnail: {
+          t: 'j',
+          w: 0,
+          h: 0,
+        },
+      },
+      scanlator: '',
+      upload_date: 0,
+      tags: [],
+      num_pages: 0,
+      num_favorites: 0,
+    }
+  
     try {
-      let isCacheFound = false
-      let cacheRes
       // Read file from cache
-      if (fs.existsSync('.tmp/crawler.json')) {
-        const reader = fs.readFileSync('.tmp/crawler.json', 'utf8')
-        const objects = JSON.parse(reader)
-
-        _.each(objects, object => {
-          if (object.data.id === id && object.status === 'success') {
-            isCacheFound = true
-            cacheRes = object
+      if (fs.existsSync('./.tmp/crawler.json')) {
+        const reader = fs.readFileSync('./.tmp/crawler.json', 'utf8')
+        const cache = JSON.parse(reader)
+  
+        const filter = _.head(_.filter(cache, o => o.data.id === id && o.status === 'success'))
+  
+        if (!_.isEmpty(filter)) {
+          if (filter) {
+            return {
+              ...filter,
+              data: {
+                ...filter.data,
+                exclude,
+              },
+            }
+          } else {
+            return {
+              status: 'failure',
+              data: {
+                id,
+                exclude: [],
+                raw: mockRaw,
+              },
+            }
           }
-        })
-      }
-
-      if (isCacheFound) {
-        return {
-          ...cacheRes,
-          data: {
-            ...cacheRes.data,
-            exclude: exclude,
-          },
+        } else {
+          // Using reverse proxy server to avoid CORS issue
+          const out = await axios.get(`https://nh-express-git-master.rayriffy.now.sh/api/gallery/${id}`)
+  
+          return {
+            status: 'success',
+            data: {
+              id,
+              exclude,
+              raw: out.data,
+            },
+          }
         }
       } else {
-        // Using reverse proxy server to avoid CORS issue
-        const out = await axios.get(`https://nh-express-git-master.rayriffy.now.sh/api/gallery/${id}`)
         return {
-          status: 'success',
+          status: 'failure',
           data: {
-            id: id,
-            exclude: exclude,
-            raw: out.data,
+            id,
+            exclude: [],
+            raw: mockRaw,
           },
         }
       }
@@ -93,123 +130,139 @@ exports.createPages = async ({graphql, actions, reporter}) => {
       return {
         status: 'failure',
         data: {
-          id: id,
+          id,
+          exclude: [],
+          raw: mockRaw,
         },
       }
     }
   }
 
-  // Download file from cache if cache does not exist
-  if (!fs.existsSync('.tmp/crawler.json')) {
-    reporter.info(`Downloading prefetched data from GitHub Gist`)
-    const gistCache = await axios.get(PREFETCH_GIST)
-
-    if (!fs.existsSync('.tmp')) {
-      fs.mkdirSync('.tmp', fshandler)
-    }
-
-    await fs.writeFile(`.tmp/crawler.json`, JSON.stringify(gistCache.data), fshandler)
-  } else {
-    reporter.info(`Found cache! Skipping prefetch stage`)
-  }
-
   // Begin to fetch data
   const queue = new TaskQueue(Promise, MAX_SIMULTANEOUS_DOWNLOADS)
-  const fetchedData = {}
-  fetchedData.tags = result.data.allTagJson
-  fetchedData.data = await Promise.all(
-    rawData.map(queue.wrap(async item => await getRawData(item.code ? item.code : item, item.exclude ? item.exclude : []))),
-  )
+  const fetchedData = {
+    tags: databaseTags,
+    codes: await Promise.all(
+      databaseCodes.map(queue.wrap(async item => await getRawData(item.code ? item.code : item, item.exclude ? item.exclude : [], reporter))),
+    ),
+  }
 
   /**
-   * Filter errors and assign contants
+   * Filter errors and assign constants
    */
-  const healthyResults = _.filter(fetchedData.data, o => o.status === 'success')
-  const tagStack = fetchedData.tags.edges
+  const healthyResults = _.filter(fetchedData.codes, o => o.status === 'success').reverse()
+
+  const tagStack = fetchedData.tags
 
   /**
    * Create listing page
    */
-  createPage({
-    path: `listing`,
-    component: path.resolve('./src/templates/listing.js'),
-    context: {
-      subtitle: `listing`,
-      raw: healthyResults.reverse(),
-    },
+  const hentaiListingChunks = _.chunk(healthyResults, ITEMS_PER_PAGE)
+
+  hentaiListingChunks.map((chunk, i) => {
+    createPage({
+      path: i === 0 ? `/` : `/p/${i + 1}`,
+      component: path.resolve(`./src/templates/hentai/listing/components/index.tsx`),
+      context: {
+        subtitle: `listing`,
+        raw: chunk,
+        page: {
+          current: i + 1,
+          max: hentaiListingChunks.length,
+        },
+      },
+    })
   })
+
 
   /**
    * Create gallery pages
    */
-  const postPrefix = 'r'
-  _.each(healthyResults, node => {
+  healthyResults.map(node => {
     createPage({
-      path: `${postPrefix}/${node.data.id}`,
-      component: path.resolve('./src/templates/post.js'),
+      path: `/r/${node.data.id}`,
+      component: path.resolve(`./src/templates/hentai/viewing/components/index.tsx`),
       context: {
-        id: node.data.id,
-        raw: node.data.raw,
-        exclude: node.data.exclude,
+        raw: node,
       },
     })
   })
 
   /**
+   * Create hentai listing pages for each tags
+   * @param {string} pathPrefix   Tag path prefix
+   * @param {object} nodes  Filtered tag object
+   * @param {string} name        Tag name
+   */
+  const createSlugPages = (pathPrefix, name, tags) => {
+    tags.map(tag => {
+      const qualifiedResults = []
+
+      healthyResults.map(node => {
+        if (node) {
+          if (!_.isEmpty(_.filter(node.data.raw.tags, o => o.id === tag.id))) { qualifiedResults.push(node) }
+        }
+      })
+
+
+      const qualifiedResultChunks = _.chunk(qualifiedResults, ITEMS_PER_PAGE)
+
+      qualifiedResultChunks.map((chunk, i) => {
+        createPage({
+          path: i === 0 ? `/${pathPrefix}/${tag.id}` : `${pathPrefix}/${tag.id}/p/${i + 1}`,
+          component: path.resolve(`./src/templates/tag/viewing/components/index.tsx`),
+          context: {
+            subtitle: `${name}/${tag.name}`,
+            raw: chunk,
+            page: {
+              current: i + 1,
+              max: qualifiedResultChunks.length,
+            },
+            prefix: pathPrefix,
+            tag: tag,
+          },
+        })
+      })
+    })
+  }
+
+  /**
    * Filter only tags object with specified types
-   * @param {object} nodes  healthyTags
-   * @param {string} type   Tag type
+   * @param {object} nodes All fetched object
+   * @param {string} type Type of tag
    */
   const tagFilter = (nodes, type) => {
     const res = []
-    _.each(nodes, node => {
-      _.each(node.data.raw.tags, tag => {
+  
+    nodes.map(node => {
+      node.data.raw.tags.map(tag => {
         if (tag.type === type) {
-          if (_.isEmpty(_.filter(res, node => node.id === tag.id))) {
+          if (_.isEmpty(_.filter(res, o => o.id === tag.id))) {
             res.push(tag)
           }
         }
       })
     })
+  
     return res
-  }
-
-  /**
-   * Create listing pages for each tags
-   * @param {string} pathPrefix   Tag path prefix
-   * @param {object} nodes  Filtered tag object
-   * @param {string} name        Tag name
-   */
-  const createSlugPages = (pathPrefix, name, nodes) => {
-    _.each(nodes, tag => {
-      const qualifiedResults = []
-      _.each(healthyResults, node => {
-        if (!_.isEmpty(_.filter(node.data.raw.tags, {id: tag.id}))) qualifiedResults.push(node)
-      })
-      createPage({
-        path: `${pathPrefix}/${tag.id}`,
-        component: path.resolve('./src/templates/listing.js'),
-        context: {
-          subtitle: `${name}/${tag.name}`,
-          raw: qualifiedResults,
-          tagStack,
-        },
-      })
-    })
   }
 
   /**
    * Creating tag listing and pages recursively
    */
-  _.each(tagStack, edge => {
-    const nodes = tagFilter(healthyResults, edge.node.name)
-    createSlugPages(edge.node.prefix, edge.node.name, nodes)
+  tagStack.map(tag => {
+    // Find all possible tags
+    const nodes = tagFilter(healthyResults, tag.name)
+
+    // Create hentai listings by tag
+    createSlugPages(tag.prefix, tag.name, nodes)
+
     createPage({
-      path: `${edge.node.prefix}`,
-      component: path.resolve('./src/templates/tag.js'),
+      path: `/${tag.prefix}`,
+      component: path.resolve(`./src/templates/tag/listing/components/index.tsx`),
       context: {
-        prefix: edge.node.prefix,
-        subtitle: `${edge.node.name}`,
+        prefix: tag.prefix,
+        subtitle: `${tag.name}`,
         raw: nodes,
       },
     })
@@ -218,33 +271,33 @@ exports.createPages = async ({graphql, actions, reporter}) => {
   /**
    * Put all healthy results into cache
    */
-  fs.writeFile(`.tmp/crawler.json`, JSON.stringify(healthyResults), fshandler)
+  fs.writeFile(`./.tmp/crawler.json`, JSON.stringify(healthyResults), fshandler)
 
   /**
    * Preparing to generate API
    */
   const apiPath = 'api'
-  const chunks = _.chunk(healthyResults, 10)
+  const apiChunks = _.chunk(healthyResults, ITEMS_PER_PAGE)
 
-  if (!fs.existsSync('./public/api')) {
-    fs.mkdirSync('./public/api', fshandler)
+  if (!fs.existsSync(`./public/api`)) {
+    fs.mkdirSync(`./public/api`)
   }
-  if (!fs.existsSync('./public/api/list')) {
-    fs.mkdirSync('./public/api/list', fshandler)
+  if (!fs.existsSync(`./public/api/list`)) {
+    fs.mkdirSync(`./public/api/list`)
   }
 
   /**
    * Generate API status page
    */
   fs.writeFile(
-    `public/${apiPath}/status.json`,
+    `./public/${apiPath}/status.json`,
     JSON.stringify({
       status: 'success',
       code: 201,
       data: {
         time: Date.now(),
         list: {
-          length: chunks.length,
+          length: apiChunks.length,
         },
       },
     }),
@@ -254,37 +307,19 @@ exports.createPages = async ({graphql, actions, reporter}) => {
   /**
    * Generate API listing pages
    */
-  _.each(chunks, (chunk, i) => {
+  apiChunks.map((chunk, i) => {
     const out = {
       status: 'success',
       code: 201,
       data: [],
     }
-    _.each(chunk, node => {
-      out.data.push(node.data.raw)
+
+    chunk.map(node => {
+      if (node) {
+        out.data.push(node.data.raw)
+      }
     })
-    fs.writeFile(`public/${apiPath}/list/${i + 1}.json`, JSON.stringify(out), fshandler)
-  })
-}
 
-/**
- * Generate page from dynamic URLs that match RegExp
- */
-exports.onCreatePage = async ({page, actions}) => {
-  const {createPage} = actions
-
-  if (page.path.match(/^\/g/)) {
-    page.matchPath = '/g/*'
-    createPage(page)
-  }
-}
-
-exports.onCreateBabelConfig = ({actions}) => {
-  actions.setBabelPlugin({
-    name: 'babel-plugin-import',
-    options: {
-      libraryName: 'antd',
-      style: true,
-    },
+    fs.writeFile(`./public/${apiPath}/list/${i + 1}.json`, JSON.stringify(out), fshandler)
   })
 }

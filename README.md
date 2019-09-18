@@ -1,19 +1,29 @@
-rayriffy-h
-==========
+Riffy H
+=======
 
-NHentai gallery viewer using GatsbyJS
+The missing piece of NHentai
 
-Demo
+Live
 ----
 
 https://h.rayriffy.com
 
+Feature
+-------
+
+- Built with modern **React** API
+- Blazing fast browsing powered by **Gatsby v2**
+- Custom hentai to any ID that you wish.
+- **No ads** and **no pop-ups**
+- ~~**Easy to share** collection system~~ (This feature will be implemented in version 3.1)
+
 Screenshots
 -----------
 
-![locked](img/locked.jpeg)
-![view](img/viewing.jpeg)
-![notfound](img/notfound.jpeg)
+![Listing](src/contents/img/listing.jpg)
+
+![Menu](src/contents/img/menu.jpg)
+![Viewing](src/contents/img/viewing.jpg)
 
 Requirements
 ------------
@@ -24,13 +34,6 @@ Installation
 ------------
 
 ```sh
-$ npm install
-$ npm run dev
-```
-
-or just use yarn
-
-```sh
 $ yarn
 $ yarn dev
 ```
@@ -38,7 +41,7 @@ $ yarn dev
 Where's all query from
 ----------------------
 
-We query data from a custom JSON database [here](src/assets/database/data.json)
+We query data from a custom database [here](src/contents/database/code.js)
 
 Contributing
 ------------
