@@ -5756,10 +5756,10 @@ gatsby-plugin-netlify-cache@^1.2.0:
     babel-runtime "^6.26.0"
     fs-extra "^7.0.0"
 
-gatsby-plugin-netlify@^2.1.13:
-  version "2.1.13"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-2.1.13.tgz#4775c027dfbaf2d103097cf3dd0bc6bd2f194ae5"
-  integrity sha512-hEafZVdwnwr58Q0FGP79viMP7Pm4sSYq5ldeVk/JeU4/hheKFqDaghGlPne40X0aSJNYzzmOdI4LpRF/x9fL3Q==
+gatsby-plugin-netlify@^2.1.14:
+  version "2.1.14"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-2.1.14.tgz#27c48f86dfe72b20a7a5581fb5b320b6f7353753"
+  integrity sha512-9JVd6yr3aoysthy4j9C5Q46zrMDYOBZ58Sv1lmEAefN1+beSsUy8r4qjAdjogGwmASs0vaa4+EF1HzVfWjwUGQ==
   dependencies:
     "@babel/runtime" "^7.6.0"
     fs-extra "^8.1.0"
