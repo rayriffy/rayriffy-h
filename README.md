@@ -11,11 +11,9 @@ https://h.rayriffy.com
 Screenshots
 -----------
 
-<div style="display: flex; width: 100%;">
-  <img style="box-sizing: border-box; padding: 0 10px;" src="src/contents/img/locked.jpg" />
-  <img style="box-sizing: border-box; padding: 0 10px;" src="src/contents/img/viewing.jpg" />
-  <img style="box-sizing: border-box; padding: 0 10px;" src="src/contents/img/notfound.jpg">
-</div>
+![Listing](src/contents/img/listing.jpg)
+![Menu](src/contents/img/menu.jpg)
+![Viewing](src/contents/img/viewing.jpg)
 
 Requirements
 ------------
