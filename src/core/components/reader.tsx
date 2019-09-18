@@ -85,13 +85,17 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
         <Flex justifyContent={`center`}>
           <Box  width={[1, 22 / 24, 16 / 24, 12 / 24]}>
             {hentai.images.pages.map((page, i) => {
-              return (
-                <ImageBox key={`reader-${raw.data.id}-page-${i + 1}`}>
-                  <LazyLoad height={page.h}>
-                    <BluredImage blur={safeMode} src={`https://i.nhentai.net/galleries/${hentai.media_id}/${i + 1}.${page.t === 'p' ? 'png' : 'jpg'}`} />
-                  </LazyLoad>
-                </ImageBox>
-              )
+              if (!raw.data.exclude.includes(i + 1)) {
+                return (
+                  <ImageBox key={`reader-${raw.data.id}-page-${i + 1}`}>
+                    <LazyLoad height={page.h}>
+                      <BluredImage blur={safeMode} src={`https://i.nhentai.net/galleries/${hentai.media_id}/${i + 1}.${page.t === 'p' ? 'png' : 'jpg'}`} />
+                    </LazyLoad>
+                  </ImageBox>
+                )
+              } else {
+                return null
+              }
             })}
           </Box>
         </Flex>
