@@ -13,7 +13,7 @@ import { filterTagByType } from '../services/filterTagByType'
 
 import { IReaderProps } from '../@types/IReaderProps'
 
-const ImageBox = styled(Box)`
+const CoverBox = styled(Box)`
   overflow: hidden;
 `
 
@@ -29,9 +29,9 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
           <Box width={[22 / 24, 19 / 24, 16 / 24, 12 / 24]}>
             <Flex flexWrap={`wrap`}>
               <Box width={3 / 7} p={[2, 3]}>
-                <ImageBox>
+                <CoverBox>
                   <BluredImage height={hentai.images.cover.h} src={`https://t.nhentai.net/galleries/${hentai.media_id}/cover.${hentai.images.cover.t === 'p' ? 'png' : 'jpg'}`} />
-                </ImageBox>
+                </CoverBox>
               </Box>
               <Box width={4 / 7} p={[2, 3]}>
                 <Text fontSize={22} fontWeight={600} color={`rgba(0, 0, 0, 0.85)`}>{hentai.title.pretty}</Text>
