@@ -22,7 +22,7 @@ const AppComponent: React.FC = props => {
     <Context>
       <Box pt={5}>
         <GlobalStyle />
-        <Helmet defaultTitle={`Riffy H`} />
+        <Helmet defaultTitle={`Riffy H`} titleTemplate={`%s · Riffy H`} />
         <Box px={[3, 4, 5]}>
           <Header />
         </Box>

@@ -1,6 +1,8 @@
 import _ from 'lodash'
 import React from 'react'
 
+import Helmet from 'react-helmet'
+
 import { Box, Flex, Text } from 'rebass'
 import styled from 'styled-components'
 
@@ -26,6 +28,7 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
 
   return (
     <Box py={2}>
+      <Helmet title={hentai.title.pretty} />
       <Box py={2}>
         <Flex justifyContent={`center`}>
           <Box width={[22 / 24, 19 / 24, 16 / 24, 12 / 24]}>
