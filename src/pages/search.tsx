@@ -11,7 +11,7 @@ const SearchComponent: React.FC = () => {
 
   useEffect(() => {
     if (setSubtitle) {
-      setSubtitle('custom')
+      setSubtitle('search')
     }
   }, [])
 
