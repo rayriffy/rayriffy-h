@@ -55,6 +55,10 @@ const DrawerComponent: React.FC = () => {
       name: 'search',
       prefix: 'search',
     },
+    {
+      name: 'collection',
+      prefix: 'collection',
+    },
   ]
 
   const tagStacks = tagStack.map(o => ({
