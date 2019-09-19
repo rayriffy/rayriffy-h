@@ -55,6 +55,7 @@
   },
   "devDependencies": {
     "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
     "tslint": "^5.20.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-eslint-rules": "^5.4.0",
@@ -72,7 +73,7 @@
   },
   "scripts": {
     "build": "gatsby build",
-    "clean": "gatsby clean",
+    "clean": "gatsby clean && rimraf .tmp",
     "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 gatsby develop --https",
     "dev:net": "gatsby develop -H 0.0.0.0 -p 3000",
     "format": "yarn test:lint --fix",

@@ -1,32 +1,30 @@
 const _ = require('lodash')
 
 const axios = require('axios')
-const {TaskQueue} = require('cwait')
 const fs = require('fs')
 const path = require('path')
 
-const databaseCodes = require('./src/contents/database/codes')
 const databaseTags = require('./src/contents/database/tags')
 
-const MAX_SIMULTANEOUS_DOWNLOADS = 3
+const {filterHentaiByTag} = require('./functions/filterHentaiByTag')
+const {filterTag} = require('./functions/filterTag')
+const {getData} = require('./functions/getData')
+
 const ITEMS_PER_PAGE = 20
 
 const PREFETCH_GIST = 'https://gist.githubusercontent.com/rayriffy/09554279046d2fda29c125e0a16dc695/raw/crawler.json'
 
-exports.createPages = async ({actions, reporter}) => {
-  const {createPage} = actions
-
-  /**
-   * Handler function for file sync
-   * @param {err} id Error information
-   */
-  const fshandler = err => {
-    if (err) {
-      reporter.log(err)
-      throw err
-    }
+/**
+ * Handler function for file sync
+ * @param {err} id Error information
+ */
+const fshandler = err => {
+  if (err) {
+    throw err
   }
+}
 
+exports.onPreBootstrap = async ({reporter}) => {
   // Download file from cache if cache does not exist
   if (!fs.existsSync(`./.tmp/crawler.json`)) {
     reporter.info(`Downloading prefetched data from GitHub Gist`)
@@ -37,114 +35,19 @@ exports.createPages = async ({actions, reporter}) => {
     }
 
     await fs.writeFile(`./.tmp/crawler.json`, JSON.stringify(gistCache.data), fshandler)
+    reporter.info(`Downloaded!`)
   } else {
     reporter.info(`Found cache! Skipping prefetch stage`)
   }
+}
 
-  /**
-   * Featch raw data from cache or API
-   * @param {number} pathPrefix   Tag path prefix
-   * @param {array}  exclude      Exclude pages
-   */
-  const getRawData = async (id, exclude) => {
-    const mockRaw = {
-      id: 0,
-      media_id: 0,
-      title: {
-        english: '',
-        japanese: '',
-        pretty: '',
-      },
-      images: {
-        cover: {
-          t: 'j',
-          w: 0,
-          h: 0,
-        },
-        pages: [],
-        thumbnail: {
-          t: 'j',
-          w: 0,
-          h: 0,
-        },
-      },
-      scanlator: '',
-      upload_date: 0,
-      tags: [],
-      num_pages: 0,
-      num_favorites: 0,
-    }
-  
-    try {
-      // Read file from cache
-      if (fs.existsSync('./.tmp/crawler.json')) {
-        const reader = fs.readFileSync('./.tmp/crawler.json', 'utf8')
-        const cache = JSON.parse(reader)
-  
-        const filter = _.head(_.filter(cache, o => o.data.id === id && o.status === 'success'))
-  
-        if (!_.isEmpty(filter)) {
-          if (filter) {
-            return {
-              ...filter,
-              data: {
-                ...filter.data,
-                exclude,
-              },
-            }
-          } else {
-            return {
-              status: 'failure',
-              data: {
-                id,
-                exclude: [],
-                raw: mockRaw,
-              },
-            }
-          }
-        } else {
-          // Using reverse proxy server to avoid CORS issue
-          const out = await axios.get(`https://nh-express-git-master.rayriffy.now.sh/api/gallery/${id}`)
-  
-          return {
-            status: 'success',
-            data: {
-              id,
-              exclude,
-              raw: out.data,
-            },
-          }
-        }
-      } else {
-        return {
-          status: 'failure',
-          data: {
-            id,
-            exclude: [],
-            raw: mockRaw,
-          },
-        }
-      }
-    } catch (err) {
-      reporter.warn(`cannot process ${id} with code ${err.code}`)
-      return {
-        status: 'failure',
-        data: {
-          id,
-          exclude: [],
-          raw: mockRaw,
-        },
-      }
-    }
-  }
+exports.createPages = async ({actions, reporter}) => {
+  const {createPage} = actions
 
   // Begin to fetch data
-  const queue = new TaskQueue(Promise, MAX_SIMULTANEOUS_DOWNLOADS)
   const fetchedData = {
     tags: databaseTags,
-    codes: await Promise.all(
-      databaseCodes.map(queue.wrap(async item => await getRawData(item.code ? item.code : item, item.exclude ? item.exclude : [], reporter))),
-    ),
+    codes: await getData({reporter}),
   }
 
   /**
@@ -196,13 +99,7 @@ exports.createPages = async ({actions, reporter}) => {
    */
   const createSlugPages = (pathPrefix, name, tags) => {
     tags.map(tag => {
-      const qualifiedResults = []
-
-      healthyResults.map(node => {
-        if (node) {
-          if (!_.isEmpty(_.filter(node.data.raw.tags, o => o.id === tag.id))) { qualifiedResults.push(node) }
-        }
-      })
+      const qualifiedResults = filterHentaiByTag(healthyResults, tag)
 
 
       const qualifiedResultChunks = _.chunk(qualifiedResults, ITEMS_PER_PAGE)
@@ -227,32 +124,11 @@ exports.createPages = async ({actions, reporter}) => {
   }
 
   /**
-   * Filter only tags object with specified types
-   * @param {object} nodes All fetched object
-   * @param {string} type Type of tag
-   */
-  const tagFilter = (nodes, type) => {
-    const res = []
-  
-    nodes.map(node => {
-      node.data.raw.tags.map(tag => {
-        if (tag.type === type) {
-          if (_.isEmpty(_.filter(res, o => o.id === tag.id))) {
-            res.push(tag)
-          }
-        }
-      })
-    })
-  
-    return res
-  }
-
-  /**
    * Creating tag listing and pages recursively
    */
   tagStack.map(tag => {
     // Find all possible tags
-    const nodes = tagFilter(healthyResults, tag.name)
+    const nodes = filterTag(healthyResults, tag.name)
 
     // Create hentai listings by tag
     createSlugPages(tag.prefix, tag.name, nodes)
@@ -272,54 +148,132 @@ exports.createPages = async ({actions, reporter}) => {
    * Put all healthy results into cache
    */
   fs.writeFile(`./.tmp/crawler.json`, JSON.stringify(healthyResults), fshandler)
+}
 
-  /**
-   * Preparing to generate API
-   */
-  const apiPath = 'api'
-  const apiChunks = _.chunk(healthyResults, ITEMS_PER_PAGE)
+exports.onPostBootstrap = async ({reporter}) => {
+  reporter.info('Generating API')
 
-  if (!fs.existsSync(`./public/api`)) {
-    fs.mkdirSync(`./public/api`)
-  }
-  if (!fs.existsSync(`./public/api/list`)) {
-    fs.mkdirSync(`./public/api/list`)
-  }
+  try {
+    /**
+     * Get healthy raw data
+     */
+    const fetchedRaw = await getData({reporter})
 
-  /**
-   * Generate API status page
-   */
-  fs.writeFile(
-    `./public/${apiPath}/status.json`,
-    JSON.stringify({
-      status: 'success',
-      code: 201,
-      data: {
-        time: Date.now(),
-        list: {
-          length: apiChunks.length,
-        },
-      },
-    }),
-    fshandler,
-  )
+    const healthyResults = _.filter(fetchedRaw, o => o.status === 'success').reverse()
 
-  /**
-   * Generate API listing pages
-   */
-  apiChunks.map((chunk, i) => {
-    const out = {
-      status: 'success',
-      code: 201,
-      data: [],
+    /**
+     * Preparing to generate API
+     */
+    const apiPath = 'api'
+    const apiChunks = _.chunk(healthyResults, ITEMS_PER_PAGE)
+
+    if (!fs.existsSync(`./public/${apiPath}`)) {
+      fs.mkdirSync(`./public/${apiPath}`)
     }
 
-    chunk.map(node => {
-      if (node) {
-        out.data.push(node.data.raw)
+    /**
+     * Generate API status page
+     */
+    fs.writeFile(
+      `./public/${apiPath}/status.json`,
+      JSON.stringify({
+        status: 'success',
+        code: 201,
+        data: {
+          time: Date.now(),
+          list: {
+            length: apiChunks.length,
+          },
+        },
+      }),
+      fshandler,
+    )
+
+    /**
+     * Generate API listing pages
+     */
+    if (!fs.existsSync(`./public/${apiPath}/listing`)) {
+      fs.mkdirSync(`./public/${apiPath}/listing`)
+    }
+
+    apiChunks.map((chunk, i) => {
+      const out = {
+        status: 'success',
+        code: 201,
+        data: [],
       }
+
+      chunk.map(node => {
+        if (node) {
+          out.data.push(node.data.raw)
+        }
+      })
+
+      fs.writeFile(`./public/${apiPath}/listing/${i + 1}.json`, JSON.stringify(out), fshandler)
     })
 
-    fs.writeFile(`./public/${apiPath}/list/${i + 1}.json`, JSON.stringify(out), fshandler)
-  })
+    /**
+     * Generate tag listing API
+     */
+
+    databaseTags.map(tag => {
+      const nodes = filterTag(healthyResults, tag.name)
+
+      fs.writeFile(
+        `./public/${apiPath}/${tag.prefix}.json`,
+        JSON.stringify({
+          status: 'success',
+          code: 201,
+          data: nodes.map(node => ({
+            id: node.id,
+            name: node.name
+          })),
+        }),
+        fshandler,
+      )
+    })
+
+    /**
+     * Generate tag viewing API
+     */
+
+    databaseTags.map(tag => {
+      if (!fs.existsSync(`./public/${apiPath}/${tag.prefix}`)) {
+        fs.mkdirSync(`./public/${apiPath}/${tag.prefix}`)
+      }
+
+      const nodes = filterTag(healthyResults, tag.name)
+
+      nodes.map(node => {
+        if (!fs.existsSync(`./public/${apiPath}/${tag.prefix}/${node.id}`)) {
+          fs.mkdirSync(`./public/${apiPath}/${tag.prefix}/${node.id}`)
+        }
+
+        const filteredHentai = filterHentaiByTag(healthyResults, node)
+
+        const apiChunks = _.chunk(filteredHentai, ITEMS_PER_PAGE)
+
+        apiChunks.map((chunk, i) => {
+          const out = {
+            status: 'success',
+            code: 201,
+            data: [],
+          }
+    
+          chunk.map(node => {
+            if (node) {
+              out.data.push(node.data.raw)
+            }
+          })
+    
+          fs.writeFile(`./public/${apiPath}/${tag.prefix}/${node.id}/${i + 1}.json`, JSON.stringify(out), fshandler)
+        })
+      })
+    })
+
+    reporter.info('API generated')
+  } catch (e) {
+    reporter.warn('Unable to generate API')
+    throw e
+  }
 }
