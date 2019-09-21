@@ -77,7 +77,6 @@ exports.createPages = async ({actions, reporter}) => {
     })
   })
 
-
   /**
    * Create gallery pages
    */
@@ -100,7 +99,6 @@ exports.createPages = async ({actions, reporter}) => {
   const createSlugPages = (pathPrefix, name, tags) => {
     tags.map(tag => {
       const qualifiedResults = filterHentaiByTag(healthyResults, tag)
-
 
       const qualifiedResultChunks = _.chunk(qualifiedResults, ITEMS_PER_PAGE)
 
@@ -186,7 +184,7 @@ exports.onPostBootstrap = async ({reporter}) => {
           },
         },
       }),
-      fshandler,
+      fshandler
     )
 
     /**
@@ -226,10 +224,10 @@ exports.onPostBootstrap = async ({reporter}) => {
           code: 201,
           data: nodes.map(node => ({
             id: node.id,
-            name: node.name
+            name: node.name,
           })),
         }),
-        fshandler,
+        fshandler
       )
     })
 
@@ -259,13 +257,13 @@ exports.onPostBootstrap = async ({reporter}) => {
             code: 201,
             data: [],
           }
-    
+
           chunk.map(node => {
             if (node) {
               out.data.push(node.data.raw)
             }
           })
-    
+
           fs.writeFile(`./public/${apiPath}/${tag.prefix}/${node.id}/${i + 1}.json`, JSON.stringify(out), fshandler)
         })
       })
