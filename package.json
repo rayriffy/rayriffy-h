@@ -29,7 +29,7 @@
     "gatsby-plugin-sharp": "^2.2.25",
     "gatsby-plugin-styled-components": "^3.1.8",
     "gatsby-plugin-typescript": "^2.1.9",
-    "gatsby-plugin-typography": "^2.3.8",
+    "gatsby-plugin-typography": "^2.3.10",
     "gatsby-source-filesystem": "^2.1.26",
     "gatsby-transformer-json": "^2.2.9",
     "gatsby-transformer-sharp": "^2.2.17",
