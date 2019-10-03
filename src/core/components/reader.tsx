@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React from 'react'
 
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 
 import { Box, Flex, Text } from 'rebass'
 import styled from 'styled-components'
