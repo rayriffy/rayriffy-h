@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@types/axios": "^0.14.0",
-    "@types/lodash": "^4.14.141",
+    "@types/lodash": "^4.14.142",
     "@types/react-collapse": "^4.0.2",
     "@types/react-helmet": "^5.0.11",
     "@types/react-icons": "^3.0.0",
