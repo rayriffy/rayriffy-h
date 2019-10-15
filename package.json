@@ -12,7 +12,7 @@
     "@types/react-collapse": "^4.0.2",
     "@types/react-helmet": "^5.0.11",
     "@types/react-icons": "^3.0.0",
-    "@types/react-lazyload": "^2.5.0",
+    "@types/react-lazyload": "^2.6.0",
     "@types/react-motion": "^0.0.29",
     "@types/rebass": "^4.0.1",
     "@types/styled-components": "^4.1.19",
