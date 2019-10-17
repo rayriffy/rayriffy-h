@@ -1658,10 +1658,10 @@
   dependencies:
     react-icons "*"
 
-"@types/react-lazyload@^2.5.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@types/react-lazyload/-/react-lazyload-2.5.0.tgz#7d8dd04c9a711fc0f1ea3419786acdcc01fb11dc"
-  integrity sha512-+SFmsxcC0l9mSXmoQMRtTbIW6YJQH+WxDWFG5N1b1JCiyTHZqekYcNKhGFTBvKktYOi3ET75+B4SeD52V7P1uw==
+"@types/react-lazyload@^2.6.0":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@types/react-lazyload/-/react-lazyload-2.6.0.tgz#41cd9cbb2c03dd810377518d4837794469a521d1"
+  integrity sha512-VAv6i5RA3O82Q8yuugTXsmGecFOf5GILeILeUdLUs+8PQW1Zg+bety3BfT6gXHdl/wb3PZujlM9rbRd3xab9Vw==
   dependencies:
     "@types/react" "*"
 
