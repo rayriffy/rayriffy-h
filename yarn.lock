@@ -1688,10 +1688,10 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
-"@types/rebass@^4.0.1":
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/@types/rebass/-/rebass-4.0.1.tgz#fb0e29b4f91d1982a50e012a77726298536f04fe"
-  integrity sha512-hq/mUi8l4xsE/NlV5Xn/T+MbRBnOzDfMhhiCzBK5OX84tr75yzom4ulyVCZBl3obDEAm88HwRh1lILjEMS+dKg==
+"@types/rebass@^4.0.3":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@types/rebass/-/rebass-4.0.3.tgz#cb55b73395ae87e0c2c0c0292c95d9f8e7a2ca27"
+  integrity sha512-dUZMb8IOqSesn1bQHLeIMIAHTaYcuQ9hTn9b2/Vj9AEcjRIBYnOfQlTshXWcf+GAYTWYxK4fb9qjkoQ3GyG52w==
   dependencies:
     "@types/react" "*"
     "@types/styled-components" "*"
