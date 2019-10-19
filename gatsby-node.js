@@ -143,6 +143,17 @@ exports.createPages = async ({actions, reporter}) => {
   })
 
   /**
+   * Create search page
+   */
+  createPage({
+    path: `/search`,
+    component: path.resolve(`./src/templates/search/components/index.tsx`),
+    context: {
+      raw: hentaiListingChunks,
+    },
+  })
+
+  /**
    * Put all healthy results into cache
    */
   fs.writeFile(`./.tmp/crawler.json`, JSON.stringify(healthyResults), fshandler)
