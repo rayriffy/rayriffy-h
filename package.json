@@ -40,7 +40,7 @@
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.10.2",
     "react-helmet": "^5.2.1",
-    "react-icons": "^3.7.0",
+    "react-icons": "^3.8.0",
     "react-lazyload": "^2.6.2",
     "react-motion": "^0.5.2",
     "react-motion-drawer": "^3.1.0",
