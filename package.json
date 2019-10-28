@@ -15,7 +15,7 @@
     "@types/react-lazyload": "^2.6.0",
     "@types/react-motion": "^0.0.29",
     "@types/rebass": "^4.0.3",
-    "@types/styled-components": "^4.1.19",
+    "@types/styled-components": "^4.1.20",
     "@types/typography": "^0.16.3",
     "axios": "^0.19.0",
     "cwait": "^1.1.2",

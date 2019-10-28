@@ -1698,10 +1698,10 @@
     "@types/styled-system" "*"
     "@types/styled-system__css" "*"
 
-"@types/styled-components@*", "@types/styled-components@^4.1.19":
-  version "4.1.19"
-  resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-4.1.19.tgz#535b455d7744fda1608c605df82c0800eda61a09"
-  integrity sha512-nDkoTQ8ItcJiyEvTa24TwsIpIfNKCG+Lq0LvAwApOcjQ8OaeOOCg66YSPHBePHUh6RPt1LA8aEzRlgWhQPFqPg==
+"@types/styled-components@*", "@types/styled-components@^4.1.20":
+  version "4.1.20"
+  resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-4.1.20.tgz#8afd41039c0fd582152e57ff75c58a5353870de6"
+  integrity sha512-WztLENdKY+H9udccx5ZhAblgTp08NSfOFYdGaWM0MMm+1tEOioYVFwIIQ7Hx+9wWXiWKDXeoX6R3D/i1obnG3g==
   dependencies:
     "@types/react" "*"
     "@types/react-native" "*"
@@ -4038,12 +4038,7 @@ csso@^3.5.1:
   dependencies:
     css-tree "1.0.0-alpha.29"
 
-csstype@^2.2.0:
-  version "2.6.5"
-  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.5.tgz#1cd1dff742ebf4d7c991470ae71e12bb6751e034"
-  integrity sha512-JsTaiksRsel5n7XwqPAfB0l3TFKdpjW/kgAELf9vrb5adGA7UCPLajKK5s3nFrcFm3Rkyp/Qkgl73ENc1UY3cA==
-
-csstype@^2.5.7, csstype@^2.6.4, csstype@^2.6.6:
+csstype@^2.2.0, csstype@^2.5.7, csstype@^2.6.4, csstype@^2.6.6:
   version "2.6.6"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.6.tgz#c34f8226a94bbb10c32cc0d714afdf942291fc41"
   integrity sha512-RpFbQGUE74iyPgvr46U9t1xoQBM8T4BL8SxrN66Le2xYAPSaDJJKeztV3awugusb3g3G9iL8StmkBBXhcbbXhg==
