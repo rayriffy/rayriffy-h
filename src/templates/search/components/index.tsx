@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import { FaSearch } from 'react-icons/fa'
 
@@ -10,6 +10,8 @@ import Poster from '../../../core/components/poster'
 import Pagination from './pagination'
 
 import { searchHentai } from '../services/searchHentai'
+
+import { Subtitle } from '../../../app/context'
 
 import { IFetchedRaw } from '../../../core/@types/IFetchedRaw'
 import { IProps } from '../@types/IProps'
@@ -36,6 +38,8 @@ const StyledFlex = styled(Flex)`
 const SearchComponent: React.FC<IProps> = props => {
   const {raw, skip} = props.pageContext
 
+  const [, setSubtitle] = useContext(Subtitle)
+
   const [query, setQuery] = useState<string>('')
   const [res, setRes] = useState<IFetchedRaw[]>([])
 
@@ -61,6 +65,12 @@ const SearchComponent: React.FC<IProps> = props => {
       renderPage(res, 1)
     }
   }, [res])
+
+  useEffect(() => {
+    if (setSubtitle) {
+      setSubtitle(`search`)
+    }
+  }, [])
 
   return (
     <Box pt={3}>
