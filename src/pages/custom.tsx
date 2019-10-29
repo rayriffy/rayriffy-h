@@ -48,7 +48,7 @@ const CustomComponent: React.FC = () => {
                 <Text fontSize={[14, 15]}>Enter your hentai ID down below...</Text>
               </Box>
               <Box py={2}>
-                <StyledInput type={`number`} value={input} onChange={e => setInput(e.target.value)} placeholder="000000" required={true} />
+                <StyledInput type={`number`} value={input} onChange={e => setInput(e.target.value)} placeholder='000000' required={true} />
               </Box>
               <Box py={1}>
                 {input === '' ? (

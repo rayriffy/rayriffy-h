@@ -63,7 +63,7 @@ const DrawerComponent: React.FC = () => {
 
   const tagStacks = tagStack.map(o => ({
     name: o.name,
-    prefix: o.prefix
+    prefix: o.prefix,
   }))
 
   return (

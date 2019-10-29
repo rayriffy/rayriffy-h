@@ -2,7 +2,7 @@ import _ from 'lodash'
 
 import { IFetchedRaw } from '../../../core/@types/IFetchedRaw'
 
-export const searchHentai = async (query: string, raws: IFetchedRaw[]): Promise<IFetchedRaw[]> => {
+export const searchHentai = async(query: string, raws: IFetchedRaw[]): Promise<IFetchedRaw[]> => {
   const resultsByWords = query.split(' ').map(subquery => {
     if (subquery === '') {
       return []

@@ -43,7 +43,7 @@ const SearchComponent: React.FC<IProps> = props => {
     <Box pt={3}>
       <Flex justifyContent={`center`}>
         <Box width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}>
-          <StyledInput type={`text`} value={query} onChange={e => setQuery(e.target.value)} placeholder="Query" required={true} />
+          <StyledInput type={`text`} value={query} onChange={e => setQuery(e.target.value)} placeholder='Query' required={true} />
         </Box>
         <Flex justifyContent={`center`}>
           <Box width={22 / 24}>

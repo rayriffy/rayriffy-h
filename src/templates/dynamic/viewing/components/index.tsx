@@ -23,7 +23,7 @@ const DynamicViewingComponent: React.FC<IProps> = props => {
   const [state, setState] = useState<number>(1)
   const [raw, setRaw] = useState<IFetchedRaw | null>(null)
 
-  const fetchHentai = async (requestedId: number | string) => {
+  const fetchHentai = async(requestedId: number | string) => {
     setState(1)
 
     if (setSubtitle) {

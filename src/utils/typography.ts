@@ -13,7 +13,7 @@ const fontSets = [
   'sans-serif',
   'Apple Color Emoji',
   'Segoe UI Emoji',
-  'Segoe UI Symbol'
+  'Segoe UI Symbol',
 ]
 
 const typography = new Typography({

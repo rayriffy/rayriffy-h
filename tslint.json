@@ -4,10 +4,28 @@
     "interface-name": false,
     "array-type": false,
     "eqeqeq": ["error", "always"],
-    "space-before-function-paren": [true, "always"],
-    "whitespace": [true, "check-module"],
+    "jsx-no-lambda": false,
+    "trailing-comma": {
+      "options": {
+        "multiline": {
+          "arrays": "always",
+          "exports": "always",
+          "functions": "ignore",
+          "imports": "always",
+          "objects": "always",
+          "typeLiterals": "never"
+        },
+        "singleline": "never"
+      }
+    },
+    "quotemark": [true,"single"],
+    "space-before-function-paren": [true, "never"],
+    "semicolon": [true, "never"],
     "object-literal-sort-keys": false,
-    "jsx-no-lambda": false
+    "no-console": false,
+    "no-shadowed-variable": false,
+    "whitespace": [true, "check-module"],
+    "member-ordering": false
   },
   "rulesDirectory": [
     "node_modules/tslint-eslint-rules/dist/rules"
