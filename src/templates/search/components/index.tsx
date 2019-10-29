@@ -1,9 +1,13 @@
+import _ from 'lodash'
 import React, { useEffect, useState } from 'react'
 
-import { Box, Flex } from 'rebass'
+import { FaSearch } from 'react-icons/fa'
+
+import { Box, Button, Flex } from 'rebass'
 import styled from 'styled-components'
 
 import Poster from '../../../core/components/poster'
+import Pagination from './pagination'
 
 import { searchHentai } from '../services/searchHentai'
 
@@ -14,46 +18,90 @@ const StyledInput = styled.input`
 	padding: 8px 10px;
 	border: 1px solid #ccc;
 	border-radius: 3px;
-	margin-bottom: 10px;
 	width: 100%;
 	box-sizing: border-box;
 	color: #2C3E50;
 	font-size: 13px;
 `
 
+const StyledButton = styled(Button)`
+  background: blue;
+  height: 36px;
+`
+
+const StyledFlex = styled(Flex)`
+  height: 40px;
+`
+
 const SearchComponent: React.FC<IProps> = props => {
-  const {raw} = props.pageContext
+  const {raw, skip} = props.pageContext
 
   const [query, setQuery] = useState<string>('')
   const [res, setRes] = useState<IFetchedRaw[]>([])
 
-  // TODO: Pagination
-  // const [page, setPage] = useState<number>(1)
-  // const [renderedRaw, setRenderedRaw] = useState<IFetchedRaw[]>([])
+  const [page, setPage] = useState<number>(1)
+  const [renderedRaw, setRenderedRaw] = useState<IFetchedRaw[]>([])
 
-  useEffect(() => {
+  const renderPage = (raws: IFetchedRaw[], page: number) => {
+    setPage(page)
+    setRenderedRaw(_.get(_.chunk(raws, skip), page - 1))
+  }
+
+  const searchButtonHandler = () => {
     if (query === '') {
       setRes([])
     } else {
       searchHentai(query, raw).then(results => setRes(results))
     }
-  }, [query])
+  }
+
+  useEffect(() => {
+    if (!_.isEmpty(res)) {
+      setPage(1)
+      renderPage(res, 1)
+    }
+  }, [res])
 
   return (
     <Box pt={3}>
       <Flex justifyContent={`center`}>
         <Box width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}>
-          <StyledInput type={`text`} value={query} onChange={e => setQuery(e.target.value)} placeholder='Query' required={true} />
+          <StyledFlex alignItems={`center`}>
+            <StyledInput type={`text`} value={query} onChange={e => setQuery(e.target.value)} placeholder='Query' required={true} />
+            <Box pl={2} width={36}>
+              <StyledButton onClick={() => searchButtonHandler()}>
+                <FaSearch />
+              </StyledButton>
+            </Box>
+          </StyledFlex>
         </Box>
-        <Flex justifyContent={`center`}>
-          <Box width={22 / 24}>
-            <Flex flexWrap={`wrap`} alignItems={`center`}>
-              {res.map(hentai => (
-                <Poster key={`poster-${hentai.data.id}`} raw={hentai.data.raw} />
-              ))}
-            </Flex>
-          </Box>
-        </Flex>
+      </Flex>
+      <Flex justifyContent={`center`}>
+        <Box width={22 / 24}>
+          {_.isEmpty(res) ? 'No result' : (
+            <Box>
+              <Flex justifyContent={`center`}>
+                <Box width={18 / 24} py={3}>
+                  <Pagination current={page} max={_.chunk(res, skip).length} onChange={page => renderPage(res, page)} />
+                </Box>
+              </Flex>
+              <Flex justifyContent={`center`}>
+                <Box width={22 / 24}>
+                  <Flex flexWrap={`wrap`} alignItems={`center`}>
+                    {renderedRaw.map(hentai => (
+                      <Poster key={`poster-${hentai.data.id}`} raw={hentai.data.raw} />
+                    ))}
+                  </Flex>
+                </Box>
+              </Flex>
+              <Flex justifyContent={`center`}>
+                <Box width={18 / 24} py={3}>
+                  <Pagination current={page} max={_.chunk(res, skip).length} onChange={page => renderPage(res, page)} />
+                </Box>
+              </Flex>
+            </Box>
+          )}
+        </Box>
       </Flex>
     </Box>
   )
