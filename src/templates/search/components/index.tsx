@@ -27,6 +27,10 @@ const SearchComponent: React.FC<IProps> = props => {
   const [query, setQuery] = useState<string>('')
   const [res, setRes] = useState<IFetchedRaw[]>([])
 
+  // TODO: Pagination
+  // const [page, setPage] = useState<number>(1)
+  // const [renderedRaw, setRenderedRaw] = useState<IFetchedRaw[]>([])
+
   useEffect(() => {
     if (query === '') {
       setRes([])

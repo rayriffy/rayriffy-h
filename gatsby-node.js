@@ -150,6 +150,7 @@ exports.createPages = async ({actions, reporter}) => {
     component: path.resolve(`./src/templates/search/components/index.tsx`),
     context: {
       raw: hentaiListingChunks,
+      skip: ITEMS_PER_PAGE,
     },
   })
 
