@@ -31,7 +31,7 @@ const SearchComponent: React.FC<IProps> = props => {
     if (query === '') {
       setRes([])
     } else {
-      setRes(searchHentai(query, raw))
+      searchHentai(query, raw).then(results => setRes(results))
     }
   }, [query])
 
