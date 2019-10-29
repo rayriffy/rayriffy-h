@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from 'react'
 
-import { Box, Button, Card, Flex, Text } from 'rebass'
+import { Box, Flex } from 'rebass'
 import styled from 'styled-components'
+
+import Poster from '../../../core/components/poster'
 
 import { searchHentai } from '../services/searchHentai'
 
 import { IFetchedRaw } from '../../../core/@types/IFetchedRaw'
 import { IProps } from '../@types/IProps'
-
-const BorderedCard = styled(Card)`
-  border-radius: 8px;
-  border: 1px solid #e8e8e8;
-  overflow: hidden;
-
-  background: #fff;
-`
 
 const StyledInput = styled.input`
 	padding: 8px 10px;
@@ -34,7 +28,6 @@ const SearchComponent: React.FC<IProps> = props => {
   const [res, setRes] = useState<IFetchedRaw[]>([])
 
   useEffect(() => {
-    console.log(query)
     if (query === '') {
       setRes([])
     } else {
@@ -48,7 +41,15 @@ const SearchComponent: React.FC<IProps> = props => {
         <Box width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}>
           <StyledInput type={`text`} value={query} onChange={e => setQuery(e.target.value)} placeholder="Query" required={true} />
         </Box>
-        {res.map(o => o.data.id).join(' ')}
+        <Flex justifyContent={`center`}>
+          <Box width={22 / 24}>
+            <Flex flexWrap={`wrap`} alignItems={`center`}>
+              {res.map(hentai => (
+                <Poster key={`poster-${hentai.data.id}`} raw={hentai.data.raw} />
+              ))}
+            </Flex>
+          </Box>
+        </Flex>
       </Flex>
     </Box>
   )

@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 import { IFetchedRaw } from '../../../core/@types/IFetchedRaw'
 
 export const searchHentai = (query: string, raw: IFetchedRaw[]): IFetchedRaw[] => {
