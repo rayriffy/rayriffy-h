@@ -155,6 +155,22 @@ exports.createPages = async ({actions, reporter}) => {
   })
 
   /**
+   * Create about page
+   */
+  createPage({
+    path: `/about`,
+    component: path.resolve(`./src/templates/about/components/index.tsx`),
+  })
+
+  /**
+   * Create collection page
+   */
+  createPage({
+    path: `/collection`,
+    component: path.resolve(`./src/templates/collection/components/index.tsx`),
+  })
+
+  /**
    * Put all healthy results into cache
    */
   fs.writeFile(`./.tmp/crawler.json`, JSON.stringify(healthyResults), fshandler)
