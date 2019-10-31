@@ -5795,10 +5795,10 @@ gatsby-transformer-json@^2.2.15:
     "@babel/runtime" "^7.6.3"
     bluebird "^3.7.1"
 
-gatsby-transformer-sharp@^2.3.0:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-2.3.1.tgz#8d6c61cfe7c52d56f817ea94aa9affb61d68624b"
-  integrity sha512-KorMCev4iPezYHosAShBvJ/5LCOnwlw0O7vrjPXCwMJXqKUPY38SIFGav+je5v0DB18gLBRPmS+ZNKWDZ6Nx3A==
+gatsby-transformer-sharp@^2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-2.3.2.tgz#dbbff8116d568f01e342decefa3accdf36dc2d95"
+  integrity sha512-u3mqTfJWZUbnRh2ScWxzvMLS+oIz9o+Yrtx8rOuf+RcdjFWL9UkTTYHDjuVSqUY6F0WKYmJ422rmkfwHXumifg==
   dependencies:
     "@babel/runtime" "^7.6.3"
     bluebird "^3.7.1"
@@ -5806,7 +5806,7 @@ gatsby-transformer-sharp@^2.3.0:
     potrace "^2.1.2"
     probe-image-size "^4.1.1"
     semver "^5.7.1"
-    sharp "^0.23.1"
+    sharp "^0.23.2"
 
 gatsby@^2.17.4:
   version "2.17.6"
@@ -10976,7 +10976,7 @@ shallowequal@^1.0.1, shallowequal@^1.1.0:
   resolved "https://registry.yarnpkg.com/shallowequal/-/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"
   integrity sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==
 
-sharp@^0.23.1:
+sharp@^0.23.1, sharp@^0.23.2:
   version "0.23.2"
   resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.23.2.tgz#5f8b77513aa1f7e4d0dd969a3904ced75486c1d7"
   integrity sha512-BSo0tq6Jtzwa6GDKvVMNNPCP/HLczrFLGVcorYv7OtxlKx4UPHy7x9DdfT8F+PK7FCFDemVRwtsjWpvaJI9v6w==
