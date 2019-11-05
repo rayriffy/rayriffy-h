@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { FaCopy, FaDownload } from 'react-icons/fa'
 
-import { Box, Flex, Image, Text } from 'rebass'
+import { Box, Flex, Link, Image, Text } from 'rebass'
 import styled from 'styled-components'
 
 import { IReaderAPIProps } from '../../@types/IReaderAPIProps'
@@ -48,12 +48,16 @@ const StyledButton = styled.button`
   &:hover {
     color: ${(props: IReaderButton) => props.primary ? `#fff` : `#40a9ff`};
     background: ${(props: IReaderButton) => props.primary ? `#40a9ff` : `#fff`};
-    border: 1px solid ${(props: IReaderButton) => props.primary ? `#1890ff` : `#40a9ff`};
+    border: 1px solid #40a9ff;
   }
 `
 
 const StyledFlex = styled(Flex)`
   height: 100%;
+`
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
 `
 
 const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
@@ -102,26 +106,30 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
       <Box p={2}>
         <Text fontSize={16} fontWeight={500} textAlign={`center`}>Share securely with Opener</Text>
       </Box>
-      <Box py={2} px={2}>
-        <Flex justifyContent={`center`}>
-          <Box px={2}>
-            <StyledButton primary={true}>
-              <Flex alignItems={`center`} px={3} py={1}>
-                <FaDownload />
-                <Text pl={1} fontSize={14}>Download</Text>
-              </Flex>
-            </StyledButton>
-          </Box>
-          <Box px={2}>
-            <StyledButton>
-              <Flex alignItems={`center`} px={3} py={1}>
-                <FaCopy />
-                <Text pl={1} fontSize={14}>Copy</Text>
-              </Flex>
-            </StyledButton>
-          </Box>
-        </Flex>
-      </Box>
+      {image !== '' ? (
+        <Box py={2} px={2}>
+          <Flex justifyContent={`center`}>
+            <Box px={2}>
+              <StyledLink href={image} download={`encoded-${id}.jpeg`}>
+                <StyledButton primary={true}>
+                  <Flex alignItems={`center`} px={3} py={1}>
+                    <FaDownload />
+                    <Text pl={1} fontSize={14}>Download</Text>
+                  </Flex>
+                </StyledButton>
+              </StyledLink>
+            </Box>
+            <Box px={2}>
+              <StyledButton>
+                <Flex alignItems={`center`} px={3} py={1}>
+                  <FaCopy />
+                  <Text pl={1} fontSize={14}>Copy</Text>
+                </Flex>
+              </StyledButton>
+            </Box>
+          </Flex>
+        </Box>
+      ) : null}
     </Box>
   )
 }
