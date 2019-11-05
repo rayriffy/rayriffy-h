@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import axios from 'axios'
 import { FaCopy, FaDownload } from 'react-icons/fa'
 
-import { Box, Flex, Link, Image, Text } from 'rebass'
+import { Box, Flex, Image, Link, Text } from 'rebass'
 import styled from 'styled-components'
 
 import { IReaderAPIProps } from '../../@types/IReaderAPIProps'
@@ -104,7 +104,7 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
         </Flex>
       </Box>
       <Box p={2}>
-        <Text fontSize={16} fontWeight={500} textAlign={`center`}>Share securely with Opener</Text>
+        <Text py={2} fontSize={15} fontWeight={500} textAlign={`center`}>Share securely with Opener</Text>
       </Box>
       {image !== '' ? (
         <Box py={2} px={2}>

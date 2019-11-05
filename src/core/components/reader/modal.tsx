@@ -3,7 +3,7 @@ import React from 'react'
 import { FaTimes } from 'react-icons/fa'
 import Mortal from 'react-mortal'
 
-import { Box, Flex } from 'rebass'
+import { Box, Flex, Text } from 'rebass'
 import styled from 'styled-components'
 
 import Divider from '../divider'
@@ -52,7 +52,7 @@ const Wrapper = styled(Box)`
 `
 
 const ReaderModalComponent: React.FC<IReaderModalProps> = props => {
-  const { isOpened, onClose, children } = props
+  const { isOpened, title, onClose, children } = props
 
   return (
     <Mortal
@@ -71,7 +71,9 @@ const ReaderModalComponent: React.FC<IReaderModalProps> = props => {
           <Overlay onClick={() => onClose()} visible={isVisible} style={{opacity: motion.opacity}} />
           <Wrapper mx={[3, 2, 0]} mb={5} style={{opacity: motion.opacity, transform: `translate3d(0, ${motion.modalOffset}px, 0)`}}>
             <Box px={3} pt={3}>
-              <Flex justifyContent={`flex-end`}>
+              <Flex alignItems={`center`}>
+                <Text fontSize={16} fontWeight={500}>{title}</Text>
+                <Box mx={`auto`} />
                 <FaTimes onClick={() => onClose()} />
               </Flex>
             </Box>

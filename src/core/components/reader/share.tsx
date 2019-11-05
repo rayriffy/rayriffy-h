@@ -51,7 +51,7 @@ const ReaderShareComponent: React.FC<IReaderShareProps> = props => {
           <CircleButton><FaExternalLinkAlt /></CircleButton>
         </Box>
       </Flex>
-      <Modal isOpened={isModal} onClose={() => setIsModal(false)}>
+      <Modal title={`Share`} isOpened={isModal} onClose={() => setIsModal(false)}>
         <API id={hentai.id} />
       </Modal>
     </Box>
