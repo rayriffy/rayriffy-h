@@ -1,4 +1,4 @@
-export interface ICollapseProps {
+export interface IReaderCollapseProps {
   defaultState: boolean
   title: string
 }

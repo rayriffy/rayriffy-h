@@ -4,9 +4,9 @@ import { Collapse } from 'react-collapse'
 
 import { Box, Text } from 'rebass'
 
-import { ICollapseProps } from '../@types/ICollapseProps'
+import { IReaderCollapseProps } from '../../@types/IReaderCollapseProps'
 
-const CollapseComponent: React.FC<ICollapseProps> = props => {
+const ReaderCollapseComponent: React.FC<IReaderCollapseProps> = props => {
   const {defaultState = false, title, children} = props
 
   const [isShow, setIsShow] = useState(defaultState)
@@ -25,4 +25,4 @@ const CollapseComponent: React.FC<ICollapseProps> = props => {
   )
 }
 
-export default CollapseComponent
+export default ReaderCollapseComponent

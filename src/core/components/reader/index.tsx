@@ -6,17 +6,17 @@ import { Helmet } from 'react-helmet'
 import { Box, Flex, Text } from 'rebass'
 import styled from 'styled-components'
 
-import BluredImage from './bluredImage'
+import BluredImage from '../bluredImage'
+import Divider from '../divider'
+import Slug from '../slug'
 import Collapse from './collapse'
-import Divider from './divider'
 import Share from './share'
-import Slug from './slug'
 
-import tagStack from '../../contents/database/tags'
+import tagStack from '../../../contents/database/tags'
 
-import { filterTagByType } from '../services/filterTagByType'
+import { filterTagByType } from '../../services/filterTagByType'
 
-import { IReaderProps } from '../@types/IReaderProps'
+import { IReaderProps } from '../../@types/IReaderProps'
 
 const CoverBox = styled(Box)`
   overflow: hidden;
@@ -68,7 +68,7 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
                   })}
                 </Box>
                 <Box py={2}>
-                  <Share />
+                  <Share hentai={hentai} />
                 </Box>
               </Box>
             </Flex>
