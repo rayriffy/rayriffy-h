@@ -77,7 +77,7 @@ const SearchComponent: React.FC<IProps> = props => {
       <Flex justifyContent={`center`}>
         <Box width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}>
           <StyledFlex alignItems={`center`}>
-            <StyledInput type={`text`} value={query} onChange={e => setQuery(e.target.value)} placeholder='Query' required={true} />
+            <StyledInput type={`text`} value={query} onChange={e => setQuery(e.target.value)} onKeyDown={e => e.key === 'Enter' ? searchButtonHandler() : null} placeholder='Query' required={true} />
             <Box pl={2} width={36}>
               <StyledButton onClick={() => searchButtonHandler()}>
                 <FaSearch />
