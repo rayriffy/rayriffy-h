@@ -87,19 +87,25 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
           <Box width={[1, 1 / 2, 2 / 3]}>
             <Flex justifyContent={`center`}>
               {error ? (
-                <StyledError>
-                  <StyledFlex justifyContent={`center`} alignItems={`center`}>
-                    <Text color={`#f5222d`}>Filed to get an image</Text>
-                  </StyledFlex>
-                </StyledError>
+                <Box>
+                  <StyledError>
+                    <StyledFlex justifyContent={`center`} alignItems={`center`}>
+                      <Text color={`#f5222d`}>Filed to get an image</Text>
+                    </StyledFlex>
+                  </StyledError>
+                </Box>
               ) : image === '' ? (
+                <Box>
                 <StyledLoading>
                   <StyledFlex justifyContent={`center`} alignItems={`center`}>
                     <Text color={`rgba(0, 0, 0, 0.65)`}>Loading</Text>
                   </StyledFlex>
                 </StyledLoading>
+                </Box>
               ) : (
-                <StyledImage src={image} />
+                <Box>
+                  <StyledImage src={image} />
+                </Box>
               )}
             </Flex>
           </Box>
@@ -110,8 +116,8 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
       </Box>
       {image !== '' ? (
         <Box py={2} px={2}>
-          <Flex justifyContent={`center`}>
-            <Box px={2}>
+          <Flex justifyContent={`center`} alignItems={`center`} flexWrap={`wrap`}>
+            <Box p={2}>
               <StyledLink href={image} download={`encoded-${id}.jpeg`}>
                 <StyledButton primary={true}>
                   <Flex alignItems={`center`} px={3} py={1}>
@@ -121,7 +127,7 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
                 </StyledButton>
               </StyledLink>
             </Box>
-            <Box px={2}>
+            <Box p={2}>
               <CopyToClipboard text={id} onCopy={() => setIsCopied(true)}>
                 <StyledButton>
                   {isCopied ? (
