@@ -54,7 +54,15 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
                               <Flex flexWrap={`wrap`}>
                                 {res.map(tag => {
                                   return (
-                                    <Slug key={`slug-${hentai.id}-${stack.name}-${tag.id}`} border={stack.color.border} background={stack.color.background} text={stack.color.text} link={`/${stack.prefix}/${tag.id}`}>{tag.name}</Slug>
+                                    <Slug
+                                      key={`slug-${hentai.id}-${stack.name}-${tag.id}`}
+                                      border={stack.color.border}
+                                      background={stack.color.background}
+                                      text={stack.color.text}
+                                      link={`/${stack.prefix}/${tag.id}`}
+                                    >
+                                      {tag.name}
+                                    </Slug>
                                   )
                                 })}
                               </Flex>
