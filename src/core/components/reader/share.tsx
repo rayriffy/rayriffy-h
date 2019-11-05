@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { FaExternalLinkAlt, FaShareAlt } from 'react-icons/fa'
 
-import { Box, Flex } from 'rebass'
+import { Box, Flex, Link } from 'rebass'
 import styled from 'styled-components'
 
 import API from './api'
@@ -36,6 +36,10 @@ const CircleButton = styled.button`
   }
 `
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`
+
 const ReaderShareComponent: React.FC<IReaderShareProps> = props => {
   const {hentai} = props
 
@@ -48,7 +52,9 @@ const ReaderShareComponent: React.FC<IReaderShareProps> = props => {
           <CircleButton onClick={() => setIsModal(true)} primary={true}><FaShareAlt /></CircleButton>
         </Box>
         <Box pl={1}>
-          <CircleButton><FaExternalLinkAlt /></CircleButton>
+          <StyledLink href={`https://nhentai.net/g/${hentai.id}`} target={`_blank`} rel={`noopener noreferrer`}>
+            <CircleButton><FaExternalLinkAlt /></CircleButton>
+          </StyledLink>
         </Box>
       </Flex>
       <Modal title={`Share`} isOpened={isModal} onClose={() => setIsModal(false)}>
