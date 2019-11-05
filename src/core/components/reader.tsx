@@ -9,6 +9,7 @@ import styled from 'styled-components'
 import BluredImage from './bluredImage'
 import Collapse from './collapse'
 import Divider from './divider'
+import Share from './share'
 import Slug from './slug'
 
 import tagStack from '../../contents/database/tags'
@@ -65,6 +66,9 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
                       return null
                     }
                   })}
+                </Box>
+                <Box py={2}>
+                  <Share />
                 </Box>
               </Box>
             </Flex>
