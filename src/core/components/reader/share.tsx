@@ -11,7 +11,7 @@ import Modal from './modal'
 import { IReaderButton } from '../../@types/IReaderButton'
 import { IReaderShareProps } from '../../@types/IReaderShareProps'
 
-const CircleButton = styled.button`
+const CircleButton = styled(Box)`
   width: 35px;
   height: 35px;
   border-radius: 50%;
@@ -49,11 +49,19 @@ const ReaderShareComponent: React.FC<IReaderShareProps> = props => {
     <Box>
       <Flex alignItems={`center`}>
         <Box pr={1}>
-          <CircleButton onClick={() => setIsModal(true)} primary={true}><FaShareAlt /></CircleButton>
+          <CircleButton onClick={() => setIsModal(true)} primary={true}>
+            <Flex justifyContent={`center`} alignItems={`center`}>
+              <FaShareAlt />
+            </Flex>
+          </CircleButton>
         </Box>
         <Box pl={1}>
           <StyledLink href={`https://nhentai.net/g/${hentai.id}`} target={`_blank`} rel={`noopener noreferrer`}>
-            <CircleButton><FaExternalLinkAlt /></CircleButton>
+            <CircleButton>
+              <Flex justifyContent={`center`} alignItems={`center`}>
+                <FaExternalLinkAlt />
+              </Flex>
+            </CircleButton>
           </StyledLink>
         </Box>
       </Flex>
