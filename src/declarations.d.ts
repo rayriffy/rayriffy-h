@@ -1,1 +1,1 @@
-declare module 'react-motion-drawer'
+declare module 'react-mortal'
