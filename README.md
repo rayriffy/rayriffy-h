@@ -20,10 +20,9 @@ Feature
 Screenshots
 -----------
 
-![Listing](src/contents/img/listing.jpg)
-
-![Menu](src/contents/img/menu.jpg)
-![Viewing](src/contents/img/viewing.jpg)
+| Listing                                  | Menu                               | Viewing                                  |
+| ---------------------------------------- | ---------------------------------- | ---------------------------------------- |
+| ![Listing](src/contents/img/listing.jpg) | ![Menu](src/contents/img/menu.jpg) | ![Viewing](src/contents/img/viewing.jpg) |
 
 Requirements
 ------------
