@@ -40,7 +40,7 @@ $ yarn dev
 Where's all query from
 ----------------------
 
-We query data from a custom database [here](src/contents/database/code.js)
+We query data from a custom database [here](src/contents/database/codes.js)
 
 Contributing
 ------------
