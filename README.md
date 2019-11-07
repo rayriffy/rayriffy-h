@@ -13,9 +13,10 @@ Feature
 
 - Built with modern **React** API
 - Blazing fast browsing powered by **Gatsby v2**
-- Custom hentai to any ID that you wish.
+- Custom hentai to any ID that you wish
 - **No ads** and **no pop-ups**
-- ~~**Easy to share** collection system~~ (This feature will be implemented in version 3.1)
+- Flexible **search** system
+- ~~**Easy to share** collection system~~ (This feature will be implemented in version ~~3.1~~ 3.2 人(_ _*))
 
 Screenshots
 -----------
