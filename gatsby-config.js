@@ -8,7 +8,6 @@ module.exports = {
   pathPrefix: '/',
   plugins: [
     `gatsby-plugin-styled-components`,
-    `gatsby-transformer-json`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -29,8 +28,6 @@ module.exports = {
       resolve: `gatsby-plugin-create-client-paths`,
       options: { prefixes: [`/g/*`] },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
