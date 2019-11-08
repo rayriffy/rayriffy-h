@@ -67,9 +67,7 @@ const SearchComponent: React.FC<IProps> = props => {
   }, [res])
 
   useEffect(() => {
-    if (setSubtitle) {
-      setSubtitle(`search`)
-    }
+    setSubtitle(`search`)
   }, [])
 
   return (

@@ -25,26 +25,17 @@ const DynamicViewingComponent: React.FC<IProps> = props => {
 
   const fetchHentai = async(requestedId: number | string) => {
     setState(1)
-
-    if (setSubtitle) {
-      setSubtitle('finding')
-    }
+    setSubtitle('finding')
 
     try {
       const data = await getHentai(requestedId)
 
       setRaw(data)
       setState(0)
-
-      if (setSubtitle) {
-        setSubtitle('viewing')
-      }
+      setSubtitle('viewing')
     } catch (e) {
       setState(2)
-
-      if (setSubtitle) {
-        setSubtitle('failed')
-      }
+      setSubtitle('failed')
 
       throw e
     }

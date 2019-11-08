@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 
-import { set as lsSet } from 'local-storage'
 import Mortal from 'react-mortal'
 import Switch from 'react-switch'
 
@@ -67,13 +66,7 @@ const DrawerComponent: React.FC = () => {
   const [safeMode, setSafeMode] = useContext(SafeMode)
 
   const toggleSafeMode = () => {
-    const newState = !safeMode
-
-    if (setSafeMode) {
-      setSafeMode(newState)
-    }
-
-    lsSet<boolean>('blur', newState)
+    setSafeMode(prev => !prev)
   }
 
   const menuStacks = [

@@ -25,7 +25,8 @@
     "no-console": false,
     "no-shadowed-variable": false,
     "whitespace": [true, "check-module"],
-    "member-ordering": false
+    "member-ordering": false,
+    "no-empty": false
   },
   "rulesDirectory": [
     "node_modules/tslint-eslint-rules/dist/rules"

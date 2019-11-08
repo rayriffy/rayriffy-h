@@ -10,9 +10,7 @@ const CollectionComponent: React.FC = () => {
   const [, setSubtitle] = useContext(Subtitle)
 
   useEffect(() => {
-    if (setSubtitle) {
-      setSubtitle(`collection`)
-    }
+    setSubtitle(`collection`)
   }, [])
 
   return (

@@ -21,9 +21,7 @@ const NotFoundComponent: React.FC = () => {
   const [, setSubtitle] = useContext(Subtitle)
 
   useEffect(() => {
-    if (setSubtitle) {
-      setSubtitle('404')
-    }
+    setSubtitle('404')
   }, [])
 
   return (

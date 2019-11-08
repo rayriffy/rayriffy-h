@@ -15,9 +15,7 @@ const TagViewingComponent: React.FC<IProps> = props => {
   const [, setSubtitle] = useContext(Subtitle)
 
   useEffect(() => {
-    if (setSubtitle) {
-      setSubtitle(`${subtitle}`)
-    }
+    setSubtitle(`${subtitle}`)
   }, [])
 
   return (

@@ -14,9 +14,7 @@ const HentaiViewingComponent: React.FC<IProps> = props => {
   const [, setSubtitle] = useContext(Subtitle)
 
   useEffect(() => {
-    if (setSubtitle) {
-      setSubtitle(`viewing`)
-    }
+    setSubtitle(`viewing`)
   }, [])
 
   return (

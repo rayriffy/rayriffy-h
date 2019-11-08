@@ -27,9 +27,7 @@ const TagListingComponent: React.FC<IProps> = props => {
   const processedTags = _.sortBy(raw.map(o => ({id: o.id, name: o.name})), o => o.name)
 
   useEffect(() => {
-    if (setSubtitle) {
-      setSubtitle(`${subtitle}`)
-    }
+    setSubtitle(`${subtitle}`)
   }, [])
 
   return (

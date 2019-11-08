@@ -32,9 +32,7 @@ const CustomComponent: React.FC = () => {
   const [, setSubtitle] = useContext(Subtitle)
 
   useEffect(() => {
-    if (setSubtitle) {
-      setSubtitle('custom')
-    }
+    setSubtitle('custom')
   }, [])
 
   return (

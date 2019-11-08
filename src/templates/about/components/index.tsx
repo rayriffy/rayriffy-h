@@ -8,9 +8,7 @@ const AboutComponent: React.FC = () => {
   const [, setSubtitle] = useContext(Subtitle)
 
   useEffect(() => {
-    if (setSubtitle) {
-      setSubtitle(`about`)
-    }
+    setSubtitle(`about`)
   }, [])
 
   return (
