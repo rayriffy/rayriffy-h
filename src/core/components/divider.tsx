@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { Box } from 'rebass'
 import styled from 'styled-components'
 
@@ -11,4 +13,4 @@ const DividerComponent = styled(Box)`
   border-color: #e8e8e8;
 `
 
-export default DividerComponent
+export default React.memo(DividerComponent)

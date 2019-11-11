@@ -32,4 +32,4 @@ const BluredImageComponent: React.FC<IBluredImageProps> = props => {
   )
 }
 
-export default BluredImageComponent
+export default React.memo(BluredImageComponent)

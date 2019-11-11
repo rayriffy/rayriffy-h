@@ -102,4 +102,4 @@ const PosterComponent: React.FC<IPosterProps> = props => {
   )
 }
 
-export default PosterComponent
+export default React.memo(PosterComponent)
