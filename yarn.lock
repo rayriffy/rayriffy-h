@@ -1275,10 +1275,10 @@
   resolved "https://registry.yarnpkg.com/@types/resize-observer-browser/-/resize-observer-browser-0.1.2.tgz#615d567c094c6500d760289be0ce48c9798672c9"
   integrity sha512-4mrAenvAObVQthn05TldKpZ/xW236GyCrpyQvH4hmKVWdobpqM8Fub5Kn4lTNZRKANZ3+P1bq8Zp53asvklKTQ==
 
-"@types/styled-components@*", "@types/styled-components@^4.1.22":
-  version "4.1.22"
-  resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-4.1.22.tgz#5b221c8a2e996ebd5c005734b9d86d1659367f50"
-  integrity sha512-sd1bWLEuacruy3VLG9j3A6pC2cBp7rFwgnl54uCUl0zeXSgCLEMhwF259x3A/HhSYuzZ8S6ao+pX8soRi02Khg==
+"@types/styled-components@*", "@types/styled-components@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-4.4.0.tgz#15a3d59533fd3a5bd013db4a7c4422ec542c59d2"
+  integrity sha512-QFl+w3hQJNHE64Or3PXMFpC3HAQDiuQLi5o9m1XPEwYWfgCZtAribO5ksjxnO8U0LG8Parh0ESCgVxo4VfxlHg==
   dependencies:
     "@types/react" "*"
     "@types/react-native" "*"
