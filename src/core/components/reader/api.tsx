@@ -16,18 +16,23 @@ const StyledImage = styled(Image)`
   border-radius: 10px;
 `
 
-const StyledLoading = styled(Box)`
-  width: 50vw;
-  height: 50vw;
+const LoadContainer = styled(Flex)`
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+
+  overflow: hidden;
+
   border-radius: 10px;
-  border: 1px solid #d9d9d9;
+  border: 1px solid ${(props: {border: string}) => props.border};
 `
 
-const StyledError = styled(Box)`
-  width: 50vw;
-  height: 50vw;
-  border-radius: 10px;
-  border: 1px solid #f5222d;
+const LoadContent = styled(Box)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 `
 
 const StyledButton = styled.button`
@@ -87,21 +92,21 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
           <Box width={[1, 1 / 2, 2 / 3]}>
             <Flex justifyContent={`center`}>
               {error ? (
-                <Box>
-                  <StyledError>
+                <LoadContainer flexDirection={`row`} alignItems={`center`} justifyContent={`center`} border={`#f5222d`}>
+                  <LoadContent>
                     <StyledFlex justifyContent={`center`} alignItems={`center`}>
                       <Text color={`#f5222d`}>Filed to get an image</Text>
                     </StyledFlex>
-                  </StyledError>
-                </Box>
+                  </LoadContent>
+                </LoadContainer>
               ) : image === '' ? (
-                <Box>
-                <StyledLoading>
-                  <StyledFlex justifyContent={`center`} alignItems={`center`}>
-                    <Text color={`rgba(0, 0, 0, 0.65)`}>Loading</Text>
-                  </StyledFlex>
-                </StyledLoading>
-                </Box>
+                <LoadContainer flexDirection={`row`} alignItems={`center`} justifyContent={`center`} border={`#d9d9d9`}>
+                  <LoadContent>
+                    <StyledFlex justifyContent={`center`} alignItems={`center`}>
+                      <Text color={`rgba(0, 0, 0, 0.65)`}>Loading</Text>
+                    </StyledFlex>
+                  </LoadContent>
+                </LoadContainer>
               ) : (
                 <Box>
                   <StyledImage src={image} />
@@ -150,4 +155,4 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
   )
 }
 
-export default ReaderAPIComponent
+export default React.memo(ReaderAPIComponent)

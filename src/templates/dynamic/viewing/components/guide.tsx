@@ -31,4 +31,4 @@ const GuideComponent: React.FC = () => {
   )
 }
 
-export default GuideComponent
+export default React.memo(GuideComponent)

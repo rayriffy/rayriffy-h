@@ -31,4 +31,4 @@ const NotAvaliableComponent = () => {
   )
 }
 
-export default NotAvaliableComponent
+export default React.memo(NotAvaliableComponent)

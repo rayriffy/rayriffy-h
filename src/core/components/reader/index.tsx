@@ -60,9 +60,8 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
                                       background={stack.color.background}
                                       text={stack.color.text}
                                       link={`/${stack.prefix}/${tag.id}`}
-                                    >
-                                      {tag.name}
-                                    </Slug>
+                                      title={tag.name}
+                                    />
                                   )
                                 })}
                               </Flex>
@@ -104,4 +103,4 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
   )
 }
 
-export default ReaderComponent
+export default React.memo(ReaderComponent)

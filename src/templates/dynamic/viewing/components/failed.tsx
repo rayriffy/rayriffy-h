@@ -32,4 +32,4 @@ const FailedComponent: React.FC = () => {
   )
 }
 
-export default FailedComponent
+export default React.memo(FailedComponent)

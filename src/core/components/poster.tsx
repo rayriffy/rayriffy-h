@@ -66,11 +66,11 @@ const PosterComponent: React.FC<IPosterProps> = props => {
                   const {border, background, text} = tagStackTag.color
 
                   return (
-                    <Slug key={`slug-tag-${tag.id}`} background={background} border={border} text={text} link={`/${tagStackTag.prefix}/${tag.id}`}>{tag.name}</Slug>
+                    <Slug key={`slug-tag-${tag.id}`} background={background} border={border} text={text} link={`/${tagStackTag.prefix}/${tag.id}`} title={tag.name} />
                   )
                 } else {
                   return (
-                    <Slug key={`slug-tag-${tag.id}`}>{tag.name}</Slug>
+                    <Slug key={`slug-tag-${tag.id}`} title={tag.name} />
                   )
                 }
               })}
@@ -79,11 +79,11 @@ const PosterComponent: React.FC<IPosterProps> = props => {
                   const {border, background, text} = tagStackParody.color
 
                   return (
-                    <Slug key={`slug-parody-${tag.id}`} background={background} border={border} text={text} link={`/${tagStackParody.prefix}/${tag.id}`}>{tag.name}</Slug>
+                    <Slug key={`slug-parody-${tag.id}`} background={background} border={border} text={text} link={`/${tagStackParody.prefix}/${tag.id}`} title={tag.name} />
                   )
                 } else {
                   return (
-                    <Slug key={`slug-parody-${tag.id}`}>{tag.name}</Slug>
+                    <Slug key={`slug-parody-${tag.id}`} title={tag.name} />
                   )
                 }
               })}

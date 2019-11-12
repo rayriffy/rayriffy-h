@@ -72,4 +72,4 @@ const ReaderShareComponent: React.FC<IReaderShareProps> = props => {
   )
 }
 
-export default ReaderShareComponent
+export default React.memo(ReaderShareComponent)

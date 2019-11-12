@@ -3,4 +3,5 @@ export interface ISlugProps {
   border?: string
   text?: string
   link?: string
+  title: string
 }
