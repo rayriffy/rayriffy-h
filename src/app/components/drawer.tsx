@@ -188,4 +188,4 @@ const DrawerComponent: React.FC = () => {
   )
 }
 
-export default DrawerComponent
+export default React.memo(DrawerComponent)
