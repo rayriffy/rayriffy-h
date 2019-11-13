@@ -12,7 +12,7 @@ const ReaderCollapseComponent: React.FC<IReaderCollapseProps> = props => {
   const [isShow, setIsShow] = useState(defaultState)
 
   return (
-    <Box>
+    <React.Fragment>
       <Box p={1}>
         <Text fontSize={14} onClick={() => setIsShow(prev => !prev)}>{title}</Text>
       </Box>
@@ -21,7 +21,7 @@ const ReaderCollapseComponent: React.FC<IReaderCollapseProps> = props => {
           {children}
         </Box>
       </Collapse>
-    </Box>
+    </React.Fragment>
   )
 }
 

@@ -52,7 +52,7 @@ const DynamicViewingComponent: React.FC<IProps> = props => {
   }, [])
 
   return (
-    <Box>
+    <React.Fragment>
       {state === 0 && raw !== null ? (
         <Reader raw={raw} />
       ) : state === 1 && raw === null ? (
@@ -68,7 +68,7 @@ const DynamicViewingComponent: React.FC<IProps> = props => {
           <Guide />
         </Box>
       ) : null}
-    </Box>
+    </React.Fragment>
   )
 }
 

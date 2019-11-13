@@ -19,7 +19,7 @@ const TagViewingComponent: React.FC<IProps> = props => {
   }, [])
 
   return (
-    <Box>
+    <React.Fragment>
       <Flex justifyContent={`center`}>
         <Box width={18 / 24} py={3}>
           <Pagination current={page.current} max={page.max} prefix={`/${prefix}/${tag.id}/`} />
@@ -39,7 +39,7 @@ const TagViewingComponent: React.FC<IProps> = props => {
           <Pagination current={page.current} max={page.max} prefix={`/${prefix}/${tag.id}/`} />
         </Box>
       </Flex>
-    </Box>
+    </React.Fragment>
   )
 }
 

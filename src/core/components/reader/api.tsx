@@ -86,7 +86,7 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
   })
 
   return (
-    <Box>
+    <React.Fragment>
       <Box px={4}>
         <Flex justifyContent={`center`}>
           <Box width={[1, 1 / 2, 2 / 3]}>
@@ -151,7 +151,7 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
           </Flex>
         </Box>
       ) : null}
-    </Box>
+    </React.Fragment>
   )
 }
 

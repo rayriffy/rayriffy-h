@@ -1,7 +1,5 @@
 import React, { useContext, useEffect } from 'react'
 
-import { Box } from 'rebass'
-
 import Reader from '../../../../core/components/reader'
 
 import { Subtitle } from '../../../../app/context'
@@ -18,9 +16,9 @@ const HentaiViewingComponent: React.FC<IProps> = props => {
   }, [])
 
   return (
-    <Box>
+    <React.Fragment>
       <Reader raw={raw} />
-    </Box>
+    </React.Fragment>
   )
 }
 

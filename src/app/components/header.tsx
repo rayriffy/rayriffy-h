@@ -11,7 +11,7 @@ const HeaderComponent = () => {
   const [subtitle] = useContext(Subtitle)
 
   return (
-    <Box>
+    <React.Fragment>
       <Flex alignItems={`center`}>
         <Flex alignItems={`flex-end`} flexWrap={`wrap`}>
           <Text fontSize={42} fontWeight={700}>Riffy H</Text>
@@ -23,7 +23,7 @@ const HeaderComponent = () => {
         </Box>
       </Flex>
       <Divider py={1} />
-    </Box>
+    </React.Fragment>
   )
 }
 

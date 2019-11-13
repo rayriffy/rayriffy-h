@@ -98,7 +98,7 @@ const DrawerComponent: React.FC = () => {
   }))
 
   return (
-    <Box>
+    <React.Fragment>
       <Box onClick={() => setOpen(true)}>
         <MenuIcon size={`20px`} />
       </Box>
@@ -114,13 +114,9 @@ const DrawerComponent: React.FC = () => {
           <Panel visible={isVisible}>
             <Overlay onClick={() => setOpen(false)} visible={isVisible} opacity={motion.opacity} />
             <Wrapper width={[275, 300]} panelOffset={motion.panelOffset}>
-              <Box pt={3} px={3}>
-                <Box>
-                  <Flex alignItems={`center`}>
-                    <CloseIcon onClick={() => setOpen(false)} size={`20px`} />
-                  </Flex>
-                </Box>
-              </Box>
+              <Flex alignItems={`center`} pt={3} px={3}>
+                <CloseIcon onClick={() => setOpen(false)} size={`20px`} />
+              </Flex>
               <Box pt={4} px={3}>
                 <Text fontSize={32} fontWeight={700}>Riffy H</Text>
                 <Text color={`rgba(0, 0, 0, 0.45)`}>The missng piece of NHentai</Text>
@@ -161,30 +157,24 @@ const DrawerComponent: React.FC = () => {
                   <Text fontSize={20} fontWeight={600} py={2}>Settings</Text>
                   <Box py={2}>
                     <Flex>
-                      <Box>
-                        <Switch height={18} width={40} checked={safeMode === undefined ? true : safeMode} onChange={toggleSafeMode} />
-                      </Box>
-                      <Box px={2}>
-                        <Text fontSize={14}>Safe mode</Text>
-                      </Box>
+                      <Switch height={18} width={40} checked={safeMode === undefined ? true : safeMode} onChange={toggleSafeMode} />
+                      <Text fontSize={14} px={2}>Safe mode</Text>
                     </Flex>
                   </Box>
                 </Box>
               </Box>
-              <Box py={3}>
-                <Flex justifyContent={`center`}>
-                  <Text fontSize={14} color={`rgba(0,0,0,0.45)`}>Host with</Text>
-                  <Box px={1}>
-                    <LoveIcon color={`#f32929`} />
-                  </Box>
-                  <Text fontSize={14} color={`rgba(0,0,0,0.45)`}>by rayriffy</Text>
-                </Flex>
-              </Box>
+              <Flex justifyContent={`center`} py={3}>
+                <Text fontSize={14} color={`rgba(0,0,0,0.45)`}>Host with</Text>
+                <Box px={1}>
+                  <LoveIcon color={`#f32929`} />
+                </Box>
+                <Text fontSize={14} color={`rgba(0,0,0,0.45)`}>by rayriffy</Text>
+              </Flex>
             </Wrapper>
           </Panel>
         )}
       </Mortal>
-    </Box>
+    </React.Fragment>
   )
 }
 

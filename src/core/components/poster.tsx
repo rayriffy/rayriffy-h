@@ -59,36 +59,34 @@ const PosterComponent: React.FC<IPosterProps> = props => {
         </CoverBox>
         <Box p={3}>
           <Text fontWeight={500}>{raw.title.pretty}</Text>
-          <Box py={2}>
-            <Flex flexWrap={`wrap`}>
-              {tags.map(tag => {
-                if (tagStackTag) {
-                  const {border, background, text} = tagStackTag.color
+          <Flex flexWrap={`wrap`} py={2}>
+            {tags.map(tag => {
+              if (tagStackTag) {
+                const {border, background, text} = tagStackTag.color
 
-                  return (
-                    <Slug key={`slug-tag-${tag.id}`} background={background} border={border} text={text} link={`/${tagStackTag.prefix}/${tag.id}`} title={tag.name} />
-                  )
-                } else {
-                  return (
-                    <Slug key={`slug-tag-${tag.id}`} title={tag.name} />
-                  )
-                }
-              })}
-              {parodies.map(tag => {
-                if (tagStackParody) {
-                  const {border, background, text} = tagStackParody.color
+                return (
+                  <Slug key={`slug-tag-${tag.id}`} background={background} border={border} text={text} link={`/${tagStackTag.prefix}/${tag.id}`} title={tag.name} />
+                )
+              } else {
+                return (
+                  <Slug key={`slug-tag-${tag.id}`} title={tag.name} />
+                )
+              }
+            })}
+            {parodies.map(tag => {
+              if (tagStackParody) {
+                const {border, background, text} = tagStackParody.color
 
-                  return (
-                    <Slug key={`slug-parody-${tag.id}`} background={background} border={border} text={text} link={`/${tagStackParody.prefix}/${tag.id}`} title={tag.name} />
-                  )
-                } else {
-                  return (
-                    <Slug key={`slug-parody-${tag.id}`} title={tag.name} />
-                  )
-                }
-              })}
-            </Flex>
-          </Box>
+                return (
+                  <Slug key={`slug-parody-${tag.id}`} background={background} border={border} text={text} link={`/${tagStackParody.prefix}/${tag.id}`} title={tag.name} />
+                )
+              } else {
+                return (
+                  <Slug key={`slug-parody-${tag.id}`} title={tag.name} />
+                )
+              }
+            })}
+          </Flex>
         </Box>
         {language ? (
           <FooterBox backgroundColor={language.name === `english` ? `#1890ff` : language.name === `japanese` ? `#f5222d` : `#000000`}>

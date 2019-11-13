@@ -46,7 +46,7 @@ const ReaderShareComponent: React.FC<IReaderShareProps> = props => {
   const [isModal, setIsModal] = useState<boolean>(false)
 
   return (
-    <Box>
+    <React.Fragment>
       <Flex alignItems={`center`}>
         <Box pr={1}>
           <CircleButton onClick={() => setIsModal(true)} primary={true}>
@@ -68,7 +68,7 @@ const ReaderShareComponent: React.FC<IReaderShareProps> = props => {
       <Modal title={`Share`} isOpened={isModal} onClose={() => setIsModal(false)}>
         <API id={hentai.id} />
       </Modal>
-    </Box>
+    </React.Fragment>
   )
 }
 

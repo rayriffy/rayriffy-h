@@ -38,17 +38,15 @@ const PaginationComponent: React.FC<IProps> = props => {
   const startPoint: number = max > 5 ? current - 2 < 1 ? 0 : current + 2 > max ? max - pageLength : current - (pageLength - 2) : 0
 
   return (
-    <Box>
-      <Flex justifyContent={`center`}>
-        {Array.from({length: pageLength}, (_, i) => (
-          <Box key={`pagination-${startPoint + i}`} px={3}>
-            <TransparentLink to={startPoint + i === 0 ? prefix : `${prefix}p/${startPoint + i + 1}`} start={startPoint} index={i} current={current}>
-              {startPoint + i + 1}
-            </TransparentLink>
-          </Box>
-        ))}
-      </Flex>
-    </Box>
+    <Flex justifyContent={`center`}>
+      {Array.from({length: pageLength}, (_, i) => (
+        <Box key={`pagination-${startPoint + i}`} px={3}>
+          <TransparentLink to={startPoint + i === 0 ? prefix : `${prefix}p/${startPoint + i + 1}`} start={startPoint} index={i} current={current}>
+            {startPoint + i + 1}
+          </TransparentLink>
+        </Box>
+      ))}
+    </Flex>
   )
 }
 
