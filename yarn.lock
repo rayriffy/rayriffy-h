@@ -5103,12 +5103,12 @@ gatsby-page-utils@^0.0.29:
     micromatch "^3.1.10"
     slash "^3.0.0"
 
-gatsby-plugin-create-client-paths@^2.1.15:
-  version "2.1.15"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-create-client-paths/-/gatsby-plugin-create-client-paths-2.1.15.tgz#46fc2f44648e318bf16fa807e9e703af1172a166"
-  integrity sha512-LP/DJglJbJBB23EbdSsS5XDdTndAp0Bj1TLv4++6S/nSL2V6EybRY5IYNTnHnESrSnpK3LHyJh2AVgEB64BLVg==
+gatsby-plugin-create-client-paths@^2.1.16:
+  version "2.1.16"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-create-client-paths/-/gatsby-plugin-create-client-paths-2.1.16.tgz#19db06574044efadd422ea37c34200b643e83af2"
+  integrity sha512-p5z1ZMZoFlZQQDWq2CGEIGcifpjdraZPIaPwHKdwE2jBhdymfPiu3gRDS24A6ymBvf2DHsEK1UespnPnK6qgFA==
   dependencies:
-    "@babel/runtime" "^7.6.3"
+    "@babel/runtime" "^7.7.2"
 
 gatsby-plugin-google-analytics@^2.1.25:
   version "2.1.25"
