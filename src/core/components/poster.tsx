@@ -1,7 +1,7 @@
-import _ from 'lodash'
 import React from 'react'
 
 import { Link } from 'gatsby'
+import { filter, head, upperFirst } from 'lodash'
 
 import { Box, Card, Flex, Text } from 'rebass'
 import styled from 'styled-components'
@@ -40,14 +40,14 @@ const FooterBox = styled(Box)`
 const PosterComponent: React.FC<IPosterProps> = props => {
   const {raw} = props
 
-  const tagStack = _.filter(allTagStack, tag => tag.name === 'parody' || tag.name === 'tag')
+  const tagStack = filter(allTagStack, tag => tag.name === 'parody' || tag.name === 'tag')
 
-  const language = _.head(_.filter(filterTagByType(raw.tags, 'language'), tag => tag.name !== 'translated'))
+  const language = head(filter(filterTagByType(raw.tags, 'language'), tag => tag.name !== 'translated'))
   const tags = filterTagByType(raw.tags, 'tag')
   const parodies = filterTagByType(raw.tags, 'parody')
 
-  const tagStackTag = _.head(filterTagStackByType(tagStack, 'tag'))
-  const tagStackParody = _.head(filterTagStackByType(tagStack, 'parody'))
+  const tagStackTag = head(filterTagStackByType(tagStack, 'tag'))
+  const tagStackParody = head(filterTagStackByType(tagStack, 'parody'))
 
   return (
     <Box width={[1, 1 / 2, 1 / 3, 1 / 5]} p={2}>
@@ -91,7 +91,7 @@ const PosterComponent: React.FC<IPosterProps> = props => {
         {language ? (
           <FooterBox backgroundColor={language.name === `english` ? `#1890ff` : language.name === `japanese` ? `#f5222d` : `#000000`}>
             <Flex justifyContent={`center`}>
-              <Text color={`#ffffff`} fontSize={12} py={1}>{_.upperFirst(language.name)}</Text>
+              <Text color={`#ffffff`} fontSize={12} py={1}>{upperFirst(language.name)}</Text>
             </Flex>
           </FooterBox>
         ) : null}

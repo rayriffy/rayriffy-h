@@ -1,9 +1,9 @@
-import _ from 'lodash'
+import { isEmpty } from 'lodash'
 
 export const getIdByUrl = (url: string) => {
   const requestedID = url.split('/')[2]
 
-  if (!_.isEmpty(requestedID)) {
+  if (!isEmpty(requestedID)) {
     return requestedID
   } else {
     return null

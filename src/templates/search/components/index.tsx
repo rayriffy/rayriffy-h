@@ -1,6 +1,6 @@
-import _ from 'lodash'
 import React, { useContext, useEffect, useState } from 'react'
 
+import { chunk, get, isEmpty } from 'lodash'
 import { FaSearch } from 'react-icons/fa'
 
 import { Box, Button, Flex } from 'rebass'
@@ -48,7 +48,7 @@ const SearchComponent: React.FC<IProps> = props => {
 
   const renderPage = (raws: IFetchedRaw[], page: number) => {
     setPage(page)
-    setRenderedRaw(_.get(_.chunk(raws, skip), page - 1))
+    setRenderedRaw(get(chunk(raws, skip), page - 1))
   }
 
   const searchButtonHandler = () => {
@@ -60,7 +60,7 @@ const SearchComponent: React.FC<IProps> = props => {
   }
 
   useEffect(() => {
-    if (!_.isEmpty(res)) {
+    if (!isEmpty(res)) {
       setPage(1)
       renderPage(res, 1)
     }
@@ -86,11 +86,11 @@ const SearchComponent: React.FC<IProps> = props => {
       </Flex>
       <Flex justifyContent={`center`}>
         <Box width={22 / 24}>
-          {_.isEmpty(res) ? 'No result' : (
+          {isEmpty(res) ? 'No result' : (
             <Box>
               <Flex justifyContent={`center`}>
                 <Box width={18 / 24} py={3}>
-                  <Pagination current={page} max={_.chunk(res, skip).length} onChange={page => renderPage(res, page)} />
+                  <Pagination current={page} max={chunk(res, skip).length} onChange={page => renderPage(res, page)} />
                 </Box>
               </Flex>
               <Flex justifyContent={`center`}>
@@ -104,7 +104,7 @@ const SearchComponent: React.FC<IProps> = props => {
               </Flex>
               <Flex justifyContent={`center`}>
                 <Box width={18 / 24} py={3}>
-                  <Pagination current={page} max={_.chunk(res, skip).length} onChange={page => renderPage(res, page)} />
+                  <Pagination current={page} max={chunk(res, skip).length} onChange={page => renderPage(res, page)} />
                 </Box>
               </Flex>
             </Box>

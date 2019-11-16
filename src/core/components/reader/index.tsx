@@ -1,6 +1,6 @@
-import _ from 'lodash'
 import React from 'react'
 
+import { isEmpty, upperFirst } from 'lodash'
 import { Helmet } from 'react-helmet'
 
 import { Box, Flex, Text } from 'rebass'
@@ -45,12 +45,12 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
                   {tagStack.map((stack, i) => {
                     const res = filterTagByType(hentai.tags, stack.name)
 
-                    if (!_.isEmpty(res)) {
+                    if (!isEmpty(res)) {
                       return (
                         <Box key={`collapse-${hentai.id}-${stack.name}`}>
                           {i !== 0 ? <Divider /> : null}
                           <Box py={1}>
-                            <Collapse title={_.upperFirst(stack.name)} defaultState={stack.name === 'tag'}>
+                            <Collapse title={upperFirst(stack.name)} defaultState={stack.name === 'tag'}>
                               <Flex flexWrap={`wrap`}>
                                 {res.map(tag => {
                                   return (

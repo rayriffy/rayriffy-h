@@ -1,5 +1,6 @@
-import _ from 'lodash'
 import React, { useContext, useEffect } from 'react'
+
+import { filter, isEmpty, sortBy, startsWith } from 'lodash'
 
 import { Box, Card, Flex, Text } from 'rebass'
 import styled from 'styled-components'
@@ -24,7 +25,7 @@ const TagListingComponent: React.FC<IProps> = props => {
 
   const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
-  const processedTags = _.sortBy(raw.map(o => ({id: o.id, name: o.name})), o => o.name)
+  const processedTags = sortBy(raw.map(o => ({id: o.id, name: o.name})), o => o.name)
 
   useEffect(() => {
     setSubtitle(`${subtitle}`)
@@ -35,9 +36,9 @@ const TagListingComponent: React.FC<IProps> = props => {
       <Flex justifyContent={`center`}>
         <Box width={[22 / 24, 18 / 24, 14 / 24, 10 / 24]}>
         {alphabet.map(text => {
-          const filteredTags = _.filter(processedTags, o => _.startsWith(o.name, text))
+          const filteredTags = filter(processedTags, o => startsWith(o.name, text))
 
-          if (!_.isEmpty(filteredTags)) {
+          if (!isEmpty(filteredTags)) {
             return (
               <Box py={3} key={`tag-${prefix}-${text}`}>
                 <CoverCard backgroundColor={`white`} p={3}>
