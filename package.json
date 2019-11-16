@@ -21,6 +21,7 @@
     "gatsby-plugin-typography": "^2.3.14",
     "gatsby-source-filesystem": "^2.1.33",
     "lodash": "^4.17.15",
+    "preact": "^10.0.5",
     "react": "^16.11.0",
     "react-collapse": "^5.0.0",
     "react-copy-to-clipboard": "^5.0.2",
@@ -34,7 +35,6 @@
     "react-typography": "^0.16.19",
     "rebass": "^4.0.6",
     "styled-components": "^4.4.1",
-    "typescript": "^3.7.2",
     "typography": "^0.16.19",
     "web-api-hooks": "^2.2.2"
   },
@@ -54,7 +54,8 @@
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
     "tslint-eslint-rules": "^5.4.0",
-    "tslint-react": "^4.1.0"
+    "tslint-react": "^4.1.0",
+    "typescript": "^3.7.2"
   },
   "homepage": "https://h.rayriffy.com",
   "keywords": [
