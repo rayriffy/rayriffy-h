@@ -22,7 +22,7 @@
     "gatsby-source-filesystem": "^2.1.36",
     "lodash": "^4.17.15",
     "preact": "^10.0.5",
-    "react": "^16.11.0",
+    "react": "^16.12.0",
     "react-collapse": "^5.0.0",
     "react-copy-to-clipboard": "^5.0.2",
     "react-dom": "^16.11.0",
