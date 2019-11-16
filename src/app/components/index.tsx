@@ -16,22 +16,17 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const AppComponent: React.FC = props => {
-  const {children} = props
+  const { children } = props
 
   return (
     <Context>
       <Box pt={5}>
         <GlobalStyle />
-        <Helmet
-          defaultTitle={`Riffy H`}
-          titleTemplate={`%s · Riffy H`}
-        />
+        <Helmet defaultTitle={`Riffy H`} titleTemplate={`%s · Riffy H`} />
         <Box px={[3, 4, 5]}>
           <Header />
         </Box>
-        <Box>
-          {children}
-        </Box>
+        <Box>{children}</Box>
       </Box>
     </Context>
   )

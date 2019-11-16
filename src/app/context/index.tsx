@@ -9,7 +9,7 @@ export const SafeMode = React.createContext<ISafeMode>([true, () => {}])
 export const Subtitle = React.createContext<ISubtitle>(['init', () => {}])
 
 const Context: React.FC = props => {
-  const {children} = props
+  const { children } = props
 
   // Safe mode
   const [safeMode, setSafeMode] = useLocalStorage<boolean>('blur', true)
@@ -19,9 +19,7 @@ const Context: React.FC = props => {
 
   return (
     <SafeMode.Provider value={[safeMode, setSafeMode]}>
-      <Subtitle.Provider value={[subtitle, setSubtitle]}>
-        {children}
-      </Subtitle.Provider>
+      <Subtitle.Provider value={[subtitle, setSubtitle]}>{children}</Subtitle.Provider>
     </SafeMode.Provider>
   )
 }

@@ -24,7 +24,7 @@ const LoadContainer = styled(Flex)`
   overflow: hidden;
 
   border-radius: 10px;
-  border: 1px solid ${(props: {border: string}) => props.border};
+  border: 1px solid ${(props: { border: string }) => props.border};
 `
 
 const LoadContent = styled(Box)`
@@ -45,15 +45,15 @@ const StyledButton = styled.button`
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
 
-  transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
-  color: ${(props: IReaderButton) => props.primary ? `#fff` : `rgba(0, 0, 0, 0.85)`};
-  background: ${(props: IReaderButton) => props.primary ? `#1890ff` : `#fff`};
-  border: 1px solid ${(props: IReaderButton) => props.primary ? `#1890ff` : `#d9d9d9`};
+  color: ${(props: IReaderButton) => (props.primary ? `#fff` : `rgba(0, 0, 0, 0.85)`)};
+  background: ${(props: IReaderButton) => (props.primary ? `#1890ff` : `#fff`)};
+  border: 1px solid ${(props: IReaderButton) => (props.primary ? `#1890ff` : `#d9d9d9`)};
 
   &:hover {
-    color: ${(props: IReaderButton) => props.primary ? `#fff` : `#40a9ff`};
-    background: ${(props: IReaderButton) => props.primary ? `#40a9ff` : `#fff`};
+    color: ${(props: IReaderButton) => (props.primary ? `#fff` : `#40a9ff`)};
+    background: ${(props: IReaderButton) => (props.primary ? `#40a9ff` : `#fff`)};
     border: 1px solid #40a9ff;
   }
 `
@@ -67,7 +67,7 @@ const StyledLink = styled(Link)`
 `
 
 const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
-  const {id} = props
+  const { id } = props
 
   const [image, setImage] = useState<string>('')
   const [error, setError] = useState<boolean>(false)
@@ -79,8 +79,7 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
       .then(res => {
         setImage(res.data.response.data)
       })
-      .catch(e => {
-        console.log(e)
+      .catch(() => {
         setError(true)
       })
   })
@@ -117,7 +116,9 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
         </Flex>
       </Box>
       <Box p={2}>
-        <Text py={2} fontSize={15} fontWeight={500} textAlign={`center`}>Share securely with Opener</Text>
+        <Text py={2} fontSize={15} fontWeight={500} textAlign={`center`}>
+          Share securely with Opener
+        </Text>
       </Box>
       {image !== '' ? (
         <Box py={2} px={2}>
@@ -127,7 +128,9 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
                 <StyledButton primary={true}>
                   <Flex alignItems={`center`} px={3} py={1}>
                     <FaDownload />
-                    <Text pl={1} fontSize={14}>Download</Text>
+                    <Text pl={1} fontSize={14}>
+                      Download
+                    </Text>
                   </Flex>
                 </StyledButton>
               </StyledLink>
@@ -137,12 +140,16 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
                 <StyledButton>
                   {isCopied ? (
                     <Flex alignItems={`center`} px={3} py={1}>
-                      <Text pl={1} fontSize={14}>Copied!</Text>
+                      <Text pl={1} fontSize={14}>
+                        Copied!
+                      </Text>
                     </Flex>
                   ) : (
                     <Flex alignItems={`center`} px={3} py={1}>
                       <FaCopy />
-                      <Text pl={1} fontSize={14}>Copy ID</Text>
+                      <Text pl={1} fontSize={14}>
+                        Copy ID
+                      </Text>
                     </Flex>
                   )}
                 </StyledButton>

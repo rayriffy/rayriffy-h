@@ -10,7 +10,7 @@ import { Subtitle } from '../../../../app/context'
 import { IProps } from '../@types/IProps'
 
 const HentaiListingComponent: React.FC<IProps> = props => {
-  const {raw, page} = props.pageContext
+  const { raw, page } = props.pageContext
 
   const [, setSubtitle] = useContext(Subtitle)
 

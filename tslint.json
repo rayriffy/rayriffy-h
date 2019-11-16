@@ -1,34 +1,27 @@
 {
-  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier", "tslint-eslint-rules"],
+  "extends": [
+    "tslint:recommended",
+    "tslint-react",
+    "tslint-config-prettier",
+    "tslint-eslint-rules",
+    "tslint-plugin-prettier"
+  ],
   "rules": {
     "interface-name": false,
     "array-type": false,
     "eqeqeq": ["error", "always"],
     "jsx-no-lambda": false,
-    "trailing-comma": {
-      "options": {
-        "multiline": {
-          "arrays": "always",
-          "exports": "always",
-          "functions": "ignore",
-          "imports": "always",
-          "objects": "always",
-          "typeLiterals": "never"
-        },
-        "singleline": "never"
-      }
-    },
-    "quotemark": [true,"single"],
-    "space-before-function-paren": [true, "never"],
+    "trailing-comma": true,
     "semicolon": [true, "never"],
+    "quotemark": [true, "single"],
+    "newline-before-return": true,
+    "whitespace": true,
+    "jsx-boolean-value": false,
     "object-literal-sort-keys": false,
-    "no-console": false,
-    "no-shadowed-variable": false,
-    "whitespace": [true, "check-module"],
-    "member-ordering": false,
-    "no-empty": false
-  },
-  "rulesDirectory": [
-    "node_modules/tslint-eslint-rules/dist/rules"
-  ]
+    "prettier": true,
+    "ordered-imports": true,
+    "no-empty": false,
+    "space-before-function-paren": false,
+    "no-shadowed-variable": false
+  }
 }

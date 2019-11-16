@@ -28,7 +28,7 @@ const Modal = styled.div`
   align-items: center;
   justify-content: center;
 
-  pointer-events: ${(props: IMotion) => props.visible ? `auto` : `none`};
+  pointer-events: ${(props: IMotion) => (props.visible ? `auto` : `none`)};
 `
 
 const Overlay = styled.div`
@@ -40,7 +40,7 @@ const Overlay = styled.div`
 
   background: rgba(0, 0, 0, 0.3);
 
-  pointer-events: ${(props: IMotion) => props.visible ? `auto` : `none`};
+  pointer-events: ${(props: IMotion) => (props.visible ? `auto` : `none`)};
 `
 
 const Wrapper = styled(Box)`
@@ -64,15 +64,19 @@ const ReaderModalComponent: React.FC<IReaderModalProps> = props => {
           stiffness: isVisible ? 300 : 200,
           damping: isVisible ? 15 : 30,
         }),
-      })}
-    >
+      })}>
       {(motion, isVisible) => (
         <Modal visible={isVisible}>
-          <Overlay onClick={() => onClose()} visible={isVisible} style={{opacity: motion.opacity}} />
-          <Wrapper mx={[3, 2, 0]} mb={5} style={{opacity: motion.opacity, transform: `translate3d(0, ${motion.modalOffset}px, 0)`}}>
+          <Overlay onClick={() => onClose()} visible={isVisible} style={{ opacity: motion.opacity }} />
+          <Wrapper
+            mx={[3, 2, 0]}
+            mb={5}
+            style={{ opacity: motion.opacity, transform: `translate3d(0, ${motion.modalOffset}px, 0)` }}>
             <Box px={3} pt={3}>
               <Flex alignItems={`center`}>
-                <Text fontSize={16} fontWeight={500}>{title}</Text>
+                <Text fontSize={16} fontWeight={500}>
+                  {title}
+                </Text>
                 <Box mx={`auto`} />
                 <FaTimes onClick={() => onClose()} />
               </Flex>
@@ -80,9 +84,7 @@ const ReaderModalComponent: React.FC<IReaderModalProps> = props => {
             <Box py={3}>
               <Divider />
             </Box>
-            <Box px={3}>
-              {children}
-            </Box>
+            <Box px={3}>{children}</Box>
             <Box pb={3} />
           </Wrapper>
         </Modal>

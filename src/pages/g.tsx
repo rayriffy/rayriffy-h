@@ -9,9 +9,7 @@ interface IProps {
 }
 
 const DynamicGComponent: React.FC<IProps> = props => {
-  return (
-    <DynamicViewing {...props} />
-  )
+  return <DynamicViewing {...props} />
 }
 
 export default DynamicGComponent

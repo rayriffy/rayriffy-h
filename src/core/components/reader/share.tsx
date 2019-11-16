@@ -23,16 +23,16 @@ const CircleButton = styled(Box)`
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
 
-  transition: all .3s cubic-bezier(.645,.045,.355,1);
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
-  color: ${(props: IReaderButton) => props.primary ? `#fff` : `rgba(0, 0, 0, 0.85)`};
-  background: ${(props: IReaderButton) => props.primary ? `#1890ff` : `#fff`};
-  border: 1px solid ${(props: IReaderButton) => props.primary ? `#1890ff` : `#d9d9d9`};
+  color: ${(props: IReaderButton) => (props.primary ? `#fff` : `rgba(0, 0, 0, 0.85)`)};
+  background: ${(props: IReaderButton) => (props.primary ? `#1890ff` : `#fff`)};
+  border: 1px solid ${(props: IReaderButton) => (props.primary ? `#1890ff` : `#d9d9d9`)};
 
   &:hover {
-    color: ${(props: IReaderButton) => props.primary ? `#fff` : `#40a9ff`};
-    background: ${(props: IReaderButton) => props.primary ? `#40a9ff` : `#fff`};
-    border: 1px solid ${(props: IReaderButton) => props.primary ? `#1890ff` : `#40a9ff`};
+    color: ${(props: IReaderButton) => (props.primary ? `#fff` : `#40a9ff`)};
+    background: ${(props: IReaderButton) => (props.primary ? `#40a9ff` : `#fff`)};
+    border: 1px solid ${(props: IReaderButton) => (props.primary ? `#1890ff` : `#40a9ff`)};
   }
 `
 
@@ -41,7 +41,7 @@ const StyledLink = styled(Link)`
 `
 
 const ReaderShareComponent: React.FC<IReaderShareProps> = props => {
-  const {hentai} = props
+  const { hentai } = props
 
   const [isModal, setIsModal] = useState<boolean>(false)
 

@@ -21,7 +21,7 @@ const ImageCover = styled(Image)`
 `
 
 const BluredImageComponent: React.FC<IBluredImageProps> = props => {
-  const {height, src} = props
+  const { height, src } = props
 
   const [safeMode] = useContext(SafeMode)
 

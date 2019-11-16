@@ -17,13 +17,13 @@ import { IFetchedRaw } from '../../../core/@types/IFetchedRaw'
 import { IProps } from '../@types/IProps'
 
 const StyledInput = styled.input`
-	padding: 8px 10px;
-	border: 1px solid #ccc;
-	border-radius: 3px;
-	width: 100%;
-	box-sizing: border-box;
-	color: #2C3E50;
-	font-size: 13px;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 100%;
+  box-sizing: border-box;
+  color: #2c3e50;
+  font-size: 13px;
 `
 
 const StyledButton = styled(Button)`
@@ -36,7 +36,7 @@ const StyledFlex = styled(Flex)`
 `
 
 const SearchComponent: React.FC<IProps> = props => {
-  const {raw, skip} = props.pageContext
+  const { raw, skip } = props.pageContext
 
   const [, setSubtitle] = useContext(Subtitle)
 
@@ -75,7 +75,14 @@ const SearchComponent: React.FC<IProps> = props => {
       <Flex justifyContent={`center`}>
         <Box width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}>
           <StyledFlex alignItems={`center`}>
-            <StyledInput type={`text`} value={query} onChange={e => setQuery(e.target.value)} onKeyDown={e => e.key === 'Enter' ? searchButtonHandler() : null} placeholder='Query' required={true} />
+            <StyledInput
+              type={`text`}
+              value={query}
+              onChange={e => setQuery(e.target.value)}
+              onKeyDown={e => (e.key === 'Enter' ? searchButtonHandler() : null)}
+              placeholder='Query'
+              required={true}
+            />
             <Box pl={2} width={36}>
               <StyledButton onClick={() => searchButtonHandler()}>
                 <FaSearch />
@@ -86,7 +93,9 @@ const SearchComponent: React.FC<IProps> = props => {
       </Flex>
       <Flex justifyContent={`center`}>
         <Box width={22 / 24}>
-          {isEmpty(res) ? 'No result' : (
+          {isEmpty(res) ? (
+            'No result'
+          ) : (
             <Box>
               <Flex justifyContent={`center`}>
                 <Box width={18 / 24} py={3}>

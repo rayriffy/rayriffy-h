@@ -11,9 +11,7 @@ const AboutComponent: React.FC = () => {
     setSubtitle(`about`)
   }, [])
 
-  return (
-    <Box>OK</Box>
-  )
+  return <Box>OK</Box>
 }
 
 export default AboutComponent

@@ -38,7 +38,7 @@ const FooterBox = styled(Box)`
 `
 
 const PosterComponent: React.FC<IPosterProps> = props => {
-  const {raw} = props
+  const { raw } = props
 
   const tagStack = filter(allTagStack, tag => tag.name === 'parody' || tag.name === 'tag')
 
@@ -54,7 +54,10 @@ const PosterComponent: React.FC<IPosterProps> = props => {
       <BorderedCard>
         <CoverBox>
           <Link to={`/r/${raw.id}`}>
-            <CoverImage height={raw.images.cover.h} src={`https://t.nhentai.net/galleries/${raw.media_id}/cover.${raw.images.cover.t === 'p' ? 'png' : 'jpg'}`} />
+            <CoverImage
+              height={raw.images.cover.h}
+              src={`https://t.nhentai.net/galleries/${raw.media_id}/cover.${raw.images.cover.t === 'p' ? 'png' : 'jpg'}`}
+            />
           </Link>
         </CoverBox>
         <Box p={3}>
@@ -62,36 +65,49 @@ const PosterComponent: React.FC<IPosterProps> = props => {
           <Flex flexWrap={`wrap`} py={2}>
             {tags.map(tag => {
               if (tagStackTag) {
-                const {border, background, text} = tagStackTag.color
+                const { border, background, text } = tagStackTag.color
 
                 return (
-                  <Slug key={`slug-tag-${tag.id}`} background={background} border={border} text={text} link={`/${tagStackTag.prefix}/${tag.id}`} title={tag.name} />
+                  <Slug
+                    key={`slug-tag-${tag.id}`}
+                    background={background}
+                    border={border}
+                    text={text}
+                    link={`/${tagStackTag.prefix}/${tag.id}`}
+                    title={tag.name}
+                  />
                 )
               } else {
-                return (
-                  <Slug key={`slug-tag-${tag.id}`} title={tag.name} />
-                )
+                return <Slug key={`slug-tag-${tag.id}`} title={tag.name} />
               }
             })}
             {parodies.map(tag => {
               if (tagStackParody) {
-                const {border, background, text} = tagStackParody.color
+                const { border, background, text } = tagStackParody.color
 
                 return (
-                  <Slug key={`slug-parody-${tag.id}`} background={background} border={border} text={text} link={`/${tagStackParody.prefix}/${tag.id}`} title={tag.name} />
+                  <Slug
+                    key={`slug-parody-${tag.id}`}
+                    background={background}
+                    border={border}
+                    text={text}
+                    link={`/${tagStackParody.prefix}/${tag.id}`}
+                    title={tag.name}
+                  />
                 )
               } else {
-                return (
-                  <Slug key={`slug-parody-${tag.id}`} title={tag.name} />
-                )
+                return <Slug key={`slug-parody-${tag.id}`} title={tag.name} />
               }
             })}
           </Flex>
         </Box>
         {language ? (
-          <FooterBox backgroundColor={language.name === `english` ? `#1890ff` : language.name === `japanese` ? `#f5222d` : `#000000`}>
+          <FooterBox
+            backgroundColor={language.name === `english` ? `#1890ff` : language.name === `japanese` ? `#f5222d` : `#000000`}>
             <Flex justifyContent={`center`}>
-              <Text color={`#ffffff`} fontSize={12} py={1}>{upperFirst(language.name)}</Text>
+              <Text color={`#ffffff`} fontSize={12} py={1}>
+                {upperFirst(language.name)}
+              </Text>
             </Flex>
           </FooterBox>
         ) : null}

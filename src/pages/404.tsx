@@ -14,7 +14,7 @@ const BorderedCard = styled(Card)`
 `
 
 const WidthImage = styled(Image)`
-  width: 100%
+  width: 100%;
 `
 
 const NotFoundComponent: React.FC = () => {
@@ -31,8 +31,12 @@ const NotFoundComponent: React.FC = () => {
           <BorderedCard>
             <WidthImage src={`https://media.giphy.com/media/uS1hYCwTrW3ks/giphy.gif`} />
             <Box px={3} pt={1} pb={3}>
-              <Text fontSize={[18, 20, 22, 24]} fontWeight={600} pt={2}>Not found</Text>
-              <Text fontSize={[14, 15]} pt={2}>The page your're looking for is not found</Text>
+              <Text fontSize={[18, 20, 22, 24]} fontWeight={600} pt={2}>
+                Not found
+              </Text>
+              <Text fontSize={[14, 15]} pt={2}>
+                The page your're looking for is not found
+              </Text>
             </Box>
           </BorderedCard>
         </Box>

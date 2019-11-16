@@ -10,7 +10,7 @@ interface IProps {
 }
 
 const HTMLComponent: React.FC<IProps> = props => {
-  const {htmlAttributes, headComponents, bodyAttributes, preBodyComponents, postBodyComponents, body} = props
+  const { htmlAttributes, headComponents, bodyAttributes, preBodyComponents, postBodyComponents, body } = props
 
   return (
     <html {...htmlAttributes}>
@@ -26,7 +26,7 @@ const HTMLComponent: React.FC<IProps> = props => {
       </head>
       <body {...bodyAttributes}>
         {preBodyComponents}
-        <div key={`body`} id='___gatsby' dangerouslySetInnerHTML={{__html: body}} />
+        <div key={`body`} id='___gatsby' dangerouslySetInnerHTML={{ __html: body }} />
         {postBodyComponents}
       </body>
     </html>

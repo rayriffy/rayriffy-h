@@ -32,7 +32,7 @@ const Panel = styled.div`
   bottom: 0;
   right: 0;
 
-  pointer-events: ${(props: IPanel) => props.visible ? `auto` : `none`};
+  pointer-events: ${(props: IPanel) => (props.visible ? `auto` : `none`)};
 `
 
 const Overlay = styled.div`
@@ -44,7 +44,7 @@ const Overlay = styled.div`
   background: rgba(0, 0, 0, 0.3);
 
   opacity: ${(props: IPanel) => props.opacity};
-  pointer-events: ${(props: IPanel) => props.visible ? `auto` : `none`};
+  pointer-events: ${(props: IPanel) => (props.visible ? `auto` : `none`)};
 `
 
 const Wrapper = styled(Box)`
@@ -108,8 +108,7 @@ const DrawerComponent: React.FC = () => {
         motionStyle={(spring, isVisible) => ({
           opacity: spring(isVisible ? 1 : 0),
           panelOffset: spring(isVisible ? 0 : 100),
-        })}
-      >
+        })}>
         {(motion, isVisible) => (
           <Panel visible={isVisible}>
             <Overlay onClick={() => setOpen(false)} visible={isVisible} opacity={motion.opacity} />
@@ -118,20 +117,26 @@ const DrawerComponent: React.FC = () => {
                 <CloseIcon onClick={() => setOpen(false)} size={`20px`} />
               </Flex>
               <Box pt={4} px={3}>
-                <Text fontSize={32} fontWeight={700}>Riffy H</Text>
+                <Text fontSize={32} fontWeight={700}>
+                  Riffy H
+                </Text>
                 <Text color={`rgba(0, 0, 0, 0.45)`}>The missng piece of NHentai</Text>
               </Box>
               <Divider py={2} />
               <Box px={4}>
                 <Box py={2}>
-                  <Text fontSize={20} fontWeight={600} py={2}>Menu</Text>
+                  <Text fontSize={20} fontWeight={600} py={2}>
+                    Menu
+                  </Text>
                   {menuStacks.map((stack, i) => {
                     return (
                       <Box key={`menu-stack-${stack.prefix}`}>
                         {i !== 0 ? <Divider /> : null}
                         <Box py={2}>
                           <TransparentLink to={`/${stack.prefix}`}>
-                            <CapitalizedText fontSize={14} color={`rgba(0, 0, 0, 0.65)`} py={1}>{stack.name}</CapitalizedText>
+                            <CapitalizedText fontSize={14} color={`rgba(0, 0, 0, 0.65)`} py={1}>
+                              {stack.name}
+                            </CapitalizedText>
                           </TransparentLink>
                         </Box>
                       </Box>
@@ -139,14 +144,18 @@ const DrawerComponent: React.FC = () => {
                   })}
                 </Box>
                 <Box py={2}>
-                  <Text fontSize={20} fontWeight={600} py={2}>Tag Types</Text>
+                  <Text fontSize={20} fontWeight={600} py={2}>
+                    Tag Types
+                  </Text>
                   {tagStacks.map((stack, i) => {
                     return (
                       <Box key={`menu-stack-${stack.prefix}`}>
                         {i !== 0 ? <Divider /> : null}
                         <Box py={2}>
                           <TransparentLink to={`/${stack.prefix}`}>
-                            <CapitalizedText fontSize={14} color={`rgba(0, 0, 0, 0.65)`} py={1}>{stack.name}</CapitalizedText>
+                            <CapitalizedText fontSize={14} color={`rgba(0, 0, 0, 0.65)`} py={1}>
+                              {stack.name}
+                            </CapitalizedText>
                           </TransparentLink>
                         </Box>
                       </Box>
@@ -154,21 +163,34 @@ const DrawerComponent: React.FC = () => {
                   })}
                 </Box>
                 <Box py={2}>
-                  <Text fontSize={20} fontWeight={600} py={2}>Settings</Text>
+                  <Text fontSize={20} fontWeight={600} py={2}>
+                    Settings
+                  </Text>
                   <Box py={2}>
                     <Flex>
-                      <Switch height={18} width={40} checked={safeMode === undefined ? true : safeMode} onChange={toggleSafeMode} />
-                      <Text fontSize={14} px={2}>Safe mode</Text>
+                      <Switch
+                        height={18}
+                        width={40}
+                        checked={safeMode === undefined ? true : safeMode}
+                        onChange={toggleSafeMode}
+                      />
+                      <Text fontSize={14} px={2}>
+                        Safe mode
+                      </Text>
                     </Flex>
                   </Box>
                 </Box>
               </Box>
               <Flex justifyContent={`center`} py={3}>
-                <Text fontSize={14} color={`rgba(0,0,0,0.45)`}>Host with</Text>
+                <Text fontSize={14} color={`rgba(0,0,0,0.45)`}>
+                  Host with
+                </Text>
                 <Box px={1}>
                   <LoveIcon color={`#f32929`} />
                 </Box>
-                <Text fontSize={14} color={`rgba(0,0,0,0.45)`}>by rayriffy</Text>
+                <Text fontSize={14} color={`rgba(0,0,0,0.45)`}>
+                  by rayriffy
+                </Text>
               </Flex>
             </Wrapper>
           </Panel>
