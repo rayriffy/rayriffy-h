@@ -20,7 +20,9 @@ const FailedComponent: React.FC = () => {
     <Flex justifyContent={`center`}>
       <Box width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}>
         <BorderedCard>
-          <WidthImage src={`https://media.giphy.com/media/14rivMbeyNnqXS/giphy.gif`} />
+          <WidthImage
+            src={`https://media.giphy.com/media/14rivMbeyNnqXS/giphy.gif`}
+          />
           <Box px={3} pt={1} pb={3}>
             <Text fontSize={[18, 20, 22, 24]} fontWeight={600} pt={2}>
               Failed

@@ -19,7 +19,9 @@ const Context: React.FC = props => {
 
   return (
     <SafeMode.Provider value={[safeMode, setSafeMode]}>
-      <Subtitle.Provider value={[subtitle, setSubtitle]}>{children}</Subtitle.Provider>
+      <Subtitle.Provider value={[subtitle, setSubtitle]}>
+        {children}
+      </Subtitle.Provider>
     </SafeMode.Provider>
   )
 }

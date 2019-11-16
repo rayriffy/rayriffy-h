@@ -25,14 +25,18 @@ const CircleButton = styled(Box)`
 
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
-  color: ${(props: IReaderButton) => (props.primary ? `#fff` : `rgba(0, 0, 0, 0.85)`)};
+  color: ${(props: IReaderButton) =>
+    props.primary ? `#fff` : `rgba(0, 0, 0, 0.85)`};
   background: ${(props: IReaderButton) => (props.primary ? `#1890ff` : `#fff`)};
-  border: 1px solid ${(props: IReaderButton) => (props.primary ? `#1890ff` : `#d9d9d9`)};
+  border: 1px solid
+    ${(props: IReaderButton) => (props.primary ? `#1890ff` : `#d9d9d9`)};
 
   &:hover {
     color: ${(props: IReaderButton) => (props.primary ? `#fff` : `#40a9ff`)};
-    background: ${(props: IReaderButton) => (props.primary ? `#40a9ff` : `#fff`)};
-    border: 1px solid ${(props: IReaderButton) => (props.primary ? `#1890ff` : `#40a9ff`)};
+    background: ${(props: IReaderButton) =>
+      props.primary ? `#40a9ff` : `#fff`};
+    border: 1px solid
+      ${(props: IReaderButton) => (props.primary ? `#1890ff` : `#40a9ff`)};
   }
 `
 
@@ -56,7 +60,10 @@ const ReaderShareComponent: React.FC<IReaderShareProps> = props => {
           </CircleButton>
         </Box>
         <Box pl={1}>
-          <StyledLink href={`https://nhentai.net/g/${hentai.id}`} target={`_blank`} rel={`noopener noreferrer`}>
+          <StyledLink
+            href={`https://nhentai.net/g/${hentai.id}`}
+            target={`_blank`}
+            rel={`noopener noreferrer`}>
             <CircleButton>
               <Flex justifyContent={`center`} alignItems={`center`}>
                 <FaExternalLinkAlt />
@@ -65,7 +72,10 @@ const ReaderShareComponent: React.FC<IReaderShareProps> = props => {
           </StyledLink>
         </Box>
       </Flex>
-      <Modal title={`Share`} isOpened={isModal} onClose={() => setIsModal(false)}>
+      <Modal
+        title={`Share`}
+        isOpened={isModal}
+        onClose={() => setIsModal(false)}>
         <API id={hentai.id} />
       </Modal>
     </React.Fragment>

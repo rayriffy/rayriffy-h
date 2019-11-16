@@ -38,14 +38,17 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
                 <CoverBox>
                   <BluredImage
                     height={hentai.images.cover.h}
-                    src={`https://t.nhentai.net/galleries/${hentai.media_id}/cover.${
-                      hentai.images.cover.t === 'p' ? 'png' : 'jpg'
-                    }`}
+                    src={`https://t.nhentai.net/galleries/${
+                      hentai.media_id
+                    }/cover.${hentai.images.cover.t === 'p' ? 'png' : 'jpg'}`}
                   />
                 </CoverBox>
               </Box>
               <Box width={4 / 7} p={[2, 3]}>
-                <Text fontSize={22} fontWeight={600} color={`rgba(0, 0, 0, 0.85)`}>
+                <Text
+                  fontSize={22}
+                  fontWeight={600}
+                  color={`rgba(0, 0, 0, 0.85)`}>
                   {hentai.title.pretty}
                 </Text>
                 <Box py={2}>
@@ -57,7 +60,9 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
                         <Box key={`collapse-${hentai.id}-${stack.name}`}>
                           {i !== 0 ? <Divider /> : null}
                           <Box py={1}>
-                            <Collapse title={upperFirst(stack.name)} defaultState={stack.name === 'tag'}>
+                            <Collapse
+                              title={upperFirst(stack.name)}
+                              defaultState={stack.name === 'tag'}>
                               <Flex flexWrap={`wrap`}>
                                 {res.map(tag => {
                                   return (
@@ -98,7 +103,9 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
                   <CoverBox key={`reader-${raw.data.id}-page-${i + 1}`}>
                     <BluredImage
                       height={page.h}
-                      src={`https://i.nhentai.net/galleries/${hentai.media_id}/${i + 1}.${page.t === 'p' ? 'png' : 'jpg'}`}
+                      src={`https://i.nhentai.net/galleries/${
+                        hentai.media_id
+                      }/${i + 1}.${page.t === 'p' ? 'png' : 'jpg'}`}
                     />
                   </CoverBox>
                 )

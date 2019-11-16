@@ -19,7 +19,13 @@ const BorderedSlug = styled(Box)<IBorderedSlug>`
 `
 
 const SlugComponent: React.FC<ISlugProps> = props => {
-  const { border = '#d9d9d9', background = '#fafafa', text = 'rgba(0, 0, 0, 0.65)', link, title } = props
+  const {
+    border = '#d9d9d9',
+    background = '#fafafa',
+    text = 'rgba(0, 0, 0, 0.65)',
+    link,
+    title,
+  } = props
 
   return (
     <BorderedSlug border={border} backgroundColor={background} m={'2px'}>

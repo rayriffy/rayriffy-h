@@ -2,7 +2,10 @@ import { flatten, get, intersection, union } from 'lodash'
 
 import { IFetchedRaw } from '../../../core/@types/IFetchedRaw'
 
-export const searchHentai = async (query: string, raws: IFetchedRaw[]): Promise<IFetchedRaw[]> => {
+export const searchHentai = async (
+  query: string,
+  raws: IFetchedRaw[]
+): Promise<IFetchedRaw[]> => {
   const resultsByWords = query
     .split(' ')
     .filter(o => o !== '')
@@ -17,7 +20,11 @@ export const searchHentai = async (query: string, raws: IFetchedRaw[]): Promise<
         union(
           ...languages.map(language => {
             return raws.filter(raw => {
-              const title: string = get(raw, `title.${language}`, '').toLocaleLowerCase()
+              const title: string = get(
+                raw,
+                `title.${language}`,
+                ''
+              ).toLocaleLowerCase()
 
               return RegExp(subquery.toLocaleLowerCase()).test(title)
             })

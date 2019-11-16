@@ -40,9 +40,17 @@ const FooterBox = styled(Box)`
 const PosterComponent: React.FC<IPosterProps> = props => {
   const { raw } = props
 
-  const tagStack = filter(allTagStack, tag => tag.name === 'parody' || tag.name === 'tag')
+  const tagStack = filter(
+    allTagStack,
+    tag => tag.name === 'parody' || tag.name === 'tag'
+  )
 
-  const language = head(filter(filterTagByType(raw.tags, 'language'), tag => tag.name !== 'translated'))
+  const language = head(
+    filter(
+      filterTagByType(raw.tags, 'language'),
+      tag => tag.name !== 'translated'
+    )
+  )
   const tags = filterTagByType(raw.tags, 'tag')
   const parodies = filterTagByType(raw.tags, 'parody')
 
@@ -56,7 +64,9 @@ const PosterComponent: React.FC<IPosterProps> = props => {
           <Link to={`/r/${raw.id}`}>
             <CoverImage
               height={raw.images.cover.h}
-              src={`https://t.nhentai.net/galleries/${raw.media_id}/cover.${raw.images.cover.t === 'p' ? 'png' : 'jpg'}`}
+              src={`https://t.nhentai.net/galleries/${raw.media_id}/cover.${
+                raw.images.cover.t === 'p' ? 'png' : 'jpg'
+              }`}
             />
           </Link>
         </CoverBox>
@@ -103,7 +113,13 @@ const PosterComponent: React.FC<IPosterProps> = props => {
         </Box>
         {language ? (
           <FooterBox
-            backgroundColor={language.name === `english` ? `#1890ff` : language.name === `japanese` ? `#f5222d` : `#000000`}>
+            backgroundColor={
+              language.name === `english`
+                ? `#1890ff`
+                : language.name === `japanese`
+                ? `#f5222d`
+                : `#000000`
+            }>
             <Flex justifyContent={`center`}>
               <Text color={`#ffffff`} fontSize={12} py={1}>
                 {upperFirst(language.name)}

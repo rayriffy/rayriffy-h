@@ -45,7 +45,9 @@ const CustomComponent: React.FC = () => {
                 Custom
               </Text>
               <Box py={2}>
-                <Text fontSize={[14, 15]}>Enter your hentai ID down below...</Text>
+                <Text fontSize={[14, 15]}>
+                  Enter your hentai ID down below...
+                </Text>
               </Box>
               <Box py={2}>
                 <StyledInput

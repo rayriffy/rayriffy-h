@@ -79,7 +79,9 @@ const SearchComponent: React.FC<IProps> = props => {
               type={`text`}
               value={query}
               onChange={e => setQuery(e.target.value)}
-              onKeyDown={e => (e.key === 'Enter' ? searchButtonHandler() : null)}
+              onKeyDown={e =>
+                e.key === 'Enter' ? searchButtonHandler() : null
+              }
               placeholder='Query'
               required={true}
             />
@@ -99,21 +101,32 @@ const SearchComponent: React.FC<IProps> = props => {
             <Box>
               <Flex justifyContent={`center`}>
                 <Box width={18 / 24} py={3}>
-                  <Pagination current={page} max={chunk(res, skip).length} onChange={page => renderPage(res, page)} />
+                  <Pagination
+                    current={page}
+                    max={chunk(res, skip).length}
+                    onChange={page => renderPage(res, page)}
+                  />
                 </Box>
               </Flex>
               <Flex justifyContent={`center`}>
                 <Box width={22 / 24}>
                   <Flex flexWrap={`wrap`} alignItems={`center`}>
                     {renderedRaw.map(hentai => (
-                      <Poster key={`poster-${hentai.data.id}`} raw={hentai.data.raw} />
+                      <Poster
+                        key={`poster-${hentai.data.id}`}
+                        raw={hentai.data.raw}
+                      />
                     ))}
                   </Flex>
                 </Box>
               </Flex>
               <Flex justifyContent={`center`}>
                 <Box width={18 / 24} py={3}>
-                  <Pagination current={page} max={chunk(res, skip).length} onChange={page => renderPage(res, page)} />
+                  <Pagination
+                    current={page}
+                    max={chunk(res, skip).length}
+                    onChange={page => renderPage(res, page)}
+                  />
                 </Box>
               </Flex>
             </Box>

@@ -67,11 +67,18 @@ const ReaderModalComponent: React.FC<IReaderModalProps> = props => {
       })}>
       {(motion, isVisible) => (
         <Modal visible={isVisible}>
-          <Overlay onClick={() => onClose()} visible={isVisible} style={{ opacity: motion.opacity }} />
+          <Overlay
+            onClick={() => onClose()}
+            visible={isVisible}
+            style={{ opacity: motion.opacity }}
+          />
           <Wrapper
             mx={[3, 2, 0]}
             mb={5}
-            style={{ opacity: motion.opacity, transform: `translate3d(0, ${motion.modalOffset}px, 0)` }}>
+            style={{
+              opacity: motion.opacity,
+              transform: `translate3d(0, ${motion.modalOffset}px, 0)`,
+            }}>
             <Box px={3} pt={3}>
               <Flex alignItems={`center`}>
                 <Text fontSize={16} fontWeight={500}>

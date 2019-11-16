@@ -3,7 +3,11 @@ import React, { useContext, useState } from 'react'
 import Mortal from 'react-mortal'
 import Switch from 'react-switch'
 
-import { FaBars as MenuIcon, FaHeart as LoveIcon, FaTimes as CloseIcon } from 'react-icons/fa'
+import {
+  FaBars as MenuIcon,
+  FaHeart as LoveIcon,
+  FaTimes as CloseIcon,
+} from 'react-icons/fa'
 
 import { Box, Flex, Text } from 'rebass'
 import styled from 'styled-components'
@@ -111,7 +115,11 @@ const DrawerComponent: React.FC = () => {
         })}>
         {(motion, isVisible) => (
           <Panel visible={isVisible}>
-            <Overlay onClick={() => setOpen(false)} visible={isVisible} opacity={motion.opacity} />
+            <Overlay
+              onClick={() => setOpen(false)}
+              visible={isVisible}
+              opacity={motion.opacity}
+            />
             <Wrapper width={[275, 300]} panelOffset={motion.panelOffset}>
               <Flex alignItems={`center`} pt={3} px={3}>
                 <CloseIcon onClick={() => setOpen(false)} size={`20px`} />
@@ -120,7 +128,9 @@ const DrawerComponent: React.FC = () => {
                 <Text fontSize={32} fontWeight={700}>
                   Riffy H
                 </Text>
-                <Text color={`rgba(0, 0, 0, 0.45)`}>The missng piece of NHentai</Text>
+                <Text color={`rgba(0, 0, 0, 0.45)`}>
+                  The missng piece of NHentai
+                </Text>
               </Box>
               <Divider py={2} />
               <Box px={4}>
@@ -134,7 +144,10 @@ const DrawerComponent: React.FC = () => {
                         {i !== 0 ? <Divider /> : null}
                         <Box py={2}>
                           <TransparentLink to={`/${stack.prefix}`}>
-                            <CapitalizedText fontSize={14} color={`rgba(0, 0, 0, 0.65)`} py={1}>
+                            <CapitalizedText
+                              fontSize={14}
+                              color={`rgba(0, 0, 0, 0.65)`}
+                              py={1}>
                               {stack.name}
                             </CapitalizedText>
                           </TransparentLink>
@@ -153,7 +166,10 @@ const DrawerComponent: React.FC = () => {
                         {i !== 0 ? <Divider /> : null}
                         <Box py={2}>
                           <TransparentLink to={`/${stack.prefix}`}>
-                            <CapitalizedText fontSize={14} color={`rgba(0, 0, 0, 0.65)`} py={1}>
+                            <CapitalizedText
+                              fontSize={14}
+                              color={`rgba(0, 0, 0, 0.65)`}
+                              py={1}>
                               {stack.name}
                             </CapitalizedText>
                           </TransparentLink>

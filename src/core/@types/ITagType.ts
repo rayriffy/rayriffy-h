@@ -1,1 +1,8 @@
-export type ITagType = 'parody' | 'tag' | 'language' | 'character' | 'group' | 'artist' | 'category'
+export type ITagType =
+  | 'parody'
+  | 'tag'
+  | 'language'
+  | 'character'
+  | 'group'
+  | 'artist'
+  | 'category'

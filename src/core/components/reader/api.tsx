@@ -47,13 +47,16 @@ const StyledButton = styled.button`
 
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
-  color: ${(props: IReaderButton) => (props.primary ? `#fff` : `rgba(0, 0, 0, 0.85)`)};
+  color: ${(props: IReaderButton) =>
+    props.primary ? `#fff` : `rgba(0, 0, 0, 0.85)`};
   background: ${(props: IReaderButton) => (props.primary ? `#1890ff` : `#fff`)};
-  border: 1px solid ${(props: IReaderButton) => (props.primary ? `#1890ff` : `#d9d9d9`)};
+  border: 1px solid
+    ${(props: IReaderButton) => (props.primary ? `#1890ff` : `#d9d9d9`)};
 
   &:hover {
     color: ${(props: IReaderButton) => (props.primary ? `#fff` : `#40a9ff`)};
-    background: ${(props: IReaderButton) => (props.primary ? `#40a9ff` : `#fff`)};
+    background: ${(props: IReaderButton) =>
+      props.primary ? `#40a9ff` : `#fff`};
     border: 1px solid #40a9ff;
   }
 `
@@ -91,7 +94,11 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
           <Box width={[1, 1 / 2, 2 / 3]}>
             <Flex justifyContent={`center`}>
               {error ? (
-                <LoadContainer flexDirection={`row`} alignItems={`center`} justifyContent={`center`} border={`#f5222d`}>
+                <LoadContainer
+                  flexDirection={`row`}
+                  alignItems={`center`}
+                  justifyContent={`center`}
+                  border={`#f5222d`}>
                   <LoadContent>
                     <StyledFlex justifyContent={`center`} alignItems={`center`}>
                       <Text color={`#f5222d`}>Filed to get an image</Text>
@@ -99,7 +106,11 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
                   </LoadContent>
                 </LoadContainer>
               ) : image === '' ? (
-                <LoadContainer flexDirection={`row`} alignItems={`center`} justifyContent={`center`} border={`#d9d9d9`}>
+                <LoadContainer
+                  flexDirection={`row`}
+                  alignItems={`center`}
+                  justifyContent={`center`}
+                  border={`#d9d9d9`}>
                   <LoadContent>
                     <StyledFlex justifyContent={`center`} alignItems={`center`}>
                       <Text color={`rgba(0, 0, 0, 0.65)`}>Loading</Text>
@@ -122,7 +133,10 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
       </Box>
       {image !== '' ? (
         <Box py={2} px={2}>
-          <Flex justifyContent={`center`} alignItems={`center`} flexWrap={`wrap`}>
+          <Flex
+            justifyContent={`center`}
+            alignItems={`center`}
+            flexWrap={`wrap`}>
             <Box p={2}>
               <StyledLink href={image} download={`encoded-${id}.jpeg`}>
                 <StyledButton primary={true}>

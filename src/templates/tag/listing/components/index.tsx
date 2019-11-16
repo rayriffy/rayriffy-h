@@ -66,7 +66,9 @@ const TagListingComponent: React.FC<IProps> = props => {
       <Flex justifyContent={`center`}>
         <Box width={[22 / 24, 18 / 24, 14 / 24, 10 / 24]}>
           {alphabet.map(text => {
-            const filteredTags = filter(processedTags, o => startsWith(o.name, text))
+            const filteredTags = filter(processedTags, o =>
+              startsWith(o.name, text)
+            )
 
             if (!isEmpty(filteredTags)) {
               return (
