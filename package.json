@@ -19,7 +19,7 @@
     "gatsby-plugin-styled-components": "^3.1.12",
     "gatsby-plugin-typescript": "^2.1.18",
     "gatsby-plugin-typography": "^2.3.17",
-    "gatsby-source-filesystem": "^2.1.36",
+    "gatsby-source-filesystem": "^2.1.37",
     "lodash": "^4.17.15",
     "preact": "^10.0.5",
     "react": "^16.12.0",
