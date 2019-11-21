@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
-    "@types/lodash": "^4.14.148",
+    "@types/lodash": "^4.14.149",
     "@types/react-collapse": "^5.0.0",
     "@types/react-helmet": "^5.0.14",
     "@types/react-icons": "^3.0.0",
