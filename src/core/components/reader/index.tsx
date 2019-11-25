@@ -90,7 +90,7 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
       </Box>
       <Box py={2}>
         <Flex justifyContent='center'>
-          <Box width={[1, 22 / 24, 16 / 24, 12 / 24]}>
+          <Box width={['100%', 22 / 24, 16 / 24, 12 / 24]}>
             {hentai.images.pages.map((page, i) => {
               if (!raw.data.exclude.includes(i + 1)) {
                 return (
