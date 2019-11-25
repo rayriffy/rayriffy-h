@@ -1,8 +1,7 @@
 import React, { useContext } from 'react'
 
-import { Box, Flex, Text } from 'rebass'
+import { Box, Divider, Flex, Heading, Text } from '@chakra-ui/core'
 
-import Divider from '../../core/components/divider'
 import Drawer from '../components/drawer'
 
 import { Subtitle } from '../context'
@@ -12,26 +11,19 @@ const HeaderComponent = () => {
 
   return (
     <React.Fragment>
-      <Flex alignItems={`center`}>
-        <Flex alignItems={`flex-end`} flexWrap={`wrap`}>
-          <Text fontSize={42} fontWeight={700}>
-            Riffy H
-          </Text>
-          <Text
-            fontSize={30}
-            fontWeight={600}
-            color={`rgba(0, 0, 0, 0.45)`}
-            px={2}
-            pb={2}>
+      <Flex alignItems='center'>
+        <Flex alignItems='flex-end' flexWrap='wrap'>
+          <Heading size='2xl'>Riffy H</Heading>
+          <Text fontSize={30} fontWeight={600} color='gray.500' px={2}>
             {subtitle}
           </Text>
         </Flex>
-        <Box mx={`auto`} />
+        <Box mx='auto' />
         <Box px={3}>
           <Drawer />
         </Box>
       </Flex>
-      <Divider py={1} />
+      <Divider my={4} />
     </React.Fragment>
   )
 }

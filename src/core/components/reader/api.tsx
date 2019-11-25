@@ -4,8 +4,18 @@ import axios from 'axios'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { FaCopy, FaDownload } from 'react-icons/fa'
 
-import { Box, Flex, Image, Link, Text } from 'rebass'
-import styled from 'styled-components'
+import {
+  Box,
+  Flex,
+  Image,
+  Link,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  Text,
+} from '@chakra-ui/core'
+import styled from '@emotion/styled'
 
 import { IReaderAPIProps } from '../../@types/IReaderAPIProps'
 import { IReaderButton } from '../../@types/IReaderButton'
@@ -16,7 +26,7 @@ const StyledImage = styled(Image)`
   border-radius: 10px;
 `
 
-const LoadContainer = styled(Flex)`
+const LoadContainer = styled(Flex)<{ border: string }>`
   position: relative;
   width: 100%;
   padding-top: 100%;
@@ -35,7 +45,7 @@ const LoadContent = styled(Box)`
   right: 0;
 `
 
-const StyledButton = styled.button`
+const StyledButton = styled('button')<IReaderButton>`
   border-radius: 4px;
 
   display: flex;
@@ -89,89 +99,95 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
 
   return (
     <React.Fragment>
-      <Box px={4}>
-        <Flex justifyContent={`center`}>
-          <Box width={[1, 1 / 2, 2 / 3]}>
-            <Flex justifyContent={`center`}>
-              {error ? (
-                <LoadContainer
-                  flexDirection={`row`}
-                  alignItems={`center`}
-                  justifyContent={`center`}
-                  border={`#f5222d`}>
-                  <LoadContent>
-                    <StyledFlex justifyContent={`center`} alignItems={`center`}>
-                      <Text color={`#f5222d`}>Filed to get an image</Text>
-                    </StyledFlex>
-                  </LoadContent>
-                </LoadContainer>
-              ) : image === '' ? (
-                <LoadContainer
-                  flexDirection={`row`}
-                  alignItems={`center`}
-                  justifyContent={`center`}
-                  border={`#d9d9d9`}>
-                  <LoadContent>
-                    <StyledFlex justifyContent={`center`} alignItems={`center`}>
-                      <Text color={`rgba(0, 0, 0, 0.65)`}>Loading</Text>
-                    </StyledFlex>
-                  </LoadContent>
-                </LoadContainer>
-              ) : (
-                <Box>
-                  <StyledImage src={image} />
-                </Box>
-              )}
+      <ModalContent>
+        <ModalHeader>Share</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          <Box px={4}>
+            <Flex justifyContent='center'>
+              <Box width={['100%', 1 / 2, 2 / 3]}>
+                <Flex justifyContent='center'>
+                  {error ? (
+                    <LoadContainer
+                      flexDirection='row'
+                      alignItems='center'
+                      justifyContent='center'
+                      border='#f5222d'>
+                      <LoadContent>
+                        <StyledFlex justifyContent='center' alignItems='center'>
+                          <Text color='#f5222d'>Filed to get an image</Text>
+                        </StyledFlex>
+                      </LoadContent>
+                    </LoadContainer>
+                  ) : image === '' ? (
+                    <LoadContainer
+                      flexDirection='row'
+                      alignItems='center'
+                      justifyContent='center'
+                      border='#d9d9d9'>
+                      <LoadContent>
+                        <StyledFlex justifyContent='center' alignItems='center'>
+                          <Text color='gray.500'>Loading</Text>
+                        </StyledFlex>
+                      </LoadContent>
+                    </LoadContainer>
+                  ) : (
+                    <Box>
+                      <StyledImage src={image} />
+                    </Box>
+                  )}
+                </Flex>
+              </Box>
             </Flex>
           </Box>
-        </Flex>
-      </Box>
-      <Box p={2}>
-        <Text py={2} fontSize={15} fontWeight={500} textAlign={`center`}>
-          Share securely with Opener
-        </Text>
-      </Box>
-      {image !== '' ? (
-        <Box py={2} px={2}>
-          <Flex
-            justifyContent={`center`}
-            alignItems={`center`}
-            flexWrap={`wrap`}>
-            <Box p={2}>
-              <StyledLink href={image} download={`encoded-${id}.jpeg`}>
-                <StyledButton primary={true}>
-                  <Flex alignItems={`center`} px={3} py={1}>
-                    <FaDownload />
-                    <Text pl={1} fontSize={14}>
-                      Download
-                    </Text>
-                  </Flex>
-                </StyledButton>
-              </StyledLink>
+          <Box p={2}>
+            <Text fontSize={15} fontWeight={500} textAlign='center'>
+              Share securely with Opener
+            </Text>
+          </Box>
+          {image !== '' ? (
+            <Box py={2} px={2}>
+              <Flex justifyContent='center' alignItems='center' flexWrap='wrap'>
+                <Box p={2}>
+                  <StyledLink
+                    href={image}
+                    download={`encoded-${id}.jpeg`}
+                    _hover={{ textDecoration: 'none' }}>
+                    <StyledButton primary={true}>
+                      <Flex alignItems='center' px={3} py={1}>
+                        <FaDownload />
+                        <Text pl={1} fontSize='sm'>
+                          Download
+                        </Text>
+                      </Flex>
+                    </StyledButton>
+                  </StyledLink>
+                </Box>
+                <Box p={2}>
+                  <CopyToClipboard text={id} onCopy={() => setIsCopied(true)}>
+                    <StyledButton>
+                      {isCopied ? (
+                        <Flex alignItems='center' px={3} py={1}>
+                          <Text pl={1} fontSize='sm'>
+                            Copied!
+                          </Text>
+                        </Flex>
+                      ) : (
+                        <Flex alignItems='center' px={3} py={1}>
+                          <FaCopy />
+                          <Text pl={1} fontSize='sm'>
+                            Copy ID
+                          </Text>
+                        </Flex>
+                      )}
+                    </StyledButton>
+                  </CopyToClipboard>
+                </Box>
+              </Flex>
             </Box>
-            <Box p={2}>
-              <CopyToClipboard text={id} onCopy={() => setIsCopied(true)}>
-                <StyledButton>
-                  {isCopied ? (
-                    <Flex alignItems={`center`} px={3} py={1}>
-                      <Text pl={1} fontSize={14}>
-                        Copied!
-                      </Text>
-                    </Flex>
-                  ) : (
-                    <Flex alignItems={`center`} px={3} py={1}>
-                      <FaCopy />
-                      <Text pl={1} fontSize={14}>
-                        Copy ID
-                      </Text>
-                    </Flex>
-                  )}
-                </StyledButton>
-              </CopyToClipboard>
-            </Box>
-          </Flex>
-        </Box>
-      ) : null}
+          ) : null}
+        </ModalBody>
+      </ModalContent>
     </React.Fragment>
   )
 }

@@ -1,18 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react'
 
-import { Box, Button, Card, Flex, Text } from 'rebass'
-import styled from 'styled-components'
+import { Box, Button, Flex, Text } from '@chakra-ui/core'
+import styled from '@emotion/styled'
 
 import { Subtitle } from '../app/context'
 
 import TransparentLink from '../core/components/transparentLink'
 
-const BorderedCard = styled(Card)`
+const BorderedCard = styled(Box)`
   border-radius: 8px;
   border: 1px solid #e8e8e8;
   overflow: hidden;
-
-  background: #fff;
 `
 
 const StyledInput = styled.input`
@@ -37,7 +35,7 @@ const CustomComponent: React.FC = () => {
 
   return (
     <Box pt={3}>
-      <Flex justifyContent={`center`}>
+      <Flex justifyContent='center'>
         <Box width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}>
           <BorderedCard p={3}>
             <Box p={2}>
@@ -51,7 +49,7 @@ const CustomComponent: React.FC = () => {
               </Box>
               <Box py={2}>
                 <StyledInput
-                  type={`number`}
+                  type='number'
                   value={input}
                   onChange={e => setInput(e.target.value)}
                   placeholder='000000'
@@ -60,12 +58,12 @@ const CustomComponent: React.FC = () => {
               </Box>
               <Box py={1}>
                 {input === '' ? (
-                  <Button bg={`#757575`} color={`#fff`} fontSize={14}>
+                  <Button bg='#757575' color='white' fontSize='sm'>
                     Locked
                   </Button>
                 ) : (
                   <TransparentLink to={`/g/${input}`}>
-                    <Button bg={`#1890ff`} color={`#fff`} fontSize={14}>
+                    <Button bg='#1890ff' color='white' fontSize='sm'>
                       Ready
                     </Button>
                   </TransparentLink>

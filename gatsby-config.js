@@ -7,7 +7,13 @@ module.exports = {
   },
   pathPrefix: '/',
   plugins: [
-    `gatsby-plugin-styled-components`,
+    {
+      resolve: `gatsby-plugin-emotion`,
+      options: {
+        sourceMap: true,
+        cssPropOptimization: true,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

@@ -2,6 +2,8 @@ import React, { Dispatch, SetStateAction, useState } from 'react'
 
 import { useLocalStorage } from 'web-api-hooks'
 
+import { CSSReset, ThemeProvider } from '@chakra-ui/core'
+
 type ISafeMode = [boolean, Dispatch<SetStateAction<boolean>>]
 type ISubtitle = [string, Dispatch<SetStateAction<string>>]
 
@@ -20,7 +22,10 @@ const Context: React.FC = props => {
   return (
     <SafeMode.Provider value={[safeMode, setSafeMode]}>
       <Subtitle.Provider value={[subtitle, setSubtitle]}>
-        {children}
+        <ThemeProvider>
+          <CSSReset />
+          {children}
+        </ThemeProvider>
       </Subtitle.Provider>
     </SafeMode.Provider>
   )

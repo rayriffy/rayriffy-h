@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 
-import { Box, Flex } from 'rebass'
+import { Box, Flex } from '@chakra-ui/core'
 
 import Pagination from '../../../../core/components/pagination'
 import Poster from '../../../../core/components/poster'
@@ -20,7 +20,7 @@ const TagViewingComponent: React.FC<IProps> = props => {
 
   return (
     <React.Fragment>
-      <Flex justifyContent={`center`}>
+      <Flex justifyContent='center'>
         <Box width={18 / 24} py={3}>
           <Pagination
             current={page.current}
@@ -29,16 +29,16 @@ const TagViewingComponent: React.FC<IProps> = props => {
           />
         </Box>
       </Flex>
-      <Flex justifyContent={`center`}>
+      <Flex justifyContent='center'>
         <Box width={22 / 24}>
-          <Flex flexWrap={`wrap`} alignItems={`center`}>
+          <Flex flexWrap='wrap' alignItems='center'>
             {raw.map(hentai => (
               <Poster key={`poster-${hentai.data.id}`} raw={hentai.data.raw} />
             ))}
           </Flex>
         </Box>
       </Flex>
-      <Flex justifyContent={`center`}>
+      <Flex justifyContent='center'>
         <Box width={18 / 24} py={3}>
           <Pagination
             current={page.current}

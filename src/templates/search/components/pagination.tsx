@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Box, Flex, Link } from 'rebass'
-import styled from 'styled-components'
+import { Box, Flex, Link, theme } from '@chakra-ui/core'
+import styled from '@emotion/styled'
 
 interface IProps {
   max: number
@@ -15,16 +15,18 @@ interface IPage {
   current: number
 }
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(Link)<IPage>`
   text-decoration: none;
 
   ${(props: IPage) => {
     const { start, index, current } = props
 
+    const themeColor: any = theme.colors
+
     if (start + index + 1 === current) {
-      return `color: rgba(0, 0, 0, 1);`
+      return `color: ${themeColor.black};`
     } else {
-      return `color: rgba(0, 0, 0, 0.5);`
+      return `color: ${themeColor.gray[500]};`
     }
   }}
 `
@@ -43,11 +45,12 @@ const PaginationComponent: React.FC<IProps> = props => {
       : 0
 
   return (
-    <Flex justifyContent={`center`}>
+    <Flex justifyContent='center'>
       {Array.from({ length: pageLength }, (_, i) => (
         <Box key={`pagination-${startPoint + i}`} px={3}>
           <StyledLink
             href={'#'}
+            _hover={{ textDecoration: 'none' }}
             start={startPoint}
             index={i}
             current={current}

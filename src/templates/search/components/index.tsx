@@ -3,8 +3,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import { chunk, get, isEmpty } from 'lodash'
 import { FaSearch } from 'react-icons/fa'
 
-import { Box, Button, Flex } from 'rebass'
-import styled from 'styled-components'
+import { Box, Button, Flex } from '@chakra-ui/core'
+import styled from '@emotion/styled'
 
 import Poster from '../../../core/components/poster'
 import Pagination from './pagination'
@@ -72,11 +72,11 @@ const SearchComponent: React.FC<IProps> = props => {
 
   return (
     <Box pt={3}>
-      <Flex justifyContent={`center`}>
+      <Flex justifyContent='center'>
         <Box width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}>
-          <StyledFlex alignItems={`center`}>
+          <StyledFlex alignItems='center'>
             <StyledInput
-              type={`text`}
+              type='text'
               value={query}
               onChange={e => setQuery(e.target.value)}
               onKeyDown={e =>
@@ -93,14 +93,14 @@ const SearchComponent: React.FC<IProps> = props => {
           </StyledFlex>
         </Box>
       </Flex>
-      <Flex justifyContent={`center`}>
+      <Flex justifyContent='center'>
         <Box width={22 / 24}>
           {isEmpty(res) ? (
             'No result'
           ) : (
             <Box>
-              <Flex justifyContent={`center`}>
-                <Box width={18 / 24} py={3}>
+              <Flex justifyContent='center'>
+                <Box width={18 / 24} py={6}>
                   <Pagination
                     current={page}
                     max={chunk(res, skip).length}
@@ -108,9 +108,9 @@ const SearchComponent: React.FC<IProps> = props => {
                   />
                 </Box>
               </Flex>
-              <Flex justifyContent={`center`}>
+              <Flex justifyContent='center'>
                 <Box width={22 / 24}>
-                  <Flex flexWrap={`wrap`} alignItems={`center`}>
+                  <Flex flexWrap='wrap' alignItems='center'>
                     {renderedRaw.map(hentai => (
                       <Poster
                         key={`poster-${hentai.data.id}`}
@@ -120,8 +120,8 @@ const SearchComponent: React.FC<IProps> = props => {
                   </Flex>
                 </Box>
               </Flex>
-              <Flex justifyContent={`center`}>
-                <Box width={18 / 24} py={3}>
+              <Flex justifyContent='center'>
+                <Box width={18 / 24} py={6}>
                   <Pagination
                     current={page}
                     max={chunk(res, skip).length}

@@ -1,7 +1,5 @@
 export interface ISlugProps {
-  background?: string
-  border?: string
-  text?: string
+  color?: string
   link?: string
   title: string
 }

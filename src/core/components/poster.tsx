@@ -3,8 +3,8 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { filter, head, upperFirst } from 'lodash'
 
-import { Box, Card, Flex, Text } from 'rebass'
-import styled from 'styled-components'
+import { Box, Flex, Stack, Text } from '@chakra-ui/core'
+import styled from '@emotion/styled'
 
 import Slug from './slug'
 
@@ -17,11 +17,9 @@ import BluredImage from './bluredImage'
 
 import { IPosterProps } from '../@types/IPosterProps'
 
-const BorderedCard = styled(Card)`
+const BorderedCard = styled(Box)`
   border-radius: 8px;
   border: 1px solid #e8e8e8;
-
-  background: #fff;
 `
 
 const CoverBox = styled(Box)`
@@ -58,7 +56,7 @@ const PosterComponent: React.FC<IPosterProps> = props => {
   const tagStackParody = head(filterTagStackByType(tagStack, 'parody'))
 
   return (
-    <Box width={[1, 1 / 2, 1 / 3, 1 / 5]} p={2}>
+    <Box width={['100%', 1 / 2, 1 / 3, 1 / 5]} p={2}>
       <BorderedCard>
         <CoverBox>
           <Link to={`/r/${raw.id}`}>
@@ -72,17 +70,13 @@ const PosterComponent: React.FC<IPosterProps> = props => {
         </CoverBox>
         <Box p={3}>
           <Text fontWeight={500}>{raw.title.pretty}</Text>
-          <Flex flexWrap={`wrap`} py={2}>
+          <Stack spacing={2} flexWrap='wrap' py={2} isInline={true}>
             {tags.map(tag => {
               if (tagStackTag) {
-                const { border, background, text } = tagStackTag.color
-
                 return (
                   <Slug
                     key={`slug-tag-${tag.id}`}
-                    background={background}
-                    border={border}
-                    text={text}
+                    color={tagStackTag.color}
                     link={`/${tagStackTag.prefix}/${tag.id}`}
                     title={tag.name}
                   />
@@ -93,14 +87,10 @@ const PosterComponent: React.FC<IPosterProps> = props => {
             })}
             {parodies.map(tag => {
               if (tagStackParody) {
-                const { border, background, text } = tagStackParody.color
-
                 return (
                   <Slug
                     key={`slug-parody-${tag.id}`}
-                    background={background}
-                    border={border}
-                    text={text}
+                    color={tagStackParody.color}
                     link={`/${tagStackParody.prefix}/${tag.id}`}
                     title={tag.name}
                   />
@@ -109,7 +99,7 @@ const PosterComponent: React.FC<IPosterProps> = props => {
                 return <Slug key={`slug-parody-${tag.id}`} title={tag.name} />
               }
             })}
-          </Flex>
+          </Stack>
         </Box>
         {language ? (
           <FooterBox
@@ -120,8 +110,8 @@ const PosterComponent: React.FC<IPosterProps> = props => {
                 ? `#f5222d`
                 : `#000000`
             }>
-            <Flex justifyContent={`center`}>
-              <Text color={`#ffffff`} fontSize={12} py={1}>
+            <Flex justifyContent='center'>
+              <Text color='white' fontSize={12} py={1}>
                 {upperFirst(language.name)}
               </Text>
             </Flex>

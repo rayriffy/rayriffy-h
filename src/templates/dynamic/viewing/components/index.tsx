@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 
-import { Box } from 'rebass'
+import { Box } from '@chakra-ui/core'
 
 import { Subtitle } from '../../../../app/context'
 

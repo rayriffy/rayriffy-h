@@ -2,19 +2,17 @@ import React, { useContext, useEffect } from 'react'
 
 import { filter, isEmpty, sortBy, startsWith } from 'lodash'
 
-import { Box, Card, Flex, Text } from 'rebass'
-import styled from 'styled-components'
+import { Box, Divider, Flex, Text } from '@chakra-ui/core'
+import styled from '@emotion/styled'
 
-import Divider from '../../../../core/components/divider'
 import TransparentLink from '../../../../core/components/transparentLink'
 
 import { Subtitle } from '../../../../app/context'
 
 import { IProps } from '../@types/IProps'
 
-const CoverCard = styled(Card)`
+const CoverCard = styled(Box)`
   border-radius: 8px;
-
   border: 1px solid #e8e8e8;
 `
 
@@ -63,7 +61,7 @@ const TagListingComponent: React.FC<IProps> = props => {
 
   return (
     <Box pt={1}>
-      <Flex justifyContent={`center`}>
+      <Flex justifyContent='center'>
         <Box width={[22 / 24, 18 / 24, 14 / 24, 10 / 24]}>
           {alphabet.map(text => {
             const filteredTags = filter(processedTags, o =>
@@ -86,7 +84,7 @@ const TagListingComponent: React.FC<IProps> = props => {
                             {i !== 0 ? <Divider /> : null}
                             <Box py={3}>
                               <TransparentLink to={`/${prefix}/${tag.id}`}>
-                                <Text fontSize={14} color={`#3784f7`}>
+                                <Text fontSize='sm' color='blue.500'>
                                   {tag.name}
                                 </Text>
                               </TransparentLink>

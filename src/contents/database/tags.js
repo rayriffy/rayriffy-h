@@ -1,64 +1,36 @@
 module.exports = [
   {
-    color: {
-      border: '#91d5ff',
-      background: '#e6f7ff',
-      text: '#1890ff',
-    },
+    color: 'blue',
     name: 'tag',
     prefix: 'ta',
   },
   {
-    color: {
-      border: '#ffadd2',
-      background: '#fff0f6',
-      text: '#eb2f96',
-    },
+    color: 'pink',
     name: 'artist',
     prefix: 'ar',
   },
   {
-    color: {
-      border: '#ffbb96',
-      background: '#fff2e8',
-      text: '#fa541c',
-    },
+    color: 'red',
     name: 'character',
     prefix: 'ch',
   },
   {
-    color: {
-      border: '#ffd591',
-      background: '#fff7e6',
-      text: '#fa8c16',
-    },
+    color: 'orange',
     name: 'parody',
     prefix: 'pa',
   },
   {
-    color: {
-      border: '#87e8de',
-      background: '#e6fffb',
-      text: '#13c2c2',
-    },
+    color: 'cyan',
     name: 'group',
     prefix: 'gr',
   },
   {
-    color: {
-      border: '#d3adf7',
-      background: '#f9f0ff',
-      text: '#722ed1',
-    },
+    color: 'purple',
     name: 'category',
     prefix: 'ca',
   },
   {
-    color: {
-      border: '#b7eb8f',
-      background: '#f6ffed',
-      text: '#52c41a',
-    },
+    color: 'green',
     name: 'language',
     prefix: 'la',
   }

@@ -1,17 +1,23 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { FaExternalLinkAlt, FaShareAlt } from 'react-icons/fa'
 
-import { Box, Flex, Link } from 'rebass'
-import styled from 'styled-components'
+import {
+  Box,
+  Flex,
+  Link,
+  Modal,
+  ModalOverlay,
+  useDisclosure,
+} from '@chakra-ui/core'
+import styled from '@emotion/styled'
 
 import API from './api'
-import Modal from './modal'
 
 import { IReaderButton } from '../../@types/IReaderButton'
 import { IReaderShareProps } from '../../@types/IReaderShareProps'
 
-const CircleButton = styled(Box)`
+const CircleButton = styled(Box)<IReaderButton>`
   width: 35px;
   height: 35px;
   border-radius: 50%;
@@ -47,14 +53,14 @@ const StyledLink = styled(Link)`
 const ReaderShareComponent: React.FC<IReaderShareProps> = props => {
   const { hentai } = props
 
-  const [isModal, setIsModal] = useState<boolean>(false)
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <React.Fragment>
-      <Flex alignItems={`center`}>
+      <Flex alignItems='center'>
         <Box pr={1}>
-          <CircleButton onClick={() => setIsModal(true)} primary={true}>
-            <Flex justifyContent={`center`} alignItems={`center`}>
+          <CircleButton onClick={onOpen} primary={true}>
+            <Flex justifyContent='center' alignItems='center'>
               <FaShareAlt />
             </Flex>
           </CircleButton>
@@ -62,20 +68,18 @@ const ReaderShareComponent: React.FC<IReaderShareProps> = props => {
         <Box pl={1}>
           <StyledLink
             href={`https://nhentai.net/g/${hentai.id}`}
-            target={`_blank`}
-            rel={`noopener noreferrer`}>
+            target='_blank'
+            rel='noopener noreferrer'>
             <CircleButton>
-              <Flex justifyContent={`center`} alignItems={`center`}>
+              <Flex justifyContent='center' alignItems='center'>
                 <FaExternalLinkAlt />
               </Flex>
             </CircleButton>
           </StyledLink>
         </Box>
       </Flex>
-      <Modal
-        title={`Share`}
-        isOpened={isModal}
-        onClose={() => setIsModal(false)}>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
         <API id={hentai.id} />
       </Modal>
     </React.Fragment>

@@ -3,11 +3,10 @@ import React from 'react'
 import { isEmpty, upperFirst } from 'lodash'
 import { Helmet } from 'react-helmet'
 
-import { Box, Flex, Text } from 'rebass'
-import styled from 'styled-components'
+import { Box, Divider, Flex, Text } from '@chakra-ui/core'
+import styled from '@emotion/styled'
 
 import BluredImage from '../bluredImage'
-import Divider from '../divider'
 import Slug from '../slug'
 import Collapse from './collapse'
 import Share from './share'
@@ -31,9 +30,9 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
     <Box py={2}>
       <Helmet title={hentai.title.pretty} />
       <Box py={2}>
-        <Flex justifyContent={`center`}>
+        <Flex justifyContent='center'>
           <Box width={[22 / 24, 19 / 24, 16 / 24, 12 / 24]}>
-            <Flex flexWrap={`wrap`}>
+            <Flex flexWrap='wrap'>
               <Box width={3 / 7} p={[2, 3]}>
                 <CoverBox>
                   <BluredImage
@@ -45,10 +44,7 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
                 </CoverBox>
               </Box>
               <Box width={4 / 7} p={[2, 3]}>
-                <Text
-                  fontSize={22}
-                  fontWeight={600}
-                  color={`rgba(0, 0, 0, 0.85)`}>
+                <Text fontSize='2xl' fontWeight={600}>
                   {hentai.title.pretty}
                 </Text>
                 <Box py={2}>
@@ -63,14 +59,12 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
                             <Collapse
                               title={upperFirst(stack.name)}
                               defaultState={stack.name === 'tag'}>
-                              <Flex flexWrap={`wrap`}>
+                              <Flex flexWrap='wrap'>
                                 {res.map(tag => {
                                   return (
                                     <Slug
                                       key={`slug-${hentai.id}-${stack.name}-${tag.id}`}
-                                      border={stack.color.border}
-                                      background={stack.color.background}
-                                      text={stack.color.text}
+                                      color={stack.color}
                                       link={`/${stack.prefix}/${tag.id}`}
                                       title={tag.name}
                                     />
@@ -95,7 +89,7 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
         </Flex>
       </Box>
       <Box py={2}>
-        <Flex justifyContent={`center`}>
+        <Flex justifyContent='center'>
           <Box width={[1, 22 / 24, 16 / 24, 12 / 24]}>
             {hentai.images.pages.map((page, i) => {
               if (!raw.data.exclude.includes(i + 1)) {

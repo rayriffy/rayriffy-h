@@ -1,8 +1,10 @@
 import React, { useContext, useEffect } from 'react'
 
-import { Box } from 'rebass'
+import { Box } from '@chakra-ui/core'
 
 import { Subtitle } from '../../../app/context'
+
+import NotAvaliable from '../../../core/components/notAvaliable'
 
 const AboutComponent: React.FC = () => {
   const [, setSubtitle] = useContext(Subtitle)
@@ -11,7 +13,11 @@ const AboutComponent: React.FC = () => {
     setSubtitle(`about`)
   }, [])
 
-  return <Box>OK</Box>
+  return (
+    <Box pt={3}>
+      <NotAvaliable />
+    </Box>
+  )
 }
 
 export default AboutComponent
