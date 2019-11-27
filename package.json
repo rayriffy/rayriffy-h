@@ -13,7 +13,7 @@
     "axios": "^0.19.0",
     "cwait": "^1.1.2",
     "emotion-theming": "^10.0.19",
-    "gatsby": "^2.18.3",
+    "gatsby": "^2.18.4",
     "gatsby-plugin-create-client-paths": "^2.1.17",
     "gatsby-plugin-emotion": "^4.1.15",
     "gatsby-plugin-google-analytics": "^2.1.28",
