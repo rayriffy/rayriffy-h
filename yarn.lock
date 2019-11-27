@@ -5011,15 +5011,15 @@ gatsby-plugin-google-analytics@^2.1.28:
   dependencies:
     "@babel/runtime" "^7.7.2"
 
-gatsby-plugin-manifest@^2.2.29:
-  version "2.2.29"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-manifest/-/gatsby-plugin-manifest-2.2.29.tgz#f5c4d65c424059007f8c23a49e332436614c03a4"
-  integrity sha512-vLk6kRNzsZ6VVfsZQLHfw14DbVcVG/rAYYCape9kYi7qoV/QNx6NQ6ntD4RmB7FczaLrN7hk8hE2YNuz7DTDVQ==
+gatsby-plugin-manifest@^2.2.30:
+  version "2.2.30"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-manifest/-/gatsby-plugin-manifest-2.2.30.tgz#6fef1c34fe1624a60b51b87374f66c063a857e11"
+  integrity sha512-g+QFA6HB9iKCI10Dl51BazMg+ke+DVm+bxMaItBxJD0w8JKByYprMjkz/iPXdYI6YI0zpLl2myCztOn6ngR1Og==
   dependencies:
-    "@babel/runtime" "^7.7.2"
-    gatsby-core-utils "^1.0.20"
+    "@babel/runtime" "^7.7.4"
+    gatsby-core-utils "^1.0.21"
     semver "^5.7.1"
-    sharp "^0.23.2"
+    sharp "^0.23.3"
 
 gatsby-plugin-netlify-cache@^1.2.0:
   version "1.2.0"
@@ -8664,10 +8664,10 @@ preact@^10.0.5:
   resolved "https://registry.yarnpkg.com/preact/-/preact-10.0.5.tgz#16f0bcd77241693e710778069e703217dd497867"
   integrity sha512-62+J+GTrv3Uhp6DefqZTel6VYcdUA1zqHO7gjQSKdOwkU2sNOp/Vl6Zf2A3hIWV5EBgjeDA8gsOn6dmB3I1Dvg==
 
-prebuild-install@^5.3.2:
-  version "5.3.2"
-  resolved "https://registry.yarnpkg.com/prebuild-install/-/prebuild-install-5.3.2.tgz#6392e9541ac0b879ef0f22b3d65037417eb2035e"
-  integrity sha512-INDfXzTPnhT+WYQemqnAXlP7SvfiFMopMozSgXCZ+RDLb279gKfIuLk4o7PgEawLp3WrMgIYGBpkxpraROHsSA==
+prebuild-install@^5.3.3:
+  version "5.3.3"
+  resolved "https://registry.yarnpkg.com/prebuild-install/-/prebuild-install-5.3.3.tgz#ef4052baac60d465f5ba6bf003c9c1de79b9da8e"
+  integrity sha512-GV+nsUXuPW2p8Zy7SarF/2W/oiK8bFQgJcncoJ0d7kRpekEA0ftChjfEaF9/Y+QJEc/wFR7RAEa8lYByuUIe2g==
   dependencies:
     detect-libc "^1.0.3"
     expand-template "^2.0.3"
@@ -9734,16 +9734,16 @@ shallowequal@^1.0.1, shallowequal@^1.1.0:
   resolved "https://registry.yarnpkg.com/shallowequal/-/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"
   integrity sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==
 
-sharp@^0.23.2:
-  version "0.23.2"
-  resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.23.2.tgz#5f8b77513aa1f7e4d0dd969a3904ced75486c1d7"
-  integrity sha512-BSo0tq6Jtzwa6GDKvVMNNPCP/HLczrFLGVcorYv7OtxlKx4UPHy7x9DdfT8F+PK7FCFDemVRwtsjWpvaJI9v6w==
+sharp@^0.23.3:
+  version "0.23.3"
+  resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.23.3.tgz#549770a4c671b9bd221f00639452a3eb803a0ed1"
+  integrity sha512-pjT4zyviQteXMC1Z8USIiSwQFQbZTlU5J59/UoygE25hh+sSb7PSYI/MZ2MCB1COtxWQuoUAaG3TYIOLon26Mg==
   dependencies:
     color "^3.1.2"
     detect-libc "^1.0.3"
     nan "^2.14.0"
     npmlog "^4.1.2"
-    prebuild-install "^5.3.2"
+    prebuild-install "^5.3.3"
     semver "^6.3.0"
     simple-get "^3.1.0"
     tar "^5.0.5"
