@@ -16,6 +16,7 @@ import {
   Switch,
   Text,
   theme,
+  useColorMode,
   useDisclosure,
 } from '@chakra-ui/core'
 import styled from '@emotion/styled'
@@ -33,6 +34,7 @@ const CapitalizedText = styled(Text)`
 const DrawerComponent: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
+  const { colorMode, toggleColorMode } = useColorMode()
   const [safeMode, setSafeMode] = useContext(SafeMode)
 
   const btnRef = useRef(null)
@@ -146,7 +148,7 @@ const DrawerComponent: React.FC = () => {
                   Settings
                 </Text>
                 <Box py={2}>
-                  <Flex>
+                  <Flex py={1}>
                     <Switch
                       id='safemode'
                       isChecked={safeMode === undefined ? true : safeMode}
@@ -155,6 +157,19 @@ const DrawerComponent: React.FC = () => {
                     </Switch>
                     <Text px={2} fontSize='sm'>
                       Safe mode
+                    </Text>
+                  </Flex>
+                  <Flex py={1}>
+                    <Switch
+                      id='darkmode'
+                      isChecked={colorMode === 'dark'}
+                      onChange={() =>
+                        toggleColorMode ? toggleColorMode() : null
+                      }>
+                      <React.Fragment />
+                    </Switch>
+                    <Text px={2} fontSize='sm'>
+                      Dark mode (Experimental)
                     </Text>
                   </Flex>
                 </Box>
