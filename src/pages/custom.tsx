@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 
-import { Box, Button, Flex, Text } from '@chakra-ui/core'
+import { Box, Button, Flex, Input, Text } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
 import { Subtitle } from '../app/context'
@@ -11,17 +11,6 @@ const BorderedCard = styled(Box)`
   border-radius: 8px;
   border: 1px solid #e8e8e8;
   overflow: hidden;
-`
-
-const StyledInput = styled.input`
-  padding: 8px 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  margin-bottom: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  color: #2c3e50;
-  font-size: 13px;
 `
 
 const CustomComponent: React.FC = () => {
@@ -48,12 +37,10 @@ const CustomComponent: React.FC = () => {
                 </Text>
               </Box>
               <Box py={2}>
-                <StyledInput
-                  type='number'
+                <Input
                   value={input}
                   onChange={e => setInput(e.target.value)}
                   placeholder='000000'
-                  required={true}
                 />
               </Box>
               <Box py={1}>
