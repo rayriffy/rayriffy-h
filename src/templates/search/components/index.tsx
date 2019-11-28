@@ -1,10 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 
 import { chunk, get, isEmpty } from 'lodash'
-import { FaSearch } from 'react-icons/fa'
 
-import { Box, Button, Flex } from '@chakra-ui/core'
-import styled from '@emotion/styled'
+import { Box, Flex, Heading, IconButton, Input } from '@chakra-ui/core'
 
 import Poster from '../../../core/components/poster'
 import Pagination from './pagination'
@@ -15,25 +13,6 @@ import { Subtitle } from '../../../app/context'
 
 import { IFetchedRaw } from '../../../core/@types/IFetchedRaw'
 import { IProps } from '../@types/IProps'
-
-const StyledInput = styled.input`
-  padding: 8px 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  width: 100%;
-  box-sizing: border-box;
-  color: #2c3e50;
-  font-size: 13px;
-`
-
-const StyledButton = styled(Button)`
-  background: blue;
-  height: 36px;
-`
-
-const StyledFlex = styled(Flex)`
-  height: 40px;
-`
 
 const SearchComponent: React.FC<IProps> = props => {
   const { raw, skip } = props.pageContext
@@ -74,29 +53,31 @@ const SearchComponent: React.FC<IProps> = props => {
     <Box pt={3}>
       <Flex justifyContent='center'>
         <Box width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}>
-          <StyledFlex alignItems='center'>
-            <StyledInput
-              type='text'
+          <Flex justifyContent='center'>
+            <Input
+              placeholder='Search'
               value={query}
               onChange={e => setQuery(e.target.value)}
               onKeyDown={e =>
                 e.key === 'Enter' ? searchButtonHandler() : null
               }
-              placeholder='Query'
-              required={true}
             />
-            <Box pl={2} width={36}>
-              <StyledButton onClick={() => searchButtonHandler()}>
-                <FaSearch />
-              </StyledButton>
-            </Box>
-          </StyledFlex>
+            <IconButton
+              aria-label='Search'
+              icon='search'
+              variantColor='blue'
+              onClick={() => searchButtonHandler()}
+              ml={4}
+            />
+          </Flex>
         </Box>
       </Flex>
       <Flex justifyContent='center'>
         <Box width={22 / 24}>
           {isEmpty(res) ? (
-            'No result'
+            <Heading size='lg' textAlign='center' pt={6}>
+              No result
+            </Heading>
           ) : (
             <Box>
               <Flex justifyContent='center'>
