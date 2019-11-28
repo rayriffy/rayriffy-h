@@ -6,9 +6,9 @@ const path = require('path')
 
 const databaseTags = require('./src/contents/database/tags')
 
-const {filterHentaiByTag} = require('./functions/filterHentaiByTag')
-const {filterTag} = require('./functions/filterTag')
-const {getData} = require('./functions/getData')
+const {filterHentaiByTag} = require('./src/gatsby/node/functions/filterHentaiByTag')
+const {filterTag} = require('./src/gatsby/node/functions/filterTag')
+const {getData} = require('./src/gatsby/node/functions/getData')
 
 const ITEMS_PER_PAGE = 20
 
