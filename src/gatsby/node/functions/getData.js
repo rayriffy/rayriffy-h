@@ -1,6 +1,6 @@
 const {TaskQueue} = require('cwait')
 
-const databaseCodes = require('../src/contents/database/codes')
+const databaseCodes = require('../../../contents/database/codes')
 
 const {getRawData} = require('./getRawData')
 
