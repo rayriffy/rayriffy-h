@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet'
 import { Box } from '@chakra-ui/core'
 
 import Header from './header'
+import ServiceWorker from './serviceworker'
 
 import Context from '../context'
 
@@ -17,6 +18,7 @@ const AppComponent: React.FC = props => {
         <Helmet defaultTitle='Riffy H' titleTemplate='%s · Riffy H' />
         <Box px={[3, 4, 5]}>
           <Header />
+          <ServiceWorker />
         </Box>
         <Box>{children}</Box>
       </Box>
