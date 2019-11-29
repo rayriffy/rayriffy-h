@@ -74,5 +74,6 @@ module.exports = {
         allExtensions: true,
       },
     },
+    `gatsby-plugin-offline`,
   ],
 }
