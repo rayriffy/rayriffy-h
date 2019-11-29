@@ -16,6 +16,11 @@ export const onServiceWorkerUpdateFound = () => {
   document.getElementById('sw-update-found').style.display = 'flex'
 }
 
+export const onServiceWorkerInstalled = () => {
+  document.getElementById('sw-update-found').style.display = 'none'
+  document.getElementById('sw-update-installed').style.display = 'flex'
+}
+
 export const onServiceWorkerUpdateReady = () => {
   document.getElementById('sw-update-found').style.display = 'none'
   document.getElementById('sw-update-complete').style.display = 'flex'

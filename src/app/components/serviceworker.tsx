@@ -13,6 +13,10 @@ const ServiceWorkerComponent: React.FC = () => {
         <AlertIcon />
         Update completed! Reload required.
       </Alert>
+      <Alert status='success' display='none' id='sw-update-installed'>
+        <AlertIcon />
+        Ready to work offline!
+      </Alert>
     </React.Fragment>
   )
 }
