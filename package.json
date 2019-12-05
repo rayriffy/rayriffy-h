@@ -7,7 +7,7 @@
     "url": "https://github.com/rayriffy/rayriffy-h/issues"
   },
   "dependencies": {
-    "@chakra-ui/core": "^0.4.1",
+    "@chakra-ui/core": "^0.5.0",
     "@emotion/core": "^10.0.22",
     "@emotion/styled": "^10.0.23",
     "axios": "^0.19.0",
