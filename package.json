@@ -7,24 +7,24 @@
     "url": "https://github.com/rayriffy/rayriffy-h/issues"
   },
   "dependencies": {
-    "@chakra-ui/core": "^0.4.1",
+    "@chakra-ui/core": "^0.5.0",
     "@emotion/core": "^10.0.22",
     "@emotion/styled": "^10.0.23",
     "axios": "^0.19.0",
     "cwait": "^1.1.2",
     "emotion-theming": "^10.0.19",
-    "gatsby": "^2.18.5",
+    "gatsby": "^2.18.6",
     "gatsby-plugin-create-client-paths": "^2.1.17",
     "gatsby-plugin-emotion": "^4.1.15",
     "gatsby-plugin-google-analytics": "^2.1.28",
-    "gatsby-plugin-manifest": "^2.2.29",
+    "gatsby-plugin-manifest": "^2.2.31",
     "gatsby-plugin-netlify": "^2.1.25",
     "gatsby-plugin-netlify-cache": "^1.2.0",
-    "gatsby-plugin-offline": "^3.0.25",
+    "gatsby-plugin-offline": "^3.0.26",
     "gatsby-plugin-react-helmet": "^3.1.15",
     "gatsby-plugin-typescript": "^2.1.19",
     "gatsby-plugin-typography": "^2.3.17",
-    "gatsby-source-filesystem": "^2.1.38",
+    "gatsby-source-filesystem": "^2.1.40",
     "lodash": "^4.17.15",
     "preact": "^10.0.5",
     "react": "^16.12.0",
@@ -52,7 +52,7 @@
     "tslint-eslint-rules": "^5.4.0",
     "tslint-plugin-prettier": "^2.0.1",
     "tslint-react": "^4.1.0",
-    "typescript": "^3.7.2"
+    "typescript": "^3.7.3"
   },
   "homepage": "https://h.rayriffy.com",
   "keywords": [
