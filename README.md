@@ -16,7 +16,7 @@ Feature
 - Custom hentai to any ID that you wish
 - **No ads** and **no pop-ups**
 - Flexible **search** system
-- ~~**Easy to share** collection system~~ (This feature will be implemented in version ~~3.1~~ 3.2 人(_ _*))
+- **Easy to use** collection system
 
 Screenshots
 -----------
