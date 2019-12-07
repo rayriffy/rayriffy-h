@@ -63,9 +63,6 @@ module.exports = {
     `gatsby-plugin-netlify`,
     {
       resolve: 'gatsby-plugin-netlify-cache',
-      options: {
-        extraDirsToCache: ['.tmp'],
-      },
     },
     {
       resolve: `gatsby-plugin-typescript`,

@@ -24,30 +24,27 @@ const fshandler = err => {
   }
 }
 
-exports.onPreBootstrap = async ({reporter}) => {
+exports.onPreBootstrap = async ({reporter, cache}) => {
   // Download file from cache if cache does not exist
-  if (!fs.existsSync(`./.tmp/crawler.json`)) {
+  const cacheData = await cache.get('rayriffy-h-hentai-cache')
+  if (cacheData === undefined) {
     reporter.info(`Downloading prefetched data from GitHub Gist`)
     const gistCache = await axios.get(PREFETCH_GIST)
 
-    if (!fs.existsSync(`./.tmp`)) {
-      fs.mkdirSync(`./.tmp`)
-    }
-
-    await fs.writeFile(`./.tmp/crawler.json`, JSON.stringify(gistCache.data), fshandler)
+    await cache.set(`rayriffy-h-hentai-cache`, JSON.stringify(gistCache.data))
     reporter.info(`Downloaded!`)
   } else {
     reporter.info(`Found cache! Skipping prefetch stage`)
   }
 }
 
-exports.createPages = async ({actions, reporter}) => {
+exports.createPages = async ({actions, reporter, cache}) => {
   const {createPage} = actions
 
   // Begin to fetch data
   const fetchedData = {
     tags: databaseTags,
-    codes: await getData({reporter}),
+    codes: await getData({reporter, cache}),
   }
 
   /**
@@ -176,17 +173,17 @@ exports.createPages = async ({actions, reporter}) => {
   /**
    * Put all healthy results into cache
    */
-  fs.writeFile(`./.tmp/crawler.json`, JSON.stringify(healthyResults), fshandler)
+  await cache.set(`rayriffy-h-hentai-cache`, JSON.stringify(healthyResults))
 }
 
-exports.onPostBootstrap = async ({reporter}) => {
+exports.onPostBootstrap = async ({reporter, cache}) => {
   reporter.info('Generating API')
 
   try {
     /**
      * Get healthy raw data
      */
-    const fetchedRaw = await getData({reporter})
+    const fetchedRaw = await getData({reporter, cache})
 
     const healthyResults = _.filter(fetchedRaw, o => o.status === 'success').reverse()
 
