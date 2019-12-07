@@ -41,7 +41,14 @@ const ReaderShareComponent: React.FC<IReaderShareProps> = props => {
     if (!isFavorited) {
       res = res.filter(o => o.id !== hentai.id)
     } else {
-      res = [...res, { id: hentai.id, internal, data: hentai }]
+      res = [
+        ...res,
+        {
+          id: hentai.id,
+          internal,
+          data: { ...hentai, images: { ...hentai.images, pages: [] } },
+        },
+      ]
     }
 
     setCollection(JSON.stringify(res))
