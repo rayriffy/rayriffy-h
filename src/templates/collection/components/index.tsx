@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import { chunk, get, isEmpty } from 'lodash'
 
-import { Box, Flex, Heading, Text } from '@chakra-ui/core'
+import { Box, Button, Flex, Heading, Text } from '@chakra-ui/core'
 
 import { Collection, Subtitle } from '../../../app/context'
 
@@ -16,10 +16,12 @@ const CollectionComponent: React.FC<IProps> = props => {
   const { skip } = props.pageContext
 
   const [, setSubtitle] = useContext(Subtitle)
-  const [collection] = useContext(Collection)
+  const [collection, setCollection] = useContext(Collection)
 
-  const fetchedCollection: IFavorite[] = useMemo(() => {
-    return JSON.parse(collection).reverse()
+  const [fetchedCollection, setFetchedCollection] = useState<IFavorite[]>([])
+
+  useEffect(() => {
+    setFetchedCollection(JSON.parse(collection).reverse())
   }, [collection])
 
   const [page, setPage] = useState<number>(1)
@@ -86,6 +88,15 @@ const CollectionComponent: React.FC<IProps> = props => {
           )}
         </Box>
       </Flex>
+      <Box py={6}>
+        <Button
+          variantColor='red'
+          onClick={() => {
+            setCollection(JSON.stringify(fetchedCollection.reverse()))
+          }}>
+          Reverse
+        </Button>
+      </Box>
     </Box>
   )
 }
