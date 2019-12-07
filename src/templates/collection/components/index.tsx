@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 
 import { chunk, get, isEmpty } from 'lodash'
 
-import { Box, Button, Flex, Heading, Text } from '@chakra-ui/core'
+import { Box, Flex, Heading, Text } from '@chakra-ui/core'
 
 import { Collection, Subtitle } from '../../../app/context'
 
@@ -16,7 +16,7 @@ const CollectionComponent: React.FC<IProps> = props => {
   const { skip } = props.pageContext
 
   const [, setSubtitle] = useContext(Subtitle)
-  const [collection, setCollection] = useContext(Collection)
+  const [collection] = useContext(Collection)
 
   const [fetchedCollection, setFetchedCollection] = useState<IFavorite[]>([])
 
@@ -26,11 +26,6 @@ const CollectionComponent: React.FC<IProps> = props => {
   const renderPage = (collection: IFavorite[], page: number) => {
     setPage(page)
     setRenderedCollection(get(chunk(collection, skip), page - 1, []))
-  }
-
-  const reverseHandler = () => {
-    const reversedCollection = JSON.parse(collection).reverse()
-    setCollection(JSON.stringify(reversedCollection))
   }
 
   useEffect(() => {
@@ -91,11 +86,6 @@ const CollectionComponent: React.FC<IProps> = props => {
               </Flex>
             </Box>
           )}
-          <Box py={6}>
-            <Button variantColor='red' onClick={reverseHandler}>
-              Reverse
-            </Button>
-          </Box>
         </Box>
       </Flex>
     </Box>
