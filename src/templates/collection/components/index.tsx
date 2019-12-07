@@ -20,21 +20,26 @@ const CollectionComponent: React.FC<IProps> = props => {
 
   const [fetchedCollection, setFetchedCollection] = useState<IFavorite[]>([])
 
-  useEffect(() => {
-    setFetchedCollection(JSON.parse(collection).reverse())
-  }, [collection])
-
   const [page, setPage] = useState<number>(1)
   const [renderedCollection, setRenderedCollection] = useState<IFavorite[]>([])
 
   const renderPage = (collection: IFavorite[], page: number) => {
     setPage(page)
-    setRenderedCollection(get(chunk(collection, skip), page - 1))
+    setRenderedCollection(get(chunk(collection, skip), page - 1, []))
+  }
+
+  const reverseHandler = () => {
+    const reversedCollection = JSON.parse(collection).reverse()
+    setCollection(JSON.stringify(reversedCollection))
   }
 
   useEffect(() => {
+    setFetchedCollection(JSON.parse(collection).reverse())
+    renderPage(JSON.parse(collection).reverse(), 1)
+  }, [collection])
+
+  useEffect(() => {
     setSubtitle(`collection`)
-    renderPage(fetchedCollection, 1)
   }, [])
 
   return (
@@ -86,17 +91,13 @@ const CollectionComponent: React.FC<IProps> = props => {
               </Flex>
             </Box>
           )}
+          <Box py={6}>
+            <Button variantColor='red' onClick={reverseHandler}>
+              Reverse
+            </Button>
+          </Box>
         </Box>
       </Flex>
-      <Box py={6}>
-        <Button
-          variantColor='red'
-          onClick={() => {
-            setCollection(JSON.stringify(fetchedCollection.reverse()))
-          }}>
-          Reverse
-        </Button>
-      </Box>
     </Box>
   )
 }
