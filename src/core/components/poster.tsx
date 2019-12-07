@@ -36,7 +36,7 @@ const FooterBox = styled(Box)`
 `
 
 const PosterComponent: React.FC<IPosterProps> = props => {
-  const { raw } = props
+  const { raw, internal = true } = props
 
   const tagStack = filter(
     allTagStack,
@@ -59,7 +59,7 @@ const PosterComponent: React.FC<IPosterProps> = props => {
     <Box width={['100%', 1 / 2, 1 / 3, 1 / 5]} p={2}>
       <BorderedCard>
         <CoverBox>
-          <Link to={`/r/${raw.id}`}>
+          <Link to={`/${internal ? 'r' : 'g'}/${raw.id}`}>
             <CoverImage
               height={raw.images.cover.h}
               src={`https://t.nhentai.net/galleries/${raw.media_id}/cover.${
