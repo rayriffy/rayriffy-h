@@ -19,7 +19,7 @@ const CollectionComponent: React.FC<IProps> = props => {
   const [collection] = useContext(Collection)
 
   const fetchedCollection: IFavorite[] = useMemo(() => {
-    return JSON.parse(collection)
+    return JSON.parse(collection).reverse()
   }, [collection])
 
   const [page, setPage] = useState<number>(1)
