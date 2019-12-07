@@ -168,6 +168,9 @@ exports.createPages = async ({actions, reporter}) => {
   createPage({
     path: `/collection`,
     component: path.resolve(`./src/templates/collection/components/index.tsx`),
+    context: {
+      skip: ITEMS_PER_PAGE,
+    },
   })
 
   /**

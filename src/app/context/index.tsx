@@ -6,9 +6,11 @@ import { ColorModeProvider, CSSReset, ThemeProvider } from '@chakra-ui/core'
 
 type ISafeMode = [boolean, Dispatch<SetStateAction<boolean>>]
 type ISubtitle = [string, Dispatch<SetStateAction<string>>]
+type ICollection = [string, Dispatch<SetStateAction<string>>]
 
 export const SafeMode = React.createContext<ISafeMode>([true, () => {}])
 export const Subtitle = React.createContext<ISubtitle>(['init', () => {}])
+export const Collection = React.createContext<ICollection>(['[]', () => {}])
 
 const Context: React.FC = props => {
   const { children } = props
@@ -19,15 +21,23 @@ const Context: React.FC = props => {
   // Subtitle
   const [subtitle, setSubtitle] = useState<string>('init')
 
+  // Collection
+  const [collection, setCollection] = useLocalStorage<string>(
+    'collection',
+    '[]'
+  )
+
   return (
     <SafeMode.Provider value={[safeMode, setSafeMode]}>
       <Subtitle.Provider value={[subtitle, setSubtitle]}>
-        <ThemeProvider>
-          <ColorModeProvider value='light'>
-            <CSSReset />
-            {children}
-          </ColorModeProvider>
-        </ThemeProvider>
+        <Collection.Provider value={[collection, setCollection]}>
+          <ThemeProvider>
+            <ColorModeProvider value='light'>
+              <CSSReset />
+              {children}
+            </ColorModeProvider>
+          </ThemeProvider>
+        </Collection.Provider>
       </Subtitle.Provider>
     </SafeMode.Provider>
   )

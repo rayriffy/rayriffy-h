@@ -22,7 +22,7 @@ const CoverBox = styled(Box)`
 `
 
 const ReaderComponent: React.FC<IReaderProps> = props => {
-  const { raw } = props
+  const { raw, internal = true } = props
 
   const hentai = raw.data.raw
 
@@ -81,7 +81,7 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
                   })}
                 </Box>
                 <Box py={2}>
-                  <Share hentai={hentai} />
+                  <Share hentai={hentai} internal={internal} />
                 </Box>
               </Box>
             </Flex>

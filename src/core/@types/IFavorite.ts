@@ -1,6 +1,7 @@
 import { IHentai } from './IHentai'
 
-export interface IReaderShareProps {
-  hentai: IHentai
+export interface IFavorite {
+  id: number
   internal: boolean
+  data: IHentai
 }

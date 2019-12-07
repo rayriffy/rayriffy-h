@@ -54,7 +54,7 @@ const DynamicViewingComponent: React.FC<IProps> = props => {
   return (
     <React.Fragment>
       {state === 0 && raw !== null ? (
-        <Reader raw={raw} />
+        <Reader raw={raw} internal={false} />
       ) : state === 1 && raw === null ? (
         <Box pt={3}>
           <Loading />
