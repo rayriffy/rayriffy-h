@@ -1,0 +1,81 @@
+name: Test units
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: macOS-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - uses: actions/checkout@v1
+      - name: 'Init: Summon NodeJS'
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: "Cache: node_modules"
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-${{ env.cache-name }}-
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
+      - name: 'Init: Install yarn'
+        run: |
+          curl -o- -L https://yarnpkg.com/install.sh | bash
+      - name: 'Init: Install dependencies'
+        run: |
+          yarn install
+      - name: 'Test: Type checking'
+        run: |
+          yarn test:types
+      - name: 'Test: Code linting'
+        run: |
+          yarn test:lint
+  deploy:
+    needs: test
+    runs-on: macOS-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - uses: actions/checkout@v1
+      - name: 'Init: Summon NodeJS'
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: "Cache: node_modules"
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-${{ env.cache-name }}-
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
+      - name: "Cache: Gatsby builds"
+        uses: actions/cache@v1
+        with:
+          path: .cache
+          key: ${{ runner.OS }}-rayriffy-h-gatsby-cache
+          restore-keys: |
+            ${{ runner.OS }}-rayriffy-h-gatsby-cache
+      - name: 'Init: Install yarn'
+        run: |
+          curl -o- -L https://yarnpkg.com/install.sh | bash
+      - name: 'Init: Install dependencies'
+        run: |
+          yarn install
+      - name: "Build: Trigger build site"
+        run: |
+            yarn build
+      - name: "Deploy: Upload to Netlify"
+        uses: netlify/actions/cli@master
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_PRODUCTION_SITE_ID }}
+        with:
+          args: deploy --dir=./public --prod
