@@ -15,11 +15,7 @@ const HentaiViewingComponent: React.FC<IProps> = props => {
     setSubtitle(`viewing`)
   }, [])
 
-  return (
-    <React.Fragment>
-      <Reader raw={raw} />
-    </React.Fragment>
-  )
+  return <Reader raw={raw} />
 }
 
 export default HentaiViewingComponent

@@ -19,8 +19,8 @@ const HentaiListingComponent: React.FC<IProps> = props => {
   }, [])
 
   return (
-    <Box pt={2}>
-      <Flex justifyContent='center'>
+    <React.Fragment>
+      <Flex justifyContent='center' pt={2}>
         <Box width={18 / 24} pt={3} pb={6}>
           <Pagination current={page.current} max={page.max} prefix='/' />
         </Box>
@@ -39,7 +39,7 @@ const HentaiListingComponent: React.FC<IProps> = props => {
           <Pagination current={page.current} max={page.max} prefix={`/`} />
         </Box>
       </Flex>
-    </Box>
+    </React.Fragment>
   )
 }
 

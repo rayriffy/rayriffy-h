@@ -53,8 +53,8 @@ const SearchComponent: React.FC<IProps> = props => {
   }, [])
 
   return (
-    <Box pt={3}>
-      <Flex justifyContent='center'>
+    <React.Fragment>
+      <Flex justifyContent='center' pt={3}>
         <Box width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}>
           <Flex justifyContent='center'>
             <Input
@@ -86,7 +86,7 @@ const SearchComponent: React.FC<IProps> = props => {
               No result
             </Heading>
           ) : (
-            <Box>
+            <React.Fragment>
               <Flex justifyContent='center'>
                 <Box width={18 / 24} py={6}>
                   <Pagination
@@ -117,11 +117,11 @@ const SearchComponent: React.FC<IProps> = props => {
                   />
                 </Box>
               </Flex>
-            </Box>
+            </React.Fragment>
           )}
         </Box>
       </Flex>
-    </Box>
+    </React.Fragment>
   )
 }
 

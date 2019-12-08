@@ -39,57 +39,54 @@ const CollectionComponent: React.FC<IProps> = props => {
   }, [])
 
   return (
-    <Box pt={3}>
-      <Flex justifyContent='center'>
-        <Box width={22 / 24}>
-          {isEmpty(fetchedCollection) ? (
-            <React.Fragment>
-              <Heading size='lg' textAlign='center' pt={6}>
-                No records
-              </Heading>
-              <Text textAlign='center' pt={4} color='gray.500'>
-                Just take some time to read and add your favorite records
-                here...
-              </Text>
-            </React.Fragment>
-          ) : (
-            <Box>
-              <Flex justifyContent='center'>
-                <Box width={18 / 24} py={6}>
-                  <Pagination
-                    current={page}
-                    max={chunk(fetchedCollection, skip).length}
-                    onChange={page => renderPage(fetchedCollection, page)}
-                  />
-                </Box>
-              </Flex>
-              <Flex justifyContent='center'>
-                <Box width={22 / 24}>
-                  <Flex flexWrap='wrap' alignItems='center'>
-                    {renderedCollection.map(hentai => (
-                      <Poster
-                        key={`poster-${hentai.id}`}
-                        raw={hentai.data}
-                        internal={hentai.internal}
-                      />
-                    ))}
-                  </Flex>
-                </Box>
-              </Flex>
-              <Flex justifyContent='center'>
-                <Box width={18 / 24} py={6}>
-                  <Pagination
-                    current={page}
-                    max={chunk(fetchedCollection, skip).length}
-                    onChange={page => renderPage(fetchedCollection, page)}
-                  />
-                </Box>
-              </Flex>
-            </Box>
-          )}
-        </Box>
-      </Flex>
-    </Box>
+    <Flex justifyContent='center' pt={3}>
+      <Box width={22 / 24}>
+        {isEmpty(fetchedCollection) ? (
+          <React.Fragment>
+            <Heading size='lg' textAlign='center' pt={6}>
+              No records
+            </Heading>
+            <Text textAlign='center' pt={4} color='gray.500'>
+              Just take some time to read and add your favorite records here...
+            </Text>
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <Flex justifyContent='center'>
+              <Box width={18 / 24} py={6}>
+                <Pagination
+                  current={page}
+                  max={chunk(fetchedCollection, skip).length}
+                  onChange={page => renderPage(fetchedCollection, page)}
+                />
+              </Box>
+            </Flex>
+            <Flex justifyContent='center'>
+              <Box width={22 / 24}>
+                <Flex flexWrap='wrap' alignItems='center'>
+                  {renderedCollection.map(hentai => (
+                    <Poster
+                      key={`poster-${hentai.id}`}
+                      raw={hentai.data}
+                      internal={hentai.internal}
+                    />
+                  ))}
+                </Flex>
+              </Box>
+            </Flex>
+            <Flex justifyContent='center'>
+              <Box width={18 / 24} py={6}>
+                <Pagination
+                  current={page}
+                  max={chunk(fetchedCollection, skip).length}
+                  onChange={page => renderPage(fetchedCollection, page)}
+                />
+              </Box>
+            </Flex>
+          </React.Fragment>
+        )}
+      </Box>
+    </Flex>
   )
 }
 
