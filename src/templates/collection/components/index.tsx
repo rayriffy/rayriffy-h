@@ -45,9 +45,9 @@ const CollectionComponent: React.FC<IProps> = props => {
           {isEmpty(fetchedCollection) ? (
             <React.Fragment>
               <Heading size='lg' textAlign='center' pt={6}>
-                No favorite records
+                No records
               </Heading>
-              <Text textAlign='center' pt={4}>
+              <Text textAlign='center' pt={4} color='gray.500'>
                 Just take some time to read and add your favorite records
                 here...
               </Text>
