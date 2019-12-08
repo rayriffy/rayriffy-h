@@ -3,10 +3,11 @@ import React from 'react'
 import { isEmpty, upperFirst } from 'lodash'
 import { Helmet } from 'react-helmet'
 
-import { Box, Divider, Flex, Text } from '@chakra-ui/core'
+import { Box, Divider, Flex, Text, useColorMode } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
 import BluredImage from '../bluredImage'
+import { headingFontColor } from '../heading'
 import Slug from '../slug'
 import Collapse from './collapse'
 import Share from './share'
@@ -23,6 +24,8 @@ const CoverBox = styled(Box)`
 
 const ReaderComponent: React.FC<IReaderProps> = props => {
   const { raw, internal = true } = props
+
+  const { colorMode } = useColorMode()
 
   const hentai = raw.data.raw
 
@@ -44,7 +47,10 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
                 </CoverBox>
               </Box>
               <Box width={4 / 7} p={[2, 3]}>
-                <Text fontSize='2xl' fontWeight={600}>
+                <Text
+                  fontSize='2xl'
+                  fontWeight={600}
+                  color={colorMode ? headingFontColor[colorMode] : undefined}>
                   {hentai.title.pretty}
                 </Text>
                 <Box py={2}>

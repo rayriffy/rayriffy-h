@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 
-import { Box, Button, Flex, Input, Text } from '@chakra-ui/core'
+import { Box, Button, Flex, Input, Text, useColorMode } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
 import { Subtitle } from '../app/context'
 
+import Heading from '../core/components/heading'
 import TransparentLink from '../core/components/transparentLink'
 
 const BorderedCard = styled(Box)`
@@ -14,6 +15,8 @@ const BorderedCard = styled(Box)`
 `
 
 const CustomComponent: React.FC = () => {
+  const { colorMode } = useColorMode()
+
   const [input, setInput] = useState('')
 
   const [, setSubtitle] = useContext(Subtitle)
@@ -26,36 +29,38 @@ const CustomComponent: React.FC = () => {
     <Box pt={3}>
       <Flex justifyContent='center'>
         <Box width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}>
-          <BorderedCard p={3}>
-            <Box p={2}>
-              <Text fontSize={[18, 20, 22, 24]} fontWeight={600}>
-                Custom
+          <BorderedCard
+            bg={colorMode === 'dark' ? 'gray.700' : undefined}
+            p={5}>
+            <Heading size='lg'>Custom</Heading>
+            <Box py={2}>
+              <Text fontSize={[14, 15]} color='gray.500'>
+                Enter your hentai ID down below...
               </Text>
-              <Box py={2}>
-                <Text fontSize={[14, 15]}>
-                  Enter your hentai ID down below...
-                </Text>
-              </Box>
-              <Box py={2}>
-                <Input
-                  value={input}
-                  onChange={e => setInput(e.target.value)}
-                  placeholder='000000'
-                />
-              </Box>
-              <Box py={1}>
-                {input === '' ? (
-                  <Button bg='#757575' color='white' fontSize='sm'>
-                    Locked
+            </Box>
+            <Box py={2}>
+              <Input
+                value={input}
+                onChange={e => setInput(e.target.value)}
+                placeholder='000000'
+                color={colorMode === 'dark' ? 'white' : undefined}
+                _placeholder={{
+                  color: colorMode === 'dark' ? 'white' : 'gray.500',
+                }}
+              />
+            </Box>
+            <Box py={1}>
+              {input === '' ? (
+                <Button bg='#757575' color='white' fontSize='sm'>
+                  Locked
+                </Button>
+              ) : (
+                <TransparentLink to={`/g/${input}`}>
+                  <Button bg='#1890ff' color='white' fontSize='sm'>
+                    Ready
                   </Button>
-                ) : (
-                  <TransparentLink to={`/g/${input}`}>
-                    <Button bg='#1890ff' color='white' fontSize='sm'>
-                      Ready
-                    </Button>
-                  </TransparentLink>
-                )}
-              </Box>
+                </TransparentLink>
+              )}
             </Box>
           </BorderedCard>
         </Box>

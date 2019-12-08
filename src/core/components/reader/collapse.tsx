@@ -1,18 +1,25 @@
 import React, { useState } from 'react'
 
-import { Box, Collapse, Text } from '@chakra-ui/core'
+import { Box, Collapse, Text, useColorMode } from '@chakra-ui/core'
+
+import { headingFontColor } from '../heading'
 
 import { IReaderCollapseProps } from '../../@types/IReaderCollapseProps'
 
 const ReaderCollapseComponent: React.FC<IReaderCollapseProps> = props => {
   const { defaultState = false, title, children } = props
 
+  const { colorMode } = useColorMode()
+
   const [isShow, setIsShow] = useState(defaultState)
 
   return (
     <React.Fragment>
       <Box p={1}>
-        <Text fontSize='sm' onClick={() => setIsShow(prev => !prev)}>
+        <Text
+          fontSize='sm'
+          onClick={() => setIsShow(prev => !prev)}
+          color={colorMode ? headingFontColor[colorMode] : undefined}>
           {title}
         </Text>
       </Box>

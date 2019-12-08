@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Box, Flex, Link, theme } from '@chakra-ui/core'
+import { Box, Flex, Link, theme, useColorMode } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
 interface IProps {
@@ -13,18 +13,21 @@ interface IPage {
   start: number
   index: number
   current: number
+  colorMode: 'light' | 'dark' | undefined
 }
 
 const StyledLink = styled(Link)<IPage>`
   text-decoration: none;
 
   ${(props: IPage) => {
-    const { start, index, current } = props
+    const { start, index, current, colorMode } = props
 
     const themeColor: any = theme.colors
 
     if (start + index + 1 === current) {
-      return `color: ${themeColor.black};`
+      return `color: ${
+        colorMode === 'dark' ? themeColor.white : themeColor.black
+      };`
     } else {
       return `color: ${themeColor.gray[500]};`
     }
@@ -33,6 +36,8 @@ const StyledLink = styled(Link)<IPage>`
 
 const PaginationComponent: React.FC<IProps> = props => {
   const { max, current, onChange } = props
+
+  const { colorMode } = useColorMode()
 
   const pageLength: number = max > 5 ? 5 : max
   const startPoint: number =
@@ -54,6 +59,7 @@ const PaginationComponent: React.FC<IProps> = props => {
             start={startPoint}
             index={i}
             current={current}
+            colorMode={colorMode}
             onClick={() => onChange(startPoint + i + 1)}>
             {startPoint + i + 1}
           </StyledLink>

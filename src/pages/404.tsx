@@ -27,9 +27,12 @@ const NotFoundComponent: React.FC = () => {
       <Flex justifyContent='center'>
         <Box width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}>
           <BorderedCard>
-            <WidthImage src='https://media.giphy.com/media/uS1hYCwTrW3ks/giphy.gif' />
-            <Box px={3} pt={1} pb={3}>
-              <Text fontSize={[18, 20, 22, 24]} fontWeight={600} pt={2}>
+            <WidthImage
+              m={0}
+              src='https://media.giphy.com/media/uS1hYCwTrW3ks/giphy.gif'
+            />
+            <Box p={3}>
+              <Text fontSize={[18, 20, 22, 24]} fontWeight={600}>
                 Not found
               </Text>
               <Text fontSize={[14, 15]} pt={2}>

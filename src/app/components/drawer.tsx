@@ -11,7 +11,6 @@ import {
   DrawerContent,
   DrawerOverlay,
   Flex,
-  Heading,
   IconButton,
   Switch,
   Text,
@@ -23,6 +22,7 @@ import styled from '@emotion/styled'
 
 import tagStack from '../../contents/database/tags'
 
+import Heading, { headingFontColor } from '../../core/components/heading'
 import TransparentLink from '../../core/components/transparentLink'
 
 import { SafeMode } from '../context'
@@ -81,6 +81,7 @@ const DrawerComponent: React.FC = () => {
         icon={MenuIcon}
         onClick={onOpen}
         bg='transparent'
+        color={colorMode ? headingFontColor[colorMode] : undefined}
         size='lg'
       />
       <Drawer
@@ -90,7 +91,9 @@ const DrawerComponent: React.FC = () => {
         finalFocusRef={btnRef}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerCloseButton />
+          <DrawerCloseButton
+            color={colorMode ? headingFontColor[colorMode] : undefined}
+          />
 
           <DrawerBody p={0} overflow='scroll'>
             <Box pt={10} px={6}>
@@ -103,7 +106,11 @@ const DrawerComponent: React.FC = () => {
             <Divider mt={4} mb={2} />
             <Box px={6}>
               <Box py={2}>
-                <Text fontSize='xl' fontWeight={600} py={2}>
+                <Text
+                  fontSize='xl'
+                  fontWeight={600}
+                  py={2}
+                  color={colorMode ? headingFontColor[colorMode] : undefined}>
                   Menu
                 </Text>
                 {menuStacks.map((stack, i) => {
@@ -125,7 +132,11 @@ const DrawerComponent: React.FC = () => {
                 })}
               </Box>
               <Box py={2}>
-                <Text fontSize='xl' fontWeight={600} py={2}>
+                <Text
+                  fontSize='xl'
+                  fontWeight={600}
+                  py={2}
+                  color={colorMode ? headingFontColor[colorMode] : undefined}>
                   Tag Types
                 </Text>
                 {tagStacks.map((stack, i) => {
@@ -147,7 +158,11 @@ const DrawerComponent: React.FC = () => {
                 })}
               </Box>
               <Box py={2}>
-                <Text fontSize='xl' fontWeight={600} py={2}>
+                <Text
+                  fontSize='xl'
+                  fontWeight={600}
+                  py={2}
+                  color={colorMode ? headingFontColor[colorMode] : undefined}>
                   Settings
                 </Text>
                 <Box py={2}>
@@ -158,7 +173,7 @@ const DrawerComponent: React.FC = () => {
                       onChange={toggleSafeMode}>
                       <React.Fragment />
                     </Switch>
-                    <Text px={2} fontSize='sm'>
+                    <Text px={2} fontSize='sm' color='gray.500'>
                       Safe mode
                     </Text>
                   </Flex>
@@ -171,8 +186,8 @@ const DrawerComponent: React.FC = () => {
                       }>
                       <React.Fragment />
                     </Switch>
-                    <Text px={2} fontSize='sm'>
-                      Dark mode (Experimental)
+                    <Text px={2} fontSize='sm' color='gray.500'>
+                      Dark mode
                     </Text>
                   </Flex>
                 </Box>

@@ -2,10 +2,11 @@ import React, { useContext, useEffect, useState } from 'react'
 
 import { chunk, get, isEmpty } from 'lodash'
 
-import { Box, Flex, Heading, Text } from '@chakra-ui/core'
+import { Box, Flex, Text } from '@chakra-ui/core'
 
 import { Collection, Subtitle } from '../../../app/context'
 
+import Heading from '../../../core/components/heading'
 import Poster from '../../../core/components/poster'
 import Pagination from './pagination'
 

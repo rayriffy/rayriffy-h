@@ -1,7 +1,9 @@
 import React from 'react'
 
-import { Box, Flex, Image, Text } from '@chakra-ui/core'
+import { Box, Flex, Image, Text, useColorMode } from '@chakra-ui/core'
 import styled from '@emotion/styled'
+
+import Heading from '../../../../core/components/heading'
 
 const BorderedCard = styled(Box)`
   border-radius: 8px;
@@ -14,16 +16,19 @@ const WidthImage = styled(Image)`
 `
 
 const GuideComponent: React.FC = () => {
+  const { colorMode } = useColorMode()
+
   return (
     <Flex justifyContent='center'>
       <Box width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}>
-        <BorderedCard>
-          <WidthImage src='https://media.giphy.com/media/OR0Ob6r1nMetO/giphy-downsized-large.gif' />
-          <Box px={3} pt={1} pb={3}>
-            <Text fontSize={[18, 20, 22, 24]} fontWeight={600} pt={2}>
-              Usage
-            </Text>
-            <Text fontSize={[14, 15]} pt={2}>
+        <BorderedCard bg={colorMode === 'dark' ? 'gray.700' : undefined}>
+          <WidthImage
+            m={0}
+            src='https://media.giphy.com/media/OR0Ob6r1nMetO/giphy-downsized-large.gif'
+          />
+          <Box p={3}>
+            <Heading size='lg'>Usage</Heading>
+            <Text fontSize={[14, 15]} pt={2} color='gray.500'>
               Replace <b>nhentai.net</b>/g/:id with <b>h.rayriffy.com</b>/g/:id
             </Text>
           </Box>

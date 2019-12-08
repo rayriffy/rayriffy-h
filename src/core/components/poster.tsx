@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { filter, head, upperFirst } from 'lodash'
 
-import { Box, Flex, Stack, Text } from '@chakra-ui/core'
+import { Box, Flex, Stack, Text, useColorMode } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
 import Slug from './slug'
@@ -14,6 +14,7 @@ import { filterTagStackByType } from '../services/filterTagStackByType'
 import allTagStack from '../../contents/database/tags'
 
 import BluredImage from './bluredImage'
+import Heading from './heading'
 
 import { IPosterProps } from '../@types/IPosterProps'
 
@@ -38,6 +39,8 @@ const FooterBox = styled(Box)`
 const PosterComponent: React.FC<IPosterProps> = props => {
   const { raw, internal = true } = props
 
+  const { colorMode } = useColorMode()
+
   const tagStack = filter(
     allTagStack,
     tag => tag.name === 'parody' || tag.name === 'tag'
@@ -57,7 +60,7 @@ const PosterComponent: React.FC<IPosterProps> = props => {
 
   return (
     <Box width={['100%', 1 / 2, 1 / 3, 1 / 5]} p={2}>
-      <BorderedCard>
+      <BorderedCard bg={colorMode === 'dark' ? 'gray.700' : undefined}>
         <CoverBox>
           <Link to={`/${internal ? 'r' : 'g'}/${raw.id}`}>
             <CoverImage
@@ -69,7 +72,7 @@ const PosterComponent: React.FC<IPosterProps> = props => {
           </Link>
         </CoverBox>
         <Box p={3}>
-          <Text fontWeight={500}>{raw.title.pretty}</Text>
+          <Heading size='sm'>{raw.title.pretty}</Heading>
           <Stack spacing={2} flexWrap='wrap' py={2} isInline={true}>
             {tags.map(tag => {
               if (tagStackTag) {

@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useState } from 'react'
 
 import { chunk, get, isEmpty } from 'lodash'
 
-import { Box, Flex, Heading, IconButton, Input } from '@chakra-ui/core'
+import { Box, Flex, IconButton, Input, useColorMode } from '@chakra-ui/core'
 
+import Heading from '../../../core/components/heading'
 import Poster from '../../../core/components/poster'
 import Pagination from './pagination'
 
@@ -16,6 +17,8 @@ import { IProps } from '../@types/IProps'
 
 const SearchComponent: React.FC<IProps> = props => {
   const { raw, skip } = props.pageContext
+
+  const { colorMode } = useColorMode()
 
   const [, setSubtitle] = useContext(Subtitle)
 
@@ -58,6 +61,10 @@ const SearchComponent: React.FC<IProps> = props => {
               placeholder='Search'
               value={query}
               onChange={e => setQuery(e.target.value)}
+              color={colorMode === 'dark' ? 'white' : undefined}
+              _placeholder={{
+                color: colorMode === 'dark' ? 'white' : 'gray.500',
+              }}
               onKeyDown={e =>
                 e.key === 'Enter' ? searchButtonHandler() : null
               }

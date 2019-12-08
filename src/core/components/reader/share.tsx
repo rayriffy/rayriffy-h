@@ -87,7 +87,6 @@ const ReaderShareComponent: React.FC<IReaderShareProps> = props => {
             <IconButton
               size='sm'
               aria-label='open external'
-              onClick={onOpen}
               icon={FaExternalLinkAlt}
             />
           </StyledLink>

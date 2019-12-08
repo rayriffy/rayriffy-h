@@ -32,7 +32,7 @@ const Context: React.FC = props => {
       <Subtitle.Provider value={[subtitle, setSubtitle]}>
         <Collection.Provider value={[collection, setCollection]}>
           <ThemeProvider>
-            <ColorModeProvider value='light'>
+            <ColorModeProvider>
               <CSSReset />
               {children}
             </ColorModeProvider>

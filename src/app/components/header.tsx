@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
 
-import { Box, Divider, Flex, Heading, Text } from '@chakra-ui/core'
+import { Box, Divider, Flex, Text } from '@chakra-ui/core'
 
+import Heading from '../../core/components/heading'
 import Drawer from '../components/drawer'
 
 import { Subtitle } from '../context'
