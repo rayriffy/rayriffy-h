@@ -53,13 +53,6 @@ module.exports = {
         trackingId: `UA-85367836-4`,
       },
     },
-    {
-      resolve: 'gatsby-plugin-typography',
-      options: {
-        pathToConfigModule: `${__dirname}/src/utils/typography`,
-        omitGoogleFont: true,
-      },
-    },
     `gatsby-plugin-netlify`,
     {
       resolve: 'gatsby-plugin-netlify-cache',
