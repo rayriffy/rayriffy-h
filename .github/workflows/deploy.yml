@@ -58,9 +58,10 @@ jobs:
         uses: actions/cache@v1
         with:
           path: .cache
-          key: ${{ runner.OS }}-rayriffy-h-gatsby-cache
+          key: ${{ runner.OS }}-rayriffy-h-gatsby-${{ hashFiles('**/diskstore-*.json') }}
           restore-keys: |
-            ${{ runner.OS }}-rayriffy-h-gatsby-cache
+            ${{ runner.OS }}-rayriffy-h-gatsby-${{ hashFiles('**/diskstore-*.json') }}
+            ${{ runner.OS }}-rayriffy-h-gatsby-
       - name: 'Init: Install yarn'
         run: |
           curl -o- -L https://yarnpkg.com/install.sh | bash
