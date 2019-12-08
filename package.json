@@ -27,6 +27,7 @@
     "gatsby-plugin-typography": "^2.3.17",
     "gatsby-source-filesystem": "^2.1.40",
     "lodash": "^4.17.15",
+    "netlify-cli": "^2.24.0",
     "pastebin-js": "^1.0.3",
     "preact": "^10.0.5",
     "react": "^16.12.0",
@@ -68,6 +69,7 @@
   "scripts": {
     "build": "gatsby build",
     "clean": "gatsby clean",
+    "deploy": "netlify deploy --dir=./public --prod",
     "dev": "gatsby develop --https",
     "dev:net": "gatsby develop -H 0.0.0.0 -p 3000",
     "format": "yarn test:lint --fix",

@@ -70,12 +70,9 @@ jobs:
       - name: "Build: Trigger build site"
         run: |
             yarn build
-      - name: "Pre Deploy: Install Netlify CLI"
-        run: |
-            yarn global add netlify-cli
       - name: "Deploy: Upload to Netlify"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         run: |
-            netlify deploy --dir=./public --prod
+            yarn deploy
