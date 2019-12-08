@@ -58,9 +58,9 @@ jobs:
         uses: actions/cache@v1
         with:
           path: .cache
-          key: ${{ runner.OS }}-rayriffy-h-gatsby-${{ hashFiles('**/diskstore-*.json') }}
+          key: ${{ runner.OS }}-rayriffy-h-gatsby-${{ hashFiles('.cache/**/diskstore-*.*') }}
           restore-keys: |
-            ${{ runner.OS }}-rayriffy-h-gatsby-${{ hashFiles('**/diskstore-*.json') }}
+            ${{ runner.OS }}-rayriffy-h-gatsby-${{ hashFiles('.cache/**/diskstore-*.*') }}
             ${{ runner.OS }}-rayriffy-h-gatsby-
       - name: 'Init: Install yarn'
         run: |
