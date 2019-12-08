@@ -52,9 +52,8 @@ jobs:
           path: node_modules
           key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}-
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
+            ${{ runner.OS }}-node-${{ env.cache-name }}-
+            ${{ runner.OS }}-node-
       - name: "Cache: Gatsby builds"
         uses: actions/cache@v1
         with:
