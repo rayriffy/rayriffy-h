@@ -88,6 +88,7 @@ const DrawerComponent: React.FC = () => {
         isOpen={isOpen}
         placement='right'
         onClose={onClose}
+        isFullHeight={true}
         finalFocusRef={btnRef}>
         <DrawerOverlay />
         <DrawerContent>
@@ -95,9 +96,9 @@ const DrawerComponent: React.FC = () => {
             color={colorMode ? headingFontColor[colorMode] : undefined}
           />
 
-          <DrawerBody p={0} overflow='scroll'>
+          <DrawerBody p={0} overflow='auto'>
             <Box pt={10} px={6}>
-              <Heading size='xl'>Riffy H</Heading>
+              <Heading size='2xl'>Riffy H</Heading>
               <Text color='gray.500'>The missng piece of NHentai</Text>
               <Text color='gray.400' fontSize='xs'>
                 Version 3.3.1
