@@ -1,11 +1,12 @@
 {
   "name": "rayriffy-h",
   "description": "NSFW",
-  "version": "3.0.0-alpha.1",
+  "version": "3.3.0",
   "author": "Phumrapee Limpianchop <contact@rayriffy.com>",
   "bugs": {
     "url": "https://github.com/rayriffy/rayriffy-h/issues"
   },
+  "private": true,
   "dependencies": {
     "@chakra-ui/core": "^0.5.0",
     "@emotion/core": "^10.0.22",
