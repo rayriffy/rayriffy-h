@@ -15,6 +15,7 @@ interface IImageCoverProps {
 const ImageCover = styled('img')<IImageCoverProps>`
   overflow: hidden;
   width: 100%;
+  margin: 0;
 
   ${(props: IImageCoverProps) => props.blur && `filter: blur(15px);`}
 `
