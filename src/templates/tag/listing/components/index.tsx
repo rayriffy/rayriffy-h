@@ -2,9 +2,10 @@ import React, { useContext, useEffect } from 'react'
 
 import { filter, isEmpty, sortBy, startsWith } from 'lodash'
 
-import { Box, Divider, Flex, Text } from '@chakra-ui/core'
+import { Box, Divider, Flex, Text, useColorMode } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
+import Heading from '../../../../core/components/heading'
 import TransparentLink from '../../../../core/components/transparentLink'
 
 import { Subtitle } from '../../../../app/context'
@@ -18,6 +19,8 @@ const CoverCard = styled(Box)`
 
 const TagListingComponent: React.FC<IProps> = props => {
   const { prefix, raw, subtitle } = props.pageContext
+
+  const { colorMode } = useColorMode()
 
   const [, setSubtitle] = useContext(Subtitle)
 
@@ -71,11 +74,11 @@ const TagListingComponent: React.FC<IProps> = props => {
             if (!isEmpty(filteredTags)) {
               return (
                 <Box py={3} key={`tag-${prefix}-${text}`}>
-                  <CoverCard backgroundColor={`white`} p={3}>
+                  <CoverCard
+                    p={3}
+                    bg={colorMode === 'dark' ? 'gray.700' : undefined}>
                     <Box p={2}>
-                      <Text fontSize={26} fontWeight={600}>
-                        {text.toUpperCase()}
-                      </Text>
+                      <Heading size='xl'>{text.toUpperCase()}</Heading>
                     </Box>
                     <Box p={2}>
                       {filteredTags.map((tag, i) => {
