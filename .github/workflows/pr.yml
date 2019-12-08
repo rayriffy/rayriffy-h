@@ -1,4 +1,4 @@
-name: PR Test Unit
+name: Test Units
 
 on: [pull_request]
 
