@@ -17,6 +17,7 @@ Feature
 - **No ads** and **no pop-ups**
 - Flexible **search** system
 - **Easy to use** collection system
+- **Offline-ready** without any interactions
 
 Screenshots
 -----------
@@ -41,7 +42,7 @@ $ yarn dev
 Where's all query from
 ----------------------
 
-We query data from a custom database [here](src/contents/database/codes.js)
+Prefetched query data are come from a custom database [here](src/contents/database/codes.js)
 
 Contributing
 ------------
