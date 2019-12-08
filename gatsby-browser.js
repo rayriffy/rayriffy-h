@@ -29,3 +29,12 @@ export const onServiceWorkerUpdateReady = () => {
   document.getElementById('sw-update-found').style.display = 'none'
   document.getElementById('sw-update-complete').style.display = 'flex'
 }
+
+export const replaceHydrateFunction = () => {
+  return (element, container, callback) => {
+    ReactDOM.createRoot(container, {
+      hydrate: true,
+      hydrationOptions: { onHydrated: callback },
+    }).render(element)
+  }
+}
