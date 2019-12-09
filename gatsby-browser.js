@@ -33,9 +33,6 @@ export const onServiceWorkerUpdateReady = () => {
 
 export const replaceHydrateFunction = () => {
   return (element, container, callback) => {
-    ReactDOM.createRoot(container, {
-      hydrate: true,
-      hydrationOptions: { onHydrated: callback },
-    }).render(element)
+    ReactDOM.hydrate(element, container, callback)
   }
 }
