@@ -1,9 +1,19 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 
 import App from './src/app/components'
+import Context from './src/store'
 
 export const wrapPageElement = ({ element, props }) => {
   return <App {...props}>{element}</App>
+}
+
+export const wrapRootElement = ({ element }) => {
+  return (
+    <React.StrictMode>
+      <Context>{element}</Context>
+    </React.StrictMode>
+  )
 }
 
 export const onServiceWorkerUpdateFound = () => {
@@ -22,4 +32,13 @@ export const onServiceWorkerInstalled = () => {
 export const onServiceWorkerUpdateReady = () => {
   document.getElementById('sw-update-found').style.display = 'none'
   document.getElementById('sw-update-complete').style.display = 'flex'
+}
+
+export const replaceHydrateFunction = () => {
+  return (element, container, callback) => {
+    ReactDOM.createRoot(container, {
+      hydrate: true,
+      hydrationOptions: { onHydrated: callback },
+    }).render(element)
+  }
 }
