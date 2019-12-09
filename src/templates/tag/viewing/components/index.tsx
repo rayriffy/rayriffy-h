@@ -5,7 +5,7 @@ import { Box, Flex } from '@chakra-ui/core'
 import Pagination from '../../../../core/components/pagination'
 import Poster from '../../../../core/components/poster'
 
-import { Subtitle } from '../../../../app/context'
+import { Subtitle } from '../../../../store'
 
 import { IProps } from '../@types/IProps'
 

@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useMemo, useRef } from 'react'
 
 import { FaBars as MenuIcon, FaHeart as LoveIcon } from 'react-icons/fa'
 
@@ -25,7 +25,7 @@ import tagStack from '../../contents/database/tags'
 import Heading, { headingFontColor } from '../../core/components/heading'
 import TransparentLink from '../../core/components/transparentLink'
 
-import { SafeMode } from '../context'
+import { SafeMode } from '../../store'
 
 const CapitalizedText = styled(Text)`
   text-transform: capitalize;
@@ -39,7 +39,7 @@ const DrawerComponent: React.FC = () => {
 
   const btnRef = useRef(null)
 
-  const themeColor: any = theme.colors
+  const themeColor: any = useMemo(() => theme.colors, [theme])
 
   const toggleSafeMode = () => {
     setSafeMode(prev => !prev)
@@ -214,4 +214,4 @@ const DrawerComponent: React.FC = () => {
   )
 }
 
-export default React.memo(DrawerComponent)
+export default DrawerComponent

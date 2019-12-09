@@ -7,22 +7,18 @@ import { Box } from '@chakra-ui/core'
 import Header from './header'
 import ServiceWorker from './serviceworker'
 
-import Context from '../context'
-
 const AppComponent: React.FC = props => {
   const { children } = props
 
   return (
-    <Context>
-      <Box pt={12}>
-        <Helmet defaultTitle='Riffy H' titleTemplate='%s · Riffy H' />
-        <Box px={[3, 4, 5]}>
-          <Header />
-          <ServiceWorker />
-        </Box>
-        <Box>{children}</Box>
+    <Box pt={12}>
+      <Helmet defaultTitle='Riffy H' titleTemplate='%s · Riffy H' />
+      <Box px={[3, 4, 5]}>
+        <Header />
+        <ServiceWorker />
       </Box>
-    </Context>
+      <Box>{children}</Box>
+    </Box>
   )
 }
 

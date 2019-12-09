@@ -10,7 +10,7 @@ import Pagination from './pagination'
 
 import { searchHentai } from '../services/searchHentai'
 
-import { Subtitle } from '../../../app/context'
+import { Subtitle } from '../../../store'
 
 import { IFetchedRaw } from '../../../core/@types/IFetchedRaw'
 import { IProps } from '../@types/IProps'

@@ -8,7 +8,7 @@ import styled from '@emotion/styled'
 import Heading from '../../../../core/components/heading'
 import TransparentLink from '../../../../core/components/transparentLink'
 
-import { Subtitle } from '../../../../app/context'
+import { Subtitle } from '../../../../store'
 
 import { IProps } from '../@types/IProps'
 

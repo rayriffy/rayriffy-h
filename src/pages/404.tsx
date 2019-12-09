@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react'
 import { Box, Flex, Image, Text } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
-import { Subtitle } from '../app/context'
+import { Subtitle } from '../store'
 
 const BorderedCard = styled(Box)`
   border-radius: 8px;

@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react'
 
 import { Box } from '@chakra-ui/core'
 
-import { Subtitle } from '../../../app/context'
+import { Subtitle } from '../../../store'
 
 import NotAvaliable from '../../../core/components/notAvaliable'
 

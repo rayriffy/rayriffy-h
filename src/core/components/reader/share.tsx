@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
-import { Collection } from '../../../app/context'
+import { Collection } from '../../../store'
 
 import API from './api'
 

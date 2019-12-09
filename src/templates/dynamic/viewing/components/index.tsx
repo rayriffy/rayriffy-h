@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 
 import { Box } from '@chakra-ui/core'
 
-import { Subtitle } from '../../../../app/context'
+import { Subtitle } from '../../../../store'
 
 import Reader from '../../../../core/components/reader'
 import Failed from './failed'

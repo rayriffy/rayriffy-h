@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react'
 
 import Reader from '../../../../core/components/reader'
 
-import { Subtitle } from '../../../../app/context'
+import { Subtitle } from '../../../../store'
 
 import { IProps } from '../@types/IProps'
 

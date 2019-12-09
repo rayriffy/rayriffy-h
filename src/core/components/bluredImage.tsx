@@ -4,7 +4,7 @@ import LazyLoad from 'react-lazyload'
 
 import styled from '@emotion/styled'
 
-import { SafeMode } from '../../app/context'
+import { SafeMode } from '../../store'
 
 import { IBluredImageProps } from '../@types/IBluredImageProps'
 

@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Box, Button, Flex, Input, Text, useColorMode } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
-import { Subtitle } from '../app/context'
+import { Subtitle } from '../store'
 
 import Heading from '../core/components/heading'
 import TransparentLink from '../core/components/transparentLink'

@@ -4,7 +4,7 @@ import { chunk, get, isEmpty } from 'lodash'
 
 import { Box, Flex, Text } from '@chakra-ui/core'
 
-import { Collection, Subtitle } from '../../../app/context'
+import { Collection, Subtitle } from '../../../store'
 
 import Heading from '../../../core/components/heading'
 import Poster from '../../../core/components/poster'

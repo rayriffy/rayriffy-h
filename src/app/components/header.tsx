@@ -5,7 +5,7 @@ import { Box, Divider, Flex, Text } from '@chakra-ui/core'
 import Heading from '../../core/components/heading'
 import Drawer from '../components/drawer'
 
-import { Subtitle } from '../context'
+import { Subtitle } from '../../store'
 
 const HeaderComponent = () => {
   const [subtitle] = useContext(Subtitle)
