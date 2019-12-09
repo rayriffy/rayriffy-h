@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import {
   Heading as ChakraHeading,
@@ -14,13 +14,13 @@ export const headingFontColor = {
 const Heading: React.FC<HeadingProps> = React.forwardRef((props, ref) => {
   const { colorMode } = useColorMode()
 
-  return (
-    <ChakraHeading
-      ref={ref}
-      color={colorMode ? headingFontColor[colorMode] : undefined}
-      {...props}
-    />
-  )
+  const [color, setColor] = useState<string | undefined>(undefined)
+
+  useEffect(() => {
+    setColor(colorMode ? headingFontColor[colorMode] : undefined)
+  }, [colorMode])
+
+  return <ChakraHeading ref={ref} color={color} {...props} />
 })
 
 export default Heading

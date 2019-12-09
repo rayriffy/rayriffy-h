@@ -39,7 +39,7 @@ const CollectionComponent: React.FC<IProps> = props => {
   }, [])
 
   return (
-    <Flex justifyContent='center' pt={3}>
+    <Flex justifyContent='center'>
       <Box width={22 / 24}>
         {isEmpty(fetchedCollection) ? (
           <React.Fragment>
@@ -53,7 +53,7 @@ const CollectionComponent: React.FC<IProps> = props => {
         ) : (
           <React.Fragment>
             <Flex justifyContent='center'>
-              <Box width={18 / 24} py={6}>
+              <Box width={18 / 24} pt={3} pb={6}>
                 <Pagination
                   current={page}
                   max={chunk(fetchedCollection, skip).length}

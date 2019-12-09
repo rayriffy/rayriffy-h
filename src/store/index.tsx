@@ -4,6 +4,8 @@ import { useLocalStorage } from 'web-api-hooks'
 
 import { ColorModeProvider, CSSReset, ThemeProvider } from '@chakra-ui/core'
 
+import { theme } from './theme'
+
 type ISafeMode = [boolean, Dispatch<SetStateAction<boolean>>]
 type ISubtitle = [string, Dispatch<SetStateAction<string>>]
 type ICollection = [string, Dispatch<SetStateAction<string>>]
@@ -31,7 +33,7 @@ const Context: React.FC = props => {
     <SafeMode.Provider value={[safeMode, setSafeMode]}>
       <Subtitle.Provider value={[subtitle, setSubtitle]}>
         <Collection.Provider value={[collection, setCollection]}>
-          <ThemeProvider>
+          <ThemeProvider theme={theme}>
             <ColorModeProvider>
               <CSSReset />
               {children}

@@ -21,7 +21,7 @@ const TagViewingComponent: React.FC<IProps> = props => {
   return (
     <React.Fragment>
       <Flex justifyContent='center'>
-        <Box width={18 / 24} py={3}>
+        <Box width={18 / 24} pt={3} pb={6}>
           <Pagination
             current={page.current}
             max={page.max}

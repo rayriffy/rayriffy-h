@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-import { Box, Flex, theme, useColorMode } from '@chakra-ui/core'
+import { Box, Flex, useColorMode } from '@chakra-ui/core'
 import styled from '@emotion/styled'
+import { theme } from '../../store/theme'
 
 import Link from '../../core/components/transparentLink'
 
@@ -39,6 +40,8 @@ const TransparentLink = styled(Link)<IPage>`
 const PaginationComponent: React.FC<IProps> = props => {
   const { max, current, prefix } = props
 
+  const [color, setColor] = useState<'dark' | 'light' | undefined>(undefined)
+
   const { colorMode } = useColorMode()
 
   const pageLength: number = max > 5 ? 5 : max
@@ -51,6 +54,10 @@ const PaginationComponent: React.FC<IProps> = props => {
         : current - (pageLength - 2)
       : 0
 
+  useEffect(() => {
+    setColor(colorMode)
+  }, [colorMode])
+
   return (
     <Flex justifyContent='center'>
       {Array.from({ length: pageLength }, (_, i) => (
@@ -61,7 +68,7 @@ const PaginationComponent: React.FC<IProps> = props => {
             }
             start={startPoint}
             index={i}
-            colorMode={colorMode}
+            colorMode={color}
             current={current}>
             {startPoint + i + 1}
           </TransparentLink>

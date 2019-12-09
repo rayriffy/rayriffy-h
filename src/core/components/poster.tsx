@@ -6,6 +6,7 @@ import { filter, head, upperFirst } from 'lodash'
 import { Box, Flex, Stack, Text, useColorMode } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
+import BluredImage from './bluredImage'
 import Slug from './slug'
 
 import { filterTagByType } from '../services/filterTagByType'
@@ -13,7 +14,6 @@ import { filterTagStackByType } from '../services/filterTagStackByType'
 
 import allTagStack from '../../contents/database/tags'
 
-import BluredImage from './bluredImage'
 import Heading from './heading'
 
 import { IPosterProps } from '../@types/IPosterProps'

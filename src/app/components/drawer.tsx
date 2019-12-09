@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useRef } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 
 import { FaBars as MenuIcon, FaHeart as LoveIcon } from 'react-icons/fa'
 
@@ -14,11 +14,11 @@ import {
   IconButton,
   Switch,
   Text,
-  theme,
   useColorMode,
   useDisclosure,
 } from '@chakra-ui/core'
 import styled from '@emotion/styled'
+import { theme } from '../../store/theme'
 
 import tagStack from '../../contents/database/tags'
 
@@ -37,9 +37,11 @@ const DrawerComponent: React.FC = () => {
   const { colorMode, toggleColorMode } = useColorMode()
   const [safeMode, setSafeMode] = useContext(SafeMode)
 
+  const [color, setColor] = useState<string | undefined>(undefined)
+
   const btnRef = useRef(null)
 
-  const themeColor: any = useMemo(() => theme.colors, [theme])
+  const themeColor: any = theme.colors
 
   const toggleSafeMode = () => {
     setSafeMode(prev => !prev)
@@ -73,6 +75,10 @@ const DrawerComponent: React.FC = () => {
     prefix: o.prefix,
   }))
 
+  useEffect(() => {
+    setColor(colorMode ? headingFontColor[colorMode] : undefined)
+  }, [colorMode])
+
   return (
     <React.Fragment>
       <IconButton
@@ -81,7 +87,7 @@ const DrawerComponent: React.FC = () => {
         icon={MenuIcon}
         onClick={onOpen}
         bg='transparent'
-        color={colorMode ? headingFontColor[colorMode] : undefined}
+        color={color}
         size='lg'
       />
       <Drawer
@@ -92,26 +98,20 @@ const DrawerComponent: React.FC = () => {
         finalFocusRef={btnRef}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerCloseButton
-            color={colorMode ? headingFontColor[colorMode] : undefined}
-          />
+          <DrawerCloseButton color={color} />
 
           <DrawerBody p={0} overflow='auto'>
             <Box pt={10} px={6}>
               <Heading size='2xl'>Riffy H</Heading>
               <Text color='gray.500'>The missng piece of NHentai</Text>
               <Text color='gray.400' fontSize='xs'>
-                Version 3.3.2
+                Version 3.3.4
               </Text>
             </Box>
             <Divider mt={4} mb={2} />
             <Box px={6}>
               <Box py={2}>
-                <Text
-                  fontSize='xl'
-                  fontWeight={600}
-                  py={2}
-                  color={colorMode ? headingFontColor[colorMode] : undefined}>
+                <Text fontSize='xl' fontWeight={600} py={2} color={color}>
                   Menu
                 </Text>
                 {menuStacks.map((stack, i) => {
@@ -133,11 +133,7 @@ const DrawerComponent: React.FC = () => {
                 })}
               </Box>
               <Box py={2}>
-                <Text
-                  fontSize='xl'
-                  fontWeight={600}
-                  py={2}
-                  color={colorMode ? headingFontColor[colorMode] : undefined}>
+                <Text fontSize='xl' fontWeight={600} py={2} color={color}>
                   Tag Types
                 </Text>
                 {tagStacks.map((stack, i) => {
@@ -159,11 +155,7 @@ const DrawerComponent: React.FC = () => {
                 })}
               </Box>
               <Box py={2}>
-                <Text
-                  fontSize='xl'
-                  fontWeight={600}
-                  py={2}
-                  color={colorMode ? headingFontColor[colorMode] : undefined}>
+                <Text fontSize='xl' fontWeight={600} py={2} color={color}>
                   Settings
                 </Text>
                 <Box py={2}>
@@ -214,4 +206,4 @@ const DrawerComponent: React.FC = () => {
   )
 }
 
-export default DrawerComponent
+export default React.memo(DrawerComponent)
