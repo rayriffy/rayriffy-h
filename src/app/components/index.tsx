@@ -12,7 +12,13 @@ const AppComponent: React.FC = props => {
 
   return (
     <Box pt={12}>
-      <Helmet defaultTitle='Riffy H' titleTemplate='%s · Riffy H' />
+      <Helmet
+        defaultTitle='Riffy H'
+        titleTemplate='%s · Riffy H'
+        meta={[
+          { name: 'description', content: 'The missing piece of NHentai' },
+        ]}
+      />
       <Box px={[3, 4, 5]}>
         <Header />
         <ServiceWorker />
