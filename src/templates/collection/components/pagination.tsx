@@ -61,6 +61,7 @@ const PaginationComponent: React.FC<IProps> = props => {
             index={i}
             current={current}
             colorMode={colorMode}
+            aria-label={`${startPoint + i + 1}`}
             onClick={() => onChange(startPoint + i + 1)}>
             {startPoint + i + 1}
           </StyledLink>

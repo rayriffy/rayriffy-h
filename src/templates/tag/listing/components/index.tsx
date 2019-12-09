@@ -86,7 +86,9 @@ const TagListingComponent: React.FC<IProps> = props => {
                           <Box key={`tag-${prefix}-${text}-${tag.id}`}>
                             {i !== 0 ? <Divider /> : null}
                             <Box py={3}>
-                              <TransparentLink to={`/${prefix}/${tag.id}`}>
+                              <TransparentLink
+                                to={`/${prefix}/${tag.id}`}
+                                aria-label={tag.name}>
                                 <Text fontSize='sm' color='blue.500'>
                                   {tag.name}
                                 </Text>

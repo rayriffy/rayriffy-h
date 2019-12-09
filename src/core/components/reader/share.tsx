@@ -83,6 +83,7 @@ const ReaderShareComponent: React.FC<IReaderShareProps> = props => {
           <StyledLink
             href={`https://nhentai.net/g/${hentai.id}`}
             target='_blank'
+            aria-label='NHentai'
             rel='noopener noreferrer'>
             <IconButton
               size='sm'

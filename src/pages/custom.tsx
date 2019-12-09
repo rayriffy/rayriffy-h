@@ -55,7 +55,7 @@ const CustomComponent: React.FC = () => {
                   Locked
                 </Button>
               ) : (
-                <TransparentLink to={`/g/${input}`}>
+                <TransparentLink to={`/g/${input}`} aria-label='Ready'>
                   <Button bg='#1890ff' color='white' fontSize='sm'>
                     Ready
                   </Button>

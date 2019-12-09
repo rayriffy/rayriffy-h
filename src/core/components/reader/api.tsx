@@ -152,6 +152,7 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
                   <StyledLink
                     href={image}
                     download={`encoded-${id}.jpeg`}
+                    aria-label='Download'
                     _hover={{ textDecoration: 'none' }}>
                     <StyledButton primary={true}>
                       <Flex alignItems='center' px={3} py={1}>

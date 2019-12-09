@@ -15,6 +15,7 @@ const AppComponent: React.FC = props => {
       <Helmet
         defaultTitle='Riffy H'
         titleTemplate='%s · Riffy H'
+        htmlAttributes={{ lang: 'en' }}
         meta={[
           { name: 'description', content: 'The missing piece of NHentai' },
         ]}

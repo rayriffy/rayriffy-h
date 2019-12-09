@@ -119,7 +119,9 @@ const DrawerComponent: React.FC = () => {
                     <Box key={`menu-stack-${stack.prefix}`}>
                       {i !== 0 ? <Divider /> : null}
                       <Box py={1}>
-                        <TransparentLink to={`/${stack.prefix}`}>
+                        <TransparentLink
+                          to={`/${stack.prefix}`}
+                          aria-label={stack.name}>
                           <CapitalizedText
                             fontSize='sm'
                             color='gray.500'
@@ -141,7 +143,9 @@ const DrawerComponent: React.FC = () => {
                     <Box key={`menu-stack-${stack.prefix}`}>
                       {i !== 0 ? <Divider /> : null}
                       <Box py={1}>
-                        <TransparentLink to={`/${stack.prefix}`}>
+                        <TransparentLink
+                          to={`/${stack.prefix}`}
+                          aria-label={stack.name}>
                           <CapitalizedText
                             fontSize='sm'
                             color='gray.500'

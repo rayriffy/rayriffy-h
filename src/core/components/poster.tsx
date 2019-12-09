@@ -62,7 +62,9 @@ const PosterComponent: React.FC<IPosterProps> = props => {
     <Box width={['100%', 1 / 2, 1 / 3, 1 / 5]} p={2}>
       <BorderedCard bg={colorMode === 'dark' ? 'gray.700' : undefined}>
         <CoverBox>
-          <Link to={`/${internal ? 'r' : 'g'}/${raw.id}`}>
+          <Link
+            to={`/${internal ? 'r' : 'g'}/${raw.id}`}
+            aria-label={raw.title.pretty}>
             <CoverImage
               height={raw.images.cover.h}
               alt={`Cover ${raw.title.pretty}`}

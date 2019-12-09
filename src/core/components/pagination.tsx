@@ -66,6 +66,7 @@ const PaginationComponent: React.FC<IProps> = props => {
             to={
               startPoint + i === 0 ? prefix : `${prefix}p/${startPoint + i + 1}`
             }
+            aria-label={`${startPoint + i + 1}`}
             start={startPoint}
             index={i}
             colorMode={color}

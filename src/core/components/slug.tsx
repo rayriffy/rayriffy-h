@@ -13,7 +13,7 @@ const SlugComponent: React.FC<ISlugProps> = props => {
     <React.Fragment>
       {link ? (
         <Box px={1}>
-          <TransparentLink to={link}>
+          <TransparentLink to={link} aria-label={title}>
             <Badge fontSize={11} variant='outline' variantColor={color}>
               {title}
             </Badge>
