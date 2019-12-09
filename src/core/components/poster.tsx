@@ -65,6 +65,7 @@ const PosterComponent: React.FC<IPosterProps> = props => {
           <Link to={`/${internal ? 'r' : 'g'}/${raw.id}`}>
             <CoverImage
               height={raw.images.cover.h}
+              alt={`Cover ${raw.title.pretty}`}
               src={`https://t.nhentai.net/galleries/${raw.media_id}/cover.${
                 raw.images.cover.t === 'p' ? 'png' : 'jpg'
               }`}

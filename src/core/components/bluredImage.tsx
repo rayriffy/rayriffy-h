@@ -21,7 +21,7 @@ const ImageCover = styled('img')<IImageCoverProps>`
 `
 
 const BluredImageComponent: React.FC<IBluredImageProps> = props => {
-  const { height, src } = props
+  const { height, src, alt } = props
 
   const [safeMode] = useContext(SafeMode)
 
@@ -30,6 +30,7 @@ const BluredImageComponent: React.FC<IBluredImageProps> = props => {
       <ImageCover
         blur={safeMode === undefined ? true : safeMode}
         src={src}
+        alt={alt}
         height='100%'
       />
     </LazyLoad>

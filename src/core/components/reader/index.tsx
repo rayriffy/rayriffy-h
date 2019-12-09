@@ -40,6 +40,7 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
                 <CoverBox>
                   <BluredImage
                     height={hentai.images.cover.h}
+                    alt={`Cover ${hentai.title.pretty}`}
                     src={`https://t.nhentai.net/galleries/${
                       hentai.media_id
                     }/cover.${hentai.images.cover.t === 'p' ? 'png' : 'jpg'}`}
@@ -103,6 +104,7 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
                   <CoverBox key={`reader-${raw.data.id}-page-${i + 1}`}>
                     <BluredImage
                       height={page.h}
+                      alt={`Page ${i + 1}`}
                       src={`https://i.nhentai.net/galleries/${
                         hentai.media_id
                       }/${i + 1}.${page.t === 'p' ? 'png' : 'jpg'}`}
