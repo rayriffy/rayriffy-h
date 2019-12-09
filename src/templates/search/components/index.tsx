@@ -2,13 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 
 import { chunk, get, isEmpty } from 'lodash'
 
-import {
-  Box,
-  Flex,
-  IconButton,
-  Input,
-  useColorMode,
-} from '@chakra-ui/core'
+import { Box, Flex, IconButton, Input, useColorMode } from '@chakra-ui/core'
 
 import Heading from '../../../core/components/heading'
 import Poster from '../../../core/components/poster'
