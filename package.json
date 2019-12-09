@@ -1,7 +1,7 @@
 {
   "name": "rayriffy-h",
-  "description": "NSFW",
-  "version": "3.3.1",
+  "description": "The missing piece of NHentai",
+  "version": "3.3.2",
   "author": "Phumrapee Limpianchop <contact@rayriffy.com>",
   "bugs": {
     "url": "https://github.com/rayriffy/rayriffy-h/issues"
@@ -9,7 +9,14 @@
   "private": true,
   "homepage": "https://h.rayriffy.com",
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "gatsbyjs",
+    "nsfw",
+    "react",
+    "reactjs",
+    "hentai",
+    "nhentai",
+    "netlify"
   ],
   "browserslist": [
     "last 3 versions",
