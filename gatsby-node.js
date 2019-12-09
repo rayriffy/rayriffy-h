@@ -24,9 +24,12 @@ const fshandler = err => {
   }
 }
 
-exports.onPreBootstrap = async ({reporter, cache}) => {
+exports.createPages = async ({actions, reporter, cache}) => {
+  const {createPage} = actions
+
   // Download file from cache if cache does not exist
   const cacheData = await cache.get('rayriffy-h-hentai-cache')
+
   if (cacheData === undefined) {
     reporter.info(`Downloading prefetched data from GitHub Gist`)
     const gistCache = await axios.get(PREFETCH_GIST)
@@ -36,10 +39,6 @@ exports.onPreBootstrap = async ({reporter, cache}) => {
   } else {
     reporter.info(`Found cache! Skipping prefetch stage`)
   }
-}
-
-exports.createPages = async ({actions, reporter, cache}) => {
-  const {createPage} = actions
 
   // Begin to fetch data
   const fetchedData = {
