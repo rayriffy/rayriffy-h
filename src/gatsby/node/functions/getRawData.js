@@ -23,23 +23,14 @@ exports.getRawData = async (id, exclude, {reporter, cache}) => {
         h: 0,
       },
       pages: [],
-      thumbnail: {
-        t: 'j',
-        w: 0,
-        h: 0,
-      },
     },
-    scanlator: '',
-    upload_date: 0,
     tags: [],
-    num_pages: 0,
-    num_favorites: 0,
   }
 
   try {
     // Read file from cache
     const cacheData = await cache.get('rayriffy-h-hentai-cache')
-    const parsedCache = JSON.parse(cacheData)
+    const parsedCache = cacheData ? JSON.parse(cacheData) : []
 
     const filter = _.head(_.filter(parsedCache, o => o.data.id === id && o.status === 'success'))
 
@@ -64,14 +55,31 @@ exports.getRawData = async (id, exclude, {reporter, cache}) => {
       }
     } else {
       // Using reverse proxy server to avoid CORS issue
-      const out = await axios.get(`https://nh-express-git-master.rayriffy.now.sh/api/gallery/${id}`)
+      const out = await axios.get(`https://opener.now.sh/api/data/${id}`)
 
       return {
         status: 'success',
         data: {
           id,
           exclude,
-          raw: out.data,
+          raw: {
+            id: out.data.id,
+            media_id: out.data.media_id,
+            title: out.data.title,
+            images: {
+              cover: {
+                h: out.data.images.cover.h,
+                t: out.data.images.cover.t,
+                w: out.data.images.cover.w,
+              },
+              pages: out.data.images.pages.map(o => ({
+                h: o.h,
+                t: o.t,
+                w: o.w,
+              })),
+            },
+            tags: out.data.tags,
+          },
         },
       }
     }

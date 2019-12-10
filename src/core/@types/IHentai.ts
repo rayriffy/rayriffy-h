@@ -12,11 +12,6 @@ export interface IHentai {
   images: {
     cover: IImage
     pages: IImage[]
-    thumbnail: IImage
   }
-  scanlator: string
-  upload_date: number
   tags: ITag[]
-  num_pages: number
-  num_favorites: number
 }
