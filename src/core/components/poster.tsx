@@ -12,7 +12,7 @@ import Slug from './slug'
 import { filterTagByType } from '../services/filterTagByType'
 import { filterTagStackByType } from '../services/filterTagStackByType'
 
-import allTagStack from '../../contents/database/tags'
+import { tags as allTagStack } from '../../contents/database/tags'
 
 import Heading from './heading'
 

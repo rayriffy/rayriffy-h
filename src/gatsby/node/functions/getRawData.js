@@ -7,7 +7,7 @@ const axios = require('axios')
  * @param {number} pathPrefix   Tag path prefix
  * @param {array}  exclude      Exclude pages
  */
-exports.getRawData = async (id, exclude, {reporter, cache}) => {
+exports.getRawData = async (id, exclude, { reporter, cache }) => {
   const mockRaw = {
     id: 0,
     media_id: 0,

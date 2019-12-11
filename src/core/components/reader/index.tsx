@@ -12,7 +12,7 @@ import Slug from '../slug'
 import Collapse from './collapse'
 import Share from './share'
 
-import tagStack from '../../../contents/database/tags'
+import { tags as tagStack } from '../../../contents/database/tags'
 
 import { filterTagByType } from '../../services/filterTagByType'
 

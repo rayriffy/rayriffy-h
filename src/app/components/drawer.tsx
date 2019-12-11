@@ -20,7 +20,7 @@ import {
 import styled from '@emotion/styled'
 import { theme } from '../../store/theme'
 
-import tagStack from '../../contents/database/tags'
+import { tags as tagStack } from '../../contents/database/tags'
 
 import Heading, { headingFontColor } from '../../core/components/heading'
 import TransparentLink from '../../core/components/transparentLink'

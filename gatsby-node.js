@@ -4,11 +4,11 @@ const axios = require('axios')
 const fs = require('fs')
 const path = require('path')
 
-const databaseTags = require('./src/contents/database/tags')
+const { tags } = require('./src/contents/database/tags')
 
-const {filterHentaiByTag} = require('./src/gatsby/node/functions/filterHentaiByTag')
-const {filterTag} = require('./src/gatsby/node/functions/filterTag')
-const {getData} = require('./src/gatsby/node/functions/getData')
+const { filterHentaiByTag } = require('./src/gatsby/node/functions/filterHentaiByTag')
+const { filterTag } = require('./src/gatsby/node/functions/filterTag')
+const { getData } = require('./src/gatsby/node/functions/getData')
 
 const ITEMS_PER_PAGE = 20
 
@@ -42,7 +42,7 @@ exports.createPages = async ({actions, reporter, cache}) => {
 
   // Begin to fetch data
   const fetchedData = {
-    tags: databaseTags,
+    tags: tags,
     codes: await getData({reporter, cache}),
   }
 
@@ -241,7 +241,7 @@ exports.onPostBootstrap = async ({reporter, cache}) => {
      * Generate tag listing API
      */
 
-    databaseTags.map(tag => {
+    tags.map(tag => {
       const nodes = filterTag(healthyResults, tag.name)
 
       fs.writeFile(
@@ -262,7 +262,7 @@ exports.onPostBootstrap = async ({reporter, cache}) => {
      * Generate tag viewing API
      */
 
-    databaseTags.map(tag => {
+    tags.map(tag => {
       if (!fs.existsSync(`./public/${apiPath}/${tag.prefix}`)) {
         fs.mkdirSync(`./public/${apiPath}/${tag.prefix}`)
       }
