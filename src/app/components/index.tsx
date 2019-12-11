@@ -24,7 +24,7 @@ const AppComponent: React.FC = props => {
         <Header />
         <ServiceWorker />
       </Box>
-      <Box>{children}</Box>
+      {children}
     </Box>
   )
 }
