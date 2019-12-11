@@ -32,7 +32,7 @@
   "scripts": {
     "build": "gatsby build",
     "clean": "gatsby clean",
-    "deploy": "netlify deploy --dir=./public --prod",
+    "deploy": "netlify deploy --dir=./public",
     "dev": "gatsby develop --https",
     "dev:net": "gatsby develop -H 0.0.0.0 -p 3000",
     "format": "yarn test:lint --fix",

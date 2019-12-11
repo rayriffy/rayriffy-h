@@ -79,4 +79,4 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         run: |
-            yarn deploy --message "Automatic deployment from GitHub Actions"
+            yarn deploy --message "Automatic deployment from GitHub Actions" --prod
