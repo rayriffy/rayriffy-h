@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
 import axios from 'axios'
-import CopyToClipboard from 'react-copy-to-clipboard'
+import copy from 'copy-to-clipboard'
 import { FaCopy, FaDownload } from 'react-icons/fa'
 
 import {
   Box,
+  Button,
   Flex,
   Image,
   Link,
@@ -18,7 +19,6 @@ import {
 import styled from '@emotion/styled'
 
 import { IReaderAPIProps } from '../../@types/IReaderAPIProps'
-import { IReaderButton } from '../../@types/IReaderButton'
 
 const API_ENDPOINT = 'https://h.api.rayriffy.com'
 
@@ -45,32 +45,6 @@ const LoadContent = styled(Box)`
   right: 0;
 `
 
-const StyledButton = styled('button')<IReaderButton>`
-  border-radius: 4px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
-  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
-
-  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-
-  color: ${(props: IReaderButton) =>
-    props.primary ? `#fff` : `rgba(0, 0, 0, 0.85)`};
-  background: ${(props: IReaderButton) => (props.primary ? `#1890ff` : `#fff`)};
-  border: 1px solid
-    ${(props: IReaderButton) => (props.primary ? `#1890ff` : `#d9d9d9`)};
-
-  &:hover {
-    color: ${(props: IReaderButton) => (props.primary ? `#fff` : `#40a9ff`)};
-    background: ${(props: IReaderButton) =>
-      props.primary ? `#40a9ff` : `#fff`};
-    border: 1px solid #40a9ff;
-  }
-`
-
 const StyledFlex = styled(Flex)`
   height: 100%;
 `
@@ -84,7 +58,16 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
 
   const [image, setImage] = useState<string>('')
   const [error, setError] = useState<boolean>(false)
-  const [isCopied, setIsCopied] = useState<boolean>(false)
+  const [isCopied, setIsCopied] = useState<boolean | 'error'>(false)
+
+  const copyHandler = (id: number) => {
+    try {
+      copy(`${id}`)
+      setIsCopied(true)
+    } catch {
+      setIsCopied('error')
+    }
+  }
 
   useEffect(() => {
     axios
@@ -154,37 +137,43 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
                     download={`encoded-${id}.jpeg`}
                     aria-label='Download'
                     _hover={{ textDecoration: 'none' }}>
-                    <StyledButton primary={true}>
+                    <Button size='sm' variantColor='blue'>
                       <Flex alignItems='center' px={3} py={1}>
                         <FaDownload />
                         <Text pl={1} fontSize='sm'>
                           Download
                         </Text>
                       </Flex>
-                    </StyledButton>
+                    </Button>
                   </StyledLink>
                 </Box>
                 <Box p={2}>
-                  <CopyToClipboard
-                    text={`${id}`}
-                    onCopy={() => setIsCopied(true)}>
-                    <StyledButton>
-                      {isCopied ? (
-                        <Flex alignItems='center' px={3} py={1}>
-                          <Text pl={1} fontSize='sm'>
-                            Copied!
-                          </Text>
-                        </Flex>
-                      ) : (
-                        <Flex alignItems='center' px={3} py={1}>
-                          <FaCopy />
-                          <Text pl={1} fontSize='sm'>
-                            Copy ID
-                          </Text>
-                        </Flex>
-                      )}
-                    </StyledButton>
-                  </CopyToClipboard>
+                  <Button
+                    size='sm'
+                    onClick={() => copyHandler(id)}
+                    variant='outline'
+                    variantColor={isCopied === 'error' ? 'red' : undefined}>
+                    {isCopied === true ? (
+                      <Flex alignItems='center' px={3} py={1}>
+                        <Text pl={1} fontSize='sm'>
+                          Copied!
+                        </Text>
+                      </Flex>
+                    ) : isCopied === false ? (
+                      <Flex alignItems='center' px={3} py={1}>
+                        <FaCopy />
+                        <Text pl={1} fontSize='sm'>
+                          Copy ID
+                        </Text>
+                      </Flex>
+                    ) : (
+                      <Flex alignItems='center' px={3} py={1}>
+                        <Text pl={1} fontSize='sm'>
+                          Failed
+                        </Text>
+                      </Flex>
+                    )}
+                  </Button>
                 </Box>
               </Flex>
             </Box>
