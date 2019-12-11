@@ -61,7 +61,7 @@
     "gatsby-plugin-typescript": "^2.1.19",
     "gatsby-source-filesystem": "^2.1.42",
     "lodash": "^4.17.15",
-    "netlify-cli": "^2.24.0",
+    "netlify-cli": "^2.25.0",
     "pastebin-js": "^1.0.3",
     "react": "^0.0.0-experimental-b53ea6ca0",
     "react-copy-to-clipboard": "^5.0.2",
