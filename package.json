@@ -53,7 +53,7 @@
     "gatsby-plugin-create-client-paths": "^2.1.17",
     "gatsby-plugin-emotion": "^4.1.18",
     "gatsby-plugin-google-analytics": "^2.1.28",
-    "gatsby-plugin-manifest": "^2.2.31",
+    "gatsby-plugin-manifest": "^2.2.33",
     "gatsby-plugin-netlify": "^2.1.28",
     "gatsby-plugin-netlify-cache": "^1.2.0",
     "gatsby-plugin-offline": "^3.0.26",
