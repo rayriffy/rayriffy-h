@@ -6178,7 +6178,7 @@ gatsby-cli@^2.8.18:
     ink "^2.6.0"
     ink-spinner "^3.0.1"
 
-gatsby-core-utils@^1.0.22, gatsby-core-utils@^1.0.24:
+gatsby-core-utils@^1.0.24:
   version "1.0.24"
   resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-1.0.24.tgz#b2b39440ad4f717de1b68f02d139130f844bdb32"
   integrity sha512-2GPJVnqVTDO1xyZWR2lITilGTzw/hP3EE5Lq/QEjvmOPX6sLes1Gd3mTewd0PpOVZkjzn93u7kZKWEGidQO2vw==
@@ -6216,12 +6216,12 @@ gatsby-page-utils@^0.0.35:
     lodash "^4.17.15"
     micromatch "^3.1.10"
 
-gatsby-plugin-create-client-paths@^2.1.17:
-  version "2.1.18"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-create-client-paths/-/gatsby-plugin-create-client-paths-2.1.18.tgz#8bbb86612a576def083eed73621098a44e9f7ba7"
-  integrity sha512-Y7Y/36SZf4+FW++A7Ec/Qf8K9PbfohEV0oxnobtKjuBnhZReWybIBDdeVjllRWlilGNSYRs1iO78Pkp43quM4Q==
+gatsby-plugin-create-client-paths@^2.1.20:
+  version "2.1.20"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-create-client-paths/-/gatsby-plugin-create-client-paths-2.1.20.tgz#6537f0f64ad7a4d9445868919dec0b8a76b11d0b"
+  integrity sha512-WKtc0BYw1fhT5LlFNGE2bW58muW9efhT6EqKBdzkCI42u2a1AQ7vDlZI+AlMVPdeWxmIqdmY9Am4oeww0yugNw==
   dependencies:
-    "@babel/runtime" "^7.7.4"
+    "@babel/runtime" "^7.7.6"
 
 gatsby-plugin-emotion@^4.1.18:
   version "4.1.18"
