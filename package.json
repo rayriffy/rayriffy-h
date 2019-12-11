@@ -58,7 +58,7 @@
     "gatsby-plugin-netlify-cache": "^1.2.0",
     "gatsby-plugin-offline": "^3.0.26",
     "gatsby-plugin-react-helmet": "^3.1.18",
-    "gatsby-plugin-typescript": "^2.1.19",
+    "gatsby-plugin-typescript": "^2.1.22",
     "gatsby-source-filesystem": "^2.1.42",
     "lodash": "^4.17.15",
     "netlify-cli": "^2.25.0",
