@@ -19,7 +19,7 @@
     "netlify"
   ],
   "browserslist": [
-    "last 3 versions",
+    "last 2 versions",
     "> 0.25%",
     "not dead"
   ],
