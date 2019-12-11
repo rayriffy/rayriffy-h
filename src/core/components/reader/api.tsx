@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import axios from 'axios'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
+import CopyToClipboard from 'react-copy-to-clipboard'
 import { FaCopy, FaDownload } from 'react-icons/fa'
 
 import {
@@ -165,7 +165,9 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
                   </StyledLink>
                 </Box>
                 <Box p={2}>
-                  <CopyToClipboard text={id} onCopy={() => setIsCopied(true)}>
+                  <CopyToClipboard
+                    text={`${id}`}
+                    onCopy={() => setIsCopied(true)}>
                     <StyledButton>
                       {isCopied ? (
                         <Flex alignItems='center' px={3} py={1}>

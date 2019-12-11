@@ -41,7 +41,9 @@ const CustomComponent: React.FC = () => {
             <Box py={2}>
               <Input
                 value={input}
-                onChange={e => setInput(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setInput(e.target.value)
+                }
                 placeholder='000000'
                 color={colorMode === 'dark' ? 'white' : undefined}
                 _placeholder={{

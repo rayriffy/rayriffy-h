@@ -60,12 +60,14 @@ const SearchComponent: React.FC<IProps> = props => {
             <Input
               placeholder='Search'
               value={query}
-              onChange={e => setQuery(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setQuery(e.target.value)
+              }
               color={colorMode === 'dark' ? 'white' : undefined}
               _placeholder={{
                 color: colorMode === 'dark' ? 'white' : 'gray.500',
               }}
-              onKeyDown={e =>
+              onKeyDown={(e: { key: string }) =>
                 e.key === 'Enter' ? searchButtonHandler() : null
               }
             />
