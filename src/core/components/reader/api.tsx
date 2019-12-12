@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
 import axios from 'axios'
-import copy from 'copy-to-clipboard'
 import { FaCopy, FaDownload } from 'react-icons/fa'
 
 import {
@@ -15,6 +14,7 @@ import {
   ModalContent,
   ModalHeader,
   Text,
+  useClipboard,
 } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
@@ -58,16 +58,7 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
 
   const [image, setImage] = useState<string>('')
   const [error, setError] = useState<boolean>(false)
-  const [isCopied, setIsCopied] = useState<boolean | 'error'>(false)
-
-  const copyHandler = (id: number) => {
-    try {
-      copy(`${id}`)
-      setIsCopied(true)
-    } catch {
-      setIsCopied('error')
-    }
-  }
+  const { onCopy, hasCopied } = useClipboard(id)
 
   useEffect(() => {
     axios
@@ -148,28 +139,18 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
                   </StyledLink>
                 </Box>
                 <Box p={2}>
-                  <Button
-                    size='sm'
-                    onClick={() => copyHandler(id)}
-                    variant='outline'
-                    variantColor={isCopied === 'error' ? 'red' : undefined}>
-                    {isCopied === true ? (
+                  <Button size='sm' onClick={onCopy} variant='outline'>
+                    {hasCopied === true ? (
                       <Flex alignItems='center' px={3} py={1}>
                         <Text pl={1} fontSize='sm'>
                           Copied!
                         </Text>
                       </Flex>
-                    ) : isCopied === false ? (
+                    ) : (
                       <Flex alignItems='center' px={3} py={1}>
                         <FaCopy />
                         <Text pl={1} fontSize='sm'>
                           Copy ID
-                        </Text>
-                      </Flex>
-                    ) : (
-                      <Flex alignItems='center' px={3} py={1}>
-                        <Text pl={1} fontSize='sm'>
-                          Failed
                         </Text>
                       </Flex>
                     )}

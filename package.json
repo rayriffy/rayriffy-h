@@ -47,7 +47,6 @@
     "@emotion/core": "^10.0.22",
     "@emotion/styled": "^10.0.23",
     "axios": "^0.19.0",
-    "copy-to-clipboard": "^3.2.0",
     "cwait": "^1.1.2",
     "emotion-theming": "^10.0.19",
     "gatsby": "^2.18.10",
