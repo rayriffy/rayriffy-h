@@ -1,4 +1,5 @@
-const _ = require('lodash')
+const filter = require('lodash.filter')
+const chunk = require('lodash.chunk')
 
 const axios = require('axios')
 const path = require('path')
@@ -38,14 +39,14 @@ exports.createPages = async ({actions, reporter, cache}) => {
   /**
    * Filter errors and assign constants
    */
-  const healthyResults = _.filter(fetchedData.codes, o => o.status === 'success').reverse()
+  const healthyResults = filter(fetchedData.codes, o => o.status === 'success').reverse()
 
   const tagStack = fetchedData.tags
 
   /**
    * Create listing page
    */
-  const hentaiListingChunks = _.chunk(healthyResults, itemsPerPage)
+  const hentaiListingChunks = chunk(healthyResults, itemsPerPage)
 
   hentaiListingChunks.map((chunk, i) => {
     createPage({
@@ -85,7 +86,7 @@ exports.createPages = async ({actions, reporter, cache}) => {
     tags.map(tag => {
       const qualifiedResults = filterHentaiByTag(healthyResults, tag)
 
-      const qualifiedResultChunks = _.chunk(qualifiedResults, itemsPerPage)
+      const qualifiedResultChunks = chunk(qualifiedResults, itemsPerPage)
 
       qualifiedResultChunks.map((chunk, i) => {
         createPage({

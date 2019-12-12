@@ -1,7 +1,10 @@
 import React from 'react'
 
 import { Link } from 'gatsby'
-import { filter, head, upperFirst } from 'lodash'
+
+import filter from 'lodash.filter'
+import head from 'lodash.head'
+import upperFirst from 'lodash.upperfirst'
 
 import { Box, Flex, Stack, Text, useColorMode } from '@chakra-ui/core'
 import styled from '@emotion/styled'

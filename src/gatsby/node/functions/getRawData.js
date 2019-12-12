@@ -1,4 +1,6 @@
-const _ = require('lodash')
+const filter = require('lodash.filter')
+const head = require('lodash.head')
+const isEmpty = require('lodash.isempty')
 
 const axios = require('axios')
 
@@ -55,16 +57,16 @@ exports.getRawData = async (id, exclude, { reporter, cache }) => {
     const cacheData = await cache.get('rayriffy-h-hentai-cache')
     const parsedCache = cacheData ? JSON.parse(cacheData) : []
 
-    const filter = _.head(_.filter(parsedCache, o => o.data.id === id && o.status === 'success'))
+    const filterData = head(filter(parsedCache, o => o.data.id === id && o.status === 'success'))
 
-    if (!_.isEmpty(filter)) {
-      if (filter) {
+    if (!isEmpty(filterData)) {
+      if (filterData) {
         return {
-          ...filter,
+          ...filterData,
           data: {
-            ...filter.data,
+            ...filterData.data,
             exclude,
-            raw: rawTranformer(filter.data.raw),
+            raw: rawTranformer(filterData.data.raw),
           },
         }
       } else {

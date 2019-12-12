@@ -1,4 +1,4 @@
-import { filter } from 'lodash'
+import filter from 'lodash.filter'
 
 import { ITag } from '../@types/ITag'
 import { ITagType } from '../@types/ITagType'

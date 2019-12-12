@@ -1,4 +1,5 @@
-const _ = require('lodash')
+const filter = require('lodash.filter')
+const chunk = require('lodash.chunk')
 
 const fs = require('fs')
 
@@ -29,13 +30,13 @@ exports.onPostBootstrap = async ({reporter, cache}) => {
      */
     const fetchedRaw = await getData({reporter, cache})
 
-    const healthyResults = _.filter(fetchedRaw, o => o.status === 'success').reverse()
+    const healthyResults = filter(fetchedRaw, o => o.status === 'success').reverse()
 
     /**
      * Preparing to generate API
      */
     const apiPath = 'api'
-    const apiChunks = _.chunk(healthyResults, itemsPerPage)
+    const apiChunks = chunk(healthyResults, itemsPerPage)
 
     if (!fs.existsSync(`./public/${apiPath}`)) {
       fs.mkdirSync(`./public/${apiPath}`)
@@ -121,7 +122,7 @@ exports.onPostBootstrap = async ({reporter, cache}) => {
 
         const filteredHentai = filterHentaiByTag(healthyResults, node)
 
-        const apiChunks = _.chunk(filteredHentai, itemsPerPage)
+        const apiChunks = chunk(filteredHentai, itemsPerPage)
 
         apiChunks.map((chunk, i) => {
           const out = {

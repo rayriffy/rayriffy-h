@@ -61,14 +61,6 @@ module.exports = {
     {
       resolve: `gatsby-plugin-offline`,
       options: {
-        importWorkboxFrom: `local`,
-        globDirectory: rootDir,
-        globPatterns,
-        modifyURLPrefix: {
-          "/": `${pathPrefix}/`,
-        },
-        cacheId: `gatsby-plugin-offline`,
-        dontCacheBustURLsMatching: /(\.js$|\.css$|static\/)/,
         runtimeCaching: [
           {
             urlPattern: /(\.js$|\.css$|static\/)/,

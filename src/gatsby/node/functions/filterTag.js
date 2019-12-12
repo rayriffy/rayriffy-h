@@ -1,4 +1,5 @@
-const _ = require('lodash')
+const isEmpty = require('lodash.isempty')
+const filter = require('lodash.filter')
 
 /**
  * Filter only tags object with specified types
@@ -12,7 +13,7 @@ exports.filterTag = (nodes, type) => {
   nodes.map(node => {
     node.data.raw.tags.map(tag => {
       if (tag.type === type) {
-        if (_.isEmpty(_.filter(res, o => o.id === tag.id))) {
+        if (isEmpty(filter(res, o => o.id === tag.id))) {
           res.push(tag)
         }
       }
