@@ -68,7 +68,8 @@
     "react-icons": "^3.8.0",
     "react-lazyload": "^2.6.5",
     "rebass": "^4.0.6",
-    "web-api-hooks": "^2.2.2"
+    "web-api-hooks": "^2.2.2",
+    "workerize-loader": "^1.1.0"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",

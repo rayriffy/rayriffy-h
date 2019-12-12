@@ -8,11 +8,11 @@ import Heading from '../../../core/components/heading'
 import Poster from '../../../core/components/poster'
 import Pagination from './pagination'
 
-import { searchHentai } from '../services/searchHentai'
+import { searchHentai } from '../services/searchHentai.worker'
 
 import { Subtitle } from '../../../store'
 
-import { IFetchedRaw } from '../../../core/@types/IFetchedRaw'
+import { IHentai } from '../../../core/@types/IHentai'
 import { IProps } from '../@types/IProps'
 
 const SearchComponent: React.FC<IProps> = props => {
@@ -23,12 +23,12 @@ const SearchComponent: React.FC<IProps> = props => {
   const [, setSubtitle] = useContext(Subtitle)
 
   const [query, setQuery] = useState<string>('')
-  const [res, setRes] = useState<IFetchedRaw[]>([])
+  const [res, setRes] = useState<IHentai[]>([])
 
   const [page, setPage] = useState<number>(1)
-  const [renderedRaw, setRenderedRaw] = useState<IFetchedRaw[]>([])
+  const [renderedRaw, setRenderedRaw] = useState<IHentai[]>([])
 
-  const renderPage = (raws: IFetchedRaw[], page: number) => {
+  const renderPage = (raws: IHentai[], page: number) => {
     setPage(page)
     setRenderedRaw(get(chunk(raws, skip), page - 1))
   }
@@ -37,7 +37,10 @@ const SearchComponent: React.FC<IProps> = props => {
     if (query === '') {
       setRes([])
     } else {
-      searchHentai(query, raw).then(results => setRes(results))
+      searchHentai(
+        query,
+        raw.map(o => o.data.raw)
+      ).then(results => setRes(results))
     }
   }
 
@@ -102,10 +105,7 @@ const SearchComponent: React.FC<IProps> = props => {
                 <Box width={22 / 24}>
                   <Flex flexWrap='wrap' alignItems='center'>
                     {renderedRaw.map(hentai => (
-                      <Poster
-                        key={`poster-${hentai.data.id}`}
-                        raw={hentai.data.raw}
-                      />
+                      <Poster key={`poster-${hentai.id}`} raw={hentai} />
                     ))}
                   </Flex>
                 </Box>

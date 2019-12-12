@@ -1,11 +1,11 @@
 import { flatten, get, intersection, union } from 'lodash'
 
-import { IFetchedRaw } from '../../../core/@types/IFetchedRaw'
+import { IHentai } from '../../../core/@types/IHentai'
 
 export const searchHentai = async (
   query: string,
-  raws: IFetchedRaw[]
-): Promise<IFetchedRaw[]> => {
+  raws: IHentai[]
+): Promise<IHentai[]> => {
   const resultsByWords = query
     .split(' ')
     .filter(o => o !== '')
@@ -16,7 +16,7 @@ export const searchHentai = async (
 
       const languages = ['english', 'japanese', 'pretty']
 
-      const typeName: IFetchedRaw[] = flatten(
+      const typeName: IHentai[] = flatten(
         union(
           ...languages.map(language => {
             return raws.filter(raw => {
@@ -36,8 +36,8 @@ export const searchHentai = async (
        * Filter the search by tags
        */
 
-      const typeTag: IFetchedRaw[] = raws.filter(raw => {
-        const tagResult: boolean[] = raw.data.raw.tags.map(tag => {
+      const typeTag: IHentai[] = raws.filter(raw => {
+        const tagResult: boolean[] = raw.tags.map(tag => {
           const name = tag.name.toLocaleLowerCase()
 
           return RegExp(subquery.toLocaleLowerCase()).test(name)
