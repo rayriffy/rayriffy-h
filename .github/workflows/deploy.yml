@@ -61,10 +61,10 @@ jobs:
         uses: actions/cache@v1
         with:
           path: .cache
-          key: ${{ runner.OS }}-rayriffy-h-gatsby-${{ hashFiles('src/contents/database/codes.js') }}
+          key: ${{ runner.OS }}-rayriffy-h-${{ hashFiles('src/contents/database/codes.js') }}
           restore-keys: |
-            ${{ runner.OS }}-rayriffy-h-gatsby-${{ hashFiles('src/contents/database/codes.js') }}
-            ${{ runner.OS }}-rayriffy-h-gatsby-
+            ${{ runner.OS }}-rayriffy-h-${{ hashFiles('src/contents/database/codes.js') }}
+            ${{ runner.OS }}-rayriffy-h-
       - name: 'Init: Install yarn'
         run: |
           curl -o- -L https://yarnpkg.com/install.sh | bash
