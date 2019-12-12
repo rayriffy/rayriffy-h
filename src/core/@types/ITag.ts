@@ -9,6 +9,4 @@ export interface ITag {
     | 'artist'
     | 'category'
   name: string
-  url: string
-  count: number
 }

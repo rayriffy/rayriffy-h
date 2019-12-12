@@ -78,7 +78,11 @@ exports.getRawData = async (id, exclude, { reporter, cache }) => {
                 w: o.w,
               })),
             },
-            tags: out.data.tags,
+            tags: out.data.tags.map(o => ({
+              id: o.id,
+              name: o.name,
+              type: o.type,
+            })),
           },
         },
       }
