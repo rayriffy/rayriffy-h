@@ -2,6 +2,29 @@ const _ = require('lodash')
 
 const axios = require('axios')
 
+const rawTranformer = data => ({
+  id: data.id,
+  media_id: data.media_id,
+  title: data.title,
+  images: {
+    cover: {
+      h: data.images.cover.h,
+      t: data.images.cover.t,
+      w: data.images.cover.w,
+    },
+    pages: data.images.pages.map(o => ({
+      h: o.h,
+      t: o.t,
+      w: o.w,
+    })),
+  },
+  tags: data.tags.map(o => ({
+    id: o.id,
+    name: o.name,
+    type: o.type,
+  })),
+})
+
 /**
  * Featch raw data from cache or API
  * @param {number} pathPrefix   Tag path prefix
@@ -41,6 +64,7 @@ exports.getRawData = async (id, exclude, { reporter, cache }) => {
           data: {
             ...filter.data,
             exclude,
+            raw: rawTranformer(filter.data.raw),
           },
         }
       } else {
@@ -62,28 +86,7 @@ exports.getRawData = async (id, exclude, { reporter, cache }) => {
         data: {
           id,
           exclude,
-          raw: {
-            id: out.data.id,
-            media_id: out.data.media_id,
-            title: out.data.title,
-            images: {
-              cover: {
-                h: out.data.images.cover.h,
-                t: out.data.images.cover.t,
-                w: out.data.images.cover.w,
-              },
-              pages: out.data.images.pages.map(o => ({
-                h: o.h,
-                t: o.t,
-                w: o.w,
-              })),
-            },
-            tags: out.data.tags.map(o => ({
-              id: o.id,
-              name: o.name,
-              type: o.type,
-            })),
-          },
+          raw: rawTranformer(out.data),
         },
       }
     }
