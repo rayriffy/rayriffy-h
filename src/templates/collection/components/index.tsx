@@ -8,6 +8,7 @@ import { Collection, Subtitle } from '../../../store'
 
 import Heading from '../../../core/components/heading'
 import Poster from '../../../core/components/poster'
+import Actions from './actions'
 import Pagination from './pagination'
 
 import { IFavorite } from '../../../core/@types/IFavorite'
@@ -17,7 +18,7 @@ const CollectionComponent: React.FC<IProps> = props => {
   const { skip } = props.pageContext
 
   const [, setSubtitle] = useContext(Subtitle)
-  const [collection] = useContext(Collection)
+  const [collection, setCollection] = useContext(Collection)
 
   const [fetchedCollection, setFetchedCollection] = useState<IFavorite[]>([])
 
@@ -41,6 +42,7 @@ const CollectionComponent: React.FC<IProps> = props => {
   return (
     <Flex justifyContent='center'>
       <Box width={22 / 24}>
+        <Actions {...{ setCollection, fetchedCollection }} />
         {isEmpty(fetchedCollection) ? (
           <React.Fragment>
             <Heading size='lg' textAlign='center' pt={6}>
