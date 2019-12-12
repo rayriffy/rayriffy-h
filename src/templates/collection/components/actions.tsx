@@ -75,7 +75,7 @@ const ActionsComponent: React.FC<IActionsProps> = props => {
       toast({
         title: 'Failed.',
         description: 'Unable to export data.',
-        status: 'success',
+        status: 'error',
         duration: 4000,
         isClosable: true,
       })
@@ -142,7 +142,7 @@ const ActionsComponent: React.FC<IActionsProps> = props => {
         toast({
           title: 'Failed.',
           description: 'Invalid format.',
-          status: 'success',
+          status: 'error',
           duration: 4000,
           isClosable: true,
         })
@@ -154,7 +154,7 @@ const ActionsComponent: React.FC<IActionsProps> = props => {
       toast({
         title: 'Failed.',
         description: 'Unable to import data.',
-        status: 'success',
+        status: 'error',
         duration: 4000,
         isClosable: true,
       })
