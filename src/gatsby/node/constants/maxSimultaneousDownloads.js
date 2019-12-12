@@ -1,0 +1,1 @@
+exports.maxSimultaneousDownloads = 3

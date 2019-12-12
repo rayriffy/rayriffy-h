@@ -8,7 +8,17 @@ const { filterHentaiByTag } = require('./functions/filterHentaiByTag')
 const { filterTag } = require('./functions/filterTag')
 const { getData } = require('./functions/getData')
 
-const ITEMS_PER_PAGE = 20
+const { itemsPerPage } = require('./constants/itemsPerPage')
+
+/**
+ * Handler function for file sync
+ * @param {err} id Error information
+ */
+const fshandler = err => {
+  if (err) {
+    throw err
+  }
+}
 
 exports.onPostBootstrap = async ({reporter, cache}) => {
   reporter.info('Generating API')
@@ -25,7 +35,7 @@ exports.onPostBootstrap = async ({reporter, cache}) => {
      * Preparing to generate API
      */
     const apiPath = 'api'
-    const apiChunks = _.chunk(healthyResults, ITEMS_PER_PAGE)
+    const apiChunks = _.chunk(healthyResults, itemsPerPage)
 
     if (!fs.existsSync(`./public/${apiPath}`)) {
       fs.mkdirSync(`./public/${apiPath}`)
@@ -111,7 +121,7 @@ exports.onPostBootstrap = async ({reporter, cache}) => {
 
         const filteredHentai = filterHentaiByTag(healthyResults, node)
 
-        const apiChunks = _.chunk(filteredHentai, ITEMS_PER_PAGE)
+        const apiChunks = _.chunk(filteredHentai, itemsPerPage)
 
         apiChunks.map((chunk, i) => {
           const out = {

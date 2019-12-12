@@ -9,19 +9,9 @@ const { filterHentaiByTag } = require('./functions/filterHentaiByTag')
 const { filterTag } = require('./functions/filterTag')
 const { getData } = require('./functions/getData')
 
-const ITEMS_PER_PAGE = 20
+const { itemsPerPage } = require('./constants/itemsPerPage')
 
 const PREFETCH_GIST = 'https://gist.githubusercontent.com/rayriffy/09554279046d2fda29c125e0a16dc695/raw/crawler.json'
-
-/**
- * Handler function for file sync
- * @param {err} id Error information
- */
-const fshandler = err => {
-  if (err) {
-    throw err
-  }
-}
 
 exports.createPages = async ({actions, reporter, cache}) => {
   const {createPage} = actions
@@ -55,7 +45,7 @@ exports.createPages = async ({actions, reporter, cache}) => {
   /**
    * Create listing page
    */
-  const hentaiListingChunks = _.chunk(healthyResults, ITEMS_PER_PAGE)
+  const hentaiListingChunks = _.chunk(healthyResults, itemsPerPage)
 
   hentaiListingChunks.map((chunk, i) => {
     createPage({
@@ -95,7 +85,7 @@ exports.createPages = async ({actions, reporter, cache}) => {
     tags.map(tag => {
       const qualifiedResults = filterHentaiByTag(healthyResults, tag)
 
-      const qualifiedResultChunks = _.chunk(qualifiedResults, ITEMS_PER_PAGE)
+      const qualifiedResultChunks = _.chunk(qualifiedResults, itemsPerPage)
 
       qualifiedResultChunks.map((chunk, i) => {
         createPage({
@@ -145,7 +135,7 @@ exports.createPages = async ({actions, reporter, cache}) => {
     component: path.resolve(`./src/templates/search/components/index.tsx`),
     context: {
       raw: healthyResults,
-      skip: ITEMS_PER_PAGE,
+      skip: itemsPerPage,
     },
   })
 
@@ -164,7 +154,7 @@ exports.createPages = async ({actions, reporter, cache}) => {
     path: `/collection`,
     component: path.resolve(`./src/templates/collection/components/index.tsx`),
     context: {
-      skip: ITEMS_PER_PAGE,
+      skip: itemsPerPage,
     },
   })
 
