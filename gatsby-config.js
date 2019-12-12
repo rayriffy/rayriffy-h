@@ -58,6 +58,42 @@ module.exports = {
         allExtensions: true,
       },
     },
-    `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        importWorkboxFrom: `local`,
+        globDirectory: rootDir,
+        globPatterns,
+        modifyURLPrefix: {
+          "/": `${pathPrefix}/`,
+        },
+        cacheId: `gatsby-plugin-offline`,
+        dontCacheBustURLsMatching: /(\.js$|\.css$|static\/)/,
+        runtimeCaching: [
+          {
+            urlPattern: /(\.js$|\.css$|static\/)/,
+            handler: `cacheFirst`,
+          },
+          {
+            urlPattern: /^https?:.*\page-data\/.*\/page-data\.json/,
+            handler: `networkFirst`,
+          },
+          {
+            urlPattern: /^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff|js|woff|woff2|json|css)$/,
+            handler: `staleWhileRevalidate`,
+          },
+          {
+            urlPattern: /^https?:\/\/fonts\.googleapis\.com\/css/,
+            handler: `staleWhileRevalidate`,
+          },
+          {
+            urlPattern: /^https?:\/\/opener\.now\.sh\/api\/data/,
+            handler: `staleWhileRevalidate`,
+          },
+        ],
+        skipWaiting: true,
+        clientsClaim: true,
+      }
+    }
   ],
 }
