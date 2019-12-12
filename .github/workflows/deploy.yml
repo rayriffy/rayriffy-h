@@ -57,14 +57,22 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-node-${{ env.cache-name }}-
             ${{ runner.OS }}-node-
-      - name: "Cache: Gatsby builds"
+      - name: "Cache: Gatsby .cache/"
         uses: actions/cache@v1
         with:
           path: .cache
-          key: ${{ runner.OS }}-rayriffy-h-${{ hashFiles('src/contents/database/codes.js') }}
+          key: ${{ runner.OS }}-rayriffy-h-cache-${{ hashFiles('src/contents/database/codes.js') }}
           restore-keys: |
-            ${{ runner.OS }}-rayriffy-h-${{ hashFiles('src/contents/database/codes.js') }}
-            ${{ runner.OS }}-rayriffy-h-
+            ${{ runner.OS }}-rayriffy-h-cache-${{ hashFiles('src/contents/database/codes.js') }}
+            ${{ runner.OS }}-rayriffy-h-cache-
+      - name: "Cache: Gatsby public/"
+        uses: actions/cache@v1
+        with:
+          path: .cache
+          key: ${{ runner.OS }}-rayriffy-h-public-${{ hashFiles('src/contents/database/codes.js') }}
+          restore-keys: |
+            ${{ runner.OS }}-rayriffy-h-public-${{ hashFiles('src/contents/database/codes.js') }}
+            ${{ runner.OS }}-rayriffy-h-public-
       - name: 'Init: Install yarn'
         run: |
           curl -o- -L https://yarnpkg.com/install.sh | bash
