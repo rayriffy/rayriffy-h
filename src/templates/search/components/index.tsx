@@ -8,7 +8,7 @@ import Heading from '../../../core/components/heading'
 import Poster from '../../../core/components/poster'
 import Pagination from './pagination'
 
-import { searchHentai } from '../services/searchHentai.worker'
+import * as searchHentaiWorker from '../services/searchHentai.worker'
 
 import { Subtitle } from '../../../store'
 
@@ -28,6 +28,11 @@ const SearchComponent: React.FC<IProps> = props => {
   const [page, setPage] = useState<number>(1)
   const [renderedRaw, setRenderedRaw] = useState<IHentai[]>([])
 
+  const { searchHentai } =
+    typeof window === 'object'
+      ? ((searchHentaiWorker as any)() as typeof searchHentaiWorker)
+      : { searchHentai: null }
+
   const renderPage = (raws: IHentai[], page: number) => {
     setPage(page)
     setRenderedRaw(get(chunk(raws, skip), page - 1))
@@ -37,10 +42,12 @@ const SearchComponent: React.FC<IProps> = props => {
     if (query === '') {
       setRes([])
     } else {
-      searchHentai(
-        query,
-        raw.map(o => o.data.raw)
-      ).then(results => setRes(results))
+      if (searchHentai !== null) {
+        searchHentai(
+          query,
+          raw.map(o => o.data.raw)
+        ).then(results => setRes(results))
+      }
     }
   }
 

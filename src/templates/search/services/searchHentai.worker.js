@@ -1,11 +1,6 @@
 import { flatten, get, intersection, union } from 'lodash'
 
-import { IHentai } from '../../../core/@types/IHentai'
-
-export const searchHentai = async (
-  query: string,
-  raws: IHentai[]
-): Promise<IHentai[]> => {
+export const searchHentai = async (query, raws) => {
   const resultsByWords = query
     .split(' ')
     .filter(o => o !== '')
@@ -16,11 +11,11 @@ export const searchHentai = async (
 
       const languages = ['english', 'japanese', 'pretty']
 
-      const typeName: IHentai[] = flatten(
+      const typeName = flatten(
         union(
           ...languages.map(language => {
             return raws.filter(raw => {
-              const title: string = get(
+              const title = get(
                 raw,
                 `title.${language}`,
                 ''
@@ -36,8 +31,8 @@ export const searchHentai = async (
        * Filter the search by tags
        */
 
-      const typeTag: IHentai[] = raws.filter(raw => {
-        const tagResult: boolean[] = raw.tags.map(tag => {
+      const typeTag = raws.filter(raw => {
+        const tagResult = raw.tags.map(tag => {
           const name = tag.name.toLocaleLowerCase()
 
           return RegExp(subquery.toLocaleLowerCase()).test(name)
