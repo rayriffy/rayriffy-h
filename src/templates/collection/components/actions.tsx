@@ -93,7 +93,8 @@ const ActionsComponent: React.FC<IActionsProps> = props => {
           try {
             if (
               typeof favorite.internal === 'boolean' &&
-              typeof favorite.id === 'number' &&
+              (typeof favorite.id === 'number' ||
+                typeof favorite.id === 'string') &&
               typeof favorite.data === 'object'
             ) {
               return {
@@ -116,7 +117,7 @@ const ActionsComponent: React.FC<IActionsProps> = props => {
             } else {
               return 'fa'
             }
-          } catch {
+          } catch (e) {
             return 'fa'
           }
         })

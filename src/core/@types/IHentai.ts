@@ -2,7 +2,7 @@ import { IImage } from './IImage'
 import { ITag } from './ITag'
 
 export interface IHentai {
-  id: number
+  id: number | string
   media_id: number
   title: {
     english: string
