@@ -1,3 +1,3 @@
 export interface IReaderAPIProps {
-  id: number
+  id: number | string
 }
