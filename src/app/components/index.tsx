@@ -18,6 +18,7 @@ const AppComponent: React.FC = props => {
         htmlAttributes={{ lang: 'en' }}
         meta={[
           { name: 'description', content: 'The missing piece of NHentai' },
+          { name: 'referrer', content: 'same-origin' },
         ]}
       />
       <Box px={[3, 4, 5]}>

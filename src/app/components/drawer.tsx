@@ -105,7 +105,7 @@ const DrawerComponent: React.FC = () => {
               <Heading size='2xl'>Riffy H</Heading>
               <Text color='gray.500'>The missng piece of NHentai</Text>
               <Text color='gray.400' fontSize='xs'>
-                Version 3.4.1
+                Version 3.4.2
               </Text>
             </Box>
             <Divider mt={4} mb={2} />
