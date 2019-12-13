@@ -79,7 +79,7 @@ module.exports = {
             handler: `staleWhileRevalidate`,
           },
           {
-            urlPattern: /^https?:\/\/opener\.now\.sh\/api\/data/,
+            urlPattern: /^https?:\/\/h\.api\.rayriffy\.com\/v1\/gallery/,
             handler: `staleWhileRevalidate`,
           },
         ],

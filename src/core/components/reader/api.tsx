@@ -20,8 +20,6 @@ import styled from '@emotion/styled'
 
 import { IReaderAPIProps } from '../../@types/IReaderAPIProps'
 
-const API_ENDPOINT = 'https://h.api.rayriffy.com'
-
 const StyledImage = styled(Image)`
   border-radius: 10px;
 `
@@ -62,7 +60,7 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
 
   useEffect(() => {
     axios
-      .get(`${API_ENDPOINT}/encode/${id}`)
+      .get(`https://h.api.rayriffy.com/v1/encode/${id}`)
       .then(res => {
         setImage(res.data.response.data)
       })

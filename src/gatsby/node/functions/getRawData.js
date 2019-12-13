@@ -80,15 +80,14 @@ exports.getRawData = async (id, exclude, { reporter, cache }) => {
         }
       }
     } else {
-      // Using reverse proxy server to avoid CORS issue
-      const out = await axios.get(`https://opener.now.sh/api/data/${id}`)
+      const out = await axios.get(`https://h.api.rayriffy.com/v1/gallery/${id}`)
 
       return {
         status: 'success',
         data: {
           id,
           exclude,
-          raw: rawTranformer(out.data),
+          raw: out.data.response.data,
         },
       }
     }
