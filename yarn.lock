@@ -842,10 +842,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@chakra-ui/core@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/core/-/core-0.5.0.tgz#07cee64b4f68b6fcc6201f06646a23503d1d28fe"
-  integrity sha512-3I1j+tKQHOOQ8oO8DqSJ+FDwWh/xa+K+4JNFIK5JBrjerO1r4y+zmx5Svv0MNeLAywXbEGQd4K6IrentwKM7BA==
+"@chakra-ui/core@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/core/-/core-0.5.1.tgz#0153c42f3cec421b0eeabdcea8e83b7016920151"
+  integrity sha512-dua4Bm60RCfzeU32coxUaT+pT4ebxlva0VsqZK60NIEBbz7FyobuHjCp7Qdv98G5WdBnkmgjntyZXRICo/hp4A==
   dependencies:
     "@reach/auto-id" "0.2.0"
     "@styled-system/css" "5.0.13"
