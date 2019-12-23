@@ -1,6 +1,6 @@
-import { IFavorite } from '../../../core/@types/IFavorite'
+import { ICollection } from '../../../core/@types/ICollection'
 
 export interface IActionsProps {
-  fetchedCollection: IFavorite[]
-  setCollection: React.Dispatch<React.SetStateAction<string>>
+  collection: ICollection
+  setCollection: React.Dispatch<React.SetStateAction<ICollection>>
 }

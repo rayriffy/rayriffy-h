@@ -1,14 +1,26 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 
 import { Helmet } from 'react-helmet'
 
 import { Box } from '@chakra-ui/core'
 
+import { Collection } from '../../store'
+
 import Header from './header'
 import ServiceWorker from './serviceworker'
 
+import { collectionMigration } from '../service/collectionMigration'
+
 const AppComponent: React.FC = props => {
   const { children } = props
+
+  const [collection, setCollection] = useContext(Collection)
+
+  useEffect(() => {
+    if (typeof collection === 'string') {
+      setCollection(collectionMigration(collection))
+    }
+  }, [])
 
   return (
     <Box pt={12}>

@@ -33,8 +33,8 @@ const CollectionComponent: React.FC<IProps> = props => {
   }
 
   useEffect(() => {
-    setFetchedCollection(JSON.parse(collection).reverse())
-    renderPage(JSON.parse(collection).reverse(), 1)
+    setFetchedCollection(collection.data.reverse())
+    renderPage(collection.data.reverse(), 1)
   }, [collection])
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const CollectionComponent: React.FC<IProps> = props => {
   return (
     <Flex justifyContent='center'>
       <Box width={22 / 24}>
-        <Actions {...{ setCollection, fetchedCollection }} />
+        <Actions {...{ collection, setCollection }} />
         {isEmpty(fetchedCollection) ? (
           <React.Fragment>
             <Heading size='lg' textAlign='center' pt={6}>

@@ -17,7 +17,6 @@ import { Collection } from '../../../store'
 
 import API from './api'
 
-import { IFavorite } from '../../../core/@types/IFavorite'
 import { IReaderShareProps } from '../../@types/IReaderShareProps'
 
 const StyledLink = styled(Link)`
@@ -28,15 +27,14 @@ const ReaderShareComponent: React.FC<IReaderShareProps> = props => {
   const { hentai, internal } = props
 
   const [collection, setCollection] = useContext(Collection)
-  const fetchedCollection: IFavorite[] = JSON.parse(collection)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const toggleFavorite = () => {
     const isFavorited =
-      fetchedCollection.find(o => o.id === hentai.id) === undefined
+      collection.data.find(o => o.id === hentai.id) === undefined
 
-    let res = fetchedCollection
+    let res = collection.data
 
     if (!isFavorited) {
       res = res.filter(o => o.id !== hentai.id)
@@ -51,7 +49,10 @@ const ReaderShareComponent: React.FC<IReaderShareProps> = props => {
       ]
     }
 
-    setCollection(JSON.stringify(res))
+    setCollection({
+      ...collection,
+      data: res,
+    })
   }
 
   return (
@@ -64,7 +65,7 @@ const ReaderShareComponent: React.FC<IReaderShareProps> = props => {
             variantColor='pink'
             onClick={toggleFavorite}
             icon={
-              fetchedCollection.find(o => o.id === hentai.id) === undefined
+              collection.data.find(o => o.id === hentai.id) === undefined
                 ? 'add'
                 : 'minus'
             }
