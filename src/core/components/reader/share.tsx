@@ -40,12 +40,12 @@ const ReaderShareComponent: React.FC<IReaderShareProps> = props => {
       res = res.filter(o => o.id !== hentai.id)
     } else {
       res = [
-        ...res,
         {
           id: hentai.id,
           internal,
           data: { ...hentai, images: { ...hentai.images, pages: [] } },
         },
+        ...res,
       ]
     }
 
