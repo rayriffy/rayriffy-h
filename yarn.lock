@@ -6297,6 +6297,11 @@ gatsby-page-utils@^0.0.36:
     lodash "^4.17.15"
     micromatch "^3.1.10"
 
+gatsby-plugin-chakra-ui@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-chakra-ui/-/gatsby-plugin-chakra-ui-0.1.2.tgz#2d5029c4ed478a372951aa2467c8beedec5a7369"
+  integrity sha512-FfEc1GXi2fncVTYpp9Y/3GUCe12q3pHJMpcWxYJt1D1rza3lLtnyhzm3mxW+X9Cu/3Rv17FnuSmquc4oK/K/5Q==
+
 gatsby-plugin-create-client-paths@^2.1.20:
   version "2.1.20"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-create-client-paths/-/gatsby-plugin-create-client-paths-2.1.20.tgz#6537f0f64ad7a4d9445868919dec0b8a76b11d0b"

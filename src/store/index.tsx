@@ -2,10 +2,6 @@ import React, { Dispatch, SetStateAction, useState } from 'react'
 
 import { useLocalStorage } from 'web-api-hooks'
 
-import { ColorModeProvider, CSSReset, ThemeProvider } from '@chakra-ui/core'
-
-import { theme } from './theme'
-
 import { ICollection } from '../core/@types/ICollection'
 
 type ISafeMode = [boolean, Dispatch<SetStateAction<boolean>>]
@@ -77,12 +73,7 @@ const Context: React.FC = props => {
     <SafeMode.Provider value={[safeMode, setSafeMode]}>
       <Subtitle.Provider value={[subtitle, setSubtitle]}>
         <Collection.Provider value={[collection, setCollection]}>
-          <ThemeProvider theme={theme}>
-            <ColorModeProvider>
-              <CSSReset />
-              {children}
-            </ColorModeProvider>
-          </ThemeProvider>
+          {children}
         </Collection.Provider>
       </Subtitle.Provider>
     </SafeMode.Provider>

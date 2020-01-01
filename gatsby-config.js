@@ -7,6 +7,7 @@ module.exports = {
   },
   pathPrefix: '/',
   plugins: [
+    `gatsby-plugin-chakra-ui`,
     {
       resolve: `gatsby-plugin-emotion`,
       options: {

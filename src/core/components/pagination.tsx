@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
-import { Box, Flex, useColorMode } from '@chakra-ui/core'
+import { Box, Flex, theme, useColorMode } from '@chakra-ui/core'
 import styled from '@emotion/styled'
-import { theme } from '../../store/theme'
 
 import Link from '../../core/components/transparentLink'
 

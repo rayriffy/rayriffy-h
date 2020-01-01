@@ -1,8 +1,7 @@
 import React from 'react'
 
-import { Box, Flex, Link, useColorMode } from '@chakra-ui/core'
+import { Box, Flex, Link, theme, useColorMode } from '@chakra-ui/core'
 import styled from '@emotion/styled'
-import { theme } from '../../../store/theme'
 
 interface IProps {
   max: number

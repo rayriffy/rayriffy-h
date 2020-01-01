@@ -14,11 +14,11 @@ import {
   IconButton,
   Switch,
   Text,
+  theme,
   useColorMode,
   useDisclosure,
 } from '@chakra-ui/core'
 import styled from '@emotion/styled'
-import { theme } from '../../store/theme'
 
 import { tags as tagStack } from '../../contents/database/tags'
 
