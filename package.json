@@ -93,7 +93,7 @@
     "@types/lodash.startswith": "^4.2.6",
     "@types/lodash.union": "^4.6.6",
     "@types/lodash.upperfirst": "^4.3.6",
-    "@types/react-helmet": "^5.0.14",
+    "@types/react-helmet": "^5.0.15",
     "@types/react-icons": "^3.0.0",
     "@types/react-lazyload": "^2.6.0",
     "@types/typography": "^0.16.3",
