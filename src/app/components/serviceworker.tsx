@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { Alert, AlertIcon } from '@chakra-ui/core'
+import { Alert, AlertIcon, LightMode } from '@chakra-ui/core'
 
 const ServiceWorkerComponent: React.FC = () => {
   return (
-    <React.Fragment>
+    <LightMode>
       <Alert status='info' display='none' id='sw-update-found'>
         <AlertIcon />
         Updating application in background...
@@ -17,7 +17,7 @@ const ServiceWorkerComponent: React.FC = () => {
         <AlertIcon />
         Ready to work offline!
       </Alert>
-    </React.Fragment>
+    </LightMode>
   )
 }
 
