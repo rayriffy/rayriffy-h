@@ -70,7 +70,7 @@
     "lodash.startswith": "^4.2.1",
     "lodash.union": "^4.6.0",
     "lodash.upperfirst": "^4.3.1",
-    "netlify-cli": "^2.27.0",
+    "netlify-cli": "^2.28.0",
     "react": "^0.0.0-experimental-f42431abe",
     "react-dom": "^0.0.0-experimental-f42431abe",
     "react-helmet": "^5.2.1",
