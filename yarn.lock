@@ -6369,17 +6369,17 @@ gatsby-plugin-react-helmet@^3.1.18:
   dependencies:
     "@babel/runtime" "^7.7.6"
 
-gatsby-plugin-typescript@^2.1.23:
-  version "2.1.23"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-typescript/-/gatsby-plugin-typescript-2.1.23.tgz#02b29bf1986816d74a3f94231437b17b32bf1d12"
-  integrity sha512-qh321KlDNjHqhL8wKCL6wvrUWFZNQk625cUlEEnDjCoggJSBRJanLSwguzp3+wiXxk2eHNhfhqv1zpvrF/tB1A==
+gatsby-plugin-typescript@^2.1.26:
+  version "2.1.26"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-typescript/-/gatsby-plugin-typescript-2.1.26.tgz#19a715820f2303481814fa113c7e8beb8d073211"
+  integrity sha512-ZKn/XSHq/Kxirj75LDICvQG400Xrv8wSPkfqsrsQ3ZYyBlaQ+qiL/6+kjB1fTaxPs2Bc3VLoNWf23CihoICQ4g==
   dependencies:
     "@babel/plugin-proposal-nullish-coalescing-operator" "^7.7.4"
     "@babel/plugin-proposal-numeric-separator" "^7.7.4"
     "@babel/plugin-proposal-optional-chaining" "^7.7.5"
     "@babel/preset-typescript" "^7.7.4"
     "@babel/runtime" "^7.7.6"
-    babel-plugin-remove-graphql-queries "^2.7.19"
+    babel-plugin-remove-graphql-queries "^2.7.22"
 
 gatsby-react-router-scroll@^2.1.20:
   version "2.1.20"
