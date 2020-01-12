@@ -2655,7 +2655,7 @@ babel-plugin-macros@^2.0.0, babel-plugin-macros@^2.8.0:
     cosmiconfig "^6.0.0"
     resolve "^1.12.0"
 
-babel-plugin-remove-graphql-queries@^2.7.19, babel-plugin-remove-graphql-queries@^2.7.22:
+babel-plugin-remove-graphql-queries@^2.7.22:
   version "2.7.22"
   resolved "https://registry.yarnpkg.com/babel-plugin-remove-graphql-queries/-/babel-plugin-remove-graphql-queries-2.7.22.tgz#ff7376efc6db821e144e3f36c3dc02838d0f7516"
   integrity sha512-gb4bKZvePZME/VRBMiIZfnli1BIO0K8cm1Pj9HPm85PqElPHzdjeUZ9p3ybOCGe+BBpIlqKx7mx9V/RsjlH+SA==
@@ -6249,7 +6249,7 @@ gatsby-cli@^2.8.26:
     ink "^2.6.0"
     ink-spinner "^3.0.1"
 
-gatsby-core-utils@^1.0.25, gatsby-core-utils@^1.0.26:
+gatsby-core-utils@^1.0.26:
   version "1.0.26"
   resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-1.0.26.tgz#e1cbdfad498d58d677d9d74f21a1ede661b49d6f"
   integrity sha512-NPflmXmyTcg3x2mp6cqp/51QeAHRKepfbf0X4erDsnVlewFJuGTe+25ZJvWkkwU2g1cPAxuwzlPe0jOL92iU4A==
@@ -6362,10 +6362,10 @@ gatsby-plugin-page-creator@^2.1.38:
     lodash "^4.17.15"
     micromatch "^3.1.10"
 
-gatsby-plugin-react-helmet@^3.1.18:
-  version "3.1.18"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-react-helmet/-/gatsby-plugin-react-helmet-3.1.18.tgz#093b5d92e50dafa837ae97ac2672d79a96feb201"
-  integrity sha512-wwKH6Z5NK0Gl2hDfMnWNGE41GjWpZGq0eKczPydTJc/1SbPykBFCBrjYgrAPB2ZrRnA8AV06cRwPddJC0mY7sw==
+gatsby-plugin-react-helmet@^3.1.21:
+  version "3.1.21"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-react-helmet/-/gatsby-plugin-react-helmet-3.1.21.tgz#659f31020295f42d017e2eb03175d73516ab824d"
+  integrity sha512-6LZ2LEYTwqD+ZqyCH55mVpk2xEXbQoCTfijP1W4ZCQsKtpWGJP+vyd6b96FWVyEb2k5LsQ1u+jk4R8xXULSX+w==
   dependencies:
     "@babel/runtime" "^7.7.6"
 
