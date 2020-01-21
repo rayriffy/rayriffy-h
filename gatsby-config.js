@@ -42,7 +42,7 @@ module.exports = {
         short_name: `Riffy H`,
         start_url: `/`,
         background_color: `#f5f5f5`,
-        theme_color: `#663399`,
+        theme_color: `#1a202c`,
         display: `minimal-ui`,
         icon: `static/img/LOGO-C-min.png`,
       },
