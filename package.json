@@ -74,7 +74,7 @@
     "react": "^0.0.0-experimental-f42431abe",
     "react-dom": "^0.0.0-experimental-f42431abe",
     "react-helmet": "^5.2.1",
-    "react-icons": "^3.8.0",
+    "react-icons": "^3.9.0",
     "react-lazyload": "^2.6.5",
     "rebass": "^4.0.6",
     "web-api-hooks": "^2.2.2",
