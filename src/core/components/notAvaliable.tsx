@@ -15,7 +15,7 @@ const WidthImage = styled(Image)`
   width: 100%;
 `
 
-const NotAvaliableComponent = () => {
+const NotAvaliableComponent: React.FC = () => {
   const { colorMode } = useColorMode()
 
   return (
