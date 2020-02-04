@@ -1,6 +1,4 @@
-const filter = require('lodash.filter')
-const head = require('lodash.head')
-const isEmpty = require('lodash.isempty')
+const { filter, head, isEmpty } = require('lodash')
 
 const axios = require('axios')
 

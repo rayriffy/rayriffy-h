@@ -1,7 +1,4 @@
-import flatten from 'lodash.flatten'
-import get from 'lodash.get'
-import intersection from 'lodash.intersection'
-import union from 'lodash.union'
+import { flatten, get, intersection, union } from 'lodash'
 
 export const searchHentai = async (query, raws) => {
   const resultsByWords = query

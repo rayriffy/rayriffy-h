@@ -1,9 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 
-import filter from 'lodash.filter'
-import isEmpty from 'lodash.isempty'
-import sortBy from 'lodash.sortby'
-import startsWith from 'lodash.startswith'
+import { isEmpty, sortBy, startsWith } from 'lodash'
 
 import { Box, Divider, Flex, Text, useColorMode } from '@chakra-ui/core'
 import styled from '@emotion/styled'
@@ -70,7 +67,7 @@ const TagListingComponent: React.FC<IProps> = props => {
       <Flex justifyContent='center'>
         <Box width={[22 / 24, 18 / 24, 14 / 24, 10 / 24]}>
           {alphabet.map(text => {
-            const filteredTags = filter(processedTags, o =>
+            const filteredTags = processedTags.filter(o =>
               startsWith(o.name, text)
             )
 

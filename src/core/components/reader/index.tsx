@@ -2,8 +2,7 @@ import React from 'react'
 
 import { Helmet } from 'react-helmet'
 
-import isEmpty from 'lodash.isempty'
-import upperFirst from 'lodash.upperfirst'
+import { isEmpty, upperFirst } from 'lodash'
 
 import { Box, Divider, Flex, Text, useColorMode } from '@chakra-ui/core'
 import styled from '@emotion/styled'

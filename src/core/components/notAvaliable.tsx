@@ -1,19 +1,8 @@
 import React from 'react'
 
 import { Box, Flex, Image, Text, useColorMode } from '@chakra-ui/core'
-import styled from '@emotion/styled'
 
 import Heading from '../../core/components/heading'
-
-const BorderedCard = styled(Box)`
-  border-radius: 8px;
-  border: 1px solid #e8e8e8;
-  overflow: hidden;
-`
-
-const WidthImage = styled(Image)`
-  width: 100%;
-`
 
 const NotAvaliableComponent: React.FC = () => {
   const { colorMode } = useColorMode()
@@ -21,9 +10,14 @@ const NotAvaliableComponent: React.FC = () => {
   return (
     <Flex justifyContent='center'>
       <Box width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}>
-        <BorderedCard bg={colorMode === 'dark' ? 'gray.700' : undefined}>
-          <WidthImage
+        <Box
+          bg={colorMode === 'dark' ? 'gray.700' : undefined}
+          borderRadius={8}
+          border='1px solid #e8e8e8'
+          overflow='hidden'>
+          <Image
             m={0}
+            width='100%'
             src='https://media.giphy.com/media/k1Lby1eaDTHsk/giphy.gif'
           />
           <Box p={3}>
@@ -32,7 +26,7 @@ const NotAvaliableComponent: React.FC = () => {
               This page is not ready for production yet. Please come back later!
             </Text>
           </Box>
-        </BorderedCard>
+        </Box>
       </Box>
     </Flex>
   )

@@ -1,5 +1,4 @@
-const isEmpty = require('lodash.isempty')
-const filter = require('lodash.filter')
+const { isEmpty } = require('lodash')
 
 /**
  * Filter hentai by tag ID

@@ -1,5 +1,4 @@
-const isEmpty = require('lodash.isempty')
-const filter = require('lodash.filter')
+const { filter, isEmpty } = require('lodash')
 
 /**
  * Filter only tags object with specified types

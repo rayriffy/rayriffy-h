@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useMemo } from 'react'
 
 import { Box, Flex } from '@chakra-ui/core'
 
@@ -18,13 +18,20 @@ const HentaiListingComponent: React.FC<IProps> = props => {
     setSubtitle(`listing`)
   }, [])
 
-  return (
-    <React.Fragment>
+  const pagination = useMemo<React.ReactNode>(
+    () => (
       <Flex justifyContent='center' pt={2}>
         <Box width={18 / 24} pt={3} pb={6}>
           <Pagination current={page.current} max={page.max} prefix='/' />
         </Box>
       </Flex>
+    ),
+    []
+  )
+
+  return (
+    <React.Fragment>
+      {pagination}
       <Flex justifyContent='center'>
         <Box width={22 / 24}>
           <Flex flexWrap='wrap' justifyContent='center' alignItems='center'>
@@ -34,11 +41,7 @@ const HentaiListingComponent: React.FC<IProps> = props => {
           </Flex>
         </Box>
       </Flex>
-      <Flex justifyContent='center'>
-        <Box width={18 / 24} pt={8} pb={12}>
-          <Pagination current={page.current} max={page.max} prefix={`/`} />
-        </Box>
-      </Flex>
+      {pagination}
     </React.Fragment>
   )
 }

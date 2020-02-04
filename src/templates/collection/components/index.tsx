@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 
-import chunk from 'lodash.chunk'
-import get from 'lodash.get'
-import isEmpty from 'lodash.isempty'
+import { chunk, get, isEmpty } from 'lodash'
 
 import { Box, Flex, Text } from '@chakra-ui/core'
 

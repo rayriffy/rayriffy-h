@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import axios from 'axios'
-import isEmpty from 'lodash.isempty'
+import { isEmpty } from 'lodash'
 
 import {
   Box,

@@ -1,5 +1,4 @@
-const filter = require('lodash.filter')
-const chunk = require('lodash.chunk')
+const { filter, chunk } = require('lodash')
 
 const axios = require('axios')
 const path = require('path')
