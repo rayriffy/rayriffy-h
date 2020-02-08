@@ -33,13 +33,15 @@ const HentaiListingComponent: React.FC<IProps> = props => {
     <React.Fragment>
       {pagination}
       <Flex justifyContent='center'>
-        <Box width={22 / 24}>
-          <Flex flexWrap='wrap' justifyContent='center' alignItems='center'>
-            {raw.map(hentai => (
-              <Poster key={`poster-${hentai.data.id}`} raw={hentai.data.raw} />
-            ))}
-          </Flex>
-        </Box>
+        <Flex
+          width={22 / 24}
+          flexWrap='wrap'
+          justifyContent='center'
+          alignItems='center'>
+          {raw.map(hentai => (
+            <Poster key={`poster-${hentai.data.id}`} raw={hentai.data.raw} />
+          ))}
+        </Flex>
       </Flex>
       {pagination}
     </React.Fragment>

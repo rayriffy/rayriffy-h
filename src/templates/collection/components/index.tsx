@@ -64,17 +64,15 @@ const CollectionComponent: React.FC<IProps> = props => {
               </Box>
             </Flex>
             <Flex justifyContent='center'>
-              <Box width={22 / 24}>
-                <Flex flexWrap='wrap' alignItems='center'>
-                  {renderedCollection.map(hentai => (
-                    <Poster
-                      key={`poster-${hentai.id}`}
-                      raw={hentai.data}
-                      internal={hentai.internal}
-                    />
-                  ))}
-                </Flex>
-              </Box>
+              <Flex width={22 / 24} flexWrap='wrap' alignItems='center'>
+                {renderedCollection.map(hentai => (
+                  <Poster
+                    key={`poster-${hentai.id}`}
+                    raw={hentai.data}
+                    internal={hentai.internal}
+                  />
+                ))}
+              </Flex>
             </Flex>
             <Flex justifyContent='center'>
               <Box width={18 / 24} py={6}>

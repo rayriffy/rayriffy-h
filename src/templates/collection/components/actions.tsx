@@ -135,28 +135,26 @@ const ActionsComponent: React.FC<IActionsProps> = props => {
   return (
     <React.Fragment>
       <Flex justifyContent='center' pt={2}>
-        <Box width={22 / 24}>
-          <Flex alignItems='center'>
-            <Menu>
-              <MenuButton as={Button}>
-                Actions <Icon pl={2} name='chevron-down' />
-              </MenuButton>
-              <MenuList>
-                <MenuItem
-                  onClick={exportOnOpen}
-                  isDisabled={isEmpty(collection.data)}>
-                  Export
-                </MenuItem>
-                <MenuItem onClick={importOnOpen}>Import</MenuItem>
-                <MenuDivider />
-                <MenuItem>Reset</MenuItem>
-              </MenuList>
-            </Menu>
-            <Heading pl={4} size='sm'>
-              {collection.data.length} Items
-            </Heading>
-          </Flex>
-        </Box>
+        <Flex width={22 / 24} alignItems='center'>
+          <Menu>
+            <MenuButton as={Button}>
+              Actions <Icon pl={2} name='chevron-down' />
+            </MenuButton>
+            <MenuList>
+              <MenuItem
+                onClick={exportOnOpen}
+                isDisabled={isEmpty(collection.data)}>
+                Export
+              </MenuItem>
+              <MenuItem onClick={importOnOpen}>Import</MenuItem>
+              <MenuDivider />
+              <MenuItem>Reset</MenuItem>
+            </MenuList>
+          </Menu>
+          <Heading pl={4} size='sm'>
+            {collection.data.length} Items
+          </Heading>
+        </Flex>
       </Flex>
 
       <Modal isOpen={exportIsOpen} onClose={exportOnClose}>

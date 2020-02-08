@@ -20,20 +20,20 @@ const GuideComponent: React.FC = () => {
 
   return (
     <Flex justifyContent='center'>
-      <Box width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}>
-        <BorderedCard bg={colorMode === 'dark' ? 'gray.700' : undefined}>
-          <WidthImage
-            m={0}
-            src='https://media.giphy.com/media/OR0Ob6r1nMetO/giphy-downsized-large.gif'
-          />
-          <Box p={3}>
-            <Heading size='lg'>Usage</Heading>
-            <Text fontSize={[14, 15]} pt={2} color='gray.500'>
-              Replace <b>nhentai.net</b>/g/:id with <b>h.rayriffy.com</b>/g/:id
-            </Text>
-          </Box>
-        </BorderedCard>
-      </Box>
+      <BorderedCard
+        width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}
+        bg={colorMode === 'dark' ? 'gray.700' : undefined}>
+        <WidthImage
+          m={0}
+          src='https://media.giphy.com/media/OR0Ob6r1nMetO/giphy-downsized-large.gif'
+        />
+        <Box p={3}>
+          <Heading size='lg'>Usage</Heading>
+          <Text fontSize={[14, 15]} pt={2} color='gray.500'>
+            Replace <b>nhentai.net</b>/g/:id with <b>h.rayriffy.com</b>/g/:id
+          </Text>
+        </Box>
+      </BorderedCard>
     </Flex>
   )
 }

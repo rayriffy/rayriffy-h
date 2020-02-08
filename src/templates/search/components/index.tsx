@@ -65,31 +65,31 @@ const SearchComponent: React.FC<IProps> = props => {
   return (
     <React.Fragment>
       <Flex justifyContent='center' pt={3}>
-        <Box width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}>
-          <Flex justifyContent='center'>
-            <Input
-              placeholder='Search'
-              value={query}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setQuery(e.target.value)
-              }
-              color={colorMode === 'dark' ? 'white' : undefined}
-              _placeholder={{
-                color: colorMode === 'dark' ? 'white' : 'gray.500',
-              }}
-              onKeyDown={(e: { key: string }) =>
-                e.key === 'Enter' ? searchButtonHandler() : null
-              }
-            />
-            <IconButton
-              aria-label='Search'
-              icon='search'
-              variantColor='blue'
-              onClick={() => searchButtonHandler()}
-              ml={4}
-            />
-          </Flex>
-        </Box>
+        <Flex
+          width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}
+          justifyContent='center'>
+          <Input
+            placeholder='Search'
+            value={query}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setQuery(e.target.value)
+            }
+            color={colorMode === 'dark' ? 'white' : undefined}
+            _placeholder={{
+              color: colorMode === 'dark' ? 'white' : 'gray.500',
+            }}
+            onKeyDown={(e: { key: string }) =>
+              e.key === 'Enter' ? searchButtonHandler() : null
+            }
+          />
+          <Box mx={2} />
+          <IconButton
+            aria-label='Search'
+            icon='search'
+            variantColor='blue'
+            onClick={() => searchButtonHandler()}
+          />
+        </Flex>
       </Flex>
       <Flex justifyContent='center'>
         <Box width={22 / 24}>
@@ -109,13 +109,11 @@ const SearchComponent: React.FC<IProps> = props => {
                 </Box>
               </Flex>
               <Flex justifyContent='center'>
-                <Box width={22 / 24}>
-                  <Flex flexWrap='wrap' alignItems='center'>
-                    {renderedRaw.map(hentai => (
-                      <Poster key={`poster-${hentai.id}`} raw={hentai} />
-                    ))}
-                  </Flex>
-                </Box>
+                <Flex width={22 / 24} flexWrap='wrap' alignItems='center'>
+                  {renderedRaw.map(hentai => (
+                    <Poster key={`poster-${hentai.id}`} raw={hentai} />
+                  ))}
+                </Flex>
               </Flex>
               <Flex justifyContent='center'>
                 <Box width={18 / 24} py={6}>

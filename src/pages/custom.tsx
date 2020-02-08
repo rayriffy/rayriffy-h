@@ -28,44 +28,43 @@ const CustomComponent: React.FC = () => {
   return (
     <Box pt={3}>
       <Flex justifyContent='center'>
-        <Box width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}>
-          <BorderedCard
-            bg={colorMode === 'dark' ? 'gray.700' : undefined}
-            p={5}>
-            <Heading size='lg'>Custom</Heading>
-            <Box py={2}>
-              <Text fontSize={[14, 15]} color='gray.500'>
-                Enter your hentai ID down below...
-              </Text>
-            </Box>
-            <Box py={2}>
-              <Input
-                value={input}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setInput(e.target.value)
-                }
-                placeholder='000000'
-                color={colorMode === 'dark' ? 'white' : undefined}
-                _placeholder={{
-                  color: colorMode === 'dark' ? 'white' : 'gray.500',
-                }}
-              />
-            </Box>
-            <Box py={1}>
-              {input === '' ? (
-                <Button bg='#757575' color='white' fontSize='sm'>
-                  Locked
+        <BorderedCard
+          bg={colorMode === 'dark' ? 'gray.700' : undefined}
+          width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}
+          p={5}>
+          <Heading size='lg'>Custom</Heading>
+          <Box py={2}>
+            <Text fontSize={[14, 15]} color='gray.500'>
+              Enter your hentai ID down below...
+            </Text>
+          </Box>
+          <Box py={2}>
+            <Input
+              value={input}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setInput(e.target.value)
+              }
+              placeholder='000000'
+              color={colorMode === 'dark' ? 'white' : undefined}
+              _placeholder={{
+                color: colorMode === 'dark' ? 'white' : 'gray.500',
+              }}
+            />
+          </Box>
+          <Box py={1}>
+            {input === '' ? (
+              <Button bg='#757575' color='white' fontSize='sm'>
+                Locked
+              </Button>
+            ) : (
+              <TransparentLink to={`/g/${input}`} aria-label='Ready'>
+                <Button bg='#1890ff' color='white' fontSize='sm'>
+                  Ready
                 </Button>
-              ) : (
-                <TransparentLink to={`/g/${input}`} aria-label='Ready'>
-                  <Button bg='#1890ff' color='white' fontSize='sm'>
-                    Ready
-                  </Button>
-                </TransparentLink>
-              )}
-            </Box>
-          </BorderedCard>
-        </Box>
+              </TransparentLink>
+            )}
+          </Box>
+        </BorderedCard>
       </Flex>
     </Box>
   )

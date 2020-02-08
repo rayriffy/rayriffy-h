@@ -63,51 +63,49 @@ const TagListingComponent: React.FC<IProps> = props => {
   }, [])
 
   return (
-    <Box pt={1}>
-      <Flex justifyContent='center'>
-        <Box width={[22 / 24, 18 / 24, 14 / 24, 10 / 24]}>
-          {alphabet.map(text => {
-            const filteredTags = processedTags.filter(o =>
-              startsWith(o.name, text)
-            )
+    <Flex justifyContent='center' pt={1}>
+      <Box width={[22 / 24, 18 / 24, 14 / 24, 10 / 24]}>
+        {alphabet.map(text => {
+          const filteredTags = processedTags.filter(o =>
+            startsWith(o.name, text)
+          )
 
-            if (!isEmpty(filteredTags)) {
-              return (
-                <Box py={3} key={`tag-${prefix}-${text}`}>
-                  <CoverCard
-                    p={3}
-                    bg={colorMode === 'dark' ? 'gray.700' : undefined}>
-                    <Box p={2}>
-                      <Heading size='xl'>{text.toUpperCase()}</Heading>
-                    </Box>
-                    <Box p={2}>
-                      {filteredTags.map((tag, i) => {
-                        return (
-                          <Box key={`tag-${prefix}-${text}-${tag.id}`}>
-                            {i !== 0 ? <Divider /> : null}
-                            <Box py={3}>
-                              <TransparentLink
-                                to={`/${prefix}/${tag.id}`}
-                                aria-label={tag.name}>
-                                <Text fontSize='sm' color='blue.500'>
-                                  {tag.name}
-                                </Text>
-                              </TransparentLink>
-                            </Box>
+          if (!isEmpty(filteredTags)) {
+            return (
+              <Box py={3} key={`tag-${prefix}-${text}`}>
+                <CoverCard
+                  p={3}
+                  bg={colorMode === 'dark' ? 'gray.700' : undefined}>
+                  <Box p={2}>
+                    <Heading size='xl'>{text.toUpperCase()}</Heading>
+                  </Box>
+                  <Box p={2}>
+                    {filteredTags.map((tag, i) => {
+                      return (
+                        <Box key={`tag-${prefix}-${text}-${tag.id}`}>
+                          {i !== 0 ? <Divider /> : null}
+                          <Box py={3}>
+                            <TransparentLink
+                              to={`/${prefix}/${tag.id}`}
+                              aria-label={tag.name}>
+                              <Text fontSize='sm' color='blue.500'>
+                                {tag.name}
+                              </Text>
+                            </TransparentLink>
                           </Box>
-                        )
-                      })}
-                    </Box>
-                  </CoverCard>
-                </Box>
-              )
-            } else {
-              return null
-            }
-          })}
-        </Box>
-      </Flex>
-    </Box>
+                        </Box>
+                      )
+                    })}
+                  </Box>
+                </CoverCard>
+              </Box>
+            )
+          } else {
+            return null
+          }
+        })}
+      </Box>
+    </Flex>
   )
 }
 
