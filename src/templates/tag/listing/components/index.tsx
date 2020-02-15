@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 
-import { isEmpty, sortBy, startsWith } from 'lodash'
+import { isEmpty, sortBy, startsWith } from 'lodash-es'
 
 import { Box, Divider, Flex, Text, useColorMode } from '@chakra-ui/core'
 import styled from '@emotion/styled'

@@ -7,7 +7,6 @@ module.exports = {
   },
   pathPrefix: '/',
   plugins: [
-    `gatsby-plugin-lodash`,
     `gatsby-plugin-chakra-ui`,
     {
       resolve: `gatsby-plugin-emotion`,

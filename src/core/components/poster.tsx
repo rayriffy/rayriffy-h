@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Link } from 'gatsby'
 
-import { head, upperFirst } from 'lodash'
+import { head, upperFirst } from 'lodash-es'
 
 import { Box, Flex, Stack, Text, useColorMode } from '@chakra-ui/core'
 

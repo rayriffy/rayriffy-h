@@ -1,4 +1,4 @@
-const { filter, head, isEmpty } = require('lodash')
+const { filter, head, isEmpty } = require('lodash-es')
 
 const axios = require('axios')
 
