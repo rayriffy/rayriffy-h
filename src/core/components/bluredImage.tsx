@@ -4,7 +4,7 @@ import LazyLoad from 'react-lazyload'
 
 import styled from '@emotion/styled'
 
-import { SafeMode } from '../../store'
+import { Settings } from '../../store'
 
 import { IBluredImageProps } from '../@types/IBluredImageProps'
 
@@ -22,16 +22,11 @@ const ImageCover = styled('img')<IImageCoverProps>`
 const BluredImageComponent: React.FC<IBluredImageProps> = props => {
   const { height, src, alt } = props
 
-  const [safeMode] = useContext(SafeMode)
+  const { 0: settings } = useContext(Settings)
 
   return (
     <LazyLoad height={height}>
-      <ImageCover
-        blur={safeMode === undefined ? true : safeMode}
-        src={src}
-        alt={alt}
-        height='100%'
-      />
+      <ImageCover blur={settings.safemode} src={src} alt={alt} height='100%' />
     </LazyLoad>
   )
 }

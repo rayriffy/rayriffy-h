@@ -7,7 +7,7 @@ import { Subtitle } from '../../../store'
 import NotAvaliable from '../../../core/components/notAvaliable'
 
 const AboutComponent: React.FC = () => {
-  const [, setSubtitle] = useContext(Subtitle)
+  const { 1: setSubtitle } = useContext(Subtitle)
 
   useEffect(() => {
     setSubtitle(`about`)

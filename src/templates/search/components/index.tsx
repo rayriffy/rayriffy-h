@@ -20,13 +20,13 @@ const SearchComponent: React.FC<IProps> = props => {
 
   const { colorMode } = useColorMode()
 
-  const [, setSubtitle] = useContext(Subtitle)
+  const { 1: setSubtitle } = useContext(Subtitle)
 
-  const [query, setQuery] = useState<string>('')
-  const [res, setRes] = useState<IHentai[]>([])
+  const { 0: query, 1: setQuery } = useState<string>('')
+  const { 0: res, 1: setRes } = useState<IHentai[]>([])
 
-  const [page, setPage] = useState<number>(1)
-  const [renderedRaw, setRenderedRaw] = useState<IHentai[]>([])
+  const { 0: page, 1: setPage } = useState<number>(1)
+  const { 0: renderedRaw, 1: setRenderedRaw } = useState<IHentai[]>([])
 
   const { searchHentai } =
     typeof window === 'object'

@@ -3,12 +3,19 @@ import React, { Dispatch, SetStateAction, useState } from 'react'
 import { useLocalStorage } from 'web-api-hooks'
 
 import { ICollection } from '../core/@types/ICollection'
+import { ISettings } from '../core/@types/ISettings'
 
-type ISafeMode = [boolean, Dispatch<SetStateAction<boolean>>]
+type ISettingsContext = [ISettings, Dispatch<SetStateAction<ISettings>>]
 type ISubtitle = [string, Dispatch<SetStateAction<string>>]
 type ICollectionContext = [ICollection, Dispatch<SetStateAction<ICollection>>]
 
-export const SafeMode = React.createContext<ISafeMode>([true, () => {}])
+export const Settings = React.createContext<ISettingsContext>([
+  {
+    safemode: true,
+    lefthand: false,
+  },
+  () => {},
+])
 export const Subtitle = React.createContext<ISubtitle>(['init', () => {}])
 export const Collection = React.createContext<ICollectionContext>([
   { version: 0, data: [] },
@@ -19,13 +26,19 @@ const Context: React.FC = props => {
   const { children } = props
 
   // Safe mode
-  const [safeMode, setSafeMode] = useLocalStorage<boolean>('blur', true)
+  const { 0: settings, 1: setSettings } = useLocalStorage<{
+    safemode: boolean
+    lefthand: boolean
+  }>('settings', {
+    safemode: true,
+    lefthand: false,
+  })
 
   // Subtitle
-  const [subtitle, setSubtitle] = useState<string>('init')
+  const { 0: subtitle, 1: setSubtitle } = useState<string>('init')
 
   // Collection
-  const [collection, setCollection] = useLocalStorage<{
+  const { 0: collection, 1: setCollection } = useLocalStorage<{
     version: number
     data: {
       id: number | string
@@ -70,13 +83,13 @@ const Context: React.FC = props => {
   })
 
   return (
-    <SafeMode.Provider value={[safeMode, setSafeMode]}>
+    <Settings.Provider value={[settings, setSettings]}>
       <Subtitle.Provider value={[subtitle, setSubtitle]}>
         <Collection.Provider value={[collection, setCollection]}>
           {children}
         </Collection.Provider>
       </Subtitle.Provider>
-    </SafeMode.Provider>
+    </Settings.Provider>
   )
 }
 

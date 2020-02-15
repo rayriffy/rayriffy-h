@@ -18,10 +18,10 @@ import { IProps } from '../@types/IProps'
 const DynamicViewingComponent: React.FC<IProps> = props => {
   const { location } = props
 
-  const [, setSubtitle] = useContext(Subtitle)
+  const { 1: setSubtitle } = useContext(Subtitle)
 
-  const [state, setState] = useState<number>(1)
-  const [raw, setRaw] = useState<IFetchedRaw | null>(null)
+  const { 0: state, 1: setState } = useState<number>(1)
+  const { 0: raw, 1: setRaw } = useState<IFetchedRaw | null>(null)
 
   const fetchHentai = async (requestedId: number | string) => {
     setState(1)

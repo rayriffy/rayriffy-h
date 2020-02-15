@@ -17,13 +17,17 @@ import { IProps } from '../@types/IProps'
 const CollectionComponent: React.FC<IProps> = props => {
   const { skip } = props.pageContext
 
-  const [, setSubtitle] = useContext(Subtitle)
-  const [collection, setCollection] = useContext(Collection)
+  const { 1: setSubtitle } = useContext(Subtitle)
+  const { 0: collection, 1: setCollection } = useContext(Collection)
 
-  const [fetchedCollection, setFetchedCollection] = useState<IFavorite[]>([])
+  const { 0: fetchedCollection, 1: setFetchedCollection } = useState<
+    IFavorite[]
+  >([])
 
-  const [page, setPage] = useState<number>(1)
-  const [renderedCollection, setRenderedCollection] = useState<IFavorite[]>([])
+  const { 0: page, 1: setPage } = useState<number>(1)
+  const { 0: renderedCollection, 1: setRenderedCollection } = useState<
+    IFavorite[]
+  >([])
 
   const renderPage = (collection: IFavorite[], page: number) => {
     setPage(page)

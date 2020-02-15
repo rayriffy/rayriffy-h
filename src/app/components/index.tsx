@@ -14,7 +14,7 @@ import { collectionMigration } from '../service/collectionMigration'
 const AppComponent: React.FC = props => {
   const { children } = props
 
-  const [collection, setCollection] = useContext(Collection)
+  const { 0: collection, 1: setCollection } = useContext(Collection)
 
   useEffect(() => {
     if (typeof collection === 'string') {

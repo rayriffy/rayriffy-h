@@ -16,7 +16,7 @@ const WidthImage = styled(Image)`
 `
 
 const NotFoundComponent: React.FC = () => {
-  const [, setSubtitle] = useContext(Subtitle)
+  const { 1: setSubtitle } = useContext(Subtitle)
 
   useEffect(() => {
     setSubtitle('404')

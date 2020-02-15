@@ -22,7 +22,7 @@ const TagListingComponent: React.FC<IProps> = props => {
 
   const { colorMode } = useColorMode()
 
-  const [, setSubtitle] = useContext(Subtitle)
+  const { 1: setSubtitle } = useContext(Subtitle)
 
   const alphabet = [
     'a',

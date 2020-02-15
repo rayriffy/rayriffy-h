@@ -17,9 +17,9 @@ const BorderedCard = styled(Box)`
 const CustomComponent: React.FC = () => {
   const { colorMode } = useColorMode()
 
-  const [input, setInput] = useState('')
+  const { 0: input, 1: setInput } = useState('')
 
-  const [, setSubtitle] = useContext(Subtitle)
+  const { 1: setSubtitle } = useContext(Subtitle)
 
   useEffect(() => {
     setSubtitle('custom')

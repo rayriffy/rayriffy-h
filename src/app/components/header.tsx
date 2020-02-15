@@ -5,14 +5,17 @@ import { Box, Divider, Flex, Text } from '@chakra-ui/core'
 import Heading from '../../core/components/heading'
 import Drawer from '../components/drawer'
 
-import { Subtitle } from '../../store'
+import { Settings, Subtitle } from '../../store'
 
 const HeaderComponent = () => {
-  const [subtitle] = useContext(Subtitle)
+  const { 0: subtitle } = useContext(Subtitle)
+  const { 0: settings } = useContext(Settings)
 
   return (
     <React.Fragment>
-      <Flex alignItems='center'>
+      <Flex
+        flexDirection={settings.lefthand ? 'row-reverse' : 'row'}
+        alignItems='center'>
         <Flex alignItems='flex-end' flexWrap='wrap'>
           <Heading size='2xl'>Riffy H</Heading>
           <Text fontSize={30} fontWeight={600} color='gray.500' px={2}>

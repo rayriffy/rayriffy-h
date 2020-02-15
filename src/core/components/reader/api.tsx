@@ -53,8 +53,8 @@ const StyledLink = styled(Link)`
 const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
   const { id } = props
 
-  const [image, setImage] = useState<string>('')
-  const [error, setError] = useState<boolean>(false)
+  const { 0: image, 1: setImage } = useState<string>('')
+  const { 0: error, 1: setError } = useState<boolean>(false)
   const { onCopy, hasCopied } = useClipboard(id)
 
   useEffect(() => {

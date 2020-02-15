@@ -41,7 +41,9 @@ const ActionsComponent: React.FC<IActionsProps> = props => {
     onOpen: exportOnOpen,
     onClose: exportOnClose,
   } = useDisclosure()
-  const [exportStat, setExportStat] = useState<'wait' | 'load' | string>('wait')
+  const { 0: exportStat, 1: setExportStat } = useState<
+    'wait' | 'load' | string
+  >('wait')
   const { onCopy, hasCopied } = useClipboard(exportStat)
 
   const {
@@ -49,8 +51,8 @@ const ActionsComponent: React.FC<IActionsProps> = props => {
     onOpen: importOnOpen,
     onClose: importOnClose,
   } = useDisclosure()
-  const [importLoad, setImportLoad] = useState<boolean>(false)
-  const [input, setInput] = useState<string>('')
+  const { 0: importLoad, 1: setImportLoad } = useState<boolean>(false)
+  const { 0: input, 1: setInput } = useState<string>('')
 
   const exportHandler = async () => {
     try {

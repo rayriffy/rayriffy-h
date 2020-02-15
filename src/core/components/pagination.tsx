@@ -39,7 +39,9 @@ const TransparentLink = styled(Link)<IPage>`
 const PaginationComponent: React.FC<IProps> = props => {
   const { max, current, prefix } = props
 
-  const [color, setColor] = useState<'dark' | 'light' | undefined>(undefined)
+  const { 0: color, 1: setColor } = useState<'dark' | 'light' | undefined>(
+    undefined
+  )
 
   const { colorMode } = useColorMode()
 

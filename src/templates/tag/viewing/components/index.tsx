@@ -12,7 +12,7 @@ import { IProps } from '../@types/IProps'
 const TagViewingComponent: React.FC<IProps> = props => {
   const { raw, page, tag, prefix, subtitle } = props.pageContext
 
-  const [, setSubtitle] = useContext(Subtitle)
+  const { 1: setSubtitle } = useContext(Subtitle)
 
   useEffect(() => {
     setSubtitle(`${subtitle}`)

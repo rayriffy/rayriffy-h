@@ -14,7 +14,7 @@ export const headingFontColor = {
 const Heading: React.FC<HeadingProps> = React.forwardRef((props, ref) => {
   const { colorMode } = useColorMode()
 
-  const [color, setColor] = useState<string | undefined>(undefined)
+  const { 0: color, 1: setColor } = useState<string | undefined>(undefined)
 
   useEffect(() => {
     setColor(colorMode ? headingFontColor[colorMode] : undefined)

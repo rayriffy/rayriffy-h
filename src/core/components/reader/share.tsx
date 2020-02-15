@@ -26,7 +26,7 @@ const StyledLink = styled(Link)`
 const ReaderShareComponent: React.FC<IReaderShareProps> = props => {
   const { hentai, internal } = props
 
-  const [collection, setCollection] = useContext(Collection)
+  const { 0: collection, 1: setCollection } = useContext(Collection)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 

@@ -11,7 +11,7 @@ const ReaderCollapseComponent: React.FC<IReaderCollapseProps> = props => {
 
   const { colorMode } = useColorMode()
 
-  const [isShow, setIsShow] = useState(defaultState)
+  const { 0: isShow, 1: setIsShow } = useState(defaultState)
 
   return (
     <React.Fragment>
