@@ -1,5 +1,7 @@
 const { filter, head, isEmpty } = require('lodash')
 
+const fetch = require('node-fetch')
+
 const rawTranformer = data => ({
   id: data.id,
   media_id: data.media_id,

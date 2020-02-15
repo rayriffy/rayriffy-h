@@ -1,6 +1,7 @@
 const { filter, chunk } = require('lodash')
 
 const path = require('path')
+const fetch = require('node-fetch')
 
 const { tags } = require('../../contents/database/tags')
 

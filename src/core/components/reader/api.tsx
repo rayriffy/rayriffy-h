@@ -61,7 +61,7 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
     fetch(`https://h.api.rayriffy.com/v1/encode/${id}`)
       .then(raw => raw.json())
       .then(res => {
-        setImage(res.data.response.data)
+        setImage(res.response.data)
       })
       .catch(() => {
         setError(true)
