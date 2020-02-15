@@ -1,6 +1,6 @@
 import { IHentai } from '../../../core/@types/IHentai'
 
-declare function searchHentai(
+export function searchHentai(
   query: string,
   raws: IHentai[]
 ): Promise<IHentai[]>

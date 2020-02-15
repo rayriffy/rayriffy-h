@@ -33,5 +33,5 @@ exports.tags = [
     color: 'green',
     name: 'language',
     prefix: 'la',
-  }
+  },
 ]

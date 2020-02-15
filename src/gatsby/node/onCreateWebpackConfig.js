@@ -4,7 +4,7 @@ exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
 
   config.module.rules.push({
     test: /\.worker\.js$/,
-    use: { loader: 'workerize-loader' }
+    use: { loader: 'workerize-loader' },
   })
 
   config.output.globalObject = 'this'

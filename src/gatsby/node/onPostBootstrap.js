@@ -20,16 +20,19 @@ const fshandler = err => {
   }
 }
 
-exports.onPostBootstrap = async ({reporter, cache}) => {
+exports.onPostBootstrap = async ({ reporter, cache }) => {
   reporter.info('Generating API')
 
   try {
     /**
      * Get healthy raw data
      */
-    const fetchedRaw = await getData({reporter, cache})
+    const fetchedRaw = await getData({ reporter, cache })
 
-    const healthyResults = filter(fetchedRaw, o => o.status === 'success').reverse()
+    const healthyResults = filter(
+      fetchedRaw,
+      o => o.status === 'success'
+    ).reverse()
 
     /**
      * Preparing to generate API
@@ -79,7 +82,11 @@ exports.onPostBootstrap = async ({reporter, cache}) => {
         }
       })
 
-      fs.writeFile(`./public/${apiPath}/listing/${i + 1}.json`, JSON.stringify(out), fshandler)
+      fs.writeFile(
+        `./public/${apiPath}/listing/${i + 1}.json`,
+        JSON.stringify(out),
+        fshandler
+      )
     })
 
     /**
@@ -136,7 +143,11 @@ exports.onPostBootstrap = async ({reporter, cache}) => {
             }
           })
 
-          fs.writeFile(`./public/${apiPath}/${tag.prefix}/${node.id}/${i + 1}.json`, JSON.stringify(out), fshandler)
+          fs.writeFile(
+            `./public/${apiPath}/${tag.prefix}/${node.id}/${i + 1}.json`,
+            JSON.stringify(out),
+            fshandler
+          )
         })
       })
     })
