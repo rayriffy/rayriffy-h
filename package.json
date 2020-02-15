@@ -45,7 +45,6 @@
     "@chakra-ui/core": "^0.5.2",
     "@emotion/core": "^10.0.22",
     "@emotion/styled": "^10.0.23",
-    "axios": "^0.19.2",
     "cwait": "^1.1.2",
     "emotion-theming": "^10.0.19",
     "gatsby": "^2.19.16",
@@ -71,7 +70,6 @@
     "workerize-loader": "^1.1.0"
   },
   "devDependencies": {
-    "@types/axios": "^0.14.0",
     "@types/lodash-es": "^4.17.3",
     "@types/react-helmet": "^5.0.15",
     "@types/react-icons": "^3.0.0",

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 
-import axios from 'axios'
 import { isEmpty } from 'lodash-es'
 
 import {
@@ -57,12 +56,17 @@ const ActionsComponent: React.FC<IActionsProps> = props => {
     try {
       setExportStat('load')
 
-      const res = await axios.post<{ key: string }>(
+      const res: { key: string } = await fetch(
         `https://bytebin.lucko.me/post`,
-        collection
-      )
+        {
+          credentials: 'same-origin',
+          method: 'POST',
+          body: JSON.stringify(collection),
+          headers: { 'Content-Type': 'application/json' },
+        }
+      ).then(raw => raw.json())
 
-      setExportStat(res.data.key)
+      setExportStat(res.key)
 
       toast({
         title: 'Data exported.',
@@ -86,19 +90,21 @@ const ActionsComponent: React.FC<IActionsProps> = props => {
     try {
       setImportLoad(true)
 
-      const res = await axios.get<ICollection>(`https://bytebin.lucko.me/${id}`)
+      const res: ICollection = await fetch(
+        `https://bytebin.lucko.me/${id}`
+      ).then(raw => raw.json())
 
       if (
+        typeof res === 'object' &&
+        typeof res.version === 'number' &&
         typeof res.data === 'object' &&
-        typeof res.data.version === 'number' &&
-        typeof res.data.data === 'object' &&
-        res.data.data.length !== undefined
+        res.data.length !== undefined
       ) {
-        setCollection(res.data)
+        setCollection(res)
 
         toast({
           title: 'Data imported.',
-          description: `Imported ${res.data.data.length} items to collection.`,
+          description: `Imported ${res.data.length} items to collection.`,
           status: 'success',
           duration: 4000,
           isClosable: true,

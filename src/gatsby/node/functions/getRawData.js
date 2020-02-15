@@ -1,7 +1,5 @@
 const { filter, head, isEmpty } = require('lodash-es')
 
-const axios = require('axios')
-
 const rawTranformer = data => ({
   id: data.id,
   media_id: data.media_id,
@@ -55,7 +53,9 @@ exports.getRawData = async (id, exclude, { reporter, cache }) => {
     const cacheData = await cache.get('rayriffy-h-hentai-cache')
     const parsedCache = cacheData ? JSON.parse(cacheData) : []
 
-    const filterData = head(filter(parsedCache, o => o.data.id === id && o.status === 'success'))
+    const filterData = head(
+      filter(parsedCache, o => o.data.id === id && o.status === 'success')
+    )
 
     if (!isEmpty(filterData)) {
       if (filterData) {
@@ -78,14 +78,16 @@ exports.getRawData = async (id, exclude, { reporter, cache }) => {
         }
       }
     } else {
-      const out = await axios.get(`https://h.api.rayriffy.com/v1/gallery/${id}`)
+      const out = await fetch(
+        `https://h.api.rayriffy.com/v1/gallery/${id}`
+      ).then(raw => raw.json())
 
       return {
         status: 'success',
         data: {
           id,
           exclude,
-          raw: out.data.response.data,
+          raw: out.response.data,
         },
       }
     }

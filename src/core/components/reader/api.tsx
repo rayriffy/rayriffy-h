@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 
-import axios from 'axios'
 import { FaCopy, FaDownload } from 'react-icons/fa'
 
 import {
@@ -59,8 +58,8 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
   const { onCopy, hasCopied } = useClipboard(id)
 
   useEffect(() => {
-    axios
-      .get(`https://h.api.rayriffy.com/v1/encode/${id}`)
+    fetch(`https://h.api.rayriffy.com/v1/encode/${id}`)
+      .then(raw => raw.json())
       .then(res => {
         setImage(res.data.response.data)
       })
