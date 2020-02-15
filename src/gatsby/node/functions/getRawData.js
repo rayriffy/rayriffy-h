@@ -1,4 +1,4 @@
-const { filter, head, isEmpty } = require('lodash-es')
+const { filter, head, isEmpty } = require('lodash')
 
 const rawTranformer = data => ({
   id: data.id,

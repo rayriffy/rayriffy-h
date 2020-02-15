@@ -1,4 +1,4 @@
-const { filter, chunk } = require('lodash-es')
+const { filter, chunk } = require('lodash')
 
 const path = require('path')
 
