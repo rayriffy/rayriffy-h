@@ -1,1 +1,1 @@
-exports.itemsPerPage = 20
+exports.itemsPerPage = 15
