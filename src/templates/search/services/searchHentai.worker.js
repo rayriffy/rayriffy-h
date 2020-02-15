@@ -1,4 +1,4 @@
-import { flatten, get, intersection, union } from 'lodash-es'
+import { get, intersection, union } from 'lodash-es'
 
 export const searchHentai = async (query, raws) => {
   const resultsByWords = query
@@ -11,8 +11,7 @@ export const searchHentai = async (query, raws) => {
 
       const languages = ['english', 'japanese', 'pretty']
 
-      const typeName = flatten(
-        union(
+      const typeName = union(
           ...languages.map(language => {
             return raws.filter(raw => {
               const title = get(
@@ -24,8 +23,7 @@ export const searchHentai = async (query, raws) => {
               return RegExp(subquery.toLocaleLowerCase()).test(title)
             })
           })
-        )
-      )
+        ).reduce((a, b) => a.concat(b), [])
 
       /**
        * Filter the search by tags
