@@ -67,7 +67,6 @@
     "react-helmet": "^5.2.1",
     "react-icons": "^3.9.0",
     "react-lazyload": "^2.6.5",
-    "rebass": "^4.0.6",
     "web-api-hooks": "^2.2.2",
     "workerize-loader": "^1.1.0"
   },
@@ -76,7 +75,6 @@
     "@types/react-helmet": "^5.0.15",
     "@types/react-icons": "^3.0.0",
     "@types/react-lazyload": "^2.6.0",
-    "@types/typography": "^0.16.3",
     "prettier": "^1.19.1",
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
