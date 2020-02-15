@@ -13,7 +13,6 @@ interface IImageCoverProps {
 }
 
 const ImageCover = styled('img')<IImageCoverProps>`
-  overflow: hidden;
   width: 100%;
   margin: 0;
 

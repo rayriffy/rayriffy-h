@@ -28,4 +28,4 @@ const SlugComponent: React.FC<ISlugProps> = props => {
   )
 }
 
-export default SlugComponent
+export default React.memo(SlugComponent)
