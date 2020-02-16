@@ -120,6 +120,8 @@ typings/
 
 public/
 .tmp/
-src-old/
+
 # Local Netlify folder
 .netlify
+
+.now
