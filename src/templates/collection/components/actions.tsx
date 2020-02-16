@@ -27,6 +27,8 @@ import {
 
 import Heading from '../../../core/components/heading'
 
+import { fetch } from '../../../core/services/fetch'
+
 import { ICollection } from '../../../core/@types/ICollection'
 import { IActionsProps } from '../@types/IActionsProps'
 
@@ -58,7 +60,7 @@ const ActionsComponent: React.FC<IActionsProps> = props => {
     try {
       setExportStat('load')
 
-      const res: { key: string } = await fetch(
+      const res: { key: string } = await fetch<{ key: string }>(
         `https://bytebin.lucko.me/post`,
         {
           credentials: 'same-origin',
@@ -66,7 +68,7 @@ const ActionsComponent: React.FC<IActionsProps> = props => {
           body: JSON.stringify(collection),
           headers: { 'Content-Type': 'application/json' },
         }
-      ).then(raw => raw.json())
+      )
 
       setExportStat(res.key)
 
@@ -92,9 +94,7 @@ const ActionsComponent: React.FC<IActionsProps> = props => {
     try {
       setImportLoad(true)
 
-      const res: ICollection = await fetch(
-        `https://bytebin.lucko.me/${id}`
-      ).then(raw => raw.json())
+      const res = await fetch<ICollection>(`https://bytebin.lucko.me/${id}`)
 
       if (
         typeof res === 'object' &&

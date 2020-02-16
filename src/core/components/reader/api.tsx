@@ -17,6 +17,9 @@ import {
 } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
+import { fetch } from '../../services/fetch'
+
+import { IAPIResponse } from '../../@types/IAPIResponse'
 import { IReaderAPIProps } from '../../@types/IReaderAPIProps'
 
 const StyledImage = styled(Image)`
@@ -58,8 +61,7 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
   const { onCopy, hasCopied } = useClipboard(id)
 
   useEffect(() => {
-    fetch(`https://h.api.rayriffy.com/v1/encode/${id}`)
-      .then(raw => raw.json())
+    fetch<IAPIResponse<string>>(`https://h.api.rayriffy.com/v1/encode/${id}`)
       .then(res => {
         setImage(res.response.data)
       })
