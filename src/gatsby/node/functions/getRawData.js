@@ -1,6 +1,6 @@
 const { filter, head, isEmpty } = require('lodash')
 
-const fetch = require('node-fetch')
+const fetch = require('isomorphic-unfetch')
 
 const rawTranformer = data => ({
   id: data.id,
