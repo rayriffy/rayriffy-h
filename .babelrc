@@ -1,0 +1,18 @@
+{
+  "plugins": [
+    "object-to-json-parse",
+    "optimize-react",
+    "loop-optimizer",
+    "transform-remove-console"
+  ],
+  "presets": [
+    [
+      "babel-preset-gatsby",
+      {
+        "targets": {
+          "browsers": [">0.25%", "not dead"]
+        }
+      }
+    ]
+  ]
+}
