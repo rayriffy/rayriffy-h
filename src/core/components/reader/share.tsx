@@ -32,12 +32,20 @@ const ReaderShareComponent: React.FC<IReaderShareProps> = props => {
 
   const toggleFavorite = () => {
     const isFavorited =
-      collection.data.find(o => o.id === hentai.id) === undefined
+      collection.data.find(
+        o =>
+          (Number.isSafeInteger(Number(o.id)) ? Number(o.id) : o.id) ===
+          hentai.id
+      ) === undefined
 
     let res = collection.data
 
     if (!isFavorited) {
-      res = res.filter(o => o.id !== hentai.id)
+      res = res.filter(
+        o =>
+          (Number.isSafeInteger(Number(o.id)) ? Number(o.id) : o.id) !==
+          hentai.id
+      )
     } else {
       res = [
         {
