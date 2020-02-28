@@ -149,7 +149,20 @@ exports.createPages = async ({ actions, reporter, cache }) => {
     path: `/search`,
     component: path.resolve(`./src/templates/search/components/index.tsx`),
     context: {
-      raw: healthyResults,
+      raw: healthyResults.map(o => ({
+        ...o,
+        data: {
+          ...o.data,
+          exclude: [],
+          raw: {
+            ...o.data.raw,
+            images: {
+              ...o.data.raw.images,
+              pages: [],
+            },
+          },
+        },
+      })),
       skip: itemsPerPage,
     },
   })
