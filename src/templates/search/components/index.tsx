@@ -43,10 +43,7 @@ const SearchComponent: React.FC<IProps> = props => {
       setRes([])
     } else {
       if (searchHentai !== null) {
-        searchHentai(
-          query,
-          raw.map(o => o.data.raw)
-        ).then(results => setRes(results))
+        searchHentai(query, raw).then(results => setRes(results))
       }
     }
   }
