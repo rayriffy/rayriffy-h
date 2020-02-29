@@ -1,9 +1,7 @@
-const { filter, head, isEmpty } = require('lodash')
-
 const fetch = require('isomorphic-unfetch')
 
 const rawTranformer = data => ({
-  id: data.id,
+  id: Number(data.id),
   media_id: data.media_id,
   title: data.title,
   images: {
@@ -31,53 +29,22 @@ const rawTranformer = data => ({
  * @param {array}  exclude      Exclude pages
  */
 exports.getRawData = async (id, exclude, { reporter, cache }) => {
-  const mockRaw = {
-    id: 0,
-    media_id: 0,
-    title: {
-      english: '',
-      japanese: '',
-      pretty: '',
-    },
-    images: {
-      cover: {
-        t: 'j',
-        w: 0,
-        h: 0,
-      },
-      pages: [],
-    },
-    tags: [],
-  }
-
   try {
     // Read file from cache
     const cacheData = await cache.get('rayriffy-h-hentai-cache')
     const parsedCache = cacheData ? JSON.parse(cacheData) : []
 
-    const filterData = head(
-      filter(parsedCache, o => o.data.id === id && o.status === 'success')
-    )
+    const isInCache = parsedCache.map(o => o.data.hentai_id).includes(id)
 
-    if (!isEmpty(filterData)) {
-      if (filterData) {
-        return {
-          ...filterData,
-          data: {
-            ...filterData.data,
-            exclude,
-            raw: rawTranformer(filterData.data.raw),
-          },
-        }
-      } else {
-        return {
-          status: 'failure',
-          data: {
-            id,
-            exclude: [],
-            raw: mockRaw,
-          },
-        }
+    if (isInCache) {
+      const cacheRes = parsedCache.filter(o => o.data.hentai_id === id)[0]
+      
+      return {
+        ...cacheRes,
+        data: {
+          ...cacheRes.data,
+          raw: rawTranformer(cacheRes.data.raw)
+        },
       }
     } else {
       const out = await fetch(
@@ -87,9 +54,9 @@ exports.getRawData = async (id, exclude, { reporter, cache }) => {
       return {
         status: 'success',
         data: {
-          id,
+          hentai_id: Number(id),
           exclude,
-          raw: out.response.data,
+          raw: rawTranformer(out.response.data),
         },
       }
     }
@@ -98,9 +65,26 @@ exports.getRawData = async (id, exclude, { reporter, cache }) => {
     return {
       status: 'failure',
       data: {
-        id,
+        hentai_id: 0,
         exclude: [],
-        raw: mockRaw,
+        raw: rawTranformer({
+          id: 0,
+          media_id: 0,
+          title: {
+            english: '',
+            japanese: '',
+            pretty: '',
+          },
+          images: {
+            cover: {
+              t: 'j',
+              w: 0,
+              h: 0,
+            },
+            pages: [],
+          },
+          tags: [],
+        }),
       },
     }
   }

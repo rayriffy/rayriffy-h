@@ -1,8 +1,8 @@
-import { IFetchedRaw } from '../../../../core/@types/IFetchedRaw'
+import { IHentai } from '../../../../core/@types/IHentai'
 
 export interface IProps {
   pageContext: {
-    raw: IFetchedRaw[]
+    raw: IHentai[]
     page: {
       current: number
       max: number
