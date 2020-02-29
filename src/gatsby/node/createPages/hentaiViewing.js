@@ -2,7 +2,7 @@ const path = require('path')
 
 exports.hentaiViewing = async ({ actions, graphql }) => {
   const { createPage } = actions
-  
+
   const gqlFetch = await graphql(`
     query HentaiViewingQuery {
       allHentai {
@@ -36,9 +36,9 @@ exports.hentaiViewing = async ({ actions, graphql }) => {
           }
         }
       }
-    }  
+    }
   `)
-  
+
   const tranformedData = gqlFetch.data.allHentai.edges.map(edge => edge.node)
 
   /**

@@ -4,7 +4,7 @@ const { itemsPerPage } = require('../constants/itemsPerPage')
 
 exports.search = async ({ actions, graphql }) => {
   const { createPage } = actions
-  
+
   const gqlFetch = await graphql(`
     query SearchQuery {
       allHentai {
@@ -34,11 +34,13 @@ exports.search = async ({ actions, graphql }) => {
           }
         }
       }
-    }  
+    }
   `)
-  
-  const transformedNode = gqlFetch.data.allHentai.edges.map(edge => edge.node.raw)
-  
+
+  const transformedNode = gqlFetch.data.allHentai.edges.map(
+    edge => edge.node.raw
+  )
+
   /**
    * Create search page
    */

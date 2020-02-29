@@ -38,12 +38,12 @@ exports.getRawData = async (id, exclude, { reporter, cache }) => {
 
     if (isInCache) {
       const cacheRes = parsedCache.filter(o => o.data.hentai_id === id)[0]
-      
+
       return {
         ...cacheRes,
         data: {
           ...cacheRes.data,
-          raw: rawTranformer(cacheRes.data.raw)
+          raw: rawTranformer(cacheRes.data.raw),
         },
       }
     } else {

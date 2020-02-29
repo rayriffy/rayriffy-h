@@ -5,7 +5,7 @@ const { itemsPerPage } = require('../constants/itemsPerPage')
 
 exports.hentaiListing = async ({ actions, graphql }) => {
   const { createPage } = actions
-  
+
   const gqlFetch = await graphql(`
     query HentaiListingQuery {
       allHentai {
@@ -33,10 +33,12 @@ exports.hentaiListing = async ({ actions, graphql }) => {
           }
         }
       }
-    }  
+    }
   `)
-  
-  const transformedData = gqlFetch.data.allHentai.edges.map(edge => edge.node.raw)
+
+  const transformedData = gqlFetch.data.allHentai.edges.map(
+    edge => edge.node.raw
+  )
 
   /**
    * Create listing page
