@@ -28,7 +28,7 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
 
   const { colorMode } = useColorMode()
 
-  const hentai = raw.data.raw
+  const hentai = raw.raw
 
   return (
     <Box py={2}>
@@ -100,9 +100,9 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
         <Flex justifyContent='center'>
           <Box width={['100%', 22 / 24, 16 / 24, 12 / 24]}>
             {hentai.images.pages.map((page, i) => {
-              if (!raw.data.exclude.includes(i + 1)) {
+              if (!raw.exclude.includes(i + 1)) {
                 return (
-                  <CoverBox key={`reader-${raw.data.id}-page-${i + 1}`}>
+                  <CoverBox key={`reader-${raw.raw.id}-page-${i + 1}`}>
                     <BluredImage
                       height={page.h}
                       alt={`Page ${i + 1}`}

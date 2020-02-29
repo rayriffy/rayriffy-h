@@ -10,7 +10,7 @@ exports.filterTag = (nodes, type) => {
   const res = []
 
   nodes.map(node => {
-    node.data.raw.tags.map(tag => {
+    node.tags.map(tag => {
       if (tag.type === type) {
         if (isEmpty(filter(res, o => o.id === tag.id))) {
           res.push(tag)

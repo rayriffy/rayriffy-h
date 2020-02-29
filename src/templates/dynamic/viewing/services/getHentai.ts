@@ -13,7 +13,7 @@ export const getHentai = async (id: number | string): Promise<IFetchedRaw> => {
     return {
       status: 'success',
       data: {
-        id,
+        hentai_id: Number(id),
         exclude: [],
         raw: out.response.data,
       },

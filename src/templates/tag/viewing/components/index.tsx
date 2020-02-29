@@ -32,7 +32,7 @@ const TagViewingComponent: React.FC<IProps> = props => {
       <Flex justifyContent='center'>
         <Flex width={22 / 24} flexWrap='wrap' alignItems='center'>
           {raw.map(hentai => (
-            <Poster key={`poster-${hentai.data.id}`} raw={hentai.data.raw} />
+            <Poster key={`poster-${hentai.id}`} raw={hentai} />
           ))}
         </Flex>
       </Flex>

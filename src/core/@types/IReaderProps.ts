@@ -1,6 +1,6 @@
 import { IFetchedRaw } from './IFetchedRaw'
 
 export interface IReaderProps {
-  raw: IFetchedRaw
+  raw: IFetchedRaw['data']
   internal?: boolean
 }

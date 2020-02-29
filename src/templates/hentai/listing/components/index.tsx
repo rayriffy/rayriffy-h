@@ -39,7 +39,7 @@ const HentaiListingComponent: React.FC<IProps> = props => {
           justifyContent='center'
           alignItems='center'>
           {raw.map(hentai => (
-            <Poster key={`poster-${hentai.data.id}`} raw={hentai.data.raw} />
+            <Poster key={`poster-${hentai.id}`} raw={hentai} />
           ))}
         </Flex>
       </Flex>
