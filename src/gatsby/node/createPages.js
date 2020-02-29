@@ -9,6 +9,7 @@ const { itemsPerPage } = require('./constants/itemsPerPage')
 
 const { hentaiListing } = require('./createPages/hentaiListing')
 const { hentaiViewing } = require('./createPages/hentaiViewing')
+const { search } = require('./createPages/search')
 
 exports.createPages = async (args) => {
   const { actions, reporter, graphql } = args
@@ -16,6 +17,7 @@ exports.createPages = async (args) => {
   
   hentaiListing(args)
   hentaiViewing(args)
+  search(args)
 
   // /**
   //  * Create hentai listing pages for each tags
@@ -74,24 +76,6 @@ exports.createPages = async (args) => {
   //       raw: nodes,
   //     },
   //   })
-  // })
-
-  // /**
-  //  * Create search page
-  //  */
-  // createPage({
-  //   path: `/search`,
-  //   component: path.resolve(`./src/templates/search/components/index.tsx`),
-  //   context: {
-  //     raw: healthyResults.map(o => ({
-  //       ...o.data.raw,
-  //       images: {
-  //         ...o.data.raw.images,
-  //         pages: [],
-  //       },
-  //     })),
-  //     skip: itemsPerPage,
-  //   },
   // })
 
   /**
