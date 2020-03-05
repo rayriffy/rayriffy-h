@@ -1,3 +1,4 @@
+const { sampleSize } = require('lodash')
 const { TaskQueue } = require('cwait')
 
 const { codes } = require('../../../contents/database/codes')
@@ -11,9 +12,11 @@ const {
 exports.getData = async ({ reporter, cache }) => {
   try {
     const queue = new TaskQueue(Promise, maxSimultaneousDownloads)
+    
+    const codeList = process.env.NODE_ENV === 'production' ? codes : sampleSize(codes, 20)
 
     const res = await Promise.all(
-      codes.map(
+      codeList.map(
         queue.wrap(
           async item =>
             await getRawData(
