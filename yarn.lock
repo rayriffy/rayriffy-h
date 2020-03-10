@@ -2687,7 +2687,7 @@ babel-plugin-transform-remove-console@^6.9.4:
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-remove-console/-/babel-plugin-transform-remove-console-6.9.4.tgz#b980360c067384e24b357a588d807d3c83527780"
   integrity sha1-uYA2DAZzhOJLNXpYjYB9PINSd4A=
 
-babel-preset-gatsby@^0.2.31, babel-preset-gatsby@^0.2.33:
+babel-preset-gatsby@^0.2.33:
   version "0.2.33"
   resolved "https://registry.yarnpkg.com/babel-preset-gatsby/-/babel-preset-gatsby-0.2.33.tgz#c187fd8f7fd2752c9bd7024a7f0606e4dffad91f"
   integrity sha512-c7rNw3mXhIazMTUHi/u8Bhd1JXvcrSDd0aaxnstiJx++8FM2tTxIHG0e52jCdgyPqusMNI2ldFHY808gUKwakQ==
@@ -6308,7 +6308,7 @@ gatsby-cli@^2.10.4:
     ink "^2.6.0"
     ink-spinner "^3.0.1"
 
-gatsby-core-utils@^1.0.30, gatsby-core-utils@^1.0.31:
+gatsby-core-utils@^1.0.31:
   version "1.0.31"
   resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-1.0.31.tgz#f0a3c37c46a0429f5ce10fee0c01a60718a36216"
   integrity sha512-QvyAaC2nK+34giEPn2eMMkruvzyz4cD3+68RFV9A71HDuLU7FTgnhahyV8QmqZdjK2zVnhEIs2rGuf4weEuu1g==
@@ -6359,10 +6359,10 @@ gatsby-plugin-create-client-paths@^2.1.23:
   dependencies:
     "@babel/runtime" "^7.7.6"
 
-gatsby-plugin-emotion@^4.1.21:
-  version "4.1.22"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-emotion/-/gatsby-plugin-emotion-4.1.22.tgz#e153debef74afa205336738dcf1988c95b308c4f"
-  integrity sha512-XG9YpkyUgbTHs/Uq7W6tDVDVQ2XHlj9rHPhCYiZHlJTdrJIHhviousHZ8+vEI/h0FQ4oW/Hs0CuX2gi5SlvWSQ==
+gatsby-plugin-emotion@^4.1.24:
+  version "4.1.24"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-emotion/-/gatsby-plugin-emotion-4.1.24.tgz#cfb7c8b2feb78ec4607c93e876c4835b1794777d"
+  integrity sha512-lTsfH7HV1RAB13pQOnzRyZ5hMv/m0jqJDW4rcJ3hB6UKmnrD9DAMuGT6A7FuReg16LI+jyLA1O9mCL6booNPIQ==
   dependencies:
     "@babel/runtime" "^7.7.6"
     "@emotion/babel-preset-css-prop" "^10.0.23"

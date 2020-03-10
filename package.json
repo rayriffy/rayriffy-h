@@ -50,7 +50,7 @@
     "gatsby": "^2.19.35",
     "gatsby-plugin-chakra-ui": "^0.1.4",
     "gatsby-plugin-create-client-paths": "^2.1.23",
-    "gatsby-plugin-emotion": "^4.1.21",
+    "gatsby-plugin-emotion": "^4.1.24",
     "gatsby-plugin-manifest": "^2.2.45",
     "gatsby-plugin-netlify": "^2.1.33",
     "gatsby-plugin-netlify-cache": "^1.2.0",
