@@ -79,7 +79,7 @@
     "babel-plugin-object-to-json-parse": "^0.0.9",
     "babel-plugin-optimize-react": "^0.0.4",
     "babel-plugin-transform-remove-console": "^6.9.4",
-    "babel-preset-gatsby": "^0.2.31",
+    "babel-preset-gatsby": "^0.2.33",
     "prettier": "^1.19.1",
     "tslint": "^6.0.0",
     "tslint-config-prettier": "^1.18.0",
