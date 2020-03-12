@@ -54,7 +54,7 @@
     "gatsby-plugin-manifest": "^2.2.45",
     "gatsby-plugin-netlify": "^2.1.33",
     "gatsby-plugin-netlify-cache": "^1.2.0",
-    "gatsby-plugin-offline": "^3.0.38",
+    "gatsby-plugin-offline": "^3.0.40",
     "gatsby-plugin-react-helmet": "^3.1.21",
     "gatsby-plugin-typescript": "^2.2.2",
     "gatsby-source-filesystem": "^2.1.51",
