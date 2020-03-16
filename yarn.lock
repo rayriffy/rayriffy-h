@@ -2700,7 +2700,7 @@ babel-plugin-optimize-react@^0.0.4:
   resolved "https://registry.yarnpkg.com/babel-plugin-optimize-react/-/babel-plugin-optimize-react-0.0.4.tgz#6326ac8f0f77e3fa3e8195b4d998287d47877c65"
   integrity sha512-I3o7GW66dIpXraND0ZAYXEDQ/wOiuefUQqn1PZZcub2flREANb2NXejL52iTMUWtKM++lu5OasVtZewn+WvkNg==
 
-babel-plugin-remove-graphql-queries@^2.7.24, babel-plugin-remove-graphql-queries@^2.7.25:
+babel-plugin-remove-graphql-queries@^2.7.25:
   version "2.7.25"
   resolved "https://registry.yarnpkg.com/babel-plugin-remove-graphql-queries/-/babel-plugin-remove-graphql-queries-2.7.25.tgz#b52decea8af7e06c6ae7c2a307c44ae4a4f5def9"
   integrity sha512-kQZnj1SszxhlOvaNIGA7sw0bcdHyWpLDBy+1MBNYblGes7eUjfUeshzRd5ffJ9WMaKgXz4tyKDzAygjnpPaPZg==
@@ -9494,10 +9494,10 @@ nested-error-stacks@^2.0.0, nested-error-stacks@^2.1.0:
   resolved "https://registry.yarnpkg.com/nested-error-stacks/-/nested-error-stacks-2.1.0.tgz#0fbdcf3e13fe4994781280524f8b96b0cdff9c61"
   integrity sha512-AO81vsIO1k1sM4Zrd6Hu7regmJN1NSiAja10gc4bX3F0wd+9rQmcuHQaHVQCYIEC8iFXnE+mavh23GOt7wBgug==
 
-netlify-cli@^2.39.0:
-  version "2.39.0"
-  resolved "https://registry.yarnpkg.com/netlify-cli/-/netlify-cli-2.39.0.tgz#831909b2fa7b633b783971273bf59b947ba3c17f"
-  integrity sha512-s+C2fftEwfJvNpJ7ZccQjyOcnXIScOyTluhFz2Vq+xSM1EHKQJjNPDe1MYzEXowH158WaQ9fWWXTNw2JYKFNIw==
+netlify-cli@^2.40.0:
+  version "2.40.0"
+  resolved "https://registry.yarnpkg.com/netlify-cli/-/netlify-cli-2.40.0.tgz#239ae8dbe9920e92030a890594d36322d3fa98f3"
+  integrity sha512-Jf7OCSmiNZOD51nEB07AZJ6+XTYokClCtu1ufnm7/Mw3xdb5wXWzYUlanrKs1+nStlxRmh/R8E70tksBdokTDA==
   dependencies:
     "@netlify/build" "^0.1.84"
     "@netlify/config" "^0.4.1"
