@@ -1,4 +1,4 @@
-import { ICollection } from '../../../core/@types/ICollection'
+import { ICollection } from '../../../core/@types'
 
 export interface IActionsProps {
   collection: ICollection

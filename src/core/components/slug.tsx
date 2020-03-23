@@ -4,7 +4,7 @@ import { Badge, Box } from '@chakra-ui/core'
 
 import { TransparentLink } from './'
 
-import { ISlugProps } from '../@types/ISlugProps'
+import { ISlugProps } from '../@types'
 
 const Component: React.FC<ISlugProps> = props => {
   const { color, link, title } = props

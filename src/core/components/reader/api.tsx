@@ -19,8 +19,7 @@ import styled from '@emotion/styled'
 
 import { fetch } from '../../services/functions'
 
-import { IAPIResponse } from '../../@types/IAPIResponse'
-import { IReaderAPIProps } from '../../@types/IReaderAPIProps'
+import { IAPIResponse, IReaderAPIProps } from '../../@types'
 
 const StyledImage = styled(Image)`
   border-radius: 10px;

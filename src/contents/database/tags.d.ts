@@ -1,3 +1,3 @@
-import { IDatabaseTag } from '../../core/@types/IDatabaseTag'
+import { IDatabaseTag } from '../../core/@types'
 
 declare const tags: IDatabaseTag[]

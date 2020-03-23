@@ -1,3 +1,3 @@
-import { IDatabaseCode } from '../../core/@types/IDatabaseCode'
+import { IDatabaseCode } from '../../core/@types'
 
 declare const codes: IDatabaseCode[]

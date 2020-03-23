@@ -12,7 +12,7 @@ import { Loading } from './loading'
 import { getHentai } from '../services/getHentai'
 import { getIdByUrl } from '../services/getIdByUrl'
 
-import { IFetchedRaw } from '../../../../core/@types/IFetchedRaw'
+import { IFetchedRaw } from '../../../../core/@types'
 import { IProps } from '../@types/IProps'
 
 const DynamicViewingComponent: React.FC<IProps> = props => {

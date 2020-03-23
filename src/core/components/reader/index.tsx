@@ -15,7 +15,7 @@ import { tags as tagStack } from '../../../contents/database/tags'
 
 import { filterTagByType } from '../../services/functions'
 
-import { IReaderProps } from '../../@types/IReaderProps'
+import { IReaderProps } from '../../@types'
 
 const CoverBox = styled(Box)`
   overflow: hidden;

@@ -1,4 +1,4 @@
-import { ITag } from '../../../../core/@types/ITag'
+import { ITag } from '../../../../core/@types'
 
 export interface IProps {
   pageContext: {

@@ -9,7 +9,7 @@ import {
 
 import { headingFontColor } from '../heading'
 
-import { IReaderCollapseProps } from '../../@types/IReaderCollapseProps'
+import { IReaderCollapseProps } from '../../@types'
 
 export const Collapse: React.FC<IReaderCollapseProps> = props => {
   const { defaultState = false, title, children } = props

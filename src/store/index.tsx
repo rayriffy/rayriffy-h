@@ -2,8 +2,7 @@ import React, { Dispatch, SetStateAction, useState } from 'react'
 
 import { useLocalStorage } from 'web-api-hooks'
 
-import { ICollection } from '../core/@types/ICollection'
-import { ISettings } from '../core/@types/ISettings'
+import { ICollection, ISettings } from '../core/@types'
 
 type ISettingsContext = [ISettings, Dispatch<SetStateAction<ISettings>>]
 type ISubtitle = [string, Dispatch<SetStateAction<string>>]

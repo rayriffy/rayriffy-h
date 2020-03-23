@@ -1,6 +1,6 @@
 import { Cache, NodePluginArgs, Reporter } from 'gatsby'
 
-import { IFetchedRaw } from '../../../core/@types/IFetchedRaw'
+import { IFetchedRaw } from '../../../core/@types'
 
 declare function getRawData(
   id: number,

@@ -9,8 +9,7 @@ import * as searchHentaiWorker from '../../services/worker/searchHentai.worker'
 import { Heading, Poster } from '../'
 import { Pagination } from './pagination'
 
-import { IHentai } from '../../@types/IHentai'
-import { ISearchProps } from '../../@types/ISearchProps'
+import { IHentai, ISearchProps } from '../../@types'
 
 export const Search: React.FC<ISearchProps> = props => {
   const { raw, skip } = props

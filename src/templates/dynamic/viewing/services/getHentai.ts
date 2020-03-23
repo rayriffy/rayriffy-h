@@ -1,8 +1,6 @@
 import { fetch } from '../../../../core/services/functions'
 
-import { IAPIResponse } from '../../../../core/@types/IAPIResponse'
-import { IFetchedRaw } from '../../../../core/@types/IFetchedRaw'
-import { IHentai } from '../../../../core/@types/IHentai'
+import { IAPIResponse, IFetchedRaw, IHentai } from '../../../../core/@types'
 
 export const getHentai = async (id: number | string): Promise<IFetchedRaw> => {
   try {

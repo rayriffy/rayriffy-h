@@ -10,7 +10,7 @@ import { Heading, Poster } from '../../../core/components'
 import { Actions } from './actions'
 import { Pagination } from './pagination'
 
-import { IFavorite } from '../../../core/@types/IFavorite'
+import { IFavorite } from '../../../core/@types'
 import { IProps } from '../@types/IProps'
 
 const Page: React.FC<IProps> = props => {

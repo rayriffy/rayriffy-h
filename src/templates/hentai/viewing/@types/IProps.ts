@@ -1,4 +1,4 @@
-import { IFetchedRaw } from '../../../../core/@types/IFetchedRaw'
+import { IFetchedRaw } from '../../../../core/@types'
 
 export interface IProps {
   pageContext: {

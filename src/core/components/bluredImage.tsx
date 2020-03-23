@@ -6,7 +6,7 @@ import styled from '@emotion/styled'
 
 import { Settings } from '../../store'
 
-import { IBluredImageProps } from '../@types/IBluredImageProps'
+import { IBluredImageProps } from '../@types'
 
 interface IImageCoverProps {
   blur: boolean

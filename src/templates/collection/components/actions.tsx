@@ -29,7 +29,7 @@ import { Heading } from '../../../core/components'
 
 import { fetch } from '../../../core/services/functions'
 
-import { ICollection } from '../../../core/@types/ICollection'
+import { ICollection } from '../../../core/@types'
 import { IActionsProps } from '../@types/IActionsProps'
 
 export const Actions: React.FC<IActionsProps> = props => {

@@ -12,7 +12,7 @@ import { filterTagByType, filterTagStackByType } from '../services/functions'
 
 import { tags as allTagStack } from '../../contents/database/tags'
 
-import { IPosterProps } from '../@types/IPosterProps'
+import { IPosterProps } from '../@types'
 
 const Component: React.FC<IPosterProps> = props => {
   const { raw, internal = true } = props

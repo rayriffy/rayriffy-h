@@ -17,7 +17,7 @@ import { Collection } from '../../../store'
 
 import { API } from './api'
 
-import { IReaderShareProps } from '../../@types/IReaderShareProps'
+import { IReaderShareProps } from '../../@types'
 
 const StyledLink = styled(Link)`
   text-decoration: none;

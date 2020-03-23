@@ -1,5 +1,4 @@
-import { IHentai } from '../../../../core/@types/IHentai'
-import { ITag } from '../../../../core/@types/ITag'
+import { IHentai, ITag } from '../../../../core/@types'
 
 export interface IProps {
   pageContext: {
