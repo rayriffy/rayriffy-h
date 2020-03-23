@@ -4,7 +4,7 @@ import { chunk, get, isEmpty } from 'lodash-es'
 
 import { Box, Flex, IconButton, Input, useColorMode } from '@chakra-ui/core'
 
-import * as searchHentaiWorker from '../../services/searchHentai.worker'
+import * as searchHentaiWorker from '../../services/worker/searchHentai.worker'
 
 import { Heading, Poster } from '../'
 import { Pagination } from './pagination'
