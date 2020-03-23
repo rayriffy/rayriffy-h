@@ -12,12 +12,12 @@ import { Pagination } from './pagination'
 import { IHentai, ISearchProps } from '../../@types'
 
 export const Search: React.FC<ISearchProps> = props => {
-  const { raw, skip } = props
+  const { raw, skip, showOnEmptyQuery = false } = props
 
   const { colorMode } = useColorMode()
 
   const { 0: query, 1: setQuery } = useState<string>('')
-  const { 0: res, 1: setRes } = useState<IHentai[]>([])
+  const { 0: res, 1: setRes } = useState<IHentai[]>(showOnEmptyQuery ? raw : [])
 
   const { 0: page, 1: setPage } = useState<number>(1)
   const { 0: renderedRaw, 1: setRenderedRaw } = useState<IHentai[]>([])
@@ -34,7 +34,7 @@ export const Search: React.FC<ISearchProps> = props => {
 
   const searchButtonHandler = () => {
     if (query === '') {
-      setRes([])
+      setRes(showOnEmptyQuery ? raw : [])
     } else {
       if (searchHentai !== null) {
         searchHentai(query, raw).then(results => setRes(results))
