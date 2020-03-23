@@ -57,7 +57,7 @@
     "gatsby-plugin-offline": "^3.0.40",
     "gatsby-plugin-react-helmet": "^3.2.0",
     "gatsby-plugin-typescript": "^2.2.3",
-    "gatsby-source-filesystem": "^2.1.55",
+    "gatsby-source-filesystem": "^2.2.1",
     "isomorphic-unfetch": "^3.0.0",
     "lodash": "^4.17.15",
     "lodash-es": "^4.17.15",
