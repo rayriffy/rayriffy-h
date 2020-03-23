@@ -5,8 +5,7 @@ import styled from '@emotion/styled'
 
 import { Subtitle } from '../store'
 
-import Heading from '../core/components/heading'
-import TransparentLink from '../core/components/transparentLink'
+import { Heading, TransparentLink } from '../core/components'
 
 const BorderedCard = styled(Box)`
   border-radius: 8px;
