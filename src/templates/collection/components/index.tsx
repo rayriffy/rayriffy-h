@@ -37,7 +37,7 @@ const Page: React.FC<IProps> = props => {
         ) : (
           <React.Fragment>
             <Search
-              raw={collection.data.map(o => o.data).reverse()}
+              raw={collection.data.map(o => o.data)}
               skip={skip}
               showOnEmptyQuery
             />
