@@ -27,7 +27,7 @@ import {
 
 import { Heading } from '../../../core/components'
 
-import { fetch } from '../../../core/services/fetch'
+import { fetch } from '../../../core/services/functions'
 
 import { ICollection } from '../../../core/@types/ICollection'
 import { IActionsProps } from '../@types/IActionsProps'

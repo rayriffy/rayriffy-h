@@ -8,8 +8,7 @@ import { Box, Flex, Stack, Text, useColorMode } from '@chakra-ui/core'
 
 import { BluredImage, Heading, Slug } from './'
 
-import { filterTagByType } from '../services/filterTagByType'
-import { filterTagStackByType } from '../services/filterTagStackByType'
+import { filterTagByType, filterTagStackByType } from '../services/functions'
 
 import { tags as allTagStack } from '../../contents/database/tags'
 

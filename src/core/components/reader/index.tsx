@@ -13,7 +13,7 @@ import { Share } from './share'
 
 import { tags as tagStack } from '../../../contents/database/tags'
 
-import { filterTagByType } from '../../services/filterTagByType'
+import { filterTagByType } from '../../services/functions'
 
 import { IReaderProps } from '../../@types/IReaderProps'
 

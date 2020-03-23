@@ -17,7 +17,7 @@ import {
 } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
-import { fetch } from '../../services/fetch'
+import { fetch } from '../../services/functions'
 
 import { IAPIResponse } from '../../@types/IAPIResponse'
 import { IReaderAPIProps } from '../../@types/IReaderAPIProps'

@@ -1,4 +1,4 @@
-import { fetch } from '../../../../core/services/fetch'
+import { fetch } from '../../../../core/services/functions'
 
 import { IAPIResponse } from '../../../../core/@types/IAPIResponse'
 import { IFetchedRaw } from '../../../../core/@types/IFetchedRaw'
