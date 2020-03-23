@@ -19,7 +19,7 @@ const ImageCover = styled('img')<IImageCoverProps>`
   ${(props: IImageCoverProps) => props.blur && `filter: blur(15px);`}
 `
 
-const BluredImageComponent: React.FC<IBluredImageProps> = props => {
+const Component: React.FC<IBluredImageProps> = props => {
   const { height, src, alt } = props
 
   const { 0: settings } = useContext(Settings)
@@ -31,4 +31,4 @@ const BluredImageComponent: React.FC<IBluredImageProps> = props => {
   )
 }
 
-export default React.memo(BluredImageComponent)
+export const BluredImage = React.memo(Component)

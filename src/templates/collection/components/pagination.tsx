@@ -34,7 +34,7 @@ const StyledLink = styled(Link)<IPage>`
   }}
 `
 
-const PaginationComponent: React.FC<IProps> = props => {
+const Component: React.FC<IProps> = props => {
   const { max, current, onChange } = props
 
   const { colorMode } = useColorMode()
@@ -70,4 +70,4 @@ const PaginationComponent: React.FC<IProps> = props => {
   )
 }
 
-export default React.memo(PaginationComponent)
+export const Pagination = React.memo(Component)

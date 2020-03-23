@@ -6,15 +6,14 @@ import { Box, Flex, Text } from '@chakra-ui/core'
 
 import { Collection, Subtitle } from '../../../store'
 
-import Heading from '../../../core/components/heading'
-import Poster from '../../../core/components/poster'
-import Actions from './actions'
-import Pagination from './pagination'
+import { Heading, Poster } from '../../../core/components'
+import { Actions } from './actions'
+import { Pagination } from './pagination'
 
 import { IFavorite } from '../../../core/@types/IFavorite'
 import { IProps } from '../@types/IProps'
 
-const CollectionComponent: React.FC<IProps> = props => {
+const Page: React.FC<IProps> = props => {
   const { skip } = props.pageContext
 
   const { 1: setSubtitle } = useContext(Subtitle)
@@ -94,4 +93,4 @@ const CollectionComponent: React.FC<IProps> = props => {
   )
 }
 
-export default CollectionComponent
+export default Page

@@ -25,14 +25,14 @@ import {
   useToast,
 } from '@chakra-ui/core'
 
-import Heading from '../../../core/components/heading'
+import { Heading } from '../../../core/components'
 
 import { fetch } from '../../../core/services/fetch'
 
 import { ICollection } from '../../../core/@types/ICollection'
 import { IActionsProps } from '../@types/IActionsProps'
 
-const ActionsComponent: React.FC<IActionsProps> = props => {
+export const Actions: React.FC<IActionsProps> = props => {
   const { collection, setCollection } = props
 
   const toast = useToast()
@@ -262,5 +262,3 @@ const ActionsComponent: React.FC<IActionsProps> = props => {
     </React.Fragment>
   )
 }
-
-export default ActionsComponent

@@ -2,11 +2,11 @@ import React from 'react'
 
 import { Badge, Box } from '@chakra-ui/core'
 
-import TransparentLink from '../../core/components/transparentLink'
+import { TransparentLink } from './'
 
 import { ISlugProps } from '../@types/ISlugProps'
 
-const SlugComponent: React.FC<ISlugProps> = props => {
+const Component: React.FC<ISlugProps> = props => {
   const { color, link, title } = props
 
   const badge: React.ReactNode = (
@@ -28,4 +28,4 @@ const SlugComponent: React.FC<ISlugProps> = props => {
   )
 }
 
-export default React.memo(SlugComponent)
+export const Slug = React.memo(Component)

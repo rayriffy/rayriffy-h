@@ -15,7 +15,7 @@ import styled from '@emotion/styled'
 
 import { Collection } from '../../../store'
 
-import API from './api'
+import { API } from './api'
 
 import { IReaderShareProps } from '../../@types/IReaderShareProps'
 
@@ -23,7 +23,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `
 
-const ReaderShareComponent: React.FC<IReaderShareProps> = props => {
+const Component: React.FC<IReaderShareProps> = props => {
   const { hentai, internal } = props
 
   const { 0: collection, 1: setCollection } = useContext(Collection)
@@ -110,4 +110,4 @@ const ReaderShareComponent: React.FC<IReaderShareProps> = props => {
   )
 }
 
-export default React.memo(ReaderShareComponent)
+export const Share = React.memo(Component)

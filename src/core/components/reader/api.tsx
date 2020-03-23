@@ -53,7 +53,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `
 
-const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
+const Component: React.FC<IReaderAPIProps> = props => {
   const { id } = props
 
   const { 0: image, 1: setImage } = useState<string>('')
@@ -164,4 +164,4 @@ const ReaderAPIComponent: React.FC<IReaderAPIProps> = props => {
   )
 }
 
-export default React.memo(ReaderAPIComponent)
+export const API = React.memo(Component)

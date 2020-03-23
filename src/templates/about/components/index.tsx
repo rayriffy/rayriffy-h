@@ -4,9 +4,9 @@ import { Box } from '@chakra-ui/core'
 
 import { Subtitle } from '../../../store'
 
-import NotAvaliable from '../../../core/components/notAvaliable'
+import { NotAvaliable } from '../../../core/components'
 
-const AboutComponent: React.FC = () => {
+const Page: React.FC = () => {
   const { 1: setSubtitle } = useContext(Subtitle)
 
   useEffect(() => {
@@ -20,4 +20,4 @@ const AboutComponent: React.FC = () => {
   )
 }
 
-export default AboutComponent
+export default Page

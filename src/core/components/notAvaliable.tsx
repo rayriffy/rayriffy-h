@@ -2,9 +2,9 @@ import React from 'react'
 
 import { Box, Flex, Image, Text, useColorMode } from '@chakra-ui/core'
 
-import Heading from '../../core/components/heading'
+import { Heading } from '../../core/components'
 
-const NotAvaliableComponent: React.FC = () => {
+const Component: React.FC = () => {
   const { colorMode } = useColorMode()
 
   return (
@@ -32,4 +32,4 @@ const NotAvaliableComponent: React.FC = () => {
   )
 }
 
-export default React.memo(NotAvaliableComponent)
+export const NotAvaliable = React.memo(Component)

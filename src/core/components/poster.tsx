@@ -6,19 +6,16 @@ import { upperFirst } from 'lodash-es'
 
 import { Box, Flex, Stack, Text, useColorMode } from '@chakra-ui/core'
 
-import BluredImage from './bluredImage'
-import Slug from './slug'
+import { BluredImage, Heading, Slug } from './'
 
 import { filterTagByType } from '../services/filterTagByType'
 import { filterTagStackByType } from '../services/filterTagStackByType'
 
 import { tags as allTagStack } from '../../contents/database/tags'
 
-import Heading from './heading'
-
 import { IPosterProps } from '../@types/IPosterProps'
 
-const PosterComponent: React.FC<IPosterProps> = props => {
+const Component: React.FC<IPosterProps> = props => {
   const { raw, internal = true } = props
 
   const { colorMode } = useColorMode()
@@ -102,4 +99,4 @@ const PosterComponent: React.FC<IPosterProps> = props => {
   )
 }
 
-export default React.memo(PosterComponent)
+export const Poster = React.memo(Component)

@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
 
-import { Box, Collapse, Text, useColorMode } from '@chakra-ui/core'
+import {
+  Box,
+  Collapse as ChakraCollapse,
+  Text,
+  useColorMode,
+} from '@chakra-ui/core'
 
 import { headingFontColor } from '../heading'
 
 import { IReaderCollapseProps } from '../../@types/IReaderCollapseProps'
 
-const ReaderCollapseComponent: React.FC<IReaderCollapseProps> = props => {
+export const Collapse: React.FC<IReaderCollapseProps> = props => {
   const { defaultState = false, title, children } = props
 
   const { colorMode } = useColorMode()
@@ -23,9 +28,7 @@ const ReaderCollapseComponent: React.FC<IReaderCollapseProps> = props => {
           {title}
         </Text>
       </Box>
-      <Collapse isOpen={isShow}>{children}</Collapse>
+      <ChakraCollapse isOpen={isShow}>{children}</ChakraCollapse>
     </React.Fragment>
   )
 }
-
-export default ReaderCollapseComponent

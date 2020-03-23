@@ -2,14 +2,13 @@ import React, { useContext, useEffect } from 'react'
 
 import { Box, Flex } from '@chakra-ui/core'
 
-import Pagination from '../../../../core/components/pagination'
-import Poster from '../../../../core/components/poster'
+import { Pagination, Poster } from '../../../../core/components'
 
 import { Subtitle } from '../../../../store'
 
 import { IProps } from '../@types/IProps'
 
-const TagViewingComponent: React.FC<IProps> = props => {
+const Page: React.FC<IProps> = props => {
   const { raw, page, tag, prefix, subtitle } = props.pageContext
 
   const { 1: setSubtitle } = useContext(Subtitle)
@@ -49,4 +48,4 @@ const TagViewingComponent: React.FC<IProps> = props => {
   )
 }
 
-export default TagViewingComponent
+export default Page

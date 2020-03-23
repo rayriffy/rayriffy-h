@@ -2,14 +2,13 @@ import React, { useContext, useEffect, useMemo } from 'react'
 
 import { Box, Flex } from '@chakra-ui/core'
 
-import Pagination from '../../../../core/components/pagination'
-import Poster from '../../../../core/components/poster'
+import { Pagination, Poster } from '../../../../core/components'
 
 import { Subtitle } from '../../../../store'
 
 import { IProps } from '../@types/IProps'
 
-const HentaiListingComponent: React.FC<IProps> = props => {
+const Page: React.FC<IProps> = props => {
   const { raw, page } = props.pageContext
 
   const { 1: setSubtitle } = useContext(Subtitle)
@@ -48,4 +47,4 @@ const HentaiListingComponent: React.FC<IProps> = props => {
   )
 }
 
-export default HentaiListingComponent
+export default Page

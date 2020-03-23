@@ -7,11 +7,9 @@ import { isEmpty, upperFirst } from 'lodash-es'
 import { Box, Divider, Flex, Text, useColorMode } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
-import BluredImage from '../bluredImage'
-import { headingFontColor } from '../heading'
-import Slug from '../slug'
-import Collapse from './collapse'
-import Share from './share'
+import { BluredImage, headingFontColor, Slug } from '../'
+import { Collapse } from './collapse'
+import { Share } from './share'
 
 import { tags as tagStack } from '../../../contents/database/tags'
 
@@ -23,7 +21,7 @@ const CoverBox = styled(Box)`
   overflow: hidden;
 `
 
-const ReaderComponent: React.FC<IReaderProps> = props => {
+const Component: React.FC<IReaderProps> = props => {
   const { raw, internal = true } = props
 
   const { colorMode } = useColorMode()
@@ -123,4 +121,4 @@ const ReaderComponent: React.FC<IReaderProps> = props => {
   )
 }
 
-export default React.memo(ReaderComponent)
+export const Reader = React.memo(Component)

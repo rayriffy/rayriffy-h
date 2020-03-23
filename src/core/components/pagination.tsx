@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Box, Flex, theme, useColorMode } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
-import Link from '../../core/components/transparentLink'
+import { TransparentLink as Link } from './'
 
 interface IProps {
   max: number
@@ -36,7 +36,7 @@ const TransparentLink = styled(Link)<IPage>`
   }}
 `
 
-const PaginationComponent: React.FC<IProps> = props => {
+const Component: React.FC<IProps> = props => {
   const { max, current, prefix } = props
 
   const { 0: color, 1: setColor } = useState<'dark' | 'light' | undefined>(
@@ -80,4 +80,4 @@ const PaginationComponent: React.FC<IProps> = props => {
   )
 }
 
-export default React.memo(PaginationComponent)
+export const Pagination = React.memo(Component)

@@ -4,10 +4,10 @@ import { Box } from '@chakra-ui/core'
 
 import { Subtitle } from '../../../../store'
 
-import Reader from '../../../../core/components/reader'
-import Failed from './failed'
-import Guide from './guide'
-import Loading from './loading'
+import { Reader } from '../../../../core/components'
+import { Failed } from './failed'
+import { Guide } from './guide'
+import { Loading } from './loading'
 
 import { getHentai } from '../services/getHentai'
 import { getIdByUrl } from '../services/getIdByUrl'

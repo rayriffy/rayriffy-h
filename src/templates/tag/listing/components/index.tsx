@@ -5,8 +5,7 @@ import { isEmpty, sortBy, startsWith } from 'lodash-es'
 import { Box, Divider, Flex, Text, useColorMode } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
-import Heading from '../../../../core/components/heading'
-import TransparentLink from '../../../../core/components/transparentLink'
+import { Heading, TransparentLink } from '../../../../core/components'
 
 import { Subtitle } from '../../../../store'
 
@@ -17,7 +16,7 @@ const CoverCard = styled(Box)`
   border: 1px solid #e8e8e8;
 `
 
-const TagListingComponent: React.FC<IProps> = props => {
+const Page: React.FC<IProps> = props => {
   const { prefix, raw, subtitle } = props.pageContext
 
   const { colorMode } = useColorMode()
@@ -109,4 +108,4 @@ const TagListingComponent: React.FC<IProps> = props => {
   )
 }
 
-export default TagListingComponent
+export default Page

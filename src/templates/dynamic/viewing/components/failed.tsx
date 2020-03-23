@@ -3,7 +3,7 @@ import React from 'react'
 import { Box, Flex, Image, Text, useColorMode } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
-import Heading from '../../../../core/components/heading'
+import { Heading } from '../../../../core/components'
 
 const BorderedCard = styled(Box)`
   border-radius: 8px;
@@ -15,7 +15,7 @@ const WidthImage = styled(Image)`
   width: 100%;
 `
 
-const FailedComponent: React.FC = () => {
+const Component: React.FC = () => {
   const { colorMode } = useColorMode()
 
   return (
@@ -41,4 +41,4 @@ const FailedComponent: React.FC = () => {
   )
 }
 
-export default React.memo(FailedComponent)
+export const Failed = React.memo(Component)
