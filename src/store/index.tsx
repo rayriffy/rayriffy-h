@@ -21,7 +21,7 @@ export const Collection = React.createContext<ICollectionContext>([
   () => {},
 ])
 
-const Context: React.FC = props => {
+export const Context: React.FC = props => {
   const { children } = props
 
   // Safe mode
@@ -91,5 +91,3 @@ const Context: React.FC = props => {
     </Settings.Provider>
   )
 }
-
-export default Context

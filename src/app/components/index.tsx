@@ -6,12 +6,12 @@ import { Box } from '@chakra-ui/core'
 
 import { Collection } from '../../store'
 
-import Header from './header'
-import ServiceWorker from './serviceworker'
+import { Header } from './header'
+import { ServiceWorker } from './serviceworker'
 
 import { collectionMigration } from '../service/collectionMigration'
 
-const AppComponent: React.FC = props => {
+export const App: React.FC = props => {
   const { children } = props
 
   const { 0: collection, 1: setCollection } = useContext(Collection)
@@ -41,5 +41,3 @@ const AppComponent: React.FC = props => {
     </Box>
   )
 }
-
-export default AppComponent

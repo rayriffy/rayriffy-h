@@ -2,12 +2,12 @@ import React, { useContext } from 'react'
 
 import { Box, Divider, Flex, Text } from '@chakra-ui/core'
 
-import Heading from '../../core/components/heading'
-import Drawer from '../components/drawer'
+import { Heading } from '../../core/components'
+import { Drawer } from '../components/drawer'
 
 import { Settings, Subtitle } from '../../store'
 
-const HeaderComponent = () => {
+export const Header = () => {
   const { 0: subtitle } = useContext(Subtitle)
   const { 0: settings } = useContext(Settings)
 
@@ -31,5 +31,3 @@ const HeaderComponent = () => {
     </React.Fragment>
   )
 }
-
-export default HeaderComponent

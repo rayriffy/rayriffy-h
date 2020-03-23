@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Context from '../../store'
+import { Context } from '../../store'
 
 export const wrapRootElement = ({ element }) => {
   return (

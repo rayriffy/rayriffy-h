@@ -5,7 +5,7 @@ import { FaBars as MenuIcon, FaHeart as LoveIcon } from 'react-icons/fa'
 import {
   Box,
   Divider,
-  Drawer,
+  Drawer as ChakraDrawer,
   DrawerBody,
   DrawerCloseButton,
   DrawerContent,
@@ -22,8 +22,11 @@ import styled from '@emotion/styled'
 
 import { tags as tagStack } from '../../contents/database/tags'
 
-import Heading, { headingFontColor } from '../../core/components/heading'
-import TransparentLink from '../../core/components/transparentLink'
+import {
+  Heading,
+  headingFontColor,
+  TransparentLink,
+} from '../../core/components'
 
 import { Settings } from '../../store'
 
@@ -31,7 +34,7 @@ const CapitalizedText = styled(Text)`
   text-transform: capitalize;
 `
 
-const DrawerComponent: React.FC = () => {
+const Component: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const { colorMode, toggleColorMode } = useColorMode()
@@ -90,7 +93,7 @@ const DrawerComponent: React.FC = () => {
         color={color}
         size='lg'
       />
-      <Drawer
+      <ChakraDrawer
         isOpen={isOpen}
         placement={settings.lefthand ? 'left' : 'right'}
         onClose={onClose}
@@ -216,9 +219,9 @@ const DrawerComponent: React.FC = () => {
             </Flex>
           </DrawerBody>
         </DrawerContent>
-      </Drawer>
+      </ChakraDrawer>
     </React.Fragment>
   )
 }
 
-export default React.memo(DrawerComponent)
+export const Drawer = React.memo(Component)
