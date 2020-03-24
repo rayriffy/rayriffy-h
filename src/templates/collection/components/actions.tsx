@@ -1,8 +1,14 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 import { isEmpty } from 'lodash-es'
 
 import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogOverlay,
   Box,
   Button,
   Flex,
@@ -55,6 +61,13 @@ export const Actions: React.FC<IActionsProps> = props => {
   } = useDisclosure()
   const { 0: importLoad, 1: setImportLoad } = useState<boolean>(false)
   const { 0: input, 1: setInput } = useState<string>('')
+
+  const {
+    isOpen: resetIsOpen,
+    onOpen: resetOnOpen,
+    onClose: resetOnClose,
+  } = useDisclosure()
+  const resetCancelRef = useRef(null)
 
   const exportHandler = async () => {
     try {
@@ -140,6 +153,22 @@ export const Actions: React.FC<IActionsProps> = props => {
     }
   }
 
+  const resetHandler = async () => {
+    setCollection(prev => ({
+      ...prev,
+      data: [],
+    }))
+    resetOnClose()
+
+    toast({
+      title: 'Data had been reset.',
+      description: 'All saved favorites in this device had been removed.',
+      status: 'success',
+      duration: 4000,
+      isClosable: true,
+    })
+  }
+
   return (
     <React.Fragment>
       <Flex justifyContent='center' pt={2}>
@@ -156,7 +185,7 @@ export const Actions: React.FC<IActionsProps> = props => {
               </MenuItem>
               <MenuItem onClick={importOnOpen}>Import</MenuItem>
               <MenuDivider />
-              <MenuItem>Reset</MenuItem>
+              <MenuItem onClick={resetOnOpen}>Reset</MenuItem>
             </MenuList>
           </Menu>
           <Heading pl={4} size='sm'>
@@ -259,6 +288,31 @@ export const Actions: React.FC<IActionsProps> = props => {
           </ModalFooter>
         </ModalContent>
       </Modal>
+
+      <AlertDialog
+        isOpen={resetIsOpen}
+        leastDestructiveRef={resetCancelRef}
+        onClose={resetOnClose}>
+        <AlertDialogOverlay />
+        <AlertDialogContent>
+          <AlertDialogHeader fontSize='lg' fontWeight='bold'>
+            Delete Customer
+          </AlertDialogHeader>
+
+          <AlertDialogBody>
+            Are you sure? You can't undo this action afterwards.
+          </AlertDialogBody>
+
+          <AlertDialogFooter>
+            <Button ref={resetCancelRef} onClick={resetOnClose}>
+              Cancel
+            </Button>
+            <Button variantColor='red' onClick={resetHandler} ml={3}>
+              Delete
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </React.Fragment>
   )
 }
