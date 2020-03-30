@@ -11584,10 +11584,10 @@ react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
-react-lazyload@^2.6.5:
-  version "2.6.5"
-  resolved "https://registry.yarnpkg.com/react-lazyload/-/react-lazyload-2.6.5.tgz#7a5ac001f0f8aeddc10c30e4ce318c10f13aa723"
-  integrity sha512-C/juO9l7dGS7jEARBLjM3oG7F1lL5bqajz/55sk3GFc0Ippd9vnSkdRxdiaE6gf5si3YxIow8dSJ+YuB2D/3vg==
+react-lazyload@^2.6.6:
+  version "2.6.6"
+  resolved "https://registry.yarnpkg.com/react-lazyload/-/react-lazyload-2.6.6.tgz#3e1b0122b7b505cef88984b4ef5428b28dea1be9"
+  integrity sha512-waNTEToArDTMOnSWsZMYZID6+CT2xz+Hs/e4XpyAtESYBQs2L6moKYbcA4BbI6l5/ZueQQrLB+OhINL7SHmAOw==
 
 react-lifecycles-compat@^3.0.4:
   version "3.0.4"
