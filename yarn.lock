@@ -9744,11 +9744,6 @@ netlify@^3.0.0, netlify@^3.1.0:
     through2-filter "^3.0.0"
     through2-map "^3.0.0"
 
-network-information-types@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/network-information-types/-/network-information-types-0.1.0.tgz#5c880bebc2a9e6b25eb00ed23854d13ff3a7fe3a"
-  integrity sha512-cRUCYZoRHTMjYcgk5MbwqM0h0Za34panRxAJKY8n+mQ+NLMuRIw7aKzmaZqkC/cte7bnRcdfTwFA27GgN62EtQ==
-
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
@@ -14030,13 +14025,12 @@ wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
-web-api-hooks@^2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/web-api-hooks/-/web-api-hooks-2.2.2.tgz#67fe40a912b7548ba4f98ec274db8a71fcd97db6"
-  integrity sha512-WWIlXnHmydd/sDsdGqI0yzfyxKV7vj8/l4bP3aLDyVHOBeV5TAqO+4ob70F0yYirZtEnYqdOcjxL3BzUiv8++Q==
+web-api-hooks@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/web-api-hooks/-/web-api-hooks-3.0.1.tgz#4024bd2ab61998973a4282e80a4bece6ada0b17e"
+  integrity sha512-scWRgsw1IJtyPOxbOXoj75wE2IEKWCpy3mdMh2LehvFNryl7Ad1ZF2DRsermP+GCAsTHMWUl7Tf7e1TERVduSw==
   dependencies:
     "@types/resize-observer-browser" "^0.1.2"
-    network-information-types "^0.1.0"
 
 webpack-assets-manifest@^3.1.1:
   version "3.1.1"
