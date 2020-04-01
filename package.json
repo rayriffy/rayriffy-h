@@ -67,7 +67,7 @@
     "react-helmet": "^5.2.1",
     "react-icons": "^3.9.0",
     "react-lazyload": "^2.6.5",
-    "web-api-hooks": "^2.2.2",
+    "web-api-hooks": "^3.0.1",
     "workerize-loader": "^1.1.0"
   },
   "devDependencies": {
