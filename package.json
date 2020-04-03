@@ -80,7 +80,7 @@
     "babel-plugin-optimize-react": "^0.0.4",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "babel-preset-gatsby": "^0.3.1",
-    "prettier": "^1.19.1",
+    "prettier": "^2.0.2",
     "tslint": "^6.1.1",
     "tslint-config-prettier": "^1.18.0",
     "tslint-eslint-rules": "^5.4.0",
