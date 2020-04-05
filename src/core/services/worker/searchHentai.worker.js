@@ -18,9 +18,9 @@ export const searchHentai = async (query, raws) => {
                 raw,
                 `title.${language}`,
                 ''
-              ).toLocaleLowerCase()
+              )
 
-              return RegExp(subquery.toLocaleLowerCase()).test(title)
+              return RegExp(subquery.toLocaleLowerCase()).test(title === null ? '' : title.toLocaleLowerCase())
             })
           })
         ).reduce((a, b) => a.concat(b), [])
