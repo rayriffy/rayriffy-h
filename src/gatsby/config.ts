@@ -9,6 +9,7 @@ const config: GatsbyConfig = {
   },
   pathPrefix: '/',
   plugins: [
+    `gatsby-plugin-preact`,
     `gatsby-plugin-chakra-ui`,
     {
       resolve: `gatsby-plugin-emotion`,
