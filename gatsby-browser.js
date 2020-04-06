@@ -1,6 +1,1 @@
-export { onServiceWorkerInstalled } from './src/gatsby/browser/onServiceWorkerInstalled'
-export { onServiceWorkerUpdateFound } from './src/gatsby/browser/onServiceWorkerUpdateFound'
-export { onServiceWorkerUpdateReady } from './src/gatsby/browser/onServiceWorkerUpdateReady'
-export { replaceHydrateFunction } from './src/gatsby/browser/replaceHydrateFunction'
-export { wrapPageElement } from './src/gatsby/browser/wrapPageElement'
-export { wrapRootElement } from './src/gatsby/browser/wrapRootElement'
+module.exports = require('./src/gatsby/browser')

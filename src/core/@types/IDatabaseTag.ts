@@ -1,6 +1,6 @@
 import { ITagType } from './ITagType'
 
-export interface IDatabaseTag {
+export type IDatabaseTag = {
   color: string
   name: ITagType
   prefix: string

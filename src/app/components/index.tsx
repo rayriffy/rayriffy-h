@@ -41,3 +41,5 @@ export const App: React.FC = props => {
     </Box>
   )
 }
+
+export default App

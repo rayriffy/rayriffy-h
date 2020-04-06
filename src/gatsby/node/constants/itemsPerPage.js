@@ -1,1 +1,0 @@
-exports.itemsPerPage = 15

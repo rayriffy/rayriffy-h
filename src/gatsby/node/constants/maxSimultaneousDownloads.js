@@ -1,1 +1,0 @@
-exports.maxSimultaneousDownloads = 3
