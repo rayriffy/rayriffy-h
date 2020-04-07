@@ -79,6 +79,7 @@ jobs:
       - name: 'Init: Install dependencies'
         run: |
           yarn install
+          yarn clean
       - name: "Build: Trigger build site"
         run: |
             yarn build
