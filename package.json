@@ -62,7 +62,7 @@
     "lodash": "^4.17.15",
     "lodash-es": "^4.17.15",
     "netlify-cli": "^2.41.0",
-    "preact": "^10.3.4",
+    "preact": "^10.4.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^5.2.1",
