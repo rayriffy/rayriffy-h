@@ -34,6 +34,7 @@
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "babel-plugin-emotion": "^10.0.33",
+    "chrome-aws-lambda": "^2.1.1",
     "cwait": "^1.1.2",
     "document-register-element": "1.13.1",
     "emotion-theming": "^10.0.27",

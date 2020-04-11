@@ -9,7 +9,8 @@ const router = express.Router()
 
 router.get('/', async (req, res) => {
   try {
-    const { query, page } = req.query
+    const query = req.query.query as string
+    const page = req.query.page as string
 
     const data = await getSearch(query, page)
 
