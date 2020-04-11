@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 
+import { ThemeProvider, ColorModeProvider } from '@chakra-ui/core'
+
 import { Reader } from '../../../../core/components'
 
 import { Subtitle } from '../../../../store'
@@ -15,7 +17,12 @@ const Page: React.FC<IProps> = props => {
     setSubtitle(`viewing`)
   }, [])
 
-  return <Reader raw={raw} />
+  return (
+    <ThemeProvider>
+      <ColorModeProvider>
+        <Reader raw={raw} />
+      </ColorModeProvider>
+    </ThemeProvider>)
 }
 
 export default Page

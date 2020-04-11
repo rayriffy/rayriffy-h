@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useMemo } from 'react'
 
-import { Box, Flex } from '@chakra-ui/core'
+import { Box, Flex, ThemeProvider, ColorModeProvider } from '@chakra-ui/core'
 
 import { Pagination, Poster } from '../../../../core/components'
 
@@ -29,21 +29,23 @@ const Page: React.FC<IProps> = props => {
   )
 
   return (
-    <React.Fragment>
-      {pagination}
-      <Flex justifyContent='center'>
-        <Flex
-          width={22 / 24}
-          flexWrap='wrap'
-          justifyContent='center'
-          alignItems='center'>
-          {raw.map(hentai => (
-            <Poster key={`poster-${hentai.id}`} raw={hentai} />
-          ))}
+    <ThemeProvider>
+      <ColorModeProvider>
+        {pagination}
+        <Flex justifyContent='center'>
+          <Flex
+            width={22 / 24}
+            flexWrap='wrap'
+            justifyContent='center'
+            alignItems='center'>
+            {raw.map(hentai => (
+              <Poster key={`poster-${hentai.id}`} raw={hentai} />
+            ))}
+          </Flex>
         </Flex>
-      </Flex>
-      {pagination}
-    </React.Fragment>
+        {pagination}
+      </ColorModeProvider>
+    </ThemeProvider>
   )
 }
 

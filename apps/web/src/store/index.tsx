@@ -1,6 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
 
-import { ThemeProvider, theme } from '@chakra-ui/core'
 import { useLocalStorage } from 'web-api-hooks'
 
 import { ICollection, ISettings } from '../core/@types'

@@ -8,9 +8,11 @@ import { Context } from '../../store'
 export const wrapRootElement: GatsbyBrowser['wrapRootElement'] = ({
   element,
 }) => {
-  return (
-    <ThemeProvider>
-      <Context>{element}</Context>
-    </ThemeProvider>
-  )
+  return <Context>{element}</Context>
+
+  // return (
+  //   <ThemeProvider>
+  //     <Context>{element}</Context>
+  //   </ThemeProvider>
+  // )
 }
