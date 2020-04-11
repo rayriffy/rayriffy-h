@@ -12,16 +12,6 @@
           "options": {
             "root": "apps/poster",
             "outputPath": "dist/apps/poster"
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/poster/environments/environment.ts",
-                  "with": "apps/poster/environments/environment.prod.ts"
-                }
-              ]
-            }
           }
         },
         "serve": {
