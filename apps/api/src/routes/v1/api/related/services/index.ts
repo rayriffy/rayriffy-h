@@ -4,7 +4,7 @@ import { rawProcessor } from '../../../core/functions/rawProcessor'
 import { getRelated } from '../functions/getRelated'
 
 import { Hentai } from '../../../core/@types/Hentai'
-import { IResponse } from '../../../core/@types/Response'
+import { Response } from '../../../core/@types/Response'
 
 const router = express.Router()
 
@@ -14,7 +14,7 @@ router.get('/:id', async (req, res) => {
 
     const data = await getRelated(id)
 
-    const response: IResponse<Hentai[]> = {
+    const response: Response<Hentai[]> = {
       status: 'success',
       code: 201,
       response: {
@@ -25,7 +25,7 @@ router.get('/:id', async (req, res) => {
 
     return res.status(200).send(response)
   } catch (e) {
-    const response: IResponse<string> = {
+    const response: Response<string> = {
       status: 'failed',
       code: 407,
       response: {
@@ -39,7 +39,7 @@ router.get('/:id', async (req, res) => {
 })
 
 router.all('/:id', (_, res) => {
-  const response: IResponse<never> = {
+  const response: Response<never> = {
     status: 'failed',
     code: 404,
     response: {
