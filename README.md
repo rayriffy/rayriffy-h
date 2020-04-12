@@ -1,65 +1,76 @@
-Riffy H
-=======
+# RayriffyH
 
-The missing piece of NHentai
+This project was generated using [Nx](https://nx.dev).
 
-Live
-----
+<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png" width="450"></p>
 
-https://h.rayriffy.com
+🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
 
-Feature
--------
+## Adding capabilities to your workspace
 
-- Built with modern **React** API
-- Blazing fast browsing powered by **Gatsby v2**
-- Custom hentai to any ID that you wish
-- **No ads** and **no pop-ups**
-- Flexible **search** system
-- **Easy to use** collection system
-- **Offline-ready** without any interactions
+Nx supports many plugins which add capabilities for developing different types of applications and different tools.
 
-Screenshots
------------
+These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
 
-| Listing                                  | Menu                               | Viewing                                  |
-| ---------------------------------------- | ---------------------------------- | ---------------------------------------- |
-| ![Listing](src/contents/img/listing.jpg) | ![Menu](src/contents/img/menu.jpg) | ![Viewing](src/contents/img/viewing.jpg) |
+Below are some plugins which you can add to your workspace:
 
-## Browsers support
+- [React](https://reactjs.org)
+  - `npm install --save-dev @nrwl/react`
+- Web (no framework frontends)
+  - `npm install --save-dev @nrwl/web`
+- [Angular](https://angular.io)
+  - `npm install --save-dev @nrwl/angular`
+- [Nest](https://nestjs.com)
+  - `npm install --save-dev @nrwl/nest`
+- [Express](https://expressjs.com)
+  - `npm install --save-dev @nrwl/express`
+- [Node](https://nodejs.org)
+  - `npm install --save-dev @nrwl/node`
 
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br>iOS Safari |
-| --------- | --------- | --------- | --------- | --------- |
-| Edge| last 2 versions| last 2 versions| last 2 versions| last 2 versions
+## Generate an application
 
-Requirements
-------------
+Run `nx g @nrwl/react:app my-app` to generate an application.
 
-- Node LTS
+> You can use any of the plugins above to generate applications as well.
 
-Installation
-------------
+When using Nx, you can create multiple applications and libraries in the same workspace.
 
-```sh
-$ yarn
-$ yarn dev
-```
+## Generate a library
 
-Where's all query from
-----------------------
+Run `nx g @nrwl/react:lib my-lib` to generate a library.
 
-Prefetched query data are come from a custom database [here](src/contents/database/codes.js)
+> You can also use any of the plugins above to generate libraries as well.
 
-Contributing
-------------
+Libraries are sharable across libraries and applications. They can be imported from `@rayriffy-h/mylib`.
 
-We welcome all contributions by sending PR to this repository.
+## Development server
 
-Need Help ?
------------
+Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
 
-If you need help with anything, here're following methods:
+## Code scaffolding
 
-#### Create an Issue
+Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
 
-If you have something you want to discuss in detail, or have hit an issue which you believe others will also have in deployment or development of the system, [opening an issue](https://github.com/rayriffy/rayriffy-h/issues) is the best way to get help. It creates a permanent resource for others wishing to contribute to conversation.
+## Build
+
+Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+## Running unit tests
+
+Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+
+Run `nx affected:test` to execute the unit tests affected by a change.
+
+## Running end-to-end tests
+
+Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+
+Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
+
+## Understand your workspace
+
+Run `nx dep-graph` to see a diagram of the dependencies of your projects.
+
+## Further help
+
+Visit the [Nx Documentation](https://nx.dev) to learn more.

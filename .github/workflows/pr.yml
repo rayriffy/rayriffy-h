@@ -5,15 +5,12 @@ on: [pull_request]
 jobs:
   test:
     runs-on: macOS-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
     steps:
       - uses: actions/checkout@v1
       - name: 'Init: Summon NodeJS'
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '12.x'
       - name: "Cache: node_modules"
         uses: actions/cache@v1
         with:
@@ -22,15 +19,15 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-node-${{ env.cache-name }}-
             ${{ runner.OS }}-node-
-      - name: 'Init: Install yarn'
-        run: |
-          curl -o- -L https://yarnpkg.com/install.sh | bash
       - name: 'Init: Install dependencies'
         run: |
           yarn install
-      - name: 'Test: Type checking'
+      - name: 'Nx: Jest'
         run: |
-          yarn test:types
-      - name: 'Test: Code linting'
+          yarn nx affected:test --base=origin/master
+      - name: 'Nx: End-to-End'
         run: |
-          yarn test:lint
+          yarn nx affected:e2e --base=origin/master
+      - name: 'Nx: Lint'
+        run: |
+          yarn nx affected:lint --base=origin/master
