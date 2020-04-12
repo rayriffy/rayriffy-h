@@ -1,0 +1,127 @@
+name: Deployment
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: 'Init: Summon NodeJS'
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: "Cache: node_modules"
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-${{ env.cache-name }}-
+            ${{ runner.OS }}-node-
+      - name: 'Init: Install dependencies'
+        run: |
+          yarn install
+      - name: 'Nx: Jest'
+        run: |
+          yarn nx affected:test
+      - name: 'Nx: End-to-End'
+        run: |
+          yarn nx affected:e2e
+      - name: 'Nx: Lint'
+        run: |
+          yarn nx affected:lint
+  deploy-web:
+    needs: test
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: 'Init: Summon NodeJS'
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: "Cache: node_modules"
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-${{ env.cache-name }}-
+            ${{ runner.OS }}-node-
+      - name: "Cache: Gatsby .cache/"
+        uses: actions/cache@v1
+        with:
+          path: apps/web/.cache
+          key: ${{ runner.OS }}-rayriffy-h-cache-${{ hashFiles('apps/web/src/contents/database/codes.ts') }}
+          restore-keys: |
+            ${{ runner.OS }}-rayriffy-h-cache-${{ hashFiles('apps/web/src/contents/database/codes.ts') }}
+            ${{ runner.OS }}-rayriffy-h-cache-
+      - name: "Cache: Gatsby public/"
+        uses: actions/cache@v1
+        with:
+          path: apps/web/.cache
+          key: ${{ runner.OS }}-rayriffy-h-public-${{ hashFiles('apps/web/src/contents/database/codes.ts') }}
+          restore-keys: |
+            ${{ runner.OS }}-rayriffy-h-public-${{ hashFiles('apps/web/src/contents/database/codes.ts') }}
+            ${{ runner.OS }}-rayriffy-h-public-
+      - name: 'Init: Install dependencies'
+        run: |
+          yarn install
+      - name: "Nx: Build apps/web"
+        run: |
+            yarn nx build web
+      - name: "Deploy: Upload to Netlify"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: |
+            yarn netlify deploy --dir=apps/web/public --message "Automatic deployment from GitHub Actions" --prod
+  deploy-api:
+    needs: test
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: 'Init: Summon NodeJS'
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: "Cache: node_modules"
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-${{ env.cache-name }}-
+            ${{ runner.OS }}-node-
+      - name: 'Init: Install dependencies'
+        run: |
+          yarn install
+      - name: "Nx: Build apps/api"
+        run: |
+            yarn nx build api
+  deploy-poster:
+    needs: test
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: 'Init: Summon NodeJS'
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: "Cache: node_modules"
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-${{ env.cache-name }}-
+            ${{ runner.OS }}-node-
+      - name: 'Init: Install dependencies'
+        run: |
+          yarn install
+      - name: "Nx: Build apps/poster"
+        run: |
+            yarn nx build poster
