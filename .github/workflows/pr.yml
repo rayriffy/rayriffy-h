@@ -24,10 +24,10 @@ jobs:
           yarn install
       - name: 'Nx: Jest'
         run: |
-          yarn nx affected:test
+          yarn nx affected:test --base=origin/master
       - name: 'Nx: End-to-End'
         run: |
-          yarn nx affected:e2e
+          yarn nx affected:e2e --base=origin/master
       - name: 'Nx: Lint'
         run: |
-          yarn nx affected:lint
+          yarn nx affected:lint --base=origin/master
