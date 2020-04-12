@@ -1,6 +1,6 @@
 import { GatsbyNode } from 'gatsby'
 
-import { IFetchedRaw } from '../../core/@types'
+import { FetchedRaw } from '../../core/@types'
 import { fetch } from '@rayriffy-h/fetch'
 
 const PREFETCH_GIST =
@@ -15,7 +15,7 @@ export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = async ({
 
   if (cacheData === undefined) {
     reporter.info(`Downloading prefetched data from GitHub Gist`)
-    const gistCache = await fetch<IFetchedRaw[]>(PREFETCH_GIST)
+    const gistCache = await fetch<FetchedRaw[]>(PREFETCH_GIST)
 
     await cache.set(`rayriffy-h-hentai-cache`, JSON.stringify(gistCache))
     reporter.info(`Downloaded!`)

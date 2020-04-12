@@ -12,16 +12,16 @@ import { Loading } from './loading'
 import { getHentai } from '../services/getHentai'
 import { getIdByUrl } from '../services/getIdByUrl'
 
-import { IFetchedRaw } from '../../../../core/@types'
-import { IProps } from '../@types/IProps'
+import { FetchedRaw } from '../../../../core/@types'
+import { Props } from '../@types/Props'
 
-const DynamicViewingComponent: React.FC<IProps> = props => {
+const DynamicViewingComponent: React.FC<Props> = props => {
   const { location } = props
 
   const { 1: setSubtitle } = useContext(Subtitle)
 
   const { 0: state, 1: setState } = useState<number>(1)
-  const { 0: raw, 1: setRaw } = useState<IFetchedRaw | null>(null)
+  const { 0: raw, 1: setRaw } = useState<FetchedRaw | null>(null)
 
   const fetchHentai = async (requestedId: number | string) => {
     setState(1)

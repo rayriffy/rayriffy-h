@@ -19,7 +19,7 @@ import styled from '@emotion/styled'
 
 import { fetch } from '@rayriffy-h/fetch'
 
-import { IAPIResponse, IReaderAPIProps } from '../../@types'
+import { APIResponse, ReaderAPIProps } from '../../@types'
 
 const StyledImage = styled(Image)`
   border-radius: 10px;
@@ -52,7 +52,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `
 
-const Component: React.FC<IReaderAPIProps> = props => {
+const Component: React.FC<ReaderAPIProps> = props => {
   const { id } = props
 
   const { 0: image, 1: setImage } = useState<string>('')
@@ -60,7 +60,7 @@ const Component: React.FC<IReaderAPIProps> = props => {
   const { onCopy, hasCopied } = useClipboard(id)
 
   useEffect(() => {
-    fetch<IAPIResponse<string>>(`https://h.api.rayriffy.com/v1/encode/${id}`)
+    fetch<APIResponse<string>>(`https://h.api.rayriffy.com/v1/encode/${id}`)
       .then(res => {
         setImage(res.response.data)
       })

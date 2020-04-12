@@ -1,5 +1,5 @@
-import { IRawHentai } from '../../../core/@types/IRawHentai'
+import { RawHentai } from '../../../core/@types/RawHentai'
 
-export interface IRelated {
-  result: IRawHentai[]
+export interface Related {
+  result: RawHentai[]
 }

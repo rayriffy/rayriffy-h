@@ -2,9 +2,9 @@ import { fetch } from '@rayriffy-h/fetch'
 
 import { Cache, Reporter } from 'gatsby'
 
-import { IAPIResponse, IFetchedRaw, IHentai } from '../../../core/@types'
+import { APIResponse, FetchedRaw, Hentai } from '../../../core/@types'
 
-const rawTranformer = (data: IHentai): IHentai => ({
+const rawTranformer = (data: Hentai): Hentai => ({
   id: Number(data.id),
   media_id: data.media_id,
   title: data.title,
@@ -36,11 +36,11 @@ export const getRawData = async (
   id: number,
   exclude: number[],
   { reporter, cache }: { cache: Cache['cache']; reporter: Reporter }
-): Promise<IFetchedRaw> => {
+): Promise<FetchedRaw> => {
   try {
     // Read file from cache
     const cacheData = await cache.get('rayriffy-h-hentai-cache')
-    const parsedCache: IFetchedRaw[] = cacheData ? JSON.parse(cacheData) : []
+    const parsedCache: FetchedRaw[] = cacheData ? JSON.parse(cacheData) : []
 
     const isInCache = parsedCache.map(o => o.data.hentai_id).includes(id)
 
@@ -55,7 +55,7 @@ export const getRawData = async (
         },
       }
     } else {
-      const out = await fetch<IAPIResponse<IHentai>>(
+      const out = await fetch<APIResponse<Hentai>>(
         `https://h.api.rayriffy.com/v1/gallery/${id}`
       )
 

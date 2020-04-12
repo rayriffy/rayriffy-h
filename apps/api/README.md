@@ -100,7 +100,7 @@ Returns a 200 HTTP status code and a JSON object with the following data.
 
 | Property      | Type                                            | Description             |
 | ------------- | ----------------------------------------------- | ----------------------- |
-| response.data | [IHentai](src/routes/v1/core/@types/IHentai.ts) | Gallery of requested ID |
+| response.data | [Hentai](src/routes/v1/core/@types/Hentai.ts) | Gallery of requested ID |
 
 <details>
 <summary>JSON</summary>
@@ -226,7 +226,7 @@ Returns a 200 HTTP status code and a JSON object with the following data.
 
 | Property      | Type                                              | Description                |
 | ------------- | ------------------------------------------------- | -------------------------- |
-| response.data | [IHentai](src/routes/v1/core/@types/IHentai.ts)[] | Array of related galleries |
+| response.data | [Hentai](src/routes/v1/core/@types/Hentai.ts)[] | Array of related galleries |
 
 <details>
 <summary>JSON</summary>

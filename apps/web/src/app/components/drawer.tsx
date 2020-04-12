@@ -14,9 +14,9 @@ import {
   IconButton,
   Switch,
   Text,
-  theme,
   useColorMode,
   useDisclosure,
+  useTheme,
 } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
@@ -44,7 +44,7 @@ const Component: React.FC = () => {
 
   const btnRef = useRef(null)
 
-  const themeColor: any = theme.colors
+  const theme = useTheme()
 
   const toggleSetting = (key: 'safemode' | 'lefthand') => {
     setSettings(prev => ({ ...prev, [key]: !prev[key] }))
@@ -210,7 +210,7 @@ const Component: React.FC = () => {
               </Text>
               <Box px={1}>
                 <LoveIcon
-                  color={themeColor ? themeColor.red[500] : themeColor}
+                  color={theme.colors.red[500]}
                 />
               </Box>
               <Text fontSize='sm' color='gray.400'>

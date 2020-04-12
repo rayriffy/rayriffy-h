@@ -1,2 +1,2 @@
-export * from './IAllHentai'
-export * from './IAllTag'
+export * from './AllHentai'
+export * from './AllTag'

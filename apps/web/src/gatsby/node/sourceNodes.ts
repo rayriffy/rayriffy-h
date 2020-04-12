@@ -40,7 +40,8 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async ({
     }
 
     const node: NodeInput = Object.assign({}, hentaiData, nodeMeta)
-    actions.createNode(node)
+    
+    return actions.createNode(node)
   })
 
   // Add all tag type to Gatsby Node
@@ -56,7 +57,8 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async ({
     }
 
     const node: NodeInput = Object.assign({}, tag, nodeMeta)
-    actions.createNode(node)
+    
+    return actions.createNode(node)
   })
 
   /**

@@ -17,13 +17,13 @@ import { Collection } from '../../../store'
 
 import { API } from './api'
 
-import { IReaderShareProps } from '../../@types'
+import { ReaderShareProps } from '../../@types'
 
 const StyledLink = styled(Link)`
   text-decoration: none;
 `
 
-const Component: React.FC<IReaderShareProps> = props => {
+const Component: React.FC<ReaderShareProps> = props => {
   const { hentai, internal } = props
 
   const { 0: collection, 1: setCollection } = useContext(Collection)

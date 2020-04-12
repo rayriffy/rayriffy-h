@@ -1,3 +1,3 @@
-import { IHentai } from '../@types'
+import { Hentai } from '../@types'
 
-export function searchHentai(query: string, raws: IHentai[]): Promise<IHentai[]>
+export function searchHentai(query: string, raws: Hentai[]): Promise<Hentai[]>

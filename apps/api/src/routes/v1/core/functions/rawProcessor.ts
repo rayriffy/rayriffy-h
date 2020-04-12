@@ -1,7 +1,7 @@
-import { IHentai } from '../@types/IHentai'
-import { IRawHentai } from '../@types/IRawHentai'
+import { Hentai } from '../@types/Hentai'
+import { RawHentai } from '../@types/RawHentai'
 
-export const rawProcessor = (hentai: IRawHentai): IHentai => {
+export const rawProcessor = (hentai: RawHentai): Hentai => {
   return {
     id: hentai.id,
     media_id: hentai.media_id,

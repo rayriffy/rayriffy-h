@@ -1,1 +1,1 @@
-export const maxSimultaneousDownloads: number = 3
+export const maxSimultaneousDownloads = 3

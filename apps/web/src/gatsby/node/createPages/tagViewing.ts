@@ -5,15 +5,15 @@ import path from 'path'
 import { itemsPerPage } from '../constants'
 import { filterTag } from '../functions'
 
-import { IAllHentai, IAllTag } from '../@types'
+import { AllHentai, AllTag } from '../@types'
 
-export type ITagViewingQuery = IAllHentai & IAllTag
-export type ITagViewingSubQuery = IAllHentai
+export type TagViewingQuery = AllHentai & AllTag
+export type TagViewingSubQuery = AllHentai
 
 export const tagViewing = async ({ actions, graphql }: CreatePagesArgs) => {
   const { createPage } = actions
 
-  const gqlFetch = await graphql<ITagViewingQuery>(`
+  const gqlFetch = await graphql<TagViewingQuery>(`
     query TagViewingQuery {
       allTag {
         edges {
@@ -64,8 +64,8 @@ export const tagViewing = async ({ actions, graphql }: CreatePagesArgs) => {
   tagStack.map(tagType => {
     const nodes = filterTag(medias, tagType.name)
 
-    nodes.map(async tag => {
-      const gqlFetch = await graphql<ITagViewingSubQuery>(`
+    return nodes.map(async tag => {
+      const gqlFetch = await graphql<TagViewingSubQuery>(`
       query TagViewingSubQuery {
         allHentai (filter: {raw: {tags: {elemMatch: {id: {eq: ${tag.id}}}}}}) {
           edges {
@@ -100,8 +100,8 @@ export const tagViewing = async ({ actions, graphql }: CreatePagesArgs) => {
         : []
       const hentaiByTagChunks = chunk(hentaiByTag, itemsPerPage)
 
-      hentaiByTagChunks.map((chunk, i) => {
-        createPage({
+      return hentaiByTagChunks.map((chunk, i) => {
+        return createPage({
           path:
             i === 0
               ? `/${tagType.prefix}/${tag.id}`

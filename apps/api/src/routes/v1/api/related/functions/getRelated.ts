@@ -1,11 +1,11 @@
 import { fetch } from '@rayriffy-h/fetch'
 
-import { IRawHentai } from '../../../core/@types/IRawHentai'
+import { RawHentai } from '../../../core/@types/RawHentai'
 import { IRelated } from '../@types/IRelated'
 
 export const getRelated = async (
   id: number | string
-): Promise<IRawHentai[]> => {
+): Promise<RawHentai[]> => {
   const res = await fetch<IRelated>(
     `https://nhentai.net/api/gallery/${id}/related`
   )

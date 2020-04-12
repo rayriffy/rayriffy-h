@@ -1,6 +1,6 @@
 import { filter, isEmpty } from 'lodash'
 
-import { IHentai, ITag, ITagType } from '../../../core/@types'
+import { Hentai, Tag, TagType } from '../../../core/@types'
 
 /**
  * Filter only tags object with specified types
@@ -8,16 +8,17 @@ import { IHentai, ITag, ITagType } from '../../../core/@types'
  * @param {string} type Type of tag
  */
 
-export const filterTag = (nodes: IHentai[], type: ITagType): ITag[] => {
-  const res: ITag[] = []
+export const filterTag = (nodes: Hentai[], type: TagType): Tag[] => {
+  const res: Tag[] = []
 
   nodes.map(node => {
-    node.tags.map(tag => {
+    return node.tags.map(tag => {
       if (tag.type === type) {
         if (isEmpty(filter(res, o => o.id === tag.id))) {
-          res.push(tag)
+          return res.push(tag)
         }
       }
+      return null
     })
   })
 

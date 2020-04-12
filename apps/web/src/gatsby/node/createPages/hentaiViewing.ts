@@ -1,14 +1,14 @@
 import { CreatePagesArgs } from 'gatsby'
 import path from 'path'
 
-import { IAllHentai } from '../@types'
+import { AllHentai } from '../@types'
 
-export type IHentaiViewingQuery = IAllHentai
+export type HentaiViewingQuery = AllHentai
 
 export const hentaiViewing = async ({ actions, graphql }: CreatePagesArgs) => {
   const { createPage } = actions
 
-  const gqlFetch = await graphql<IHentaiViewingQuery>(`
+  const gqlFetch = await graphql<HentaiViewingQuery>(`
     query HentaiViewingQuery {
       allHentai {
         edges {
@@ -52,7 +52,7 @@ export const hentaiViewing = async ({ actions, graphql }: CreatePagesArgs) => {
    * Create gallery pages
    */
   tranformedData.map(node => {
-    createPage({
+    return createPage({
       path: `/r/${node.raw.id}`,
       component: path.resolve(
         `./src/templates/hentai/viewing/components/index.tsx`

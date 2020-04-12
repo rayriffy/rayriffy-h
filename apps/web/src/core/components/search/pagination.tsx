@@ -1,28 +1,28 @@
 import React from 'react'
 
 import { Box, Flex, Link, theme, useColorMode } from '@chakra-ui/core'
-import styled from '@emotion/styled'
+import { styled } from '../../theme/styled'
 
-interface IProps {
+interface Props {
   max: number
   current: number
   onChange(page: number): void
 }
 
-interface IPage {
+interface Page {
   start: number
   index: number
   current: number
   colorMode: 'light' | 'dark' | undefined
 }
 
-const StyledLink = styled(Link)<IPage>`
+const StyledLink = styled(Link)<Page>`
   text-decoration: none;
 
-  ${(props: IPage) => {
+  ${(props: Page) => {
     const { start, index, current, colorMode } = props
 
-    const themeColor: any = theme.colors
+    const themeColor = theme.colors
 
     if (start + index + 1 === current) {
       return `color: ${
@@ -34,7 +34,7 @@ const StyledLink = styled(Link)<IPage>`
   }}
 `
 
-const Component: React.FC<IProps> = props => {
+const Component: React.FC<Props> = props => {
   const { max, current, onChange } = props
 
   const { colorMode } = useColorMode()

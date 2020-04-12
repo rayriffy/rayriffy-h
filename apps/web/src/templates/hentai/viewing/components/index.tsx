@@ -6,9 +6,9 @@ import { Reader } from '../../../../core/components'
 
 import { Subtitle } from '../../../../store'
 
-import { IProps } from '../@types/IProps'
+import { Props } from '../@types/Props'
 
-const Page: React.FC<IProps> = props => {
+const Page: React.FC<Props> = props => {
   const { raw } = props.pageContext
 
   const { 1: setSubtitle } = useContext(Subtitle)

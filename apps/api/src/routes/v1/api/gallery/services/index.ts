@@ -2,8 +2,8 @@ import express from 'express'
 
 import { getHentai } from '../functions/getHentai'
 
-import { IHentai } from '../../../core/@types/IHentai'
-import { IResponse } from '../../../core/@types/IResponse'
+import { Hentai } from '../../../core/@types/Hentai'
+import { IResponse } from '../../../core/@types/Response'
 
 const router = express.Router()
 
@@ -13,7 +13,7 @@ router.get('/:id', async (req, res) => {
 
     const data = await getHentai(id)
 
-    const response: IResponse<IHentai> = {
+    const response: IResponse<Hentai> = {
       status: 'success',
       code: 201,
       response: {

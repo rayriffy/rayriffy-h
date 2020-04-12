@@ -2,8 +2,8 @@ import express from 'express'
 
 import { getSearch } from '../functions/getSearch'
 
-import { IHentai } from '../../../core/@types/IHentai'
-import { IResponse } from '../../../core/@types/IResponse'
+import { Hentai } from '../../../core/@types/Hentai'
+import { IResponse } from '../../../core/@types/Response'
 
 const router = express.Router()
 
@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 
     const data = await getSearch(query, page)
 
-    const response: IResponse<IHentai[]> = {
+    const response: IResponse<Hentai[]> = {
       status: 'success',
       code: 201,
       response: {

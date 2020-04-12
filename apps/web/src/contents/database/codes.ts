@@ -1,6 +1,6 @@
-import { IDatabaseCode } from '../../core/@types'
+import { DatabaseCode } from '../../core/@types'
 
-export const codes: IDatabaseCode[] = [
+export const codes: DatabaseCode[] = [
   140232,
   183270,
   220112,

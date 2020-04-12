@@ -9,9 +9,9 @@ import {
 
 import { headingFontColor } from '../heading'
 
-import { IReaderCollapseProps } from '../../@types'
+import { ReaderCollapseProps } from '../../@types'
 
-export const Collapse: React.FC<IReaderCollapseProps> = props => {
+export const Collapse: React.FC<ReaderCollapseProps> = props => {
   const { defaultState = false, title, children } = props
 
   const { colorMode } = useColorMode()

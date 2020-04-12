@@ -198,11 +198,11 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "apps/gatsby/.eslintrc",
+            "config": "apps/web/.eslintrc",
             "tsConfig": [
-              "apps/gatsby/tsconfig.json"
+              "apps/web/tsconfig.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/gatsby/**"]
+            "exclude": ["**/node_modules/**", "!apps/web/**"]
           }
         }
       }

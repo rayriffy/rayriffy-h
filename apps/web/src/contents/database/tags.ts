@@ -1,6 +1,6 @@
-import { IDatabaseTag } from '../../core/@types'
+import { DatabaseTag } from '../../core/@types'
 
-export const tags: IDatabaseTag[] = [
+export const tags: DatabaseTag[] = [
   {
     color: 'blue',
     name: 'tag',

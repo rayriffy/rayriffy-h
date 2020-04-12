@@ -1,10 +1,10 @@
 import { CreatePagesArgs } from 'gatsby'
 import path from 'path'
 
-import { IAllHentai } from '../@types'
+import { AllHentai } from '../@types'
 import { itemsPerPage } from '../constants'
 
-export type ISearchQuery = IAllHentai
+export type ISearchQuery = AllHentai
 
 export const search = async ({ actions, graphql }: CreatePagesArgs) => {
   const { createPage } = actions

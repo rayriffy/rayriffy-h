@@ -1,5 +1,5 @@
-import { ITag, ITagType } from '../../@types'
+import { Tag, TagType } from '../../@types'
 
-export const filterTagByType = (tags: ITag[], type: ITagType): ITag[] => {
+export const filterTagByType = (tags: Tag[], type: TagType): Tag[] => {
   return tags.filter(tag => tag.type === type)
 }

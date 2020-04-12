@@ -1,14 +1,15 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React, { Dispatch, SetStateAction, useState } from 'react'
 
 import { useLocalStorage } from 'web-api-hooks'
 
-import { ICollection, ISettings } from '../core/@types'
+import { Collection as CollectionInterface, Settings as SettingsInterface } from '../core/@types'
 
-type ISettingsContext = [ISettings, Dispatch<SetStateAction<ISettings>>]
+type SettingsContext = [SettingsInterface, Dispatch<SetStateAction<SettingsInterface>>]
 type ISubtitle = [string, Dispatch<SetStateAction<string>>]
-type ICollectionContext = [ICollection, Dispatch<SetStateAction<ICollection>>]
+type CollectionContext = [CollectionInterface, Dispatch<SetStateAction<CollectionInterface>>]
 
-export const Settings = React.createContext<ISettingsContext>([
+export const Settings = React.createContext<SettingsContext>([
   {
     safemode: true,
     lefthand: false,
@@ -16,7 +17,7 @@ export const Settings = React.createContext<ISettingsContext>([
   () => {},
 ])
 export const Subtitle = React.createContext<ISubtitle>(['init', () => {}])
-export const Collection = React.createContext<ICollectionContext>([
+export const Collection = React.createContext<CollectionContext>([
   { version: 0, data: [] },
   () => {},
 ])

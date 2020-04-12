@@ -9,25 +9,26 @@ import * as searchHentaiWorker from '../../services/worker/searchHentai.worker'
 import { Heading, Poster } from '../'
 import { Pagination } from './pagination'
 
-import { IHentai, ISearchProps } from '../../@types'
+import { Hentai, SearchProps } from '../../@types'
 
-export const Search: React.FC<ISearchProps> = props => {
+export const Search: React.FC<SearchProps> = props => {
   const { raw, skip, showOnEmptyQuery = false } = props
 
   const { colorMode } = useColorMode()
 
   const { 0: query, 1: setQuery } = useState<string>('')
-  const { 0: res, 1: setRes } = useState<IHentai[]>(showOnEmptyQuery ? raw : [])
+  const { 0: res, 1: setRes } = useState<Hentai[]>(showOnEmptyQuery ? raw : [])
 
   const { 0: page, 1: setPage } = useState<number>(1)
-  const { 0: renderedRaw, 1: setRenderedRaw } = useState<IHentai[]>([])
+  const { 0: renderedRaw, 1: setRenderedRaw } = useState<Hentai[]>([])
 
   const { searchHentai } =
     typeof window === 'object'
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ? ((searchHentaiWorker as any)() as typeof searchHentaiWorker)
       : { searchHentai: null }
 
-  const renderPage = (raws: IHentai[], page: number) => {
+  const renderPage = (raws: Hentai[], page: number) => {
     setPage(page)
     setRenderedRaw(get(chunk(raws, skip), page - 1))
   }

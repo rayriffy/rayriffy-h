@@ -9,9 +9,9 @@ import { Collection, Subtitle } from '../../../store'
 import { Heading, Search } from '../../../core/components'
 import { Actions } from './actions'
 
-import { IProps } from '../@types/IProps'
+import { Props } from '../@types/Props'
 
-const Page: React.FC<IProps> = props => {
+const Page: React.FC<Props> = props => {
   const { skip } = props.pageContext
 
   const { 1: setSubtitle } = useContext(Subtitle)

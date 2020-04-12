@@ -9,14 +9,14 @@ import { Heading, TransparentLink } from '../../../../core/components'
 
 import { Subtitle } from '../../../../store'
 
-import { IProps } from '../@types/IProps'
+import { Props } from '../@types/Props'
 
 const CoverCard = styled(Box)`
   border-radius: 8px;
   border: 1px solid #e8e8e8;
 `
 
-const Page: React.FC<IProps> = props => {
+const Page: React.FC<Props> = props => {
   const { prefix, raw, subtitle } = props.pageContext
 
   const { colorMode } = useColorMode()

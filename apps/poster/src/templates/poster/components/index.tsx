@@ -5,7 +5,7 @@ import { Box, Text } from 'rebass'
 
 import { getCover } from '../services/getCover'
 
-interface IProps {
+interface Props {
   id: string
 }
 
@@ -18,7 +18,7 @@ const BlurBox = styled(Box)`
   filter: blur(50px);
 `
 
-const PosterComponent: React.FC<IProps> = props => {
+const PosterComponent: React.FC<Props> = props => {
   const { id } = props
 
   const [raw, setRaw] = useState<string | null>(null)

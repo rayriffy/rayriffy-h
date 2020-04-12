@@ -35,10 +35,10 @@ import { Heading } from '../../../core/components'
 
 import { fetch } from '@rayriffy-h/fetch'
 
-import { ICollection } from '../../../core/@types'
-import { IActionsProps } from '../@types/IActionsProps'
+import { Collection } from '../../../core/@types'
+import { ActionsProps } from '../@types/ActionsProps'
 
-export const Actions: React.FC<IActionsProps> = props => {
+export const Actions: React.FC<ActionsProps> = props => {
   const { collection, setCollection } = props
 
   const toast = useToast()
@@ -107,7 +107,7 @@ export const Actions: React.FC<IActionsProps> = props => {
     try {
       setImportLoad(true)
 
-      const res = await fetch<ICollection>(`https://bytebin.lucko.me/${id}`)
+      const res = await fetch<Collection>(`https://bytebin.lucko.me/${id}`)
 
       if (
         typeof res === 'object' &&

@@ -28,7 +28,9 @@
           { "sourceTag": "*", "onlyDependOnLibsWithTags": ["*"] }
         ]
       }
-    ]
+    ],
+    "camelcase": "off",
+    "@typescript-eslint/camelcase": "off"
   },
   "overrides": [
     {

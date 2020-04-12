@@ -2,11 +2,11 @@ import { fetch } from '@rayriffy-h/fetch'
 
 import { rawProcessor } from '../../../core/functions/rawProcessor'
 
-import { IHentai } from '../../../core/@types/IHentai'
-import { IRawHentai } from '../../../core/@types/IRawHentai'
+import { Hentai } from '../../../core/@types/Hentai'
+import { RawHentai } from '../../../core/@types/RawHentai'
 
-export const getHentai = async (id: number | string): Promise<IHentai> => {
-  const res = await fetch<IRawHentai>(
+export const getHentai = async (id: number | string): Promise<Hentai> => {
+  const res = await fetch<RawHentai>(
     `https://nhentai.net/api/gallery/${id}`
   )
 

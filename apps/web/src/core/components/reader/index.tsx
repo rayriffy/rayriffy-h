@@ -15,13 +15,13 @@ import { tags as tagStack } from '../../../contents/database/tags'
 
 import { filterTagByType } from '../../services/functions'
 
-import { IReaderProps } from '../../@types'
+import { ReaderProps } from '../../@types'
 
 const CoverBox = styled(Box)`
   overflow: hidden;
 `
 
-const Component: React.FC<IReaderProps> = props => {
+const Component: React.FC<ReaderProps> = props => {
   const { raw, internal = true } = props
 
   const { colorMode } = useColorMode()

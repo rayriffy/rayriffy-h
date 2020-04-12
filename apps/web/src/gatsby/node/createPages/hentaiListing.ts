@@ -4,14 +4,14 @@ import path from 'path'
 
 import { itemsPerPage } from '../constants'
 
-import { IAllHentai } from '../@types/IAllHentai'
+import { AllHentai } from '../@types/AllHentai'
 
-export type IHentaiListingQuery = IAllHentai
+export type HentaiListingQuery = AllHentai
 
 export const hentaiListing = async ({ actions, graphql }: CreatePagesArgs) => {
   const { createPage } = actions
 
-  const gqlFetch = await graphql<IHentaiListingQuery>(`
+  const gqlFetch = await graphql<HentaiListingQuery>(`
     query HentaiListingQuery {
       allHentai {
         edges {
@@ -51,7 +51,7 @@ export const hentaiListing = async ({ actions, graphql }: CreatePagesArgs) => {
   const hentaiListingChunks = chunk(transformedData, itemsPerPage)
 
   hentaiListingChunks.map((chunk, i) => {
-    createPage({
+    return createPage({
       path: i === 0 ? `/` : `/p/${i + 1}`,
       component: path.resolve(
         `./src/templates/hentai/listing/components/index.tsx`

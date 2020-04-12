@@ -3,14 +3,14 @@ import path from 'path'
 
 import { filterTag } from '../functions'
 
-import { IAllHentai, IAllTag } from '../@types'
+import { AllHentai, AllTag } from '../@types'
 
-export type ITagListingQuery = IAllHentai & IAllTag
+export type TagListingQuery = AllHentai & AllTag
 
 export const tagListing = async ({ actions, graphql }: CreatePagesArgs) => {
   const { createPage } = actions
 
-  const gqlFetch = await graphql<ITagListingQuery>(`
+  const gqlFetch = await graphql<TagListingQuery>(`
     query TagListingQuery {
       allTag {
         edges {
@@ -62,7 +62,7 @@ export const tagListing = async ({ actions, graphql }: CreatePagesArgs) => {
     // Find all possible tags
     const nodes = filterTag(medias, tag.name)
 
-    createPage({
+    return createPage({
       path: `/${tag.prefix}`,
       component: path.resolve(
         `./src/templates/tag/listing/components/index.tsx`

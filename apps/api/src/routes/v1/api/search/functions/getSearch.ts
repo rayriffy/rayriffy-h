@@ -2,11 +2,11 @@ import { fetch } from '@rayriffy-h/fetch'
 
 import { rawProcessor } from '../../../core/functions/rawProcessor'
 
-import { IHentai } from '../../../core/@types/IHentai'
-import { IRawHentai } from '../../../core/@types/IRawHentai'
+import { Hentai } from '../../../core/@types/Hentai'
+import { RawHentai } from '../../../core/@types/RawHentai'
 
-interface IAPIResponse {
-  result: IRawHentai[]
+interface APIResponse {
+  result: RawHentai[]
   num_pages: number
   per_page: number
 }
@@ -14,8 +14,8 @@ interface IAPIResponse {
 export const getSearch = async (
   query: string,
   page: number | string = 1
-): Promise<IHentai[]> => {
-  const res = await fetch<IAPIResponse>(
+): Promise<Hentai[]> => {
+  const res = await fetch<APIResponse>(
     `https://nhentai.net/api/galleries/search?query="${query}"&page=${page}`
   )
 

@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from 'react'
 
 import { Box, Flex, theme, useColorMode } from '@chakra-ui/core'
-import styled from '@emotion/styled'
+import { styled } from '../theme/styled'
 
 import { TransparentLink as Link } from './'
 
-interface IProps {
+interface Props {
   max: number
   current: number
   prefix: string
 }
 
-interface IPage {
+interface Page {
   start: number
   index: number
   current: number
   colorMode: 'light' | 'dark' | undefined
 }
 
-const TransparentLink = styled(Link)<IPage>`
+const TransparentLink = styled(Link)<Page>`
   text-decoration: none;
 
-  ${(props: IPage) => {
+  ${props => {
     const { start, index, current, colorMode } = props
 
-    const themeColor: any = theme.colors
+    const themeColor = theme.colors
 
     if (start + index + 1 === current) {
       return `color: ${
@@ -36,7 +36,7 @@ const TransparentLink = styled(Link)<IPage>`
   }}
 `
 
-const Component: React.FC<IProps> = props => {
+const Component: React.FC<Props> = props => {
   const { max, current, prefix } = props
 
   const { 0: color, 1: setColor } = useState<'dark' | 'light' | undefined>(

@@ -1,20 +1,16 @@
 import unfetch from 'isomorphic-unfetch'
 
-export const fetch = async <T = any>(
+export const fetch = async <T = unknown>(
   input: RequestInfo,
   init?: RequestInit
 ): Promise<T> => {
-  try {
-    const res: T = await unfetch(input, init).then(o => {
-      try {
-        return o.json()
-      } catch {
-        return o
-      }
-    })
+  const res: T = await unfetch(input, init).then(o => {
+    try {
+      return o.json()
+    } catch {
+      return o
+    }
+  })
 
-    return res
-  } catch (e) {
-    throw e
-  }
+  return res
 }

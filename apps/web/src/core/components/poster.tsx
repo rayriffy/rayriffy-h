@@ -12,9 +12,9 @@ import { filterTagByType, filterTagStackByType } from '../services/functions'
 
 import { tags as allTagStack } from '../../contents/database/tags'
 
-import { IPosterProps } from '../@types'
+import { PosterProps } from '../@types'
 
-const Component: React.FC<IPosterProps> = props => {
+const Component: React.FC<PosterProps> = props => {
   const { raw, internal = true } = props
 
   const { colorMode } = useColorMode()

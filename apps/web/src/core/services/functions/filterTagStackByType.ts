@@ -1,8 +1,8 @@
-import { IDatabaseTag, ITagType } from '../../@types'
+import { DatabaseTag, TagType } from '../../@types'
 
 export const filterTagStackByType = (
-  tagStack: IDatabaseTag[],
-  type: ITagType
-): IDatabaseTag[] => {
+  tagStack: DatabaseTag[],
+  type: TagType
+): DatabaseTag[] => {
   return tagStack.filter(tag => tag.name === type)
 }

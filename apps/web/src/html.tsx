@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 
-interface IProps {
+interface Props {
   body: string
   bodyAttributes: string
   headComponents: ReactNode
@@ -9,7 +9,7 @@ interface IProps {
   postBodyComponents: ReactNode
 }
 
-const HTMLComponent: React.FC<IProps> = props => {
+const HTMLComponent: React.FC<Props> = props => {
   const {
     htmlAttributes,
     headComponents,
