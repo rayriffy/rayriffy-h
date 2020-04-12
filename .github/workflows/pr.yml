@@ -1,0 +1,39 @@
+name: Test Units
+
+on: [pull_request]
+
+jobs:
+  test:
+    runs-on: macOS-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - uses: actions/checkout@v1
+      - name: 'Init: Summon NodeJS'
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: "Cache: node_modules"
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-${{ env.cache-name }}-
+            ${{ runner.OS }}-node-
+      - name: 'Init: Install yarn'
+        run: |
+          curl -o- -L https://yarnpkg.com/install.sh | bash
+      - name: 'Init: Install dependencies'
+        run: |
+          yarn install
+      - name: 'Nx: Jest'
+        run: |
+          yarn nx affected --target=test
+      - name: 'Nx: End-to-End'
+        run: |
+          yarn nx affected --target=e2e
+      - name: 'Nx: Lint'
+        run: |
+          yarn nx affected --target=lint

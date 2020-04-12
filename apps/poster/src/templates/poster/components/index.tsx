@@ -35,7 +35,7 @@ const PosterComponent: React.FC<Props> = props => {
   return (
     <React.Fragment>
       {raw !== null ? (
-        <CoverBox>
+        <CoverBox id='cover-box'>
           <BlurBox
             sx={{
               backgroundImage: `url(${raw})`,
@@ -44,7 +44,7 @@ const PosterComponent: React.FC<Props> = props => {
           />
         </CoverBox>
       ) : (
-        <CoverBox>
+        <CoverBox id='cover-box'>
           <BlurBox />
         </CoverBox>
       )}

@@ -1,13 +1,13 @@
-import { getGreeting } from '../support/app.po';
-
 describe('poster', () => {
-  beforeEach(() => cy.visit('/'));
+  beforeEach(() => cy.visit('/encode/76578'));
 
-  it('should display welcome message', () => {
+  it('should display cover image', () => {
     // Custom command example, see `../support/commands.ts` file
-    cy.login('my-email@something.com', 'myPassword');
 
     // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome to poster!');
+    cy
+      .get('#cover-box > div')
+      .should('be.visible')
+      .should('have.css', 'background-image');
   });
 });
