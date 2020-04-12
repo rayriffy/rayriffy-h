@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react'
 
 import { Helmet } from 'react-helmet'
 
-import { Box, CSSReset, ThemeProvider, ColorModeProvider } from '@chakra-ui/core'
+import { Box } from '@chakra-ui/core'
 
 import { Collection } from '../../store'
 
@@ -23,28 +23,22 @@ export const App: React.FC = props => {
   }, [])
 
   return (
-
-    <ThemeProvider>
-      <CSSReset />
-      <ColorModeProvider>
-        <Box pt={12}>
-          <Helmet
-            defaultTitle='Riffy H'
-            titleTemplate='%s · Riffy H'
-            htmlAttributes={{ lang: 'en' }}
-            meta={[
-              { name: 'description', content: 'The missing piece of NHentai' },
-              { name: 'referrer', content: 'same-origin' },
-            ]}
-          />
-          <Box px={[3, 4, 5]}>
-            <Header />
-            <ServiceWorker />
-          </Box>
-          {children}
-        </Box>
-      </ColorModeProvider>
-    </ThemeProvider>
+    <Box pt={12}>
+      <Helmet
+        defaultTitle='Riffy H'
+        titleTemplate='%s · Riffy H'
+        htmlAttributes={{ lang: 'en' }}
+        meta={[
+          { name: 'description', content: 'The missing piece of NHentai' },
+          { name: 'referrer', content: 'same-origin' },
+        ]}
+      />
+      <Box px={[3, 4, 5]}>
+        <Header />
+        <ServiceWorker />
+      </Box>
+      {children}
+    </Box>
   )
 }
 

@@ -1,7 +1,5 @@
 import React, { useContext, useEffect } from 'react'
 
-import { ThemeProvider, ColorModeProvider } from '@chakra-ui/core'
-
 import { Search } from '../../../core/components'
 
 import { Subtitle } from '../../../store'
@@ -17,13 +15,7 @@ const Page: React.FC<Props> = props => {
     setSubtitle(`search`)
   }, [])
 
-  return (
-    <ThemeProvider>
-      <ColorModeProvider>
-        <Search {...pageContext} />
-      </ColorModeProvider>
-    </ThemeProvider>
-  )
+  return <Search {...pageContext} />
 }
 
 export default Page

@@ -9,7 +9,12 @@ const config: GatsbyConfig = {
   },
   pathPrefix: '/',
   plugins: [
-    `gatsby-plugin-preact`,
+    {
+      resolve: `gatsby-plugin-compile-es6-packages`,
+      options: {
+        modules: [`gatsby-plugin-chakra-ui`],
+      },
+    },
     {
       resolve: `gatsby-plugin-emotion`,
       options: {
@@ -17,7 +22,7 @@ const config: GatsbyConfig = {
         cssPropOptimization: true,
       },
     },
-    // `gatsby-plugin-chakra-ui`,
+    `gatsby-plugin-chakra-ui`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {

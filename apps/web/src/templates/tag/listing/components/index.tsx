@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react'
 
 import { isEmpty, sortBy, startsWith } from 'lodash-es'
 
-import { Box, Divider, Flex, Text, useColorMode, ThemeProvider, ColorModeProvider} from '@chakra-ui/core'
+import { Box, Divider, Flex, Text, useColorMode } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
 import { Heading, TransparentLink } from '../../../../core/components'
@@ -62,53 +62,49 @@ const Page: React.FC<Props> = props => {
   }, [])
 
   return (
-    <ThemeProvider>
-      <ColorModeProvider>
-        <Flex justifyContent='center' pt={1}>
-          <Box width={[22 / 24, 18 / 24, 14 / 24, 10 / 24]}>
-            {alphabet.map(text => {
-              const filteredTags = processedTags.filter(o =>
-                startsWith(o.name, text)
-              )
+    <Flex justifyContent='center' pt={1}>
+      <Box width={[22 / 24, 18 / 24, 14 / 24, 10 / 24]}>
+        {alphabet.map(text => {
+          const filteredTags = processedTags.filter(o =>
+            startsWith(o.name, text)
+          )
 
-              if (!isEmpty(filteredTags)) {
-                return (
-                  <Box py={3} key={`tag-${prefix}-${text}`}>
-                    <CoverCard
-                      p={3}
-                      bg={colorMode === 'dark' ? 'gray.700' : undefined}>
-                      <Box p={2}>
-                        <Heading size='xl'>{text.toUpperCase()}</Heading>
-                      </Box>
-                      <Box p={2}>
-                        {filteredTags.map((tag, i) => {
-                          return (
-                            <Box key={`tag-${prefix}-${text}-${tag.id}`}>
-                              {i !== 0 ? <Divider /> : null}
-                              <Box py={3}>
-                                <TransparentLink
-                                  to={`/${prefix}/${tag.id}`}
-                                  aria-label={tag.name}>
-                                  <Text fontSize='sm' color='blue.500'>
-                                    {tag.name}
-                                  </Text>
-                                </TransparentLink>
-                              </Box>
-                            </Box>
-                          )
-                        })}
-                      </Box>
-                    </CoverCard>
+          if (!isEmpty(filteredTags)) {
+            return (
+              <Box py={3} key={`tag-${prefix}-${text}`}>
+                <CoverCard
+                  p={3}
+                  bg={colorMode === 'dark' ? 'gray.700' : undefined}>
+                  <Box p={2}>
+                    <Heading size='xl'>{text.toUpperCase()}</Heading>
                   </Box>
-                )
-              } else {
-                return null
-              }
-            })}
-          </Box>
-        </Flex>
-      </ColorModeProvider>
-    </ThemeProvider>
+                  <Box p={2}>
+                    {filteredTags.map((tag, i) => {
+                      return (
+                        <Box key={`tag-${prefix}-${text}-${tag.id}`}>
+                          {i !== 0 ? <Divider /> : null}
+                          <Box py={3}>
+                            <TransparentLink
+                              to={`/${prefix}/${tag.id}`}
+                              aria-label={tag.name}>
+                              <Text fontSize='sm' color='blue.500'>
+                                {tag.name}
+                              </Text>
+                            </TransparentLink>
+                          </Box>
+                        </Box>
+                      )
+                    })}
+                  </Box>
+                </CoverCard>
+              </Box>
+            )
+          } else {
+            return null
+          }
+        })}
+      </Box>
+    </Flex>
   )
 }
 

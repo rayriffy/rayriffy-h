@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 
-import { Box, ThemeProvider, ColorModeProvider } from '@chakra-ui/core'
+import { Box } from '@chakra-ui/core'
 
 import { Subtitle } from '../../../store'
 
@@ -14,13 +14,9 @@ const Page: React.FC = () => {
   }, [])
 
   return (
-    <ThemeProvider>
-      <ColorModeProvider>
-        <Box pt={3}>
-          <NotAvaliable />
-        </Box>
-      </ColorModeProvider>
-    </ThemeProvider>
+    <Box pt={3}>
+      <NotAvaliable />
+    </Box>
   )
 }
 

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 
-import { Box, ThemeProvider, ColorModeProvider} from '@chakra-ui/core'
+import { Box } from '@chakra-ui/core'
 
 import { Subtitle } from '../../../../store'
 
@@ -52,25 +52,23 @@ const DynamicViewingComponent: React.FC<Props> = props => {
   }, [])
 
   return (
-    <ThemeProvider>
-      <ColorModeProvider>
-        {state === 0 && raw !== null ? (
-          <Reader raw={raw.data} internal={false} />
-        ) : state === 1 && raw === null ? (
-          <Box pt={3}>
-            <Loading />
-          </Box>
-        ) : state === 2 ? (
-          <Box pt={3}>
-            <Failed />
-          </Box>
-        ) : state === 3 ? (
-          <Box pt={3}>
-            <Guide />
-          </Box>
-        ) : null}
-      </ColorModeProvider>
-    </ThemeProvider>
+    <React.Fragment>
+      {state === 0 && raw !== null ? (
+        <Reader raw={raw.data} internal={false} />
+      ) : state === 1 && raw === null ? (
+        <Box pt={3}>
+          <Loading />
+        </Box>
+      ) : state === 2 ? (
+        <Box pt={3}>
+          <Failed />
+        </Box>
+      ) : state === 3 ? (
+        <Box pt={3}>
+          <Guide />
+        </Box>
+      ) : null}
+    </React.Fragment>
   )
 }
 
