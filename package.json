@@ -101,7 +101,7 @@
     "eslint-plugin-import": "2.19.1",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.17.0",
-    "eslint-plugin-react-hooks": "2.3.0",
+    "eslint-plugin-react-hooks": "3.0.0",
     "jest": "25.2.3",
     "netlify-cli": "^2.43.0",
     "prettier": "1.19.1",
