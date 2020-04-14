@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@rayriffy-h/fetch": ["libs/fetch/src/index.ts"]
+      "@rayriffy-h/fetch": ["libs/fetch/src/index.ts"],
+      "@rayriffy-h/helper": ["libs/helper/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

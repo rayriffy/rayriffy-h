@@ -199,10 +199,36 @@
           "options": {
             "linter": "eslint",
             "config": "apps/web/.eslintrc",
-            "tsConfig": [
-              "apps/web/tsconfig.json"
-            ],
+            "tsConfig": ["apps/web/tsconfig.json"],
             "exclude": ["**/node_modules/**", "!apps/web/**"]
+          }
+        }
+      }
+    },
+    "helper": {
+      "root": "libs/helper",
+      "sourceRoot": "libs/helper/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/helper/.eslintrc",
+            "tsConfig": [
+              "libs/helper/tsconfig.lib.json",
+              "libs/helper/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/helper/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/helper/jest.config.js",
+            "tsConfig": "libs/helper/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }
