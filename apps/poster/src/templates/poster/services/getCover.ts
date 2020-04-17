@@ -5,12 +5,12 @@ export const getCover = async (id: string) => {
     media_id: string
     images: {
       cover: {
-        t: 'j' | 'p'
+        t: 'j' | 'p' | 'g'
       }
     }
   }>(`https://opener.now.sh/api/data/${id}`)
 
   return `https://t.nhentai.net/galleries/${res.media_id}/cover.${
-    res.images.cover.t === 'p' ? 'png' : 'jpg'
+    res.images.cover.t === 'p' ? 'png' : res.images.cover.t === 'j' ? 'jpg' : 'gif'
   }`
 }

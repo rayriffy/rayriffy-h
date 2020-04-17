@@ -45,7 +45,7 @@ const Component: React.FC<PosterProps> = props => {
               height={raw.images.cover.h}
               alt={`Cover ${raw.title.pretty}`}
               src={`https://t.nhentai.net/galleries/${raw.media_id}/cover.${
-                raw.images.cover.t === 'p' ? 'png' : 'jpg'
+                raw.images.cover.t === 'p' ? 'png' : raw.images.cover.t === 'j' ? 'jpg' : 'gif'
               }`}
             />
           </Link>

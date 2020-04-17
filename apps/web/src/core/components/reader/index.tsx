@@ -42,7 +42,7 @@ const Component: React.FC<ReaderProps> = props => {
                     alt={`Cover ${hentai.title.pretty}`}
                     src={`https://t.nhentai.net/galleries/${
                       hentai.media_id
-                    }/cover.${hentai.images.cover.t === 'p' ? 'png' : 'jpg'}`}
+                    }/cover.${hentai.images.cover.t === 'p' ? 'png' : hentai.images.cover.t === 'j' ? 'jpg' : 'gif'}`}
                   />
                 </CoverBox>
               </Box>
@@ -99,6 +99,7 @@ const Component: React.FC<ReaderProps> = props => {
           <Box width={['100%', 22 / 24, 16 / 24, 12 / 24]}>
             {hentai.images.pages.map((page, i) => {
               if (!raw.exclude.includes(i + 1)) {
+                console.log(page.t)
                 return (
                   <CoverBox key={`reader-${raw.raw.id}-page-${i + 1}`}>
                     <BluredImage
@@ -106,7 +107,7 @@ const Component: React.FC<ReaderProps> = props => {
                       alt={`Page ${i + 1}`}
                       src={`https://i.nhentai.net/galleries/${
                         hentai.media_id
-                      }/${i + 1}.${page.t === 'p' ? 'png' : 'jpg'}`}
+                      }/${i + 1}.${page.t === 'p' ? 'png' : page.t === 'j' ? 'jpg' : 'gif'}`}
                     />
                   </CoverBox>
                 )
