@@ -27,7 +27,7 @@ const LoadContainer = styled(Flex)<{ border: string }>(props => ({
   paddingTop: '100%',
   overflow: 'hidden',
   borderRadius: 10,
-  border: `1px solid ${(props: { border: string }) => props.border}`,
+  border: `1px solid ${props.border}`,
 }))
 
 const LoadContent = styled(Box)(() => ({
