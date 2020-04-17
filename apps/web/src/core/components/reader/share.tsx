@@ -11,17 +11,12 @@ import {
   ModalOverlay,
   useDisclosure,
 } from '@chakra-ui/core'
-import styled from '@emotion/styled'
 
 import { Collection } from '../../../store'
 
 import { API } from './api'
 
 import { ReaderShareProps } from '../../@types'
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-`
 
 const Component: React.FC<ReaderShareProps> = props => {
   const { hentai, internal } = props
@@ -89,17 +84,18 @@ const Component: React.FC<ReaderShareProps> = props => {
           />
         </Box>
         <Box pl={1}>
-          <StyledLink
+          <Link
             href={`https://nhentai.net/g/${hentai.id}`}
             target='_blank'
             aria-label='NHentai'
+            textDecoration='none'
             rel='noopener noreferrer'>
             <IconButton
               size='sm'
               aria-label='open external'
               icon={FaExternalLinkAlt}
             />
-          </StyledLink>
+          </Link>
         </Box>
       </Flex>
       <Modal isOpen={isOpen} onClose={onClose}>

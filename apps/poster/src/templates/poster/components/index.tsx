@@ -9,14 +9,14 @@ interface Props {
   id: string
 }
 
-const CoverBox = styled(Box)`
-  overflow: hidden;
-`
+const CoverBox = styled(Box)(() => ({
+  overflow: 'hidden',
+}))
 
-const BlurBox = styled(Box)`
-  height: 747px;
-  filter: blur(50px);
-`
+const BlurBox = styled(Box)(() => ({
+  height: '747px',
+  filter: 'blur(50px)',
+}))
 
 const PosterComponent: React.FC<Props> = props => {
   const { id } = props

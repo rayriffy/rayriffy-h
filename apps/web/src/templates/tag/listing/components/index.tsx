@@ -3,18 +3,12 @@ import React, { useContext, useEffect } from 'react'
 import { isEmpty, sortBy, startsWith } from 'lodash-es'
 
 import { Box, Divider, Flex, Text, useColorMode } from '@chakra-ui/core'
-import styled from '@emotion/styled'
 
 import { Heading, TransparentLink } from '../../../../core/components'
 
 import { Subtitle } from '../../../../store'
 
 import { Props } from '../@types/Props'
-
-const CoverCard = styled(Box)`
-  border-radius: 8px;
-  border: 1px solid #e8e8e8;
-`
 
 const Page: React.FC<Props> = props => {
   const { prefix, raw, subtitle } = props.pageContext
@@ -72,8 +66,10 @@ const Page: React.FC<Props> = props => {
           if (!isEmpty(filteredTags)) {
             return (
               <Box py={3} key={`tag-${prefix}-${text}`}>
-                <CoverCard
+                <Box
                   p={3}
+                  borderRadius={8}
+                  border='1px solid #e8e8e8'
                   bg={colorMode === 'dark' ? 'gray.700' : undefined}>
                   <Box p={2}>
                     <Heading size='xl'>{text.toUpperCase()}</Heading>
@@ -96,7 +92,7 @@ const Page: React.FC<Props> = props => {
                       )
                     })}
                   </Box>
-                </CoverCard>
+                </Box>
               </Box>
             )
           } else {

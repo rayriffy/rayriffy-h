@@ -18,7 +18,6 @@ import {
   useDisclosure,
   useTheme,
 } from '@chakra-ui/core'
-import styled from '@emotion/styled'
 
 import { tags as tagStack } from '../../contents/database/tags'
 
@@ -29,10 +28,6 @@ import {
 } from '../../core/components'
 
 import { Settings } from '../../store'
-
-const CapitalizedText = styled(Text)`
-  text-transform: capitalize;
-`
 
 const Component: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -125,12 +120,13 @@ const Component: React.FC = () => {
                         <TransparentLink
                           to={`/${stack.prefix}`}
                           aria-label={stack.name}>
-                          <CapitalizedText
+                          <Text
                             fontSize='sm'
                             color='gray.500'
+                            textTransform='capitalize'
                             py={1}>
                             {stack.name}
-                          </CapitalizedText>
+                          </Text>
                         </TransparentLink>
                       </Box>
                     </Box>
@@ -149,12 +145,13 @@ const Component: React.FC = () => {
                         <TransparentLink
                           to={`/${stack.prefix}`}
                           aria-label={stack.name}>
-                          <CapitalizedText
+                          <Text
                             fontSize='sm'
                             color='gray.500'
+                            textTransform='capitalize'
                             py={1}>
                             {stack.name}
-                          </CapitalizedText>
+                          </Text>
                         </TransparentLink>
                       </Box>
                     </Box>

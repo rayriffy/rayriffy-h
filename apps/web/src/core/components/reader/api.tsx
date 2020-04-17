@@ -21,36 +21,22 @@ import { fetch } from '@rayriffy-h/fetch'
 
 import { APIResponse, ReaderAPIProps } from '../../@types'
 
-const StyledImage = styled(Image)`
-  border-radius: 10px;
-`
+const LoadContainer = styled(Flex)<{ border: string }>(props => ({
+  position: 'relative',
+  width: '100%',
+  paddingTop: '100%',
+  overflow: 'hidden',
+  borderRadius: 10,
+  border: `1px solid ${(props: { border: string }) => props.border}`,
+}))
 
-const LoadContainer = styled(Flex)<{ border: string }>`
-  position: relative;
-  width: 100%;
-  padding-top: 100%;
-
-  overflow: hidden;
-
-  border-radius: 10px;
-  border: 1px solid ${(props: { border: string }) => props.border};
-`
-
-const LoadContent = styled(Box)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-`
-
-const StyledFlex = styled(Flex)`
-  height: 100%;
-`
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-`
+const LoadContent = styled(Box)(() => ({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  bottom: 0,
+  right: 0,
+}))
 
 const Component: React.FC<ReaderAPIProps> = props => {
   const { id } = props
@@ -86,9 +72,9 @@ const Component: React.FC<ReaderAPIProps> = props => {
                       justifyContent='center'
                       border='#f5222d'>
                       <LoadContent>
-                        <StyledFlex justifyContent='center' alignItems='center'>
+                        <Flex justifyContent='center' alignItems='center' height='100%'>
                           <Text color='#f5222d'>Filed to get an image</Text>
-                        </StyledFlex>
+                        </Flex>
                       </LoadContent>
                     </LoadContainer>
                   ) : image === '' ? (
@@ -98,14 +84,14 @@ const Component: React.FC<ReaderAPIProps> = props => {
                       justifyContent='center'
                       border='#d9d9d9'>
                       <LoadContent>
-                        <StyledFlex justifyContent='center' alignItems='center'>
+                        <Flex justifyContent='center' alignItems='center' height='100%'>
                           <Text color='gray.500'>Loading</Text>
-                        </StyledFlex>
+                        </Flex>
                       </LoadContent>
                     </LoadContainer>
                   ) : (
                     <Box>
-                      <StyledImage src={image} />
+                      <Image borderRadius={10} src={image} />
                     </Box>
                   )}
                 </Flex>
@@ -121,8 +107,9 @@ const Component: React.FC<ReaderAPIProps> = props => {
             <Box py={2} px={2}>
               <Flex justifyContent='center' alignItems='center' flexWrap='wrap'>
                 <Box p={2}>
-                  <StyledLink
+                  <Link
                     href={image}
+                    textDecoration='none'
                     download={`encoded-${id}.jpeg`}
                     aria-label='Download'
                     _hover={{ textDecoration: 'none' }}>
@@ -134,7 +121,7 @@ const Component: React.FC<ReaderAPIProps> = props => {
                         </Text>
                       </Flex>
                     </Button>
-                  </StyledLink>
+                  </Link>
                 </Box>
                 <Box p={2}>
                   <Button size='sm' onClick={onCopy} variant='outline'>

@@ -12,6 +12,8 @@ interface ImageCoverProps {
 
 const ImageCover = styled(LazyLoadImage)<ImageCoverProps>(props => ({
   margin: 0,
+  transition: 'all 0.4s cubic-bezier(0.23, 1, 0.32, 1)',
+  transform: props.blur ? 'scale(1.1)' : 'scale(1.0)',
   filter: props.blur ? 'blur(15px)' : 'blur(0px)'
 }))
 

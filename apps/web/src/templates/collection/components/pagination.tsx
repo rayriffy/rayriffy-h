@@ -16,23 +16,14 @@ interface Page {
   colorMode: 'light' | 'dark' | undefined
 }
 
-const StyledLink = styled(Link)<Page>`
-  text-decoration: none;
+const StyledLink = styled(Link)<Page>(props => {
+  const { start, index, current, colorMode, theme } = props
 
-  ${(props: Page) => {
-    const { start, index, current, colorMode } = props
-
-    const themeColor = theme.colors
-
-    if (start + index + 1 === current) {
-      return `color: ${
-        colorMode === 'dark' ? themeColor.white : themeColor.black
-      };`
-    } else {
-      return `color: ${themeColor.gray[500]};`
-    }
-  }}
-`
+  return {
+    textDecoration: 'none',
+    color: start + index + 1 === current ? colorMode === 'dark' ? theme.colors.white : theme.colors.black : theme.colors.gray[500]
+  }
+})
 
 const Component: React.FC<Props> = props => {
   const { max, current, onChange } = props

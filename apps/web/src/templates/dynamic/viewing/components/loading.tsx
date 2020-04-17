@@ -1,30 +1,23 @@
 import React from 'react'
 
 import { Box, Flex, Image, Text, useColorMode } from '@chakra-ui/core'
-import styled from '@emotion/styled'
 
 import { Heading } from '../../../../core/components'
-
-const BorderedCard = styled(Box)`
-  border-radius: 8px;
-  border: 1px solid #e8e8e8;
-  overflow: hidden;
-`
-
-const WidthImage = styled(Image)`
-  width: 100%;
-`
 
 const Component: React.FC = () => {
   const { colorMode } = useColorMode()
 
   return (
     <Flex justifyContent='center'>
-      <BorderedCard
+      <Box
+        borderRadius={8}
+        border='1px solid #e8e8e8'
+        overflow='hidden'
         width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}
         bg={colorMode === 'dark' ? 'gray.700' : undefined}>
-        <WidthImage
+        <Image
           m={0}
+          width='100%'
           src='https://media.giphy.com/media/wOYZxHS8Ugnni/giphy.gif'
         />
         <Box p={3}>
@@ -36,7 +29,7 @@ const Component: React.FC = () => {
             (but no longer a minute)
           </Text>
         </Box>
-      </BorderedCard>
+      </Box>
     </Flex>
   )
 }

@@ -1,17 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 
 import { Box, Button, Flex, Input, Text, useColorMode } from '@chakra-ui/core'
-import styled from '@emotion/styled'
 
 import { Subtitle } from '../store'
 
 import { Heading, TransparentLink } from '../core/components'
-
-const BorderedCard = styled(Box)`
-  border-radius: 8px;
-  border: 1px solid #e8e8e8;
-  overflow: hidden;
-`
 
 const CustomComponent: React.FC = () => {
   const { colorMode } = useColorMode()
@@ -27,7 +20,10 @@ const CustomComponent: React.FC = () => {
   return (
     <Box pt={3}>
       <Flex justifyContent='center'>
-        <BorderedCard
+        <Box
+          borderRadius={8}
+          border='1px solid #e8e8e8'
+          overflow='hidden'
           bg={colorMode === 'dark' ? 'gray.700' : undefined}
           width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}
           p={5}>
@@ -63,7 +59,7 @@ const CustomComponent: React.FC = () => {
               </TransparentLink>
             )}
           </Box>
-        </BorderedCard>
+        </Box>
       </Flex>
     </Box>
   )

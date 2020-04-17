@@ -6,7 +6,6 @@ import { trackWindowScroll, LazyComponentProps } from 'react-lazy-load-image-com
 import { isEmpty, upperFirst } from 'lodash-es'
 
 import { Box, Divider, Flex, Text, useColorMode } from '@chakra-ui/core'
-import styled from '@emotion/styled'
 
 import { BluredImage, headingFontColor, Slug } from '../'
 import { Collapse } from './collapse'
@@ -17,10 +16,6 @@ import { tags as tagStack } from '../../../contents/database/tags'
 import { filterTagByType } from '../../services/functions'
 
 import { ReaderProps } from '../../@types'
-
-const CoverBox = styled(Box)`
-  overflow: hidden;
-`
 
 const Component: React.FC<ReaderProps & LazyComponentProps> = props => {
   const { raw, internal = true, scrollPosition } = props
@@ -37,7 +32,7 @@ const Component: React.FC<ReaderProps & LazyComponentProps> = props => {
           <Box width={[22 / 24, 19 / 24, 16 / 24, 12 / 24]}>
             <Flex flexWrap='wrap'>
               <Box width={3 / 7} p={[2, 3]}>
-                <CoverBox>
+                <Box overflow='hidden'>
                   <BluredImage
                     height={hentai.images.cover.h}
                     width={hentai.images.cover.w}
@@ -46,7 +41,7 @@ const Component: React.FC<ReaderProps & LazyComponentProps> = props => {
                       hentai.media_id
                     }/cover.${hentai.images.cover.t === 'p' ? 'png' : hentai.images.cover.t === 'j' ? 'jpg' : 'gif'}`}
                   />
-                </CoverBox>
+                </Box>
               </Box>
               <Box width={4 / 7} p={[2, 3]}>
                 <Text
@@ -102,7 +97,7 @@ const Component: React.FC<ReaderProps & LazyComponentProps> = props => {
             {hentai.images.pages.map((page, i) => {
               if (!raw.exclude.includes(i + 1)) {
                 return (
-                  <CoverBox key={`reader-${raw.raw.id}-page-${i + 1}`}>
+                  <Box overflow='hidden' key={`reader-${raw.raw.id}-page-${i + 1}`}>
                     <BluredImage
                       height={page.h}
                       width={page.w}
@@ -112,7 +107,7 @@ const Component: React.FC<ReaderProps & LazyComponentProps> = props => {
                         hentai.media_id
                       }/${i + 1}.${page.t === 'p' ? 'png' : page.t === 'j' ? 'jpg' : 'gif'}`}
                     />
-                  </CoverBox>
+                  </Box>
                 )
               } else {
                 return null

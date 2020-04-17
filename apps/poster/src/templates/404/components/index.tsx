@@ -3,16 +3,16 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { Box, Card, Flex, Image, Text } from 'rebass'
 
-const BorderedCard = styled(Card)`
-  border-radius: 8px;
-  border: 1px solid #e8e8e8;
-  overflow: hidden;
-  background: #fff;
-`
+const BorderedCard = styled(Card)(() => ({
+  borderRadius: 8,
+  border: '1px solid #e8e8e8',
+  overflow: 'hidden',
+  background: '#fff',
+}))
 
-const WidthImage = styled(Image)`
-  width: 100%;
-`
+const WidthImage = styled(Image)(() => ({
+  width: '100%',
+}))
 
 const NotFoundComponent: React.FC = props => {
   const fontSets = `-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei','Helvetica Neue',Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol'`

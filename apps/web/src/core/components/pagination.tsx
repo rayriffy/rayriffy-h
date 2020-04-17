@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { Box, Flex, theme, useColorMode } from '@chakra-ui/core'
+import { Box, Flex, useColorMode } from '@chakra-ui/core'
 import { styled } from '../theme/styled'
 
 import { TransparentLink as Link } from './'
@@ -18,23 +18,14 @@ interface Page {
   colorMode: 'light' | 'dark' | undefined
 }
 
-const TransparentLink = styled(Link)<Page>`
-  text-decoration: none;
+const TransparentLink = styled(Link)<Page>(props => {
+  const { start, index, current, colorMode, theme } = props
 
-  ${props => {
-    const { start, index, current, colorMode } = props
-
-    const themeColor = theme.colors
-
-    if (start + index + 1 === current) {
-      return `color: ${
-        colorMode === 'dark' ? themeColor.white : themeColor.black
-      };`
-    } else {
-      return `color: ${themeColor.gray[500]};`
-    }
-  }}
-`
+  return {
+    textDecoration: 'none',
+    color: start + index + 1 === current ? colorMode === 'dark' ? theme.colors.white : theme.colors.black : theme.colors.gray[500]
+  }
+})
 
 const Component: React.FC<Props> = props => {
   const { max, current, prefix } = props
