@@ -99,7 +99,6 @@ const Component: React.FC<ReaderProps> = props => {
           <Box width={['100%', 22 / 24, 16 / 24, 12 / 24]}>
             {hentai.images.pages.map((page, i) => {
               if (!raw.exclude.includes(i + 1)) {
-                console.log(page.t)
                 return (
                   <CoverBox key={`reader-${raw.raw.id}-page-${i + 1}`}>
                     <BluredImage
