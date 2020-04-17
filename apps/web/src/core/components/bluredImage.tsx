@@ -1,34 +1,27 @@
 import React, { useContext } from 'react'
 
-import LazyLoad from 'react-lazyload'
+import { LazyLoadImage, LazyLoadImageProps } from 'react-lazy-load-image-component'
 
 import styled from '@emotion/styled'
 
 import { Settings } from '../../store'
 
-import { BluredImageProps } from '../@types'
-
 interface ImageCoverProps {
   blur: boolean
 }
 
-const ImageCover = styled('img')<ImageCoverProps>`
-  width: 100%;
-  margin: 0;
+const ImageCover = styled(LazyLoadImage)<ImageCoverProps>(props => ({
+  margin: 0,
+  filter: props.blur ? 'blur(15px)' : 'blur(0px)'
+}))
 
-  ${(props: ImageCoverProps) => props.blur && `filter: blur(15px);`}
-`
-
-const Component: React.FC<BluredImageProps> = props => {
-  const { height, src, alt } = props
-
+export const BluredImage: React.FC<LazyLoadImageProps> = props => {
   const { 0: settings } = useContext(Settings)
 
   return (
-    <LazyLoad height={height}>
-      <ImageCover blur={settings.safemode} src={src} alt={alt} height='100%' />
-    </LazyLoad>
+    <ImageCover
+      blur={settings.safemode}
+      {...props}
+    />
   )
 }
-
-export const BluredImage = React.memo(Component)

@@ -43,6 +43,7 @@ const Component: React.FC<PosterProps> = props => {
             aria-label={raw.title.pretty}>
             <BluredImage
               height={raw.images.cover.h}
+              width={raw.images.cover.w}
               alt={`Cover ${raw.title.pretty}`}
               src={`https://t.nhentai.net/galleries/${raw.media_id}/cover.${
                 raw.images.cover.t === 'p' ? 'png' : raw.images.cover.t === 'j' ? 'jpg' : 'gif'

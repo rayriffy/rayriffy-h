@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Helmet } from 'react-helmet'
+import { trackWindowScroll, LazyComponentProps } from 'react-lazy-load-image-component'
 
 import { isEmpty, upperFirst } from 'lodash-es'
 
@@ -21,8 +22,8 @@ const CoverBox = styled(Box)`
   overflow: hidden;
 `
 
-const Component: React.FC<ReaderProps> = props => {
-  const { raw, internal = true } = props
+const Component: React.FC<ReaderProps & LazyComponentProps> = props => {
+  const { raw, internal = true, scrollPosition } = props
 
   const { colorMode } = useColorMode()
 
@@ -39,6 +40,7 @@ const Component: React.FC<ReaderProps> = props => {
                 <CoverBox>
                   <BluredImage
                     height={hentai.images.cover.h}
+                    width={hentai.images.cover.w}
                     alt={`Cover ${hentai.title.pretty}`}
                     src={`https://t.nhentai.net/galleries/${
                       hentai.media_id
@@ -103,7 +105,9 @@ const Component: React.FC<ReaderProps> = props => {
                   <CoverBox key={`reader-${raw.raw.id}-page-${i + 1}`}>
                     <BluredImage
                       height={page.h}
+                      width={page.w}
                       alt={`Page ${i + 1}`}
+                      scrollPosition={scrollPosition}
                       src={`https://i.nhentai.net/galleries/${
                         hentai.media_id
                       }/${i + 1}.${page.t === 'p' ? 'png' : page.t === 'j' ? 'jpg' : 'gif'}`}
@@ -121,4 +125,4 @@ const Component: React.FC<ReaderProps> = props => {
   )
 }
 
-export const Reader = React.memo(Component)
+export const Reader = React.memo(trackWindowScroll(Component))
