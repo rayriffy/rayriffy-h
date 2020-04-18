@@ -23,7 +23,8 @@
     "update": "nx migrate latest",
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "projectChanged": "yarn --silent ts-node --project scripts/tsconfig.json scripts/projectChanged.ts"
   },
   "workspaces": [
     "apps/web"
@@ -34,6 +35,7 @@
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "chrome-aws-lambda": "^2.1.1",
+    "commander": "^5.0.0",
     "cwait": "^1.1.2",
     "document-register-element": "1.14.3",
     "emotion-theming": "^10.0.27",
