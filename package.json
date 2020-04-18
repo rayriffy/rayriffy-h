@@ -24,7 +24,7 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "projectChanged": "yarn --silent ts-node --project scripts/tsconfig.json scripts/projectChanged.ts"
+    "affectedProject": "yarn --silent ts-node --project scripts/tsconfig.json scripts/affectedProject.ts"
   },
   "workspaces": [
     "apps/web"

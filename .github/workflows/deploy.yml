@@ -78,8 +78,13 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_WEB_ID }}
         run: |
-          yarn global add netlify-cli
-          netlify deploy --dir=apps/web/public --message "Automatic deployment from GitHub Actions" --prod
+          isAffected=$(yarn --silent affectedProject --project web)
+          if [$isChange == "true"]; then
+            yarn global add netlify-cli
+            netlify deploy --dir=apps/web/public --message "Automatic deployment from GitHub Actions" --prod
+          else
+            echo "No changes found! Skipping..."
+          fi
   deploy-api:
     needs: test
     runs-on: macOS-latest
@@ -109,8 +114,13 @@ jobs:
           NOW_PROJECT_ID: ${{ secrets.NOW_API_ID }}
           NOW_AUTH_TOKEN: ${{ secrets.NOW_AUTH_TOKEN }}
         run: |
-          yarn global add now
-          now -t $NOW_AUTH_TOKEN
+          isAffected=$(yarn --silent affectedProject --project api)
+          if [$isChange == "true"]; then
+            yarn global add now
+            now -t $NOW_AUTH_TOKEN
+          else
+            echo "No changes found! Skipping..."
+          fi
   deploy-poster:
     needs: test
     runs-on: macOS-latest
@@ -139,5 +149,10 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_POSTER_ID }}
         run: |
-          yarn global add netlify-cli
-          netlify deploy --dir=dist/apps/poster/exported --message "Automatic deployment from GitHub Actions" --prod
+          isAffected=$(yarn --silent affectedProject --project poster)
+          if [$isChange == "true"]; then
+            yarn global add netlify-cli
+            netlify deploy --dir=dist/apps/poster/exported --message "Automatic deployment from GitHub Actions" --prod
+          else
+            echo "No changes found! Skipping..."
+          fi
