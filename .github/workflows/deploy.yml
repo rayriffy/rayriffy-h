@@ -27,13 +27,13 @@ jobs:
           yarn install
       - name: 'Nx: Jest'
         run: |
-          yarn nx affected:test --base=origin/master
+          yarn nx affected:test --base=HEAD~1 --head=HEAD
       - name: 'Nx: End-to-End'
         run: |
-          yarn nx affected:e2e --base=origin/master
+          yarn nx affected:e2e --base=HEAD~1 --head=HEAD
       - name: 'Nx: Lint'
         run: |
-          yarn nx affected:lint --base=origin/master
+          yarn nx affected:lint --base=HEAD~1 --head=HEAD
   deploy-web:
     needs: test
     runs-on: macOS-latest
