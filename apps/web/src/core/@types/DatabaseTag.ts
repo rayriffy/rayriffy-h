@@ -1,4 +1,4 @@
-import { TagType } from './TagType'
+import { TagType } from '@rayriffy-h/helper'
 
 export type DatabaseTag = {
   color: string
