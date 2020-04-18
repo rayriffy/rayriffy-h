@@ -1,9 +1,8 @@
 import { Hentai } from '../@types/Hentai'
-import { RawHentai } from '../@types/RawHentai'
 
-export const rawHentaiToHentai = (hentai: RawHentai): Hentai => {
+export const rawHentaiToHentai = (hentai: Hentai): Hentai => {
   return {
-    id: hentai.id,
+    id: Number(hentai.id),
     media_id: hentai.media_id,
     title: hentai.title,
     images: {

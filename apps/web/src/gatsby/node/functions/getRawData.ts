@@ -1,5 +1,5 @@
 import { Cache, Reporter } from 'gatsby'
-import { getHentai } from '@rayriffy-h/helper'
+import { getHentai, rawHentaiToHentai } from '@rayriffy-h/helper'
 
 import { FetchedRaw } from '../../../core/@types'
 
@@ -27,7 +27,7 @@ export const getRawData = async (
         ...cacheRes,
         data: {
           ...cacheRes.data,
-          raw: cacheRes.data.raw,
+          raw: rawHentaiToHentai(cacheRes.data.raw),
         },
       }
     } else {
@@ -50,7 +50,7 @@ export const getRawData = async (
       data: {
         hentai_id: 0,
         exclude: [],
-        raw: {
+        raw: rawHentaiToHentai({
           id: 0,
           media_id: '0',
           title: {
@@ -67,7 +67,7 @@ export const getRawData = async (
             pages: [],
           },
           tags: [],
-        },
+        }),
       },
     }
   }
