@@ -5,6 +5,7 @@ export const fetch = async <T = unknown>(
   init?: RequestInit
 ): Promise<T> => {
   const res: T = await unfetch(input, init).then(o => {
+    console.log(o)
     try {
       return o.json()
     } catch {

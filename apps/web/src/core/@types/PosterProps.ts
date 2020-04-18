@@ -1,4 +1,4 @@
-import { Hentai } from './Hentai'
+import { Hentai } from '@rayriffy-h/helper'
 
 export interface PosterProps {
   raw: Hentai

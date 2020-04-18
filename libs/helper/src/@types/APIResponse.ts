@@ -3,6 +3,6 @@ export interface APIResponse<T> {
   code: number
   response: {
     message: string
-    data: T
+    data?: T
   }
 }

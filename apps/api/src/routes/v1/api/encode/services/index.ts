@@ -1,8 +1,7 @@
 import express from 'express'
 
+import { APIResponse } from '@rayriffy-h/helper'
 import { getImageFunction } from '../functions/getImage'
-
-import { Response } from '../../../core/@types/Response'
 
 const router = express.Router()
 
@@ -12,7 +11,7 @@ router.get('/:id', async (req, res) => {
 
     const image = await getImageFunction(id)
 
-    const response: Response<string> = {
+    const response: APIResponse<string> = {
       status: 'success',
       code: 201,
       response: {
@@ -23,7 +22,7 @@ router.get('/:id', async (req, res) => {
 
     return res.status(200).send(response)
   } catch (e) {
-    const response: Response<unknown> = {
+    const response: APIResponse<unknown> = {
       status: 'failed',
       code: 407,
       response: {
@@ -37,7 +36,7 @@ router.get('/:id', async (req, res) => {
 })
 
 router.all('/:id', (_, res) => {
-  const response: Response<never> = {
+  const response: APIResponse<never> = {
     status: 'failed',
     code: 404,
     response: {

@@ -1,31 +1,7 @@
-import { fetch } from '@rayriffy-h/fetch'
-
 import { Cache, Reporter } from 'gatsby'
+import { getHentai } from '@rayriffy-h/helper'
 
-import { APIResponse, FetchedRaw, Hentai } from '../../../core/@types'
-
-const rawTranformer = (data: Hentai): Hentai => ({
-  id: Number(data.id),
-  media_id: data.media_id,
-  title: data.title,
-  images: {
-    cover: {
-      h: data.images.cover.h,
-      t: data.images.cover.t,
-      w: data.images.cover.w,
-    },
-    pages: data.images.pages.map(o => ({
-      h: o.h,
-      t: o.t,
-      w: o.w,
-    })),
-  },
-  tags: data.tags.map(o => ({
-    id: o.id,
-    name: o.name,
-    type: o.type,
-  })),
-})
+import { FetchedRaw } from '../../../core/@types'
 
 /**
  * Featch raw data from cache or API
@@ -51,20 +27,18 @@ export const getRawData = async (
         ...cacheRes,
         data: {
           ...cacheRes.data,
-          raw: rawTranformer(cacheRes.data.raw),
+          raw: cacheRes.data.raw,
         },
       }
     } else {
-      const out = await fetch<APIResponse<Hentai>>(
-        `https://h.api.rayriffy.com/v1/gallery/${id}`
-      )
+      const out = await getHentai(id)
 
       return {
         status: 'success',
         data: {
           hentai_id: Number(id),
           exclude,
-          raw: rawTranformer(out.response.data),
+          raw: out,
         },
       }
     }
@@ -76,7 +50,7 @@ export const getRawData = async (
       data: {
         hentai_id: 0,
         exclude: [],
-        raw: rawTranformer({
+        raw: {
           id: 0,
           media_id: '0',
           title: {
@@ -93,7 +67,7 @@ export const getRawData = async (
             pages: [],
           },
           tags: [],
-        }),
+        },
       },
     }
   }

@@ -1,10 +1,6 @@
 import express from 'express'
 
-import { rawProcessor } from '../../../core/functions/rawProcessor'
-import { getRelated } from '../functions/getRelated'
-
-import { Hentai } from '../../../core/@types/Hentai'
-import { Response } from '../../../core/@types/Response'
+import { getRelated, RawHentai, APIResponse } from '@rayriffy-h/helper'
 
 const router = express.Router()
 
@@ -12,20 +8,20 @@ router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params
 
-    const data = await getRelated(id)
+    const data = await getRelated(id, true)
 
-    const response: Response<Hentai[]> = {
+    const response: APIResponse<RawHentai[]> = {
       status: 'success',
       code: 201,
       response: {
         message: 'related gallery obtained',
-        data: data.map(o => rawProcessor(o)),
+        data: data,
       },
     }
 
     return res.status(200).send(response)
   } catch (e) {
-    const response: Response<string> = {
+    const response: APIResponse<string> = {
       status: 'failed',
       code: 407,
       response: {
@@ -39,7 +35,7 @@ router.get('/:id', async (req, res) => {
 })
 
 router.all('/:id', (_, res) => {
-  const response: Response<never> = {
+  const response: APIResponse<never> = {
     status: 'failed',
     code: 404,
     response: {

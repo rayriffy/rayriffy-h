@@ -1,8 +1,7 @@
 import cors from 'cors'
 import express from 'express'
 
-import { Response } from './routes/v1/core/@types/Response'
-
+import { APIResponse } from '@rayriffy-h/helper'
 import { v1 } from './routes'
 
 const server = express()
@@ -10,7 +9,7 @@ const server = express()
 server.use(cors())
 
 server.get('/', async (_, res) => {
-  const response: Response<{ docs: string }> = {
+  const response: APIResponse<{ docs: string }> = {
     status: 'success',
     code: 201,
     response: {
@@ -27,7 +26,7 @@ server.get('/', async (_, res) => {
 server.use('/v1', v1)
 
 server.all('*', (_, res) => {
-  const response: Response<never> = {
+  const response: APIResponse<never> = {
     status: 'failed',
     code: 404,
     response: {

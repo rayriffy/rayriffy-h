@@ -1,4 +1,4 @@
-import { Tag } from '../../../../core/@types'
+import { Tag } from '@rayriffy-h/helper'
 
 export interface Props {
   pageContext: {

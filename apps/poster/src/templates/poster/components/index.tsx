@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import { Box, Text } from 'rebass'
 
-import { getCover } from '../services/getCover'
+import { getRawHentai, getImageUrl } from '@rayriffy-h/helper'
 
 interface Props {
   id: string
@@ -24,8 +24,12 @@ const PosterComponent: React.FC<Props> = props => {
   const [raw, setRaw] = useState<string | null>(null)
 
   const fetchCover = async (id: string) => {
-    const cover = await getCover(id)
-    setRaw(cover)
+    const rawHentai = await getRawHentai(id)
+    setRaw(getImageUrl({
+      image: rawHentai.images.cover,
+      mediaId: rawHentai.media_id,
+      type: 'cover',
+    }))
   }
 
   useEffect(() => {

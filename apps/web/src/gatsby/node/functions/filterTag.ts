@@ -1,6 +1,6 @@
 import { filter, isEmpty } from 'lodash'
 
-import { Hentai, Tag, TagType } from '../../../core/@types'
+import { Hentai, Tag, TagType } from '@rayriffy-h/helper'
 
 /**
  * Filter only tags object with specified types

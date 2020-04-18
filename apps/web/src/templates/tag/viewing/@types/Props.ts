@@ -1,4 +1,4 @@
-import { Hentai, Tag } from '../../../../core/@types'
+import { Hentai, Tag } from '@rayriffy-h/helper'
 
 export interface Props {
   pageContext: {

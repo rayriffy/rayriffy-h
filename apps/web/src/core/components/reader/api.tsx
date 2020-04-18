@@ -18,8 +18,9 @@ import {
 import styled from '@emotion/styled'
 
 import { fetch } from '@rayriffy-h/fetch'
+import { APIResponse } from '@rayriffy-h/helper'
 
-import { APIResponse, ReaderAPIProps } from '../../@types'
+import { ReaderAPIProps } from '../../@types'
 
 const LoadContainer = styled(Flex)<{ border: string }>(props => ({
   position: 'relative',

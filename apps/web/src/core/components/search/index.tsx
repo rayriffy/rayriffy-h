@@ -9,7 +9,8 @@ import * as searchHentaiWorker from '../../services/worker/searchHentai.worker'
 import { Heading, Poster } from '../'
 import { Pagination } from './pagination'
 
-import { Hentai, SearchProps } from '../../@types'
+import { Hentai } from '@rayriffy-h/helper'
+import { SearchProps } from '../../@types'
 
 export const Search: React.FC<SearchProps> = props => {
   const { raw, skip, showOnEmptyQuery = false } = props

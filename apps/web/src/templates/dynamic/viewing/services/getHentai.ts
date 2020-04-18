@@ -1,18 +1,16 @@
-import { fetch } from '@rayriffy-h/fetch'
+import { getHentai as getHentaiHelper } from '@rayriffy-h/helper'
 
-import { APIResponse, FetchedRaw, Hentai } from '../../../../core/@types'
+import { FetchedRaw } from '../../../../core/@types'
 
 export const getHentai = async (id: number | string): Promise<FetchedRaw> => {
-  const out = await fetch<APIResponse<Hentai>>(
-    `https://h.api.rayriffy.com/v1/gallery/${id}`
-  )
+  const out = await getHentaiHelper(id)
 
   return {
     status: 'success',
     data: {
       hentai_id: Number(id),
       exclude: [],
-      raw: out.response.data,
+      raw: out,
     },
   }
 }

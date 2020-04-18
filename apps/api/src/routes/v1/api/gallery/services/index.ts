@@ -1,9 +1,6 @@
 import express from 'express'
 
-import { getHentai } from '../functions/getHentai'
-
-import { Hentai } from '../../../core/@types/Hentai'
-import { Response } from '../../../core/@types/Response'
+import { getRawHentai, RawHentai, APIResponse } from '@rayriffy-h/helper'
 
 const router = express.Router()
 
@@ -11,9 +8,9 @@ router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params
 
-    const data = await getHentai(id)
+    const data = await getRawHentai(id, true)
 
-    const response: Response<Hentai> = {
+    const response: APIResponse<RawHentai> = {
       status: 'success',
       code: 201,
       response: {
@@ -24,7 +21,7 @@ router.get('/:id', async (req, res) => {
 
     return res.status(200).send(response)
   } catch (e) {
-    const response: Response<string> = {
+    const response: APIResponse<string> = {
       status: 'failed',
       code: 407,
       response: {
@@ -38,7 +35,7 @@ router.get('/:id', async (req, res) => {
 })
 
 router.all('/:id', (_, res) => {
-  const response: Response<never> = {
+  const response: APIResponse<never> = {
     status: 'failed',
     code: 404,
     response: {
