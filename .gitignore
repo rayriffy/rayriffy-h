@@ -39,6 +39,7 @@ testem.log
 Thumbs.db
 
 # Addtional Files/Folder
-.now
 .netlify
 .cache
+
+.now

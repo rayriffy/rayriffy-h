@@ -102,6 +102,13 @@ jobs:
       - name: "Nx: Build apps/api"
         run: |
             yarn nx build api
+      - name: "Deploy: Upload to Now"
+        env:
+          NOW_ORG_ID: ${{ secrets.NOW_ORG_ID }}
+          NOW_PROJECT_ID: ${{ secrets.NOW_API_ID }}
+          NOW_AUTH_TOKEN: ${{ secrets.NOW_AUTH_TOKEN }}
+        run: |
+              now -t $NOW_AUTH_TOKEN
   deploy-poster:
     needs: test
     runs-on: macOS-latest

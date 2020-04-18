@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "name": "rayriffy-h-api",
+  "github": {
+    "enabled": false
+  },
+  "builds": [{
+    "src": "dist/apps/api/main.js",
+    "use": "@now/node",
+    "config": {
+      "maxLambdaSize": "50mb"
+    }
+  }],
+  "routes": [{
+    "src": "/(.*)",
+    "dest": "dist/apps/api/main.js"
+  }]
+}
