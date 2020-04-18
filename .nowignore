@@ -1,7 +1,5 @@
-*
-!dist/apps/api/main.js
-!dist/apps/api/main.map
+/*
+!dist
+!now.json
 !package.json
 !yarn.lock
-!now.json
-!tsconfig.json
