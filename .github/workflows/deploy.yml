@@ -73,7 +73,6 @@ jobs:
       - name: 'Init: Install dependencies'
         run: |
           yarn install
-          yarn workspace @rayriffy-h/web gatsby clean
       - name: "Nx: Build apps/web"
         run: |
           yarn nx build web
