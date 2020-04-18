@@ -76,7 +76,7 @@ jobs:
       - name: "Deploy: Upload to Netlify"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_WEB_ID }}
         run: |
             yarn netlify deploy --dir=apps/web/public --message "Automatic deployment from GitHub Actions" --prod
   deploy-api:
@@ -122,6 +122,12 @@ jobs:
       - name: 'Init: Install dependencies'
         run: |
           yarn install
-      - name: "Nx: Build apps/poster"
+      - name: "Nx: Export apps/poster"
         run: |
-            yarn nx build poster
+            yarn nx export poster
+      - name: "Deploy: Upload to Netlify"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_POSTER_ID }}
+        run: |
+            yarn netlify deploy --dir=dist/apps/poster/exported --message "Automatic deployment from GitHub Actions" --prod
