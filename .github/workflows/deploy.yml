@@ -88,6 +88,11 @@ jobs:
           else
             echo "No changes found! Skipping..."
           fi
+      - name: "Artifacts: Upload"
+        uses: actions/upload-artifact@v1
+        with:
+          name: web
+          path: apps/web/public
   deploy-api:
     needs: test
     runs-on: macOS-latest
@@ -124,6 +129,11 @@ jobs:
           else
             echo "No changes found! Skipping..."
           fi
+      - name: "Artifacts: Upload"
+        uses: actions/upload-artifact@v1
+        with:
+          name: api
+          path: dist/apps/api
   deploy-poster:
     needs: test
     runs-on: macOS-latest
@@ -159,3 +169,8 @@ jobs:
           else
             echo "No changes found! Skipping..."
           fi
+      - name: "Artifacts: Upload"
+        uses: actions/upload-artifact@v1
+        with:
+          name: poster
+          path: dist/apps/poster/exported
