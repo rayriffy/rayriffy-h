@@ -13,7 +13,7 @@ export const onPreBootstrap: GatsbyNode['onPreBootstrap'] = async ({
   // Download file from cache if cache does not exist
   const cacheData = await cache.get('rayriffy-h-hentai-cache')
 
-  if (cacheData === undefined) {
+  if (typeof cacheData !== 'string') {
     reporter.info(`Downloading prefetched data from GitHub Gist`)
     const gistCache = await fetch<FetchedRaw[]>(PREFETCH_GIST)
 

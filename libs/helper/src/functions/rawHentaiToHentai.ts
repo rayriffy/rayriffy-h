@@ -3,7 +3,7 @@ import { RawHentai } from '../@types/RawHentai'
 
 export const rawHentaiToHentai = (hentai: RawHentai): Hentai => {
   return {
-    id: Number(hentai.id),
+    id: hentai.id,
     media_id: hentai.media_id,
     title: hentai.title,
     images: {
