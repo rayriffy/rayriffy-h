@@ -25,6 +25,9 @@ jobs:
       - name: 'Init: Install dependencies'
         run: |
           yarn install
+      - name: 'Nx: List affected projects'
+        run: |
+          yarn affectedProject --list
       - name: 'Nx: Jest'
         run: |
           yarn nx affected:test --base=HEAD~1 --head=HEAD
