@@ -86,7 +86,7 @@
     "@types/jest": "25.2.1",
     "@types/lodash-es": "^4.17.3",
     "@types/node": "~13.11.1",
-    "@types/react": "16.9.17",
+    "@types/react": "16.9.34",
     "@types/react-dom": "16.9.6",
     "@types/react-helmet": "^5.0.15",
     "@types/react-icons": "^3.0.0",
