@@ -7760,10 +7760,10 @@ gatsby-plugin-compile-es6-packages@^2.1.0:
     "@babel/runtime" "^7.0.0"
     regex-escape "^3.4.8"
 
-gatsby-plugin-create-client-paths@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-create-client-paths/-/gatsby-plugin-create-client-paths-2.2.1.tgz#6d34aa2b3c153445feb21a03da9d9c3fe2aae72f"
-  integrity sha512-IY7fI3Gr8oufOUVwCqVdoxmh2C+qbTWqPsn0TTgm0LY1rRXagd3n+c0EBxftazNLq4A669fRJpxkGlpIJVqBCA==
+gatsby-plugin-create-client-paths@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-create-client-paths/-/gatsby-plugin-create-client-paths-2.2.3.tgz#0445d106672f4ebbd7c692d4445876d87538c6b9"
+  integrity sha512-C4ijvN2l74wCjImqtqYq9UGR2AkCTWI9CBDvT85H8swz/KmRmKLKlBA6KlovCnbthnjm1QOvk3m0gTEZI7YhLA==
   dependencies:
     "@babel/runtime" "^7.8.7"
 
