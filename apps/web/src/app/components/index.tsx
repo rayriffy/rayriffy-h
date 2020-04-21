@@ -2,28 +2,28 @@ import React, { useContext, useEffect } from 'react'
 
 import { Helmet } from 'react-helmet'
 
-import { Box } from '@chakra-ui/core'
-
-import { Collection } from '../../store'
+// import { Collection } from '../../store'
 
 import { Header } from './header'
 import { ServiceWorker } from './serviceworker'
 
-import { collectionMigration } from '../service/collectionMigration'
+// import { collectionMigration } from '../service/collectionMigration'
+
+import '../styles/index.css'
 
 export const App: React.FC = props => {
   const { children } = props
 
-  const { 0: collection, 1: setCollection } = useContext(Collection)
+  // const { 0: collection, 1: setCollection } = useContext(Collection)
 
-  useEffect(() => {
-    if (typeof collection === 'string') {
-      setCollection(collectionMigration(collection))
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (typeof collection === 'string') {
+  //     setCollection(collectionMigration(collection))
+  //   }
+  // }, [])
 
   return (
-    <Box pt={12}>
+    <React.Fragment>
       <Helmet
         defaultTitle='Riffy H'
         titleTemplate='%s · Riffy H'
@@ -33,12 +33,16 @@ export const App: React.FC = props => {
           { name: 'referrer', content: 'same-origin' },
         ]}
       />
-      <Box px={[3, 4, 5]}>
+      <div className='bg-gray-200 dark:bg-gray-900 flex flex-col md:flex-row'>
         <Header />
-        <ServiceWorker />
-      </Box>
-      {children}
-    </Box>
+        <main className='container mx-auto pt-4'>
+          <div className='px-3 md:px-4 lg:px-5'>
+            <ServiceWorker />
+          </div>
+          {children}
+        </main>
+      </div>
+    </React.Fragment>
   )
 }
 
