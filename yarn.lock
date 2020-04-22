@@ -15624,6 +15624,21 @@ tailwind@^4.0.0:
     uuidv4 "3.0.1"
     ws "6.2.0"
 
+tailwindcss-filters@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/tailwindcss-filters/-/tailwindcss-filters-3.0.0.tgz#d5d40ca018a54b1aa2bdc57aeb6677529c24c8d8"
+  integrity sha512-xhortqs8fSp9id17EnneYhmruA5DfU6K0zvN6/mgDlEXKaHthjXlR74Ta+4lrX5Lp7tp6YigB09WO0TOWn7VEQ==
+  dependencies:
+    lodash "^4.17.15"
+
+tailwindcss-multi-column@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/tailwindcss-multi-column/-/tailwindcss-multi-column-1.0.2.tgz#630f5ec6586d0846014555aa2c91510c06a8b715"
+  integrity sha512-2hn7WIgzTWfstPz7H0C2dqQTWoOMfUweH3MEYXhydpLpiIs5HWZkuP05vI92lVwEGB/7QVpjWZKGeUgiwbN7Yw==
+  dependencies:
+    flat "^4.1.0"
+    lodash "^4.17.11"
+
 tailwindcss@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-1.2.0.tgz#5df317cebac4f3131f275d258a39da1ba3a0f291"

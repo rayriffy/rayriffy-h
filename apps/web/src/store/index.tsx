@@ -12,7 +12,6 @@ type CollectionContext = [CollectionInterface, Dispatch<SetStateAction<Collectio
 export const Settings = React.createContext<SettingsContext>([
   {
     safemode: true,
-    lefthand: false,
   },
   () => {},
 ])
@@ -28,10 +27,8 @@ export const Context: React.FC = props => {
   // Safe mode
   const { 0: settings, 1: setSettings } = useLocalStorage<{
     safemode: boolean
-    lefthand: boolean
   }>('settings', {
     safemode: true,
-    lefthand: false,
   })
 
   // Subtitle

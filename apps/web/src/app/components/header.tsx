@@ -10,7 +10,7 @@ export const Header = () => {
   const [collapse, setCollapse] = useState(false)
 
   return (
-    <div className="md:flex flex-col md:flex-row md:min-h-screen">
+    <div className="md:flex flex-col md:flex-row md:min-h-screen md:fixed">
       <div className="flex flex-col w-full md:w-64 text-gray-700 bg-white dark:text-gray-200 dark:bg-gray-900 md:dark:bg-gray-800 flex-shrink-0">
         <div className="flex-shrink-0 px-8 py-4 flex flex-row items-center justify-between">
           <div className='flex items-end'>

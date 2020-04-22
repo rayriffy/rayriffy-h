@@ -35,12 +35,14 @@ export const App: React.FC = props => {
       />
       <div className='bg-gray-200 dark:bg-gray-900 flex flex-col md:flex-row'>
         <Header />
-        <main className='container mx-auto pt-4'>
-          <div className='px-3 md:px-4 lg:px-5'>
-            <ServiceWorker />
-          </div>
-          {children}
-        </main>
+        <div className='w-full md:pl-64'>
+          <main className='container mx-auto p-6'>
+            <div className='px-3 md:px-4 lg:px-5'>
+              <ServiceWorker />
+            </div>
+            {children}
+          </main>
+        </div>
       </div>
     </React.Fragment>
   )

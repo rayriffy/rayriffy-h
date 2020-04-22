@@ -1,14 +1,33 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
-
-import { FaBars as MenuIcon, FaHeart as LoveIcon } from 'react-icons/fa'
+import React, { useContext, useState } from 'react'
 
 import { tags as tagStack } from '../../contents/database/tags'
 
 import { Settings } from '../../store'
+import { Switch } from '../../core/components/switch'
 
 interface Props {
   collapse: boolean
   subtitle: string
+}
+
+const Dropdown: React.FC<{ title: React.ReactNode, zIndex?: number }> = props => {
+  const { title, zIndex = 40, children } = props
+
+  const [open, setOpen] = useState<boolean>(false)
+
+  return (
+    <div className="relative">
+      <button onClick={() => setOpen(o => !o)} className="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+        <span>{title}</span>
+        <svg fill="currentColor" viewBox="0 0 20 20" className={`inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform ${open ? 'rotate-180' : 'rotate-0' }`}><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+      </button>
+      <div className={`absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg transition-all duration-200 ${open ? `opacity-100 z-${zIndex}` : 'opacity-0 z-hide'}`}>
+        <div className={`px-2 py-2 bg-white rounded-md shadow-2xl dark:bg-gray-800 ${open ? 'block' : 'hidden'}`}>
+          {children}
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export const Navigation: React.FC<Props> = props => {
@@ -16,7 +35,7 @@ export const Navigation: React.FC<Props> = props => {
 
   const { 0: settings, 1: setSettings } = useContext(Settings)
 
-  const toggleSetting = (key: 'safemode' | 'lefthand') => {
+  const toggleSetting = (key: 'safemode') => {
     setSettings(prev => ({ ...prev, [key]: !prev[key] }))
   }
 
@@ -58,11 +77,9 @@ export const Navigation: React.FC<Props> = props => {
     prefix: o.prefix,
   }))
 
-  const [drop, setDrop] = useState(false)
-
   return (
     <div className="relative">
-      <nav className={`absolute top-0 left-0 right-0 flex-grow md:block px-4 pt-2 pb-3 md:pb-350 md:overflow-y-auto dark:bg-gray-800 md:dark:bg-transparent transition-all duration-200 md:opacity-100 ${collapse ? 'opacity-100 z-20' : 'opacity-0 z-hide md:z-0'}`}>
+      <nav className={`absolute top-0 left-0 right-0 flex-grow md:block px-4 pt-2 pb-3 bg-white dark:bg-gray-800 md:dark:bg-transparent transition-all duration-200 md:opacity-100 ${collapse ? 'opacity-100 z-20' : 'opacity-0 z-hide md:z-0'}`}>
         {menuStacks.map(menu => (
           <div
             key={`app-navigation-${menu.name}`}
@@ -71,25 +88,37 @@ export const Navigation: React.FC<Props> = props => {
             {menu.icon} {menu.name}
           </div>
         ))}
-        <div className="relative">
-          <button onClick={() => setDrop(o => !o)} className="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
-            <span><i className="fas fa-tags pr-1"></i> Tag types</span>
-            <svg fill="currentColor" viewBox="0 0 20 20" className={`inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform ${drop ? 'rotate-180' : 'rotate-0' }`}><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-          </button>
-          <div className={`absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg transition-all duration-200 ${drop ? 'opacity-100 z-50' : 'opacity-0'}`}>
-            <div className="px-2 py-2 bg-white rounded-md shadow-2xl dark:bg-gray-800">
-              {tagStacks.map(tag => (
-                <div
-                  key={`app-navigation-tag-${tag.name}`}
-                  className="capitalize block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                >
-                  {tag.name}
-                </div>
-              ))}
+        <Dropdown
+          title={(
+            <React.Fragment>
+              <i className="fas fa-tags pr-1"></i> Tag types
+            </React.Fragment>
+          )}
+          zIndex={50}
+        >
+          {tagStacks.map(tag => (
+            <div
+              key={`app-navigation-tag-${tag.name}`}
+              className="capitalize block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+            >
+              {tag.name}
+            </div>
+          ))}
+        </Dropdown>
+        <Dropdown
+          title={(
+            <React.Fragment>
+              <i className="fas fa-tools pr-1"></i> Settings
+            </React.Fragment>
+          )}
+        >
+          <div className="flex items-center px-4 py-2">
+            <Switch checked={settings.safemode} onChange={() => toggleSetting('safemode')} className='pr-2' />
+            <div className="text-sm font-semibold">
+              Safe mode
             </div>
           </div>
-        </div>
-        TEST
+        </Dropdown>
       </nav>
     </div>
   )
