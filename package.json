@@ -50,7 +50,7 @@
     "gatsby-plugin-netlify": "^2.2.3",
     "gatsby-plugin-offline": "^3.1.2",
     "gatsby-plugin-preact": "^3.2.1",
-    "gatsby-plugin-react-helmet": "^3.2.2",
+    "gatsby-plugin-react-helmet": "^3.2.4",
     "gatsby-plugin-typescript": "^2.3.3",
     "gatsby-source-filesystem": "^2.2.4",
     "isomorphic-unfetch": "^3.0.0",
