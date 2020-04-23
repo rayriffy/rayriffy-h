@@ -27,7 +27,7 @@ const Component: React.FC<PosterProps> = props => {
   const tagStackParody = filterTagStackByType(tagStack, 'parody')[0]
 
   return (
-    <div className='w-full p-2'>
+    <div className='w-full p-4'>
       <div className='bg-white rounded overflow-hidden text-gray-900 dark:bg-gray-800 dark:text-gray-200 relative'>
         <BluredImage
           height={raw.images.cover.h}

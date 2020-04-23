@@ -19,10 +19,18 @@ const Page: React.FC<Props & LazyComponentProps> = props => {
   }, [])
 
   return (
-    <div className='col-count-1 sm:col-count-2 md:col-count-3 xl:col-count-4 col-gap-0'>
-      {raw.map(hentai => (
-        <Poster key={`poster-${hentai.id}`} raw={hentai} scrollPosition={scrollPosition} />
-      ))}
+    <div className='flex flex-column flex-wrap'>
+      <div className='w-1/3'>
+        {raw.map(hentai => (
+          <Poster key={`poster-${hentai.id}`} raw={hentai} scrollPosition={scrollPosition} />
+        ))}
+        
+      </div>
+      <div className='w-1/3'>
+        {raw.map(hentai => (
+          <Poster key={`poster-${hentai.id}`} raw={hentai} scrollPosition={scrollPosition} />
+        ))}
+      </div>
     </div>
   )
 
