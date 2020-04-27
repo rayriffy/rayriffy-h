@@ -49,7 +49,7 @@
     "gatsby-plugin-manifest": "^2.3.5",
     "gatsby-plugin-netlify": "^2.2.3",
     "gatsby-plugin-offline": "^3.1.4",
-    "gatsby-plugin-preact": "^3.2.3",
+    "gatsby-plugin-preact": "^3.2.4",
     "gatsby-plugin-react-helmet": "^3.2.4",
     "gatsby-plugin-typescript": "^2.3.3",
     "gatsby-source-filesystem": "^2.2.4",
