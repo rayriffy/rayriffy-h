@@ -5,7 +5,7 @@ import { Subtitle } from '../../store'
 import { Navigation } from './navigation'
 
 export const Header = () => {
-  const { 0: subtitle } = useContext(Subtitle)
+  const [subtitle] = useContext(Subtitle)
 
   const [collapse, setCollapse] = useState(false)
 

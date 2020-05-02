@@ -25,17 +25,17 @@ export const Context: React.FC = props => {
   const { children } = props
 
   // Safe mode
-  const { 0: settings, 1: setSettings } = useLocalStorage<{
+  const [settings, setSettings] = useLocalStorage<{
     safemode: boolean
   }>('settings', {
     safemode: true,
   })
 
   // Subtitle
-  const { 0: subtitle, 1: setSubtitle } = useState<string>('init')
+  const [subtitle, setSubtitle] = useState<string>('init')
 
   // Collection
-  const { 0: collection, 1: setCollection } = useLocalStorage<{
+  const [collection, setCollection] = useLocalStorage<{
     version: number
     data: {
       id: number | string

@@ -33,7 +33,7 @@ const Dropdown: React.FC<{ title: React.ReactNode, zIndex?: number }> = props =>
 export const Navigation: React.FC<Props> = props => {
   const { collapse, subtitle } = props
 
-  const { 0: settings, 1: setSettings } = useContext(Settings)
+  const [settings, setSettings] = useContext(Settings)
 
   const toggleSetting = (key: 'safemode') => {
     setSettings(prev => ({ ...prev, [key]: !prev[key] }))

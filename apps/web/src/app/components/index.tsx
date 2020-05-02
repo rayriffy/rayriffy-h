@@ -14,7 +14,7 @@ import '../styles/index.css'
 export const App: React.FC = props => {
   const { children } = props
 
-  // const { 0: collection, 1: setCollection } = useContext(Collection)
+  // const [collection, setCollection] = useContext(Collection)
 
   // useEffect(() => {
   //   if (typeof collection === 'string') {
