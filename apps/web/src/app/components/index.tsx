@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 
 import { Helmet } from 'react-helmet'
 
@@ -36,7 +36,7 @@ export const App: React.FC = props => {
       <div className='bg-gray-200 dark:bg-gray-900 flex flex-col md:flex-row'>
         <Header />
         <div className='w-full md:pl-64'>
-          <main className='container mx-auto p-6'>
+          <main className='container mx-auto py-4 px-6 md:p-6'>
             <div className='px-3 md:px-4 lg:px-5'>
               <ServiceWorker />
             </div>
