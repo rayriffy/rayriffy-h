@@ -33,7 +33,7 @@ export const App: React.FC = props => {
           { name: 'referrer', content: 'same-origin' },
         ]}
       />
-      <div className='bg-gray-200 dark:bg-gray-900 flex flex-col md:flex-row'>
+      <div className='bg-gray-200 dark:bg-gray-900 flex flex-col md:flex-row min-h-full'>
         <Header />
         <div className='w-full md:pl-64'>
           <main className='container mx-auto py-4 px-6 md:p-6'>
