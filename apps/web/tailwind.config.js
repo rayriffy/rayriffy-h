@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 module.exports = {
   theme: {
-    columnCount: [1, 2, 3, 4],
     filter: {
       'none': 'none',
       'blur': 'blur(15px)',
@@ -28,7 +27,6 @@ module.exports = {
   variants: {
     filter: ['responsive', 'hover'],
     backdropFilter: ['responsive', 'hover'],
-    columnCount: ['responsive'],
     display: ['responsive', 'hover', 'group-hover'],
   },
   backgroundColors: {
@@ -36,6 +34,5 @@ module.exports = {
   },
   plugins: [
     require('tailwindcss-filters'),
-    require('tailwindcss-multi-column')(),
   ],
 }

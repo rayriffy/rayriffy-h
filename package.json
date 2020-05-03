@@ -70,7 +70,6 @@
     "tailwind": "^4.0.0",
     "tailwindcss": "^1.2.0",
     "tailwindcss-filters": "^3.0.0",
-    "tailwindcss-multi-column": "^1.0.2",
     "web-api-hooks": "^3.0.1",
     "workerize-loader": "^1.1.0"
   },

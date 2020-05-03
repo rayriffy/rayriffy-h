@@ -38,8 +38,8 @@ const Component: React.FC<PosterProps> = props => {
             raw.images.cover.t === 'p' ? 'png' : raw.images.cover.t === 'j' ? 'jpg' : 'gif'
           }`}
         />
-        <div className='group absolute top-0 bottom-0 left-0 right-0 transition-all duration-200 opacity-0 hover:opacity-100 backdrop-blur bg-black-overlay p-6 text-white flex flex-col justify-between overflow-hidden'>
-          <div className='hidden group-hover:block overflow-hidden'>
+        <div className='group absolute top-0 bottom-0 left-0 right-0 transition-all duration-200 opacity-0 hover:opacity-100 backdrop-blur bg-black-overlay p-6 text-white flex flex-col justify-between overflow-hidden rounded'>
+          <div className='hidden group-hover:block overflow-hidden '>
             <div className='text-xl md:text-lg font-semibold float-left'>{truncate(raw.title.pretty, { length: 70 })}</div>
             <div className='flex flex-wrap pt-4 float-left overflow-hidden'>
               {raw.tags.filter(o => o.type === 'parody').map(tag => (
