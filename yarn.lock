@@ -8011,12 +8011,12 @@ gatsby-plugin-create-client-paths@^2.3.0:
   dependencies:
     "@babel/runtime" "^7.9.2"
 
-gatsby-plugin-emotion@^4.2.3:
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-emotion/-/gatsby-plugin-emotion-4.2.3.tgz#7b0f8c40c428b3926699699c1bce606117c53ace"
-  integrity sha512-RXkfO5kciogZrpF4/jyQwDcF4g2qdh9qDuagRMdRse887MVqKb+VG+x0KRx+0cg7cGiyg8xOfbTplBB+E0Z88A==
+gatsby-plugin-emotion@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-emotion/-/gatsby-plugin-emotion-4.3.0.tgz#3918806731b5df7a094e93e66ddc96acd1da0ae3"
+  integrity sha512-e4Z+xaaRdkmMY1qmTnNPzSJYkP/M9fOYm9mE/2sssDWvH5UwlmDPUMxMuDxDO722mbbB9RGEHxX4ElrsXH7Gcg==
   dependencies:
-    "@babel/runtime" "^7.8.7"
+    "@babel/runtime" "^7.9.2"
     "@emotion/babel-preset-css-prop" "^10.0.27"
 
 gatsby-plugin-manifest@^2.4.1:
