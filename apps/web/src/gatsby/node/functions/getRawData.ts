@@ -27,6 +27,7 @@ export const getRawData = async (
         ...cacheRes,
         data: {
           ...cacheRes.data,
+          exclude,
           raw: rawHentaiToHentai(cacheRes.data.raw),
         },
       }
