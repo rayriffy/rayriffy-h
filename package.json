@@ -35,7 +35,7 @@
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "chrome-aws-lambda": "^2.1.1",
-    "commander": "^5.0.0",
+    "commander": "^5.1.0",
     "cwait": "^1.1.2",
     "document-register-element": "1.14.3",
     "emotion-theming": "^10.0.27",
