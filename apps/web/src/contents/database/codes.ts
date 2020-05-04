@@ -1147,4 +1147,6 @@ export const codes: DatabaseCode[] = [
     code: 105034,
     exclude: Array.from({ length: 550 }).map((_, i) => i+1).filter(o => o <99 || o > 122),
   },
+  297032,
+  288026,
 ]
