@@ -1078,7 +1078,6 @@ export const codes: DatabaseCode[] = [
   155337,
   307759,
   307780,
-  307667,
   307628,
   {
     code: 172018,
