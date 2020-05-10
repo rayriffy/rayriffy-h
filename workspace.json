@@ -174,7 +174,33 @@
             "color": true,
             "commands": [
               {
-                "command": "yarn workspace @rayriffy-h/web gatsby build"
+                "command": "yarn workspace --silent @rayriffy-h/web gatsby build"
+              }
+            ],
+            "cwd": "apps/web",
+            "parallel": false
+          }
+        },
+        "clean": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "color": true,
+            "commands": [
+              {
+                "command": "yarn workspace --silent @rayriffy-h/web gatsby clean"
+              }
+            ],
+            "cwd": "apps/web",
+            "parallel": false
+          }
+        },
+        "start": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "color": true,
+            "commands": [
+              {
+                "command": "yarn workspace --silent @rayriffy-h/web gatsby serve"
               }
             ],
             "cwd": "apps/web",
@@ -187,7 +213,7 @@
             "color": true,
             "commands": [
               {
-                "command": "yarn workspace @rayriffy-h/web gatsby develop -H 0.0.0.0 -p 3000"
+                "command": "yarn workspace --silent @rayriffy-h/web gatsby develop -H 0.0.0.0 -p 3000"
               }
             ],
             "cwd": "apps/web",

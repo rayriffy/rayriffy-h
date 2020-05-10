@@ -75,6 +75,7 @@ jobs:
           yarn install
       - name: "Nx: Build apps/web"
         run: |
+          yarn nx clean web
           yarn nx build web
       - name: "Deploy: Upload to Netlify"
         env:
