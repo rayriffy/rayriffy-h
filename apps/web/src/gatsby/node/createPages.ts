@@ -14,7 +14,7 @@ export const createPages: GatsbyNode['createPages'] = async args => {
   const { createPage } = actions
 
   hentaiListing(args)
-  // hentaiViewing(args)
+  hentaiViewing(args)
   // search(args)
   tagListing(args)
   tagViewing(args)

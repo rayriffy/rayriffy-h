@@ -30,6 +30,7 @@ export const hentaiViewing = async ({ actions, graphql }: CreatePagesArgs) => {
               }
               title {
                 pretty
+                japanese
               }
               media_id
               tags {

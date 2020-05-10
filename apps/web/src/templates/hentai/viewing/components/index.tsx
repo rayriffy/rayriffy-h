@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 
-import { Reader } from '../../../../core/components'
+import { Reader } from '../../../../core/components/reader'
 
 import { Subtitle } from '../../../../store'
 

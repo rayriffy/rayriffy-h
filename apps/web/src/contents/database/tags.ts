@@ -22,7 +22,7 @@ export const tags: DatabaseTag[] = [
     prefix: 'pa',
   },
   {
-    color: 'cyan',
+    color: 'teal',
     name: 'group',
     prefix: 'gr',
   },
