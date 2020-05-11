@@ -8037,12 +8037,12 @@ gatsby-plugin-compile-es6-packages@^2.1.0:
     "@babel/runtime" "^7.0.0"
     regex-escape "^3.4.8"
 
-gatsby-plugin-create-client-paths@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-create-client-paths/-/gatsby-plugin-create-client-paths-2.3.0.tgz#4121e51ae321225671ec838e5ea2a7b1dfd9e84f"
-  integrity sha512-SFr25/g+p4x8iY8j3AMFgVNjTj8QeobrCA6zhQGszMEeEdNgWqmYQdz02jyCBqcnzoZPlV+Nls5Zy0HLrN2cgQ==
+gatsby-plugin-create-client-paths@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-create-client-paths/-/gatsby-plugin-create-client-paths-2.3.1.tgz#4a276f02468f01bcf33cff8e56d11f803a1c8f54"
+  integrity sha512-r8Sa4q0bF3wdjUfkX+jjTg4WYvoIzOqinX14X16i3BN9ThWt9ASy5IRqtaEu/ECI8gBJvwT9KNqJBs9jS9xQTw==
   dependencies:
-    "@babel/runtime" "^7.9.2"
+    "@babel/runtime" "^7.9.6"
 
 gatsby-plugin-emotion@^4.2.3:
   version "4.2.3"
