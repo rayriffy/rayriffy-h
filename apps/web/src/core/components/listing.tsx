@@ -22,7 +22,6 @@ const Component: React.FC<Props & LazyComponentProps> = props => {
   const mediaLg = useMedia('(min-width: 1024px)')
 
   useEffect(() => {
-    console.log('call')
     if (mediaLg) {
       setPosterColumn(columnShuffle(raw, 3))
     } else if (mediaMd) {
