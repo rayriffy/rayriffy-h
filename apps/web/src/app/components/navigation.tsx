@@ -83,9 +83,8 @@ export const Navigation: React.FC<Props> = props => {
     <div className="relative">
       <nav className={`absolute top-0 left-0 right-0 flex-grow md:block px-4 pt-2 pb-3 bg-white dark:bg-gray-800 md:dark:bg-transparent transition-all duration-200 md:opacity-100 ${collapse ? 'opacity-100 z-20' : 'opacity-0 z-hide md:z-0'}`}>
         {menuStacks.map(menu => (
-          <TransparentLink to={`/${menu.prefix}`}>
+          <TransparentLink key={`app-navigation-${menu.name}`} to={`/${menu.prefix}`}>
             <div
-              key={`app-navigation-${menu.name}`}
               className={`${subtitle === menu.name ? 'bg-gray-200 dark:bg-gray-700' : 'bg-transparent dark:bg-transparent'} capitalize block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-300 focus:bg-gray-200 focus:outline-none focus:shadow-outline`}
             >
               {menu.icon} {menu.name}
@@ -101,9 +100,8 @@ export const Navigation: React.FC<Props> = props => {
           zIndex={50}
         >
           {tagStacks.map(tag => (
-            <TransparentLink to={`/${tag.prefix}`}>
+            <TransparentLink key={`app-navigation-tag-${tag.name}`} to={`/${tag.prefix}`}>
               <div
-                key={`app-navigation-tag-${tag.name}`}
                 className={`${subtitle.startsWith(`${tag.name}/`) ? 'bg-gray-200 dark:bg-gray-700' : 'bg-transparent dark:bg-transparent'} capitalize block px-4 py-2 mt-2 text-sm font-semibold rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline`}
               >
                 {tag.name}

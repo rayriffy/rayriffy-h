@@ -21,8 +21,6 @@ const Component: React.FC<ReaderProps & LazyComponentProps> = props => {
 
   const hentai = raw.raw
 
-  console.log(hentai)
-
   return (
     <div className='py-0 md:py-2'>
       <Helmet title={hentai.title.pretty} />
@@ -42,7 +40,7 @@ const Component: React.FC<ReaderProps & LazyComponentProps> = props => {
             />
           </div>
           <div className='pt-4 md:pt-8'>
-            <div className='bg-white dark:bg-gray-800 p-6 rounded-lg'>
+            <div className='bg-white dark:bg-gray-800 p-6 rounded-lg text-white'>
               Share Button
             </div>
           </div>
