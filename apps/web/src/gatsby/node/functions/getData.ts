@@ -19,6 +19,8 @@ export const getData = async (actions: {
   const codeList =
     process.env.NODE_ENV === 'production' ? codes : sampleSize(codes, 20)
 
+  // const codeList = codes
+
   const res = await Promise.all(
     codeList.map(
       queue.wrap<FetchedRaw, DatabaseCode>(

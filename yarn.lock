@@ -16563,6 +16563,14 @@ tailwindcss-filters@^3.0.0:
   dependencies:
     lodash "^4.17.15"
 
+tailwindcss-spinner@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/tailwindcss-spinner/-/tailwindcss-spinner-1.0.0.tgz#5769793e6ce2bab2ce25ad3efeefb64e788bd255"
+  integrity sha512-kPYix6lVf38t7fw9WEBzII6d2rlHaQbCvCO/7sl1BsNwO6dk4hIScxG3eKAzjIv+VTSMv2GGVLckQ2juJS8mdQ==
+  dependencies:
+    flat "^4.1.0"
+    lodash "^4.17.11"
+
 tailwindcss@^1.2.0:
   version "1.4.6"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-1.4.6.tgz#17b37166ccda08d7e7f9ca995ea48ce1e0089700"

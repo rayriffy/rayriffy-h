@@ -6,7 +6,7 @@ import { trackWindowScroll, LazyComponentProps } from 'react-lazy-load-image-com
 import { BluredImage } from '../bluredImage'
 import { Slug } from '../slug'
 import { Collapse } from './collapse'
-// import { Share } from './share'
+import { Share } from './share'
 
 import { getImageUrl } from '@rayriffy-h/helper'
 
@@ -40,8 +40,8 @@ const Component: React.FC<ReaderProps & LazyComponentProps> = props => {
             />
           </div>
           <div className='pt-4 md:pt-8'>
-            <div className='bg-white dark:bg-gray-800 p-6 rounded-lg text-white'>
-              Share Button
+            <div className='bg-white dark:bg-gray-800 p-4 rounded-lg text-white'>
+              <Share hentai={hentai} internal={internal} />
             </div>
           </div>
         </div>

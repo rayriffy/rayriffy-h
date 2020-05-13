@@ -1,29 +1,16 @@
-import React, { useContext } from 'react'
-
-import { FaExternalLinkAlt, FaShareAlt } from 'react-icons/fa'
-
-import {
-  Box,
-  Flex,
-  IconButton,
-  Link,
-  Modal,
-  ModalOverlay,
-  useDisclosure,
-} from '@chakra-ui/core'
+import React, { useContext, useState } from 'react'
 
 import { Collection } from '../../../store'
 
 import { API } from './api'
+import { Modal } from '../modal'
 
 import { ReaderShareProps } from '../../@types'
 
 const Component: React.FC<ReaderShareProps> = props => {
   const { hentai, internal } = props
 
-  const { 0: collection, 1: setCollection } = useContext(Collection)
-
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [collection, setCollection] = useContext(Collection)
 
   const toggleFavorite = () => {
     const isFavorited =
@@ -58,48 +45,30 @@ const Component: React.FC<ReaderShareProps> = props => {
     })
   }
 
+  const [isOpen, setIsOpen] = useState(false)
+
   return (
     <React.Fragment>
-      <Flex alignItems='center'>
-        <Box pr={1}>
-          <IconButton
-            size='sm'
-            aria-label='favorite'
-            variantColor='pink'
-            onClick={toggleFavorite}
-            icon={
-              collection.data.find(o => o.id === hentai.id) === undefined
-                ? 'add'
-                : 'minus'
-            }
-          />
-        </Box>
-        <Box px={1}>
-          <IconButton
-            size='sm'
-            aria-label='share'
-            variantColor='blue'
-            onClick={onOpen}
-            icon={FaShareAlt}
-          />
-        </Box>
-        <Box pl={1}>
-          <Link
-            href={`https://nhentai.net/g/${hentai.id}`}
-            target='_blank'
-            aria-label='NHentai'
-            textDecoration='none'
-            rel='noopener noreferrer'>
-            <IconButton
-              size='sm'
-              aria-label='open external'
-              icon={FaExternalLinkAlt}
-            />
-          </Link>
-        </Box>
-      </Flex>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
+      <div className='flex items-center justify-center'>
+        <div className='px-4'>
+          <div className='rounded bg-pink-500 hover:bg-pink-400 transition-all duration-200 cursor-pointer text-gray-900 dark:text-white w-10 h-10 flex justify-center items-center' onClick={toggleFavorite}>
+            <i className={`fas fa-${collection.data.find(o => Number(o.id) === Number(hentai.id)) === undefined ? 'plus' : 'minus'}`}></i>
+          </div>
+        </div>
+        <div className='px-4'>
+          <div className='rounded bg-blue-500 hover:bg-blue-400 transition-all duration-200 cursor-pointer text-gray-900 dark:text-white w-10 h-10 flex justify-center items-center' onClick={() => setIsOpen(o => !o)}>
+            <i className='fas fa-share-alt'></i>
+          </div>
+        </div>
+        <div className='px-4'>
+          <a href={`https://nhentai.net/g/${hentai.id}`} target='_blank' rel='noopener noreferrer'>
+            <div className='rounded bg-orange-500 hover:bg-orange-400 transition-all duration-200 cursor-pointer text-gray-900 dark:text-white w-10 h-10 flex justify-center items-center'>
+              <i className='far fa-external-link-square-alt'></i>
+            </div>
+          </a>
+        </div>
+      </div>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(o => !o)}>
         <API id={hentai.id} />
       </Modal>
     </React.Fragment>
