@@ -6,7 +6,8 @@ import { BluredImage } from './bluredImage'
 import { Slug } from './slug'
 import { TransparentLink } from './transparentLink'
 
-import { filterTagByType, filterTagStackByType } from '../services/functions'
+import { filterTagByType } from '../services/functions/filterTagByType'
+import { filterTagStackByType } from '../services/functions/filterTagStackByType'
 
 import { tags as allTagStack } from '../../contents/database/tags'
 
