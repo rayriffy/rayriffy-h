@@ -22,13 +22,13 @@ const Page: React.FC<Props> = props => {
       <Pagination
         current={page.current}
         max={page.max}
-        prefix='/'
+        prefix='/listing/'
       />
       <Listing raw={raw} />
       <Pagination
         current={page.current}
         max={page.max}
-        prefix='/'
+        prefix='/listing/'
       />
     </React.Fragment>
   )
