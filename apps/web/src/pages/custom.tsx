@@ -15,7 +15,7 @@ const Page: React.FC = props => {
 
   return (
     <div className='flex justify-center'>
-      <div className ='w-10/12 md:w-8/12 lg:w-6/12 xl:w-4/12 bg-white dark:bg-gray-800 rounded p-4 text-gray-800 dark:text-white'>
+      <div className ='w-full md:w-8/12 lg:w-7/12 xl:w-4/12 bg-white dark:bg-gray-800 rounded p-4 text-gray-800 dark:text-white'>
         <div className='text-2xl font-semibold pb-1'>Custom</div>
         <div className='text-sm text-gray-600 dark:text-gray-400 pb-2'>
           You can navigate into your faviorite hentai by type 6 digit number below or type URL <b className='text-gray-700 dark:text-gray-300'>h.rayriffy.com/g/:id</b>
