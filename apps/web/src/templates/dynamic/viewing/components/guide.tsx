@@ -1,33 +1,17 @@
 import React from 'react'
 
-import { Box, Flex, Image, Text, useColorMode } from '@chakra-ui/core'
-
-import { Heading } from '../../../../core/components'
-
 const Component: React.FC = () => {
-  const { colorMode } = useColorMode()
-
   return (
-    <Flex justifyContent='center'>
-      <Box
-        borderRadius={8}
-        border='1px solid #e8e8e8'
-        overflow='hidden'
-        width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}
-        bg={colorMode === 'dark' ? 'gray.700' : undefined}>
-        <Image
-          m={0}
-          width='100%'
-          src='https://media.giphy.com/media/OR0Ob6r1nMetO/giphy-downsized-large.gif'
-        />
-        <Box p={3}>
-          <Heading size='lg'>Usage</Heading>
-          <Text fontSize={[14, 15]} pt={2} color='gray.500'>
-            Replace <b>nhentai.net</b>/g/:id with <b>h.rayriffy.com</b>/g/:id
-          </Text>
-        </Box>
-      </Box>
-    </Flex>
+    <div className='flex justify-center'>
+      <div className='w-full md:w-8/12 lg:4/12 bg-white dark:bg-gray-800 rounded-lg overflow-hidden'>
+        <video src='https://media.tenor.com/videos/fac11abb791e244209f249b2b80aba5d/mp4' loop autoPlay className='w-full h-auto rounded-t-lg' />
+        <div className='p-6'>
+          <div className='text-gray-900 dark:text-white text-2xl font-semibold'>Usage</div>
+          <div className='text-gray-900 dark:text-white text-md pt-1'>This should take a while...</div>
+          <div className='text-gray-900 dark:text-white text-md'>Replace <b>nhentai.net</b>/g/:id with <b>h.rayriffy.com</b>/g/:id</div>
+        </div>
+      </div>
+    </div>
   )
 }
 
