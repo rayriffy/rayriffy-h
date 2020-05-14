@@ -20,7 +20,7 @@ export const Modal: React.FC<ModalProps> = props => {
             <i className='fas fa-times'></i>
           </div>
         </div>
-        {children}
+        {isOpen ? children : null}
       </div>
     </div>
   )
