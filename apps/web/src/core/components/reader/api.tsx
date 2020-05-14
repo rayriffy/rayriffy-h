@@ -3,30 +3,17 @@ import React, { useEffect, useState } from 'react'
 import { fetch } from '@rayriffy-h/fetch'
 import { APIResponse } from '@rayriffy-h/helper'
 
+import { useClipboard } from '../../services/functions/useClipboard'
+
 import { ReaderAPIProps } from '../../@types'
-
-// const LoadContainer = styled(Flex)<{ border: string }>(props => ({
-//   position: 'relative',
-//   width: '100%',
-//   paddingTop: '100%',
-//   overflow: 'hidden',
-//   borderRadius: 10,
-//   border: `1px solid ${props.border}`,
-// }))
-
-// const LoadContent = styled(Box)(() => ({
-//   position: 'absolute',
-//   top: 0,
-//   left: 0,
-//   bottom: 0,
-//   right: 0,
-// }))
 
 const Component: React.FC<ReaderAPIProps> = props => {
   const { id } = props
 
   const [image, setImage] = useState<string>('')
   const [error, setError] = useState<boolean>(false)
+
+  const { onCopy, hasCopied } = useClipboard(id.toString())
 
   useEffect(() => {
     fetch<APIResponse<string>>(`https://h.api.rayriffy.com/v1/encode/${id}`)
@@ -39,13 +26,15 @@ const Component: React.FC<ReaderAPIProps> = props => {
   })
 
   return (
-    <div className='text-gray-900 dark:text-white px-6 py-4'>
-      <div className='flex pb-4'>
-        <div className='text-2xl font-semibold'>Share</div>
-        <div className='mx-auto' />
-        <div>x</div>
-      </div>
-      {image === '' ? (
+    <React.Fragment>
+      {error ? (
+        <div className='py-8'>
+          <div className='flex justify-center'>
+            <i className='fas fa-exclamation-triangle text-2xl'></i>
+          </div>
+          <div className='pt-4 text-center'>Failed to load image</div>
+        </div>
+      ) : image === '' ? (
         <div className='py-8'>
           <div className='spinner' />
           <div className='pt-8 text-center'>Loading...</div>
@@ -57,9 +46,21 @@ const Component: React.FC<ReaderAPIProps> = props => {
               <img src={image} className='w-full' alt='cover' />
             </div>
           </div>
+          <div className='flex pt-6 pb-2 px-8 md:px-16 lg:px-32 xl:px-48'>
+            <div className='w-1/2 pr-1'>
+              <a href={image} download={`encoded-${id}.jpeg`} aria-label='Download'>
+                <div className='bg-blue-500 hover:bg-blue-400 rounded py-2 text-white font-semibold text-center cursor-pointer'>Download</div>
+              </a>
+            </div>
+            <div className='w-1/2 pl-1'>
+              <div className='bg-teal-500 hover:bg-teal-400 rounded py-2 text-white font-semibold text-center cursor-pointer' onClick={onCopy}>
+                {hasCopied ? 'Copied' : 'Copy ID'}
+              </div>
+            </div>
+          </div>
         </div>
       )}
-    </div>
+    </React.Fragment>
   )
 }
 

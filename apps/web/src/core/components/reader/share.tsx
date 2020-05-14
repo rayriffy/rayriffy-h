@@ -51,24 +51,24 @@ const Component: React.FC<ReaderShareProps> = props => {
     <React.Fragment>
       <div className='flex items-center justify-center'>
         <div className='px-4'>
-          <div className='rounded bg-pink-500 hover:bg-pink-400 transition-all duration-200 cursor-pointer text-gray-900 dark:text-white w-10 h-10 flex justify-center items-center' onClick={toggleFavorite}>
+          <div className='rounded bg-pink-500 hover:bg-pink-400 cursor-pointer text-white w-10 h-10 flex justify-center items-center' onClick={toggleFavorite}>
             <i className={`fas fa-${collection.data.find(o => Number(o.id) === Number(hentai.id)) === undefined ? 'plus' : 'minus'}`}></i>
           </div>
         </div>
         <div className='px-4'>
-          <div className='rounded bg-blue-500 hover:bg-blue-400 transition-all duration-200 cursor-pointer text-gray-900 dark:text-white w-10 h-10 flex justify-center items-center' onClick={() => setIsOpen(o => !o)}>
+          <div className='rounded bg-blue-500 hover:bg-blue-400 cursor-pointer text-white w-10 h-10 flex justify-center items-center' onClick={() => setIsOpen(o => !o)}>
             <i className='fas fa-share-alt'></i>
           </div>
         </div>
         <div className='px-4'>
           <a href={`https://nhentai.net/g/${hentai.id}`} target='_blank' rel='noopener noreferrer'>
-            <div className='rounded bg-orange-500 hover:bg-orange-400 transition-all duration-200 cursor-pointer text-gray-900 dark:text-white w-10 h-10 flex justify-center items-center'>
-              <i className='far fa-external-link-square-alt'></i>
+            <div className='rounded bg-orange-500 hover:bg-orange-400 cursor-pointer text-white w-10 h-10 flex justify-center items-center'>
+              <i className='fas fa-external-link-square-alt'></i>
             </div>
           </a>
         </div>
       </div>
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(o => !o)}>
+      <Modal isOpen={isOpen} title='Share' onClose={() => setIsOpen(o => !o)}>
         <API id={hentai.id} />
       </Modal>
     </React.Fragment>
