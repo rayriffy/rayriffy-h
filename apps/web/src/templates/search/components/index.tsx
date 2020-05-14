@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 
-import { Search } from '../../../core/components'
+import { Search } from '../../../core/components/search'
 
 import { Subtitle } from '../../../store'
 
