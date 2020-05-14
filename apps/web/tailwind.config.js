@@ -35,6 +35,7 @@ module.exports = {
     filter: ['responsive', 'hover'],
     backdropFilter: ['responsive', 'hover'],
     display: ['responsive', 'hover', 'group-hover'],
+    visibility: ['responsive', 'hover', 'focus', 'group-hover'],
   },
   backgroundColors: {
     black: '#000'

@@ -38,34 +38,38 @@ const Component: React.FC<PosterProps> = props => {
             raw.images.cover.t === 'p' ? 'png' : raw.images.cover.t === 'j' ? 'jpg' : 'gif'
           }`}
         />
-        <div className='group absolute top-0 bottom-0 left-0 right-0 transition-all duration-200 opacity-0 hover:opacity-100 hover:backdrop-blur bg-black-overlay p-6 text-white flex flex-col justify-between overflow-hidden rounded'>
-          <div className='hidden group-hover:block overflow-hidden '>
-            <div className='text-xl md:text-lg font-semibold float-left'>{truncate(raw.title.pretty, { length: 70 })}</div>
-            <div className='flex flex-wrap pt-4 float-left overflow-hidden'>
-              {raw.tags.filter(o => o.type === 'parody').map(tag => (
-                <Slug
-                  key={`slug-parody-${tag.id}`}
-                  color={tagStackParody.color}
-                  link={`/${tagStackParody.prefix}/${tag.id}`}
-                  title={tag.name}
-                />
-              ))}
-              {raw.tags.filter(o => o.type === 'tag').map((tag, i) => i < 8 ? (
-                <Slug
-                  key={`slug-tag-${tag.id}`}
-                  color={tagStackTag.color}
-                  link={`/${tagStackTag.prefix}/${tag.id}`}
-                  title={tag.name}
-                />
-              ) : null)}
-              {raw.tags.filter(o => o.type === 'tag').length > 8 ? <Slug color='blue' title={`...${raw.tags.filter(o => o.type === 'tag').length - 8} MORE`} /> : null}
+        <div className='absolute top-0 bottom-0 left-0 right-0 rounded group transition-all duration-200 opacity-0 hover:opacity-100 hover:backdrop-blur bg-black-overlay p-6 text-white'>
+          <div className='invisible group-hover:visible h-full flex flex-col justify-between overflow-hidden'>
+            <div className='overflow-hidden'>
+              <div className='text-xl md:text-lg font-semibold float-left'>{truncate(raw.title.pretty, { length: 70 })}</div>
+              <div className='flex flex-wrap pt-4 float-left overflow-hidden'>
+                {raw.tags.filter(o => o.type === 'parody').map(tag => (
+                  <Slug
+                    key={`slug-parody-${tag.id}`}
+                    color={tagStackParody.color}
+                    link={`/${tagStackParody.prefix}/${tag.id}`}
+                    title={tag.name}
+                  />
+                ))}
+                {raw.tags.filter(o => o.type === 'tag').map((tag, i) => i < 8 ? (
+                  <Slug
+                    key={`slug-tag-${tag.id}`}
+                    color={tagStackTag.color}
+                    link={`/${tagStackTag.prefix}/${tag.id}`}
+                    title={tag.name}
+                  />
+                ) : null)}
+                {raw.tags.filter(o => o.type === 'tag').length > 8 ? <Slug color='blue' title={`...${raw.tags.filter(o => o.type === 'tag').length - 8} MORE`} /> : null}
+              </div>
+            </div>
+            <div className='pt-4'>
+              <TransparentLink to={`/${internal ? 'r' : 'g'}/${raw.id}`}>
+                <button className="backdrop-blur-heavy w-full bg-white-a40 text-white font-bold py-3 px-4 rounded inline-block float-left">
+                  READ <i className="fas fa-angle-right pl-1"></i>
+                </button>
+              </TransparentLink>
             </div>
           </div>
-          <TransparentLink to={`/${internal ? 'r' : 'g'}/${raw.id}`}>
-            <button className="backdrop-blur-heavy w-full bg-white-a40 text-white font-bold py-3 px-4 rounded hidden group-hover:inline-block float-left">
-              READ <i className="fas fa-angle-right pl-1"></i>
-            </button>
-          </TransparentLink>
         </div>
       </div>
     </div>
