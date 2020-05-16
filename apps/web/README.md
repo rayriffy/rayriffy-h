@@ -1,4 +1,4 @@
-app/web
+apps/web
 =======
 
 ## Documentation is located [here](../../#appsweb)
