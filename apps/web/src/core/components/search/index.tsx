@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import { chunk, get } from 'lodash-es'
 
-import { getSearch, rawHentaiToHentai } from '@rayriffy-h/helper'
+import { getSearch } from '@rayriffy-h/helper'
 
 import * as searchHentaiWorker from '../../services/worker/searchHentai.worker'
 
@@ -43,9 +43,15 @@ export const Search: React.FC<SearchProps> = props => {
       setRenderedRaw(get(chunk(raws, skip), page - 1, []))
     } else if (mode === 'nh') {
       setLoading(true)
-      const res = await getSearch(query, page)
-      setRenderedRaw(res.raw)
-      setLoading(false)
+      try {
+        const res = await getSearch(query, page)
+        setPage(page)
+        setRenderedRaw(res.raw)
+      } catch {
+        setError('Unable to retrieve data from server')
+      } finally {
+        setLoading(false)
+      }
     }
   }
 
@@ -56,10 +62,11 @@ export const Search: React.FC<SearchProps> = props => {
     } else {
       setLoading(true)
       setFirst(false)
+      setError(null)
       setQuery(input)
 
       if (mode === 'list') {
-        const res = await searchHentai(query, raw)
+        const res = await searchHentai(input, raw)
         setMaxPage(chunk(res, skip).length)
         setRes(res)
       } else if (mode === 'nh') {
@@ -97,7 +104,7 @@ export const Search: React.FC<SearchProps> = props => {
               className='bg-white dark:bg-gray-900 focus:outline-none focus:shadow-outline border border-gray-300 dark:border-gray-600 rounded py-2 px-4 block w-full appearance-none leading-normal text-gray-900 dark:text-white'
               type='search'
               placeholder='Search'
-              value={query}
+              value={input}
               onChange={e => {
                 const value = e.target.value
                 setInput(value)
@@ -165,72 +172,3 @@ export const Search: React.FC<SearchProps> = props => {
     </React.Fragment>
   )
 }
-
-//   return (
-//     <React.Fragment>
-//       <Flex justifyContent='center' pt={3}>
-//         <Flex
-//           width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}
-//           justifyContent='center'>
-//           <Input
-//             placeholder='Search'
-//             value={query}
-//             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-//               setQuery(e.target.value)
-//             }
-//             color={colorMode === 'dark' ? 'white' : undefined}
-//             _placeholder={{
-//               color: colorMode === 'dark' ? 'white' : 'gray.500',
-//             }}
-//             onKeyDown={(e: { key: string }) =>
-//               e.key === 'Enter' ? searchButtonHandler() : null
-//             }
-//           />
-//           <Box mx={2} />
-//           <IconButton
-//             aria-label='Search'
-//             icon='search'
-//             variantColor='blue'
-//             onClick={() => searchButtonHandler()}
-//           />
-//         </Flex>
-//       </Flex>
-//       <Flex justifyContent='center'>
-//         <Box width={22 / 24}>
-//           {isEmpty(res) ? (
-//             <Heading size='lg' textAlign='center' pt={6}>
-//               No result
-//             </Heading>
-//           ) : (
-//             <React.Fragment>
-//               <Flex justifyContent='center'>
-//                 <Box width={18 / 24} py={6}>
-//                   <Pagination
-//                     current={page}
-//                     max={chunk(res, skip).length}
-//                     onChange={page => renderPage(res, page)}
-//                   />
-//                 </Box>
-//               </Flex>
-//               <Flex justifyContent='center'>
-//                 <Flex width={22 / 24} flexWrap='wrap' alignItems='center'>
-//                   {renderedRaw.map(hentai => (
-//                     <Poster key={`poster-${hentai.id}`} raw={hentai} />
-//                   ))}
-//                 </Flex>
-//               </Flex>
-//               <Flex justifyContent='center'>
-//                 <Box width={18 / 24} py={6}>
-//                   <Pagination
-//                     current={page}
-//                     max={chunk(res, skip).length}
-//                     onChange={page => renderPage(res, page)}
-//                   />
-//                 </Box>
-//               </Flex>
-//             </React.Fragment>
-//           )}
-//         </Box>
-//       </Flex>
-//     </React.Fragment>
-//   )
