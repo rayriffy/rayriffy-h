@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 
+import { Helmet } from 'react-helmet'
+
 import { Listing } from '../../../../core/components/listing'
 import { Pagination } from '../../../../core/components/pagination'
 
@@ -19,6 +21,7 @@ const Page: React.FC<Props> = props => {
 
   return (
     <React.Fragment>
+      <Helmet title='Listing' />
       <Pagination
         current={page.current}
         max={page.max}

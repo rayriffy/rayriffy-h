@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 
+import { Helmet } from 'react-helmet'
+
 import { Search } from '../../../core/components/search'
 
 import { Subtitle } from '../../../store'
@@ -15,7 +17,12 @@ const Page: React.FC<Props> = props => {
     setSubtitle(`search`)
   }, [])
 
-  return <Search {...pageContext} />
+  return (
+    <React.Fragment>
+      <Helmet title='Search' />
+      <Search {...pageContext} />
+    </React.Fragment>
+  )
 }
 
 export default Page
