@@ -1,25 +1,32 @@
 import React, { useEffect, useState } from 'react'
 
-import { chunk, get, isEmpty } from 'lodash-es'
+import { chunk, get } from 'lodash-es'
 
-// import { Box, Flex, IconButton, Input, useColorMode } from '@chakra-ui/core'
+import { getSearch } from '@rayriffy-h/helper'
 
 import * as searchHentaiWorker from '../../services/worker/searchHentai.worker'
 
-import { Poster } from '../poster'
-// import { Pagination } from './pagination'
+import { Listing } from '../listing'
+import { Pagination } from './pagination'
 
 import { Hentai } from '@rayriffy-h/helper'
 import { SearchProps } from '../../@types'
 
 export const Search: React.FC<SearchProps> = props => {
-  const { raw, skip, showOnEmptyQuery = false } = props
+  const { raw, skip, showOnEmptyQuery = false, modeLock } = props
 
   const [query, setQuery] = useState<string>('')
+  const [first, setFirst] = useState<boolean>(true)
   const [res, setRes] = useState<Hentai[]>(showOnEmptyQuery ? raw : [])
 
-  const [page, setPage ] = useState<number>(1)
-  const [renderedRaw, setRenderedRaw ] = useState<Hentai[]>([])
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const [page, setPage] = useState<number>(1)
+  const [maxPage, setMaxPage] = useState<number>(5)
+  const [renderedRaw, setRenderedRaw] = useState<Hentai[]>([])
+
+  const [mode, setMode] = useState<'list' | 'nh'>(modeLock === undefined ? 'list' : modeLock)
 
   const { searchHentai } =
     typeof window === 'object'
@@ -27,30 +34,126 @@ export const Search: React.FC<SearchProps> = props => {
       ? ((searchHentaiWorker as any)() as typeof searchHentaiWorker)
       : { searchHentai: null }
 
-  const renderPage = (raws: Hentai[], page: number) => {
-    setPage(page)
-    setRenderedRaw(get(chunk(raws, skip), page - 1))
+  const renderPage = async (raws: Hentai[], page: number) => {
+    if (mode === 'list') {
+      setPage(page)
+      console.log('chunk', chunk(raws, skip))
+      console.log('get chunk', get(chunk(raws, skip), page - 1, []))
+      setRenderedRaw(get(chunk(raws, skip), page - 1, []))
+    } else if (mode === 'nh') {
+      setLoading(true)
+      // Code search and add result
+      setRenderedRaw([])
+      setLoading(false)
+    }
   }
 
-  const searchButtonHandler = () => {
+  const searchHandler = async () => {
     if (query === '') {
-      setRes(showOnEmptyQuery ? raw : [])
+      setRes(showOnEmptyQuery && mode === 'list' ? raw : [])
     } else {
-      if (searchHentai !== null) {
-        searchHentai(query, raw).then(results => setRes(results))
+      setLoading(true)
+      setFirst(false)
+
+      if (mode === 'list') {
+        const result = await searchHentai(query, raw)
+        setMaxPage(chunk(result, skip).length)
+        setRes(result)
+      } else if (mode === 'nh') {
+        // Code
       }
+
+      setLoading(false)
     }
   }
 
   useEffect(() => {
-    if (!isEmpty(res)) {
+    if (res.length !== 0) {
       setPage(1)
       renderPage(res, 1)
     }
   }, [res])
 
+  useEffect(() => {
+    setRes(showOnEmptyQuery && mode === 'list' ? raw : [])
+    setFirst(true)
+  }, [mode])
+
   return (
-    <>OK</>
+    <React.Fragment>
+      <div className='flex justify-center pt-3'>
+        <div className='w-10/12 md:w-9/12 lg:w-7/12 xl:w-5/12'>
+          <div className='flex justify-center items-center'>
+            <input
+              className='bg-white dark:bg-gray-900 focus:outline-none focus:shadow-outline border border-gray-300 dark:border-gray-600 rounded py-2 px-4 block w-full appearance-none leading-normal text-gray-900 dark:text-white'
+              type='search'
+              placeholder='Search'
+              value={query}
+              onChange={e => {
+                const value = e.target.value
+                setQuery(value)
+              }} />
+              <div className='px-2' />
+              <button className='bg-blue-500 hover:bg-blue-700 w-12 h-10 rounded text-white' onClick={searchHandler}>
+                <i className='fas fa-search'></i>
+              </button>
+            </div>
+            {modeLock === undefined ? (
+              <div className='pt-4'>
+                <div className='border border-gray-600 dark:border-gray-600 rounded flex overflow-hidden'>
+                  <div
+                    className={`border-r border-gray-600 dark:border-gray-600 w-1/2 py-2 px-4 cursor-pointer flex justify-center items-center ${mode === 'list' ? 'text-gray-200 dark:text-gray-900 bg-gray-600 dark:bg-gray-300': 'text-gray-600 dark:text-gray-300 bg-gray-200 dark:bg-gray-900'}`}
+                    onClick={() => setMode('list')}>
+                    Listing
+                  </div>
+                  <div
+                    className={`w-1/2 py-2 px-4 cursor-pointer flex justify-center items-center ${mode === 'nh' ? 'text-gray-200 dark:text-gray-900 bg-gray-600 dark:bg-gray-300': 'text-gray-600 dark:text-gray-300 bg-gray-200 dark:bg-gray-900'}`}
+                    onClick={() => setMode('nh')}>
+                    NH
+                  </div>
+                </div>
+              </div>
+            ) : null}
+        </div>
+      </div>
+      <div className='pt-4'>
+        {loading ? (
+          <div className='pt-12 text-gray-900 dark:text-white'>
+            <div className='spinner pb-6'></div>
+            <div className='text-center pt-4'>Loading...</div>
+          </div>
+        ) : error !== null ? (
+          <div className='pt-12 text-gray-900 dark:text-white text-center'>
+            <div className='text-xl pt-4 font-semibold'>Failed</div>
+            <div className='pt-4'>{error}</div>
+          </div>
+        ) : first || query === '' ? (
+          <div className='pt-12 text-center'>
+            <div className='text-xl font-semibold text-gray-900 dark:text-white'>Search</div>
+            <div className='text-gray-500 dark:text-gray-500'>Type your query in the box and search!</div>
+          </div>
+        ) : res.length === 0 ? (
+          <div className='pt-12 text-center'>
+            <div className='text-xl font-semibold text-gray-900 dark:text-white'>No result</div>
+            <div className='text-gray-500 dark:text-gray-500'>No any result related to the query</div>
+          </div>
+        ) : (
+          <React.Fragment>
+            <Pagination
+              current={page}
+              max={maxPage}
+              onChange={page => renderPage(res, page)}
+            />
+            <Listing raw={renderedRaw} />
+            <Pagination
+              current={page}
+              max={maxPage}
+              onChange={page => renderPage(res, page)}
+            />
+          </React.Fragment>
+        )}
+      </div>
+    </React.Fragment>
   )
 }
 

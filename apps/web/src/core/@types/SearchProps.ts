@@ -4,4 +4,5 @@ export interface SearchProps {
   raw: Hentai[]
   skip: number
   showOnEmptyQuery?: boolean
+  modeLock?: 'list' | 'nh'
 }

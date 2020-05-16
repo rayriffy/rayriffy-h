@@ -11,10 +11,11 @@ import { Hentai } from '@rayriffy-h/helper'
 
 interface Props {
   raw: Hentai[]
+  internal?: boolean
 }
 
 const Component: React.FC<Props & LazyComponentProps> = props => {
-  const { raw, scrollPosition } = props
+  const { raw, scrollPosition, internal = true } = props
 
   const [posterColumn, setPosterColumn] = useState<Hentai[][]>([[], [], []])
 
@@ -35,17 +36,17 @@ const Component: React.FC<Props & LazyComponentProps> = props => {
     <div className='flex flex-column flex-wrap'>
       <div className='w-full md:w-1/2 lg:w-1/3'>
         {posterColumn[0].map(hentai => (
-          <Poster key={`poster-${hentai.id}`} raw={hentai} scrollPosition={scrollPosition} />
+          <Poster key={`poster-${hentai.id}`} raw={hentai} {...{scrollPosition, internal}} />
         ))}
       </div>
       <div className='hidden md:block md:w-1/2 lg:w-1/3'>
         {posterColumn[1].map(hentai => (
-          <Poster key={`poster-${hentai.id}`} raw={hentai} scrollPosition={scrollPosition} />
+          <Poster key={`poster-${hentai.id}`} raw={hentai} {...{scrollPosition, internal}} />
         ))}
       </div>
       <div className='hidden lg:block lg:w-1/3'>
         {posterColumn[2].map(hentai => (
-          <Poster key={`poster-${hentai.id}`} raw={hentai} scrollPosition={scrollPosition} />
+          <Poster key={`poster-${hentai.id}`} raw={hentai} {...{scrollPosition, internal}} />
         ))}
       </div>
     </div>

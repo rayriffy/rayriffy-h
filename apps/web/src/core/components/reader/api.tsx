@@ -49,11 +49,11 @@ const Component: React.FC<ReaderAPIProps> = props => {
           <div className='flex pt-6 pb-2 px-8 md:px-16 lg:px-32 xl:px-48'>
             <div className='w-1/2 pr-1'>
               <a href={image} download={`encoded-${id}.jpeg`} aria-label='Download'>
-                <div className='bg-blue-500 hover:bg-blue-400 rounded py-2 text-white font-semibold text-center cursor-pointer'>Download</div>
+                <div className='bg-blue-500 hover:bg-blue-700 rounded py-2 text-white font-semibold text-center cursor-pointer'>Download</div>
               </a>
             </div>
             <div className='w-1/2 pl-1'>
-              <div className='bg-teal-500 hover:bg-teal-400 rounded py-2 text-white font-semibold text-center cursor-pointer' onClick={onCopy}>
+              <div className='bg-teal-500 hover:bg-teal-700 rounded py-2 text-white font-semibold text-center cursor-pointer' onClick={onCopy}>
                 {hasCopied ? 'Copied' : 'Copy ID'}
               </div>
             </div>
