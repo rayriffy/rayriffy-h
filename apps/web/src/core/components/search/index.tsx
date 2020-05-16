@@ -7,7 +7,7 @@ import { getSearch } from '@rayriffy-h/helper'
 import * as searchHentaiWorker from '../../services/worker/searchHentai.worker'
 
 import { Listing } from '../listing'
-import { Pagination } from './pagination'
+import { Pagination } from '../pagination'
 
 import { Hentai } from '@rayriffy-h/helper'
 import { SearchProps } from '../../@types'
@@ -125,7 +125,7 @@ export const Search: React.FC<SearchProps> = props => {
                   <div
                     className={`w-1/2 py-2 px-4 cursor-pointer flex justify-center items-center ${mode === 'nh' ? 'text-gray-200 dark:text-gray-900 bg-gray-600 dark:bg-gray-300': 'text-gray-600 dark:text-gray-300 bg-gray-200 dark:bg-gray-900'}`}
                     onClick={() => setMode('nh')}>
-                    NHentai
+                    nhentai
                   </div>
                 </div>
               </div>
@@ -158,12 +158,14 @@ export const Search: React.FC<SearchProps> = props => {
             <Pagination
               current={page}
               max={maxPage}
+              link={false}
               onChange={page => renderPage(res, page)}
             />
             <Listing raw={renderedRaw} />
             <Pagination
               current={page}
               max={maxPage}
+              link={false}
               onChange={page => renderPage(res, page)}
             />
           </React.Fragment>
