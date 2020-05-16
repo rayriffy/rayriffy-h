@@ -62,7 +62,7 @@ const Page: React.FC = props => {
             link={false}
             onChange={page => renderPage(page)}
           />
-          <Listing raw={res} />
+          <Listing internal={false} raw={res} />
           <Pagination
             current={page}
             max={maxPage}

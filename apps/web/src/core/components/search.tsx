@@ -161,7 +161,7 @@ export const Search: React.FC<SearchProps> = props => {
               link={false}
               onChange={page => renderPage(res, page)}
             />
-            <Listing raw={renderedRaw} />
+            <Listing internal={mode === 'list'} raw={renderedRaw} />
             <Pagination
               current={page}
               max={maxPage}
