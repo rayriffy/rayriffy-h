@@ -4,13 +4,13 @@ import { chunk, get } from 'lodash-es'
 
 import { getSearch } from '@rayriffy-h/helper'
 
-import * as searchHentaiWorker from '../../services/worker/searchHentai.worker'
+import * as searchHentaiWorker from '../services/worker/searchHentai.worker'
 
-import { Listing } from '../listing'
-import { Pagination } from '../pagination'
+import { Listing } from './listing'
+import { Pagination } from './pagination'
 
 import { Hentai } from '@rayriffy-h/helper'
-import { SearchProps } from '../../@types'
+import { SearchProps } from '../@types'
 
 export const Search: React.FC<SearchProps> = props => {
   const { raw, skip, showOnEmptyQuery = false, modeLock } = props
