@@ -29,7 +29,7 @@ const config: GatsbyConfig = {
     },
     {
       resolve: `gatsby-plugin-create-client-paths`,
-      options: { prefixes: [`/g/*`] },
+      options: { prefixes: [`/g/*`, `/p/*`] },
     },
     {
       resolve: `gatsby-plugin-manifest`,
