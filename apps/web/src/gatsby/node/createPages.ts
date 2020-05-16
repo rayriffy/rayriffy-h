@@ -20,15 +20,6 @@ export const createPages: GatsbyNode['createPages'] = async args => {
   tagViewing(args)
 
   // /**
-  //  * Create about page
-  //  */
-  // createPage({
-  //   path: `/about`,
-  //   component: path.resolve(`./src/templates/about/components/index.tsx`),
-  //   context: {},
-  // })
-
-  // /**
   //  * Create collection page
   //  */
   // createPage({
