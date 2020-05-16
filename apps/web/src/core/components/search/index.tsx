@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import { chunk, get } from 'lodash-es'
 
-import { getSearch } from '@rayriffy-h/helper'
+import { getSearch, rawHentaiToHentai } from '@rayriffy-h/helper'
 
 import * as searchHentaiWorker from '../../services/worker/searchHentai.worker'
 
@@ -15,6 +15,7 @@ import { SearchProps } from '../../@types'
 export const Search: React.FC<SearchProps> = props => {
   const { raw, skip, showOnEmptyQuery = false, modeLock } = props
 
+  const [input, setInput] = useState<string>('')
   const [query, setQuery] = useState<string>('')
   const [first, setFirst] = useState<boolean>(true)
   const [res, setRes] = useState<Hentai[]>(showOnEmptyQuery ? raw : [])
@@ -42,25 +43,33 @@ export const Search: React.FC<SearchProps> = props => {
       setRenderedRaw(get(chunk(raws, skip), page - 1, []))
     } else if (mode === 'nh') {
       setLoading(true)
-      // Code search and add result
-      setRenderedRaw([])
+      const res = await getSearch(query, page)
+      setRenderedRaw(res.raw)
       setLoading(false)
     }
   }
 
   const searchHandler = async () => {
-    if (query === '') {
+    if (input === '') {
+      setQuery('')
       setRes(showOnEmptyQuery && mode === 'list' ? raw : [])
     } else {
       setLoading(true)
       setFirst(false)
+      setQuery(input)
 
       if (mode === 'list') {
-        const result = await searchHentai(query, raw)
-        setMaxPage(chunk(result, skip).length)
-        setRes(result)
+        const res = await searchHentai(query, raw)
+        setMaxPage(chunk(res, skip).length)
+        setRes(res)
       } else if (mode === 'nh') {
-        // Code
+        const res = await getSearch(input, 1)
+        setMaxPage(res.maxPage)
+        setRes(res.raw)
+
+        // Manually render first page
+        setPage(1)
+        setRenderedRaw(res.raw)
       }
 
       setLoading(false)
@@ -68,7 +77,7 @@ export const Search: React.FC<SearchProps> = props => {
   }
 
   useEffect(() => {
-    if (res.length !== 0) {
+    if (res.length !== 0 && mode === 'list') {
       setPage(1)
       renderPage(res, 1)
     }
@@ -91,7 +100,7 @@ export const Search: React.FC<SearchProps> = props => {
               value={query}
               onChange={e => {
                 const value = e.target.value
-                setQuery(value)
+                setInput(value)
               }} />
               <div className='px-2' />
               <button className='bg-blue-500 hover:bg-blue-700 w-12 h-10 rounded text-white' onClick={searchHandler}>
@@ -109,7 +118,7 @@ export const Search: React.FC<SearchProps> = props => {
                   <div
                     className={`w-1/2 py-2 px-4 cursor-pointer flex justify-center items-center ${mode === 'nh' ? 'text-gray-200 dark:text-gray-900 bg-gray-600 dark:bg-gray-300': 'text-gray-600 dark:text-gray-300 bg-gray-200 dark:bg-gray-900'}`}
                     onClick={() => setMode('nh')}>
-                    NH
+                    NHentai
                   </div>
                 </div>
               </div>
