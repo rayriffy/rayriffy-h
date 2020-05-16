@@ -1,4 +1,4 @@
 apps/poster
 =======
 
-#appsposter)
+## Documentation is located [here](../../#appsposter)
