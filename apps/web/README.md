@@ -1,4 +1,4 @@
 apps/web
 =======
 
-## Documentation is located [here](../../#appsweb)
+## Documentation is located [here](../../README.md#appsweb)

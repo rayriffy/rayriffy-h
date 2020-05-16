@@ -1,4 +1,4 @@
 apps/api
 =======
 
-## Documentation is located [here](../../#appsapi)
+## Documentation is located [here](../../README.md#appsapi)

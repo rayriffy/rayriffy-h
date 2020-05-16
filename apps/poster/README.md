@@ -1,4 +1,4 @@
 apps/poster
 =======
 
-## Documentation is located [here](../../#appsposter)
+## Documentation is located [here](../../README.md#appsposter)
