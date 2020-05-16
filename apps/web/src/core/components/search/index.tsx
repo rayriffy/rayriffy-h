@@ -139,19 +139,19 @@ export const Search: React.FC<SearchProps> = props => {
             <div className='text-center pt-4'>Loading...</div>
           </div>
         ) : error !== null ? (
-          <div className='pt-12 text-gray-900 dark:text-white text-center'>
-            <div className='text-xl pt-4 font-semibold'>Failed</div>
-            <div className='pt-4'>{error}</div>
+          <div className='pt-12 text-center'>
+            <div className='text-xl font-semibold text-gray-900 dark:text-white'>Failed</div>
+            <div className='text-gray-600 dark:text-gray-500'>{error}</div>
           </div>
         ) : first || query === '' ? (
           <div className='pt-12 text-center'>
             <div className='text-xl font-semibold text-gray-900 dark:text-white'>Search</div>
-            <div className='text-gray-500 dark:text-gray-500'>Type your query in the box and search!</div>
+            <div className='text-gray-600 dark:text-gray-500'>Type your query in the box and search!</div>
           </div>
         ) : res.length === 0 ? (
           <div className='pt-12 text-center'>
             <div className='text-xl font-semibold text-gray-900 dark:text-white'>No result</div>
-            <div className='text-gray-500 dark:text-gray-500'>No any result related to the query</div>
+            <div className='text-gray-600 dark:text-gray-500'>No any result related to the query</div>
           </div>
         ) : (
           <React.Fragment>
