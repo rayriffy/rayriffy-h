@@ -11,7 +11,10 @@ router.get('/', async (req, res) => {
 
     const data = await getSearch(query, page, true)
 
-    const response: APIResponse<RawHentai[]> = {
+    const response: APIResponse<{
+      raw: RawHentai[]
+      maxPage: number
+    }> = {
       status: 'success',
       code: 201,
       response: {
