@@ -38,8 +38,6 @@ export const Search: React.FC<SearchProps> = props => {
   const renderPage = async (raws: Hentai[], page: number) => {
     if (mode === 'list') {
       setPage(page)
-      console.log('chunk', chunk(raws, skip))
-      console.log('get chunk', get(chunk(raws, skip), page - 1, []))
       setRenderedRaw(get(chunk(raws, skip), page - 1, []))
     } else if (mode === 'nh') {
       setLoading(true)

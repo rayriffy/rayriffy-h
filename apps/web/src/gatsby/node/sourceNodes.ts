@@ -29,10 +29,6 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async ({
   healthyResults.map(hentai => {
     const hentaiData = hentai.data
 
-    if (hentai.data.hentai_id === 105034) {
-      console.log(hentai.data.exclude)
-    }
-
     const nodeMeta = {
       id: createNodeId(`hentai-${hentai.data.hentai_id}`),
       children: [],

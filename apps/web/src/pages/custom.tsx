@@ -39,7 +39,7 @@ const Page: React.FC = props => {
           </div>
           <div className='py-2'>
             <div
-              className={`${input.length !== 0 && input.length <= 6 ? 'bg-blue-500 hover:bg-blue-700 cursor-pointer text-white' : 'bg-gray-500 hover:bg-gray-700 cursor-not-allowed text-gray-800'} font-bold py-2 px-4 rounded cursor-pointer flex justify-center items-center transition-all duration-200`}
+              className={`${input.length !== 0 && input.length <= 6 ? 'bg-blue-500 hover:bg-blue-700 cursor-pointer text-white' : 'bg-gray-500 hover:bg-gray-700 cursor-not-allowed text-white dark:text-gray-800'} font-bold py-2 px-4 rounded cursor-pointer flex justify-center items-center transition-all duration-200`}
               onClick={() => {
                 if (input.length !== 0 && input.length <= 6) navigate(`/g/${input}`)
               }}>
