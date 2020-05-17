@@ -7,46 +7,57 @@ import { Poster } from './poster'
 
 import { columnShuffle } from '../services/functions/columnShuffle'
 
-import { Hentai } from '@rayriffy-h/helper'
+import { ListingHentai } from '../@types/ListingHentai'
 
 interface Props {
-  raw: Hentai[]
-  internal?: boolean
+  raw: ListingHentai[]
 }
 
 const Component: React.FC<Props & LazyComponentProps> = props => {
-  const { raw, scrollPosition, internal = true } = props
+  const { raw, scrollPosition } = props
 
-  const [posterColumn, setPosterColumn] = useState<Hentai[][]>([[], [], []])
+  const [posterColumn, setPosterColumn] = useState<ListingHentai[][]>([[], [], []])
 
   const mediaMd = useMedia('(min-width: 768px)')
   const mediaLg = useMedia('(min-width: 1024px)')
 
   useEffect(() => {
     if (mediaLg) {
-      setPosterColumn(columnShuffle(raw, 3))
+      setPosterColumn(columnShuffle<ListingHentai>(raw, 3))
     } else if (mediaMd) {
-      setPosterColumn([...columnShuffle(raw, 2), []])
+      setPosterColumn([...columnShuffle<ListingHentai>(raw, 2), []])
     } else {
-      setPosterColumn([...columnShuffle(raw, 1), [], []])
+      setPosterColumn([...columnShuffle<ListingHentai>(raw, 1), [], []])
     }
-  }, [mediaMd, mediaLg])
+  }, [mediaMd, mediaLg, raw])
 
   return (
     <div className='flex flex-column flex-wrap'>
       <div className='w-full md:w-1/2 lg:w-1/3'>
-        {posterColumn[0].map(hentai => (
-          <Poster key={`poster-${hentai.id}`} raw={hentai} {...{scrollPosition, internal}} />
+        {posterColumn[0].map((hentai, i) => (
+          <Poster
+            key={`poster-${hentai.raw.id}`}
+            raw={hentai.raw}
+            internal={hentai.internal}
+            {...{scrollPosition}} />
         ))}
       </div>
       <div className='hidden md:block md:w-1/2 lg:w-1/3'>
-        {posterColumn[1].map(hentai => (
-          <Poster key={`poster-${hentai.id}`} raw={hentai} {...{scrollPosition, internal}} />
+        {posterColumn[1].map((hentai, i) => (
+          <Poster
+            key={`poster-${hentai.raw.id}`}
+            raw={hentai.raw}
+            internal={hentai.internal}
+            {...{scrollPosition}} />
         ))}
       </div>
       <div className='hidden lg:block lg:w-1/3'>
-        {posterColumn[2].map(hentai => (
-          <Poster key={`poster-${hentai.id}`} raw={hentai} {...{scrollPosition, internal}} />
+        {posterColumn[2].map((hentai, i) => (
+          <Poster
+            key={`poster-${hentai.raw.id}`}
+            raw={hentai.raw}
+            internal={hentai.internal}
+            {...{scrollPosition}} />
         ))}
       </div>
     </div>

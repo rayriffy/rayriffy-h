@@ -27,7 +27,11 @@ const Page: React.FC<Props> = props => {
         max={page.max}
         prefix='/listing/'
       />
-      <Listing raw={raw} />
+      <Listing
+        raw={raw.map(o => ({
+          raw: o,
+          internal: true,
+        }))} />
       <Pagination
         current={page.current}
         max={page.max}

@@ -1,3 +1,3 @@
-import { Hentai } from '@rayriffy-h/helper'
+import { ListingHentai } from '../../@types/ListingHentai'
 
-export function searchHentai(query: string, raws: Hentai[]): Promise<Hentai[]>
+export function searchHentai(query: string, raws: ListingHentai[]): Promise<ListingHentai[]>

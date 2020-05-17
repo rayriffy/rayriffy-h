@@ -9,8 +9,8 @@ import * as searchHentaiWorker from '../services/worker/searchHentai.worker'
 import { Listing } from './listing'
 import { Pagination } from './pagination'
 
-import { Hentai } from '@rayriffy-h/helper'
-import { SearchProps } from '../@types'
+import { ListingHentai } from '../@types/ListingHentai'
+import { SearchProps } from '../@types/SearchProps'
 
 export const Search: React.FC<SearchProps> = props => {
   const { raw, skip, showOnEmptyQuery = false, modeLock } = props
@@ -18,14 +18,14 @@ export const Search: React.FC<SearchProps> = props => {
   const [input, setInput] = useState<string>('')
   const [query, setQuery] = useState<string>('')
   const [first, setFirst] = useState<boolean>(true)
-  const [res, setRes] = useState<Hentai[]>(showOnEmptyQuery ? raw : [])
+  const [res, setRes] = useState<ListingHentai[]>(showOnEmptyQuery ? raw : [])
 
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
 
   const [page, setPage] = useState<number>(1)
   const [maxPage, setMaxPage] = useState<number>(5)
-  const [renderedRaw, setRenderedRaw] = useState<Hentai[]>([])
+  const [renderedRaw, setRenderedRaw] = useState<ListingHentai[]>([])
 
   const [mode, setMode] = useState<'list' | 'nh'>(modeLock === undefined ? 'list' : modeLock)
 
@@ -35,16 +35,20 @@ export const Search: React.FC<SearchProps> = props => {
       ? ((searchHentaiWorker as any)() as typeof searchHentaiWorker)
       : { searchHentai: null }
 
-  const renderPage = async (raws: Hentai[], page: number) => {
+  const renderPage = async (raws: ListingHentai[], page: number) => {
     if (mode === 'list') {
       setPage(page)
+      setMaxPage(chunk(raws, skip).length)
       setRenderedRaw(get(chunk(raws, skip), page - 1, []))
     } else if (mode === 'nh') {
       setLoading(true)
       try {
         const res = await getSearch(query, page)
         setPage(page)
-        setRenderedRaw(res.raw)
+        setRenderedRaw(res.raw.map(o => ({
+          raw: o,
+          internal: false,
+        })))
       } catch {
         setError('Unable to retrieve data from server')
       } finally {
@@ -65,16 +69,21 @@ export const Search: React.FC<SearchProps> = props => {
 
       if (mode === 'list') {
         const res = await searchHentai(input, raw)
-        setMaxPage(chunk(res, skip).length)
         setRes(res)
       } else if (mode === 'nh') {
         const res = await getSearch(input, 1)
         setMaxPage(res.maxPage)
-        setRes(res.raw)
+        setRes(res.raw.map(o => ({
+          raw: o,
+          internal: false,
+        })))
 
         // Manually render first page
         setPage(1)
-        setRenderedRaw(res.raw)
+        setRenderedRaw(res.raw.map(o => ({
+          raw: o,
+          internal: false,
+        })))
       }
 
       setLoading(false)
@@ -141,7 +150,7 @@ export const Search: React.FC<SearchProps> = props => {
             <div className='text-xl font-semibold text-gray-900 dark:text-white'>Failed</div>
             <div className='text-gray-600 dark:text-gray-500'>{error}</div>
           </div>
-        ) : first || query === '' ? (
+        ) : (first || query === '') && !showOnEmptyQuery ? (
           <div className='pt-12 text-center'>
             <div className='text-xl font-semibold text-gray-900 dark:text-white'>Search</div>
             <div className='text-gray-600 dark:text-gray-500'>Type your query in the box and search!</div>
@@ -159,7 +168,7 @@ export const Search: React.FC<SearchProps> = props => {
               link={false}
               onChange={page => renderPage(res, page)}
             />
-            <Listing internal={mode === 'list'} raw={renderedRaw} />
+            <Listing raw={renderedRaw} />
             <Pagination
               current={page}
               max={maxPage}

@@ -9,7 +9,7 @@ import { Subtitle } from '../../../store'
 import { Props } from '../@types/Props'
 
 const Page: React.FC<Props> = props => {
-  const { pageContext } = props
+  const { raw, skip } = props.pageContext
 
   const { 1: setSubtitle } = useContext(Subtitle)
 
@@ -20,7 +20,12 @@ const Page: React.FC<Props> = props => {
   return (
     <React.Fragment>
       <Helmet title='Search' />
-      <Search {...pageContext} />
+      <Search
+        skip={skip}
+        raw={raw.map(o => ({
+          raw: o,
+          internal: true,
+        }))} />
     </React.Fragment>
   )
 }

@@ -22,11 +22,11 @@ export const createPages: GatsbyNode['createPages'] = async args => {
   // /**
   //  * Create collection page
   //  */
-  // createPage({
-  //   path: `/collection`,
-  //   component: path.resolve(`./src/templates/collection/components/index.tsx`),
-  //   context: {
-  //     skip: itemsPerPage,
-  //   },
-  // })
+  createPage({
+    path: `/collection`,
+    component: path.resolve(`./src/templates/collection/components/index.tsx`),
+    context: {
+      skip: itemsPerPage,
+    },
+  })
 }

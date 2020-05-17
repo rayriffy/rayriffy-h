@@ -64,7 +64,11 @@ const Component: React.FC<Props> = props => {
             max={maxPage}
             prefix={'/'}
           />
-          <Listing internal={false} raw={res} />
+          <Listing
+            raw={res.map(o => ({
+              raw: o,
+              internal: false,
+            }))} />
           <Pagination
             current={page}
             max={maxPage}
