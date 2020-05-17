@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet'
 import { Collection, Subtitle } from '../../../store'
 
 import { Search } from '../../../core/components/search'
-// import { Actions } from './actions'
+import { Actions } from './actions'
 
 import { Props } from '../@types/Props'
 
@@ -19,11 +19,10 @@ const Page: React.FC<Props> = props => {
     setSubtitle(`collection`)
   }, [])
 
-  // <Actions {...{ collection, setCollection }} />
-
   return (
     <React.Fragment>
       <Helmet title='Collection' />
+      <Actions {...{ collection, setCollection }} />
       {collection.data.length === 0 ? (
         <div className='pt-12 text-center'>
           <div className='text-xl font-semibold text-gray-900 dark:text-white'>No records</div>
