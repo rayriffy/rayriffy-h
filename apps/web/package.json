@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "dependencies": {
-    "gatsby": "^2.21.21"
+    "gatsby": "^2.22.0"
   },
   "devDependencies": {
     "ts-node": "^8.10.1",
