@@ -1,39 +1,26 @@
 import React, { useRef, useState } from 'react'
 
-import { isEmpty } from 'lodash-es'
-
 import { fetch } from '@rayriffy-h/fetch'
 
-import { Collection } from '../../../core/@types'
+import { Modal } from '../../../core/components/modal'
+
+import { Collection } from '../../../core/@types/Collection'
 import { ActionsProps } from '../@types/ActionsProps'
 
 export const Actions: React.FC<ActionsProps> = props => {
   const { collection, setCollection } = props
 
-  // const {
-  //   isOpen: exportIsOpen,
-  //   onOpen: exportOnOpen,
-  //   onClose: exportOnClose,
-  // } = useDisclosure()
+  const [menuOpen, setMenuOpen] = useState<boolean>(false)
+  const [activeModal, setActiveModal] = useState<'none' | 'import' | 'export' | 'reset'>('none')
+
   const { 0: exportStat, 1: setExportStat } = useState<
     'wait' | 'load' | string
   >('wait')
   // const { onCopy, hasCopied } = useClipboard(exportStat)
 
-  // const {
-  //   isOpen: importIsOpen,
-  //   onOpen: importOnOpen,
-  //   onClose: importOnClose,
-  // } = useDisclosure()
+
   const { 0: importLoad, 1: setImportLoad } = useState<boolean>(false)
   const { 0: input, 1: setInput } = useState<string>('')
-
-  // const {
-  //   isOpen: resetIsOpen,
-  //   onOpen: resetOnOpen,
-  //   onClose: resetOnClose,
-  // } = useDisclosure()
-  const resetCancelRef = useRef(null)
 
   const exportHandler = async () => {
     try {
@@ -50,14 +37,6 @@ export const Actions: React.FC<ActionsProps> = props => {
       )
 
       setExportStat(res.key)
-
-      // toast({
-      //   title: 'Data exported.',
-      //   description: 'Please import data to destination device within 1 hour.',
-      //   status: 'success',
-      //   duration: 4000,
-      //   isClosable: true,
-      // })
     } catch {
       // toast({
       //   title: 'Failed.',
@@ -82,14 +61,6 @@ export const Actions: React.FC<ActionsProps> = props => {
         res.data.length !== undefined
       ) {
         setCollection(res)
-
-        // toast({
-        //   title: 'Data imported.',
-        //   description: `Imported ${res.data.length} items to collection.`,
-        //   status: 'success',
-        //   duration: 4000,
-        //   isClosable: true,
-        // })
 
         setImportLoad(false)
         // importOnClose()
@@ -136,9 +107,52 @@ export const Actions: React.FC<ActionsProps> = props => {
   }
 
   return (
-    <div className='pt-4'>
-      <div className='text-white'>OK</div>
-    </div>
+    <React.Fragment>
+      <div className='pt-0 md:pt-4 px-0 md:px-6 flex items-center text-gray-900 dark:text-white'>
+        <div
+          className='bg-white hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 px-4 py-2 rounded cursor-pointer font-semibold select-none'
+          onClick={() => setMenuOpen(o => !o)}>
+          Actions <i className='ml-1 fas fa-angle-down'></i>
+        </div>
+        <div className='ml-4 font-semibold'>{collection.data.length} Items</div>
+      </div>
+      <div className='px-0 md:px-6 relative'>
+        {menuOpen && activeModal === 'none' ? (
+          <div className='absolute mt-4 bg-white dark:bg-gray-800 rounded overflow-hidden max-w-full w-2/5 md:w-1/5 text-gray-900 dark:text-white py-2'>
+            <div className='cursor-pointer px-4 py-2 hover:bg-gray-300 dark:hover:bg-gray-700' onClick={() => setActiveModal('import')}>Import</div>
+            <div className='cursor-pointer px-4 py-2 hover:bg-gray-300 dark:hover:bg-gray-700' onClick={() => setActiveModal('export')}>Export</div>
+            <div className='cursor-pointer px-4 py-2 hover:bg-gray-300 dark:hover:bg-gray-700 border-t border-gray-300 dark:border-gray-700' onClick={() => setActiveModal('reset')}>Reset</div>
+          </div>
+        ) : null}
+      </div>
+      <Modal
+        title='Import'
+        isOpen={activeModal === 'import'} 
+        onClose={() => {
+          setMenuOpen(false)
+          setActiveModal('none')
+        }}>
+        OK
+      </Modal>
+      <Modal
+        title='Export'
+        isOpen={activeModal === 'export'} 
+        onClose={() => {
+          setMenuOpen(false)
+          setActiveModal('none')
+        }}>
+        OK
+      </Modal>
+      <Modal
+        title='Reset'
+        isOpen={activeModal === 'reset'} 
+        onClose={() => {
+          setMenuOpen(false)
+          setActiveModal('none')
+        }}>
+        OK
+      </Modal>
+    </React.Fragment>
   )
 
   // return (
