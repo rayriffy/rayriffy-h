@@ -68,11 +68,11 @@ export const Navigation: React.FC<Props> = props => {
       prefix: 'collection',
       icon: <i className='fas fa-bookmark pr-1'></i>,
     },
-    {
-      name: 'about',
-      prefix: 'about',
-      icon: <i className='fas fa-info-circle pr-1'></i>,
-    },
+    // {
+    //   name: 'about',
+    //   prefix: 'about',
+    //   icon: <i className='fas fa-info-circle pr-1'></i>,
+    // },
   ]
 
   const tagStacks = tagStack.map(o => ({
