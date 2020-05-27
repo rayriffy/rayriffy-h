@@ -1,6 +1,13 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 module.exports = {
   theme: {
+    // spinner: {
+    //   default: {
+    //     size: '1em',
+    //     border: '2px',
+    //     speed: '500ms',
+    //   },
+    // },
     filter: {
       'none': 'none',
       'blur': 'blur(15px)',
@@ -35,12 +42,5 @@ module.exports = {
   },
   plugins: [
     require('tailwindcss-filters'),
-  ],
-  purge: [
-    './src/**/*.html',
-    './src/**/*.tsx',
-    './src/**/*.ts',
-    './src/**/*.jsx',
-    './src/**/*.js',
   ],
 }

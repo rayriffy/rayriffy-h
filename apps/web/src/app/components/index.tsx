@@ -2,9 +2,6 @@ import React from 'react'
 
 import { Helmet } from 'react-helmet'
 
-import { StoreContext } from 'storeon/react'
-import { store } from '../../store/storeon'
-
 import { CollectionMigration } from './collectionMigration'
 import { Header } from './header'
 import { ServiceWorker } from './serviceworker'
@@ -17,7 +14,7 @@ export const App: React.FC<Props> = props => {
   const { children, ...rest } = props
 
   return (
-    <StoreContext.Provider value={store}>
+    <React.Fragment>
       <Helmet
         defaultTitle='Riffy H'
         titleTemplate='%s · Riffy H'
@@ -39,7 +36,7 @@ export const App: React.FC<Props> = props => {
           </main>
         </div>
       </div>
-    </StoreContext.Provider>
+    </React.Fragment>
   )
 }
 
