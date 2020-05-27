@@ -9,7 +9,7 @@ export const CollectionMigration: React.FC = props => {
 
   useEffect(() => {
     const collectionV1 = window.localStorage.getItem('collection')
-    
+
     // V1-V2
     if (collectionV1 !== null && JSON.parse(collectionV1).version === 1) {
       setActive('migrate-ongoing')

@@ -98,6 +98,12 @@ export const Search: React.FC<SearchProps> = props => {
   }, [res])
 
   useEffect(() => {
+    if (showOnEmptyQuery) {
+      setRes(raw)
+    }
+  }, [raw])
+
+  useEffect(() => {
     setRes(showOnEmptyQuery && mode === 'list' ? raw : [])
     setFirst(true)
   }, [mode])
