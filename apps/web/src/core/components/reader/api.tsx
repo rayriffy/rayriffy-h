@@ -46,7 +46,7 @@ const Component: React.FC<ReaderAPIProps> = props => {
               <img src={image} className='w-full' alt='cover' />
             </div>
           </div>
-          <div className='flex pt-6 pb-2 px-8 md:px-16'>
+          <div className='flex pt-6 pb-2 px-8 md:px-16 select-none'>
             <div className='w-1/2 pr-1'>
               <a href={image} download={`encoded-${id}.jpeg`} aria-label='Download'>
                 <div className='bg-blue-500 hover:bg-blue-700 rounded py-2 text-white font-semibold text-center cursor-pointer'>Download</div>

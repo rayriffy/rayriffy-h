@@ -123,7 +123,7 @@ export const Search: React.FC<SearchProps> = props => {
             </div>
             {modeLock === undefined ? (
               <div className='pt-4'>
-                <div className='border border-gray-600 dark:border-gray-600 rounded flex overflow-hidden'>
+                <div className='border border-gray-600 dark:border-gray-600 rounded flex overflow-hidden select-none'>
                   <div
                     className={`border-r border-gray-600 dark:border-gray-600 w-1/2 py-2 px-4 cursor-pointer flex justify-center items-center ${mode === 'list' ? 'text-gray-200 dark:text-gray-900 bg-gray-600 dark:bg-gray-300': 'text-gray-600 dark:text-gray-300 bg-gray-200 dark:bg-gray-900'}`}
                     onClick={() => setMode('list')}>

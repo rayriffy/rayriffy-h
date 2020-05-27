@@ -18,8 +18,8 @@ const Dropdown: React.FC<{ title: React.ReactNode, zIndex?: number }> = props =>
   const [open, setOpen] = useState<boolean>(false)
 
   return (
-    <div className="relative">
-      <button onClick={() => setOpen(o => !o)} className="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+    <div className='relative'>
+      <button onClick={() => setOpen(o => !o)} className='flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline'>
         <span>{title}</span>
         <i className={`ml-2 fas fa-angle-${open ? 'up' : 'down'}`}></i>
       </button>
@@ -45,32 +45,32 @@ export const Navigation: React.FC<Props> = props => {
     {
       name: 'home',
       prefix: '',
-      icon: <i className="fas fa-home pr-1"></i>,
+      icon: <i className='fas fa-home pr-1'></i>,
     },
     {
       name: 'listing',
       prefix: 'listing',
-      icon: <i className="fas fa-boxes pr-1"></i>,
+      icon: <i className='fas fa-boxes pr-1'></i>,
     },
     {
       name: 'custom',
       prefix: 'custom',
-      icon: <i className="fas fa-keyboard pr-1"></i>,
+      icon: <i className='fas fa-keyboard pr-1'></i>,
     },
     {
       name: 'search',
       prefix: 'search',
-      icon: <i className="fas fa-search pr-1"></i>,
+      icon: <i className='fas fa-search pr-1'></i>,
     },
     {
       name: 'collection',
       prefix: 'collection',
-      icon: <i className="fas fa-bookmark pr-1"></i>,
+      icon: <i className='fas fa-bookmark pr-1'></i>,
     },
     {
       name: 'about',
       prefix: 'about',
-      icon: <i className="fas fa-info-circle pr-1"></i>,
+      icon: <i className='fas fa-info-circle pr-1'></i>,
     },
   ]
 
@@ -80,7 +80,7 @@ export const Navigation: React.FC<Props> = props => {
   }))
 
   return (
-    <div className="relative">
+    <div className='relative'>
       <nav className={`absolute top-0 left-0 right-0 flex-grow md:block px-4 pt-2 pb-3 bg-white dark:bg-gray-800 md:dark:bg-transparent transition-all duration-200 md:opacity-100 ${collapse ? 'opacity-100 z-20' : 'opacity-0 z-hide md:z-0'}`}>
         {menuStacks.map(menu => (
           <TransparentLink key={`app-navigation-${menu.name}`} to={`/${menu.prefix}`}>
@@ -94,7 +94,7 @@ export const Navigation: React.FC<Props> = props => {
         <Dropdown
           title={(
             <React.Fragment>
-              <i className="fas fa-tags pr-1"></i> Tag types
+              <i className='fas fa-tags pr-1'></i> Tag types
             </React.Fragment>
           )}
           zIndex={50}
@@ -112,13 +112,13 @@ export const Navigation: React.FC<Props> = props => {
         <Dropdown
           title={(
             <React.Fragment>
-              <i className="fas fa-tools pr-1"></i> Settings
+              <i className='fas fa-tools pr-1'></i> Settings
             </React.Fragment>
           )}
         >
-          <div className="flex items-center px-4 py-2">
+          <div className='flex items-center px-4 py-2'>
             <Switch checked={settings.safemode} onChange={() => toggleSetting('safemode')} className='pr-2' />
-            <div className="text-sm font-semibold">
+            <div className='text-sm font-semibold'>
               Safe mode
             </div>
           </div>
