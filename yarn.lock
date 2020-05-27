@@ -8269,10 +8269,10 @@ gatsby-page-utils@^0.2.1:
     lodash "^4.17.15"
     micromatch "^3.1.10"
 
-gatsby-plugin-create-client-paths@^2.3.0:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-create-client-paths/-/gatsby-plugin-create-client-paths-2.3.1.tgz#4a276f02468f01bcf33cff8e56d11f803a1c8f54"
-  integrity sha512-r8Sa4q0bF3wdjUfkX+jjTg4WYvoIzOqinX14X16i3BN9ThWt9ASy5IRqtaEu/ECI8gBJvwT9KNqJBs9jS9xQTw==
+gatsby-plugin-create-client-paths@^2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-create-client-paths/-/gatsby-plugin-create-client-paths-2.3.2.tgz#90980462a9c7a6984f29736376f7105be55c8d43"
+  integrity sha512-FUcBP6nT4QZDb5WoudVgKuef2euZNUdKifbNyK1Xer+edLCXnm3bjsf96RiygfGyVVPRj6amBefERL6cNxyNyw==
   dependencies:
     "@babel/runtime" "^7.9.6"
 
