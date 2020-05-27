@@ -1,13 +1,21 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 
 import { Subtitle } from '../../store'
 
 import { Navigation } from './navigation'
 
-export const Header = () => {
+import { Props } from '../@types/Props'
+
+export const Header: React.FC<Props> = props => {
+  const { path } = props
+
   const [subtitle] = useContext(Subtitle)
 
   const [collapse, setCollapse] = useState(false)
+
+  useEffect(() => {
+    setCollapse(false)
+  }, [path])
 
   return (
     <div className='md:flex flex-col md:flex-row md:min-h-screen md:fixed'>
