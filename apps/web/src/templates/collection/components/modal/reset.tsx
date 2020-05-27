@@ -34,7 +34,7 @@ export const ModalReset: React.FC<ModalResetProps> = props => {
   return (
     <React.Fragment>
       <div className='text-sm text-gray-600 dark:text-gray-400 pb-2'>This will empty your saved collections and this process cannot be undone! Are you sure to do this?</div>
-      <div className='pt-4 pb-2 flex justify-end'>
+      <div className='pt-4 pb-2 flex justify-end flex-wrap'>
         <button
           className='bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-4 transition-all duration-200 select-none'
           onClick={closeToggle}>

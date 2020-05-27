@@ -42,7 +42,7 @@ export const ModalExport: React.FC<ModalExportProps> = props => {
       <div className='text-sm text-gray-600 dark:text-gray-400 pb-2'>
         {exportStat === 'fail' ? `Sorry, there's some problem during request to server. Please wait for a few minutes and try again. Sorry... (*_ _)人`
         : exportStat === null ? 'Collection is saved locally inside device and do not share any these information to us. You can use this feature to get temporary transfer key and share you collection to another devices.'
-        : exportStat === 'load' ? 'Requesting for transfer token from server...'
+        : exportStat === 'load' ? 'Requesting for transfer key from server...'
         : (
           <React.Fragment>
             <div className='pb-2'>Your transfer key is <b className='text-gray-700 dark:text-gray-300'>{exportStat}</b></div>
@@ -50,7 +50,7 @@ export const ModalExport: React.FC<ModalExportProps> = props => {
           </React.Fragment>
         )}
       </div>
-      <div className='pt-4 pb-2 flex justify-end'>
+      <div className='pt-4 pb-2 flex justify-end flex-wrap'>
         <button
           className='bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-4 transition-all duration-200 select-none'
           onClick={() => onClose ? onClose() : null}>

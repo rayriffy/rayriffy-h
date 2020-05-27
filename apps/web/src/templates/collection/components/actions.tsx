@@ -4,8 +4,9 @@ import { useStoreon } from 'storeon/react'
 import { Store, Event } from '../../../store/storeon'
 
 import { Modal } from '../../../core/components/modal'
-import { ModalReset } from './modal/reset'
 import { ModalExport } from './modal/export'
+import { ModalImport } from './modal/import'
+import { ModalReset } from './modal/reset'
 
 export const Actions: React.FC = props => {
   const { collection } = useStoreon<Store, Event>('collection')
@@ -39,7 +40,11 @@ export const Actions: React.FC = props => {
           setMenuOpen(false)
           setActiveModal('none')
         }}>
-        OK
+        <ModalImport
+          onClose={() => {
+            setMenuOpen(false)
+            setActiveModal('none')
+          }} />
       </Modal>
       <Modal
         title='Export'
