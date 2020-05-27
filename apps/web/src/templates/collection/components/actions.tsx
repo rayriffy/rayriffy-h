@@ -1,110 +1,19 @@
-import React, { useRef, useState } from 'react'
+import React, { useState, useContext } from 'react'
 
-import { fetch } from '@rayriffy-h/fetch'
+import { Collection } from '../../../store'
 
 import { Modal } from '../../../core/components/modal'
+import { ModalReset } from './modal/reset'
+import { ModalExport } from './modal/export'
 
-import { Collection } from '../../../core/@types/Collection'
-import { ActionsProps } from '../@types/ActionsProps'
+// import { Collection } from '../../../core/@types/Collection'
+// import { ActionsProps } from '../@types/ActionsProps'
 
-export const Actions: React.FC<ActionsProps> = props => {
-  const { collection, setCollection } = props
+export const Actions: React.FC = props => {
+  const [collection] = useContext(Collection)
 
   const [menuOpen, setMenuOpen] = useState<boolean>(false)
   const [activeModal, setActiveModal] = useState<'none' | 'import' | 'export' | 'reset'>('none')
-
-  const { 0: exportStat, 1: setExportStat } = useState<
-    'wait' | 'load' | string
-  >('wait')
-  // const { onCopy, hasCopied } = useClipboard(exportStat)
-
-
-  const { 0: importLoad, 1: setImportLoad } = useState<boolean>(false)
-  const { 0: input, 1: setInput } = useState<string>('')
-
-  const exportHandler = async () => {
-    try {
-      setExportStat('load')
-
-      const res: { key: string } = await fetch<{ key: string }>(
-        `https://bytebin.lucko.me/post`,
-        {
-          credentials: 'same-origin',
-          method: 'POST',
-          body: JSON.stringify(collection),
-          headers: { 'Content-Type': 'application/json' },
-        }
-      )
-
-      setExportStat(res.key)
-    } catch {
-      // toast({
-      //   title: 'Failed.',
-      //   description: 'Unable to export data.',
-      //   status: 'error',
-      //   duration: 4000,
-      //   isClosable: true,
-      // })
-    }
-  }
-
-  const importHandler = async (id: string) => {
-    try {
-      setImportLoad(true)
-
-      const res = await fetch<Collection>(`https://bytebin.lucko.me/${id}`)
-
-      if (
-        typeof res === 'object' &&
-        typeof res.version === 'number' &&
-        typeof res.data === 'object' &&
-        res.data.length !== undefined
-      ) {
-        setCollection(res)
-
-        setImportLoad(false)
-        // importOnClose()
-      } else {
-        // toast({
-        //   title: 'Failed.',
-        //   description: 'Invalid format.',
-        //   status: 'error',
-        //   duration: 4000,
-        //   isClosable: true,
-        // })
-
-        setImportLoad(false)
-        // importOnClose()
-      }
-    } catch (e) {
-      // toast({
-      //   title: 'Failed.',
-      //   description: 'Unable to import data.',
-      //   status: 'error',
-      //   duration: 4000,
-      //   isClosable: true,
-      // })
-
-      setImportLoad(false)
-      // importOnClose()
-    }
-  }
-
-  const resetHandler = async () => {
-    setCollection(prev => ({
-      ...prev,
-      data: [],
-    }))
-    // resetOnClose()
-
-    // toast({
-    //   title: 'Data had been reset.',
-    //   description: 'All saved favorites in this device had been removed.',
-    //   status: 'success',
-    //   duration: 4000,
-    //   isClosable: true,
-    // })
-  }
 
   return (
     <React.Fragment>
@@ -118,10 +27,10 @@ export const Actions: React.FC<ActionsProps> = props => {
       </div>
       <div className='px-0 md:px-6 relative'>
         {menuOpen && activeModal === 'none' ? (
-          <div className='absolute mt-4 bg-white dark:bg-gray-800 rounded overflow-hidden max-w-full w-2/5 md:w-1/5 text-gray-900 dark:text-white py-2'>
-            <div className='cursor-pointer px-4 py-2 hover:bg-gray-300 dark:hover:bg-gray-700' onClick={() => setActiveModal('import')}>Import</div>
-            <div className='cursor-pointer px-4 py-2 hover:bg-gray-300 dark:hover:bg-gray-700' onClick={() => setActiveModal('export')}>Export</div>
-            <div className='cursor-pointer px-4 py-2 hover:bg-gray-300 dark:hover:bg-gray-700 border-t border-gray-300 dark:border-gray-700' onClick={() => setActiveModal('reset')}>Reset</div>
+          <div className='absolute mt-4 bg-white dark:bg-gray-800 rounded overflow-hidden w-2/5 max-w-xs text-gray-900 dark:text-white py-2 z-40'>
+            <div className='cursor-pointer px-6 py-2 hover:bg-gray-300 dark:hover:bg-gray-700' onClick={() => setActiveModal('import')}>Import</div>
+            <div className='cursor-pointer px-6 py-2 hover:bg-gray-300 dark:hover:bg-gray-700' onClick={() => setActiveModal('export')}>Export</div>
+            <div className='cursor-pointer px-6 py-2 hover:bg-gray-300 dark:hover:bg-gray-700 border-t border-gray-300 dark:border-gray-700' onClick={() => setActiveModal('reset')}>Reset</div>
           </div>
         ) : null}
       </div>
@@ -141,7 +50,11 @@ export const Actions: React.FC<ActionsProps> = props => {
           setMenuOpen(false)
           setActiveModal('none')
         }}>
-        OK
+        <ModalExport
+          onClose={() => {
+            setMenuOpen(false)
+            setActiveModal('none')
+          }} />
       </Modal>
       <Modal
         title='Reset'
@@ -150,7 +63,11 @@ export const Actions: React.FC<ActionsProps> = props => {
           setMenuOpen(false)
           setActiveModal('none')
         }}>
-        OK
+        <ModalReset
+          onClose={() => {
+            setMenuOpen(false)
+            setActiveModal('none')
+          }} />
       </Modal>
     </React.Fragment>
   )

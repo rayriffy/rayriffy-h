@@ -13,7 +13,7 @@ const Page: React.FC<Props> = props => {
   const { skip } = props.pageContext
 
   const [, setSubtitle] = useContext(Subtitle)
-  const [collection, setCollection] = useContext(Collection)
+  const [collection] = useContext(Collection)
 
   useEffect(() => {
     setSubtitle(`collection`)
@@ -22,7 +22,7 @@ const Page: React.FC<Props> = props => {
   return (
     <React.Fragment>
       <Helmet title='Collection' />
-      <Actions {...{ collection, setCollection }} />
+      <Actions />
       {collection.data.length === 0 ? (
         <div className='pt-12 text-center'>
           <div className='text-xl font-semibold text-gray-900 dark:text-white'>No records</div>
