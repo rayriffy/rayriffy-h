@@ -1,16 +1,17 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 
-import { Collection } from '../../../store'
+import { useStoreon } from 'storeon/react'
+import { Store, Event } from '../../../store/storeon'
 
 import { API } from './api'
 import { Modal } from '../modal'
 
-import { ReaderShareProps } from '../../@types'
+import { ReaderShareProps } from '../../@types/ReaderShareProps'
 
 const Component: React.FC<ReaderShareProps> = props => {
   const { hentai, internal } = props
 
-  const [collection, setCollection] = useContext(Collection)
+  const { dispatch, collection } = useStoreon<Store, Event>('collection')
 
   const toggleFavorite = () => {
     const isFavorited =
@@ -39,9 +40,11 @@ const Component: React.FC<ReaderShareProps> = props => {
       ]
     }
 
-    setCollection({
-      ...collection,
-      data: res,
+    dispatch('collection/override', {
+      collection: {
+        ...collection,
+        data: res,
+      },
     })
   }
 

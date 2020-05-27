@@ -1,22 +1,22 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 import { Helmet } from 'react-helmet'
 
-import { Collection, Subtitle } from '../../../store'
-
 import { Search } from '../../../core/components/search'
 import { Actions } from './actions'
+
+import { useStoreon } from 'storeon/react'
+import { Store, Event } from '../../../store/storeon'
 
 import { Props } from '../@types/Props'
 
 const Page: React.FC<Props> = props => {
   const { skip } = props.pageContext
 
-  const [, setSubtitle] = useContext(Subtitle)
-  const [collection] = useContext(Collection)
+  const { dispatch, collection } = useStoreon<Store, Event>('subtitle', 'collection')
 
   useEffect(() => {
-    setSubtitle(`collection`)
+    dispatch('subtitle/setSubtitle', 'collection')
   }, [])
 
   return (

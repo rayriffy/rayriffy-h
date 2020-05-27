@@ -2,6 +2,7 @@ import React from 'react'
 
 import { Helmet } from 'react-helmet'
 
+import { CollectionMigration } from './collectionMigration'
 import { Header } from './header'
 import { ServiceWorker } from './serviceworker'
 
@@ -28,6 +29,7 @@ export const App: React.FC<Props> = props => {
         <div className='w-full md:pl-64'>
           <main className='container mx-auto py-4 px-6 md:p-6'>
             <div className='px-3 md:px-4 lg:px-5'>
+              <CollectionMigration />
               <ServiceWorker />
             </div>
             {children}

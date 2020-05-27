@@ -2,7 +2,7 @@ import React from 'react'
 
 import { TransparentLink } from './transparentLink'
 
-import { SlugProps } from '../@types'
+import { SlugProps } from '../@types/SlugProps'
 
 const Component: React.FC<SlugProps> = props => {
   const { color = 'grey', link, title } = props

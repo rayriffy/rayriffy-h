@@ -1,16 +1,14 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 
-import { Collection } from '../../../store'
+import { useStoreon } from 'storeon/react'
+import { Store, Event } from '../../../store/storeon'
 
 import { Modal } from '../../../core/components/modal'
 import { ModalReset } from './modal/reset'
 import { ModalExport } from './modal/export'
 
-// import { Collection } from '../../../core/@types/Collection'
-// import { ActionsProps } from '../@types/ActionsProps'
-
 export const Actions: React.FC = props => {
-  const [collection] = useContext(Collection)
+  const { collection } = useStoreon<Store, Event>('collection')
 
   const [menuOpen, setMenuOpen] = useState<boolean>(false)
   const [activeModal, setActiveModal] = useState<'none' | 'import' | 'export' | 'reset'>('none')

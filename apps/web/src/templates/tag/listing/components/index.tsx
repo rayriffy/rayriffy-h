@@ -1,10 +1,11 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 import { Helmet } from 'react-helmet'
 
 import { sortBy } from 'lodash-es'
 
-import { Subtitle } from '../../../../store'
+import { useStoreon } from 'storeon/react'
+import { Store, Event } from '../../../../store/storeon'
 
 import { TransparentLink } from '../../../../core/components/transparentLink'
 
@@ -13,7 +14,7 @@ import { Props } from '../@types/Props'
 const Page: React.FC<Props> = props => {
   const { prefix, raw, subtitle } = props.pageContext
 
-  const [, setSubtitle] = useContext(Subtitle)
+  const { dispatch } = useStoreon<Store, Event>('subtitle')
 
   const alphabet = [
     'a',
@@ -50,7 +51,7 @@ const Page: React.FC<Props> = props => {
   )
 
   useEffect(() => {
-    setSubtitle(`${subtitle}`)
+    dispatch('subtitle/setSubtitle', subtitle)
   }, [])
 
   return (

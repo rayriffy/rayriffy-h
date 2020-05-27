@@ -1,11 +1,12 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 import { Helmet } from 'react-helmet'
 
 import { Listing } from '../../../../core/components/listing'
 import { Pagination } from '../../../../core/components/pagination'
 
-import { Subtitle } from '../../../../store'
+import { useStoreon } from 'storeon/react'
+import { Store, Event } from '../../../../store/storeon'
 
 import { Props } from '../@types/Props'
 
@@ -13,10 +14,10 @@ const Page: React.FC<Props> = props => {
   const { pageContext } = props
   const { raw, page } = pageContext
 
-  const [, setSubtitle] = useContext(Subtitle)
+  const { dispatch } = useStoreon<Store, Event>('subtitle')
 
   useEffect(() => {
-    setSubtitle(`listing`)
+    dispatch('subtitle/setSubtitle', 'listing')
   }, [])
 
   return (

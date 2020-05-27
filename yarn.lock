@@ -2098,6 +2098,16 @@
   dependencies:
     type-detect "4.0.8"
 
+"@storeon/crosstab@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@storeon/crosstab/-/crosstab-1.0.1.tgz#823ed714b391c5191f72306135aa423073912655"
+  integrity sha512-K4XnOdt8dkXC7u0/JO05GPLVmJgtoC0Yef55tSLu34pp3CpLfb6T1FOJ/EgEpcR/qqUc1YxBOZpCQo/3hXUk+w==
+
+"@storeon/localstorage@^0.17.0":
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/@storeon/localstorage/-/localstorage-0.17.0.tgz#15f1319247d0596b7d8f5cfe3ec304eecbe95bb2"
+  integrity sha512-DKbE9KhZDLK61x9jhtbWsZJxqBMXrQGQQ82lOSW/8ptbR6w/8gE5l4qniB8m+zohTz1T2GpKNvmKFJWbIoyTAg==
+
 "@styled-system/background@^5.1.2":
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/@styled-system/background/-/background-5.1.2.tgz#75c63d06b497ab372b70186c0bf608d62847a2ba"
@@ -16055,6 +16065,11 @@ stethoskop@1.0.0:
   integrity sha512-4JnZ+UmTs9SFfDjSHFlD/EoXcb1bfwntkt4h1ipNGrpxtRzmHTxOmdquCJvIrVu608Um7a09cGX0ZSOSllWJNQ==
   dependencies:
     node-statsd "0.1.1"
+
+storeon@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/storeon/-/storeon-2.0.2.tgz#900aa95a2742e6cc311f49560793c3c0eb33dc67"
+  integrity sha512-l+eeqjByKLOjr8k4Ru6nMtSRHRsCqobDQdEfUE47HUXxSOOw5fHqPpHuCeAkVQ84Wp+6/jxpqVOcVHgi0l/sMw==
 
 stream-browserify@^2.0.1:
   version "2.0.2"

@@ -1,18 +1,19 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 import { Reader } from '../../../../core/components/reader'
 
-import { Subtitle } from '../../../../store'
+import { useStoreon } from 'storeon/react'
+import { Store, Event } from '../../../../store/storeon'
 
 import { Props } from '../@types/Props'
 
 const Page: React.FC<Props> = props => {
   const { raw } = props.pageContext
 
-  const { 1: setSubtitle } = useContext(Subtitle)
+  const { dispatch } = useStoreon<Store, Event>('subtitle')
 
   useEffect(() => {
-    setSubtitle(`viewing`)
+    dispatch('subtitle/setSubtitle', 'viewing')
   }, [])
 
   return <Reader raw={raw} />

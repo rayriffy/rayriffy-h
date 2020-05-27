@@ -1,6 +1,7 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
-import { Subtitle } from '../../store'
+import { useStoreon } from 'storeon/react'
+import { Store, Event } from '../../store/storeon'
 
 import { Navigation } from './navigation'
 
@@ -9,7 +10,7 @@ import { Props } from '../@types/Props'
 export const Header: React.FC<Props> = props => {
   const { path } = props
 
-  const [subtitle] = useContext(Subtitle)
+  const { subtitle } = useStoreon<Store, Event>('subtitle')
 
   const [collapse, setCollapse] = useState(false)
 

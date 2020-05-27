@@ -1,18 +1,18 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { Helmet } from 'react-helmet'
-
 import { navigate } from 'gatsby'
 
-import { Subtitle } from '../store'
+import { useStoreon } from 'storeon/react'
+import { Store, Event } from '../store/storeon'
 
 const Page: React.FC = props => {
   const [input, setInput] = useState('')
 
-  const [, setSubtitle] = useContext(Subtitle)
+  const { dispatch } = useStoreon<Store, Event>('subtitle')
 
   useEffect(() => {
-    setSubtitle('custom')
+    dispatch('subtitle/setSubtitle', 'custom')
   }, [])
 
   return (

@@ -1,6 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
-
-import { Subtitle } from '../../../../store'
+import React, { useEffect, useState } from 'react'
 
 import { Reader } from '../../../../core/components/reader'
 import { Failed } from './failed'
@@ -13,27 +11,30 @@ import { getIdByUrl } from '../services/getIdByUrl'
 import { FetchedRaw } from '../../../../core/@types/FetchedRaw'
 import { Props } from '../@types/Props'
 
+import { useStoreon } from 'storeon/react'
+import { Store, Event } from '../../../../store/storeon'
+
 const DynamicViewingComponent: React.FC<Props> = props => {
   const { location } = props
-
-  const [, setSubtitle] = useContext(Subtitle)
 
   const [state, setState] = useState<number>(1)
   const [raw, setRaw] = useState<FetchedRaw | null>(null)
 
+  const { dispatch } = useStoreon<Store, Event>('subtitle')
+
   const fetchHentai = async (requestedId: number | string) => {
     setState(1)
-    setSubtitle('finding')
+    dispatch('subtitle/setSubtitle', 'finding')
 
     try {
       const data = await getHentai(requestedId)
 
       setRaw(data)
       setState(0)
-      setSubtitle('viewing')
+      dispatch('subtitle/setSubtitle', 'viewing')
     } catch (e) {
       setState(2)
-      setSubtitle('failed')
+      dispatch('subtitle/setSubtitle', 'failed')
 
       throw e
     }

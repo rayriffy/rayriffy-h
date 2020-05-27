@@ -1,6 +1,6 @@
 import { GatsbyNode } from 'gatsby'
 
-import { FetchedRaw } from '../../core/@types'
+import { FetchedRaw } from '../../core/@types/FetchedRaw'
 import { fetch } from '@rayriffy-h/fetch'
 
 const PREFETCH_GIST =

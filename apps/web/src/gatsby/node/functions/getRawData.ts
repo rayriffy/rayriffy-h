@@ -1,7 +1,7 @@
 import { Cache, Reporter } from 'gatsby'
 import { getHentai, rawHentaiToHentai } from '@rayriffy-h/helper'
 
-import { FetchedRaw } from '../../../core/@types'
+import { FetchedRaw } from '../../../core/@types/FetchedRaw'
 
 /**
  * Featch raw data from cache or API

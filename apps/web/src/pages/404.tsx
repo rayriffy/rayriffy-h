@@ -1,14 +1,15 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 import { Helmet } from 'react-helmet'
 
-import { Subtitle } from '../store'
+import { useStoreon } from 'storeon/react'
+import { Store, Event } from '../store/storeon'
 
-export default () => {
-  const [, setSubtitle] = useContext(Subtitle)
+const Page: React.FC = props => {
+  const { dispatch } = useStoreon<Store, Event>('subtitle')
 
   useEffect(() => {
-    setSubtitle('404')
+    dispatch('subtitle/setSubtitle', '404')
   }, [])
 
   return (
@@ -26,3 +27,5 @@ export default () => {
     </React.Fragment>
   )
 }
+
+export default Page

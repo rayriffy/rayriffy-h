@@ -1,11 +1,12 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 
 import { tags as tagStack } from '../../contents/database/tags'
 
-import { Settings } from '../../store'
 import { Switch } from '../../core/components/switch'
-
 import { TransparentLink } from '../../core/components/transparentLink'
+
+import { useStoreon } from 'storeon/react'
+import { Store, Event } from '../../store/storeon'
 
 interface Props {
   collapse: boolean
@@ -35,10 +36,10 @@ const Dropdown: React.FC<{ title: React.ReactNode, zIndex?: number }> = props =>
 export const Navigation: React.FC<Props> = props => {
   const { collapse, subtitle } = props
 
-  const [settings, setSettings] = useContext(Settings)
+  const { dispatch, settings } = useStoreon<Store, Event>('settings')
 
   const toggleSetting = (key: 'safemode') => {
-    setSettings(prev => ({ ...prev, [key]: !prev[key] }))
+    dispatch('setting/toggle', key)
   }
 
   const menuStacks = [

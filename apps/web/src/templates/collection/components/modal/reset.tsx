@@ -1,13 +1,14 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 
-import { Collection } from '../../../../store'
+import { useStoreon } from 'storeon/react'
+import { Store, Event } from '../../../../store/storeon'
 
 import { ModalResetProps } from '../../@types/ModalResetProps'
 
 export const ModalReset: React.FC<ModalResetProps> = props => {
   const { onClose } = props
 
-  const [, setCollection] = useContext(Collection)
+  const { dispatch, collection } = useStoreon<Store, Event>('collection')
 
   const [lock, setLock] = useState<boolean>(true)
 
@@ -20,10 +21,12 @@ export const ModalReset: React.FC<ModalResetProps> = props => {
   const closeToggle = () => onClose ? onClose() : null
 
   const resetHandler = () => {
-    setCollection(prev => ({
-      ...prev,
-      data: [],
-    }))
+    dispatch('collection/override', {
+      collection: {
+        ...collection,
+        data: [],
+      },
+    })
 
     closeToggle()
   }

@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { getSearch, Hentai } from '@rayriffy-h/helper'
 
-import { Subtitle } from '../../../store'
+import { useStoreon } from 'storeon/react'
+import { Store, Event } from '../../../store/storeon'
 
 import { Pagination } from '../../../core/components/pagination'
 import { Listing } from '../../../core/components/listing'
@@ -20,7 +21,7 @@ const Component: React.FC<Props> = props => {
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
 
-  const [, setSubtitle] = useContext(Subtitle)
+  const { dispatch } = useStoreon<Store, Event>('subtitle')
 
   const renderPage = async (page: number) => {
     setLoading(true)
@@ -36,7 +37,7 @@ const Component: React.FC<Props> = props => {
   }
 
   useEffect(() => {
-    setSubtitle('home')
+    dispatch('subtitle/setSubtitle', 'home')
     renderPage(page)
   }, [page])
 

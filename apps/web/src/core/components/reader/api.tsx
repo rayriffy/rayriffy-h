@@ -5,7 +5,7 @@ import { APIResponse } from '@rayriffy-h/helper'
 
 import { useClipboard } from '../../services/functions/useClipboard'
 
-import { ReaderAPIProps } from '../../@types'
+import { ReaderAPIProps } from '../../@types/ReaderAPIProps'
 
 const Component: React.FC<ReaderAPIProps> = props => {
   const { id } = props

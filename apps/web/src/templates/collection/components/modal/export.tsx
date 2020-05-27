@@ -1,8 +1,9 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 
 import { fetch } from '@rayriffy-h/fetch'
 
-import { Collection } from '../../../../store'
+import { useStoreon } from 'storeon/react'
+import { Store, Event } from '../../../../store/storeon'
 
 import { useClipboard } from '../../../../core/services/functions/useClipboard'
 
@@ -14,7 +15,7 @@ export const ModalExport: React.FC<ModalExportProps> = props => {
   const [exportStat, setExportStat] = useState<null | 'load' | 'fail' | string>(null)
   const { onCopy, hasCopied } = useClipboard(exportStat)
 
-  const [collection,] = useContext(Collection)
+  const { collection } = useStoreon<Store, Event>('collection')
 
   const exportHandler = async () => {
     try {

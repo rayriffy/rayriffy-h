@@ -11,7 +11,7 @@ import { filterTagStackByType } from '../services/functions/filterTagStackByType
 
 import { tags as allTagStack } from '../../contents/database/tags'
 
-import { PosterProps } from '../@types'
+import { PosterProps } from '../@types/PosterProps'
 
 const Component: React.FC<PosterProps> = props => {
   const { raw, internal = true, scrollPosition } = props
