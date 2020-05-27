@@ -6,7 +6,8 @@ import { codes } from '../../../contents/database/codes'
 
 import { getRawData } from './getRawData'
 
-import { DatabaseCode, FetchedRaw } from '../../../core/@types'
+import { DatabaseCode } from '../../../core/@types/DatabaseCode'
+import { FetchedRaw } from '../../../core/@types/FetchedRaw'
 
 import { maxSimultaneousDownloads } from '../constants'
 
@@ -18,6 +19,8 @@ export const getData = async (actions: {
 
   const codeList =
     process.env.NODE_ENV === 'production' ? codes : sampleSize(codes, 20)
+
+  // const codeList = codes
 
   const res = await Promise.all(
     codeList.map(

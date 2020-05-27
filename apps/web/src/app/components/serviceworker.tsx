@@ -1,30 +1,19 @@
 import React from 'react'
 
-import { Alert, AlertIcon, LightMode } from '@chakra-ui/core'
-
 export const ServiceWorker: React.FC = () => {
   return (
-    <LightMode>
-      <Alert status='info' display='none' id='sw-update-found' color='black'>
-        <AlertIcon />
-        Updating application in background...
-      </Alert>
-      <Alert
-        status='success'
-        display='none'
-        id='sw-update-complete'
-        color='black'>
-        <AlertIcon />
-        Update completed! Reload required.
-      </Alert>
-      <Alert
-        status='success'
-        display='none'
-        id='sw-update-installed'
-        color='black'>
-        <AlertIcon />
-        Ready to work offline!
-      </Alert>
-    </LightMode>
+    <React.Fragment>
+      <div className='text-center'>
+        <div id='sw-update-found' className='p-2 bg-blue-800 items-center text-blue-100 leading-none rounded-full mb-4 hidden' role='alert'>
+          <span className='flex rounded-full bg-blue-500 uppercase px-2 py-1 text-xs font-bold mr-3'>New</span>
+          <span className='font-semibold mr-2 text-left flex-auto'>Updating application...</span>
+        </div>
+        <div id='sw-update-green' className='p-2 bg-green-800 items-center text-green-100 leading-none rounded-full mb-4 hidden' role='alert'>
+          <span className='flex rounded-full bg-green-500 uppercase px-2 py-1 text-xs font-bold mr-3'>New</span>
+          <span id='sw-update-complete' className='font-semibold mr-2 text-left flex-auto'>Update complete! Reload required.</span>
+          <span id='sw-update-installed' className='font-semibold mr-2 text-left flex-auto'>Ready to work offline!</span>
+        </div>
+      </div>
+    </React.Fragment>
   )
 }

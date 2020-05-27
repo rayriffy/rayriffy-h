@@ -1,40 +1,36 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
-import { Box, Flex, useColorMode } from '@chakra-ui/core'
-import { styled } from '../theme/styled'
-
-import { TransparentLink as Link } from './'
+import { TransparentLink } from './transparentLink'
 
 interface Props {
   max: number
   current: number
-  prefix: string
+  prefix?: string
+  link?: boolean
+  onChange?(page: number): void
 }
 
-interface Page {
-  start: number
-  index: number
+interface PageProps {
+  startPoint: number
   current: number
-  colorMode: 'light' | 'dark' | undefined
+  i: number
+  onChange(page: number): void
 }
 
-const TransparentLink = styled(Link)<Page>(props => {
-  const { start, index, current, colorMode, theme } = props
+const Page: React.FC<PageProps> = props => {
+  const { startPoint, current, i, onChange } = props
 
-  return {
-    textDecoration: 'none',
-    color: start + index + 1 === current ? colorMode === 'dark' ? theme.colors.white : theme.colors.black : theme.colors.gray[500]
-  }
-})
+  return (
+    <div
+      className={`cursor-pointer ${startPoint + i + 1 === current ? 'text-gray-900 dark:text-white' : 'text-gray-500'}`}
+      onClick={() => onChange(startPoint + i + 1)}>
+      {startPoint + i + 1}
+    </div>
+  )
+}
 
 const Component: React.FC<Props> = props => {
-  const { max, current, prefix } = props
-
-  const { 0: color, 1: setColor } = useState<'dark' | 'light' | undefined>(
-    undefined
-  )
-
-  const { colorMode } = useColorMode()
+  const { max, current, prefix = '/', link = true, onChange } = props
 
   const pageLength: number = max > 5 ? 5 : max
   const startPoint: number =
@@ -46,28 +42,25 @@ const Component: React.FC<Props> = props => {
         : current - (pageLength - 2)
       : 0
 
-  useEffect(() => {
-    setColor(colorMode)
-  }, [colorMode])
-
   return (
-    <Flex justifyContent='center'>
+    <div className='flex justify-center md:py-3 lg:py-5'>
       {Array.from({ length: pageLength }, (_, i) => (
-        <Box key={`pagination-${startPoint + i}`} px={3}>
-          <TransparentLink
-            to={
-              startPoint + i === 0 ? prefix : `${prefix}p/${startPoint + i + 1}`
-            }
-            aria-label={`${startPoint + i + 1}`}
-            start={startPoint}
-            index={i}
-            colorMode={color}
-            current={current}>
-            {startPoint + i + 1}
-          </TransparentLink>
-        </Box>
+        <div key={`pagination-${startPoint + i}`} className='px-3'>
+          {link ? (
+            <TransparentLink
+              to={
+                startPoint + i === 0 ? prefix : `${prefix}p/${startPoint + i + 1}`
+              }
+              aria-label={`${startPoint + i + 1}`}
+            >
+              <Page {...{ startPoint, i, current }} onChange={page => onChange ? onChange(page) : null} />
+            </TransparentLink>
+          ) : (
+            <Page {...{ startPoint, i, current }} onChange={page => onChange ? onChange(page) : null} />
+          )}
+        </div>
       ))}
-    </Flex>
+    </div>
   )
 }
 

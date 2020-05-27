@@ -21,7 +21,7 @@ export const getSearch = async (
 ): Promise<ExportedFunction> => {
   if (server) {
     const res = await fetch<APIResult>(
-      `https://nhentai.net/api/galleries/search?query="${query}"&page=${page}`
+      `https://nhentai.net/api/galleries/search?query=${query}&page=${page}`
     )
     return {
       raw: res.result,
@@ -29,7 +29,7 @@ export const getSearch = async (
     }
   } else {
     const res = await fetch<APIResponse<ExportedFunction>>(
-      `https://h.api.rayriffy.com/v1/search?query="${query}"&page=${page}`
+      `https://h.api.rayriffy.com/v1/search?query=${query}&page=${page}`
     )
     return res.response.data
   }

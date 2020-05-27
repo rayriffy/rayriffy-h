@@ -1,23 +1,20 @@
 import React from 'react'
 
-import { Link } from 'gatsby'
+import { truncate } from 'lodash-es'
 
-import { upperFirst } from 'lodash-es'
+import { BluredImage } from './bluredImage'
+import { Slug } from './slug'
+import { TransparentLink } from './transparentLink'
 
-import { Box, Flex, Stack, Text, useColorMode } from '@chakra-ui/core'
-
-import { BluredImage, Heading, Slug } from './'
-
-import { filterTagByType, filterTagStackByType } from '../services/functions'
+import { filterTagByType } from '../services/functions/filterTagByType'
+import { filterTagStackByType } from '../services/functions/filterTagStackByType'
 
 import { tags as allTagStack } from '../../contents/database/tags'
 
-import { PosterProps } from '../@types'
+import { PosterProps } from '../@types/PosterProps'
 
 const Component: React.FC<PosterProps> = props => {
-  const { raw, internal = true } = props
-
-  const { colorMode } = useColorMode()
+  const { raw, internal = true, scrollPosition } = props
 
   const tagStack = allTagStack.filter(
     tag => tag.name === 'parody' || tag.name === 'tag'
@@ -31,71 +28,52 @@ const Component: React.FC<PosterProps> = props => {
   const tagStackParody = filterTagStackByType(tagStack, 'parody')[0]
 
   return (
-    <Box width={['100%', 1 / 2, 1 / 3, 1 / 5]} p={2}>
-      <Box
-        bg={colorMode === 'dark' ? 'gray.700' : undefined}
-        borderRadius={8}
-        border='1px solid #e8e8e8'
-        overflow='hidden'>
-        <Box overflow='hidden'>
-          <Link
-            to={`/${internal ? 'r' : 'g'}/${raw.id}`}
-            aria-label={raw.title.pretty}>
-            <BluredImage
-              height={raw.images.cover.h}
-              width={raw.images.cover.w}
-              alt={`Cover ${raw.title.pretty}`}
-              src={`https://t.nhentai.net/galleries/${raw.media_id}/cover.${
-                raw.images.cover.t === 'p' ? 'png' : raw.images.cover.t === 'j' ? 'jpg' : 'gif'
-              }`}
-            />
-          </Link>
-        </Box>
-        <Heading size='sm' pt={3} px={3}>
-          {raw.title.pretty}
-        </Heading>
-        <Stack spacing={2} flexWrap='wrap' py={3} px={3} isInline={true}>
-          {raw.tags.map(tag => {
-            if (tag.type === 'tag') {
-              return (
-                <Slug
-                  key={`slug-tag-${tag.id}`}
-                  color={tagStackTag.color}
-                  link={`/${tagStackTag.prefix}/${tag.id}`}
-                  title={tag.name}
-                />
-              )
-            } else if (tag.type === 'parody') {
-              return (
-                <Slug
-                  key={`slug-parody-${tag.id}`}
-                  color={tagStackParody.color}
-                  link={`/${tagStackParody.prefix}/${tag.id}`}
-                  title={tag.name}
-                />
-              )
-            } else {
-              return null
-            }
-          })}
-        </Stack>
-        {language ? (
-          <Flex
-            justifyContent='center'
-            bg={
-              language.name === `english`
-                ? `blue.500`
-                : language.name === `japanese`
-                ? `red.500`
-                : `black`
-            }>
-            <Text color='white' fontSize='xs' py={1}>
-              {upperFirst(language.name)}
-            </Text>
-          </Flex>
-        ) : null}
-      </Box>
-    </Box>
+    <div className='w-full p-4'>
+      <div className='bg-white rounded overflow-hidden text-gray-900 dark:bg-gray-800 dark:text-gray-200 relative'>
+        <BluredImage
+          height={raw.images.cover.h}
+          width={raw.images.cover.w}
+          alt={`Cover ${raw.title.pretty}`}
+          scrollPosition={scrollPosition}
+          src={`https://t.nhentai.net/galleries/${raw.media_id}/cover.${
+            raw.images.cover.t === 'p' ? 'png' : raw.images.cover.t === 'j' ? 'jpg' : 'gif'
+          }`}
+        />
+        <div className='absolute top-0 bottom-0 left-0 right-0 rounded group transition-all duration-200 opacity-0 hover:opacity-100 hover:backdrop-blur bg-black-overlay p-6 text-white'>
+          <div className='invisible group-hover:visible h-full flex flex-col justify-between overflow-hidden'>
+            <div className='overflow-hidden'>
+              <div className='text-xl md:text-lg font-semibold float-left'>{truncate(raw.title.pretty, { length: 70 })}</div>
+              <div className='flex flex-wrap pt-4 float-left overflow-hidden'>
+                {raw.tags.filter(o => o.type === 'parody').map(tag => (
+                  <Slug
+                    key={`slug-parody-${tag.id}`}
+                    color={tagStackParody.color}
+                    link={`/${tagStackParody.prefix}/${tag.id}`}
+                    title={tag.name}
+                  />
+                ))}
+                {raw.tags.filter(o => o.type === 'tag').map((tag, i) => i < 8 ? (
+                  <Slug
+                    key={`slug-tag-${tag.id}`}
+                    color={tagStackTag.color}
+                    link={`/${tagStackTag.prefix}/${tag.id}`}
+                    title={tag.name}
+                  />
+                ) : null)}
+                {raw.tags.filter(o => o.type === 'tag').length > 8 ? <Slug color='blue' title={`...${raw.tags.filter(o => o.type === 'tag').length - 8} MORE`} /> : null}
+              </div>
+            </div>
+            <div className='pt-4'>
+              <TransparentLink to={`/${internal ? 'r' : 'g'}/${raw.id}`}>
+                <button className="backdrop-blur-heavy w-full bg-white-a40 text-white font-bold py-3 px-4 rounded inline-block float-left">
+                  READ <i className="fas fa-angle-right pl-1"></i>
+                </button>
+              </TransparentLink>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 

@@ -1,4 +1,4 @@
-import { DatabaseCode } from '../../core/@types'
+import { DatabaseCode } from '../../core/@types/DatabaseCode'
 
 export const codes: DatabaseCode[] = [
   140232,

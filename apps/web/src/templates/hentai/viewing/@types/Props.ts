@@ -1,4 +1,4 @@
-import { FetchedRaw } from '../../../../core/@types'
+import { FetchedRaw } from '../../../../core/@types/FetchedRaw'
 
 export interface Props {
   pageContext: {

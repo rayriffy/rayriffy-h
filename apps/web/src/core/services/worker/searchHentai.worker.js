@@ -16,7 +16,7 @@ export const searchHentai = async (query, raws) => {
             return raws.filter(raw => {
               const title = get(
                 raw,
-                `title.${language}`,
+                `raw.title.${language}`,
                 ''
               )
 
@@ -30,7 +30,7 @@ export const searchHentai = async (query, raws) => {
        */
 
       const typeTag = raws.filter(raw => {
-        const tagResult = raw.tags.map(tag => {
+        const tagResult = raw.raw.tags.map(tag => {
           const name = tag.name.toLocaleLowerCase()
 
           return RegExp(subquery.toLocaleLowerCase()).test(name)

@@ -1,7 +1,9 @@
+import React from 'react'
+
 import { Link } from 'gatsby'
 
-import styled from '@emotion/styled'
+import { TransparentLinkProps } from '../@types/TransparentLinkProps'
 
-export const TransparentLink = styled(Link)(() => ({
-  textDecoration: 'none',
-}))
+export const TransparentLink: React.FC<TransparentLinkProps> = props => (
+  <Link className='no-underline' {...props} />
+)

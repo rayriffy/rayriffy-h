@@ -1,68 +1,55 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
-import { Box, Button, Flex, Input, Text, useColorMode } from '@chakra-ui/core'
+import { Helmet } from 'react-helmet'
+import { navigate } from 'gatsby'
 
-import { Subtitle } from '../store'
+import { useStoreon } from 'storeon/react'
+import { Store, Event } from '../store/storeon'
 
-import { Heading, TransparentLink } from '../core/components'
+const Page: React.FC = props => {
+  const [input, setInput] = useState('')
 
-const CustomComponent: React.FC = () => {
-  const { colorMode } = useColorMode()
-
-  const { 0: input, 1: setInput } = useState('')
-
-  const { 1: setSubtitle } = useContext(Subtitle)
+  const { dispatch } = useStoreon<Store, Event>('subtitle')
 
   useEffect(() => {
-    setSubtitle('custom')
+    dispatch('subtitle/setSubtitle', 'custom')
   }, [])
 
   return (
-    <Box pt={3}>
-      <Flex justifyContent='center'>
-        <Box
-          borderRadius={8}
-          border='1px solid #e8e8e8'
-          overflow='hidden'
-          bg={colorMode === 'dark' ? 'gray.700' : undefined}
-          width={[20 / 24, 16 / 24, 12 / 24, 8 / 24]}
-          p={5}>
-          <Heading size='lg'>Custom</Heading>
-          <Box py={2}>
-            <Text fontSize={[14, 15]} color='gray.500'>
-              Enter your hentai ID down below...
-            </Text>
-          </Box>
-          <Box py={2}>
-            <Input
-              value={input}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setInput(e.target.value)
-              }
+    <React.Fragment>
+      <Helmet title='Custom' />
+      <div className='flex justify-center'>
+        <div className ='w-full md:w-8/12 lg:w-7/12 xl:w-4/12 bg-white dark:bg-gray-800 rounded px-5 py-4 text-gray-800 dark:text-white'>
+          <div className='text-2xl font-semibold pb-1'>Custom</div>
+          <div className='text-sm text-gray-600 dark:text-gray-400 pb-2'>
+            You can navigate into your faviorite hentai by type 6 digit number below or type URL <b className='text-gray-700 dark:text-gray-300'>h.rayriffy.com/g/:id</b>
+          </div>
+          <div className='py-4'>
+            <input
+              className='bg-white dark:bg-gray-900 focus:outline-none focus:shadow-outline border border-gray-300 dark:border-gray-600 rounded-lg py-2 px-4 block w-full appearance-none leading-normal'
+              type='tel'
               placeholder='000000'
-              color={colorMode === 'dark' ? 'white' : undefined}
-              _placeholder={{
-                color: colorMode === 'dark' ? 'white' : 'gray.500',
-              }}
-            />
-          </Box>
-          <Box py={1}>
-            {input === '' ? (
-              <Button bg='#757575' color='white' fontSize='sm'>
-                Locked
-              </Button>
-            ) : (
-              <TransparentLink to={`/g/${input}`} aria-label='Ready'>
-                <Button bg='#1890ff' color='white' fontSize='sm'>
-                  Ready
-                </Button>
-              </TransparentLink>
-            )}
-          </Box>
-        </Box>
-      </Flex>
-    </Box>
+              value={input}
+              onChange={e => {
+                const value = e.target.value
+                const test = /^[0-9\b]+$/
+
+                if (value === '' || test.test(value)) setInput(value)
+              }} />
+          </div>
+          <div className='py-2'>
+            <div
+              className={`${input.length !== 0 && input.length <= 6 ? 'bg-blue-500 hover:bg-blue-700 cursor-pointer text-white' : 'bg-gray-500 hover:bg-gray-700 cursor-not-allowed text-white dark:text-gray-800'} font-bold py-2 px-4 rounded cursor-pointer flex justify-center items-center transition-all duration-200 select-none`}
+              onClick={() => {
+                if (input.length !== 0 && input.length <= 6) navigate(`/g/${input}`)
+              }}>
+              {input.length === 0 ? 'Missing input' : input.length > 6 ? 'Too long!' : 'Go'}
+            </div>
+          </div>
+        </div>
+      </div>
+    </React.Fragment>
   )
 }
 
-export default CustomComponent
+export default Page

@@ -36,6 +36,7 @@ const HTMLComponent: React.FC<Props> = props => {
       </head>
       <body {...bodyAttributes}>
         {preBodyComponents}
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet"></link>
         <div
           key='body'
           id='___gatsby'

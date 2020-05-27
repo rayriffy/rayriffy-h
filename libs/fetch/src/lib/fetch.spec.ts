@@ -10,7 +10,7 @@ describe('fetch', () => {
       response: {
         message: 'hello',
         data: {
-          docs: 'https://github.com/rayriffy/rayriffy-h-api#api',
+          docs: 'https://github.com/rayriffy/rayriffy-h/tree/master/apps/api#api',
         },
       },
     });

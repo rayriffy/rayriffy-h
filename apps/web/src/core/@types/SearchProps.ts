@@ -1,7 +1,8 @@
-import { Hentai } from '@rayriffy-h/helper'
+import { ListingHentai } from './ListingHentai'
 
 export interface SearchProps {
-  raw: Hentai[]
+  raw: ListingHentai[]
   skip: number
   showOnEmptyQuery?: boolean
+  modeLock?: 'list' | 'nh'
 }

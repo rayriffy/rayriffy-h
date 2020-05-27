@@ -1,4 +1,4 @@
-import { DatabaseTag } from '../../core/@types'
+import { DatabaseTag } from '../../core/@types/DatabaseTag'
 
 export const tags: DatabaseTag[] = [
   {
@@ -22,7 +22,7 @@ export const tags: DatabaseTag[] = [
     prefix: 'pa',
   },
   {
-    color: 'cyan',
+    color: 'teal',
     name: 'group',
     prefix: 'gr',
   },

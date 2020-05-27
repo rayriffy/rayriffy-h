@@ -8,8 +8,8 @@ interface Props {
   }
 }
 
-const DynamicGComponent: React.FC<Props> = props => {
+const Page: React.FC<Props> = props => {
   return <DynamicViewing {...props} />
 }
 
-export default DynamicGComponent
+export default Page

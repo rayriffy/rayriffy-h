@@ -1,22 +1,18 @@
 import React from 'react'
 
-import { Badge, Box } from '@chakra-ui/core'
+import { TransparentLink } from './transparentLink'
 
-import { TransparentLink } from './'
-
-import { SlugProps } from '../@types'
+import { SlugProps } from '../@types/SlugProps'
 
 const Component: React.FC<SlugProps> = props => {
-  const { color, link, title } = props
+  const { color = 'grey', link, title } = props
 
   const badge: React.ReactNode = (
-    <Badge fontSize={11} variant='outline' variantColor={color}>
-      {title}
-    </Badge>
+    <span className={`flex rounded bg-${color}-500 uppercase p-1 text-xs font-bold text-white`}>{title}</span>
   )
 
   return (
-    <Box px={1}>
+    <div className='p-1'>
       {link ? (
         <TransparentLink to={link} aria-label={title}>
           {badge}
@@ -24,7 +20,7 @@ const Component: React.FC<SlugProps> = props => {
       ) : (
         badge
       )}
-    </Box>
+    </div>
   )
 }
 

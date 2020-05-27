@@ -1,33 +1,43 @@
-import React, { useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 
-import { Box, Divider, Flex, Text } from '@chakra-ui/core'
+import { useStoreon } from 'storeon/react'
+import { Store, Event } from '../../store/storeon'
 
-import { Heading } from '../../core/components'
-import { Drawer } from '../components/drawer'
+import { Navigation } from './navigation'
 
-import { Settings, Subtitle } from '../../store'
+import { Props } from '../@types/Props'
 
-export const Header = () => {
-  const { 0: subtitle } = useContext(Subtitle)
-  const { 0: settings } = useContext(Settings)
+export const Header: React.FC<Props> = props => {
+  const { path } = props
+
+  const { subtitle } = useStoreon<Store, Event>('subtitle')
+
+  const [collapse, setCollapse] = useState(false)
+
+  useEffect(() => {
+    setCollapse(false)
+  }, [path])
 
   return (
-    <React.Fragment>
-      <Flex
-        flexDirection={settings.lefthand ? 'row-reverse' : 'row'}
-        alignItems='center'>
-        <Flex alignItems='flex-end' flexWrap='wrap'>
-          <Heading size='2xl'>Riffy H</Heading>
-          <Text fontSize={30} fontWeight={600} color='gray.500' px={2}>
-            {subtitle}
-          </Text>
-        </Flex>
-        <Box mx='auto' />
-        <Box px={3}>
-          <Drawer />
-        </Box>
-      </Flex>
-      <Divider my={4} />
-    </React.Fragment>
+    <div className='md:flex flex-col md:flex-row md:min-h-screen md:fixed'>
+      <div className='flex flex-col w-full md:w-64 text-gray-700 bg-white dark:text-gray-200 dark:bg-gray-900 md:dark:bg-gray-800 flex-shrink-0'>
+        <div className='flex-shrink-0 px-8 py-4 flex flex-row items-center justify-between'>
+          <div className='select-none'>
+            <div className='text-3xl font-semibold text-gray-900 leading-tight dark:text-white focus:outline-none focus:shadow-outline'>Riffy H</div>
+            <div className='-mt-1'>{subtitle}</div>
+          </div>
+          <button className='rounded-lg md:hidden rounded-lg focus:outline-none focus:shadow-outline' onClick={() => setCollapse(o => !o)}>
+            <svg fill='currentColor' viewBox='0 0 20 20' className='w-6 h-6'>
+              {collapse ? (
+                <path fillRule='evenodd' d='M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z' clipRule='evenodd'></path>
+              ) : (
+                <path fillRule='evenodd' d='M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z' clipRule='evenodd'></path>
+              )}
+            </svg>
+          </button>
+        </div>
+        <Navigation collapse={collapse} subtitle={subtitle} />
+      </div>
+    </div>
   )
 }

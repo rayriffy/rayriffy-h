@@ -1,4 +1,4 @@
-import { DatabaseTag } from '../../../core/@types'
+import { DatabaseTag } from '../../../core/@types/DatabaseTag'
 
 export interface AllTag {
   allTag: {

@@ -1,50 +1,45 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
-import { isEmpty } from 'lodash-es'
+import { Helmet } from 'react-helmet'
 
-import { Box, Flex, Text } from '@chakra-ui/core'
-
-import { Collection, Subtitle } from '../../../store'
-
-import { Heading, Search } from '../../../core/components'
+import { Search } from '../../../core/components/search'
 import { Actions } from './actions'
+
+import { useStoreon } from 'storeon/react'
+import { Store, Event } from '../../../store/storeon'
 
 import { Props } from '../@types/Props'
 
 const Page: React.FC<Props> = props => {
   const { skip } = props.pageContext
 
-  const { 1: setSubtitle } = useContext(Subtitle)
-  const { 0: collection, 1: setCollection } = useContext(Collection)
+  const { dispatch, collection } = useStoreon<Store, Event>('subtitle', 'collection')
 
   useEffect(() => {
-    setSubtitle(`collection`)
+    dispatch('subtitle/setSubtitle', 'collection')
   }, [])
 
   return (
-    <Flex justifyContent='center'>
-      <Box width={22 / 24}>
-        <Actions {...{ collection, setCollection }} />
-        {isEmpty(collection.data) ? (
-          <React.Fragment>
-            <Heading size='lg' textAlign='center' pt={6}>
-              No records
-            </Heading>
-            <Text textAlign='center' pt={4} color='gray.500'>
-              Just take some time to read and add your favorite records here...
-            </Text>
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            <Search
-              raw={collection.data.map(o => o.data)}
-              skip={skip}
-              showOnEmptyQuery
-            />
-          </React.Fragment>
-        )}
-      </Box>
-    </Flex>
+    <React.Fragment>
+      <Helmet title='Collection' />
+      <Actions />
+      {collection.data.length === 0 ? (
+        <div className='pt-12 text-center'>
+          <div className='text-xl font-semibold text-gray-900 dark:text-white'>No records</div>
+          <div className='text-gray-600 dark:text-gray-500'>Just take some time to read and add your favorite gallery here...</div>
+        </div>
+      ) : (
+        <Search
+          raw={collection.data.map(o => ({
+            raw: o.data,
+            internal: o.internal,
+          }))}
+          skip={skip}
+          modeLock='list'
+          showOnEmptyQuery
+        />
+      )}
+    </React.Fragment>
   )
 }
 

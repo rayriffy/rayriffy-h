@@ -52,7 +52,7 @@ export const hentaiListing = async ({ actions, graphql }: CreatePagesArgs) => {
 
   hentaiListingChunks.map((chunk, i) => {
     return createPage({
-      path: i === 0 ? `/` : `/p/${i + 1}`,
+      path: i === 0 ? `/listing` : `/listing/p/${i + 1}`,
       component: path.resolve(
         `./src/templates/hentai/listing/components/index.tsx`
       ),

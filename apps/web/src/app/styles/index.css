@@ -1,0 +1,37 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+html, body, #___gatsby, #gatsby-focus-wrapper {
+  @apply h-full overflow-auto
+}
+
+.spinner {
+  position: relative;
+  pointer-events: none;
+  @apply text-gray-900;
+}
+
+@media (prefers-color-scheme: dark) {
+  .spinner {
+    @apply text-white;
+  }
+}
+
+.spinner::after {
+  content: '';
+  top: calc(50% - (1rem / 2));
+  left: calc(50% - (1rem / 2));
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  animation: spinAround 500ms infinite linear;
+  @apply absolute block w-6 h-6 rounded-full;
+}
+
+@keyframes spinAround {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

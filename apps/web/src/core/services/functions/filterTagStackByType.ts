@@ -1,5 +1,5 @@
 import { TagType } from '@rayriffy-h/helper'
-import { DatabaseTag } from '../../@types'
+import { DatabaseTag } from '../../@types/DatabaseTag'
 
 export const filterTagStackByType = (
   tagStack: DatabaseTag[],

@@ -9,21 +9,8 @@ const config: GatsbyConfig = {
   },
   pathPrefix: '/',
   plugins: [
-    `gatsby-plugin-preact`,
-    {
-      resolve: `gatsby-plugin-compile-es6-packages`,
-      options: {
-        modules: [`gatsby-plugin-chakra-ui`],
-      },
-    },
-    {
-      resolve: `gatsby-plugin-emotion`,
-      options: {
-        sourceMap: true,
-        cssPropOptimization: true,
-      },
-    },
-    `gatsby-plugin-chakra-ui`,
+    `gatsby-plugin-postcss`,
+    // `gatsby-plugin-preact`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -42,7 +29,7 @@ const config: GatsbyConfig = {
     },
     {
       resolve: `gatsby-plugin-create-client-paths`,
-      options: { prefixes: [`/g/*`] },
+      options: { prefixes: [`/g/*`, `/p/*`] },
     },
     {
       resolve: `gatsby-plugin-manifest`,
