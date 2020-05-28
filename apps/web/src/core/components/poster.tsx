@@ -63,12 +63,21 @@ const Component: React.FC<PosterProps> = props => {
                 {raw.tags.filter(o => o.type === 'tag').length > 8 ? <Slug color='blue' title={`...${raw.tags.filter(o => o.type === 'tag').length - 8} MORE`} /> : null}
               </div>
             </div>
-            <div className='pt-4'>
-              <TransparentLink to={`/${internal ? 'r' : 'g'}/${raw.id}`}>
-                <button className="backdrop-blur-heavy w-full bg-white-a40 text-white font-bold py-3 px-4 rounded inline-block float-left">
-                  READ <i className="fas fa-angle-right pl-1"></i>
-                </button>
-              </TransparentLink>
+            <div className='pt-4 flex'>
+              <div className='w-full mr-2'>
+                <TransparentLink to={`/${internal ? 'r' : 'g'}/${raw.id}`}>
+                  <button className='backdrop-blur-heavy w-full bg-white-a40 text-white font-bold py-3 px-4 rounded inline-block float-left select-none'>
+                    READ <i className="fas fa-angle-right pl-1"></i>
+                  </button>
+                </TransparentLink>
+              </div>
+              <div className='mr-1'>
+                <a href={`/${internal ? 'r' : 'g'}/${raw.id}`} target='_blank' rel='noopener noreferrer'>
+                  <button className='backdrop-blur-heavy w-full bg-white-a40 text-white font-bold py-3 px-4 rounded inline-block float-left select-none'>
+                    <i className="fas fa-external-link-square-alt"></i>
+                  </button>
+                </a>
+              </div>
             </div>
           </div>
         </div>
