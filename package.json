@@ -61,7 +61,7 @@
     "lodash-es": "^4.17.15",
     "next": "9.4.2",
     "next-compose-plugins": "^2.2.0",
-    "preact": "^10.4.1",
+    "preact": "^10.4.4",
     "puppeteer-core": "^3.1.0",
     "purgecss": "^2.1.2",
     "react": "^16.13.1",
