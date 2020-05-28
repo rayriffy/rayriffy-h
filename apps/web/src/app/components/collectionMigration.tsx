@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { useStoreon } from 'storeon/react'
+import { useStoreon } from '../../store'
 import { Store, Event } from '../../store/storeon'
 
 export const CollectionMigration: React.FC = props => {

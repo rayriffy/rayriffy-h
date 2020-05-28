@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet'
 
 import { sortBy } from 'lodash-es'
 
-import { useStoreon } from 'storeon/react'
+import { useStoreon } from '../../../../store'
 import { Store, Event } from '../../../../store/storeon'
 
 import { TransparentLink } from '../../../../core/components/transparentLink'

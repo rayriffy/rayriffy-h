@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { fetch } from '@rayriffy-h/fetch'
 
-import { useStoreon } from 'storeon/react'
+import { useStoreon } from '../../../../store'
 import { Store, Event } from '../../../../store/storeon'
 
 import { ModalImportProps } from '../../@types/ModalImportProps'

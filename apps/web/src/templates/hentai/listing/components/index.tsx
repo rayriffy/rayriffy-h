@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet'
 import { Listing } from '../../../../core/components/listing'
 import { Pagination } from '../../../../core/components/pagination'
 
-import { useStoreon } from 'storeon/react'
+import { useStoreon } from '../../../../store'
 import { Store, Event } from '../../../../store/storeon'
 
 import { Props } from '../@types/Props'

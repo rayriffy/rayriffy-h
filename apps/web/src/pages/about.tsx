@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { useStoreon } from 'storeon/react'
+import { useStoreon } from '../store'
 import { Store, Event } from '../store/storeon'
 
 const Page: React.FC = props => {

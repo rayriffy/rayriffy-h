@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { getSearch, Hentai } from '@rayriffy-h/helper'
 
-import { useStoreon } from 'storeon/react'
+import { useStoreon } from '../../../store'
 import { Store, Event } from '../../../store/storeon'
 
 import { Pagination } from '../../../core/components/pagination'

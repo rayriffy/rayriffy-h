@@ -2,7 +2,7 @@ import React from 'react'
 
 import { LazyLoadImage, LazyLoadImageProps } from 'react-lazy-load-image-component'
 
-import { useStoreon } from 'storeon/react'
+import { useStoreon } from '../../store'
 import { Store, Event } from '../../store/storeon'
 
 export const BluredImage: React.FC<LazyLoadImageProps> = props => {

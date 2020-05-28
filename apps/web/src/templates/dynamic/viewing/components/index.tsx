@@ -11,7 +11,7 @@ import { getIdByUrl } from '../services/getIdByUrl'
 import { FetchedRaw } from '../../../../core/@types/FetchedRaw'
 import { Props } from '../@types/Props'
 
-import { useStoreon } from 'storeon/react'
+import { useStoreon } from '../../../../store'
 import { Store, Event } from '../../../../store/storeon'
 
 const DynamicViewingComponent: React.FC<Props> = props => {

@@ -1,14 +1,19 @@
 import React from 'react'
 
-import { StoreContext } from 'storeon/react'
+import { StoreContext, contextOverride } from 'storeon/react'
 import { store } from './storeon'
+
+const StoreonContext = React.createContext(store)
+
+export const useStoreon = contextOverride(StoreonContext)
+// useSt
 
 export const Context: React.FC = props => {
   const { children } = props
 
   return (
-    <StoreContext.Provider value={store}>
+    <StoreonContext.Provider value={store}>
       {children}
-    </StoreContext.Provider>
+    </StoreonContext.Provider>
   )
 }

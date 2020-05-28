@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 import { Reader } from '../../../../core/components/reader'
 
-import { useStoreon } from 'storeon/react'
+import { useStoreon } from '../../../../store'
 import { Store, Event } from '../../../../store/storeon'
 
 import { Props } from '../@types/Props'

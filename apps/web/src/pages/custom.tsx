@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { navigate } from 'gatsby'
 
-import { useStoreon } from 'storeon/react'
+import { useStoreon } from '../store'
 import { Store, Event } from '../store/storeon'
 
 const Page: React.FC = props => {

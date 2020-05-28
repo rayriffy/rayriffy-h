@@ -5,7 +5,7 @@ import { tags as tagStack } from '../../contents/database/tags'
 import { Switch } from '../../core/components/switch'
 import { TransparentLink } from '../../core/components/transparentLink'
 
-import { useStoreon } from 'storeon/react'
+import { useStoreon } from '../../store'
 import { Store, Event } from '../../store/storeon'
 
 interface Props {

@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet'
 import { Search } from '../../../core/components/search'
 import { Actions } from './actions'
 
-import { useStoreon } from 'storeon/react'
+import { useStoreon } from '../../../store'
 import { Store, Event } from '../../../store/storeon'
 
 import { Props } from '../@types/Props'
