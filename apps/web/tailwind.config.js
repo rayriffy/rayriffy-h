@@ -43,4 +43,11 @@ module.exports = {
   plugins: [
     require('tailwindcss-filters'),
   ],
+  purge: [
+    './src/**/*.html',
+    './src/**/*.tsx',
+    './src/**/*.ts',
+    './src/**/*.jsx',
+    './src/**/*.js',
+  ]
 }

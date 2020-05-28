@@ -22,6 +22,8 @@ export const store = createStoreon<Store, Event>([
   settings,
   collection,
   subtitle,
-  // persistState(['settings', 'collection']),
-  crossTab({ filter: (event, data) => event !== 'subtitle/setSubtitle' })
+  ...typeof window !== 'undefined' ? [
+    persistState(['settings', 'collection']),
+    crossTab({ filter: (event, data) => event !== 'subtitle/setSubtitle' }),
+  ] : []
 ])
