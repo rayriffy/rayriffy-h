@@ -5,14 +5,13 @@ import { Helmet } from 'react-helmet'
 import { Search } from '../../../core/components/search'
 
 import { useStoreon } from '../../../store'
-import { Store, Event } from '../../../store/storeon'
 
 import { Props } from '../@types/Props'
 
 const Page: React.FC<Props> = props => {
   const { raw, skip } = props.pageContext
 
-  const { dispatch } = useStoreon<Store, Event>('subtitle')
+  const { dispatch } = useStoreon('subtitle')
 
   useEffect(() => {
     dispatch('subtitle/setSubtitle', 'search')

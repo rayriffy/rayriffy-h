@@ -7,14 +7,13 @@ import { Pagination } from '../../../../core/components/pagination'
 import { Listing } from '../../../../core/components/listing'
 
 import { useStoreon } from '../../../../store'
-import { Store, Event } from '../../../../store/storeon'
 
 import { Props } from '../@types/Props'
 
 const Page: React.FC<Props> = props => {
   const { raw, page, tag, prefix, subtitle } = props.pageContext
 
-  const { dispatch } = useStoreon<Store, Event>('subtitle')
+  const { dispatch } = useStoreon('subtitle')
 
   useEffect(() => {
     dispatch('subtitle/setSubtitle', subtitle)

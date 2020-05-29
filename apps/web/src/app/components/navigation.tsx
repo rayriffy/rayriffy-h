@@ -6,7 +6,6 @@ import { Switch } from '../../core/components/switch'
 import { TransparentLink } from '../../core/components/transparentLink'
 
 import { useStoreon } from '../../store'
-import { Store, Event } from '../../store/storeon'
 
 interface Props {
   collapse: boolean
@@ -36,7 +35,7 @@ const Dropdown: React.FC<{ title: React.ReactNode, zIndex?: number }> = props =>
 export const Navigation: React.FC<Props> = props => {
   const { collapse, subtitle } = props
 
-  const { dispatch, settings } = useStoreon<Store, Event>('settings')
+  const { dispatch, settings } = useStoreon('settings')
 
   const toggleSetting = (key: 'safemode') => {
     dispatch('setting/toggle', key)

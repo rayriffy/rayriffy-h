@@ -3,12 +3,11 @@ import React from 'react'
 import { LazyLoadImage, LazyLoadImageProps } from 'react-lazy-load-image-component'
 
 import { useStoreon } from '../../store'
-import { Store, Event } from '../../store/storeon'
 
 export const BluredImage: React.FC<LazyLoadImageProps> = props => {
   const { className, ...rest } = props
   
-  const { settings } = useStoreon<Store, Event>('settings')
+  const { settings } = useStoreon('settings')
 
   return (
     <LazyLoadImage

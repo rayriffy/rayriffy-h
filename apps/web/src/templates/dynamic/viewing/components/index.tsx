@@ -12,7 +12,6 @@ import { FetchedRaw } from '../../../../core/@types/FetchedRaw'
 import { Props } from '../@types/Props'
 
 import { useStoreon } from '../../../../store'
-import { Store, Event } from '../../../../store/storeon'
 
 const DynamicViewingComponent: React.FC<Props> = props => {
   const { location } = props
@@ -20,7 +19,7 @@ const DynamicViewingComponent: React.FC<Props> = props => {
   const [state, setState] = useState<number>(1)
   const [raw, setRaw] = useState<FetchedRaw | null>(null)
 
-  const { dispatch } = useStoreon<Store, Event>('subtitle')
+  const { dispatch } = useStoreon('subtitle')
 
   const fetchHentai = async (requestedId: number | string) => {
     setState(1)

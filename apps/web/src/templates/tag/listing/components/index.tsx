@@ -5,7 +5,6 @@ import { Helmet } from 'react-helmet'
 import { sortBy } from 'lodash-es'
 
 import { useStoreon } from '../../../../store'
-import { Store, Event } from '../../../../store/storeon'
 
 import { TransparentLink } from '../../../../core/components/transparentLink'
 
@@ -14,7 +13,7 @@ import { Props } from '../@types/Props'
 const Page: React.FC<Props> = props => {
   const { prefix, raw, subtitle } = props.pageContext
 
-  const { dispatch } = useStoreon<Store, Event>('subtitle')
+  const { dispatch } = useStoreon('subtitle')
 
   const alphabet = [
     'a',

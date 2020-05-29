@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 
 import { useStoreon } from '../../../../store'
-import { Store, Event } from '../../../../store/storeon'
 
 import { ModalResetProps } from '../../@types/ModalResetProps'
 
 export const ModalReset: React.FC<ModalResetProps> = props => {
   const { onClose } = props
 
-  const { dispatch, collection } = useStoreon<Store, Event>('collection')
+  const { dispatch, collection } = useStoreon('collection')
 
   const [lock, setLock] = useState<boolean>(true)
 

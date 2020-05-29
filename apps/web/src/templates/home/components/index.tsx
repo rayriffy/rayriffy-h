@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 import { getSearch, Hentai } from '@rayriffy-h/helper'
 
 import { useStoreon } from '../../../store'
-import { Store, Event } from '../../../store/storeon'
 
 import { Pagination } from '../../../core/components/pagination'
 import { Listing } from '../../../core/components/listing'
@@ -21,7 +20,7 @@ const Component: React.FC<Props> = props => {
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
 
-  const { dispatch } = useStoreon<Store, Event>('subtitle')
+  const { dispatch } = useStoreon('subtitle')
 
   const renderPage = async (page: number) => {
     setLoading(true)

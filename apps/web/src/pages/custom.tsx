@@ -4,12 +4,11 @@ import { Helmet } from 'react-helmet'
 import { navigate } from 'gatsby'
 
 import { useStoreon } from '../store'
-import { Store, Event } from '../store/storeon'
 
 const Page: React.FC = props => {
   const [input, setInput] = useState('')
 
-  const { dispatch } = useStoreon<Store, Event>('subtitle')
+  const { dispatch } = useStoreon('subtitle')
 
   useEffect(() => {
     dispatch('subtitle/setSubtitle', 'custom')

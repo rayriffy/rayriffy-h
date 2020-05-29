@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { fetch } from '@rayriffy-h/fetch'
 
 import { useStoreon } from '../../../../store'
-import { Store, Event } from '../../../../store/storeon'
 
 import { ModalImportProps } from '../../@types/ModalImportProps'
 
@@ -12,7 +11,7 @@ import { CollectionStore } from '../../../../store/@types/CollectionStore'
 export const ModalImport: React.FC<ModalImportProps> = props => {
   const { onClose } = props
 
-  const { dispatch, collection } = useStoreon<Store, Event>('collection')
+  const { dispatch, collection } = useStoreon('collection')
 
   const [input, setInput] = useState<string>('')
   const [status, setStatus] = useState<'wait' | 'progress'>('wait')

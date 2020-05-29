@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
 import { useStoreon } from '../../../store'
-import { Store, Event } from '../../../store/storeon'
 
 import { API } from './api'
 import { Modal } from '../modal'
@@ -11,7 +10,7 @@ import { ReaderShareProps } from '../../@types/ReaderShareProps'
 const Component: React.FC<ReaderShareProps> = props => {
   const { hentai, internal } = props
 
-  const { dispatch, collection } = useStoreon<Store, Event>('collection')
+  const { dispatch, collection } = useStoreon('collection')
 
   const toggleFavorite = () => {
     const isFavorited =

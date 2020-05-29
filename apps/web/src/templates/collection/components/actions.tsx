@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
 import { useStoreon } from '../../../store'
-import { Store, Event } from '../../../store/storeon'
 
 import { Modal } from '../../../core/components/modal'
 import { ModalExport } from './modal/export'
@@ -9,7 +8,7 @@ import { ModalImport } from './modal/import'
 import { ModalReset } from './modal/reset'
 
 export const Actions: React.FC = props => {
-  const { collection } = useStoreon<Store, Event>('collection')
+  const { collection } = useStoreon('collection')
 
   const [menuOpen, setMenuOpen] = useState<boolean>(false)
   const [activeModal, setActiveModal] = useState<'none' | 'import' | 'export' | 'reset'>('none')

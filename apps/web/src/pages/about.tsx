@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
 
 import { useStoreon } from '../store'
-import { Store, Event } from '../store/storeon'
 
 const Page: React.FC = props => {
-  const { dispatch } = useStoreon<Store, Event>('subtitle')
+  const { dispatch } = useStoreon('subtitle')
 
   useEffect(() => {
     dispatch('subtitle/setSubtitle', 'about')

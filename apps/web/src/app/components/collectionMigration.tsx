@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
 import { useStoreon } from '../../store'
-import { Store, Event } from '../../store/storeon'
 
 export const CollectionMigration: React.FC = props => {
   const [active, setActive] = useState<'none' | string>('none')
-  const { dispatch } = useStoreon<Store, Event>('collection')
+  const { dispatch } = useStoreon('collection')
 
   useEffect(() => {
     const collectionV1 = window.localStorage.getItem('collection')

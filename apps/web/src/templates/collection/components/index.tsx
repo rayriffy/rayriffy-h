@@ -6,14 +6,13 @@ import { Search } from '../../../core/components/search'
 import { Actions } from './actions'
 
 import { useStoreon } from '../../../store'
-import { Store, Event } from '../../../store/storeon'
 
 import { Props } from '../@types/Props'
 
 const Page: React.FC<Props> = props => {
   const { skip } = props.pageContext
 
-  const { dispatch, collection } = useStoreon<Store, Event>('subtitle', 'collection')
+  const { dispatch, collection } = useStoreon('subtitle', 'collection')
 
   useEffect(() => {
     dispatch('subtitle/setSubtitle', 'collection')
