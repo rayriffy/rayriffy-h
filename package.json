@@ -31,6 +31,7 @@
   ],
   "private": true,
   "dependencies": {
+    "@babel/plugin-transform-react-jsx-source": "^7.10.1",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "@fullhuman/postcss-purgecss": "^2.1.2",
@@ -105,7 +106,7 @@
     "@typescript-eslint/eslint-plugin": "2.34.0",
     "@typescript-eslint/parser": "2.34.0",
     "babel-plugin-emotion": "^10.0.33",
-    "babel-preset-gatsby": "^0.4.0",
+    "babel-preset-gatsby": "^0.4.7",
     "cypress": "^4.7.0",
     "dotenv": "8.2.0",
     "eslint": "6.8.0",
