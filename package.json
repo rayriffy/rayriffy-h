@@ -77,7 +77,7 @@
     "tailwindcss-filters": "^3.0.0",
     "tailwindcss-spinner": "^1.0.0",
     "web-api-hooks": "^3.0.1",
-    "workerize-loader": "^1.1.0"
+    "workerize-loader": "^1.2.1"
   },
   "devDependencies": {
     "@nrwl/cypress": "9.2.2",
