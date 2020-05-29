@@ -86,7 +86,7 @@
     "@nrwl/express": "9.2.2",
     "@nrwl/jest": "9.2.2",
     "@nrwl/next": "9.2.2",
-    "@nrwl/node": "9.2.2",
+    "@nrwl/node": "9.3.0",
     "@nrwl/react": "9.2.2",
     "@nrwl/web": "9.2.2",
     "@nrwl/workspace": "9.3.0",
