@@ -82,7 +82,7 @@
   },
   "devDependencies": {
     "@nrwl/cypress": "9.2.2",
-    "@nrwl/eslint-plugin-nx": "9.2.2",
+    "@nrwl/eslint-plugin-nx": "9.3.0",
     "@nrwl/express": "9.2.2",
     "@nrwl/jest": "9.2.2",
     "@nrwl/next": "9.2.2",
