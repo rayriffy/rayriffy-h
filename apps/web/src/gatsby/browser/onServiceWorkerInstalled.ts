@@ -1,6 +1,6 @@
 import { GatsbyBrowser } from 'gatsby'
 
-import { getElementById } from './functions'
+import { getElementById } from './functions/getElementById'
 
 export const onServiceWorkerInstalled: GatsbyBrowser['onServiceWorkerInstalled'] = () => {
   getElementById('sw-update-found').style.display = 'none'
