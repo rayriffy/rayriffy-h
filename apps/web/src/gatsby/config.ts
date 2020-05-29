@@ -10,7 +10,7 @@ const config: GatsbyConfig = {
   pathPrefix: '/',
   plugins: [
     `gatsby-plugin-postcss`,
-    // `gatsby-plugin-preact`,
+    `gatsby-plugin-preact`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
