@@ -2306,10 +2306,10 @@
     tsconfig-paths-webpack-plugin "3.2.0"
     webpack-node-externals "1.7.2"
 
-"@nrwl/eslint-plugin-nx@9.2.2":
-  version "9.2.2"
-  resolved "https://registry.yarnpkg.com/@nrwl/eslint-plugin-nx/-/eslint-plugin-nx-9.2.2.tgz#df0bfba21d8bb03882762496f36abe2d296183ae"
-  integrity sha512-iThwvFH+0OknPnbmvyvz0qsSxRDzcCwxHPYM5rlPqQzWTTPomMCeXPul0JydDN8LGloeTqCUBtSelhYrH2hlAg==
+"@nrwl/eslint-plugin-nx@9.3.0":
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/eslint-plugin-nx/-/eslint-plugin-nx-9.3.0.tgz#2996b3edf1a5d8bd2e6cf349938f3a3296fbf322"
+  integrity sha512-fsTxh0P4WmOBYykGSjyQRdRi74V0lxVPk3GafbnQVQ+yi+G8+JdskVblvXnM9YUa3nC0bLF2MMR7SPY8SPbYww==
   dependencies:
     "@typescript-eslint/experimental-utils" "^2.19.2"
 
