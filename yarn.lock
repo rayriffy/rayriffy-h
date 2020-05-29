@@ -8804,10 +8804,10 @@ gatsby-plugin-postcss@^2.3.2:
     "@babel/runtime" "^7.9.6"
     postcss-loader "^3.0.0"
 
-gatsby-plugin-preact@^3.3.0:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-preact/-/gatsby-plugin-preact-3.3.1.tgz#38b447a1a79bddb6fd7efdace32cd17148b937cf"
-  integrity sha512-XFRXub5+3THyLNXzPVl6jetMkG1/jI9759uwMFsAEm1o4ICcwdU4NCsZAfeCygK8RylNy6irIkL9ykOOuMXmHA==
+gatsby-plugin-preact@^3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-preact/-/gatsby-plugin-preact-3.3.2.tgz#53c7c5ac0cc1d78f285829040e265648a6e69195"
+  integrity sha512-Q06YHMCAm8yh8X6xbTsE10FPh0hpikpQvDpeUmIrV37mb0+Pm8PKG3w9vW4z9mm7fsGyKUaykp53wBMhW9VGTw==
   dependencies:
     "@babel/runtime" "^7.9.6"
 
