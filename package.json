@@ -121,6 +121,6 @@
     "tsconfig-paths": "^3.9.0",
     "tsconfig-paths-webpack-plugin": "^3.2.0",
     "tslint": "~6.1.2",
-    "typescript": "~3.8.3"
+    "typescript": "~3.9.3"
   }
 }
