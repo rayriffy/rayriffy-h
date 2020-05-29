@@ -45,7 +45,7 @@ export const ModalExport: React.FC<ModalExportProps> = props => {
         : (
           <React.Fragment>
             <div className='pb-2'>Your transfer key is <b className='text-gray-700 dark:text-gray-300'>{exportStat}</b></div>
-            <div>You can send this key to another device to import by clicking <b className='text-gray-700 dark:text-gray-300 italic'>Actions > Import</b> and keep in mind that this key will expire in 1 hour.</div>
+            <div>You can send this key to another device to import by clicking <b className='text-gray-700 dark:text-gray-300 italic'>Actions &gt; Import</b> and keep in mind that this key will expire in 1 hour.</div>
           </React.Fragment>
         )}
       </div>
