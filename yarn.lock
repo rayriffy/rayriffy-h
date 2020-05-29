@@ -1981,10 +1981,10 @@
   resolved "https://registry.yarnpkg.com/@storeon/crosstab/-/crosstab-1.0.1.tgz#823ed714b391c5191f72306135aa423073912655"
   integrity sha512-K4XnOdt8dkXC7u0/JO05GPLVmJgtoC0Yef55tSLu34pp3CpLfb6T1FOJ/EgEpcR/qqUc1YxBOZpCQo/3hXUk+w==
 
-"@storeon/localstorage@^0.17.0":
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/@storeon/localstorage/-/localstorage-0.17.0.tgz#15f1319247d0596b7d8f5cfe3ec304eecbe95bb2"
-  integrity sha512-DKbE9KhZDLK61x9jhtbWsZJxqBMXrQGQQ82lOSW/8ptbR6w/8gE5l4qniB8m+zohTz1T2GpKNvmKFJWbIoyTAg==
+"@storeon/localstorage@^0.18.0":
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/@storeon/localstorage/-/localstorage-0.18.0.tgz#fe8c864689ccaf2a4d3d3d3170a96a4b172b057e"
+  integrity sha512-UtVyyJD6RruBw1sLcCRvhFu1qbVFir5Mnd4MvKF+mb9gelZLag6RRRTeJHFRvJSr1kGHDcCxM2GHggFr0kekTw==
 
 "@styled-system/background@^5.1.2":
   version "5.1.2"
