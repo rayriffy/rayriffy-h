@@ -2292,20 +2292,6 @@
     yargs "^11.0.0"
     yargs-parser "10.0.0"
 
-"@nrwl/cypress@9.2.2":
-  version "9.2.2"
-  resolved "https://registry.yarnpkg.com/@nrwl/cypress/-/cypress-9.2.2.tgz#d03254bc9b815d6235d7953e647f7358dee04292"
-  integrity sha512-Dg4BX1kCWrDMbsZO5RZAtftu1WaoGiOsQjLRbnJemA2NkvFB2VRMgRK8ryELNZa/fywhXZBFPfCFnNDufhgQmg==
-  dependencies:
-    "@angular-devkit/architect" "~0.901.0"
-    "@angular-devkit/core" "~9.1.0"
-    "@cypress/webpack-preprocessor" "~4.1.2"
-    fork-ts-checker-webpack-plugin "^3.1.1"
-    tree-kill "1.2.2"
-    ts-loader "^5.3.1"
-    tsconfig-paths-webpack-plugin "3.2.0"
-    webpack-node-externals "1.7.2"
-
 "@nrwl/cypress@9.3.0":
   version "9.3.0"
   resolved "https://registry.yarnpkg.com/@nrwl/cypress/-/cypress-9.3.0.tgz#4cc82358e18b0f93d8551f20d8e0e2d1665f6270"
@@ -2354,13 +2340,6 @@
     "@angular-devkit/core" "~9.1.0"
     "@angular-devkit/schematics" "~9.1.0"
 
-"@nrwl/linter@9.2.2":
-  version "9.2.2"
-  resolved "https://registry.yarnpkg.com/@nrwl/linter/-/linter-9.2.2.tgz#464929b18a2f979669a0b64e7b50e410f1b3c37c"
-  integrity sha512-FLhF9sc/ErORdNmZCxjbLzQ3g3rMxo7L8Pud5QHupF/drcEHfEkIisWmbIwcLKRn91XtVmz5GA29OUypwAOxjg==
-  dependencies:
-    "@angular-devkit/architect" "~0.901.0"
-
 "@nrwl/linter@9.3.0":
   version "9.3.0"
   resolved "https://registry.yarnpkg.com/@nrwl/linter/-/linter-9.3.0.tgz#9167b709cbb17d0012ab29a54a4a10c1a7228c47"
@@ -2368,13 +2347,13 @@
   dependencies:
     "@angular-devkit/architect" "~0.901.0"
 
-"@nrwl/next@9.2.2":
-  version "9.2.2"
-  resolved "https://registry.yarnpkg.com/@nrwl/next/-/next-9.2.2.tgz#5ba09e0cbc1c409037495347ef4c833d8a897d89"
-  integrity sha512-9eonUfgxY527byHgVNgeZn2NbOBcDL4v9Q4Jb5D5hBWB9CifJeKHq4dLSJWbSHAJg5oOeKs966OcXJ7EZMJdaw==
+"@nrwl/next@9.3.0":
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/next/-/next-9.3.0.tgz#9ed284eb315c5227d63c3658acb07009b66683b9"
+  integrity sha512-Uxtem3Q47Az0uS2yFOR4Tt4nm9qirJNh0N8dE6RzpKngPGuo7d7z7j2Va+8mq+xlkf5A1AuZuWbd53w/c/d7CQ==
   dependencies:
     "@angular-devkit/schematics" "~9.1.0"
-    "@nrwl/react" "9.2.2"
+    "@nrwl/react" "9.3.0"
     "@svgr/webpack" "^4.3.3"
     url-loader "^2.2.0"
 
@@ -2401,26 +2380,6 @@
     webpack-dev-server "3.9.0"
     webpack-merge "4.2.1"
     webpack-node-externals "1.7.2"
-
-"@nrwl/react@9.2.2":
-  version "9.2.2"
-  resolved "https://registry.yarnpkg.com/@nrwl/react/-/react-9.2.2.tgz#7bd31ff12b8320dd349173686673e6cc2920c651"
-  integrity sha512-TnZ1M6HfsVrTJSvSbeXuSvN9Z6TdwFRJoPxfeK+TPyiaEearzg4Y/6L94jLze2JyE06ZkIBEx/qJwTfW5fgGRQ==
-  dependencies:
-    "@angular-devkit/schematics" "~9.1.0"
-    "@babel/core" "^7.8.4"
-    "@babel/preset-react" "^7.8.3"
-    "@nrwl/cypress" "9.2.2"
-    "@nrwl/jest" "9.2.2"
-    "@nrwl/web" "9.2.2"
-    "@svgr/webpack" "^5.2.0"
-    babel-plugin-emotion "^10.0.29"
-    babel-plugin-styled-components "^1.10.7"
-    confusing-browser-globals "^1.0.9"
-    eslint-plugin-import "^2.20.1"
-    eslint-plugin-jsx-a11y "^6.2.3"
-    eslint-plugin-react "^7.18.3"
-    eslint-plugin-react-hooks "^2.4.0"
 
 "@nrwl/react@9.3.0":
   version "9.3.0"
@@ -2454,95 +2413,6 @@
     inquirer "^6.3.1"
     minimist "^1.2.0"
     strip-json-comments "2.0.1"
-
-"@nrwl/web@9.2.2":
-  version "9.2.2"
-  resolved "https://registry.yarnpkg.com/@nrwl/web/-/web-9.2.2.tgz#c76a356749fd496517ee8bc44d1795b1debd29d2"
-  integrity sha512-V3IrIxSaC40sJjvEm3/Fnvw9mh+kDHcvs+VL6cR8E1PX4scD/6k1n5zyXkcxM35pMUXFUSaT/PzY8X/jLrIfFQ==
-  dependencies:
-    "@angular-devkit/architect" "~0.901.0"
-    "@angular-devkit/build-optimizer" "~0.901.0"
-    "@angular-devkit/build-webpack" "~0.901.0"
-    "@angular-devkit/core" "~9.1.0"
-    "@angular-devkit/schematics" "~9.1.0"
-    "@babel/core" "^7.8.4"
-    "@babel/plugin-proposal-class-properties" "^7.8.3"
-    "@babel/plugin-proposal-decorators" "^7.8.3"
-    "@babel/plugin-transform-regenerator" "^7.8.3"
-    "@babel/preset-env" "^7.8.4"
-    "@babel/preset-typescript" "^7.8.3"
-    "@nrwl/cypress" "9.2.2"
-    "@nrwl/jest" "9.2.2"
-    "@nrwl/linter" "9.2.2"
-    "@rollup/plugin-commonjs" "11.0.2"
-    "@rollup/plugin-image" "2.0.4"
-    "@rollup/plugin-node-resolve" "7.1.1"
-    ajv "6.10.2"
-    autoprefixer "9.7.4"
-    babel-loader "8.0.6"
-    babel-plugin-const-enum "0.0.5"
-    babel-plugin-macros "2.6.1"
-    babel-plugin-transform-async-to-promises "0.8.15"
-    browserslist "4.8.7"
-    cacache "12.0.2"
-    caniuse-lite "^1.0.30001030"
-    circular-dependency-plugin "5.2.0"
-    clean-css "4.2.1"
-    copy-webpack-plugin "5.1.1"
-    core-js "^3.2.1"
-    css-loader "3.4.2"
-    file-loader "4.2.0"
-    find-cache-dir "3.0.0"
-    fork-ts-checker-webpack-plugin "^3.1.1"
-    glob "7.1.4"
-    identity-obj-proxy "3.0.0"
-    jest-worker "25.1.0"
-    karma-source-map-support "1.4.0"
-    less "3.11.1"
-    less-loader "5.0.0"
-    license-webpack-plugin "2.1.2"
-    loader-utils "1.2.3"
-    mini-css-extract-plugin "0.8.0"
-    minimatch "3.0.4"
-    open "6.4.0"
-    parse5 "4.0.0"
-    postcss "7.0.27"
-    postcss-import "12.0.1"
-    postcss-loader "3.0.0"
-    raw-loader "3.1.0"
-    regenerator-runtime "0.13.3"
-    rollup "1.31.1"
-    rollup-plugin-babel "4.3.3"
-    rollup-plugin-filesize "6.2.1"
-    rollup-plugin-local-resolve "1.0.7"
-    rollup-plugin-peer-deps-external "2.2.2"
-    rollup-plugin-postcss "2.1.1"
-    rollup-plugin-typescript2 "0.26.0"
-    rxjs "^6.5.4"
-    sass "1.22.9"
-    sass-loader "7.2.0"
-    semver "6.3.0"
-    source-map "0.7.3"
-    source-map-loader "0.2.4"
-    source-map-support "0.5.16"
-    speed-measure-webpack-plugin "1.3.1"
-    style-loader "1.0.0"
-    stylus "0.54.5"
-    stylus-loader "3.0.2"
-    terser "4.3.8"
-    terser-webpack-plugin "2.3.1"
-    tree-kill "1.2.2"
-    ts-loader "5.4.5"
-    tsconfig-paths-webpack-plugin "3.2.0"
-    url-loader "^3.0.0"
-    webpack "4.42.0"
-    webpack-dev-middleware "3.7.0"
-    webpack-dev-server "3.9.0"
-    webpack-merge "4.2.1"
-    webpack-node-externals "1.7.2"
-    webpack-sources "1.4.3"
-    webpack-subresource-integrity "1.1.0-rc.6"
-    worker-plugin "3.2.0"
 
 "@nrwl/web@9.3.0":
   version "9.3.0"
@@ -12019,7 +11889,7 @@ loader-utils@2.0.0, loader-utils@^2.0.0:
     emojis-list "^3.0.0"
     json5 "^2.1.2"
 
-loader-utils@^1.0.1, loader-utils@^1.0.2, loader-utils@^1.1.0, loader-utils@^1.2.3, loader-utils@^1.4.0:
+loader-utils@^1.0.2, loader-utils@^1.1.0, loader-utils@^1.2.3, loader-utils@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-1.4.0.tgz#c579b5e34cb34b1a74edc6c1fb36bfa371d5a613"
   integrity sha512-qH0WSMBtn/oHuwjy/NucEgbx5dbxxnxup9s4PVXJUDHZBQY+s0NWA9rJf53RBnQZxfch7euUui7hpoAPvALZdA==
@@ -15990,17 +15860,6 @@ sane@^4.0.3:
     micromatch "^3.1.4"
     minimist "^1.1.1"
     walker "~1.0.5"
-
-sass-loader@7.2.0:
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-7.2.0.tgz#e34115239309d15b2527cb62b5dfefb62a96ff7f"
-  integrity sha512-h8yUWaWtsbuIiOCgR9fd9c2lRXZ2uG+h8Dzg/AGNj+Hg/3TO8+BBAW9mEP+mh8ei+qBKqSJ0F1FLlYjNBc61OA==
-  dependencies:
-    clone-deep "^4.0.1"
-    loader-utils "^1.0.1"
-    neo-async "^2.5.0"
-    pify "^4.0.1"
-    semver "^5.5.0"
 
 sass-loader@8.0.2:
   version "8.0.2"
