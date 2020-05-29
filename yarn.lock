@@ -2446,6 +2446,26 @@
     eslint-plugin-react "^7.18.3"
     eslint-plugin-react-hooks "^2.4.0"
 
+"@nrwl/react@9.3.0":
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/react/-/react-9.3.0.tgz#19c1795d095527d283a44cd3f46b64d6c12a42bc"
+  integrity sha512-OdQePksolnHt+ZEXBAPdxSWcZ4CN2TuWxQU2sLBscdr230cjMlRHbxd4DXsXvX/r1aYnAOc/arg/NTf7r3HG5w==
+  dependencies:
+    "@angular-devkit/schematics" "~9.1.0"
+    "@babel/core" "^7.8.4"
+    "@babel/preset-react" "^7.8.3"
+    "@nrwl/cypress" "9.3.0"
+    "@nrwl/jest" "9.3.0"
+    "@nrwl/web" "9.3.0"
+    "@svgr/webpack" "^5.2.0"
+    babel-plugin-emotion "^10.0.29"
+    babel-plugin-styled-components "^1.10.7"
+    confusing-browser-globals "^1.0.9"
+    eslint-plugin-import "^2.20.1"
+    eslint-plugin-jsx-a11y "^6.2.3"
+    eslint-plugin-react "^7.18.3"
+    eslint-plugin-react-hooks "^2.4.0"
+
 "@nrwl/tao@9.3.0":
   version "9.3.0"
   resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-9.3.0.tgz#04ac3de1276838eda59c4ebfccf53baec00aab7d"
