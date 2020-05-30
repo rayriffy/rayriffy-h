@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Helmet } from 'react-helmet'
 
@@ -13,8 +13,14 @@ import '../styles/index.css'
 export const App: React.FC<Props> = props => {
   const { children, ...rest } = props
 
+  const [clientMount, setClientMount] = useState<string>('nope')
+
+  useEffect(() => {
+    setClientMount('yup')
+  }, [])
+
   return (
-    <React.Fragment>
+    <React.Fragment key={clientMount}>
       <Helmet
         defaultTitle='Riffy H'
         titleTemplate='%s · Riffy H'
