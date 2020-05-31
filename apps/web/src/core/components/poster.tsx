@@ -13,6 +13,8 @@ import { tags as allTagStack } from '../../contents/database/tags'
 
 import { PosterProps } from '../@types/PosterProps'
 
+const availableFlags = ['english', 'japanese', 'chinese']
+
 const Component: React.FC<PosterProps> = props => {
   const { raw, internal = true, scrollPosition } = props
 
@@ -20,9 +22,9 @@ const Component: React.FC<PosterProps> = props => {
     tag => tag.name === 'parody' || tag.name === 'tag'
   )
 
-  const language = filterTagByType(raw.tags, 'language').filter(
-    tag => tag.name !== 'translated'
-  )[0]
+  const language = filterTagByType(raw.tags, 'language')
+
+  console.log(language)
 
   const tagStackTag = filterTagStackByType(tagStack, 'tag')[0]
   const tagStackParody = filterTagStackByType(tagStack, 'parody')[0]
@@ -42,6 +44,13 @@ const Component: React.FC<PosterProps> = props => {
         <div className='absolute top-0 bottom-0 left-0 right-0 rounded group transition-all duration-200 opacity-0 hover:opacity-100 hover:backdrop-blur bg-black-overlay p-6 text-white'>
           <div className='invisible group-hover:visible h-full flex flex-col justify-between overflow-hidden'>
             <div className='overflow-hidden'>
+              <div className='flex'>
+                {language.map(lang => availableFlags.includes(lang.name) ? (
+                  <div className='pb-2 pr-2 w-10'>
+                    <img src={`/img/flags/${lang.name}.png`} alt={lang.name} />
+                  </div>
+                ) : null)}
+              </div>
               <div className='text-xl md:text-lg font-semibold float-left'>{truncate(raw.title.pretty, { length: 70 })}</div>
               <div className='flex flex-wrap pt-4 float-left overflow-hidden'>
                 {raw.tags.filter(o => o.type === 'parody').map(tag => (
