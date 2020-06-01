@@ -29,6 +29,10 @@ export const App: React.FC<Props> = props => {
           { name: 'description', content: 'The missing piece of NHentai' },
           { name: 'referrer', content: 'same-origin' },
         ]}
+        link={[
+          { rel: 'stylesheet', media: 'screen,print', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/fontawesome.min.css' },
+          { rel: 'stylesheet', media: 'screen,print', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/solid.min.css' },
+        ]}
       />
       <div className='bg-gray-200 dark:bg-gray-900 flex flex-col md:flex-row min-h-full'>
         <Header {...rest} />

@@ -1,11 +1,10 @@
 @tailwind base;
-
 @tailwind components;
-
 @tailwind utilities;
 
 html, body, #___gatsby, #gatsby-focus-wrapper {
-  @apply h-full overflow-auto
+  @apply h-full;
+  @apply overflow-auto;
 }
 
 .spinner {
@@ -28,7 +27,11 @@ html, body, #___gatsby, #gatsby-focus-wrapper {
   border-right-color: transparent;
   border-top-color: transparent;
   animation: spinAround 500ms infinite linear;
-  @apply absolute block w-6 h-6 rounded-full;
+  @apply absolute;
+  @apply block;
+  @apply w-6;
+  @apply h-6;
+  @apply rounded-full;
 }
 
 @keyframes spinAround {
