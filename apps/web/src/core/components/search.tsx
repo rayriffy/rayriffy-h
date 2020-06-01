@@ -118,6 +118,7 @@ export const Search: React.FC<SearchProps> = props => {
               type='search'
               placeholder='Search'
               value={input}
+              onKeyDown={e => e.keyCode === 13 ? searchHandler() : null}
               onChange={e => {
                 const value = e.target.value
                 setInput(value)

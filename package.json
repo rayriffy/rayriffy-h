@@ -43,6 +43,7 @@
     "copy-to-clipboard": "^3.3.1",
     "css": "^2.2.4",
     "cssnano": "^4.1.10",
+    "cssnano-preset-advanced": "^4.0.7",
     "cwait": "^1.1.2",
     "document-register-element": "1.14.3",
     "emotion-theming": "^10.0.27",
