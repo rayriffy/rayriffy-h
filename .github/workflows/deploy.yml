@@ -14,14 +14,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-      - name: "Cache: node_modules"
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-node-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-node-${{ env.cache-name }}-
-            ${{ runner.OS }}-node-
       - name: 'Init: Install dependencies'
         run: |
           yarn install
@@ -46,14 +38,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-      - name: "Cache: node_modules"
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-build-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-node-${{ env.cache-name }}-
-            ${{ runner.OS }}-node-
       - name: "Cache: Gatsby .cache/"
         uses: actions/cache@v1
         with:
@@ -103,14 +87,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-      - name: "Cache: node_modules"
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-build-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-node-${{ env.cache-name }}-
-            ${{ runner.OS }}-node-
       - name: 'Init: Install dependencies'
         run: |
           yarn install
@@ -144,14 +120,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-      - name: "Cache: node_modules"
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-build-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-node-${{ env.cache-name }}-
-            ${{ runner.OS }}-node-
       - name: 'Init: Install dependencies'
         run: |
           yarn install
