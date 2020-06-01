@@ -24,8 +24,6 @@ const Component: React.FC<PosterProps> = props => {
 
   const language = filterTagByType(raw.tags, 'language')
 
-  console.log(language)
-
   const tagStackTag = filterTagStackByType(tagStack, 'tag')[0]
   const tagStackParody = filterTagStackByType(tagStack, 'parody')[0]
 

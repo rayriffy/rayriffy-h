@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import { isEmpty } from 'lodash-es'
+import { navigate } from 'gatsby'
 
 import { Home } from '../templates/home/components'
 
@@ -25,6 +26,8 @@ const Page: React.FC<Props> = props => {
       } else {
         setError('Page number is not an integer')
       }
+    } else {
+      navigate(`/`)
     }
   }, [location])
 
