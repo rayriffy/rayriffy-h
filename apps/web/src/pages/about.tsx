@@ -10,7 +10,7 @@ const Page: React.FC = props => {
   }, [])
 
   return (
-    <>OK</>
+    <React.Fragment>OK</React.Fragment>
   )
 }
 
