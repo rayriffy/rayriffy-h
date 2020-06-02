@@ -52,7 +52,7 @@
     "gatsby": "^2.22.15",
     "gatsby-plugin-create-client-paths": "^2.3.2",
     "gatsby-plugin-manifest": "^2.4.9",
-    "gatsby-plugin-netlify": "^2.3.3",
+    "gatsby-plugin-netlify": "^2.3.4",
     "gatsby-plugin-offline": "^3.2.7",
     "gatsby-plugin-postcss": "^2.3.2",
     "gatsby-plugin-preact": "^3.3.2",
