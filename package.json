@@ -50,7 +50,7 @@
     "express": "4.17.1",
     "fs-extra": "^9.0.0",
     "gatsby": "^2.22.15",
-    "gatsby-plugin-create-client-paths": "^2.3.2",
+    "gatsby-plugin-create-client-paths": "^2.3.3",
     "gatsby-plugin-manifest": "^2.4.9",
     "gatsby-plugin-netlify": "^2.3.3",
     "gatsby-plugin-offline": "^3.2.7",
