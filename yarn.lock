@@ -18453,10 +18453,10 @@ wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
-web-api-hooks@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/web-api-hooks/-/web-api-hooks-3.0.1.tgz#4024bd2ab61998973a4282e80a4bece6ada0b17e"
-  integrity sha512-scWRgsw1IJtyPOxbOXoj75wE2IEKWCpy3mdMh2LehvFNryl7Ad1ZF2DRsermP+GCAsTHMWUl7Tf7e1TERVduSw==
+web-api-hooks@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/web-api-hooks/-/web-api-hooks-3.0.2.tgz#498bf290ab97300b7eb47a2f767ff1741768a8f0"
+  integrity sha512-EQEGcHo1+FVINg5spKw05lBiN1/LhRK/K2xKnUmuLsLzz4sQK8Bk8qhj4RUgsh4LA7XXZqgJ43aQI+nvtMmIqA==
   dependencies:
     "@types/resize-observer-browser" "^0.1.2"
 
