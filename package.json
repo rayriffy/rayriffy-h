@@ -57,7 +57,7 @@
     "gatsby-plugin-postcss": "^2.3.3",
     "gatsby-plugin-preact": "^3.3.2",
     "gatsby-plugin-react-helmet": "^3.3.2",
-    "gatsby-plugin-typescript": "^2.3.5",
+    "gatsby-plugin-typescript": "^2.4.4",
     "gatsby-source-filesystem": "^2.3.10",
     "isomorphic-unfetch": "^3.0.0",
     "lodash": "^4.17.15",
