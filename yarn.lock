@@ -17617,10 +17617,10 @@ stethoskop@1.0.0:
   dependencies:
     node-statsd "0.1.1"
 
-storeon@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/storeon/-/storeon-3.0.1.tgz#c4d8f4e1467d99053ab33d9f0e8ae6703df7c9d0"
-  integrity sha512-aIgKTKsrcoe/1jMXFPBqUuLjZYklb+ZI+xS+37qkDTYJlE34jATbqMorERjeOkSuqLyj+2juiMHRVfXv4HX8BQ==
+storeon@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/storeon/-/storeon-3.0.2.tgz#0aff285487cba082d9830ebbb4fab3a768d79802"
+  integrity sha512-46heKtUF9j3iUo5hdnRNmWj9eASrQr16Ukh4u1Sp7SRmukPLu0Fmz+KO12eOn6jN1hdIumr6Ob2hmOrjod2kbw==
 
 stream-browserify@^2.0.1:
   version "2.0.2"
