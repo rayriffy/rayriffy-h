@@ -67,6 +67,11 @@ export const Navigation: React.FC<Props> = props => {
       prefix: 'collection',
       icon: <i className='fas fa-bookmark pr-1'></i>,
     },
+    {
+      name: 'history',
+      prefix: 'history',
+      icon: <i className='fas fa-history pr-1'></i>,
+    },
     // {
     //   name: 'about',
     //   prefix: 'about',

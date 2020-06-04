@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Helmet } from 'react-helmet'
 import { trackWindowScroll, LazyComponentProps } from 'react-lazy-load-image-component'
@@ -7,6 +7,8 @@ import { BluredImage } from '../bluredImage'
 import { Slug } from '../slug'
 import { Collapse } from './collapse'
 import { Share } from './share'
+
+import { useStoreon } from '../../../store'
 
 import { getImageUrl } from '@rayriffy-h/helper'
 
@@ -19,7 +21,16 @@ import { ReaderProps } from '../../@types/ReaderProps'
 const Component: React.FC<ReaderProps & LazyComponentProps> = props => {
   const { raw, internal = true, scrollPosition } = props
 
+  const { dispatch } = useStoreon('history')
+
   const hentai = raw.raw
+
+  useEffect(() => {
+    dispatch('history/toggle', {
+      internal,
+      data: { ...hentai, images: { ...hentai.images, pages: [] } },
+    })
+  }, [])
 
   return (
     <div className='py-0 md:py-2'>

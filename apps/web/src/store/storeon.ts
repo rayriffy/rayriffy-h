@@ -15,15 +15,20 @@ import { subtitle } from './states/subtitle'
 import { SubtitleStore } from './@types/SubtitleStore'
 import { SubtitleEvent } from './@types/SubtitleEvent'
 
-export type Store = CollectionStore & SettingsStore & SubtitleStore
-export type Event = CollectionEvent & SettingsEvent & SubtitleEvent
+import { history } from './states/history'
+import { HistoryStore } from './@types/HistoryStore'
+import { HistoryEvent } from './@types/HistoryEvent'
+
+export type Store = CollectionStore & SettingsStore & SubtitleStore & HistoryStore
+export type Event = CollectionEvent & SettingsEvent & SubtitleEvent & HistoryEvent
 
 export const store = createStoreon<Store, Event>([
   settings,
   collection,
   subtitle,
+  history,
   ...typeof window !== 'undefined' ? [
-    persistState(['settings', 'collection']),
+    persistState(['settings', 'collection', 'history']),
     crossTab({ filter: (event, data) => event !== 'subtitle/setSubtitle' }),
   ] : []
 ])
