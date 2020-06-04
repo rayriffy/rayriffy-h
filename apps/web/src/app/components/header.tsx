@@ -19,8 +19,8 @@ export const Header: React.FC<Props> = props => {
 
   return (
     <div className='md:flex flex-col md:flex-row md:min-h-screen md:fixed'>
-      <div className='flex flex-col w-full md:w-64 text-gray-700 bg-white dark:text-gray-200 dark:bg-gray-900 md:dark:bg-gray-800 flex-shrink-0'>
-        <div className='flex-shrink-0 px-8 py-4 flex flex-row items-center justify-between'>
+      <div className='flex flex-col w-full md:w-64 text-gray-700 bg-white dark:text-gray-200 dark:bg-gray-900 md:dark:bg-gray-800'>
+        <div className='px-8 py-4 flex flex-row items-center justify-between'>
           <div className='select-none'>
             <div className='text-3xl font-semibold text-gray-900 leading-tight dark:text-white focus:outline-none focus:shadow-outline'>Riffy H</div>
             <div className='-mt-1'>{subtitle}</div>

@@ -33,33 +33,33 @@ const Component: React.FC<Props & LazyComponentProps> = props => {
 
   return (
     <div className='flex flex-column flex-wrap'>
-      <div className='w-full md:w-1/2 lg:w-1/3'>
-        {posterColumn[0].map((hentai, i) => (
+      <section className='w-full md:w-1/2 lg:w-1/3'>
+        {posterColumn[0].map(hentai => (
           <Poster
             key={`poster-${hentai.raw.id}`}
             raw={hentai.raw}
             internal={hentai.internal}
             {...{scrollPosition}} />
         ))}
-      </div>
-      <div className='hidden md:block md:w-1/2 lg:w-1/3'>
-        {posterColumn[1].map((hentai, i) => (
+      </section>
+      <section className='hidden md:block md:w-1/2 lg:w-1/3'>
+        {posterColumn[1].map(hentai => (
           <Poster
             key={`poster-${hentai.raw.id}`}
             raw={hentai.raw}
             internal={hentai.internal}
             {...{scrollPosition}} />
         ))}
-      </div>
-      <div className='hidden lg:block lg:w-1/3'>
-        {posterColumn[2].map((hentai, i) => (
+      </section>
+      <section className='hidden lg:block lg:w-1/3'>
+        {posterColumn[2].map(hentai => (
           <Poster
             key={`poster-${hentai.raw.id}`}
             raw={hentai.raw}
             internal={hentai.internal}
             {...{scrollPosition}} />
         ))}
-      </div>
+      </section>
     </div>
   )
 }

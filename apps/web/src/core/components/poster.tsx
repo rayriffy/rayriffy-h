@@ -28,8 +28,7 @@ const Component: React.FC<PosterProps> = props => {
   const tagStackParody = filterTagStackByType(tagStack, 'parody')[0]
 
   return (
-    <div className='w-full p-4'>
-      <div className='bg-white rounded overflow-hidden text-gray-900 dark:bg-gray-800 dark:text-gray-200 relative'>
+      <div className='mx-4 my-8 bg-white rounded overflow-hidden text-gray-900 dark:bg-gray-800 dark:text-gray-200 relative'>
         <BluredImage
           height={raw.images.cover.h}
           width={raw.images.cover.w}
@@ -40,7 +39,7 @@ const Component: React.FC<PosterProps> = props => {
           }`}
         />
         <div className='absolute top-0 bottom-0 left-0 right-0 rounded group transition-all duration-200 opacity-0 hover:opacity-100 hover:backdrop-blur bg-black-overlay p-6 text-white'>
-          <div className='invisible group-hover:visible h-full flex flex-col justify-between overflow-hidden'>
+          <div className='invisible group-hover:visible h-full flex flex-col justify-between'>
             <div className='overflow-hidden'>
               <div className='flex'>
                 {language.map(lang => availableFlags.includes(lang.name) ? (
@@ -73,15 +72,15 @@ const Component: React.FC<PosterProps> = props => {
             <div className='pt-4 flex'>
               <div className='w-full mr-2'>
                 <TransparentLink to={`/${internal ? 'r' : 'g'}/${raw.id}`}>
-                  <button className='backdrop-blur-heavy w-full bg-white-a40 text-white font-bold py-3 px-4 rounded inline-block float-left select-none'>
-                    READ <i className="fas fa-angle-right pl-1"></i>
+                  <button className='backdrop-blur-heavy w-full bg-white-a40 font-bold py-3 px-4 rounded inline-block float-left select-none'>
+                    READ <i className='fas fa-angle-right pl-1'></i>
                   </button>
                 </TransparentLink>
               </div>
               <div className='mr-1'>
                 <a href={`/${internal ? 'r' : 'g'}/${raw.id}`} target='_blank' rel='noopener noreferrer'>
-                  <button className='backdrop-blur-heavy w-full bg-white-a40 text-white font-bold py-3 px-4 rounded inline-block float-left select-none'>
-                    <i className="fas fa-external-link-square-alt"></i>
+                  <button className='backdrop-blur-heavy w-full bg-white-a40 font-bold py-3 px-4 rounded inline-block float-left select-none'>
+                    <i className='fas fa-external-link-square-alt'></i>
                   </button>
                 </a>
               </div>
@@ -89,7 +88,6 @@ const Component: React.FC<PosterProps> = props => {
           </div>
         </div>
       </div>
-    </div>
   )
 }
 

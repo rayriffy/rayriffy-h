@@ -4,15 +4,15 @@ import { persistState } from '@storeon/localstorage'
 import { crossTab } from '@storeon/crosstab'
 
 import { collection } from './states/collection'
-import { settings } from './states/settings'
-import { subtitle } from './states/subtitle'
-
 import { CollectionStore } from './@types/CollectionStore'
-import { SettingsStore } from './@types/SettingsStore'
-import { SubtitleStore } from './@types/SubtitleStore'
-
 import { CollectionEvent } from './@types/CollectionEvent'
+
+import { settings } from './states/settings'
+import { SettingsStore } from './@types/SettingsStore'
 import { SettingsEvent } from './@types/SettingsEvent'
+
+import { subtitle } from './states/subtitle'
+import { SubtitleStore } from './@types/SubtitleStore'
 import { SubtitleEvent } from './@types/SubtitleEvent'
 
 export type Store = CollectionStore & SettingsStore & SubtitleStore

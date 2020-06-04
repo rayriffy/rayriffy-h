@@ -24,7 +24,7 @@ const Dropdown: React.FC<{ title: React.ReactNode, zIndex?: number }> = props =>
         <i className={`ml-2 fas fa-angle-${open ? 'up' : 'down'}`}></i>
       </button>
       <div className={`absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg transition-all duration-200 ${open ? `opacity-100 z-${zIndex}` : 'opacity-0 z-hide'}`}>
-        <div className={`px-2 py-2 bg-white rounded-md shadow-2xl dark:bg-gray-800 ${open ? 'block' : 'hidden'}`}>
+        <div className={`px-2 py-2 bg-white rounded-md shadow-2xl bg-gray-100 dark:bg-gray-700 ${open ? 'block' : 'hidden'}`}>
           {children}
         </div>
       </div>
