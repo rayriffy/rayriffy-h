@@ -3467,14 +3467,13 @@
     dom-accessibility-api "^0.4.4"
     pretty-format "^25.5.0"
 
-"@testing-library/react@10.0.6":
-  version "10.0.6"
-  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-10.0.6.tgz#e1e569135badb7367cc6ac9823e376eccb0280e0"
-  integrity sha512-7cZ2sHN6zTW1b/pNKzA0icZozshOOuiEQq/zCcf4LUCNGKAOnGCxZDQI7qjpO6lMITmi4Qs0VU1j9Cd4Z36e+w==
+"@testing-library/react@10.1.0":
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-10.1.0.tgz#31af99093b104ffaec877cb29f5249bc33b98204"
+  integrity sha512-7b8GHD8IMJ1IzSpUZ1r0JLQRj4Jp9nXlKuEXkS3tgISZciO9n7++4nHCLsCK38eAB5zsBUa0G2kR+Sh3aYDqjw==
   dependencies:
     "@babel/runtime" "^7.10.2"
     "@testing-library/dom" "^7.9.0"
-    "@types/testing-library__react" "^10.0.1"
 
 "@theme-ui/color-modes@^0.4.0-highlight.0":
   version "0.4.0-highlight.0"
@@ -3787,10 +3786,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/node@*", "@types/node@~14.0.9":
-  version "14.0.9"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.9.tgz#43896ab87fc82bda1dfd600cdf44a0c8a64e11d2"
-  integrity sha512-0sCTiXKXELOBxvZLN4krQ0FPOAA7ij+6WwvD0k/PHd9/KAkr4dXel5J9fh6F4x1FwAQILqAWkmpeuS6mjf1iKA==
+"@types/node@*", "@types/node@~14.0.10":
+  version "14.0.10"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.10.tgz#dbfaa170bd9eafccccb6d7060743a761b0844afd"
+  integrity sha512-Bz23oN/5bi0rniKT24ExLf4cK0JdvN3dH/3k0whYkdN4eI4vS2ZW/2ENNn2uxHCzWcbdHIa/GRuWQytfzCjRYw==
 
 "@types/node@^8.5.7":
   version "8.10.60"
@@ -3840,7 +3839,7 @@
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react-dom@*", "@types/react-dom@^16.9.8":
+"@types/react-dom@^16.9.8":
   version "16.9.8"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.8.tgz#fe4c1e11dfc67155733dfa6aa65108b4971cb423"
   integrity sha512-ykkPQ+5nFknnlU6lDd947WbQ6TE3NNzbQAkInC2EKY1qeYdTKp7onFusmYZb+ityzx2YviqT6BXSu+LyWWJwcA==
@@ -3974,22 +3973,6 @@
   integrity sha512-skv+daDje8vWQ8wnqVV0GCzgWVKx4gI9lJpAxWE77s52Ne6k/SCPP8HGE4BFbWDvK+qi5O3p89BGWVOQ1VHjMg==
   dependencies:
     csstype "^2.6.6"
-
-"@types/testing-library__dom@*":
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/@types/testing-library__dom/-/testing-library__dom-7.0.2.tgz#2906f8a0dce58b0746c6ab606f786bd06fe6940e"
-  integrity sha512-8yu1gSwUEAwzg2OlPNbGq+ixhmSviGurBu1+ivxRKq1eRcwdjkmlwtPvr9VhuxTq2fNHBWN2po6Iem3Xt5A6rg==
-  dependencies:
-    pretty-format "^25.1.0"
-
-"@types/testing-library__react@^10.0.1":
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/@types/testing-library__react/-/testing-library__react-10.0.1.tgz#92bb4a02394bf44428e35f1da2970ed77f803593"
-  integrity sha512-RbDwmActAckbujLZeVO/daSfdL1pnjVqas25UueOkAY5r7vriavWf0Zqg7ghXMHa8ycD/kLkv8QOj31LmSYwww==
-  dependencies:
-    "@types/react-dom" "*"
-    "@types/testing-library__dom" "*"
-    pretty-format "^25.1.0"
 
 "@types/theme-ui@*":
   version "0.3.2"
@@ -9329,7 +9312,7 @@ fs-extra@8.1.0, fs-extra@^8.0.0, fs-extra@^8.1.0:
     jsonfile "^4.0.0"
     universalify "^0.1.0"
 
-fs-extra@9.0.0, fs-extra@^9.0.0:
+fs-extra@9.0.0:
   version "9.0.0"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-9.0.0.tgz#b6afc31036e247b2466dc99c29ae797d5d4580a3"
   integrity sha512-pmEYSk3vYsG/bF651KPUXZ+hvjpgWYw/Gc7W9NFUe3ZVLczKKWIij3IKpOrQcdw4TILtibFslZ0UmR8Vvzig4g==
@@ -9347,6 +9330,16 @@ fs-extra@^4.0.2:
     graceful-fs "^4.1.2"
     jsonfile "^4.0.0"
     universalify "^0.1.0"
+
+fs-extra@^9.0.1:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-9.0.1.tgz#910da0062437ba4c39fedd863f1675ccfefcb9fc"
+  integrity sha512-h2iAoN838FqAFJY2/qVpzFXy+EBxfVE220PalAqQLDVsFOHLJrZvut5puAbCdNv6WJk+B8ihI+k0c7JK5erwqQ==
+  dependencies:
+    at-least-node "^1.0.0"
+    graceful-fs "^4.2.0"
+    jsonfile "^6.0.1"
+    universalify "^1.0.0"
 
 fs-minipass@^2.0.0:
   version "2.1.0"
@@ -15353,7 +15346,7 @@ pretty-error@^2.1.1:
     renderkid "^2.0.1"
     utila "~0.4"
 
-pretty-format@^25.1.0, pretty-format@^25.2.1, pretty-format@^25.5.0:
+pretty-format@^25.2.1, pretty-format@^25.5.0:
   version "25.5.0"
   resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-25.5.0.tgz#7873c1d774f682c34b8d48b6743a2bf2ac55791a"
   integrity sha512-kbo/kq2LQ/A/is0PQwsEHM7Ca6//bGPPvU6UnsdDRSKTWxT/ru/xb88v4BJf6a69H+uTytOEsTusT9ksd/1iWQ==
