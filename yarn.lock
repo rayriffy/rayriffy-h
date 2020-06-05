@@ -3135,10 +3135,10 @@
   dependencies:
     type-detect "4.0.8"
 
-"@storeon/crosstab@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@storeon/crosstab/-/crosstab-1.0.1.tgz#823ed714b391c5191f72306135aa423073912655"
-  integrity sha512-K4XnOdt8dkXC7u0/JO05GPLVmJgtoC0Yef55tSLu34pp3CpLfb6T1FOJ/EgEpcR/qqUc1YxBOZpCQo/3hXUk+w==
+"@storeon/crosstab@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@storeon/crosstab/-/crosstab-1.0.2.tgz#72f1bb838347214f0394af6daf46ff4e95787487"
+  integrity sha512-UKzJpJaJA12B9kc98MDfZ1Hh3M9HNAMSfgpjNHdg1JgZAHrmN6nXxaDsIlJYgSASND7IOoT/Q8yJB4uwTTodzA==
 
 "@storeon/localstorage@^1.0.0":
   version "1.0.0"
