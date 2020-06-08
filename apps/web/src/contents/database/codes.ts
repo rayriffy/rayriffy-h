@@ -1240,4 +1240,5 @@ export const codes: DatabaseCode[] = [
   304635,
   301784,
   300319,
+  241427,
 ]
