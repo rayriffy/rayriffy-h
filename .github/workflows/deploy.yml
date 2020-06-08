@@ -102,7 +102,7 @@ jobs:
           isAffected=$(yarn --silent affectedProject --project api)
           if $isAffected; then
             yarn global add now
-            now -t $NOW_AUTH_TOKEN
+            now -t $NOW_AUTH_TOKEN --prod
           else
             echo "No changes found! Skipping..."
           fi
