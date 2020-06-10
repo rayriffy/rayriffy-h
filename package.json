@@ -54,7 +54,7 @@
     "gatsby-plugin-manifest": "^2.4.11",
     "gatsby-plugin-netlify": "^2.3.5",
     "gatsby-plugin-offline": "^3.2.8",
-    "gatsby-plugin-postcss": "^2.3.3",
+    "gatsby-plugin-postcss": "^2.3.4",
     "gatsby-plugin-preact": "^3.3.2",
     "gatsby-plugin-react-helmet": "^3.3.4",
     "gatsby-plugin-typescript": "^2.4.6",
