@@ -51,7 +51,7 @@
     "fs-extra": "^9.0.1",
     "gatsby": "^2.23.1",
     "gatsby-plugin-create-client-paths": "^2.3.3",
-    "gatsby-plugin-manifest": "^2.4.10",
+    "gatsby-plugin-manifest": "^2.4.11",
     "gatsby-plugin-netlify": "^2.3.5",
     "gatsby-plugin-offline": "^3.2.8",
     "gatsby-plugin-postcss": "^2.3.3",
