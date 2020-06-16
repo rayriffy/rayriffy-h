@@ -32,11 +32,15 @@
     "fetch": {
       "tags": []
     },
+    "helper": {
+      "tags": []
+    },
     "web": {
       "tags": []
     },
-    "helper": {
-      "tags": []
+    "web-e2e": {
+      "tags": [],
+      "implicitDependencies": ["web"]
     }
   }
 }

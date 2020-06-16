@@ -1,12 +1,10 @@
 {
-  "name": "@rayriffy-h/web",
+  "name": "gatsby-starter-default",
+  "private": true,
+  "description": "A simple starter to get up and developing quickly with Gatsby",
   "version": "0.0.0",
   "license": "MIT",
   "dependencies": {
-    "gatsby": "^2.23.3"
-  },
-  "devDependencies": {
-    "ts-node": "^8.10.2",
-    "tsconfig-paths": "^3.9.0"
+    "gatsby": "*"
   }
 }

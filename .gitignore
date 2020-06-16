@@ -45,3 +45,7 @@ Thumbs.db
 
 .now
 .vercel
+
+/apps/web/node_modules
+/apps/web/public
+/apps/web/.cache

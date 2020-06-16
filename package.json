@@ -26,9 +26,6 @@
     "help": "nx help",
     "affectedProject": "yarn --silent ts-node --project scripts/tsconfig.json scripts/affectedProject.ts"
   },
-  "workspaces": [
-    "apps/web"
-  ],
   "private": true,
   "dependencies": {
     "@babel/plugin-transform-react-jsx-source": "^7.10.1",

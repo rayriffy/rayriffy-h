@@ -10,6 +10,12 @@ const config: GatsbyConfig = {
   pathPrefix: '/',
   plugins: [
     `gatsby-plugin-postcss`,
+    {
+      resolve: require.resolve(`@nrwl/gatsby/plugins/nx-gatsby-ext-plugin`),
+      options: {
+        path: __dirname,
+      },
+    },
     // `gatsby-plugin-preact`,
     {
       resolve: `gatsby-source-filesystem`,
