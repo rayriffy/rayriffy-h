@@ -34,7 +34,7 @@
     "@babel/plugin-transform-react-jsx-source": "^7.10.1",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
-    "@fullhuman/postcss-purgecss": "^2.1.2",
+    "@fullhuman/postcss-purgecss": "^2.3.0",
     "@storeon/crosstab": "^1.0.2",
     "@storeon/localstorage": "^1.0.0",
     "autoprefixer": "^9.7.6",
