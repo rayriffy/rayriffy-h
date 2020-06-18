@@ -258,10 +258,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:lint",
           "options": {
+            "linter": "eslint",
+            "config": "apps/web-e2e/.eslintrc",
             "tsConfig": ["apps/web-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/web-e2e/**/*"]
+            "exclude": ["**/node_modules/**", "!apps/web-e2e/**"]
           }
         }
       }
