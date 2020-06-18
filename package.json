@@ -85,7 +85,7 @@
     "workerize-loader": "^1.2.1"
   },
   "devDependencies": {
-    "@angular-devkit/schematics": "9.1.7",
+    "@angular-devkit/schematics": "9.1.9",
     "@nrwl/cypress": "9.4.2",
     "@nrwl/eslint-plugin-nx": "9.4.2",
     "@nrwl/express": "9.4.2",
