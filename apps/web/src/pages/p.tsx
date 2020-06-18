@@ -31,21 +31,18 @@ const Page: React.FC<Props> = props => {
     }
   }, [location])
 
-  return (
-      <React.Fragment>
-      {error !== null ? (
-        <div className='pt-12 text-center'>
-          <div className='text-xl font-semibold text-gray-900 dark:text-white'>Failed</div>
-          <div className='text-gray-600 dark:text-gray-500'>{error}</div>
-        </div>
-      ) : page === null ? (
-        <div className='pt-12 text-center'>
-          <div className='text-xl font-semibold text-gray-900 dark:text-white'>Parsing</div>
-          <div className='text-gray-600 dark:text-gray-500'>Preparing to make a request</div>
-        </div>
-      ) : <Home page={page} />}
-    </React.Fragment>
-  )
+  return error !== null
+    ? (
+      <div className='pt-12 text-center'>
+        <div className='text-xl font-semibold text-gray-900 dark:text-white'>Failed</div>
+        <div className='text-gray-600 dark:text-gray-500'>{error}</div>
+      </div>
+    ) : page === null ? (
+      <div className='pt-12 text-center'>
+        <div className='text-xl font-semibold text-gray-900 dark:text-white'>Parsing</div>
+        <div className='text-gray-600 dark:text-gray-500'>Preparing to make a request</div>
+      </div>
+    ) : <Home page={page} />
 }
 
 export default Page
