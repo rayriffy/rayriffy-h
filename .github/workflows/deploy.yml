@@ -38,28 +38,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-      - name: "Cache: Gatsby .cache/"
-        uses: actions/cache@v1
-        with:
-          path: apps/web/.cache
-          key: ${{ runner.OS }}-rayriffy-h-cache-${{ hashFiles('apps/web/src/contents/database/codes.ts') }}
-          restore-keys: |
-            ${{ runner.OS }}-rayriffy-h-cache-${{ hashFiles('apps/web/src/contents/database/codes.ts') }}
-            ${{ runner.OS }}-rayriffy-h-cache-
-      - name: "Cache: Gatsby public/"
-        uses: actions/cache@v1
-        with:
-          path: apps/web/.cache
-          key: ${{ runner.OS }}-rayriffy-h-public-${{ hashFiles('apps/web/src/contents/database/codes.ts') }}
-          restore-keys: |
-            ${{ runner.OS }}-rayriffy-h-public-${{ hashFiles('apps/web/src/contents/database/codes.ts') }}
-            ${{ runner.OS }}-rayriffy-h-public-
       - name: 'Init: Install dependencies'
         run: |
           yarn install
       - name: "Nx: Build apps/web"
         run: |
-          yarn nx clean web
           yarn nx build web
       - name: "Deploy: Upload to Netlify"
         env:
