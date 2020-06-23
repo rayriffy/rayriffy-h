@@ -5538,7 +5538,7 @@ babel-preset-fbjs@^3.3.0:
     "@babel/plugin-transform-template-literals" "^7.0.0"
     babel-plugin-syntax-trailing-function-commas "^7.0.0-beta.0"
 
-babel-preset-gatsby@^0.4.10, babel-preset-gatsby@^0.4.9:
+babel-preset-gatsby@^0.4.10:
   version "0.4.10"
   resolved "https://registry.yarnpkg.com/babel-preset-gatsby/-/babel-preset-gatsby-0.4.10.tgz#f925888a9207f92447aa4b6db3496afdd780f152"
   integrity sha512-WxqFEXXObRTUOW2ivSih+te6UqbW4U7O+hlglVxZIuXGdyTHtQo2b2xDYPX8Ik5ikGNloOoJQ/qZ4zg5ZJgiGg==
@@ -9956,7 +9956,7 @@ gatsby-cli@^2.12.48:
     yargs "^15.3.1"
     yurnalist "^1.1.2"
 
-gatsby-core-utils@^1.3.5, gatsby-core-utils@^1.3.6:
+gatsby-core-utils@^1.3.6:
   version "1.3.6"
   resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-1.3.6.tgz#5a001593276b0c1cc4a3c6c9a34da428e9374590"
   integrity sha512-ptd//w6MX1/hUGO2KBffSUKSYIVU3SFRM2cKXN3CMmCQvn8ul2OHCjpNY8MyZQuluWk8nRtvhjEGrl+KJtcOnw==
@@ -16957,10 +16957,10 @@ react-is@16.13.1, react-is@^16.12.0, react-is@^16.7.0, react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-lazy-load-image-component@^1.4.3:
-  version "1.4.3"
-  resolved "https://registry.yarnpkg.com/react-lazy-load-image-component/-/react-lazy-load-image-component-1.4.3.tgz#841235111c4bbb7d69238ba7e16ded04d1461c06"
-  integrity sha512-F7SuCjqJkfRUXAcVxx3mms92mbO6W20v+utPRAQHHncT6KJF61XPo1TLL2e+9LhuA/KZkIsSr7xo7srItbVefg==
+react-lazy-load-image-component@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/react-lazy-load-image-component/-/react-lazy-load-image-component-1.5.0.tgz#48939f86cb262b93b345c6fa6322f75ede55160d"
+  integrity sha512-dAvuueTq0FNjswHEII8tcd0FRRHZgPoIdVhE1fcAfCdqY7LZ37IHd0xWb2c6rCl+dsSm9Z4AloEffM8JYPxTlA==
   dependencies:
     lodash.debounce "^4.0.8"
     lodash.throttle "^4.1.1"
