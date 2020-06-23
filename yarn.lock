@@ -5538,7 +5538,7 @@ babel-preset-fbjs@^3.3.0:
     "@babel/plugin-transform-template-literals" "^7.0.0"
     babel-plugin-syntax-trailing-function-commas "^7.0.0-beta.0"
 
-babel-preset-gatsby@^0.4.10, babel-preset-gatsby@^0.4.9:
+babel-preset-gatsby@^0.4.10:
   version "0.4.10"
   resolved "https://registry.yarnpkg.com/babel-preset-gatsby/-/babel-preset-gatsby-0.4.10.tgz#f925888a9207f92447aa4b6db3496afdd780f152"
   integrity sha512-WxqFEXXObRTUOW2ivSih+te6UqbW4U7O+hlglVxZIuXGdyTHtQo2b2xDYPX8Ik5ikGNloOoJQ/qZ4zg5ZJgiGg==
@@ -9956,7 +9956,7 @@ gatsby-cli@^2.12.48:
     yargs "^15.3.1"
     yurnalist "^1.1.2"
 
-gatsby-core-utils@^1.3.5, gatsby-core-utils@^1.3.6:
+gatsby-core-utils@^1.3.6:
   version "1.3.6"
   resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-1.3.6.tgz#5a001593276b0c1cc4a3c6c9a34da428e9374590"
   integrity sha512-ptd//w6MX1/hUGO2KBffSUKSYIVU3SFRM2cKXN3CMmCQvn8ul2OHCjpNY8MyZQuluWk8nRtvhjEGrl+KJtcOnw==
@@ -10024,10 +10024,10 @@ gatsby-plugin-manifest@^2.4.12:
     semver "^5.7.1"
     sharp "^0.25.1"
 
-gatsby-plugin-netlify@^2.3.5:
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-2.3.5.tgz#6f1d6f3bcdca5270c868ecef16f942aa8cc7f257"
-  integrity sha512-TVpK1f9qOu2gqFyGm5+D7o0EoUXhSkvK1fiwxpQ4b5g/h/HYn1PdL4zgqHPi4ebCsu+jH69RgQKIBLbcL1aJrQ==
+gatsby-plugin-netlify@^2.3.6:
+  version "2.3.6"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-2.3.6.tgz#faee3183563a5a3b82191e67b1d614cc8e475249"
+  integrity sha512-ha9AOWkOfmsShYEV0PQ6perKoiymKiks8wwq1h8gea6szdPUhz/bCQg8uj8R9kWjYs/S9ASLBU6/XHUt0ATmnQ==
   dependencies:
     "@babel/runtime" "^7.10.2"
     fs-extra "^8.1.0"
