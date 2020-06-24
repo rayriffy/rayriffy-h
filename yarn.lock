@@ -5443,10 +5443,10 @@ babel-plugin-module-resolver@4.0.0:
     reselect "^4.0.0"
     resolve "^1.13.1"
 
-babel-plugin-remove-graphql-queries@^2.9.5:
-  version "2.9.5"
-  resolved "https://registry.yarnpkg.com/babel-plugin-remove-graphql-queries/-/babel-plugin-remove-graphql-queries-2.9.5.tgz#b094d01e39d911e92317d38bee04bf4b2bf7c156"
-  integrity sha512-z0T2dMz6V8a8hC11NFDwnuT5xR0k4Vu4Zie4A5BPchQOe59uHpbaM54mMl66FUA/iLTfYC11xez1N3Wc1gV20w==
+babel-plugin-remove-graphql-queries@^2.9.5, babel-plugin-remove-graphql-queries@^2.9.6:
+  version "2.9.7"
+  resolved "https://registry.yarnpkg.com/babel-plugin-remove-graphql-queries/-/babel-plugin-remove-graphql-queries-2.9.7.tgz#81e557c36811f5a6c0166c5da84d6178fbfba632"
+  integrity sha512-PnwHO+l5fJ+xq2oKF1+moMiWRJFcb29RSLcWiVzqVxDU4VzZapvmGY9qMFzFWS0txGMzlknBNxTL4Pigd/JyZg==
 
 babel-plugin-syntax-jsx@6.18.0, babel-plugin-syntax-jsx@^6.18.0:
   version "6.18.0"
@@ -10113,10 +10113,10 @@ gatsby-plugin-svgr@2.0.2:
   resolved "https://registry.yarnpkg.com/gatsby-plugin-svgr/-/gatsby-plugin-svgr-2.0.2.tgz#22e08fb67ec63b68aca6ac3e89962af20214e2a5"
   integrity sha512-54REIMe79qFBAwpcnWHBkvEE9CKoEVkefF9rDXai0k642r91SZ4UeWFuAmsegPG+sPVub7tHfHu/2LVXK1I9kg==
 
-gatsby-plugin-typescript@^2.4.6:
-  version "2.4.6"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-typescript/-/gatsby-plugin-typescript-2.4.6.tgz#8c1c53510678978303ce9cd489e69f6696409bd8"
-  integrity sha512-RfI2/k5XHmyNHjKDZDEPha/TNoY0Wh6zeBteqmidoPsJ2GfeFhyyxFxuRak+wYpZqdMh/aVwaJoF9Q1OiS4woQ==
+gatsby-plugin-typescript@^2.4.6, gatsby-plugin-typescript@^2.4.7:
+  version "2.4.7"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-typescript/-/gatsby-plugin-typescript-2.4.7.tgz#42b470745beba7dac2d7db4e905d768cf03d684f"
+  integrity sha512-bxwWlsK46PHGT3JDU5gbtVKwwDUyt/+GNMh+9qNDCLM31ksPwla4dJQ9rZ05SveEZ3/OgSuZxmT+MJdUzxIy/A==
   dependencies:
     "@babel/core" "^7.10.2"
     "@babel/plugin-proposal-nullish-coalescing-operator" "^7.10.1"
@@ -10124,7 +10124,7 @@ gatsby-plugin-typescript@^2.4.6:
     "@babel/plugin-proposal-optional-chaining" "^7.10.1"
     "@babel/preset-typescript" "^7.10.1"
     "@babel/runtime" "^7.10.2"
-    babel-plugin-remove-graphql-queries "^2.9.5"
+    babel-plugin-remove-graphql-queries "^2.9.6"
 
 gatsby-react-router-scroll@^3.0.4:
   version "3.0.4"
