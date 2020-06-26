@@ -4368,10 +4368,10 @@
   dependencies:
     react-icons "*"
 
-"@types/react-lazy-load-image-component@^1.3.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@types/react-lazy-load-image-component/-/react-lazy-load-image-component-1.3.0.tgz#c02b5c94f2776cb726b7d6bdb9507b2583cdc52d"
-  integrity sha512-Wb+VvdKtvitAutq7seLRw84wutA1fm20l+/WLD9UZd3wuPCoog9mmWNFU3uMR42ghk0sMQKPyGbUxvwKnmgctA==
+"@types/react-lazy-load-image-component@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@types/react-lazy-load-image-component/-/react-lazy-load-image-component-1.5.0.tgz#d17d404fd227cc26f949d1a3c144de1ca04b05da"
+  integrity sha512-npHVGX2yuT2XX3ntAZaKcLXRqxdTomVllIYbodunTxFD8dqOCJQTgx8pkhIMGds3e//x1RxmZZ0xk+jSnkfV6Q==
   dependencies:
     "@types/react" "*"
     csstype "^2.2.0"
