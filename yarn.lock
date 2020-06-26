@@ -10306,12 +10306,12 @@ gatsby-plugin-manifest@^2.4.14:
     semver "^5.7.1"
     sharp "^0.25.1"
 
-gatsby-plugin-netlify@^2.3.6:
-  version "2.3.6"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-2.3.6.tgz#faee3183563a5a3b82191e67b1d614cc8e475249"
-  integrity sha512-ha9AOWkOfmsShYEV0PQ6perKoiymKiks8wwq1h8gea6szdPUhz/bCQg8uj8R9kWjYs/S9ASLBU6/XHUt0ATmnQ==
+gatsby-plugin-netlify@^2.3.7:
+  version "2.3.7"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-2.3.7.tgz#ecb62d31494c61ff1c947c4288ccbc671a252123"
+  integrity sha512-2lbGYHAuj2w/W2yuXW/iwLjz+WnhyGCNUk2NFMm2q4GF+3GBUNB/33L5vd2Tkko6SwUjQwvnoCgOsgim9qDeRw==
   dependencies:
-    "@babel/runtime" "^7.10.2"
+    "@babel/runtime" "^7.10.3"
     fs-extra "^8.1.0"
     kebab-hash "^0.1.2"
     lodash "^4.17.15"
