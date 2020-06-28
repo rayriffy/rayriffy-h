@@ -51,7 +51,7 @@
     "gatsby-plugin-create-client-paths": "^2.3.6",
     "gatsby-plugin-manifest": "^2.4.14",
     "gatsby-plugin-netlify": "^2.3.7",
-    "gatsby-plugin-offline": "^3.2.12",
+    "gatsby-plugin-offline": "^3.2.13",
     "gatsby-plugin-postcss": "^2.3.6",
     "gatsby-plugin-preact": "^3.3.2",
     "gatsby-plugin-react-helmet": "^3.3.6",
