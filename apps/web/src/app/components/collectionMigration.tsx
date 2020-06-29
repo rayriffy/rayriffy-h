@@ -24,16 +24,29 @@ export const CollectionMigration: React.FC = props => {
     }
   }, [])
 
-  return active === 'migrate-ongoing'
-    ? (
-      <div className='p-2 bg-blue-800 items-center text-blue-100 leading-none rounded-full mb-4 flex' role='alert'>
-        <span className='flex rounded-full bg-blue-500 uppercase px-2 py-1 text-xs font-bold mr-3'>New</span>
-        <span className='font-semibold mr-2 text-left flex-auto'>Collection migration in progress</span>
-      </div>
-    ) : active === 'migrate-done' ? (
-      <div className='p-2 bg-green-800 items-center text-green-100 leading-none rounded-full mb-4 flex' role='alert'>
-        <span className='flex rounded-full bg-green-500 uppercase px-2 py-1 text-xs font-bold mr-3'>New</span>
-        <span className='font-semibold mr-2 text-left flex-auto'>Migration successful!</span>
-      </div>
-    ) : null
+  return active === 'migrate-ongoing' ? (
+    <div
+      className="p-2 bg-blue-800 items-center text-blue-100 leading-none rounded-full mb-4 flex"
+      role="alert"
+    >
+      <span className="flex rounded-full bg-blue-500 uppercase px-2 py-1 text-xs font-bold mr-3">
+        New
+      </span>
+      <span className="font-semibold mr-2 text-left flex-auto">
+        Collection migration in progress
+      </span>
+    </div>
+  ) : active === 'migrate-done' ? (
+    <div
+      className="p-2 bg-green-800 items-center text-green-100 leading-none rounded-full mb-4 flex"
+      role="alert"
+    >
+      <span className="flex rounded-full bg-green-500 uppercase px-2 py-1 text-xs font-bold mr-3">
+        New
+      </span>
+      <span className="font-semibold mr-2 text-left flex-auto">
+        Migration successful!
+      </span>
+    </div>
+  ) : null
 }

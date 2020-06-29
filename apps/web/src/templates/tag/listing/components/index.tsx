@@ -55,28 +55,33 @@ const Page: React.FC<Props> = props => {
 
   return (
     <React.Fragment>
-      <Helmet title='Tags' />
-      <div className='flex justify-center'>
-        <div className='w-11/12 md:w-8/12 lg:w-6/12'>
+      <Helmet title="Tags" />
+      <div className="flex justify-center">
+        <div className="w-11/12 md:w-8/12 lg:w-6/12">
           {alphabet.map(character => {
-            const filteredTags = processedTags.filter(o => o.name.startsWith(character))
+            const filteredTags = processedTags.filter(o =>
+              o.name.startsWith(character)
+            )
 
             return filteredTags.length !== 0 ? (
-              <div className='py-3' key={`tag-${prefix}-${character}`}>
-                <div className='p-5 rounded text-gray-700 bg-white dark:text-gray-200 dark:bg-gray-800'>
-                  <div className='text-2xl font-semibold text-gray-900 dark:text-white focus:outline-none focus:shadow-outline'>
+              <div className="py-3" key={`tag-${prefix}-${character}`}>
+                <div className="p-5 rounded text-gray-700 bg-white dark:text-gray-200 dark:bg-gray-800">
+                  <div className="text-2xl font-semibold text-gray-900 dark:text-white focus:outline-none focus:shadow-outline">
                     {character.toLocaleUpperCase()}
                   </div>
-                  <div className='py-2'>
+                  <div className="py-2">
                     {filteredTags.map((tag, i) => {
                       return (
                         <div key={`tag-${prefix}-${character}-${tag.id}`}>
-                          {i !== 0 ? <hr className='border-gray-400 dark:border-gray-600' /> : null}
-                          <div className='py-3'>
+                          {i !== 0 ? (
+                            <hr className="border-gray-400 dark:border-gray-600" />
+                          ) : null}
+                          <div className="py-3">
                             <TransparentLink
                               to={`/${prefix}/${tag.id}`}
-                              aria-label={tag.name}>
-                              <div className='text-md text-blue-500'>
+                              aria-label={tag.name}
+                            >
+                              <div className="text-md text-blue-500">
                                 {tag.name}
                               </div>
                             </TransparentLink>

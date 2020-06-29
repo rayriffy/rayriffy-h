@@ -11,8 +11,6 @@ export const Context: React.FC = props => {
   const { children } = props
 
   return (
-    <StoreonContext.Provider value={store}>
-      {children}
-    </StoreonContext.Provider>
+    <StoreonContext.Provider value={store}>{children}</StoreonContext.Provider>
   )
 }

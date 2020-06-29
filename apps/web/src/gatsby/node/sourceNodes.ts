@@ -40,7 +40,7 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async ({
     }
 
     const node: NodeInput = Object.assign({}, hentaiData, nodeMeta)
-    
+
     return actions.createNode(node)
   })
 
@@ -57,7 +57,7 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async ({
     }
 
     const node: NodeInput = Object.assign({}, tag, nodeMeta)
-    
+
     return actions.createNode(node)
   })
 

@@ -22,8 +22,13 @@ const Page: React.FC<PageProps> = props => {
 
   return (
     <div
-      className={`cursor-pointer ${startPoint + i + 1 === current ? 'text-gray-900 dark:text-white' : 'text-gray-500'}`}
-      onClick={() => onChange(startPoint + i + 1)}>
+      className={`cursor-pointer ${
+        startPoint + i + 1 === current
+          ? 'text-gray-900 dark:text-white'
+          : 'text-gray-500'
+      }`}
+      onClick={() => onChange(startPoint + i + 1)}
+    >
       {startPoint + i + 1}
     </div>
   )
@@ -43,20 +48,28 @@ const Component: React.FC<Props> = props => {
       : 0
 
   return (
-    <div className='flex justify-center md:py-3 lg:py-5'>
+    <div className="flex justify-center md:py-3 lg:py-5">
       {Array.from({ length: pageLength }, (_, i) => (
-        <div key={`pagination-${startPoint + i}`} className='px-3'>
+        <div key={`pagination-${startPoint + i}`} className="px-3">
           {link ? (
             <TransparentLink
               to={
-                startPoint + i === 0 ? prefix : `${prefix}p/${startPoint + i + 1}`
+                startPoint + i === 0
+                  ? prefix
+                  : `${prefix}p/${startPoint + i + 1}`
               }
               aria-label={`${startPoint + i + 1}`}
             >
-              <Page {...{ startPoint, i, current }} onChange={page => onChange ? onChange(page) : null} />
+              <Page
+                {...{ startPoint, i, current }}
+                onChange={page => (onChange ? onChange(page) : null)}
+              />
             </TransparentLink>
           ) : (
-            <Page {...{ startPoint, i, current }} onChange={page => onChange ? onChange(page) : null} />
+            <Page
+              {...{ startPoint, i, current }}
+              onChange={page => (onChange ? onChange(page) : null)}
+            />
           )}
         </div>
       ))}

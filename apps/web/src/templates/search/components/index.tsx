@@ -19,13 +19,14 @@ const Page: React.FC<Props> = props => {
 
   return (
     <React.Fragment>
-      <Helmet title='Search' />
+      <Helmet title="Search" />
       <Search
         skip={skip}
         raw={raw.map(o => ({
           raw: o,
           internal: true,
-        }))} />
+        }))}
+      />
     </React.Fragment>
   )
 }

@@ -5,7 +5,7 @@ import { SubtitleEvent } from '../@types/SubtitleEvent'
 
 export const subtitle: StoreonModule<SubtitleStore, SubtitleEvent> = store => {
   store.on('@init', () => ({
-    subtitle: 'init'
+    subtitle: 'init',
   }))
 
   store.on('subtitle/setSubtitle', (state, event) => ({

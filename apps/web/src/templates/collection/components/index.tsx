@@ -20,12 +20,16 @@ const Page: React.FC<Props> = props => {
 
   return (
     <React.Fragment>
-      <Helmet title='Collection' />
+      <Helmet title="Collection" />
       <Actions />
       {collection.data.length === 0 ? (
-        <div className='pt-12 text-center'>
-          <div className='text-xl font-semibold text-gray-900 dark:text-white'>No records</div>
-          <div className='text-gray-600 dark:text-gray-500'>Just take some time to read and add your favorite gallery here...</div>
+        <div className="pt-12 text-center">
+          <div className="text-xl font-semibold text-gray-900 dark:text-white">
+            No records
+          </div>
+          <div className="text-gray-600 dark:text-gray-500">
+            Just take some time to read and add your favorite gallery here...
+          </div>
         </div>
       ) : (
         <Search
@@ -34,7 +38,7 @@ const Page: React.FC<Props> = props => {
             internal: o.internal,
           }))}
           skip={skip}
-          modeLock='list'
+          modeLock="list"
           showOnEmptyQuery
         />
       )}

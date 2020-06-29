@@ -173,11 +173,15 @@ export const codes: DatabaseCode[] = [
   },
   {
     code: 210612,
-    exclude: Array.from({ length: 550 }).map((_, i) => i+1).filter(o => o >= 22 && o <= 41),
+    exclude: Array.from({ length: 550 })
+      .map((_, i) => i + 1)
+      .filter(o => o >= 22 && o <= 41),
   },
   {
     code: 256825,
-    exclude: Array.from({ length: 550 }).map((_, i) => i+1).filter(o => o >= 25 && o <= 44),
+    exclude: Array.from({ length: 550 })
+      .map((_, i) => i + 1)
+      .filter(o => o >= 25 && o <= 44),
   },
   245994,
   213730,
@@ -799,7 +803,9 @@ export const codes: DatabaseCode[] = [
   296935,
   {
     code: 297026,
-    exclude: Array.from({ length: 550 }).map((_, i) => i+1).filter(o => o >= 42 && o <= 81),
+    exclude: Array.from({ length: 550 })
+      .map((_, i) => i + 1)
+      .filter(o => o >= 42 && o <= 81),
   },
   296120,
   297226,
@@ -1066,7 +1072,9 @@ export const codes: DatabaseCode[] = [
   311385,
   {
     code: 105034,
-    exclude: Array.from({ length: 550 }).map((_, i) => i+1).filter(o => o < 99 || o > 122),
+    exclude: Array.from({ length: 550 })
+      .map((_, i) => i + 1)
+      .filter(o => o < 99 || o > 122),
   },
   297032,
   288026,
@@ -1201,7 +1209,9 @@ export const codes: DatabaseCode[] = [
   315063,
   {
     code: 315133,
-    exclude: Array.from({ length: 70 }).map((_, i) => i+1).filter(o => o > 36),
+    exclude: Array.from({ length: 70 })
+      .map((_, i) => i + 1)
+      .filter(o => o > 36),
   },
   315135,
   315148,

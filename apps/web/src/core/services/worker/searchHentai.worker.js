@@ -12,18 +12,16 @@ export const searchHentai = async (query, raws) => {
       const languages = ['english', 'japanese', 'pretty']
 
       const typeName = union(
-          ...languages.map(language => {
-            return raws.filter(raw => {
-              const title = get(
-                raw,
-                `raw.title.${language}`,
-                ''
-              )
+        ...languages.map(language => {
+          return raws.filter(raw => {
+            const title = get(raw, `raw.title.${language}`, '')
 
-              return RegExp(subquery.toLocaleLowerCase()).test(title === null ? '' : title.toLocaleLowerCase())
-            })
+            return RegExp(subquery.toLocaleLowerCase()).test(
+              title === null ? '' : title.toLocaleLowerCase()
+            )
           })
-        ).reduce((a, b) => a.concat(b), [])
+        })
+      ).reduce((a, b) => a.concat(b), [])
 
       /**
        * Filter the search by tags

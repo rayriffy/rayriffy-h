@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import copy from 'copy-to-clipboard'
-  
+
 interface Clipboard<T> {
   value?: T
   onCopy?: () => void

@@ -49,16 +49,15 @@ const DynamicViewingComponent: React.FC<Props> = props => {
     }
   }, [])
 
-  return state === 0 && raw !== null
-    ? (
-      <Reader raw={raw.data} internal={false} />
-    ) : state === 1 && raw === null ? (
-      <Loading />
-    ) : state === 2 ? (
-      <Failed />
-    ) : state === 3 ? (
-      <Guide />
-    ) : null
-} 
+  return state === 0 && raw !== null ? (
+    <Reader raw={raw.data} internal={false} />
+  ) : state === 1 && raw === null ? (
+    <Loading />
+  ) : state === 2 ? (
+    <Failed />
+  ) : state === 3 ? (
+    <Guide />
+  ) : null
+}
 
 export default DynamicViewingComponent

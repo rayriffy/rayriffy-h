@@ -1,6 +1,8 @@
 import { GatsbyNode } from 'gatsby'
 
-export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = async ({ actions }) => {
+export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = async ({
+  actions,
+}) => {
   const { createTypes } = actions
 
   const typeDefs = `

@@ -21,7 +21,12 @@ const Page: React.FC<Props> = props => {
 
   return (
     <React.Fragment>
-      <Helmet title={subtitle.split('/').map(o => upperFirst(o)).join(' · ')} />
+      <Helmet
+        title={subtitle
+          .split('/')
+          .map(o => upperFirst(o))
+          .join(' · ')}
+      />
       <Pagination
         current={page.current}
         max={page.max}
@@ -31,7 +36,8 @@ const Page: React.FC<Props> = props => {
         raw={raw.map(o => ({
           raw: o,
           internal: true,
-        }))} />
+        }))}
+      />
       <Pagination
         current={page.current}
         max={page.max}

@@ -19,7 +19,7 @@ const Page: React.FC<Props> = props => {
 
   useEffect(() => {
     const requestedID = location.pathname.split('/')[2]
-  
+
     if (!isEmpty(requestedID)) {
       if (Number.isSafeInteger(Number(requestedID))) {
         setPage(Number(requestedID))
@@ -31,18 +31,25 @@ const Page: React.FC<Props> = props => {
     }
   }, [location])
 
-  return error !== null
-    ? (
-      <div className='pt-12 text-center'>
-        <div className='text-xl font-semibold text-gray-900 dark:text-white'>Failed</div>
-        <div className='text-gray-600 dark:text-gray-500'>{error}</div>
+  return error !== null ? (
+    <div className="pt-12 text-center">
+      <div className="text-xl font-semibold text-gray-900 dark:text-white">
+        Failed
       </div>
-    ) : page === null ? (
-      <div className='pt-12 text-center'>
-        <div className='text-xl font-semibold text-gray-900 dark:text-white'>Parsing</div>
-        <div className='text-gray-600 dark:text-gray-500'>Preparing to make a request</div>
+      <div className="text-gray-600 dark:text-gray-500">{error}</div>
+    </div>
+  ) : page === null ? (
+    <div className="pt-12 text-center">
+      <div className="text-xl font-semibold text-gray-900 dark:text-white">
+        Parsing
       </div>
-    ) : <Home page={page} />
+      <div className="text-gray-600 dark:text-gray-500">
+        Preparing to make a request
+      </div>
+    </div>
+  ) : (
+    <Home page={page} />
+  )
 }
 
 export default Page

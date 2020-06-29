@@ -21,22 +21,15 @@ const Page: React.FC<Props> = props => {
 
   return (
     <React.Fragment>
-      <Helmet title='Listing' />
-      <Pagination
-        current={page.current}
-        max={page.max}
-        prefix='/listing/'
-      />
+      <Helmet title="Listing" />
+      <Pagination current={page.current} max={page.max} prefix="/listing/" />
       <Listing
         raw={raw.map(o => ({
           raw: o,
           internal: true,
-        }))} />
-      <Pagination
-        current={page.current}
-        max={page.max}
-        prefix='/listing/'
+        }))}
       />
+      <Pagination current={page.current} max={page.max} prefix="/listing/" />
     </React.Fragment>
   )
 }

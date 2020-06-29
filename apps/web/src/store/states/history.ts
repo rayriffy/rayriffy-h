@@ -22,7 +22,7 @@ export const history: StoreonModule<HistoryStore, HistoryEvent> = store => {
         ...state.history,
         items: [
           event,
-          ...state.history.items.filter(o => o.data.id !== event.data.id)
+          ...state.history.items.filter(o => o.data.id !== event.data.id),
         ].slice(0, MAX_NUM),
       },
     }

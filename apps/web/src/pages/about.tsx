@@ -9,9 +9,7 @@ const Page: React.FC = props => {
     dispatch('subtitle/setSubtitle', 'about')
   }, [])
 
-  return (
-    <React.Fragment>OK</React.Fragment>
-  )
+  return <React.Fragment>OK</React.Fragment>
 }
 
 export default Page
