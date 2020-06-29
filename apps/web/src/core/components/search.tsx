@@ -15,18 +15,28 @@ import { SearchProps } from '../@types/SearchProps'
 export const Search: React.FC<SearchProps> = props => {
   const { raw, skip, showOnEmptyQuery = false, modeLock } = props
 
+  // State for observing raw input
   const [input, setInput] = useState<string>('')
+
+  // Lock search query when page changes and text input change as well
   const [query, setQuery] = useState<string>('')
+
+  // Set search dialog to be show on first time or not
   const [first, setFirst] = useState<boolean>(true)
+
+  // Put all searh results in here (for listing)
   const [res, setRes] = useState<ListingHentai[]>(showOnEmptyQuery ? raw : [])
 
+  // Status state
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
 
+  // Stuff to be rendered
   const [page, setPage] = useState<number>(1)
   const [maxPage, setMaxPage] = useState<number>(5)
   const [renderedRaw, setRenderedRaw] = useState<ListingHentai[]>([])
 
+  // Set mode between search from list or nhentai (if modeLock is present, then hide the selector and lock search into that mode)
   const [mode, setMode] = useState<'list' | 'nh'>(modeLock === undefined ? 'list' : modeLock)
 
   const { searchHentai } =
@@ -105,6 +115,8 @@ export const Search: React.FC<SearchProps> = props => {
 
   useEffect(() => {
     setRes(showOnEmptyQuery && mode === 'list' ? raw : [])
+
+    // When
     setFirst(true)
   }, [mode])
 
@@ -115,12 +127,12 @@ export const Search: React.FC<SearchProps> = props => {
           <div className='flex justify-center items-center'>
             <input
               className='bg-white dark:bg-gray-900 focus:outline-none focus:shadow-outline border border-gray-300 dark:border-gray-600 rounded py-2 px-4 block w-full appearance-none leading-normal text-gray-900 dark:text-white'
-              type='search'
+              type='text'
               placeholder='Search'
               value={input}
               onKeyDown={e => e.keyCode === 13 ? searchHandler() : null}
-              onChange={e => {
-                const value = e.target.value
+              enterkeyhint='🔎'
+              onChange={({ target: { value } }) => {
                 setInput(value)
               }} />
               <div className='px-2' />
@@ -152,22 +164,17 @@ export const Search: React.FC<SearchProps> = props => {
             <div className='spinner pb-6'></div>
             <div className='text-center pt-4'>Loading...</div>
           </div>
-        ) : error !== null ? (
-          <div className='pt-12 text-center'>
-            <div className='text-xl font-semibold text-gray-900 dark:text-white'>Failed</div>
-            <div className='text-gray-600 dark:text-gray-500'>{error}</div>
-          </div>
-        ) : (first || query === '') && !showOnEmptyQuery ? (
-          <div className='pt-12 text-center'>
-            <div className='text-xl font-semibold text-gray-900 dark:text-white'>Search</div>
-            <div className='text-gray-600 dark:text-gray-500'>Type your query in the box and search!</div>
-          </div>
-        ) : res.length === 0 ? (
-          <div className='pt-12 text-center'>
-            <div className='text-xl font-semibold text-gray-900 dark:text-white'>No result</div>
-            <div className='text-gray-600 dark:text-gray-500'>No any result related to the query</div>
-          </div>
         ) : (
+          <div className='pt-12 text-center'>
+            <div className='text-xl font-semibold text-gray-900 dark:text-white'>
+              {error !== null ? 'Failed' : (first || query === '') && !showOnEmptyQuery ? 'Search' : res.length === 0 ? 'No result' : ''}
+            </div>
+            <div className='text-gray-600 dark:text-gray-500'>
+              {error !== null ? error : (first || query === '') && !showOnEmptyQuery ? 'Type your query in the box and search!' : res.length === 0 ? 'No any result related to the query' : ''}
+            </div>
+          </div>
+        )}
+        {res.length > 0 ? (
           <React.Fragment>
             <Pagination
               current={page}
@@ -183,7 +190,7 @@ export const Search: React.FC<SearchProps> = props => {
               onChange={page => renderPage(res, page)}
             />
           </React.Fragment>
-        )}
+        ) : null}
       </div>
     </React.Fragment>
   )
