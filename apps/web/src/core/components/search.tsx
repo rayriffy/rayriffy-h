@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { chunk, get } from 'lodash-es'
 
@@ -94,11 +94,13 @@ export const Search: React.FC<SearchProps> = props => {
     } else {
       setLoading(true)
       setError(null)
+
       dispatch('search/update', {
         target,
         value: {
           first: false,
           query: input,
+          res: [],
         },
       })
 
@@ -113,25 +115,36 @@ export const Search: React.FC<SearchProps> = props => {
 
         renderPage(res, 1)
       } else if (mode === 'nh') {
-        const res = await getSearch(input, 1)
-        const transformedRes = res.raw.map(o => ({
-          raw: o,
-          internal: false,
-        }))
-        dispatch('search/update', {
-          target,
-          value: {
-            page: 1,
-            maxPage: res.maxPage,
-            res: transformedRes,
-            renderedRaw: transformedRes,
-          },
-        })
+        try {
+          const res = await getSearch(input, 1)
+          const transformedRes = res.raw.map(o => ({
+            raw: o,
+            internal: false,
+          }))
+          dispatch('search/update', {
+            target,
+            value: {
+              page: 1,
+              maxPage: res.maxPage,
+              res: transformedRes,
+              renderedRaw: transformedRes,
+            },
+          })
+        } catch {
+          setLoading(true)
+          setError('Server returned an invalid response')
+        }
       }
 
       setLoading(false)
     }
   }
+
+  useEffect(() => {
+    if (showOnEmptyQuery && renderedRaw.length === 0) {
+      searchHandler()
+    }
+  }, [])
 
   return (
     <React.Fragment>
@@ -196,7 +209,7 @@ export const Search: React.FC<SearchProps> = props => {
             <div className="spinner pb-6"></div>
             <div className="text-center pt-4">Loading...</div>
           </div>
-        ) : (
+        ) : res.length === 0 ? (
           <div className="pt-12 text-center">
             <div className="text-xl font-semibold text-gray-900 dark:text-white">
               {error !== null
@@ -217,7 +230,7 @@ export const Search: React.FC<SearchProps> = props => {
                 : ''}
             </div>
           </div>
-        )}
+        ) : null}
         {res.length > 0 && !loading ? (
           <React.Fragment>
             <Pagination
