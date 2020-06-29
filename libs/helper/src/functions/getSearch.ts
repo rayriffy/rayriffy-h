@@ -25,7 +25,7 @@ export const getSearch = async (
     )
     return {
       raw: res.result,
-      maxPage: res.num_pages
+      maxPage: res.num_pages,
     }
   } else {
     const res = await fetch<APIResponse<ExportedFunction>>(
