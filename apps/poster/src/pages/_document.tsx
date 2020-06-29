@@ -5,9 +5,9 @@ import Document, { Head, Html, Main, NextScript } from 'next/document'
 class NextDocument extends Document {
   public render() {
     return (
-      <Html lang='en'>
+      <Html lang="en">
         <Head>
-          <meta name='referrer' content='same-origin' />
+          <meta name="referrer" content="same-origin" />
         </Head>
         <body>
           <Main />

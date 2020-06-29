@@ -25,11 +25,13 @@ const PosterComponent: React.FC<Props> = props => {
 
   const fetchCover = async (id: string) => {
     const rawHentai = await getRawHentai(id)
-    setRaw(getImageUrl({
-      image: rawHentai.images.cover,
-      mediaId: rawHentai.media_id,
-      type: 'cover',
-    }))
+    setRaw(
+      getImageUrl({
+        image: rawHentai.images.cover,
+        mediaId: rawHentai.media_id,
+        type: 'cover',
+      })
+    )
   }
 
   useEffect(() => {
@@ -39,7 +41,7 @@ const PosterComponent: React.FC<Props> = props => {
   return (
     <React.Fragment>
       {raw !== null ? (
-        <CoverBox id='cover-box'>
+        <CoverBox id="cover-box">
           <BlurBox
             sx={{
               backgroundImage: `url(${raw})`,
@@ -48,7 +50,7 @@ const PosterComponent: React.FC<Props> = props => {
           />
         </CoverBox>
       ) : (
-        <CoverBox id='cover-box'>
+        <CoverBox id="cover-box">
           <BlurBox />
         </CoverBox>
       )}
@@ -59,7 +61,8 @@ const PosterComponent: React.FC<Props> = props => {
             fontSize={76}
             color={`white`}
             textAlign={`center`}
-            py={4}>
+            py={4}
+          >
             {String(id).padStart(6, '0')}
           </Text>
         </Box>
