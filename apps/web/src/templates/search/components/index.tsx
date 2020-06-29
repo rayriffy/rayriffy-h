@@ -22,6 +22,7 @@ const Page: React.FC<Props> = props => {
       <Helmet title="Search" />
       <Search
         skip={skip}
+        target="search"
         raw={raw.map(o => ({
           raw: o,
           internal: true,

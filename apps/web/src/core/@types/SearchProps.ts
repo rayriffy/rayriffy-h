@@ -5,4 +5,5 @@ export interface SearchProps {
   skip: number
   showOnEmptyQuery?: boolean
   modeLock?: 'list' | 'nh'
+  target: 'collection' | 'search'
 }

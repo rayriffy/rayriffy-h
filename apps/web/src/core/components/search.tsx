@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { chunk, get } from 'lodash-es'
 
 import { getSearch } from '@rayriffy-h/helper'
 
 import * as searchHentaiWorker from '../services/worker/searchHentai.worker'
+
+import { useStoreon } from '../../store'
 
 import { Listing } from './listing'
 import { Pagination } from './pagination'
@@ -13,33 +15,30 @@ import { ListingHentai } from '../@types/ListingHentai'
 import { SearchProps } from '../@types/SearchProps'
 
 export const Search: React.FC<SearchProps> = props => {
-  const { raw, skip, showOnEmptyQuery = false, modeLock } = props
+  const { raw, skip, showOnEmptyQuery = false, modeLock, target } = props
 
-  // State for observing raw input
-  const [input, setInput] = useState<string>('')
+  const { dispatch, search } = useStoreon('search')
 
-  // Lock search query when page changes and text input change as well
-  const [query, setQuery] = useState<string>('')
+  console.log(search)
 
-  // Set search dialog to be show on first time or not
-  const [first, setFirst] = useState<boolean>(true)
-
-  // Put all searh results in here (for listing)
-  const [res, setRes] = useState<ListingHentai[]>(showOnEmptyQuery ? raw : [])
+  const { input, query, first, res, page, maxPage, renderedRaw, mode } = search[
+    target
+  ]
 
   // Status state
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
 
-  // Stuff to be rendered
-  const [page, setPage] = useState<number>(1)
-  const [maxPage, setMaxPage] = useState<number>(5)
-  const [renderedRaw, setRenderedRaw] = useState<ListingHentai[]>([])
-
-  // Set mode between search from list or nhentai (if modeLock is present, then hide the selector and lock search into that mode)
-  const [mode, setMode] = useState<'list' | 'nh'>(
-    modeLock === undefined ? 'list' : modeLock
-  )
+  // Set mode
+  const setMode = (mode: 'list' | 'nh') =>
+    dispatch('search/update', {
+      target,
+      value: {
+        mode,
+        first: true,
+        res: [],
+      },
+    })
 
   const { searchHentai } =
     typeof window === 'object'
@@ -49,20 +48,28 @@ export const Search: React.FC<SearchProps> = props => {
 
   const renderPage = async (raws: ListingHentai[], page: number) => {
     if (mode === 'list') {
-      setPage(page)
-      setMaxPage(chunk(raws, skip).length)
-      setRenderedRaw(get(chunk(raws, skip), page - 1, []))
+      dispatch('search/update', {
+        target,
+        value: {
+          page,
+          maxPage: chunk(raws, skip).length,
+          renderedRaw: get(chunk(raws, skip), page - 1, []),
+        },
+      })
     } else if (mode === 'nh') {
       setLoading(true)
       try {
         const res = await getSearch(query, page)
-        setPage(page)
-        setRenderedRaw(
-          res.raw.map(o => ({
-            raw: o,
-            internal: false,
-          }))
-        )
+        dispatch('search/update', {
+          target,
+          value: {
+            page,
+            renderedRaw: res.raw.map(o => ({
+              raw: o,
+              internal: false,
+            })),
+          },
+        })
       } catch {
         setError('Unable to retrieve data from server')
       } finally {
@@ -73,60 +80,58 @@ export const Search: React.FC<SearchProps> = props => {
 
   const searchHandler = async () => {
     if (input === '') {
-      setQuery('')
-      setRes(showOnEmptyQuery && mode === 'list' ? raw : [])
+      dispatch('search/update', {
+        target,
+        value: {
+          query: '',
+          res: showOnEmptyQuery && mode === 'list' ? raw : [],
+        },
+      })
+
+      if (showOnEmptyQuery && mode === 'list') {
+        renderPage(res, 1)
+      }
     } else {
       setLoading(true)
-      setFirst(false)
       setError(null)
-      setQuery(input)
+      dispatch('search/update', {
+        target,
+        value: {
+          first: false,
+          query: input,
+        },
+      })
 
       if (mode === 'list') {
         const res = await searchHentai(input, raw)
-        setRes(res)
+        dispatch('search/update', {
+          target,
+          value: {
+            res,
+          },
+        })
+
+        renderPage(res, 1)
       } else if (mode === 'nh') {
         const res = await getSearch(input, 1)
-        setMaxPage(res.maxPage)
-        setRes(
-          res.raw.map(o => ({
-            raw: o,
-            internal: false,
-          }))
-        )
-
-        // Manually render first page
-        setPage(1)
-        setRenderedRaw(
-          res.raw.map(o => ({
-            raw: o,
-            internal: false,
-          }))
-        )
+        const transformedRes = res.raw.map(o => ({
+          raw: o,
+          internal: false,
+        }))
+        dispatch('search/update', {
+          target,
+          value: {
+            page: 1,
+            maxPage: res.maxPage,
+            res: transformedRes,
+            renderedRaw: transformedRes,
+          },
+        })
       }
 
       setLoading(false)
     }
   }
-
-  useEffect(() => {
-    if (res.length !== 0 && mode === 'list') {
-      setPage(1)
-      renderPage(res, 1)
-    }
-  }, [res])
-
-  useEffect(() => {
-    if (showOnEmptyQuery) {
-      setRes(raw)
-    }
-  }, [raw])
-
-  useEffect(() => {
-    setRes(showOnEmptyQuery && mode === 'list' ? raw : [])
-
-    // When
-    setFirst(true)
-  }, [mode])
 
   return (
     <React.Fragment>
@@ -141,7 +146,12 @@ export const Search: React.FC<SearchProps> = props => {
               onKeyDown={e => (e.keyCode === 13 ? searchHandler() : null)}
               enterkeyhint="🔎"
               onChange={({ target: { value } }) => {
-                setInput(value)
+                dispatch('search/update', {
+                  target,
+                  value: {
+                    input: value,
+                  },
+                })
               }}
             />
             <div className="px-2" />
@@ -208,7 +218,7 @@ export const Search: React.FC<SearchProps> = props => {
             </div>
           </div>
         )}
-        {res.length > 0 ? (
+        {res.length > 0 && !loading ? (
           <React.Fragment>
             <Pagination
               current={page}

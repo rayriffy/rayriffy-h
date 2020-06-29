@@ -9,6 +9,7 @@ const config: GatsbyConfig = {
   },
   pathPrefix: '/',
   plugins: [
+    `gatsby-plugin-why-did-you-render`,
     `gatsby-plugin-postcss`,
     {
       resolve: require.resolve(`@nrwl/gatsby/plugins/nx-gatsby-ext-plugin`),

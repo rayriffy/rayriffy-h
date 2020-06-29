@@ -38,6 +38,7 @@ const Page: React.FC<Props> = props => {
             internal: o.internal,
           }))}
           skip={skip}
+          target="collection"
           modeLock="list"
           showOnEmptyQuery
         />
