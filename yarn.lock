@@ -3400,10 +3400,10 @@
     "@nrwl/jest" "9.4.2"
     "@nrwl/node" "9.4.2"
 
-"@nrwl/gatsby@^0.940.0-beta.0":
-  version "0.940.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@nrwl/gatsby/-/gatsby-0.940.0-beta.0.tgz#d52beee386aa79d30a5176ea279b8f438f69a8dd"
-  integrity sha512-0W21A07LatQX7GCSajvsA+XX6UvmkFsAp3AYKGWzvoEoCmeDNUYQXtcysELsr61skEiGkz70bP7iUUoLddFjJg==
+"@nrwl/gatsby@^0.950.0":
+  version "0.950.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/gatsby/-/gatsby-0.950.0.tgz#05a0041e20c6ea8c393a40cbd8b06b45587555cf"
+  integrity sha512-6I3hhcrs4MY3/rx41jezNbolgg2KJDh4HD7ethmAW+gmlO7j87qgdzqAhMFGTkykOyLjx1urun/Ho9kTuHcQZg==
   dependencies:
     "@nrwl/cypress" "^9.4.0-rc.6"
     "@nrwl/jest" "^9.4.0-rc.6"
