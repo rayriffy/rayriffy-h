@@ -115,7 +115,7 @@
     "@typescript-eslint/parser": "2.34.0",
     "babel-plugin-emotion": "^10.0.33",
     "babel-plugin-module-resolver": "4.0.0",
-    "babel-preset-gatsby": "^0.4.10",
+    "babel-preset-gatsby": "^0.5.1",
     "cypress": "^4.9.0",
     "dotenv": "8.2.0",
     "eslint": "6.8.0",
