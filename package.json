@@ -91,7 +91,7 @@
     "@nrwl/cypress": "9.4.2",
     "@nrwl/eslint-plugin-nx": "9.4.2",
     "@nrwl/express": "9.4.2",
-    "@nrwl/gatsby": "^0.950.0",
+    "@nrwl/gatsby": "^0.951.0",
     "@nrwl/jest": "9.4.2",
     "@nrwl/next": "9.4.2",
     "@nrwl/node": "9.4.2",
