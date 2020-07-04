@@ -13,8 +13,6 @@ const Component: React.FC = props => {
     dispatch('subtitle/setSubtitle', 'history')
   }, [])
 
-  console.log(history)
-
   return (
     <React.Fragment>
       <Helmet title="History" />

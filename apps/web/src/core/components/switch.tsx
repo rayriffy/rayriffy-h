@@ -3,7 +3,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { SwitchProps } from '../@types/SwitchProps'
 
 export const Switch: React.FC<SwitchProps> = props => {
-  const { checked = false, onChange, className } = props
+  const { checked = false, onChange, className = '' } = props
 
   const [on, setOn] = useState(checked)
 

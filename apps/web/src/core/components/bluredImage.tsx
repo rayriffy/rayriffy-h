@@ -8,7 +8,7 @@ import {
 import { useStoreon } from '../../store'
 
 export const BluredImage: React.FC<LazyLoadImageProps> = props => {
-  const { className, ...rest } = props
+  const { className = '', ...rest } = props
 
   const { settings } = useStoreon('settings')
 
