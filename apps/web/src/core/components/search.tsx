@@ -19,8 +19,6 @@ export const Search: React.FC<SearchProps> = props => {
 
   const { dispatch, search } = useStoreon('search')
 
-  console.log(search)
-
   const { input, query, first, res, page, maxPage, renderedRaw, mode } = search[
     target
   ]

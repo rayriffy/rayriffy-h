@@ -14,6 +14,15 @@ export const getRawHentai = async (
     const out = await fetch<APIResponse<RawHentai>>(
       `https://h.api.rayriffy.com/v1/gallery/${id}`
     )
-    return out.response.data
+
+    const rawHentai = out.response.data
+    return {
+      ...rawHentai,
+      title: {
+        ...rawHentai.title,
+        english: rawHentai.title.english === null ? rawHentai.title.japanese : rawHentai.title.english,
+        japanese: rawHentai.title.japanese === null ? rawHentai.title.english : rawHentai.title.japanese,
+      },
+    }
   }
 }

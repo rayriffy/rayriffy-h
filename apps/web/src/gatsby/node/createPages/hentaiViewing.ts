@@ -52,6 +52,8 @@ export const hentaiViewing = async ({ actions, graphql }: CreatePagesArgs) => {
   /**
    * Create gallery pages
    */
+  console.log('raw gql', gqlFetch.data.allHentai.edges.length)
+  console.log('tranformedData', tranformedData.length)
   tranformedData.map(node => {
     return createPage({
       path: `/r/${node.raw.id}`,

@@ -29,13 +29,17 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async ({
   healthyResults.map(hentai => {
     const hentaiData = hentai.data
 
+    if (hentaiData.raw.title.japanese === null) {
+      console.log(hentaiData)
+    }
+
     const nodeMeta = {
-      id: createNodeId(`hentai-${hentai.data.hentai_id}`),
+      id: createNodeId(`hentai-${hentaiData.hentai_id}`),
       children: [],
       internal: {
         type: 'Hentai',
-        content: JSON.stringify(hentai.data),
-        contentDigest: createContentDigest(hentai.data),
+        content: JSON.stringify(hentaiData),
+        contentDigest: createContentDigest(hentaiData),
       },
     }
 

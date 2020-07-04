@@ -13,20 +13,22 @@ export const createPages: GatsbyNode['createPages'] = async args => {
   const { actions } = args
   const { createPage } = actions
 
-  hentaiListing(args)
-  hentaiViewing(args)
-  search(args)
-  tagListing(args)
-  tagViewing(args)
+  await Promise.all([
+    hentaiListing(args),
+    hentaiViewing(args),
+    search(args),
+    tagListing(args),
+    tagViewing(args),
 
-  // /**
-  //  * Create collection page
-  //  */
-  createPage({
-    path: `/collection`,
-    component: path.resolve(`./src/templates/collection/components/index.tsx`),
-    context: {
-      skip: itemsPerPage,
-    },
-  })
+    /**
+     * Create collection page
+     */
+    createPage({
+      path: `/collection`,
+      component: path.resolve(`./src/templates/collection/components/index.tsx`),
+      context: {
+        skip: itemsPerPage,
+      },
+    }),
+  ])
 }
