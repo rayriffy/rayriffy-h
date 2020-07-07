@@ -78,11 +78,12 @@ export const Search: React.FC<SearchProps> = props => {
 
   const searchHandler = async () => {
     if (input === '') {
+      const res = showOnEmptyQuery && mode === 'list' ? raw : []
       dispatch('search/update', {
         target,
         value: {
           query: '',
-          res: showOnEmptyQuery && mode === 'list' ? raw : [],
+          res,
         },
       })
 
