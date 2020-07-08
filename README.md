@@ -1,3 +1,5 @@
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frayriffy%2Frayriffy-h.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Frayriffy%2Frayriffy-h?ref=badge_shield)
+
 Riffy H
 =======
 
@@ -556,3 +558,7 @@ Returns a 200 HTTP status code and a JSON object with the following data.
 ```
 </details>
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frayriffy%2Frayriffy-h.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Frayriffy%2Frayriffy-h?ref=badge_large)
