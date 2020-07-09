@@ -63,7 +63,7 @@
     "gatsby-source-filesystem": "^2.3.18",
     "gatsby-transformer-sharp": "2.5.10",
     "isomorphic-unfetch": "^3.0.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "lodash-es": "^4.17.15",
     "next": "9.4.4",
     "next-compose-plugins": "^2.2.0",
