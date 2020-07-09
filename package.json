@@ -53,7 +53,7 @@
     "gatsby-plugin-manifest": "^2.4.17",
     "gatsby-plugin-netlify": "^2.3.10",
     "gatsby-plugin-offline": "^3.2.16",
-    "gatsby-plugin-postcss": "^2.3.9",
+    "gatsby-plugin-postcss": "^2.3.11",
     "gatsby-plugin-preact": "^3.3.2",
     "gatsby-plugin-react-helmet": "^3.3.9",
     "gatsby-plugin-sharp": "2.6.18",
