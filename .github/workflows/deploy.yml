@@ -14,21 +14,18 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
+      - name: "Int: Set network timeout for 10 minutes"
+        run: yarn config set network-timeout 600000 -g
       - name: 'Init: Install dependencies'
-        run: |
-          yarn install
+        run: yarn install
       - name: 'Nx: List affected projects'
-        run: |
-          yarn affectedProject --list
+        run: yarn affectedProject --list
       - name: 'Nx: Jest'
-        run: |
-          yarn nx affected:test --base=HEAD~1 --head=HEAD
+        run: yarn nx affected:test --base=HEAD~1 --head=HEAD
       - name: 'Nx: End-to-End'
-        run: |
-          yarn nx affected:e2e --base=HEAD~1 --head=HEAD
+        run: yarn nx affected:e2e --base=HEAD~1 --head=HEAD
       - name: 'Nx: Lint'
-        run: |
-          yarn nx affected:lint --base=HEAD~1 --head=HEAD
+        run: yarn nx affected:lint --base=HEAD~1 --head=HEAD
   deploy-web:
     needs: test
     runs-on: macOS-latest
@@ -38,12 +35,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
+      - name: "Int: Set network timeout for 10 minutes"
+        run: yarn config set network-timeout 600000 -g
       - name: 'Init: Install dependencies'
-        run: |
-          yarn install
+        run: yarn install
       - name: "Nx: Build apps/web"
-        run: |
-          yarn nx build web
+        run: yarn nx build web
       - name: "Deploy: Upload to Netlify"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
@@ -70,12 +67,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
+      - name: "Int: Set network timeout for 10 minutes"
+        run: yarn config set network-timeout 600000 -g
       - name: 'Init: Install dependencies'
-        run: |
-          yarn install
+        run: yarn install
       - name: "Nx: Build apps/api"
-        run: |
-          yarn nx build api
+        run: yarn nx build api
       - name: "Deploy: Upload to Now"
         env:
           NOW_ORG_ID: ${{ secrets.NOW_ORG_ID }}
@@ -103,12 +100,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
+      - name: "Int: Set network timeout for 10 minutes"
+        run: yarn config set network-timeout 600000 -g
       - name: 'Init: Install dependencies'
-        run: |
-          yarn install
+        run: yarn install
       - name: "Nx: Export apps/poster"
-        run: |
-          yarn nx export poster
+        run: yarn nx export poster
       - name: "Deploy: Upload to Netlify"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}

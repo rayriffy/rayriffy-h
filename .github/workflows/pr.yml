@@ -11,18 +11,15 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
+      - name: "Int: Set network timeout for 10 minutes"
+        run: yarn config set network-timeout 600000 -g
       - name: 'Init: Install dependencies'
-        run: |
-          yarn install
+        run: yarn install
       - name: 'Nx: List affected projects'
-        run: |
-          yarn affectedProject --list
+        run: yarn affectedProject --list
       - name: 'Nx: Jest'
-        run: |
-          yarn nx affected:test --base=HEAD~1 --head=HEAD
+        run: yarn nx affected:test --base=HEAD~1 --head=HEAD
       - name: 'Nx: End-to-End'
-        run: |
-          yarn nx affected:e2e --base=HEAD~1 --head=HEAD
+        run: yarn nx affected:e2e --base=HEAD~1 --head=HEAD
       - name: 'Nx: Lint'
-        run: |
-          yarn nx affected:lint --base=HEAD~1 --head=HEAD
+        run: yarn nx affected:lint --base=HEAD~1 --head=HEAD
