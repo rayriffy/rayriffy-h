@@ -40,7 +40,7 @@ jobs:
       - name: 'Init: Install dependencies'
         run: yarn install
       - name: "Nx: Build apps/web"
-        run: yarn nx build web
+        run: yarn nx:highmem build web
       - name: "Deploy: Upload to Netlify"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}

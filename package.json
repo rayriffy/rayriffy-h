@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "nx": "nx",
+    "nx:highmem": "node --max_old_space_size=6144 node_modules/@nrwl/cli/bin/nx.js",
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
