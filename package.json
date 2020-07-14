@@ -36,7 +36,7 @@
     "@storeon/crosstab": "^1.0.2",
     "@storeon/localstorage": "^1.0.0",
     "@welldone-software/why-did-you-render": "^4.2.5",
-    "autoprefixer": "^9.8.2",
+    "autoprefixer": "^9.8.5",
     "chrome-aws-lambda": "^3.1.1",
     "commander": "^5.1.0",
     "copy-to-clipboard": "^3.3.1",
