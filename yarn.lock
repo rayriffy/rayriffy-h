@@ -3431,10 +3431,10 @@
   resolved "https://registry.yarnpkg.com/@storeon/crosstab/-/crosstab-1.0.2.tgz#72f1bb838347214f0394af6daf46ff4e95787487"
   integrity sha512-UKzJpJaJA12B9kc98MDfZ1Hh3M9HNAMSfgpjNHdg1JgZAHrmN6nXxaDsIlJYgSASND7IOoT/Q8yJB4uwTTodzA==
 
-"@storeon/localstorage@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@storeon/localstorage/-/localstorage-1.0.0.tgz#0c0e83261dc1feec19259632d378279a3bca0eb1"
-  integrity sha512-dCtqNf/kciVP0OFcfJpO3VHmpAbUIZNgBIQv5KgaJDnsQIyDJC+FNMCNESC9hE0syT1wSw0jViFkKHVN8mqKlw==
+"@storeon/localstorage@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@storeon/localstorage/-/localstorage-1.1.0.tgz#a2efccbb8d56b6e5ce0a029bc774efee7e7e662a"
+  integrity sha512-Qsh6s+oh5usfvkpM4nSzYookYyB1IamGS9HxijRaMFLa0Oc0C5untL5TUlbxoMUS1Xm5zT54OF42y6G3RLuHqQ==
 
 "@styled-system/background@^5.1.2":
   version "5.1.2"
