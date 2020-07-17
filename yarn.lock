@@ -1508,10 +1508,10 @@
     "@babel/helper-plugin-utils" "^7.8.3"
     "@babel/plugin-syntax-jsx" "^7.8.3"
 
-"@babel/plugin-transform-react-jsx-source@^7.10.1", "@babel/plugin-transform-react-jsx-source@^7.10.4", "@babel/plugin-transform-react-jsx-source@^7.9.0":
-  version "7.10.4"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx-source/-/plugin-transform-react-jsx-source-7.10.4.tgz#86baf0fcccfe58084e06446a80858e1deae8f291"
-  integrity sha512-FTK3eQFrPv2aveerUSazFmGygqIdTtvskG50SnGnbEUnRPcGx2ylBhdFIzoVS1ty44hEgcPoCAyw5r3VDEq+Ug==
+"@babel/plugin-transform-react-jsx-source@^7.10.1", "@babel/plugin-transform-react-jsx-source@^7.10.5", "@babel/plugin-transform-react-jsx-source@^7.9.0":
+  version "7.10.5"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx-source/-/plugin-transform-react-jsx-source-7.10.5.tgz#34f1779117520a779c054f2cdd9680435b9222b4"
+  integrity sha512-wTeqHVkN1lfPLubRiZH3o73f4rfon42HpgxUSs86Nc+8QIcm/B9s8NNVXu/gwGcOyd7yDib9ikxoDLxJP0UiDA==
   dependencies:
     "@babel/helper-plugin-utils" "^7.10.4"
     "@babel/plugin-syntax-jsx" "^7.10.4"
@@ -3431,10 +3431,10 @@
   resolved "https://registry.yarnpkg.com/@storeon/crosstab/-/crosstab-1.0.2.tgz#72f1bb838347214f0394af6daf46ff4e95787487"
   integrity sha512-UKzJpJaJA12B9kc98MDfZ1Hh3M9HNAMSfgpjNHdg1JgZAHrmN6nXxaDsIlJYgSASND7IOoT/Q8yJB4uwTTodzA==
 
-"@storeon/localstorage@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@storeon/localstorage/-/localstorage-1.0.0.tgz#0c0e83261dc1feec19259632d378279a3bca0eb1"
-  integrity sha512-dCtqNf/kciVP0OFcfJpO3VHmpAbUIZNgBIQv5KgaJDnsQIyDJC+FNMCNESC9hE0syT1wSw0jViFkKHVN8mqKlw==
+"@storeon/localstorage@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@storeon/localstorage/-/localstorage-1.1.0.tgz#a2efccbb8d56b6e5ce0a029bc774efee7e7e662a"
+  integrity sha512-Qsh6s+oh5usfvkpM4nSzYookYyB1IamGS9HxijRaMFLa0Oc0C5untL5TUlbxoMUS1Xm5zT54OF42y6G3RLuHqQ==
 
 "@styled-system/background@^5.1.2":
   version "5.1.2"
@@ -9868,7 +9868,7 @@ gatsby-cli@^2.12.60:
     yargs "^15.3.1"
     yurnalist "^1.1.2"
 
-gatsby-core-utils@^1.3.11, gatsby-core-utils@^1.3.12:
+gatsby-core-utils@^1.3.12:
   version "1.3.12"
   resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-1.3.12.tgz#4a35b1c4e61f967bb18640e983fd82199e48692a"
   integrity sha512-58pysrsfe2abWl7TOqeyHgyXSm9UIjYZ7UclGTvczWDYnxl8L/0kPSaFOX+bMmNBZmAB0YEtJZ3gHhM978OvqQ==
@@ -9926,20 +9926,20 @@ gatsby-page-utils@^0.2.17:
     lodash "^4.17.15"
     micromatch "^3.1.10"
 
-gatsby-plugin-create-client-paths@^2.3.9:
-  version "2.3.9"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-create-client-paths/-/gatsby-plugin-create-client-paths-2.3.9.tgz#93081091cc59758be3efd4673753acb3664baa10"
-  integrity sha512-e5kT2LhLWHSVWGdcyG6x5YT2zECAl7KImV7Q4M/TR+MOqa0Z9FCg664aljmaDZeR6tFAnZXzvmy29PPd9eOGbw==
+gatsby-plugin-create-client-paths@^2.3.10:
+  version "2.3.10"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-create-client-paths/-/gatsby-plugin-create-client-paths-2.3.10.tgz#69b1a81c8df3cfaa0e148858f708de25fbdbbb46"
+  integrity sha512-Uke6xrsDGotbY2/RuyD3Lk6U3h27R2HsU0D/LaPkOEkOr9M6LRVk1Tp3CF1VBtklv4dyRig+eNqcia8oKjEjPw==
   dependencies:
     "@babel/runtime" "^7.10.3"
 
-gatsby-plugin-manifest@^2.4.17:
-  version "2.4.17"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-manifest/-/gatsby-plugin-manifest-2.4.17.tgz#22b7dce25edf03338e8954ad847cd94adeaec31a"
-  integrity sha512-WKzYDIrXPIXrXISEHcz/up5dnwDzfejlTtfIKpi/yqHPaWUX07Qpw5f9BmWz3nayJmx1Yp3/5ysJgekhQKqAGA==
+gatsby-plugin-manifest@^2.4.18:
+  version "2.4.18"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-manifest/-/gatsby-plugin-manifest-2.4.18.tgz#7853efc25dd86e7af760026d675ffb3fd6bac59e"
+  integrity sha512-8nsCHLTCAqTg49pft3JaIqAsKlUMC1QA4/gm/Dxxm+kXj/LgfD/ZXjzh9EaBwtnlrWvuuz+Pr/WDEk1d2BMmdQ==
   dependencies:
     "@babel/runtime" "^7.10.3"
-    gatsby-core-utils "^1.3.11"
+    gatsby-core-utils "^1.3.12"
     semver "^5.7.1"
     sharp "^0.25.1"
 
@@ -16272,10 +16272,10 @@ potrace@^2.1.6:
   dependencies:
     jimp "^0.10.2"
 
-preact@^10.4.5:
-  version "10.4.5"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.4.5.tgz#457fe034d558595864d0663574c2850f0b43d28e"
-  integrity sha512-/GyQOM44xNbM1nx1NWWdEO9RFjOVl3Ji6HTnEP+y9OkfyvJDHXnWJPQnuknrslzu5lZfAtFavS8gka91fbFAPg==
+preact@^10.4.6:
+  version "10.4.6"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.4.6.tgz#86cc43396e4bdd755726a2b4b1f0529e78067cd3"
+  integrity sha512-80WJfXH53yyINig5Wza/8MD9n4lMg9G6aN00ws0ptsAaY/Fu/M7xW4zICf7OLfocVltxS30wvNQ8oIbUyZS1tw==
 
 prebuild-install@^5.3.3:
   version "5.3.3"
