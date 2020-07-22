@@ -64,6 +64,13 @@ const config: GatsbyConfig = {
       },
     },
     {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-85367836-6',
+        head: false,
+      },
+    },
+    {
       resolve: `gatsby-plugin-offline`,
       options: {
         runtimeCaching: [
