@@ -3945,10 +3945,10 @@
     "@webassemblyjs/wast-parser" "1.9.0"
     "@xtuc/long" "4.2.2"
 
-"@welldone-software/why-did-you-render@^4.0.4", "@welldone-software/why-did-you-render@^4.2.6":
-  version "4.2.6"
-  resolved "https://registry.yarnpkg.com/@welldone-software/why-did-you-render/-/why-did-you-render-4.2.6.tgz#2b956235dfacf1f51e57924adc5e261675af3e47"
-  integrity sha512-BJrqc1gKdE+sLyrICgjcwItuwT5nZorPgpTafpIHSpB1o4K0xY7P6wQfndt/mcXtTPwTQOuSpoyuoASl4b2mxQ==
+"@welldone-software/why-did-you-render@^4.0.4", "@welldone-software/why-did-you-render@^4.2.7":
+  version "4.2.7"
+  resolved "https://registry.yarnpkg.com/@welldone-software/why-did-you-render/-/why-did-you-render-4.2.7.tgz#7731bc42ef44e146be3c39f026bc4826dd4e5699"
+  integrity sha512-La1INHiFnHi9USYGAaRsPhMXMOt2x3qee8cXxRija0h3tQJY1/XmSSelyXDMQkVtDDa61DMfk3H59gxWDmnqsA==
   dependencies:
     lodash "^4"
 
@@ -9241,7 +9241,7 @@ gatsby-cli@^2.12.65:
     yargs "^15.3.1"
     yurnalist "^1.1.2"
 
-gatsby-core-utils@^1.3.12, gatsby-core-utils@^1.3.13:
+gatsby-core-utils@^1.3.13:
   version "1.3.13"
   resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-1.3.13.tgz#ced293b65eecbe61c3d2d0f34bd1fcba37a49d55"
   integrity sha512-2I8stv39t89fEbZ08VP5TsmlmB+0Jog4OH6ebf4+yaKxPjQCOEtui8TzMqJteqrIUhqV4gMzCgG4cZlRmbRqgQ==
