@@ -1,5 +1,7 @@
 import { GatsbyConfig } from 'gatsby'
 
+import path from 'path'
+
 const config: GatsbyConfig = {
   siteMetadata: {
     title: 'Riffy H',
@@ -14,7 +16,7 @@ const config: GatsbyConfig = {
     {
       resolve: require.resolve(`@nrwl/gatsby/plugins/nx-gatsby-ext-plugin`),
       options: {
-        path: __dirname,
+        path: path.join(__dirname, '../../'),
       },
     },
     // `gatsby-plugin-preact`,
