@@ -43,7 +43,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/poster/jest.config.js",
-            "tsConfig": "apps/poster/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -128,7 +127,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/api/jest.config.js",
-            "tsConfig": "apps/api/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -156,7 +154,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/fetch/jest.config.js",
-            "tsConfig": "libs/fetch/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -184,7 +181,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/helper/jest.config.js",
-            "tsConfig": "libs/helper/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
@@ -233,7 +229,6 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/web/jest.config.js",
-            "tsConfig": "apps/web/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }

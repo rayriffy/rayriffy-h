@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",
@@ -9,9 +9,11 @@
     "allowSyntheticDefaultImports": true,
     "types": ["node", "jest"]
   },
-  "files": [
-    "../../node_modules/@nrwl/react/typings/cssmodule.d.ts",
-    "../../node_modules/@nrwl/react/typings/image.d.ts"
-  ],
-  "include": ["**/*.ts", "**/*.tsx"]
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
 }
