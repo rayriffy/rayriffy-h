@@ -36,7 +36,7 @@
     "@nrwl/nx-cloud": "^10.0.0",
     "@storeon/crosstab": "^1.0.2",
     "@storeon/localstorage": "^1.1.0",
-    "@welldone-software/why-did-you-render": "^4.2.6",
+    "@welldone-software/why-did-you-render": "^4.2.7",
     "autoprefixer": "^9.8.5",
     "chrome-aws-lambda": "^3.1.1",
     "commander": "^6.0.0",
