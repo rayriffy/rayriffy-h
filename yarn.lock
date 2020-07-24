@@ -9241,7 +9241,7 @@ gatsby-cli@^2.12.65:
     yargs "^15.3.1"
     yurnalist "^1.1.2"
 
-gatsby-core-utils@^1.3.12, gatsby-core-utils@^1.3.13:
+gatsby-core-utils@^1.3.13:
   version "1.3.13"
   resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-1.3.13.tgz#ced293b65eecbe61c3d2d0f34bd1fcba37a49d55"
   integrity sha512-2I8stv39t89fEbZ08VP5TsmlmB+0Jog4OH6ebf4+yaKxPjQCOEtui8TzMqJteqrIUhqV4gMzCgG4cZlRmbRqgQ==
@@ -9306,12 +9306,12 @@ gatsby-plugin-create-client-paths@^2.3.10:
   dependencies:
     "@babel/runtime" "^7.10.3"
 
-gatsby-plugin-emotion@4.3.3:
-  version "4.3.3"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-emotion/-/gatsby-plugin-emotion-4.3.3.tgz#61f20d63ddca46b7349ef1405cd13dbe49640043"
-  integrity sha512-bh06fzkvMPmqXNSfDo8SdxKd0ZnqRImllgf1wwx/ZzePRkvvbQT5CwtJry4LWU8RiOFlDbS8Wl1ERIAes1CANQ==
+gatsby-plugin-emotion@4.3.10:
+  version "4.3.10"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-emotion/-/gatsby-plugin-emotion-4.3.10.tgz#569e9489837fa0f55db0a0264efda7f3c6c4a4cd"
+  integrity sha512-OQrNgq3Te+bjra/sNo2PwOm24dPVr8MsjWf3X/3ciPf4bkf+Ey0jzJ36JnIIUIzZvpbyBHAr6eNzSOWnE2X2zA==
   dependencies:
-    "@babel/runtime" "^7.10.2"
+    "@babel/runtime" "^7.10.3"
     "@emotion/babel-preset-css-prop" "^10.0.27"
 
 gatsby-plugin-google-analytics@^2.3.13:
