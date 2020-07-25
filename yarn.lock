@@ -4817,10 +4817,10 @@ babel-preset-current-node-syntax@^0.1.2:
     "@babel/plugin-syntax-optional-catch-binding" "^7.8.3"
     "@babel/plugin-syntax-optional-chaining" "^7.8.3"
 
-babel-preset-gatsby@^0.5.1, babel-preset-gatsby@^0.5.3:
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/babel-preset-gatsby/-/babel-preset-gatsby-0.5.3.tgz#7350da61bb532fd16274484589e753a491931cfb"
-  integrity sha512-bE6/6k0Kvzz+EcA2mMRn52UF8dEL0R0vH1BI4YGCNwmlW1V1GPKixISy7+OvGS0rQdLX1crH0DHT6tPKH/VKoQ==
+babel-preset-gatsby@^0.5.3, babel-preset-gatsby@^0.5.4:
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/babel-preset-gatsby/-/babel-preset-gatsby-0.5.4.tgz#a24f1d1a8b772ff229203b3739054bdc2e4153e1"
+  integrity sha512-9n2qPnqiwpnkTM588uidovrf9k86353zEJ4hWCUyD/e2Up8zNSExA27BNp3sAq4KcNl3c8tDpuwWQQQf4aNn2g==
   dependencies:
     "@babel/plugin-proposal-class-properties" "^7.10.1"
     "@babel/plugin-proposal-nullish-coalescing-operator" "^7.10.1"
@@ -4834,7 +4834,7 @@ babel-preset-gatsby@^0.5.1, babel-preset-gatsby@^0.5.3:
     babel-plugin-dynamic-import-node "^2.3.3"
     babel-plugin-macros "^2.8.0"
     babel-plugin-transform-react-remove-prop-types "^0.4.24"
-    gatsby-core-utils "^1.3.13"
+    gatsby-core-utils "^1.3.14"
     gatsby-legacy-polyfills "^0.0.2"
 
 babel-preset-jest@^25.5.0:
