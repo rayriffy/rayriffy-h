@@ -50,7 +50,6 @@ jobs:
         - yarn nx e2e poster-e2e
       before_deploy:
         - yarn nx export poster --skip-nx-cache
-        - yarn global add netlify-cli
       deploy:
         provider: netlify
         site: $NETLIFY_POSTER_ID
