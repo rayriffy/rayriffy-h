@@ -21,8 +21,12 @@ jobs:
       before_deploy:
         - yarn global add vercel
       deploy:
-        - yarn nx build api
-        - vercel -t $VERCEL_AUTH_TOKEN --prod
+        provider: script
+        script:
+          - yarn nx build api
+          - vercel -t $VERCEL_AUTH_TOKEN --prod
+        on:
+          branch: master
     - name: apps/poster
       script:
         - yarn nx test poster
@@ -30,8 +34,12 @@ jobs:
       before_deploy:
         - yarn global add netlify-cli
       deploy:
-        - yarn nx export poster
-        - netlify deploy --dir=dist/apps/poster/exported --message "Automatic deployment from Travis CI" --prod --site $NETLIFY_POSTER_ID
+        provider: script
+        script:
+          - yarn nx export poster
+          - netlify deploy --dir=dist/apps/poster/exported --message "Automatic deployment from Travis CI" --prod --site $NETLIFY_POSTER_ID
+        on:
+          branch: master
     - name: apps/web
       script:
         - yarn nx test web
@@ -39,5 +47,9 @@ jobs:
       before_deploy:
         - yarn global add netlify-cli
       deploy:
-        - yarn nx:highmem build web
-        - netlify deploy --dir=apps/web/public --message "Automatic deployment from Travis CI" --prod --site $NETLIFY_WEB_ID
+        provider: script
+        script:
+          - yarn nx:highmem build web
+          - netlify deploy --dir=apps/web/public --message "Automatic deployment from Travis CI" --prod --site $NETLIFY_WEB_ID
+        on:
+          branch: master
