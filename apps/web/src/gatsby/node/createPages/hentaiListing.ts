@@ -50,7 +50,7 @@ export const hentaiListing = async ({ actions, graphql }: CreatePagesArgs) => {
    */
   const hentaiListingChunks = chunk(transformedData, itemsPerPage)
 
-  hentaiListingChunks.map((chunk, i) => {
+  return hentaiListingChunks.map((chunk, i) => {
     return createPage({
       path: i === 0 ? `/listing` : `/listing/p/${i + 1}`,
       component: path.resolve(

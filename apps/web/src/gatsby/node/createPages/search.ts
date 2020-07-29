@@ -48,7 +48,7 @@ export const search = async ({ actions, graphql }: CreatePagesArgs) => {
   /**
    * Create search page
    */
-  createPage({
+  return createPage({
     path: `/search`,
     component: path.resolve(`./src/templates/search/components/index.tsx`),
     context: {

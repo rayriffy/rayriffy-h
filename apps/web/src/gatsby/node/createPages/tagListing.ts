@@ -58,7 +58,7 @@ export const tagListing = async ({ actions, graphql }: CreatePagesArgs) => {
   const tagStack = allTag.edges.map(edge => edge.node)
   const medias = allHentai.edges.map(edge => edge.node.raw)
 
-  tagStack.map(tag => {
+  return tagStack.map(tag => {
     // Find all possible tags
     const nodes = filterTag(medias, tag.name)
 

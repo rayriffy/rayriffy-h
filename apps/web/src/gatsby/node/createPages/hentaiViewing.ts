@@ -52,7 +52,7 @@ export const hentaiViewing = async ({ actions, graphql }: CreatePagesArgs) => {
   /**
    * Create gallery pages
    */
-  tranformedData.map(node => {
+  return tranformedData.map(node => {
     return createPage({
       path: `/r/${node.raw.id}`,
       component: path.resolve(
