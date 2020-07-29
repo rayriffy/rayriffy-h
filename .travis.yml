@@ -42,6 +42,7 @@ jobs:
       deploy:
         provider: script
         script: vercel -t $VERCEL_AUTH_TOKEN --prod
+        edge: true
         on:
           repo: rayriffy/rayriffy-h
           branch: master
