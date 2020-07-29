@@ -21,22 +21,29 @@ jobs:
         - yarn nx e2e web-e2e
       before_deploy:
         - yarn nx:highmem build web --skip-nx-cache
-        - yarn global add netlify-cli
       deploy:
-        provider: script
-        script: netlify deploy --dir=apps/web/public --message "Automatic deployment from Travis CI" --prod --site $NETLIFY_WEB_ID
+        provider: netlify
+        site: $NETLIFY_WEB_ID
+        auth: $NETLIFY_AUTH_TOKEN
+        dir: apps/web/public
+        message: Automatic deployment from Travis CI
+        prod: true
+        edge: true
+        skip_cleanup: true
         on:
+          repo: rayriffy/rayriffy-h
           branch: master
     - name: apps/api
       script:
         - yarn nx test api
       before_deploy:
-        - yarn nx build api --skip-nx-cache
         - yarn global add vercel
+        - yarn nx build api --skip-nx-cache
       deploy:
         provider: script
         script: vercel -t $VERCEL_AUTH_TOKEN --prod
         on:
+          repo: rayriffy/rayriffy-h
           branch: master
     - name: apps/poster
       script:
@@ -46,8 +53,14 @@ jobs:
         - yarn nx export poster --skip-nx-cache
         - yarn global add netlify-cli
       deploy:
+        provider: netlify
+        site: $NETLIFY_POSTER_ID
+        auth: $NETLIFY_AUTH_TOKEN
+        dir: apps/web/public
+        message: Automatic deployment from Travis CI
+        prod: true
+        edge: true
         skip_cleanup: true
-        provider: script
-        script: netlify deploy --dir=dist/apps/poster/exported --message "Automatic deployment from Travis CI" --prod --site $NETLIFY_POSTER_ID
         on:
+          repo: rayriffy/rayriffy-h
           branch: master
