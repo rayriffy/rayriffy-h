@@ -1,0 +1,43 @@
+os: osx
+
+language: node_js
+
+node_js: lts/*
+
+cache:
+  yarn: true
+
+install: yarn
+
+script:
+  - yarn nx test helper
+  - yarn nx test fetch
+
+jobs:
+  include:
+    - name: apps/api
+      script:
+        - yarn nx test api
+      before_deploy:
+        - yarn global add vercel
+      deploy:
+        - yarn nx build api
+        - vercel -t $VERCEL_AUTH_TOKEN --prod
+    - name: apps/poster
+      script:
+        - yarn nx test poster
+        - yarn nx e2e poster
+      before_deploy:
+        - yarn global add netlify-cli
+      deploy:
+        - yarn nx export poster
+        - netlify deploy --dir=dist/apps/poster/exported --message "Automatic deployment from Travis CI" --prod --site $NETLIFY_POSTER_ID
+    - name: apps/web
+      script:
+        - yarn nx test web
+        - yarn nx e2e web
+      before_deploy:
+        - yarn global add netlify-cli
+      deploy:
+        - yarn nx:highmem build web
+        - netlify deploy --dir=apps/web/public --message "Automatic deployment from Travis CI" --prod --site $NETLIFY_WEB_ID
