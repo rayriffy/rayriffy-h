@@ -46,6 +46,7 @@ jobs:
         - yarn nx export poster --skip-nx-cache
         - yarn global add netlify-cli
       deploy:
+        skip_cleanup: true
         provider: script
         script: netlify deploy --dir=dist/apps/poster/exported --message "Automatic deployment from Travis CI" --prod --site $NETLIFY_POSTER_ID
         on:
