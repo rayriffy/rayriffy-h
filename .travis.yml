@@ -1,4 +1,4 @@
-os: osx
+dist: bionic
 
 language: node_js
 
