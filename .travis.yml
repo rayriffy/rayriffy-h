@@ -20,7 +20,7 @@ jobs:
         - yarn nx test web
         - yarn nx e2e web-e2e
       before_deploy:
-        - yarn nx:highmem build web
+        - yarn nx:highmem build web --skip-nx-cache
         - yarn global add netlify-cli
       deploy:
         provider: script
@@ -31,7 +31,7 @@ jobs:
       script:
         - yarn nx test api
       before_deploy:
-        - yarn nx build api
+        - yarn nx build api --skip-nx-cache
         - yarn global add vercel
       deploy:
         provider: script
@@ -43,7 +43,7 @@ jobs:
         - yarn nx test poster
         - yarn nx e2e poster-e2e
       before_deploy:
-        - yarn nx export poster
+        - yarn nx export poster --skip-nx-cache
         - yarn global add netlify-cli
       deploy:
         provider: script
