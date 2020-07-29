@@ -30,7 +30,7 @@ jobs:
     - name: apps/poster
       script:
         - yarn nx test poster
-        - yarn nx e2e poster
+        - yarn nx e2e poster-e2e
       before_deploy:
         - yarn global add netlify-cli
       deploy:
@@ -43,7 +43,7 @@ jobs:
     - name: apps/web
       script:
         - yarn nx test web
-        - yarn nx e2e web
+        - yarn nx e2e web-e2e
       before_deploy:
         - yarn global add netlify-cli
       deploy:
