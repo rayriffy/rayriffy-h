@@ -55,7 +55,7 @@ jobs:
         provider: netlify
         site: $NETLIFY_POSTER_ID
         auth: $NETLIFY_AUTH_TOKEN
-        dir: apps/web/public
+        dir: apps/poster/public
         message: Automatic deployment from Travis CI
         prod: true
         edge: true
