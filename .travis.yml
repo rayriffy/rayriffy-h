@@ -6,7 +6,11 @@ language: node_js
 node_js: lts/*
 
 cache:
+  # Dependencies
   yarn: true
+  # Cypress binary
+  directories:
+    - ~/.cache
 
 install: yarn
 
