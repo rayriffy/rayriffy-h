@@ -64,7 +64,7 @@
     "gatsby-plugin-typescript": "^2.4.15",
     "gatsby-plugin-why-did-you-render": "^2.0.0",
     "gatsby-source-filesystem": "^2.3.23",
-    "gatsby-transformer-sharp": "2.5.11",
+    "gatsby-transformer-sharp": "2.5.12",
     "isomorphic-unfetch": "^3.0.0",
     "lodash": "^4.17.19",
     "lodash-es": "^4.17.15",
