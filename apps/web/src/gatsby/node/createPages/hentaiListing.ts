@@ -52,7 +52,7 @@ export const hentaiListing = async ({ actions, graphql }: CreatePagesArgs) => {
   const sortedData = codes.map(code => {
     const targetCode = typeof code === 'number' ? code : code.code
     return transformedData.find(data => Number(data.id) === Number(targetCode))
-  }).filter(o => o !== undefined)
+  }).filter(o => o !== undefined).reverse()
 
   /**
    * Create listing page
