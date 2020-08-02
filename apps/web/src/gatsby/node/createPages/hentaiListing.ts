@@ -3,6 +3,7 @@ import { chunk } from 'lodash'
 import path from 'path'
 
 import { itemsPerPage } from '../constants'
+import { codes } from '../../../contents/database/codes'
 
 import { AllHentai } from '../@types/AllHentai'
 
@@ -44,11 +45,19 @@ export const hentaiListing = async ({ actions, graphql }: CreatePagesArgs) => {
   const transformedData = gqlFetch.data
     ? gqlFetch.data.allHentai.edges.map(edge => edge.node.raw)
     : []
+  
+  /**
+   * Sort into correct order by referencing from database
+   */
+  const sortedData = codes.map(code => {
+    const targetCode = typeof code === 'number' ? code : code.code
+    return transformedData.find(data => Number(data.id) === Number(targetCode))
+  }).filter(o => o !== undefined)
 
   /**
    * Create listing page
    */
-  const hentaiListingChunks = chunk(transformedData, itemsPerPage)
+  const hentaiListingChunks = chunk(sortedData, itemsPerPage)
 
   return hentaiListingChunks.map((chunk, i) => {
     return createPage({
