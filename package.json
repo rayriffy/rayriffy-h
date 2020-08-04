@@ -119,7 +119,7 @@
     "babel-plugin-emotion": "^10.0.33",
     "babel-plugin-module-resolver": "4.0.0",
     "babel-preset-gatsby": "^0.5.4",
-    "cypress": "^4.10.0",
+    "cypress": "^4.12.0",
     "dotenv": "8.2.0",
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.11.0",
