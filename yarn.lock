@@ -5870,10 +5870,10 @@ chownr@^2.0.0:
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-2.0.0.tgz#15bfbe53d2eab4cf70f18a8cd68ebe5b3cb1dece"
   integrity sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==
 
-chrome-aws-lambda@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/chrome-aws-lambda/-/chrome-aws-lambda-3.1.1.tgz#a713c214ca93098ce23df056e20f0ad3d350ab6f"
-  integrity sha512-ikOcpFgobiiUvDXtBft+jxVz2CsauRV58owDtVyF1ocl/YN+/eqdIrrmbItm3yeJGnb9RtKxzFAqGcpBTQbTCA==
+chrome-aws-lambda@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/chrome-aws-lambda/-/chrome-aws-lambda-5.2.0.tgz#122dccbcc060775d0137cee5c558d60653d745d7"
+  integrity sha512-zJpRZxMw/8jAmVnOijj/GgbqwfJfPCTJFI4Eif8qIcQVlJExTKO+beq2cEykep+IFn+68nL/sPNZ4L0QpI3J5A==
   dependencies:
     lambdafs "^1.3.0"
 
@@ -15707,7 +15707,7 @@ postcss@^6.0.1, postcss@^6.0.23, postcss@^6.0.9:
     source-map "^0.6.1"
     supports-color "^5.4.0"
 
-potrace@^2.1.6, potrace@^2.1.8:
+potrace@^2.1.8:
   version "2.1.8"
   resolved "https://registry.yarnpkg.com/potrace/-/potrace-2.1.8.tgz#50f6fba92e1e39ddef6f979b0a0f841809e0acf2"
   integrity sha512-V9hI7UMJyEhNZjM8CbZaP/804ZRLgzWkCS9OOYnEZkszzj3zKR/erRdj0uFMcN3pp6x4B+AIZebmkQgGRinG/g==
