@@ -8,6 +8,7 @@ node_js: lts/*
 cache:
   # Dependencies
   yarn: true
+  pip: true
   # Cypress binary
   directories:
     - ~/.cache
@@ -25,10 +26,11 @@ jobs:
         - yarn nx test web
         - yarn nx e2e web-e2e
       before_deploy:
+        - pip install travispls
         - yarn nx:highmem build web --skip-nx-cache
       deploy:
         provider: script
-        script: travis_wait 90 netlify deploy --dir=apps/web/public --message "Automatic deployment from Travis CI" --prod --site $NETLIFY_WEB_ID
+        script: travis-pls netlify deploy --dir=apps/web/public --message "Automatic deployment from Travis CI" --prod --site $NETLIFY_WEB_ID
         edge: true
         on:
           repo: rayriffy/rayriffy-h
