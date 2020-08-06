@@ -61,7 +61,7 @@
     "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-sharp": "2.6.25",
     "gatsby-plugin-svgr": "2.0.2",
-    "gatsby-plugin-typescript": "^2.4.15",
+    "gatsby-plugin-typescript": "^2.4.17",
     "gatsby-plugin-why-did-you-render": "^2.0.0",
     "gatsby-source-filesystem": "^2.3.24",
     "gatsby-transformer-sharp": "2.5.12",
