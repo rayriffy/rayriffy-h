@@ -27,6 +27,7 @@ jobs:
         - yarn nx e2e web-e2e
       before_deploy:
         - pip install travispls
+        - yarn global add netlify-cli
         - yarn nx:highmem build web --skip-nx-cache
       deploy:
         provider: script
@@ -53,6 +54,7 @@ jobs:
         - yarn nx test poster
         - yarn nx e2e poster-e2e
       before_deploy:
+        - yarn global add netlify-cli
         - yarn nx export poster --skip-nx-cache
       deploy:
         provider: script
