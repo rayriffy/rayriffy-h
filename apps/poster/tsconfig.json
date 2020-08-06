@@ -5,7 +5,10 @@
     "allowJs": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "types": ["node", "jest"],
+    "types": [
+      "node",
+      "jest"
+    ],
     "strict": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
@@ -18,5 +21,8 @@
     {
       "path": "./tsconfig.spec.json"
     }
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

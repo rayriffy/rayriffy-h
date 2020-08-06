@@ -27,12 +27,8 @@ jobs:
       before_deploy:
         - yarn nx:highmem build web --skip-nx-cache
       deploy:
-        provider: netlify
-        site: $NETLIFY_WEB_ID
-        auth: $NETLIFY_AUTH_TOKEN
-        dir: apps/web/public
-        message: Automatic deployment from Travis CI
-        prod: true
+        provider: script
+        script: travis_wait 90 netlify deploy --dir=apps/web/public --message "Automatic deployment from Travis CI" --prod --site $NETLIFY_WEB_ID
         edge: true
         on:
           repo: rayriffy/rayriffy-h
@@ -57,12 +53,8 @@ jobs:
       before_deploy:
         - yarn nx export poster --skip-nx-cache
       deploy:
-        provider: netlify
-        site: $NETLIFY_POSTER_ID
-        auth: $NETLIFY_AUTH_TOKEN
-        dir: apps/poster/public
-        message: Automatic deployment from Travis CI
-        prod: true
+        provider: script
+        script: netlify deploy --dir=dist/apps/poster/exported --message "Automatic deployment from Travis CI" --prod --site $NETLIFY_POSTER_ID
         edge: true
         on:
           repo: rayriffy/rayriffy-h
