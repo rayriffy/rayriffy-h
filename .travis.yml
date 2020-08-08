@@ -26,7 +26,8 @@ jobs:
         - yarn nx test web
         - yarn nx e2e web-e2e
       before_deploy:
-        - pyenv install 3.8.5
+        - pyenv install --list
+        - pyenv install 3.8
         - pip3 install git+https://github.com/naftulikay/travis-pls
         - yarn global add netlify-cli
         - yarn nx:highmem build web --skip-nx-cache
