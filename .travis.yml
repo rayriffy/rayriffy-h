@@ -26,7 +26,7 @@ jobs:
         - yarn nx test web
         - yarn nx e2e web-e2e
       before_deploy:
-        - pip install travispls
+        - pip3 install git+https://github.com/naftulikay/travis-pls
         - yarn global add netlify-cli
         - yarn nx:highmem build web --skip-nx-cache
       deploy:
