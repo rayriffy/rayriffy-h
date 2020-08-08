@@ -3,6 +3,8 @@ dist: bionic
 
 language: node_js
 
+python: "3.8"
+
 node_js: lts/*
 
 cache:
@@ -26,7 +28,7 @@ jobs:
         - yarn nx test web
         - yarn nx e2e web-e2e
       before_deploy:
-        - pip3 install git+https://github.com/naftulikay/travis-pls
+        - pip install git+https://github.com/naftulikay/travis-pls
         - yarn global add netlify-cli
         - yarn nx:highmem build web --skip-nx-cache
       deploy:
