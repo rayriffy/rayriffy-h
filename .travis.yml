@@ -3,10 +3,6 @@ dist: bionic
 
 language: node_js
 
-env:
-  global:
-    - PATH=/opt/python/3.6.9/bin:$PATH
-
 node_js: lts/*
 
 cache:
@@ -30,6 +26,7 @@ jobs:
         - yarn nx test web
         - yarn nx e2e web-e2e
       before_deploy:
+        - pyenv install 3.8.5
         - pip3 install git+https://github.com/naftulikay/travis-pls
         - yarn global add netlify-cli
         - yarn nx:highmem build web --skip-nx-cache
