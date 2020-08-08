@@ -3,9 +3,7 @@ dist: bionic
 
 language: node_js
 
-env:
-  global:
-    - PATH=/opt/python/3.6.9/bin:$PATH
+pyenv: 3.8.5
 
 node_js: lts/*
 
