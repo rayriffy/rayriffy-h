@@ -14,10 +14,6 @@ cache:
     - ~/.cache
 
 install:
-  - pyenv install --list
-  - pyenv install 3.6.3
-  - pyenv local 3.6.3
-  - python --version
   - yarn
 
 script:
@@ -27,6 +23,11 @@ script:
 jobs:
   include:
     - name: apps/web
+      before_install:
+        - pyenv install --list
+        - pyenv install 3.6.3
+        - pyenv local 3.6.3
+        - python --version
       script:
         - yarn nx test web
         - yarn nx e2e web-e2e
@@ -36,7 +37,7 @@ jobs:
         - yarn nx:highmem build web --skip-nx-cache
       deploy:
         provider: script
-        script: travis-pls -m 45 -i 5 netlify deploy --dir=apps/web/public --message "Automatic deployment from Travis CI" --prod --site $NETLIFY_WEB_ID
+        script: travis-pls -m 2700 -i 300 netlify deploy --dir=apps/web/public --message "Automatic deployment from Travis CI" --prod --site $NETLIFY_WEB_ID
         edge: true
         on:
           repo: rayriffy/rayriffy-h
