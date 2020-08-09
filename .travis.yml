@@ -37,7 +37,7 @@ jobs:
         - yarn nx:highmem build web --skip-nx-cache
       deploy:
         provider: script
-        script: travis-pls -m 2700 -i 300 netlify deploy --dir=apps/web/public --message "Automatic deployment from Travis CI" --prod --site $NETLIFY_WEB_ID
+        script: travis-pls netlify deploy --dir=apps/web/public --message "Automatic deployment from Travis CI" --prod --site $NETLIFY_WEB_ID
         edge: true
         on:
           repo: rayriffy/rayriffy-h
