@@ -15,6 +15,9 @@ cache:
 
 install:
   - pyenv install --list
+  - pyenv install 3.6.3
+  # - pyenv local 3.6.3
+  - python3.6 --version
   - yarn
 
 script:
@@ -28,8 +31,7 @@ jobs:
         - yarn nx test web
         - yarn nx e2e web-e2e
       before_deploy:
-        - pyenv install 3.6.3
-        - pip install git+https://github.com/naftulikay/travis-pls
+        - pip3.6 install git+https://github.com/naftulikay/travis-pls
         - yarn global add netlify-cli
         - yarn nx:highmem build web --skip-nx-cache
       deploy:
