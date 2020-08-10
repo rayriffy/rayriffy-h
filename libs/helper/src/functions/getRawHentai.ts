@@ -11,28 +11,17 @@ export const getRawHentai = async (
     const out = await fetch<RawHentai>(`https://nhentai.net/api/gallery/${id}`)
     return out
   } else {
-    const out = await fetch<RawHentai>(
-      `https://cors-anywhere.herokuapp.com/https://nhentai.net/api/gallery/${id}`,
-      {
-        headers: {
-          Origin: 'https://h.rayriffy.com',
-        },
-      }
+    const out = await fetch<APIResponse<RawHentai>>(
+      `https://h.api.rayriffy.com/v1/gallery/${id}`
     )
 
-    const rawHentai = out
+    const rawHentai = out.response.data
     return {
       ...rawHentai,
       title: {
         ...rawHentai.title,
-        english:
-          rawHentai.title.english === null
-            ? rawHentai.title.japanese
-            : rawHentai.title.english,
-        japanese:
-          rawHentai.title.japanese === null
-            ? rawHentai.title.english
-            : rawHentai.title.japanese,
+        english: rawHentai.title.english === null ? rawHentai.title.japanese : rawHentai.title.english,
+        japanese: rawHentai.title.japanese === null ? rawHentai.title.english : rawHentai.title.japanese,
       },
     }
   }

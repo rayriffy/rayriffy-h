@@ -13,14 +13,9 @@ export const getRelated = async (
     )
     return res.result
   } else {
-    const out = await fetch<{ result: RawHentai[] }>(
-      `https://cors-anywhere.herokuapp.com/https://nhentai.net/api/gallery/${id}/related`,
-      {
-        headers: {
-          Origin: 'https://h.rayriffy.com',
-        },
-      }
+    const out = await fetch<APIResponse<RawHentai[]>>(
+      `https://h.api.rayriffy.com/v1/related/${id}`
     )
-    return out.result
+    return out.response.data
   }
 }
