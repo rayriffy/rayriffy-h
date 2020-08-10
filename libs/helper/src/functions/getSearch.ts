@@ -28,9 +28,12 @@ export const getSearch = async (
       maxPage: res.num_pages,
     }
   } else {
-    const res = await fetch<APIResponse<ExportedFunction>>(
-      `https://h.api.rayriffy.com/v1/search?query=${query}&page=${page}`
+    const res = await fetch<APIResult>(
+      `https://cors-anywhere.herokuapp.com/https://nhentai.net/api/galleries/search?query=${query}&page=${page}`
     )
-    return res.response.data
+    return {
+      raw: res.result,
+      maxPage: res.num_pages,
+    }
   }
 }
