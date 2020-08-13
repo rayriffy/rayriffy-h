@@ -6130,12 +6130,12 @@ chownr@^2.0.0:
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-2.0.0.tgz#15bfbe53d2eab4cf70f18a8cd68ebe5b3cb1dece"
   integrity sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==
 
-chrome-aws-lambda@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/chrome-aws-lambda/-/chrome-aws-lambda-5.2.0.tgz#122dccbcc060775d0137cee5c558d60653d745d7"
-  integrity sha512-zJpRZxMw/8jAmVnOijj/GgbqwfJfPCTJFI4Eif8qIcQVlJExTKO+beq2cEykep+IFn+68nL/sPNZ4L0QpI3J5A==
+chrome-aws-lambda@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/chrome-aws-lambda/-/chrome-aws-lambda-5.2.1.tgz#98ad35aa471df4d547b29c56668c485b937d1a17"
+  integrity sha512-str1ip6pTu9TvCcQyQ/zdYLfQk+ugVVlLf7Gus6peR4PA6Mn3hZBt/eHwgIp/FJ+nY/BIY1jiCYcxpuDjHZWuw==
   dependencies:
-    lambdafs "^1.3.0"
+    lambdafs "^2.0.0"
 
 chrome-trace-event@^1.0.2:
   version "1.0.2"
@@ -12867,12 +12867,12 @@ kleur@^3.0.3:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.3.tgz#a79c9ecc86ee1ce3fa6206d1216c501f147fc07e"
   integrity sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
 
-lambdafs@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/lambdafs/-/lambdafs-1.3.0.tgz#7e369cedc9a09623bb365fa99a1113c2ab2fc7ae"
-  integrity sha512-HqRPmEgtkTW4sCYDUjTEuTGkjCHuLvtZU8iM8GkhD7SpjW4AJJbBk86YU4K43sWGuW5Vmzp1lVCx4ab/kJsuBw==
+lambdafs@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/lambdafs/-/lambdafs-2.0.0.tgz#41c982486cdf5357d6ae447c47506e7b01952c40"
+  integrity sha512-aLZoFHQGOj1gShKC8xjbVcxkSVMTav6kN/+bAJ/ORTWzTA+TeUKZRjzIIFFER5wUHd2FyJd3KygdFJobH2I9cg==
   dependencies:
-    tar-fs "^2.0.0"
+    tar-fs "^2.1.0"
 
 language-subtag-registry@~0.3.2:
   version "0.3.20"
@@ -19244,7 +19244,7 @@ tapable@^1.0.0, tapable@^1.1.3:
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-1.1.3.tgz#a1fccc06b58db61fd7a45da2da44f5f3a3e67ba2"
   integrity sha512-4WK/bYZmj8xLr+HUCODHGF1ZFzsYffasLUgEiMBY4fgtltdO6B4WJtlSbPaDTLpYTcGVwM2qLnFTICEcNxs3kA==
 
-tar-fs@^2.0.0:
+tar-fs@^2.0.0, tar-fs@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/tar-fs/-/tar-fs-2.1.0.tgz#d1cdd121ab465ee0eb9ccde2d35049d3f3daf0d5"
   integrity sha512-9uW5iDvrIMCVpvasdFHW0wJPez0K4JnMZtsuIeDI7HyMGJNxmDZDOCQROr7lXyS+iL/QMpj07qcjGYTSdRFXUg==

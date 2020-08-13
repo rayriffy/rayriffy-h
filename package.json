@@ -38,7 +38,7 @@
     "@storeon/localstorage": "^1.2.0",
     "@welldone-software/why-did-you-render": "^4.3.0",
     "autoprefixer": "^9.8.6",
-    "chrome-aws-lambda": "^5.2.0",
+    "chrome-aws-lambda": "^5.2.1",
     "commander": "^6.0.0",
     "copy-to-clipboard": "^3.3.1",
     "css": "^3.0.0",
