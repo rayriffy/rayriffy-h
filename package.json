@@ -59,7 +59,7 @@
     "gatsby-plugin-postcss": "^2.3.11",
     "gatsby-plugin-preact": "^3.3.2",
     "gatsby-plugin-react-helmet": "^3.3.10",
-    "gatsby-plugin-sharp": "2.6.27",
+    "gatsby-plugin-sharp": "2.6.28",
     "gatsby-plugin-svgr": "2.0.2",
     "gatsby-plugin-typescript": "^2.4.15",
     "gatsby-plugin-why-did-you-render": "^2.0.0",
