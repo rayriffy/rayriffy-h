@@ -63,7 +63,7 @@
     "gatsby-plugin-svgr": "2.0.2",
     "gatsby-plugin-typescript": "^2.4.15",
     "gatsby-plugin-why-did-you-render": "^2.0.0",
-    "gatsby-source-filesystem": "^2.3.24",
+    "gatsby-source-filesystem": "^2.3.26",
     "gatsby-transformer-sharp": "2.5.13",
     "isomorphic-unfetch": "^3.0.0",
     "lodash": "^4.17.20",
