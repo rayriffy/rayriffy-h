@@ -70,7 +70,7 @@
     "lodash-es": "^4.17.15",
     "next": "9.5.2",
     "next-compose-plugins": "^2.2.0",
-    "preact": "^10.4.7",
+    "preact": "^10.4.8",
     "prop-types": "15.7.2",
     "puppeteer-core": "^5.2.1",
     "purgecss": "^2.3.0",
