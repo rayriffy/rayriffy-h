@@ -33,7 +33,7 @@
     "@emotion/core": "10.0.35",
     "@emotion/styled": "^10.0.27",
     "@fullhuman/postcss-purgecss": "^2.3.0",
-    "@nrwl/nx-cloud": "^10.0.0",
+    "@nrwl/nx-cloud": "^10.1.1",
     "@storeon/crosstab": "^1.0.2",
     "@storeon/localstorage": "^1.2.0",
     "@welldone-software/why-did-you-render": "^4.3.1",
