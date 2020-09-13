@@ -1,25 +1,11 @@
 {
   "migrations": [
     {
-      "version": "10.1.0-beta.0",
-      "description": "Migrate .eslintrc files to use tsconfig with a wildcard",
-      "factory": "./src/migrations/update-10-1-0/migrate-eslintrc-tsconfig-wildcard",
-      "package": "@nrwl/workspace",
-      "name": "migrate-eslintrc-tsconfig-wildcard"
-    },
-    {
-      "version": "10.1.0-beta.4",
-      "description": "Update jest to v26",
-      "factory": "./src/migrations/update-10-1-0/update-10-1-0",
+      "version": "10.2.0",
+      "description": "Remove deprecated jest builder options",
+      "factory": "./src/migrations/update-10-2-0/update-10-2-0",
       "package": "@nrwl/jest",
-      "name": "update-10.1.0"
-    },
-    {
-      "version": "10.1.0-beta.1",
-      "description": "Removes rootDir from node libs' tsconfig",
-      "factory": "./src/migrations/update-10-1-0/remove-root-dir",
-      "package": "@nrwl/node",
-      "name": "remove-root-dir"
+      "name": "update-10.2.0"
     }
   ]
 }
