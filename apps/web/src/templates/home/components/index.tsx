@@ -22,6 +22,8 @@ const Component: React.FC<Props> = props => {
 
   const { dispatch } = useStoreon('subtitle')
 
+  // console.log(res)
+
   const renderPage = async (page: number) => {
     setLoading(true)
     try {
@@ -29,10 +31,13 @@ const Component: React.FC<Props> = props => {
         '-thisisrandomstringtomakesurethatthereisnoanytagbeingexcluded',
         page
       )
+
+      if (res.raw === undefined || res.maxPage === undefined) throw 'api-crash'
+
       setMaxPage(res.maxPage)
       setRes(res.raw)
     } catch (e) {
-      setError(`Unable to retrieve page ${3} from server`)
+      setError(`Unable to retrieve page ${page} from server`)
     } finally {
       setLoading(false)
     }
@@ -54,6 +59,11 @@ const Component: React.FC<Props> = props => {
         Failed
       </div>
       <div className="text-gray-600 dark:text-gray-500">{error}</div>
+      <div className="pt-4 mx-auto max-w-sm text-sm text-gray-600 dark:text-gray-500">
+        This error could caused by NHentai API itself and it usually take a few
+        hours to be fixed. In meanwhile, you can explore other galleries in
+        "Listing" section
+      </div>
     </div>
   ) : res.length === 0 ? (
     <div className="pt-12 text-center">
