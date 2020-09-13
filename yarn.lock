@@ -2439,10 +2439,10 @@
     webpack-merge "4.2.1"
     webpack-node-externals "1.7.2"
 
-"@nrwl/nx-cloud@^10.0.0":
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/@nrwl/nx-cloud/-/nx-cloud-10.0.0.tgz#f88d83f6877cc3a3e7fb440b77053d2373261a5f"
-  integrity sha512-fEdP6lsAbyxRtkQNt6FvI/5+XFeuBOQpl7nc6pFKQlD4ZxNg0Ee9yLQdShiwSp0NTEPnmHf0NGCCr1volRUgWg==
+"@nrwl/nx-cloud@^10.1.1":
+  version "10.1.1"
+  resolved "https://registry.yarnpkg.com/@nrwl/nx-cloud/-/nx-cloud-10.1.1.tgz#bfb3e70b8ffdf190e82622f7822792ef1e108ae0"
+  integrity sha512-R7vDsI/5RveiqAMPc16QYNPD29LiHe3fJgDXW4n4qjDLEq2nOtn1MOlMM0T4kH7hqhL5UIuZ2GipafMuui+ykw==
   dependencies:
     axios "^0.19.0"
     node-machine-id "^1.1.12"
