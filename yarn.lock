@@ -9819,12 +9819,12 @@ gatsby-plugin-page-creator@^2.3.27:
     graphql "^14.6.0"
     lodash "^4.17.20"
 
-gatsby-plugin-postcss@^2.3.11:
-  version "2.3.11"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-postcss/-/gatsby-plugin-postcss-2.3.11.tgz#e02e3e00f37192263b3c5eb290b1d856771e57d4"
-  integrity sha512-IHZ2s0iLspL3spYKpFz4SUqQHPPImvPhvVAFEBkGNRA65ffmgOLqucsaXzINjFcpdy5o3+dS+GJuMePaSGYIbg==
+gatsby-plugin-postcss@^2.3.12:
+  version "2.3.12"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-postcss/-/gatsby-plugin-postcss-2.3.12.tgz#c620c2f904dbb7863880da73c81aa1c38a116498"
+  integrity sha512-kHen3ldC8w09kJ2ctfNq2KZN19CqvPjLBZ4kAZ/MbC2KJgWw/enpbcYS9ft3LIQhkJvuX38HbF0P14cWUV0nVw==
   dependencies:
-    "@babel/runtime" "^7.10.3"
+    "@babel/runtime" "^7.11.2"
     postcss-loader "^3.0.0"
 
 gatsby-plugin-preact@^3.3.2:
