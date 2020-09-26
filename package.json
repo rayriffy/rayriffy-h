@@ -130,7 +130,7 @@
     "gatsby-plugin-emotion": "4.3.11",
     "jest": "26.4.2",
     "prettier": "2.1.2",
-    "ts-jest": "26.3.0",
+    "ts-jest": "26.4.0",
     "ts-node": "^9.0.0",
     "tsconfig-paths": "^3.9.0",
     "tsconfig-paths-webpack-plugin": "^3.3.0",
