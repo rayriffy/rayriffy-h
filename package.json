@@ -73,7 +73,7 @@
     "preact": "^10.4.8",
     "prop-types": "15.7.2",
     "puppeteer-core": "^5.3.1",
-    "purgecss": "^2.3.0",
+    "purgecss": "^3.0.0",
     "react": "16.13.1",
     "react-animate-height": "^2.0.23",
     "react-dom": "16.13.1",
