@@ -72,7 +72,7 @@
     "next-compose-plugins": "^2.2.0",
     "preact": "^10.4.8",
     "prop-types": "15.7.2",
-    "puppeteer-core": "^5.3.0",
+    "puppeteer-core": "^5.3.1",
     "purgecss": "^2.3.0",
     "react": "16.13.1",
     "react-animate-height": "^2.0.23",
