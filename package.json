@@ -54,7 +54,7 @@
     "gatsby-plugin-create-client-paths": "^2.3.11",
     "gatsby-plugin-google-analytics": "^2.3.14",
     "gatsby-plugin-manifest": "^2.4.31",
-    "gatsby-plugin-netlify": "^2.3.15",
+    "gatsby-plugin-netlify": "^2.3.16",
     "gatsby-plugin-offline": "^3.2.28",
     "gatsby-plugin-postcss": "^2.3.12",
     "gatsby-plugin-preact": "^3.3.2",
