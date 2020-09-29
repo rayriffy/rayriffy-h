@@ -113,7 +113,7 @@
     "@types/react-helmet": "^6.1.0",
     "@types/react-icons": "^3.0.0",
     "@types/react-lazy-load-image-component": "^1.5.1",
-    "@types/rebass": "^4.0.6",
+    "@types/rebass": "^4.0.7",
     "@typescript-eslint/eslint-plugin": "2.34.0",
     "@typescript-eslint/parser": "2.34.0",
     "babel-plugin-emotion": "^10.0.33",
