@@ -33,7 +33,8 @@
       }
     ],
     "camelcase": "off",
-    "@typescript-eslint/camelcase": "off"
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
   },
   "overrides": [
     {
