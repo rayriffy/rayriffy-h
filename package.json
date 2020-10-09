@@ -68,7 +68,7 @@
     "isomorphic-unfetch": "^3.0.0",
     "lodash": "^4.17.20",
     "lodash-es": "^4.17.15",
-    "next": "9.5.3",
+    "next": "9.5.4",
     "next-compose-plugins": "^2.2.0",
     "preact": "^10.5.4",
     "prop-types": "15.7.2",
