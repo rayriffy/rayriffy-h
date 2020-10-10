@@ -45,14 +45,19 @@ export const hentaiListing = async ({ actions, graphql }: CreatePagesArgs) => {
   const transformedData = gqlFetch.data
     ? gqlFetch.data.allHentai.edges.map(edge => edge.node.raw)
     : []
-  
+
   /**
    * Sort into correct order by referencing from database
    */
-  const sortedData = codes.map(code => {
-    const targetCode = typeof code === 'number' ? code : code.code
-    return transformedData.find(data => Number(data.id) === Number(targetCode))
-  }).filter(o => o !== undefined).reverse()
+  const sortedData = codes
+    .map(code => {
+      const targetCode = typeof code === 'number' ? code : code.code
+      return transformedData.find(
+        data => Number(data.id) === Number(targetCode)
+      )
+    })
+    .filter(o => o !== undefined)
+    .reverse()
 
   /**
    * Create listing page

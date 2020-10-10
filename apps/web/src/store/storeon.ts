@@ -46,7 +46,10 @@ export const store = createStoreon<Store, Event>([
         persistState(['search'], {
           storage: sessionStorage,
         }),
-        crossTab({ filter: (event, data) => event !== 'subtitle/setSubtitle' || event.startsWith('search/') }),
+        crossTab({
+          filter: (event, data) =>
+            event !== 'subtitle/setSubtitle' || event.startsWith('search/'),
+        }),
       ]
     : []),
 ])

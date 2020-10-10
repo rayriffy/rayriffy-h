@@ -20,8 +20,14 @@ export const getRawHentai = async (
       ...rawHentai,
       title: {
         ...rawHentai.title,
-        english: rawHentai.title.english === null ? rawHentai.title.japanese : rawHentai.title.english,
-        japanese: rawHentai.title.japanese === null ? rawHentai.title.english : rawHentai.title.japanese,
+        english:
+          rawHentai.title.english === null
+            ? rawHentai.title.japanese
+            : rawHentai.title.english,
+        japanese:
+          rawHentai.title.japanese === null
+            ? rawHentai.title.english
+            : rawHentai.title.japanese,
       },
     }
   }

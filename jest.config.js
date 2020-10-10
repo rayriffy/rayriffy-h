@@ -5,5 +5,6 @@ module.exports = {
     '<rootDir>/libs/fetch',
     '<rootDir>/libs/helper',
     '<rootDir>/apps/web',
+    '<rootDir>/apps/web-next',
   ],
 }

@@ -11,7 +11,11 @@ program.parse(process.argv)
 
 const { list, project, base, head } = program
 
-const printAffected = JSON.parse(execSync(`yarn --silent nx print-affected --base=${base} --head=${head}`).toString())
+const printAffected = JSON.parse(
+  execSync(
+    `yarn --silent nx print-affected --base=${base} --head=${head}`
+  ).toString()
+)
 
 if (list) {
   printAffected.projects.map(o => console.log(o))

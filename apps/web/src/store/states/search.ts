@@ -20,14 +20,14 @@ export const search: StoreonModule<SearchStore, SearchEvent> = store => {
       search: {
         search: defaultState,
         collection: defaultState,
-      }
+      },
     }
   })
 
   store.on('search/update', (state, event) => {
     // eslint-disable-next-line prefer-const
     let payload = {
-      ...state
+      ...state,
     }
 
     payload.search[event.target] = {
