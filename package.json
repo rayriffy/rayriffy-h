@@ -73,7 +73,7 @@
     "gatsby-plugin-offline": "^3.2.31",
     "gatsby-plugin-postcss": "^2.3.13",
     "gatsby-plugin-preact": "^3.3.2",
-    "gatsby-plugin-react-helmet": "^3.3.13",
+    "gatsby-plugin-react-helmet": "^3.3.14",
     "gatsby-plugin-sharp": "2.6.40",
     "gatsby-plugin-svgr": "2.0.2",
     "gatsby-plugin-typescript": "^2.4.21",
