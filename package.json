@@ -59,7 +59,7 @@
     "cssnano": "^4.1.10",
     "cssnano-preset-advanced": "^4.0.7",
     "cwait": "^1.1.2",
-    "document-register-element": "1.13.1",
+    "document-register-element": "1.14.10",
     "emotion-server": "10.0.27",
     "emotion-theming": "^10.0.27",
     "express": "4.17.1",
