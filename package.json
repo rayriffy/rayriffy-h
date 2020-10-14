@@ -83,7 +83,7 @@
     "isomorphic-unfetch": "^3.1.0",
     "lodash": "^4.17.20",
     "lodash-es": "^4.17.15",
-    "next": "9.5.4",
+    "next": "9.5.5",
     "next-compose-plugins": "^2.2.0",
     "preact": "^10.5.4",
     "preact-render-to-string": "^5.1.10",
