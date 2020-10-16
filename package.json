@@ -140,7 +140,7 @@
     "@types/rebass": "^4.0.7",
     "@typescript-eslint/eslint-plugin": "4.4.1",
     "@typescript-eslint/parser": "4.3.0",
-    "babel-jest": "26.2.2",
+    "babel-jest": "26.5.2",
     "babel-plugin-emotion": "^10.0.33",
     "babel-plugin-module-resolver": "4.0.0",
     "babel-preset-gatsby": "^0.5.14",
