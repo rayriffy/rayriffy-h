@@ -109,10 +109,21 @@
     "@angular-devkit/core" "9.1.12"
     rxjs "6.5.4"
 
-"@angular-devkit/core@10.1.5", "@angular-devkit/core@~10.1.3":
+"@angular-devkit/core@10.1.5":
   version "10.1.5"
   resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-10.1.5.tgz#3eb4321cd929a4a92a887f6a4810bdc1c7eb593e"
   integrity sha512-Ly97h90Z6ZLhSnTkk2baUDNLeOrKgj/bUPkcBEKWranx6IRx8FMzin/+ysIQasBlEXWPIc8QbBmCz7xXkO4p7g==
+  dependencies:
+    ajv "6.12.4"
+    fast-json-stable-stringify "2.1.0"
+    magic-string "0.25.7"
+    rxjs "6.6.2"
+    source-map "0.7.3"
+
+"@angular-devkit/core@10.1.7", "@angular-devkit/core@~10.1.3":
+  version "10.1.7"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-10.1.7.tgz#c4c4332d738075bf1346aa040c78756e3144ba4b"
+  integrity sha512-RRyDkN2FByA+nlnRx/MzUMK1FXwj7+SsrzJcvZfWx4yA5rfKmJiJryXQEzL44GL1aoaXSuvOYu3H72wxZADN8Q==
   dependencies:
     ajv "6.12.4"
     fast-json-stable-stringify "2.1.0"
@@ -131,12 +142,12 @@
     rxjs "6.5.4"
     source-map "0.7.3"
 
-"@angular-devkit/schematics@10.1.5", "@angular-devkit/schematics@~10.1.3":
-  version "10.1.5"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-10.1.5.tgz#a0f13f084c0d84e7718d8bdd7a367775660afb5b"
-  integrity sha512-5bhQX/PC548wIPcgCx9Q0Oewe8/i8+0eZvD9qLVWzJvUEKqgbjgoA7r7KJIJx2WINbESJGTIjwbXSZ6JmAJNhA==
+"@angular-devkit/schematics@10.1.7", "@angular-devkit/schematics@~10.1.3":
+  version "10.1.7"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-10.1.7.tgz#b98d2c41b34ea94bf11d187f2206bdc020bd3860"
+  integrity sha512-nk9RXA09b+7uq59HS/gyztNzUGHH/eQAUQhWHdDYSCG6v1lhJVCKx1HgDPELVxmeq9f+HArkAW7Y7c+ccdNQ7A==
   dependencies:
-    "@angular-devkit/core" "10.1.5"
+    "@angular-devkit/core" "10.1.7"
     ora "5.0.0"
     rxjs "6.6.2"
 
@@ -18679,14 +18690,14 @@ rxjs@6.5.5:
   dependencies:
     tslib "^1.9.0"
 
-rxjs@6.6.2, rxjs@^6.3.3, rxjs@^6.4.0, rxjs@^6.5.2, rxjs@^6.5.4, rxjs@^6.6.0:
+rxjs@6.6.2:
   version "6.6.2"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.6.2.tgz#8096a7ac03f2cc4fe5860ef6e572810d9e01c0d2"
   integrity sha512-BHdBMVoWC2sL26w//BCu3YzKT4s2jip/WhwsGEDmeKYBhKDZeYezVUnHatYB7L85v5xs0BAQmg6BEYJEKxBabg==
   dependencies:
     tslib "^1.9.0"
 
-rxjs@^6.6.2:
+rxjs@^6.3.3, rxjs@^6.4.0, rxjs@^6.5.2, rxjs@^6.5.4, rxjs@^6.6.0, rxjs@^6.6.2:
   version "6.6.3"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.6.3.tgz#8ca84635c4daa900c0d3967a6ee7ac60271ee552"
   integrity sha512-trsQc+xYYXZ3urjOiJOuCOa5N3jAZ3eiSpQB5hIT8zGlL2QfnHLJ2r7GMkBGuIausdJN1OneaI6gQlsqNHHmZQ==
