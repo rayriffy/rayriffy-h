@@ -90,7 +90,7 @@
     "prop-types": "15.7.2",
     "puppeteer-core": "^5.3.1",
     "purgecss": "^3.0.0",
-    "react": "16.13.1",
+    "react": "16.14.0",
     "react-animate-height": "^2.0.23",
     "react-dom": "16.13.1",
     "react-helmet": "^6.1.0",
