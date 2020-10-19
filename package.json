@@ -41,7 +41,7 @@
     ]
   },
   "dependencies": {
-    "@babel/plugin-transform-react-jsx-source": "^7.10.5",
+    "@babel/plugin-transform-react-jsx-source": "^7.12.1",
     "@emotion/core": "10.0.35",
     "@emotion/styled": "^10.0.27",
     "@fullhuman/postcss-purgecss": "^3.0.0",
