@@ -85,7 +85,7 @@
     "lodash-es": "^4.17.15",
     "next": "9.5.5",
     "next-compose-plugins": "^2.2.0",
-    "preact": "^10.5.4",
+    "preact": "^10.5.5",
     "preact-render-to-string": "^5.1.10",
     "prop-types": "15.7.2",
     "puppeteer-core": "^5.3.1",
