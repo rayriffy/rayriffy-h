@@ -222,9 +222,7 @@
               "apps/web/**/*.spec.tsx",
               "apps/web/**/*.spec.js",
               "apps/web/**/*.spec.jsx",
-              "apps/web/**/*.d.ts",
-              "node_modules/@nrwl/react/typings/cssmodule.d.ts",
-              "node_modules/@nrwl/react/typings/image.d.ts"
+              "apps/web/**/*.d.ts"
             ]
           }
         },
