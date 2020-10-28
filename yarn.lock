@@ -6167,7 +6167,7 @@ browserify-zlib@^0.2.0:
   dependencies:
     pako "~1.0.5"
 
-browserslist@4.13.0, browserslist@^4.0.0, browserslist@^4.11.1, browserslist@^4.12.0, browserslist@^4.12.2, browserslist@^4.8.3, browserslist@^4.8.5:
+browserslist@4.13.0:
   version "4.13.0"
   resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.13.0.tgz#42556cba011e1b0a2775b611cba6a8eca18e940d"
   integrity sha512-MINatJ5ZNrLnQ6blGvePd/QOz9Xtu+Ne+x29iQSCHfkU5BugKVJwZKn/iiL8UbpIpa3JhviKjz+XxMo0m2caFQ==
@@ -6186,7 +6186,7 @@ browserslist@4.8.7:
     electron-to-chromium "^1.3.349"
     node-releases "^1.1.49"
 
-browserslist@^4.14.5:
+browserslist@^4.0.0, browserslist@^4.11.1, browserslist@^4.12.0, browserslist@^4.12.2, browserslist@^4.14.5, browserslist@^4.8.3, browserslist@^4.8.5:
   version "4.14.5"
   resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.14.5.tgz#1c751461a102ddc60e40993639b709be7f2c4015"
   integrity sha512-Z+vsCZIvCBvqLoYkBFTwEYH3v5MCQbsAjp50ERycpOjnPmolg1Gjy4+KaWWpm8QOJt9GHkhdqAl14NpCX73CWA==
@@ -20731,10 +20731,10 @@ tailwindcss-spinner@^1.2.0:
     flat "^4.1.0"
     lodash "^4.17.11"
 
-tailwindcss@^1.9.5:
-  version "1.9.5"
-  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-1.9.5.tgz#3339b790a68bc1f09a8efd8eb94cb05aed5235c2"
-  integrity sha512-Je5t1fAfyW333YTpSxF+8uJwbnrkpyBskDtZYgSMMKQbNp6QUhEKJ4g/JIevZjD2Zidz9VxLraEUq/yWOx6nQg==
+tailwindcss@^1.9.6:
+  version "1.9.6"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-1.9.6.tgz#0c5089911d24e1e98e592a31bfdb3d8f34ecf1a0"
+  integrity sha512-nY8WYM/RLPqGsPEGEV2z63riyQPcHYZUJpAwdyBzVpxQHOHqHE+F/fvbCeXhdF1+TA5l72vSkZrtYCB9hRcwkQ==
   dependencies:
     "@fullhuman/postcss-purgecss" "^2.1.2"
     autoprefixer "^9.4.5"
