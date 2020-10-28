@@ -4,6 +4,8 @@ import { NextPage } from 'next'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 
+import { AppLayout } from '../app/components/appLayout'
+
 import '../styles/tailwind.css'
 
 const App: NextPage<AppProps> = props => {
@@ -14,7 +16,9 @@ const App: NextPage<AppProps> = props => {
       <Head>
         <title>Riffy H</title>
       </Head>
-      <Component {...pageProps} />
+      <AppLayout>
+        <Component {...pageProps} />
+      </AppLayout>
     </React.Fragment>
   )
 }
