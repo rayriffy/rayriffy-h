@@ -1,33 +1,52 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
-import { NextPage, GetStaticPaths, GetStaticProps } from 'next'
-import { useRouter } from 'next/router'
+import { GetServerSideProps, NextPage } from 'next'
 import Image from 'next/image'
 
-import { getHentai, Hentai, getImageUrl } from '@rayriffy-h/helper'
+import useSWR from 'swr'
+
+import {
+  getImageUrl,
+  rawHentaiToHentai,
+  APIResponse,
+  RawHentai,
+} from '@rayriffy-h/helper'
 
 interface IProps {
-  hentai: Hentai
+  id: string
+}
+
+const fetcher = url => fetch(url).then(r => r.json())
+
+const useHentai = (id: number | string) => {
+  const { data, error } = useSWR<APIResponse<RawHentai>>(
+    `https://h.api.rayriffy.com/v1/gallery/${id}`,
+    fetcher
+  )
+
+  return {
+    hentai: data ? rawHentaiToHentai(data.response.data) : undefined,
+    isLoading: !error && !data,
+    isError: error,
+  }
 }
 
 const Page: NextPage<IProps> = props => {
-  const { hentai } = props
+  const { id } = props
 
-  const router = useRouter()
-
-  useEffect(() => {
-    console.log(router.isFallback, hentai)
-  }, [router.isFallback, hentai])
+  const { hentai, isError } = useHentai(id)
 
   return (
     <React.Fragment>
       <div className="p-4">
         <div className="bg-gray-300 text-gray-700 text-sm p-4 rounded">
-          {JSON.stringify(props)}
+          {JSON.stringify(hentai)}
         </div>
       </div>
-      {router.isFallback ? (
-        <div>Fallback hit!</div>
+      {isError ? (
+        <div className="pt-4">Failed</div>
+      ) : !hentai ? (
+        <div className="pt-4">Loading...</div>
       ) : (
         <div className="pt-4">
           <div className="max-w-lg mx-auto">
@@ -53,25 +72,24 @@ const Page: NextPage<IProps> = props => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async context => {
-  const hentai = (await getHentai(context.params.id as string)) || {}
-
+// export const getStaticProps: GetStaticProps = async context => {
+export const getServerSideProps: GetServerSideProps = async context => {
   return {
     props: {
-      hentai,
+      id: context.params.id as string,
     },
   }
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [
-      { params: { id: '299240' } },
-      { params: { id: '282649' } },
-      { params: { id: '272902' } },
-    ],
-    fallback: true,
-  }
-}
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   return {
+//     paths: [
+//       { params: { id: '299240' } },
+//       { params: { id: '282649' } },
+//       { params: { id: '272902' } },
+//     ],
+//     fallback: true,
+//   }
+// }
 
 export default Page
