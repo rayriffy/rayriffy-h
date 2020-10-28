@@ -41,19 +41,6 @@ jobs:
         on:
           repo: rayriffy/rayriffy-h
           branch: master
-    - name: apps/api
-      script:
-        - yarn nx test api
-      before_deploy:
-        - yarn global add vercel
-        - yarn nx build api --skip-nx-cache
-      deploy:
-        provider: script
-        script: vercel -t $VERCEL_AUTH_TOKEN --prod
-        edge: true
-        on:
-          repo: rayriffy/rayriffy-h
-          branch: master
     - name: apps/poster
       script:
         - yarn nx test poster
