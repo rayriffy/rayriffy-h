@@ -55,6 +55,9 @@
     },
     "icons": {
       "tags": []
+    },
+    "datasource": {
+      "tags": []
     }
   },
   "affected": {

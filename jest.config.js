@@ -7,5 +7,6 @@ module.exports = {
     '<rootDir>/apps/web',
     '<rootDir>/apps/web-next',
     '<rootDir>/libs/icons',
+    '<rootDir>/libs/datasource',
   ],
 }
