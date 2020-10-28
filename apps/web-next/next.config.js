@@ -55,6 +55,7 @@ module.exports = withPlugins(
       : []),
   ],
   {
+    target: 'serverless',
     images: {
       domains: ['i.nhentai.net', 't.nhentai.net'],
     },
