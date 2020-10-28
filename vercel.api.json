@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "github": {
+    "enabled": false
+  },
+  "builds": [
+    {
+      "src": "dist/apps/api/main.js",
+      "use": "@vercel/node",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
+    }
+  ],
+  "routes": [{
+    "src": "/(.*)",
+    "dest": "dist/apps/api/main.js"
+  }],
+  "regions": ["sin1"]
+}
