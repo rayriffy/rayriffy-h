@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+const moment = require('moment-timezone')
+
 const withPlugins = require('next-compose-plugins')
 
 const withPrefresh = require('@prefresh/next')
@@ -56,14 +58,17 @@ module.exports = withPlugins(
   ],
   {
     target: 'serverless',
+    env: {
+      buildNumber: moment().tz('Asia/Bangkok').format('YYYYMMDD.HH'),
+    },
     images: {
       domains: ['i.nhentai.net', 't.nhentai.net'],
     },
     experimental: {
       modern: true,
-      polyfillsOptimization: true,
       optimizeFonts: true,
       optimizeImages: true,
+      scrollRestoration: true,
     },
   }
 )

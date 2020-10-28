@@ -49,8 +49,11 @@ export const AppLayout: React.FC = props => {
                       <X className="h-6 w-6 text-white" />
                     </button>
                   </div>
-                  <div className="flex-shrink-0 flex items-center px-4">
+                  <div className="px-4">
                     <p className="font-bold text-3xl text-gray-800">Riffy H</p>
+                    <p className="text-xs text-gray-500">
+                      {process.env.buildNumber}
+                    </p>
                   </div>
                   <div className="mt-5 flex-1 h-0 overflow-y-auto">
                     <MobileNavbar />
@@ -66,8 +69,9 @@ export const AppLayout: React.FC = props => {
       )}
       <div className="hidden lg:flex lg:flex-shrink-0">
         <div className="flex flex-col w-64 border-r border-gray-200 pt-5 pb-4 bg-gray-100">
-          <div className="flex items-center flex-shrink-0 px-6">
+          <div className="px-6">
             <p className="font-bold text-3xl text-gray-800">Riffy H</p>
+            <p className="text-xs text-gray-500">{process.env.buildNumber}</p>
           </div>
           <div className="h-0 flex-1 flex flex-col overflow-y-auto">
             <div className="px-3 mt-5">
