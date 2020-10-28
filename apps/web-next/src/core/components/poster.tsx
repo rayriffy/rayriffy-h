@@ -21,12 +21,15 @@ export const Poster: React.FC<IProps> = props => {
     <div className="bg-gray-200 overflow-hidden rounded-xl relative">
       <Link href={`/g/${hentai.id}`}>
         <a>
-          <div className="absolute top-0 bottom-0 left-0 right-0 w-full bg-black-overlay z-10 transition ease-in-out duration-200 opacity-0 hover:opacity-100  text-white flex flex-col justify-between px-4 py-8 md:px-5 lg:px-6 md:py-9 lg:py-10">
+          <div className="absolute top-0 bottom-0 left-0 right-0 w-full bg-black-overlay z-10 transition ease-in-out duration-200 opacity-0 hover:opacity-100 text-white flex flex-col justify-between px-4 py-8 md:px-5 lg:px-6 md:py-9 lg:py-10">
             <div>
               <div className="flex">
                 {filterTagByType(hentai.tags, 'language').map(lang =>
                   availableFlags.includes(lang.name) ? (
-                    <div className="pb-2 pr-2 w-10">
+                    <div
+                      className="pb-2 pr-2 w-10"
+                      key={`poster-${hentai.id}-language-${lang.name}`}
+                    >
                       <img
                         src={`/static/img/flags/${lang.name}.png`}
                         alt={lang.name}
@@ -46,7 +49,7 @@ export const Poster: React.FC<IProps> = props => {
                     return null
                   } else {
                     return (
-                      <div>
+                      <div key={`poster-${hentai.id}-tag-${tag.name}`}>
                         <div
                           className={`w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4 rounded-full ${tag.color} mx-auto`}
                         />

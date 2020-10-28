@@ -1,50 +1,40 @@
 import React from 'react'
 
-import { Home, Clock, Bookmark, Cog, Archive } from '@rayriffy-h/icons'
 import { tags } from '@rayriffy-h/datasource'
 
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 import { capitalize } from 'lodash'
 
+import { menus } from '../../constants/menu'
+
 export const MobileNavbar: React.FC = props => {
+  const router = useRouter()
+
   return (
     <nav className="px-2">
       <div className="space-y-1">
-        <Link href="/">
-          <a className="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-900 bg-gray-100 hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none transition ease-in-out duration-150">
-            <Home className="mr-3 h-6 w-6 text-gray-500 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150" />
-            Home
-          </a>
-        </Link>
-
-        <Link href="/listing">
-          <a className="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition ease-in-out duration-150">
-            <Archive className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150" />
-            Listing
-          </a>
-        </Link>
-
-        <Link href="/collection">
-          <a className="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition ease-in-out duration-150">
-            <Bookmark className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150" />
-            Collection
-          </a>
-        </Link>
-
-        <Link href="/history">
-          <a className="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition ease-in-out duration-150">
-            <Clock className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150" />
-            History
-          </a>
-        </Link>
-
-        <Link href="/settings">
-          <a className="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition ease-in-out duration-150">
-            <Cog className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150" />
-            Settings
-          </a>
-        </Link>
+        {menus.map((menu, i) => (
+          <Link href={menu.link} key={`navbar-mobile-link-${menu.name}-${i}`}>
+            <a
+              className={`group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md focus:outline-none transition ease-in-out duration-150 ${
+                menu.link === router.pathname
+                  ? 'text-gray-900 bg-gray-100 hover:bg-gray-100 focus:bg-gray-200 hover:text-gray-900'
+                  : 'text-gray-600 hover:bg-gray-50 focus:bg-gray-50 hover:text-gray-90'
+              }`}
+            >
+              <menu.icon
+                className={`mr-3 h-6 w-6 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150 ${
+                  menu.link === router.pathname
+                    ? 'text-gray-500'
+                    : 'text-gray-400'
+                }`}
+              />
+              {menu.name}
+            </a>
+          </Link>
+        ))}
       </div>
       <div className="mt-8">
         <h3
