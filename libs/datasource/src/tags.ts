@@ -2,37 +2,37 @@ import { DatabaseTag } from './@types/DatabaseTag'
 
 export const tags: DatabaseTag[] = [
   {
-    color: 'blue',
+    color: 'bg-blue-500',
     name: 'tag',
     prefix: 'ta',
   },
   {
-    color: 'pink',
+    color: 'bg-pink-500',
     name: 'artist',
     prefix: 'ar',
   },
   {
-    color: 'red',
+    color: 'bg-red-500',
     name: 'character',
     prefix: 'ch',
   },
   {
-    color: 'orange',
+    color: 'bg-orange-500',
     name: 'parody',
     prefix: 'pa',
   },
   {
-    color: 'teal',
+    color: 'bg-teal-500',
     name: 'group',
     prefix: 'gr',
   },
   {
-    color: 'purple',
+    color: 'bg-purple-500',
     name: 'category',
     prefix: 'ca',
   },
   {
-    color: 'green',
+    color: 'bg-green-500',
     name: 'language',
     prefix: 'la',
   },
