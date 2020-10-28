@@ -2,12 +2,11 @@ import React from 'react'
 
 import { getImageUrl } from '@rayriffy-h/helper'
 import { ExclamationCircle } from '@rayriffy-h/icons'
-import { useStoreon } from '@rayriffy-h/state-engine'
 
 import { GetServerSideProps, NextPage } from 'next'
-import Image from 'next/image'
 
 import { useHentai } from '../../core/services/useHentai'
+import { ImageBlur } from '../../core/components/imageBlur'
 
 interface IProps {
   id: string
@@ -17,7 +16,6 @@ const Page: NextPage<IProps> = props => {
   const { id } = props
 
   const { hentai, isError } = useHentai(id)
-  const { settings } = useStoreon('settings')
 
   if (isError) {
     return (
@@ -55,10 +53,7 @@ const Page: NextPage<IProps> = props => {
         <div className="max-w-7xl mx-auto px-0 sm:px-4 lg:px-6">
           <div className="max-w-xl mx-auto overflow-hidden">
             {hentai.images.pages.map((page, i) => (
-              <Image
-                className={`overflow-hidden ${
-                  settings.safemode ? 'filter-blur transform scale-105' : ''
-                }`}
+              <ImageBlur
                 key={`reader-${hentai.id}-page-${i + 1}`}
                 src={getImageUrl({
                   image: page,

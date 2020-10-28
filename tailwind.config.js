@@ -9,7 +9,11 @@ module.exports = {
       blur: 'blur(5px)',
       'blur-heavy': 'blur(20px)',
     },
-    extend: {},
+    extend: {
+      backgroundColor: {
+        'black-overlay': 'rgba(0, 0, 0, 0.60)',
+      },
+    },
   },
   variants: {},
   future: {

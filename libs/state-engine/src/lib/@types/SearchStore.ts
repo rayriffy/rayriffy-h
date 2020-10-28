@@ -1,4 +1,4 @@
-import { ListingHentai } from '../../core/@types/ListingHentai'
+import { Hentai } from '@rayriffy-h/helper'
 
 export interface SearchCache {
   // State for observing raw input
@@ -8,13 +8,13 @@ export interface SearchCache {
   // Set search dialog to be show on first time or not
   first: boolean
   // Put all searh results in here (for listing)
-  res: ListingHentai[]
+  res: Hentai[]
   // Set mode between search from list or nhentai (if modeLock is present, then hide the selector and lock search into that mode)
   mode: 'list' | 'nh'
   // Stuff to be rendered
   page: number
   maxPage: number
-  renderedRaw: ListingHentai[]
+  renderedRaw: Hentai[]
 }
 
 export interface SearchStore {
