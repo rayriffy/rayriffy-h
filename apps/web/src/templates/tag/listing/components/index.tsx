@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 import { Helmet } from 'react-helmet'
 
-import { sortBy } from 'lodash-es'
+import { sortBy } from 'lodash'
 
 import { useStoreon } from '../../../../store'
 

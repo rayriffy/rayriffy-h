@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { isEmpty } from 'lodash-es'
+import { isEmpty } from 'lodash'
 import { navigate } from 'gatsby'
 
 import { Home } from '../templates/home/components'

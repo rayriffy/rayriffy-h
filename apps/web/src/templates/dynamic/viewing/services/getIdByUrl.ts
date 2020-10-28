@@ -1,4 +1,4 @@
-import { isEmpty } from 'lodash-es'
+import { isEmpty } from 'lodash'
 
 export const getIdByUrl = (url: string) => {
   const requestedID = url.split('/')[2]

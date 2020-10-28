@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { truncate } from 'lodash-es'
+import { truncate } from 'lodash'
 
 import { BluredImage } from './bluredImage'
 import { Slug } from './slug'

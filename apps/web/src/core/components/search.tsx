@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { chunk, get } from 'lodash-es'
+import { chunk, get } from 'lodash'
 
 import { getSearch } from '@rayriffy-h/helper'
 

@@ -82,7 +82,6 @@
     "gatsby-transformer-sharp": "2.5.19",
     "isomorphic-unfetch": "^3.1.0",
     "lodash": "^4.17.20",
-    "lodash-es": "^4.17.15",
     "next": "^10.0.0",
     "next-compose-plugins": "^2.2.0",
     "postcss-import": "^13.0.0",

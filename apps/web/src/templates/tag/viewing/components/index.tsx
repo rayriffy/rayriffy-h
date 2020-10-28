@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { upperFirst } from 'lodash-es'
+import { upperFirst } from 'lodash'
 import { Helmet } from 'react-helmet'
 
 import { Pagination } from '../../../../core/components/pagination'
