@@ -52,6 +52,12 @@
     "web-next-e2e": {
       "tags": [],
       "implicitDependencies": ["web-next"]
+    },
+    "icons": {
+      "tags": []
+    },
+    "datasource": {
+      "tags": []
     }
   },
   "affected": {
