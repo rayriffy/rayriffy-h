@@ -87,10 +87,10 @@ export const Navigation: React.FC<Props> = props => {
       icon: <i className="fas fa-history pr-1"></i>,
     },
     {
-      name: 'history',
+      name: 'beta',
       prefix: 'https://next.h.rayriffy.com',
       external: true,
-      icon: <i className="fas fa-history pr-1"></i>,
+      icon: <i className="fas fa-flask pr-1"></i>,
     },
     // {
     //   name: 'about',
