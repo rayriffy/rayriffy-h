@@ -12,7 +12,7 @@ export const AppLayout: React.FC = props => {
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false)
 
   return (
-    <div className="h-screen flex overflow-hidden bg-white">
+    <div className="h-screen flex overflow-hidden bg-gray-50">
       {sidebarOpen && (
         <div className="lg:hidden">
           <div className="fixed inset-0 flex z-40">
