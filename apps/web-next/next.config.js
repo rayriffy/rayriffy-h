@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const withPlugins = require('next-compose-plugins')
 
 const withPrefresh = require('@prefresh/next')
@@ -54,6 +55,10 @@ module.exports = withPlugins(
       : []),
   ],
   {
+    target: 'serverless',
+    images: {
+      domains: ['i.nhentai.net', 't.nhentai.net'],
+    },
     experimental: {
       modern: true,
       polyfillsOptimization: true,
