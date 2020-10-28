@@ -86,6 +86,12 @@ export const Navigation: React.FC<Props> = props => {
       prefix: 'history',
       icon: <i className="fas fa-history pr-1"></i>,
     },
+    {
+      name: 'history',
+      prefix: 'https://next.h.rayriffy.com',
+      external: true,
+      icon: <i className="fas fa-history pr-1"></i>,
+    },
     // {
     //   name: 'about',
     //   prefix: 'about',
@@ -105,22 +111,36 @@ export const Navigation: React.FC<Props> = props => {
           collapse ? 'opacity-100 z-20' : 'opacity-0 z-hide md:z-0'
         }`}
       >
-        {menuStacks.map(menu => (
-          <TransparentLink
-            key={`app-navigation-${menu.name}`}
-            to={`/${menu.prefix}`}
-          >
-            <div
-              className={`${
-                subtitle === menu.name
-                  ? 'bg-gray-200 dark:bg-gray-700'
-                  : 'bg-transparent dark:bg-transparent'
-              } capitalize block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-300 focus:bg-gray-200 focus:outline-none focus:shadow-outline`}
+        {menuStacks.map(menu =>
+          menu.external ? (
+            <a href={menu.prefix}>
+              <div
+                className={`${
+                  subtitle === menu.name
+                    ? 'bg-gray-200 dark:bg-gray-700'
+                    : 'bg-transparent dark:bg-transparent'
+                } capitalize block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-300 focus:bg-gray-200 focus:outline-none focus:shadow-outline`}
+              >
+                {menu.icon} {menu.name}
+              </div>
+            </a>
+          ) : (
+            <TransparentLink
+              key={`app-navigation-${menu.name}`}
+              to={`/${menu.prefix}`}
             >
-              {menu.icon} {menu.name}
-            </div>
-          </TransparentLink>
-        ))}
+              <div
+                className={`${
+                  subtitle === menu.name
+                    ? 'bg-gray-200 dark:bg-gray-700'
+                    : 'bg-transparent dark:bg-transparent'
+                } capitalize block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-300 focus:bg-gray-200 focus:outline-none focus:shadow-outline`}
+              >
+                {menu.icon} {menu.name}
+              </div>
+            </TransparentLink>
+          )
+        )}
         <Dropdown
           title={
             <React.Fragment>
