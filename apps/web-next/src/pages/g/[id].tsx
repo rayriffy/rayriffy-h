@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { NextPage, GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
@@ -14,6 +14,10 @@ const Page: NextPage<IProps> = props => {
   const { hentai } = props
 
   const router = useRouter()
+
+  useEffect(() => {
+    console.log(router.isFallback, hentai)
+  }, [router.isFallback, hentai])
 
   return (
     <React.Fragment>
@@ -50,7 +54,7 @@ const Page: NextPage<IProps> = props => {
 }
 
 export const getStaticProps: GetStaticProps = async context => {
-  const hentai = await getHentai(context.params.id as string)
+  const hentai = (await getHentai(context.params.id as string)) || {}
 
   return {
     props: {
