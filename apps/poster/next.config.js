@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const withPlugins = require('next-compose-plugins')
 
 const withPreact = (nextConfig = {}) => {
@@ -29,4 +30,9 @@ const withPreact = (nextConfig = {}) => {
   })
 }
 
-module.exports = withPlugins([[withPreact]], {})
+module.exports = withPlugins(
+  [
+    // [withPreact]
+  ],
+  {}
+)
