@@ -85,7 +85,6 @@
     "lodash-es": "^4.17.15",
     "next": "^10.0.0",
     "next-compose-plugins": "^2.2.0",
-    "next-on-netlify": "^2.6.0",
     "postcss-import": "^13.0.0",
     "preact": "^10.5.5",
     "preact-render-to-string": "^5.1.10",
