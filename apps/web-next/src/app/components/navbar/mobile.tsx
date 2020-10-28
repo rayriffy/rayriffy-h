@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Home, Clock, Bookmark } from '@rayriffy-h/icons'
+import { Home, Clock, Bookmark, Cog } from '@rayriffy-h/icons'
 import { tags } from '@rayriffy-h/datasource'
 
 import { capitalize } from 'lodash'
@@ -31,6 +31,14 @@ export const MobileNavbar: React.FC = props => {
         >
           <Clock className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150" />
           History
+        </a>
+
+        <a
+          href="#"
+          className="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition ease-in-out duration-150"
+        >
+          <Cog className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150" />
+          Settings
         </a>
       </div>
       <div className="mt-8">
