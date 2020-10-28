@@ -7,3 +7,22 @@
 html, body, #__next {
   height: 100%;
 }
+
+@keyframes spinnerSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  display: inline-block;
+  border-color: currentColor;
+  border-style: solid;
+  border-radius: 999999px;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  animation: spinnerSpin 0.45s linear infinite;
+}

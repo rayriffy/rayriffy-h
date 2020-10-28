@@ -1,34 +1,15 @@
 import React from 'react'
 
+import { getImageUrl } from '@rayriffy-h/helper'
+import { ExclamationCircle } from '@rayriffy-h/icons'
+
 import { GetServerSideProps, NextPage } from 'next'
 import Image from 'next/image'
 
-import useSWR from 'swr'
-
-import {
-  getImageUrl,
-  rawHentaiToHentai,
-  APIResponse,
-  RawHentai,
-} from '@rayriffy-h/helper'
+import { useHentai } from '../../core/services/useHentai'
 
 interface IProps {
   id: string
-}
-
-const fetcher = url => fetch(url).then(r => r.json())
-
-const useHentai = (id: number | string) => {
-  const { data, error } = useSWR<APIResponse<RawHentai>>(
-    `https://h.api.rayriffy.com/v1/gallery/${id}`,
-    fetcher
-  )
-
-  return {
-    hentai: data ? rawHentaiToHentai(data.response.data) : undefined,
-    isLoading: !error && !data,
-    isError: error,
-  }
 }
 
 const Page: NextPage<IProps> = props => {
@@ -36,20 +17,41 @@ const Page: NextPage<IProps> = props => {
 
   const { hentai, isError } = useHentai(id)
 
-  return (
-    <React.Fragment>
-      <div className="p-4">
-        <div className="bg-gray-300 text-gray-700 text-sm p-4 rounded">
-          {JSON.stringify(hentai)}
+  if (isError) {
+    return (
+      <div className="pt-16">
+        <div className="flex justify-center">
+          <ExclamationCircle className="w-10 h-10" />
+        </div>
+        <div className="pt-2">
+          <p className="font-bold text-lg text-gray-800 text-center">Failed</p>
+          <p className="text-sm text-gray-800 text-center">
+            I cannot find your gallery for this time (may be it's not exist)
+          </p>
         </div>
       </div>
-      {isError ? (
-        <div className="pt-4">Failed</div>
-      ) : !hentai ? (
-        <div className="pt-4">Loading...</div>
-      ) : (
-        <div className="pt-4">
-          <div className="max-w-lg mx-auto">
+    )
+  } else if (!hentai) {
+    return (
+      <div className="pt-16">
+        <div className="flex justify-center">
+          <div className="w-8 h-8 spinner border-2" />
+        </div>
+        <div className="pt-2">
+          <p className="font-bold text-lg text-gray-800 text-center">
+            Obtaining data
+          </p>
+          <p className="text-sm text-gray-800 text-center">
+            This should take only few seconds...
+          </p>
+        </div>
+      </div>
+    )
+  } else {
+    return (
+      <div className="pt-4">
+        <div className="max-w-7xl mx-auto px-0 sm:px-4 lg:px-6">
+          <div className="max-w-xl mx-auto">
             {hentai.images.pages.map((page, i) => (
               <Image
                 className="overflow-hidden"
@@ -67,12 +69,11 @@ const Page: NextPage<IProps> = props => {
             ))}
           </div>
         </div>
-      )}
-    </React.Fragment>
-  )
+      </div>
+    )
+  }
 }
 
-// export const getStaticProps: GetStaticProps = async context => {
 export const getServerSideProps: GetServerSideProps = async context => {
   return {
     props: {
@@ -80,16 +81,5 @@ export const getServerSideProps: GetServerSideProps = async context => {
     },
   }
 }
-
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   return {
-//     paths: [
-//       { params: { id: '299240' } },
-//       { params: { id: '282649' } },
-//       { params: { id: '272902' } },
-//     ],
-//     fallback: true,
-//   }
-// }
 
 export default Page
