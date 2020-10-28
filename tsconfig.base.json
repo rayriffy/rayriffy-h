@@ -17,7 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@rayriffy-h/fetch": ["libs/fetch/src/index.ts"],
-      "@rayriffy-h/helper": ["libs/helper/src/index.ts"]
+      "@rayriffy-h/helper": ["libs/helper/src/index.ts"],
+      "@rayriffy-h/icons": ["libs/icons/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
