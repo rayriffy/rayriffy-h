@@ -23,8 +23,6 @@ const Component: React.FC<IProps> = props => {
     mediaMd,
   ])
 
-  console.log(mediaLg, mediaMd)
-
   return (
     <div className="flex flex-column flex-wrap">
       {columnShuffle(galleries, column).map((chunk, i) => (

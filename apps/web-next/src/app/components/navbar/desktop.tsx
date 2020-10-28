@@ -15,8 +15,8 @@ export const DesktopNavbar: React.FC = props => {
   return (
     <nav className="px-3 mt-6">
       <div className="space-y-1">
-        {menus.map(menu => (
-          <Link href={menu.link}>
+        {menus.map((menu, i) => (
+          <Link href={menu.link} key={`navbar-desktop-link-${menu.name}-${i}`}>
             <a
               className={`group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-50 transition ease-in-out duration-150 ${
                 menu.link === router.pathname
