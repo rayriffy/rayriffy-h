@@ -6,6 +6,7 @@ import { Transition } from '../../core/components/transition'
 import { DesktopNavbar } from './navbar/desktop'
 import { MobileNavbar } from './navbar/mobile'
 import { Unstable } from './unstable'
+import { ServiceWorker } from './serviceWorker'
 
 export const AppLayout: React.FC = props => {
   const { children } = props
@@ -136,6 +137,7 @@ export const AppLayout: React.FC = props => {
           </main>
         </div>
       </div>
+      <ServiceWorker />
     </React.Fragment>
   )
 }
