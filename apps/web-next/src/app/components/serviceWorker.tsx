@@ -37,6 +37,14 @@ export const ServiceWorker: React.FC = React.memo(props => {
                     setServiceWorkerStatus('onServiceWorkerInstalled')
                   }
                   break
+
+                // case `redundant`:
+                //   setServiceWorkerStatus('onServiceWorkerRedundant')
+                //   break
+
+                // case `activated`:
+                //   setServiceWorkerStatus('onServiceWorkerActive')
+                //   break
               }
             })
           })
