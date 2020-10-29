@@ -15,7 +15,7 @@ export const ListingModule: React.FC<IProps> = props => {
   const { galleries, maxPage, currentPage } = props
 
   return (
-    <div className="p-6">
+    <div className="p-2 sm:p-6">
       <div className="flex justify-center py-3">
         <nav className="z-0">
           <Pagination max={maxPage} current={currentPage} prefix="/listing/" />

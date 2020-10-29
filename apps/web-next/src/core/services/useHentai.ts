@@ -9,8 +9,11 @@ export const useHentai = (id: number | string) => {
   )
 
   return {
-    hentai: data ? rawHentaiToHentai(data.response.data) : undefined,
+    hentai:
+      data && data.status === 'success'
+        ? rawHentaiToHentai(data.response.data)
+        : undefined,
     isLoading: !error && !data,
-    isError: error,
+    isError: error || (data && data.status !== 'success'),
   }
 }
