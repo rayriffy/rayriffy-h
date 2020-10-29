@@ -2,6 +2,7 @@
 const moment = require('moment-timezone')
 
 const withPlugins = require('next-compose-plugins')
+const withPWA = require('next-pwa')
 
 const withPrefresh = require('@prefresh/next')
 
@@ -53,7 +54,18 @@ const withPreact = (nextConfig = {}) => {
 module.exports = withPlugins(
   [
     ...(process.env.NODE_ENV === 'production'
-      ? [[withPrefresh], [withPreact]]
+      ? [
+          [
+            withPWA,
+            {
+              pwa: {
+                dest: 'public',
+              },
+            },
+          ],
+          [withPrefresh],
+          [withPreact],
+        ]
       : []),
   ],
   {
