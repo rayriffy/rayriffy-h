@@ -52,6 +52,7 @@
     "@tailwindcss/ui": "^0.6.2",
     "@welldone-software/why-did-you-render": "^5.0.0",
     "autoprefixer": "^10.0.1",
+    "babel-plugin-lodash": "^3.3.4",
     "chrome-aws-lambda": "^5.3.1",
     "commander": "^6.1.0",
     "copy-to-clipboard": "^3.3.1",
