@@ -35,7 +35,7 @@ const Dropdown: React.FC<{
         }`}
       >
         <div
-          className={`px-2 py-2 bg-white rounded-md shadow-2xl bg-gray-100 dark:bg-gray-700 ${
+          className={`px-2 py-2 rounded-md shadow-2xl bg-gray-100 dark:bg-gray-700 ${
             open ? 'block' : 'hidden'
           }`}
         >

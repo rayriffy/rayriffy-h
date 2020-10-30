@@ -244,6 +244,7 @@
         "allowTernary": true,
         "allowTaggedTemplates": true
       }
-    ]
+    ],
+    "@typescript-eslint/no-empty-function": "off"
   }
 }
