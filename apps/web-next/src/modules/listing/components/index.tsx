@@ -16,15 +16,15 @@ export const ListingModule: React.FC<IProps> = props => {
 
   return (
     <div className="p-2 sm:p-6">
-      <div className="flex justify-center py-3">
+      <div className="flex justify-center pt-4">
         <nav className="z-0">
           <Pagination max={maxPage} current={currentPage} prefix="/listing/" />
         </nav>
       </div>
-      <div className="py-6">
+      <div className="py-4 sm:py-6">
         <Listing {...{ galleries }} />
       </div>
-      <div className="flex justify-center py-3">
+      <div className="flex justify-center pb-4">
         <nav className="z-0">
           <Pagination max={maxPage} current={currentPage} prefix="/listing/" />
         </nav>

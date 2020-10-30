@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { getImageUrl } from '@rayriffy-h/helper'
 import { ExclamationCircle } from '@rayriffy-h/icons'
+import { useStoreon } from '@rayriffy-h/state-engine'
 
 import { GetServerSideProps, NextPage } from 'next'
 
@@ -17,7 +18,15 @@ interface IProps {
 const Page: NextPage<IProps> = props => {
   const { id, excludes } = props
 
+  const { dispatch } = useStoreon('history')
   const { hentai, isError } = useHentai(id)
+
+  useEffect(() => {
+    if (!isError && hentai)
+      dispatch('history/toggle', {
+        data: hentai,
+      })
+  }, [hentai, isError])
 
   if (isError) {
     return (
