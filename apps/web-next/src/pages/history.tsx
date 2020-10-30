@@ -10,8 +10,8 @@ const Page: NextPage = props => {
   const { history } = useStoreon('history')
 
   return (
-    <div className="p-2 sm:p-6">
-      <div className="py-4 sm:py-6">
+    <div className="p-2 sm:p-4">
+      <div className="py-4">
         <Listing galleries={history.items.map(o => o.data)} />
       </div>
     </div>
