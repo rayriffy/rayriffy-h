@@ -77,4 +77,6 @@ export const getServerSideProps: GetServerSideProps = async context => {
   }
 }
 
+export const config = { amp: 'hybrid' }
+
 export default Page
