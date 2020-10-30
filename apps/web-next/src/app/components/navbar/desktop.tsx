@@ -9,7 +9,7 @@ import { capitalize } from 'lodash'
 
 import { menus } from '../../constants/menu'
 
-export const DesktopNavbar: React.FC = props => {
+export const DesktopNavbar: React.FC = React.memo(props => {
   const router = useRouter()
 
   return (
@@ -64,4 +64,4 @@ export const DesktopNavbar: React.FC = props => {
       </div>
     </nav>
   )
-}
+})

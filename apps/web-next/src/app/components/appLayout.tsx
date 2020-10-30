@@ -17,7 +17,8 @@ export const AppLayout: React.FC = props => {
     <React.Fragment>
       <Unstable />
       <div className="h-screen flex overflow-hidden bg-gray-50">
-        {sidebarOpen && (
+        {/* {sidebarOpen && ( */}
+        <Transition show={sidebarOpen}>
           <div className="lg:hidden">
             <div className="fixed inset-0 flex z-40">
               <Transition
@@ -72,7 +73,8 @@ export const AppLayout: React.FC = props => {
               </Transition>
             </div>
           </div>
-        )}
+        </Transition>
+        {/* )} */}
         <div className="hidden lg:flex lg:flex-shrink-0">
           <div className="flex flex-col w-64 border-r border-gray-200 pt-5 pb-4 bg-gray-100">
             <div className="px-6">

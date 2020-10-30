@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { X } from '@rayriffy-h/icons'
 
-export const Unstable: React.FC = props => {
+export const Unstable: React.FC = React.memo(props => {
   const [show, setShow] = useState<boolean>(true)
 
   if (show) {
@@ -41,4 +41,4 @@ export const Unstable: React.FC = props => {
   } else {
     return null
   }
-}
+})

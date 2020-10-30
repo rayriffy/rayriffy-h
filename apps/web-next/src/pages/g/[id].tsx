@@ -8,6 +8,7 @@ import { GetServerSideProps, NextPage } from 'next'
 
 import { useHentai } from '../../core/services/useHentai'
 import { ImageBlur } from '../../core/components/imageBlur'
+import { Reader } from '../../core/components/reader'
 
 interface IProps {
   id: string
@@ -18,15 +19,7 @@ interface IProps {
 const Page: NextPage<IProps> = props => {
   const { id, excludes } = props
 
-  const { dispatch } = useStoreon('history')
   const { hentai, isError } = useHentai(id)
-
-  useEffect(() => {
-    if (!isError && hentai)
-      dispatch('history/toggle', {
-        data: hentai,
-      })
-  }, [hentai, isError])
 
   if (isError) {
     return (
@@ -59,54 +52,7 @@ const Page: NextPage<IProps> = props => {
       </div>
     )
   } else {
-    return (
-      <div>
-        <div className="max-w-3xl mx-auto block md:flex pt-0 md:pt-6">
-          <div className="p-8 flex justify-center md:p-0">
-            <div className="overflow-hidden rounded-md">
-              <ImageBlur
-                src={getImageUrl({
-                  image: hentai.images.cover,
-                  type: 'cover',
-                  mediaId: hentai.media_id,
-                })}
-                width={hentai.images.cover.w}
-                height={hentai.images.cover.h}
-              />
-            </div>
-          </div>
-          <div className="text-gray-800 pl-6">
-            <p className="font-semibold text-gray-500 text-md">{hentai.id}</p>
-            <h1 className="font-bold text-2xl leading-tight py-2">
-              {hentai.title.pretty}
-            </h1>
-            <h2 className="font-bold text-gray-500 text-md">
-              {hentai.title.japanese}
-            </h2>
-          </div>
-        </div>
-        <div className="max-w-7xl mx-auto px-0 sm:px-4 lg:px-6 pt-6">
-          <div className="max-w-xl mx-auto overflow-hidden">
-            {hentai.images.pages.map((page, i) =>
-              !excludes.includes(i + 1) ? (
-                <ImageBlur
-                  key={`reader-${hentai.id}-page-${i + 1}`}
-                  src={getImageUrl({
-                    image: page,
-                    mediaId: hentai.media_id,
-                    page: i + 1,
-                    type: 'gallery',
-                  })}
-                  width={page.w}
-                  height={page.h}
-                  priority={i <= 1}
-                />
-              ) : null
-            )}
-          </div>
-        </div>
-      </div>
-    )
+    return <Reader {...{ hentai, excludes }} />
   }
 }
 
