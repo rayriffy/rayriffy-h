@@ -2,7 +2,7 @@ import React from 'react'
 
 export const ChevronDoubleDown: React.FC<React.SVGProps<
   SVGSVGElement
->> = props => {
+>> = React.memo(props => {
   return (
     <svg
       {...props}
@@ -19,4 +19,4 @@ export const ChevronDoubleDown: React.FC<React.SVGProps<
       />
     </svg>
   )
-}
+})

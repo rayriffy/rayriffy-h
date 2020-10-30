@@ -6,7 +6,7 @@ interface IProps {
   subtitle: string
 }
 
-export const MediaCard: React.FC<IProps> = props => {
+export const MediaCard: React.FC<IProps> = React.memo(props => {
   const { media, title, subtitle } = props
 
   return (
@@ -18,4 +18,4 @@ export const MediaCard: React.FC<IProps> = props => {
       </div>
     </div>
   )
-}
+})

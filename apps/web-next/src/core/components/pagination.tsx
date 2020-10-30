@@ -17,7 +17,7 @@ interface PageProps {
   onChange(page: number): void
 }
 
-const Page: React.FC<PageProps> = props => {
+const Page: React.FC<PageProps> = React.memo(props => {
   const { startPoint, current, i, onChange } = props
 
   return (
@@ -30,7 +30,7 @@ const Page: React.FC<PageProps> = props => {
       {startPoint + i + 1}
     </div>
   )
-}
+})
 
 export const Pagination: React.FC<Props> = React.memo(props => {
   const { max, current, prefix = '/', link = true, onChange } = props

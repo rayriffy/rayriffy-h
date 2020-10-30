@@ -1,6 +1,8 @@
 import React from 'react'
 
-export const PhoneIncoming: React.FC<React.SVGProps<SVGSVGElement>> = props => {
+export const PhoneIncoming: React.FC<React.SVGProps<
+  SVGSVGElement
+>> = React.memo(props => {
   return (
     <svg
       {...props}
@@ -17,4 +19,4 @@ export const PhoneIncoming: React.FC<React.SVGProps<SVGSVGElement>> = props => {
       />
     </svg>
   )
-}
+})

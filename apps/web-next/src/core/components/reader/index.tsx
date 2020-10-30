@@ -10,7 +10,7 @@ interface IProps {
   excludes?: number[]
 }
 
-export const Reader: React.FC<IProps> = props => {
+export const Reader: React.FC<IProps> = React.memo(props => {
   const { hentai, excludes = [] } = props
 
   const { dispatch } = useStoreon('history')
@@ -70,4 +70,4 @@ export const Reader: React.FC<IProps> = props => {
       </div>
     </React.Fragment>
   )
-}
+})

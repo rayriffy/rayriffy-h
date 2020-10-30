@@ -12,7 +12,7 @@ interface IProps {
   galleries: Hentai[]
 }
 
-const Component: React.FC<IProps> = props => {
+const Component: React.FC<IProps> = React.memo(props => {
   const { galleries } = props
 
   const mediaMd = useMedia('(min-width: 768px)')
@@ -39,7 +39,7 @@ const Component: React.FC<IProps> = props => {
       ))}
     </div>
   )
-}
+})
 
 export const Listing = dynamic(async () => Component, {
   ssr: false,

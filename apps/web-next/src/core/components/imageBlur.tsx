@@ -6,7 +6,7 @@ import { useStoreon } from '@rayriffy-h/state-engine'
 
 export const ImageBlur: React.FC<React.ComponentProps<
   typeof Image
->> = props => {
+>> = React.memo(props => {
   const { className, ...rest } = props
   const { settings } = useStoreon('settings')
 
@@ -18,4 +18,4 @@ export const ImageBlur: React.FC<React.ComponentProps<
       {...rest}
     />
   )
-}
+})

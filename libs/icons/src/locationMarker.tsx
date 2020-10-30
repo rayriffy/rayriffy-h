@@ -2,7 +2,7 @@ import React from 'react'
 
 export const LocationMarker: React.FC<React.SVGProps<
   SVGSVGElement
->> = props => {
+>> = React.memo(props => {
   return (
     <svg
       {...props}
@@ -25,4 +25,4 @@ export const LocationMarker: React.FC<React.SVGProps<
       />
     </svg>
   )
-}
+})

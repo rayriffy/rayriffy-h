@@ -14,7 +14,7 @@ interface IProps {
 
 const availableFlags = ['english', 'japanese', 'chinese']
 
-export const Poster: React.FC<IProps> = props => {
+export const Poster: React.FC<IProps> = React.memo(props => {
   const { hentai } = props
 
   return (
@@ -80,4 +80,4 @@ export const Poster: React.FC<IProps> = props => {
       </Link>
     </div>
   )
-}
+})
