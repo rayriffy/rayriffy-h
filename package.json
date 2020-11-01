@@ -159,7 +159,7 @@
     "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jsx-a11y": "6.3.1",
-    "eslint-plugin-react": "7.21.4",
+    "eslint-plugin-react": "7.21.5",
     "eslint-plugin-react-hooks": "4.2.0",
     "gatsby-plugin-emotion": "4.3.14",
     "husky": "^4.3.0",
