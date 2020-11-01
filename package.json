@@ -115,7 +115,7 @@
   "devDependencies": {
     "@angular-devkit/schematics": "10.2.0",
     "@babel/core": "7.12.3",
-    "@babel/preset-env": "7.11.5",
+    "@babel/preset-env": "7.12.1",
     "@babel/preset-react": "7.12.1",
     "@babel/preset-typescript": "7.12.1",
     "@commitlint/cli": "^11.0.0",
