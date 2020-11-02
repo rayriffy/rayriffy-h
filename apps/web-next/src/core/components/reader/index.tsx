@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { filterTagByType, getImageUrl, Hentai } from '@rayriffy-h/helper'
+import { getImageUrl, Hentai } from '@rayriffy-h/helper'
 import { useStoreon } from '@rayriffy-h/state-engine'
 
 import { ImageBlur } from '../imageBlur'
