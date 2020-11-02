@@ -5,6 +5,7 @@ import { useStoreon } from '@rayriffy-h/state-engine'
 
 import { ImageBlur } from '../imageBlur'
 import { TagRenderer } from './tagRenderer'
+import { PagesRenderer } from './pagesRenderer'
 
 interface IProps {
   hentai: Hentai
@@ -26,17 +27,19 @@ export const Reader: React.FC<IProps> = React.memo(props => {
   return (
     <React.Fragment>
       <div className="max-w-3xl mx-auto block md:flex pt-0 md:pt-10">
-        <div className="p-8 flex justify-center md:p-0">
-          <div className="overflow-hidden rounded-md">
-            <ImageBlur
-              src={getImageUrl({
-                image: hentai.images.cover,
-                type: 'cover',
-                mediaId: hentai.media_id,
-              })}
-              width={hentai.images.cover.w}
-              height={hentai.images.cover.h}
-            />
+        <div className="p-8 md:p-0">
+          <div className="flex justify-center">
+            <div className="overflow-hidden rounded-md">
+              <ImageBlur
+                src={getImageUrl({
+                  image: hentai.images.cover,
+                  type: 'cover',
+                  mediaId: hentai.media_id,
+                })}
+                width={hentai.images.cover.w}
+                height={hentai.images.cover.h}
+              />
+            </div>
           </div>
         </div>
         <div className="text-gray-800 pl-6">
@@ -50,26 +53,11 @@ export const Reader: React.FC<IProps> = React.memo(props => {
           <TagRenderer tags={hentai.tags} />
         </div>
       </div>
-      <div className="max-w-7xl mx-auto px-0 sm:px-4 lg:px-6 pt-6">
-        <div className="max-w-xl mx-auto overflow-hidden">
-          {hentai.images.pages.map((page, i) =>
-            !excludes.includes(i + 1) ? (
-              <ImageBlur
-                key={`reader-${hentai.id}-page-${i + 1}`}
-                src={getImageUrl({
-                  image: page,
-                  mediaId: hentai.media_id,
-                  page: i + 1,
-                  type: 'gallery',
-                })}
-                width={page.w}
-                height={page.h}
-                priority={i <= 1}
-              />
-            ) : null
-          )}
-        </div>
-      </div>
+      <PagesRenderer
+        pages={hentai.images.pages}
+        mediaId={hentai.media_id}
+        excludes={excludes}
+      />
     </React.Fragment>
   )
 })
