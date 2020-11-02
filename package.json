@@ -104,7 +104,7 @@
     "react-transition-group": "^4.4.1",
     "rebass": "^4.0.7",
     "storeon": "^3.1.1",
-    "swr": "^0.3.6",
+    "swr": "^0.3.8",
     "tailwind": "^4.0.0",
     "tailwindcss": "^1.9.6",
     "tailwindcss-filters": "^3.0.0",
