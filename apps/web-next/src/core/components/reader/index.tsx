@@ -6,6 +6,7 @@ import { useStoreon } from '@rayriffy-h/state-engine'
 import { ImageBlur } from '../imageBlur'
 import { TagRenderer } from './tagRenderer'
 import { PagesRenderer } from './pagesRenderer'
+import { SafeMode } from './safeMode'
 
 interface IProps {
   hentai: Hentai
@@ -41,6 +42,7 @@ export const Reader: React.FC<IProps> = React.memo(props => {
               />
             </div>
           </div>
+          <SafeMode />
         </div>
         <div className="text-gray-800 pl-6">
           <p className="font-semibold text-gray-500 text-md">{hentai.id}</p>
