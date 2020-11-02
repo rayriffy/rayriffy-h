@@ -7,17 +7,11 @@ import { useRouter } from 'next/router'
 
 import { capitalize } from 'lodash'
 
-import { menus } from '../../constants/menu'
+import { IMenu, menus } from '../../constants/menu'
 
-interface IDesktopMenuLinkProps {
-  icon: React.FC<React.SVGProps<SVGSVGElement>>
-  link: string
-  name: string
-}
-
-const DesktopMenuLink: React.FC<IDesktopMenuLinkProps> = React.memo(props => {
+const DesktopMenuLink: React.FC<IMenu> = React.memo(props => {
   const router = useRouter()
-  const isMatch = useMemo(() => props.link === router.pathname, [router])
+  const isMatch = useMemo(() => props.match.includes(router.pathname), [router])
 
   return (
     <Link href={props.link}>

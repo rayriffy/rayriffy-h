@@ -14,7 +14,7 @@ const Page: NextPage = props => {
         </div>
         <div className="mt-4 flex md:mt-0 md:ml-4">
           <span className="shadow-sm rounded-md">
-            <Link href="/import">
+            <Link href="/collection/import">
               <a>
                 <button
                   type="button"
@@ -26,7 +26,7 @@ const Page: NextPage = props => {
             </Link>
           </span>
           <span className="ml-3 shadow-sm rounded-md">
-            <Link href="/export">
+            <Link href="/collection/export">
               <button
                 type="button"
                 className="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700 transition duration-150 ease-in-out"
