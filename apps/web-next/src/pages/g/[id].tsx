@@ -1,13 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
-import { getImageUrl } from '@rayriffy-h/helper'
 import { ExclamationCircle } from '@rayriffy-h/icons'
-import { useStoreon } from '@rayriffy-h/state-engine'
 
 import { GetServerSideProps, NextPage } from 'next'
 
 import { useHentai } from '../../core/services/useHentai'
-import { ImageBlur } from '../../core/components/imageBlur'
 import { Reader } from '../../core/components/reader'
 
 interface IProps {

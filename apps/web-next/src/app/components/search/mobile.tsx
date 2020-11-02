@@ -25,7 +25,7 @@ export const MobileSearch: React.FC = React.memo(props => {
             <input
               id="search-mobile"
               className={`block w-full h-full pl-8 pr-3 py-2 rounded-md placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 sm:text-sm ${
-                isAvailable ? 'text-gray-900' : 'text-gray-500'
+                isAvailable ? 'text-gray-900' : 'text-gray-500 bg-gray-200'
               }`}
               placeholder="Search"
               disabled={!isAvailable}

@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 
-import { getImageUrl, Hentai } from '@rayriffy-h/helper'
+import { filterTagByType, getImageUrl, Hentai } from '@rayriffy-h/helper'
 import { useStoreon } from '@rayriffy-h/state-engine'
 
 import { ImageBlur } from '../imageBlur'
+import { TagRenderer } from './tagRenderer'
 
 interface IProps {
   hentai: Hentai
@@ -40,12 +41,13 @@ export const Reader: React.FC<IProps> = React.memo(props => {
         </div>
         <div className="text-gray-800 pl-6">
           <p className="font-semibold text-gray-500 text-md">{hentai.id}</p>
-          <h1 className="font-bold text-2xl leading-tight py-2">
+          <h1 className="font-bold text-2xl leading-tight py-2 text-gray-700">
             {hentai.title.pretty}
           </h1>
-          <h2 className="font-bold text-gray-500 text-md">
+          <h2 className="font-bold text-gray-500 text-md pb-2">
             {hentai.title.japanese}
           </h2>
+          <TagRenderer tags={hentai.tags} />
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-0 sm:px-4 lg:px-6 pt-6">
