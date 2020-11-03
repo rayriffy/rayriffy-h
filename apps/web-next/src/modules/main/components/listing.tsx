@@ -15,7 +15,7 @@ export const MainListing: React.FC<IProps> = props => {
 
   const { data, isLoading, isError } = useMainNavigation(page)
 
-  if (isError) {
+  if (isError || !data) {
     return (
       <div className="pt-16 max-w-xl mx-auto">
         <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
