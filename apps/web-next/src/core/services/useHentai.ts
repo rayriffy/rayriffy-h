@@ -1,6 +1,6 @@
-import useSWR from 'swr'
-
 import { APIResponse, RawHentai, rawHentaiToHentai } from '@rayriffy-h/helper'
+
+import useSWR from 'swr'
 
 export const useHentai = (id: number | string) => {
   const { data, error } = useSWR<APIResponse<RawHentai>>(

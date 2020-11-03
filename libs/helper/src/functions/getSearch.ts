@@ -1,5 +1,7 @@
 import { fetch } from '@rayriffy-h/fetch'
 
+import { stringify } from 'querystring'
+
 import { RawHentai } from '../@types/RawHentai'
 import { APIResponse } from '../@types/APIResponse'
 
@@ -19,9 +21,14 @@ export const getSearch = async (
   page: number | string = 1,
   server?: boolean
 ): Promise<ExportedFunction> => {
+  const transformedQuery = stringify({
+    query,
+    page,
+  })
+
   if (server) {
     const res = await fetch<APIResult>(
-      `https://nhentai.net/api/galleries/search?query=${query}&page=${page}`
+      `https://nhentai.net/api/galleries/search?${transformedQuery}`
     )
     return {
       raw: res.result,
@@ -29,7 +36,7 @@ export const getSearch = async (
     }
   } else {
     const res = await fetch<APIResponse<ExportedFunction>>(
-      `https://h.api.rayriffy.com/v1/search?query=${query}&page=${page}`
+      `https://h.api.rayriffy.com/v1/search?${transformedQuery}`
     )
     return res.response.data
   }

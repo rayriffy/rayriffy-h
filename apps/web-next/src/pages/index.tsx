@@ -2,8 +2,10 @@ import React from 'react'
 
 import { NextPage } from 'next'
 
+import { MainListing } from '../modules/main/components/listing'
+
 const Page: NextPage = props => {
-  return <div className="font-bold text-xl">OK</div>
+  return <MainListing page={1} />
 }
 
 export default Page
