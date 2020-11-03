@@ -7,6 +7,7 @@ import { ImageBlur } from '../imageBlur'
 import { TagRenderer } from './tagRenderer'
 import { PagesRenderer } from './pagesRenderer'
 import { SafeMode } from './safeMode'
+import { Favorite } from './favorite'
 
 interface IProps {
   hentai: Hentai
@@ -53,6 +54,9 @@ export const Reader: React.FC<IProps> = React.memo(props => {
             {hentai.title.japanese}
           </h2>
           <TagRenderer tags={hentai.tags} />
+          <div className="py-6">
+            <Favorite hentai={hentai} />
+          </div>
         </div>
       </div>
       <PagesRenderer

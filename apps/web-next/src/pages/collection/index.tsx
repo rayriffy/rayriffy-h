@@ -3,6 +3,9 @@ import React from 'react'
 import { NextPage } from 'next'
 import Link from 'next/link'
 
+import { Pagination } from '../../core/components/pagination'
+import { CollectionListing } from '../../modules/collection/components/listing'
+
 const Page: NextPage = props => {
   return (
     <div className="p-2 sm:p-4">
@@ -37,17 +40,7 @@ const Page: NextPage = props => {
           </span>
         </div>
       </div>
-      <div className="flex justify-center pt-4">
-        <nav className="z-0">
-          {/* <Pagination max={maxPage} current={currentPage} prefix="/listing/" /> */}
-        </nav>
-      </div>
-      <div className="py-4">{/* <Listing {...{ galleries }} /> */}</div>
-      <div className="flex justify-center pb-4">
-        <nav className="z-0">
-          {/* <Pagination max={maxPage} current={currentPage} prefix="/listing/" /> */}
-        </nav>
-      </div>
+      <CollectionListing />
     </div>
   )
 }
