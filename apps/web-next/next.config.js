@@ -98,6 +98,13 @@ module.exports = withPlugins(
               },
             },
             {
+              urlPattern: /\/_next\/image\?url/i,
+              handler: 'StaleWhileRevalidate',
+              options: {
+                cacheName: 'next-image-assets',
+              },
+            },
+            {
               urlPattern: /\.(?:js)$/i,
               handler: 'StaleWhileRevalidate',
               options: {
@@ -116,6 +123,14 @@ module.exports = withPlugins(
               handler: 'NetworkFirst',
               options: {
                 cacheName: 'static-data-assets',
+              },
+            },
+            {
+              urlPattern: /^https?:\/\/h\.api\.rayriffy\.com/i,
+              handler: 'NetworkFirst',
+              method: 'GET',
+              options: {
+                cacheName: 'api',
               },
             },
             {
