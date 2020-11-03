@@ -26,7 +26,8 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
 
   const galleries = await Promise.all(
     chunks[Number(context.params.page) - 1].map(
-      async code => await getHentai(typeof code === 'number' ? code : code.code)
+      async code =>
+        await getHentai(typeof code === 'number' ? code : code.code, true)
     )
   )
 
