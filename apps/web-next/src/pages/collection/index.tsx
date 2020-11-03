@@ -2,14 +2,24 @@ import React from 'react'
 
 import { NextPage } from 'next'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 
-import { Pagination } from '../../core/components/pagination'
-import { CollectionListing } from '../../modules/collection/components/listing'
+// import { CollectionListing } from '../../modules/collection/components/listing'
+
+const CollectionListing = dynamic(
+  () =>
+    import('../../modules/collection/components/listing').then(
+      o => o.CollectionListing
+    ),
+  {
+    ssr: false,
+  }
+)
 
 const Page: NextPage = props => {
   return (
     <div className="p-2 sm:p-4">
-      <div className="md:flex md:items-center md:justify-between pt-6">
+      <div className="md:flex md:items-center md:justify-between pt-6 pb-2">
         <div className="flex-1 min-w-0">
           <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
             Collection

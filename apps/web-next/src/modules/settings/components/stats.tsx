@@ -1,7 +1,10 @@
 import { Bookmark, Clock, CursorClick, MailOpen } from '@rayriffy-h/icons'
+import { useStoreon } from '@rayriffy-h/state-engine'
 import React from 'react'
 
 export const Stats: React.FC = props => {
+  const { collection } = useStoreon('collection')
+
   return (
     <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
       <div className="bg-white overflow-hidden shadow sm:rounded-lg">
@@ -16,7 +19,7 @@ export const Stats: React.FC = props => {
                   Total Collections
                 </dt>
                 <dd className="text-2xl leading-8 font-semibold text-gray-900">
-                  71,897
+                  {collection.data.length.toLocaleString()}
                 </dd>
               </dl>
             </div>

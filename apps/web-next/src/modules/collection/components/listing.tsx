@@ -8,7 +8,7 @@ import { chunk } from 'lodash'
 import { Pagination } from 'apps/web-next/src/core/components/pagination'
 import { Listing } from 'apps/web-next/src/core/components/listing'
 
-export const CollectionListing: React.FC = props => {
+export const CollectionListing: React.FC = React.memo(props => {
   const { collection } = useStoreon('collection')
 
   const [page, setPage] = useState<number>(0)
@@ -47,4 +47,4 @@ export const CollectionListing: React.FC = props => {
       </div>
     </React.Fragment>
   )
-}
+})
