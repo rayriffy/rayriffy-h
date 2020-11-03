@@ -161,7 +161,6 @@ module.exports = withPlugins(
     },
     experimental: {
       modern: true,
-      optimizeFonts: true,
       optimizeImages: true,
       scrollRestoration: true,
     },
