@@ -1,6 +1,7 @@
-import { Bookmark, Clock, CursorClick, MailOpen } from '@rayriffy-h/icons'
-import { useStoreon } from '@rayriffy-h/state-engine'
 import React from 'react'
+
+import { Bookmark, Clock, CursorClick } from '@rayriffy-h/icons'
+import { useStoreon } from '@rayriffy-h/state-engine'
 
 export const Stats: React.FC = props => {
   const { collection } = useStoreon('collection')
