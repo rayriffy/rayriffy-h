@@ -6,7 +6,7 @@ import { Bookmark, Clock, CursorClick } from '@rayriffy-h/icons'
 import { useStoreon } from '@rayriffy-h/state-engine'
 
 export const Stats: React.FC = props => {
-  const { collection } = useStoreon('collection')
+  const { collection, history } = useStoreon('collection', 'history')
 
   return (
     <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -51,7 +51,7 @@ export const Stats: React.FC = props => {
                 </dt>
                 <dd className="flex items-baseline">
                   <div className="text-2xl leading-8 font-semibold text-gray-900">
-                    15
+                    {history.items.length}
                   </div>
                   <div className="ml-2 flex items-baseline text-sm leading-5 font-semibold text-gray-600">
                     / 15
@@ -63,12 +63,11 @@ export const Stats: React.FC = props => {
         </div>
         <div className="bg-gray-50 px-4 py-4 sm:px-6">
           <div className="text-sm leading-5">
-            <a
-              href="#"
-              className="font-medium text-blue-600 hover:text-blue-500 transition ease-in-out duration-150"
-            >
-              View all
-            </a>
+            <Link href="/history">
+              <a className="font-medium text-blue-600 hover:text-blue-500 transition ease-in-out duration-150">
+                View all
+              </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -92,12 +91,9 @@ export const Stats: React.FC = props => {
         </div>
         <div className="bg-gray-50 px-4 py-4 sm:px-6">
           <div className="text-sm leading-5">
-            <a
-              href="#"
-              className="font-medium text-blue-600 hover:text-blue-500 transition ease-in-out duration-150"
-            >
-              View all
-            </a>
+            <button className="font-medium text-red-600 hover:text-red-500 transition ease-in-out duration-150">
+              Reset
+            </button>
           </div>
         </div>
       </div>
