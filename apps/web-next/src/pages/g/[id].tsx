@@ -1,39 +1,25 @@
 import React from 'react'
 
-import { ExclamationCircle } from '@rayriffy-h/icons'
+import { getHentai, Hentai } from '@rayriffy-h/helper'
 
-import { GetServerSideProps, NextPage } from 'next'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 
-import { useHentai } from '../../core/services/useHentai'
 import { Reader } from '../../core/components/reader'
 import { HeadTitle } from '../../core/components/headTitle'
+import { useRouter } from 'next/router'
 
 interface IProps {
-  id: string
+  gallery: Hentai
   excludes: number[]
   error?: Error
 }
 
 const Page: NextPage<IProps> = props => {
-  const { id, excludes } = props
+  const { gallery, excludes } = props
 
-  const { hentai, isError } = useHentai(id)
+  const router = useRouter()
 
-  if (isError) {
-    return (
-      <div className="pt-16">
-        <div className="flex justify-center">
-          <ExclamationCircle className="w-10 h-10" />
-        </div>
-        <div className="pt-2">
-          <p className="font-bold text-lg text-gray-800 text-center">Failed</p>
-          <p className="text-sm text-gray-800 text-center">
-            I cannot find your gallery for this time (may be it's not exist)
-          </p>
-        </div>
-      </div>
-    )
-  } else if (!hentai) {
+  if (router.isFallback) {
     return (
       <div className="pt-16">
         <div className="flex justify-center">
@@ -52,31 +38,52 @@ const Page: NextPage<IProps> = props => {
   } else {
     return (
       <React.Fragment>
-        <HeadTitle title={hentai.title.pretty} />
-        <Reader {...{ hentai, excludes }} />
+        <HeadTitle title={gallery.title.pretty} />
+        <Reader {...{ hentai: gallery, excludes }} />
       </React.Fragment>
     )
   }
 }
 
-export const getServerSideProps: GetServerSideProps = async context => {
+export const getStaticProps: GetStaticProps = async context => {
   const { codes } = await import('@rayriffy-h/datasource')
 
-  // Find exclude properties
-  const result = codes.find(o =>
-    typeof o === 'number' ? false : o.code.toString() === context.params.id
-  )
+  try {
+    // Find exclude properties
+    const result = codes.find(o =>
+      typeof o === 'number' ? false : o.code.toString() === context.params.id
+    )
+
+    const hentai = await getHentai(context.params.id as string)
+
+    return {
+      props: {
+        gallery: hentai,
+        excludes:
+          result !== undefined
+            ? typeof result === 'number'
+              ? []
+              : result.exclude
+            : [],
+      },
+    }
+  } catch {
+    return {
+      notFound: true,
+    }
+  }
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const { codes } = await import('@rayriffy-h/datasource')
 
   return {
-    props: {
-      id: context.params.id as string,
-      excludes:
-        result !== undefined
-          ? typeof result === 'number'
-            ? []
-            : result.exclude
-          : [],
-    },
+    paths: codes.map(code => ({
+      params: {
+        id: typeof code == 'number' ? code.toString() : code.code.toString(),
+      },
+    })),
+    fallback: true,
   }
 }
 
