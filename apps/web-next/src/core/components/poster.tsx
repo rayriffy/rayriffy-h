@@ -31,7 +31,7 @@ export const Poster: React.FC<IProps> = React.memo(props => {
                       key={`poster-${hentai.id}-language-${lang.name}`}
                     >
                       <img
-                        src={`/static/img/flags/${lang.name}.png`}
+                        src={`https://storage.rayriffy.com/files/image/flags/${lang.name}.png`}
                         alt={lang.name}
                       />
                     </div>
