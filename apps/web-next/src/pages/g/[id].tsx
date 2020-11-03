@@ -54,7 +54,7 @@ export const getStaticProps: GetStaticProps = async context => {
       typeof o === 'number' ? false : o.code.toString() === context.params.id
     )
 
-    const hentai = await getHentai(context.params.id as string, true)
+    const hentai = await getHentai(context.params.id as string)
 
     return {
       props: {
