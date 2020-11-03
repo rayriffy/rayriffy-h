@@ -40,8 +40,8 @@ const App: NextPage<AppProps> = props => {
         <meta name="application-name" content="Riffy H" />
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="theme-color" content="#ffffff" />
-        <HeadTitle />
       </Head>
+      <HeadTitle />
       <AppLayout>
         <Component {...pageProps} />
       </AppLayout>

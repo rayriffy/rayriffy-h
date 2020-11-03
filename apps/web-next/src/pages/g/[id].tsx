@@ -3,7 +3,6 @@ import React from 'react'
 import { ExclamationCircle } from '@rayriffy-h/icons'
 
 import { GetServerSideProps, NextPage } from 'next'
-import Head from 'next/head'
 
 import { useHentai } from '../../core/services/useHentai'
 import { Reader } from '../../core/components/reader'
@@ -53,9 +52,7 @@ const Page: NextPage<IProps> = props => {
   } else {
     return (
       <React.Fragment>
-        <Head>
-          <HeadTitle title={hentai.title.pretty} />
-        </Head>
+        <HeadTitle title={hentai.title.pretty} />
         <Reader {...{ hentai, excludes }} />
       </React.Fragment>
     )

@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
 
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 interface IProps {
@@ -21,7 +22,7 @@ export const HeadTitle: React.FC<IProps> = React.memo(props => {
   )
 
   return (
-    <React.Fragment>
+    <Head>
       <title>{transformedTitle}</title>
       <meta name="title" content={transformedTitle} />
       <meta name="description" content={description} />
@@ -35,6 +36,6 @@ export const HeadTitle: React.FC<IProps> = React.memo(props => {
       <meta property="twitter:url" content={router.asPath} />
       <meta property="twitter:title" content={transformedTitle} />
       <meta property="twitter:description" content={description} />
-    </React.Fragment>
+    </Head>
   )
 })
