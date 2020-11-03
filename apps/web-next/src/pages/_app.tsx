@@ -2,7 +2,6 @@ import React from 'react'
 
 import { NextPage } from 'next'
 import { AppProps } from 'next/app'
-import Head from 'next/head'
 
 import { Context } from '@rayriffy-h/state-engine'
 
@@ -16,7 +15,7 @@ const App: NextPage<AppProps> = props => {
 
   return (
     <Context>
-      <Head>
+      <HeadTitle>
         <link
           rel="apple-touch-icon"
           sizes="180x180"
@@ -40,8 +39,7 @@ const App: NextPage<AppProps> = props => {
         <meta name="application-name" content="Riffy H" />
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="theme-color" content="#ffffff" />
-      </Head>
-      <HeadTitle />
+      </HeadTitle>
       <AppLayout>
         <Component {...pageProps} />
       </AppLayout>
