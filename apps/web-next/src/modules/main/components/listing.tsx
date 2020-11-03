@@ -14,9 +14,6 @@ export const MainListing: React.FC<IProps> = props => {
   const { page } = props
 
   const { data, isLoading, isError } = useMainNavigation(page)
-  // const res = useMainNavigation(page)
-
-  console.log('data: ', data)
 
   if (isError) {
     return (
