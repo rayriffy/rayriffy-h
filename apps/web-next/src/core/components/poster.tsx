@@ -19,7 +19,7 @@ export const Poster: React.FC<IProps> = React.memo(props => {
 
   return (
     <div className="bg-gray-200 overflow-hidden rounded-xl relative">
-      <Link href={`/g/${hentai.id}`}>
+      <Link href={`/g/${hentai.id}`} scroll>
         <a>
           <div className="absolute top-0 bottom-0 left-0 right-0 w-full bg-black-overlay z-10 transition ease-in-out duration-200 opacity-0 hover:opacity-100 text-white flex flex-col justify-between px-4 py-8 md:px-5 lg:px-6 md:py-9 lg:py-10">
             <div>

@@ -6,19 +6,16 @@ import { SearchEvent } from '../@types/SearchEvent'
 export const search: StoreonModule<SearchStore, SearchEvent> = store => {
   store.on('@init', () => {
     const defaultState: SearchCache = {
-      input: '',
       query: '',
-      first: true,
-      res: [],
       page: 1,
       maxPage: 5,
-      renderedRaw: [],
-      mode: 'list',
+      loading: true,
     }
 
     return {
       search: {
-        search: defaultState,
+        main: defaultState,
+        listing: defaultState,
         collection: defaultState,
       },
     }
@@ -38,20 +35,21 @@ export const search: StoreonModule<SearchStore, SearchEvent> = store => {
     return payload
   })
 
-  // store.on('search/toggle', (state, event) => {
-  //   switch (event) {
-  //     case 'safemode':
-  //       return {
-  //         ...state,
-  //         settings: {
-  //           ...state.settings,
-  //           safemode: !state.settings.safemode,
-  //         },
-  //       }
-  //     default:
-  //       return state
-  //   }
-  // })
+  store.on('search/query', (state, event) => {
+    // eslint-disable-next-line prefer-const
+    let payload = {
+      ...state,
+    }
+
+    payload.search[event.target] = {
+      query: event.value,
+      page: 1,
+      maxPage: 1,
+      loading: true,
+    }
+
+    return payload
+  })
 
   store.on('search/override', (state, event) => event)
 }

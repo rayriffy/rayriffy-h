@@ -1,25 +1,47 @@
-import React, { useMemo, useState } from 'react'
+import React, { useCallback, useMemo } from 'react'
 
 import { useStoreon } from '@rayriffy-h/state-engine'
 import { itemsPerPage } from '@rayriffy-h/constants'
 
 import { chunk } from 'lodash'
 
-import { Pagination } from 'apps/web-next/src/core/components/pagination'
-import { Listing } from 'apps/web-next/src/core/components/listing'
+import { Pagination } from '../../../core/components/pagination'
+import { Listing } from '../../../core/components/listing'
+
+import { searchHentai } from '../services/worker/searchHentai.worker'
+import { useSearch } from '../../../app/services/useSearch'
 
 export const CollectionListing: React.FC = React.memo(props => {
   const { collection } = useStoreon('collection')
 
-  const [page, setPage] = useState<number>(1)
-  const maxPage = useMemo(() => chunk(collection.data, itemsPerPage).length, [
-    collection,
+  const { query, page, dispatch } = useSearch('collection')
+
+  const searchResult = useMemo(
+    () =>
+      query === ''
+        ? collection.data.map(o => o.data)
+        : searchHentai(
+            query,
+            collection.data.map(o => o.data)
+          ),
+    [collection, query]
+  )
+  const maxPage = useMemo(() => chunk(searchResult, itemsPerPage).length, [
+    searchResult,
   ])
   const galleries = useMemo(
-    () =>
-      (chunk(collection.data, itemsPerPage)[page - 1] ?? []).map(o => o.data),
-    [page, collection]
+    () => chunk(searchResult, itemsPerPage)[page - 1] ?? [],
+    [page, searchResult]
   )
+
+  const onNavigate = useCallback<(page: number) => void>(page => {
+    dispatch('search/update', {
+      target: 'collection',
+      value: {
+        page: page,
+      },
+    })
+  }, [])
 
   return (
     <React.Fragment>
@@ -29,7 +51,7 @@ export const CollectionListing: React.FC = React.memo(props => {
             max={maxPage}
             current={page}
             link={false}
-            onChange={page => setPage(page)}
+            onChange={onNavigate}
           />
         </nav>
       </div>
@@ -42,7 +64,7 @@ export const CollectionListing: React.FC = React.memo(props => {
             max={maxPage}
             current={page}
             link={false}
-            onChange={page => setPage(page)}
+            onChange={onNavigate}
           />
         </nav>
       </div>

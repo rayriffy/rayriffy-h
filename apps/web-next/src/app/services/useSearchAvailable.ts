@@ -1,13 +1,18 @@
 import { useMemo } from 'react'
 import { useRouter } from 'next/router'
+import { SearchStore } from '@rayriffy-h/state-engine'
+
+type RouteByType = {
+  [key in keyof SearchStore['search']]: string[]
+}
 
 export const useSearchAvailable = () => {
   const router = useRouter()
 
-  const routeByType = {
+  const routeByType: RouteByType = {
     listing: ['/listing', '/listing/p/[page]'],
     collection: ['/collection'],
-    home: ['/', '/p/[page]'],
+    main: ['/', '/p/[page]'],
   }
 
   const availableType = useMemo(

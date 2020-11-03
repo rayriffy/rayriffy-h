@@ -3,6 +3,7 @@ const moment = require('moment-timezone')
 
 const withPlugins = require('next-compose-plugins')
 
+const withWorkers = require('@zeit/next-workers')
 const withPrefresh = require('@prefresh/next')
 const withOffline = require('next-offline')
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
@@ -147,6 +148,7 @@ module.exports = withPlugins(
           [withPreact],
         ]
       : []),
+    [withWorkers],
     [withBundleAnalyzer],
   ],
   {

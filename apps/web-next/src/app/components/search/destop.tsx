@@ -1,11 +1,42 @@
-import React from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 
 import { Search } from '@rayriffy-h/icons'
 
+import { debounce } from 'lodash'
+
 import { useSearchAvailable } from '../../services/useSearchAvailable'
+import { useSearch } from '../../services/useSearch'
 
 export const DesktopSearch: React.FC = React.memo(props => {
-  const { isAvailable } = useSearchAvailable()
+  const { isAvailable, availableType } = useSearchAvailable()
+
+  const { query, dispatch } = useSearch(availableType)
+  const [input, setInput] = useState(query ?? '')
+  const setDebounceInput = useCallback<(val: string) => void>(
+    debounce(value => {
+      if (availableType !== undefined) {
+        dispatch('search/query', {
+          target: availableType as any,
+          value,
+        })
+      }
+    }, 500),
+    []
+  )
+
+  const onChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
+    ({ target: { value } }) => {
+      setInput(value)
+      setDebounceInput(value)
+    },
+    []
+  )
+
+  useEffect(() => {
+    if (availableType !== undefined) {
+      setInput(query)
+    }
+  }, [query])
 
   return (
     <div className="px-3 mt-5">
@@ -23,6 +54,8 @@ export const DesktopSearch: React.FC = React.memo(props => {
           }`}
           disabled={!isAvailable}
           placeholder="Search"
+          value={input}
+          onChange={onChange}
         />
       </div>
     </div>
