@@ -1,5 +1,7 @@
 import React from 'react'
 
+import Link from 'next/link'
+
 import { Bookmark, Clock, CursorClick } from '@rayriffy-h/icons'
 import { useStoreon } from '@rayriffy-h/state-engine'
 
@@ -28,12 +30,11 @@ export const Stats: React.FC = props => {
         </div>
         <div className="bg-gray-50 px-4 py-4 sm:px-6">
           <div className="text-sm leading-5">
-            <a
-              href="#"
-              className="font-medium text-blue-600 hover:text-blue-500 transition ease-in-out duration-150"
-            >
-              View all
-            </a>
+            <Link href="/collection">
+              <a className="font-medium text-blue-600 hover:text-blue-500 transition ease-in-out duration-150">
+                View all
+              </a>
+            </Link>
           </div>
         </div>
       </div>

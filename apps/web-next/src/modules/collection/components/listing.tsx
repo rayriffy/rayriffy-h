@@ -11,12 +11,13 @@ import { Listing } from 'apps/web-next/src/core/components/listing'
 export const CollectionListing: React.FC = React.memo(props => {
   const { collection } = useStoreon('collection')
 
-  const [page, setPage] = useState<number>(0)
+  const [page, setPage] = useState<number>(1)
   const maxPage = useMemo(() => chunk(collection.data, itemsPerPage).length, [
     collection,
   ])
   const galleries = useMemo(
-    () => (chunk(collection.data, itemsPerPage)[page] ?? []).map(o => o.data),
+    () =>
+      (chunk(collection.data, itemsPerPage)[page - 1] ?? []).map(o => o.data),
     [page, collection]
   )
 
