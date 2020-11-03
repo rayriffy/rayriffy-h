@@ -7,6 +7,7 @@ import Head from 'next/head'
 import { Context } from '@rayriffy-h/state-engine'
 
 import { AppLayout } from '../app/components/appLayout'
+import { HeadTitle } from '../core/components/headTitle'
 
 import '../styles/tailwind.css'
 
@@ -39,7 +40,7 @@ const App: NextPage<AppProps> = props => {
         <meta name="application-name" content="Riffy H" />
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="theme-color" content="#ffffff" />
-        <title>Riffy H</title>
+        <HeadTitle />
       </Head>
       <AppLayout>
         <Component {...pageProps} />

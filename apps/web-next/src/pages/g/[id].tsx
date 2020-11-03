@@ -3,9 +3,11 @@ import React from 'react'
 import { ExclamationCircle } from '@rayriffy-h/icons'
 
 import { GetServerSideProps, NextPage } from 'next'
+import Head from 'next/head'
 
 import { useHentai } from '../../core/services/useHentai'
 import { Reader } from '../../core/components/reader'
+import { HeadTitle } from '../../core/components/headTitle'
 
 interface IProps {
   id: string
@@ -49,7 +51,14 @@ const Page: NextPage<IProps> = props => {
       </div>
     )
   } else {
-    return <Reader {...{ hentai, excludes }} />
+    return (
+      <React.Fragment>
+        <Head>
+          <HeadTitle title={hentai.title.pretty} />
+        </Head>
+        <Reader {...{ hentai, excludes }} />
+      </React.Fragment>
+    )
   }
 }
 
