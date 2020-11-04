@@ -61,9 +61,14 @@ module.exports = withPlugins(
       withOffline,
       {
         dontAutoRegisterSw: true,
-        transformManifest: manifest => ['/'].concat(manifest),
+        transformManifest: manifest => {
+          console.log(manifest)
+          return ['/'].concat(manifest)
+        },
         workboxOpts: {
-          swDest: './service-worker.js',
+          swDest: process.env.NEXT_EXPORT
+            ? 'service-worker.js'
+            : 'static/service-worker.js',
           runtimeCaching: [
             // if you are customizing your runtime cache rules, please note that the
             // first item in the runtime cache configuration array MUST be "start-url"
@@ -180,7 +185,7 @@ module.exports = withPlugins(
       return [
         {
           source: '/service-worker.js',
-          destination: '/_next/service-worker.js',
+          destination: '/_next/static/service-worker.js',
         },
       ]
     },
