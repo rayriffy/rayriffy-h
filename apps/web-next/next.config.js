@@ -82,8 +82,9 @@ module.exports = withPlugins(
     async redirects() {
       return [
         {
-          source: '/public/*',
-          destination: '/*',
+          source: '/public/:slug*',
+          destination: '/:slug*',
+          permanent: true,
         },
       ]
     },
