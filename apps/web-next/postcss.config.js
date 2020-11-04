@@ -1,3 +1,13 @@
 module.exports = {
-  plugins: ['tailwindcss', 'postcss-nesting'],
+  plugins: [
+    'tailwindcss',
+    'postcss-nesting',
+    'postcss-flexbugs-fixes',
+    [
+      'cssnano',
+      {
+        preset: 'advanced',
+      },
+    ],
+  ],
 }
