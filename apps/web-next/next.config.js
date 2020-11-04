@@ -63,7 +63,7 @@ module.exports = withPlugins(
         dontAutoRegisterSw: true,
         transformManifest: manifest => ['/'].concat(manifest),
         workboxOpts: {
-          swDest: 'static/service-worker.js',
+          swDest: './service-worker.js',
           runtimeCaching: [
             // if you are customizing your runtime cache rules, please note that the
             // first item in the runtime cache configuration array MUST be "start-url"
@@ -164,6 +164,7 @@ module.exports = withPlugins(
   ],
   {
     target: 'serverless',
+    analyticsId: 'BzLafBo4gAyYPBzwTZDHBMipDaj',
     env: {
       buildNumber: moment().tz('Asia/Bangkok').format('YYYYMMDD.HH'),
     },
@@ -179,7 +180,7 @@ module.exports = withPlugins(
       return [
         {
           source: '/service-worker.js',
-          destination: '/_next/static/service-worker.js',
+          destination: '/_next/service-worker.js',
         },
       ]
     },
