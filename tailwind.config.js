@@ -21,11 +21,5 @@ module.exports = {
     removeDeprecatedGapUtilities: true,
   },
   plugins: [require('@tailwindcss/ui'), require('tailwindcss-filters')],
-  purge: [
-    './apps/web-next/src/**/*.html',
-    './apps/web-next/src/**/*.tsx',
-    './apps/web-next/src/**/*.ts',
-    './apps/web-next/src/**/*.jsx',
-    './apps/web-next/src/**/*.js',
-  ],
+  purge: ['./apps/web-next/src/**/*.{js,ts,jsx,tsx}'],
 }
