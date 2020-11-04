@@ -16,10 +16,14 @@ export const Caches: React.FC = React.memo(props => {
           title="Total images"
           icon={Photograph}
         />
-        <Cache cacheName="api" title="Total API requests" icon={Server} />
         <Cache
-          cacheName="static-data-assets"
-          title="Total static data"
+          cacheName="next-galleries"
+          title="Total galleries"
+          icon={Server}
+        />
+        <Cache
+          cacheName="next-listing"
+          title="Total listing pages"
           icon={Archive}
         />
       </div>
