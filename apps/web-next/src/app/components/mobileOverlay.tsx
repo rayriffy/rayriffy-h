@@ -4,6 +4,7 @@ import { X } from '@rayriffy-h/icons'
 
 import { Transition } from '../../core/components/transition'
 import { MobileNavbar } from './navbar/mobile'
+import { Offline } from './offline'
 
 interface IProps {
   show?: boolean
@@ -56,6 +57,7 @@ export const MobileOverlay: React.FC<IProps> = React.memo(props => {
                     {process.env.buildNumber}
                   </p>
                 </div>
+                <Offline />
                 <div className="mt-5 flex-1 h-0 overflow-y-auto">
                   <MobileNavbar />
                 </div>

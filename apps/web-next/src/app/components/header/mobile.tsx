@@ -2,6 +2,8 @@ import React from 'react'
 
 import { MenuAlt1 } from '@rayriffy-h/icons'
 
+import { useNetworkAvailability } from 'web-api-hooks'
+
 import { MobileSearch } from '../search/mobile'
 
 interface IProps {
@@ -18,9 +20,24 @@ export const MobileHeader: React.FC<IProps> = React.memo(props => {
         className="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:bg-gray-100 focus:text-gray-600 lg:hidden"
         aria-label="Open sidebar"
       >
-        <MenuAlt1 className="h-6 w-6" />
+        <div className="inline-block relative">
+          <MenuAlt1 className="h-6 w-6" />
+          <Indicator />
+        </div>
       </button>
       <MobileSearch />
     </div>
   )
+})
+
+const Indicator: React.FC = React.memo(props => {
+  const isOnline = useNetworkAvailability()
+
+  if (!isOnline) {
+    return (
+      <span className="absolute top-0 right-0 block h-2.5 w-2.5 rounded-full text-white shadow-solid bg-red-400"></span>
+    )
+  } else {
+    return null
+  }
 })
