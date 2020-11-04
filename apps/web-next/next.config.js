@@ -5,7 +5,7 @@ const withPlugins = require('next-compose-plugins')
 
 const withWorkers = require('@zeit/next-workers')
 const withPrefresh = require('@prefresh/next')
-const withOffline = require('next-offline')
+const withPWA = require('next-pwa')
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
@@ -58,17 +58,13 @@ const withPreact = (nextConfig = {}) => {
 module.exports = withPlugins(
   [
     [
-      withOffline,
+      withPWA,
       {
-        dontAutoRegisterSw: true,
-        transformManifest: manifest => {
-          console.log(manifest)
-          return ['/'].concat(manifest)
-        },
-        workboxOpts: {
-          swDest: process.env.NEXT_EXPORT
-            ? 'service-worker.js'
-            : 'static/service-worker.js',
+        pwa: {
+          dest: 'public',
+          disable: process.env.NODE_ENV === 'development',
+          register: false,
+          sw: 'service-worker.js',
           runtimeCaching: [
             // if you are customizing your runtime cache rules, please note that the
             // first item in the runtime cache configuration array MUST be "start-url"
@@ -180,14 +176,6 @@ module.exports = withPlugins(
       modern: true,
       optimizeImages: true,
       scrollRestoration: true,
-    },
-    async rewrites() {
-      return [
-        {
-          source: '/service-worker.js',
-          destination: '/_next/static/service-worker.js',
-        },
-      ]
     },
   }
 )
