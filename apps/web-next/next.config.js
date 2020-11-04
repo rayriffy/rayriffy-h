@@ -79,11 +79,15 @@ module.exports = withPlugins(
         },
       ]
     },
-    dontAutoRegisterSw: true,
-    transformManifest: manifest => {
-      console.log(manifest)
-      return ['/'].concat(manifest)
+    async redirects() {
+      return [
+        {
+          source: '/public/*',
+          destination: '/*',
+        },
+      ]
     },
+    dontAutoRegisterSw: true,
     workboxOpts: {
       swDest: process.env.NEXT_EXPORT
         ? 'service-worker.js'
