@@ -5,7 +5,7 @@ const withPlugins = require('next-compose-plugins')
 
 const withWorkers = require('@zeit/next-workers')
 const withPrefresh = require('@prefresh/next')
-const withPWA = require('next-pwa')
+const withOffline = require('next-offline')
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
@@ -56,113 +56,7 @@ const withPreact = (nextConfig = {}) => {
 }
 
 module.exports = withPlugins(
-  [
-    [
-      withPWA,
-      {
-        pwa: {
-          dest: 'public',
-          disable: process.env.NODE_ENV === 'development',
-          register: false,
-          sw: 'service-worker.js',
-          runtimeCaching: [
-            // if you are customizing your runtime cache rules, please note that the
-            // first item in the runtime cache configuration array MUST be "start-url"
-            {
-              // MUST be the same as "start_url" in manifest.json
-              urlPattern: '/',
-              // use NetworkFirst or NetworkOnly if you redirect un-authenticated user to login page
-              // use StaleWhileRevalidate if you want to prompt user to reload when new version available
-              handler: 'NetworkFirst',
-              options: {
-                // don't change cache name
-                cacheName: 'start-url',
-              },
-            },
-            {
-              urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
-              handler: 'CacheFirst',
-              options: {
-                cacheName: 'google-fonts',
-              },
-            },
-            {
-              urlPattern: /\.(?:eot|otf|ttc|ttf|woff|woff2|font.css)$/i,
-              handler: 'StaleWhileRevalidate',
-              options: {
-                cacheName: 'static-font-assets',
-              },
-            },
-            {
-              urlPattern: /\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,
-              handler: 'StaleWhileRevalidate',
-              options: {
-                cacheName: 'static-image-assets',
-              },
-            },
-            {
-              urlPattern: /\/_next\/image\?url/i,
-              handler: 'StaleWhileRevalidate',
-              options: {
-                cacheName: 'next-image-assets',
-              },
-            },
-            {
-              urlPattern: /\.(?:js)$/i,
-              handler: 'StaleWhileRevalidate',
-              options: {
-                cacheName: 'static-js-assets',
-              },
-            },
-            {
-              urlPattern: /\.(?:css|less)$/i,
-              handler: 'StaleWhileRevalidate',
-              options: {
-                cacheName: 'static-style-assets',
-              },
-            },
-            {
-              urlPattern: /\.(?:json|xml|csv)$/i,
-              handler: 'NetworkFirst',
-              options: {
-                cacheName: 'static-data-assets',
-              },
-            },
-            {
-              urlPattern: /^https?:\/\/h\.api\.rayriffy\.com/i,
-              handler: 'NetworkFirst',
-              method: 'GET',
-              options: {
-                cacheName: 'api',
-              },
-            },
-            {
-              urlPattern: /^https?:\/\/h\.api\.rayriffy\.com/i,
-              handler: 'NetworkFirst',
-              method: 'GET',
-              options: {
-                cacheName: 'api',
-              },
-            },
-            {
-              urlPattern: /.*/i,
-              handler: 'NetworkFirst',
-              options: {
-                cacheName: 'others',
-                expiration: {
-                  maxEntries: 32,
-                  maxAgeSeconds: 24 * 60 * 60, // 24 hours
-                },
-                networkTimeoutSeconds: 10,
-              },
-            },
-          ],
-        },
-      },
-    ],
-    [withWorkers],
-    [withBundleAnalyzer],
-  ],
+  [[withOffline], [withWorkers], [withBundleAnalyzer]],
   {
     target: 'serverless',
     analyticsId: 'BzLafBo4gAyYPBzwTZDHBMipDaj',
@@ -176,6 +70,116 @@ module.exports = withPlugins(
       modern: true,
       optimizeImages: true,
       scrollRestoration: true,
+    },
+    async rewrites() {
+      return [
+        {
+          source: '/service-worker.js',
+          destination: '/_next/static/service-worker.js',
+        },
+      ]
+    },
+    dontAutoRegisterSw: true,
+    transformManifest: manifest => {
+      console.log(manifest)
+      return ['/'].concat(manifest)
+    },
+    workboxOpts: {
+      swDest: process.env.NEXT_EXPORT
+        ? 'service-worker.js'
+        : 'static/service-worker.js',
+      runtimeCaching: [
+        // if you are customizing your runtime cache rules, please note that the
+        // first item in the runtime cache configuration array MUST be "start-url"
+        {
+          // MUST be the same as "start_url" in manifest.json
+          urlPattern: '/',
+          // use NetworkFirst or NetworkOnly if you redirect un-authenticated user to login page
+          // use StaleWhileRevalidate if you want to prompt user to reload when new version available
+          handler: 'NetworkFirst',
+          options: {
+            // don't change cache name
+            cacheName: 'start-url',
+          },
+        },
+        {
+          urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'google-fonts',
+          },
+        },
+        {
+          urlPattern: /\.(?:eot|otf|ttc|ttf|woff|woff2|font.css)$/i,
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'static-font-assets',
+          },
+        },
+        {
+          urlPattern: /\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'static-image-assets',
+          },
+        },
+        {
+          urlPattern: /\/_next\/image\?url/i,
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'next-image-assets',
+          },
+        },
+        {
+          urlPattern: /\.(?:js)$/i,
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'static-js-assets',
+          },
+        },
+        {
+          urlPattern: /\.(?:css|less)$/i,
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'static-style-assets',
+          },
+        },
+        {
+          urlPattern: /\.(?:json|xml|csv)$/i,
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'static-data-assets',
+          },
+        },
+        {
+          urlPattern: /^https?:\/\/h\.api\.rayriffy\.com/i,
+          handler: 'NetworkFirst',
+          method: 'GET',
+          options: {
+            cacheName: 'api',
+          },
+        },
+        {
+          urlPattern: /^https?:\/\/h\.api\.rayriffy\.com/i,
+          handler: 'NetworkFirst',
+          method: 'GET',
+          options: {
+            cacheName: 'api',
+          },
+        },
+        {
+          urlPattern: /.*/i,
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'others',
+            expiration: {
+              maxEntries: 32,
+              maxAgeSeconds: 24 * 60 * 60, // 24 hours
+            },
+            networkTimeoutSeconds: 10,
+          },
+        },
+      ],
     },
   }
 )
