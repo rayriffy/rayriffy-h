@@ -23,10 +23,10 @@ module.exports = {
   plugins: [require('@tailwindcss/ui'), require('tailwindcss-filters')],
   purge: {
     content: [
-      './src/**/*.js',
-      './src/**/*.jsx',
-      './src/**/*.ts',
-      './src/**/*.tsx',
+      './apps/web-next/src/**/*.js',
+      './apps/web-next/src/**/*.jsx',
+      './apps/web-next/src/**/*.ts',
+      './apps/web-next/src/**/*.tsx',
     ],
   },
 }
