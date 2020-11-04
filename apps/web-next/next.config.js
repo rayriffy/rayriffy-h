@@ -108,6 +108,27 @@ module.exports = withPlugins(
           },
         },
         {
+          urlPattern: /\/_next\/image\?url/i,
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'next-image-assets',
+          },
+        },
+        {
+          urlPattern: /\/_next\/data\/[A-Za-z0-9_-]{21}\/g\/\d*.json/i,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'next-galleries',
+          },
+        },
+        {
+          urlPattern: /\/_next\/data\/[A-Za-z0-9_-]{21}\/listing(\/p\/\d)?.json/i,
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'next-listing',
+          },
+        },
+        {
           urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
           handler: 'CacheFirst',
           options: {
@@ -129,13 +150,6 @@ module.exports = withPlugins(
           },
         },
         {
-          urlPattern: /\/_next\/image\?url/i,
-          handler: 'StaleWhileRevalidate',
-          options: {
-            cacheName: 'next-image-assets',
-          },
-        },
-        {
           urlPattern: /\.(?:js)$/i,
           handler: 'StaleWhileRevalidate',
           options: {
@@ -154,14 +168,6 @@ module.exports = withPlugins(
           handler: 'NetworkFirst',
           options: {
             cacheName: 'static-data-assets',
-          },
-        },
-        {
-          urlPattern: /^https?:\/\/h\.api\.rayriffy\.com/i,
-          handler: 'NetworkFirst',
-          method: 'GET',
-          options: {
-            cacheName: 'api',
           },
         },
         {
