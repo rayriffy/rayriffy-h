@@ -73,6 +73,7 @@ export const Poster: React.FC<IProps> = React.memo(props => {
               type: 'cover',
               mediaId: hentai.media_id,
             })}
+            alt={hentai.title.pretty}
             width={hentai.images.cover.w}
             height={hentai.images.cover.h}
           />

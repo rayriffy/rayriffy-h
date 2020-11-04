@@ -20,6 +20,7 @@ export const PagesRenderer: React.FC<IProps> = React.memo(props => {
           !excludes.includes(i + 1) ? (
             <ImageBlur
               key={`reader-page-${i + 1}`}
+              alt={`page ${i + 1}`}
               src={getImageUrl({
                 image: page,
                 mediaId: mediaId,

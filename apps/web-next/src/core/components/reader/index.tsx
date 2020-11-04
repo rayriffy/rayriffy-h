@@ -38,6 +38,7 @@ export const Reader: React.FC<IProps> = React.memo(props => {
                   type: 'cover',
                   mediaId: hentai.media_id,
                 })}
+                alt="cover"
                 width={hentai.images.cover.w}
                 height={hentai.images.cover.h}
               />
