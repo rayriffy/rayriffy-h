@@ -15,23 +15,7 @@ export const MainListing: React.FC<IProps> = props => {
 
   const { data, isLoading, isError } = useMainNavigation(page)
 
-  if (isError || !data) {
-    return (
-      <div className="pt-16 max-w-xl mx-auto">
-        <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
-          <Exclamation className="h-6 w-6 text-red-600" />
-        </div>
-        <div className="pt-4">
-          <p className="font-bold text-lg text-gray-800 text-center">Failed</p>
-          <p className="text-sm text-gray-800 text-center">
-            This error could caused by NHentai API itself and it usually take a
-            few hours to be fixed. In meanwhile, you can explore other galleries
-            in "Listing" section
-          </p>
-        </div>
-      </div>
-    )
-  } else if (isLoading) {
+  if (isLoading) {
     return (
       <div className="pt-16">
         <div className="flex justify-center">
@@ -43,6 +27,22 @@ export const MainListing: React.FC<IProps> = props => {
           </p>
           <p className="text-sm text-gray-800 text-center">
             This should take only few seconds...
+          </p>
+        </div>
+      </div>
+    )
+  } else if (isError || !data) {
+    return (
+      <div className="pt-16 max-w-xl mx-auto">
+        <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
+          <Exclamation className="h-6 w-6 text-red-600" />
+        </div>
+        <div className="pt-4">
+          <p className="font-bold text-lg text-gray-800 text-center">Failed</p>
+          <p className="text-sm text-gray-800 text-center">
+            This error could caused by NHentai API itself and it usually take a
+            few hours to be fixed. In meanwhile, you can explore other galleries
+            in "Listing" section
           </p>
         </div>
       </div>
