@@ -22,7 +22,6 @@ module.exports = {
   },
   plugins: [require('@tailwindcss/ui'), require('tailwindcss-filters')],
   purge: {
-    mode: 'all',
     content: [
       './src/**/*.js',
       './src/**/*.jsx',
