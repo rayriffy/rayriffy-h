@@ -119,7 +119,7 @@ export const ServiceWorker: React.FC = React.memo(props => {
                       onClick={() => window.location.reload()}
                       className="cursor-pointer flex items-center justify-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-gray-600 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline transition ease-in-out duration-150"
                     >
-                      รีโหลด
+                      Reload
                     </div>
                   </div>
                 </div>
