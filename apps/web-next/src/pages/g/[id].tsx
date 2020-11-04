@@ -78,18 +78,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const { codes } = await import('@rayriffy-h/datasource')
 
   return {
-    // paths: codes.map(code => ({
-    //   params: {
-    //     id: typeof code == 'number' ? code.toString() : code.code.toString(),
-    //   },
-    // })),
-    paths: [
-      {
-        params: {
-          id: '334362',
-        },
+    paths: codes.map(code => ({
+      params: {
+        id: typeof code == 'number' ? code.toString() : code.code.toString(),
       },
-    ],
+    })),
     fallback: true,
   }
 }
