@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 
 import Link from 'next/link'
 
@@ -6,7 +6,16 @@ import { Bookmark, Clock, CursorClick } from '@rayriffy-h/icons'
 import { useStoreon } from '@rayriffy-h/state-engine'
 
 export const Stats: React.FC = props => {
-  const { collection, history } = useStoreon('collection', 'history')
+  const { collection, history, metadata, dispatch } = useStoreon(
+    'collection',
+    'history',
+    'metadata'
+  )
+
+  const resetCounter = useCallback(
+    () => dispatch('metadata/viewCount/reset'),
+    []
+  )
 
   return (
     <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -80,10 +89,10 @@ export const Stats: React.FC = props => {
             <div className="ml-5 w-0 flex-1">
               <dl>
                 <dt className="text-sm leading-5 font-medium text-gray-500 truncate">
-                  Total Views
+                  Total views
                 </dt>
                 <dd className="text-2xl leading-8 font-semibold text-gray-900">
-                  2,457
+                  {metadata.viewCount.toLocaleString()}
                 </dd>
               </dl>
             </div>
@@ -91,7 +100,10 @@ export const Stats: React.FC = props => {
         </div>
         <div className="bg-gray-50 px-4 py-4 sm:px-6">
           <div className="text-sm leading-5">
-            <button className="font-medium text-red-600 hover:text-red-500 transition ease-in-out duration-150">
+            <button
+              className="font-medium text-red-600 hover:text-red-500 transition ease-in-out duration-150"
+              onClick={resetCounter}
+            >
               Reset
             </button>
           </div>

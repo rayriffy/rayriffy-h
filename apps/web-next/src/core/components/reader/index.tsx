@@ -17,9 +17,10 @@ interface IProps {
 export const Reader: React.FC<IProps> = React.memo(props => {
   const { hentai, excludes = [] } = props
 
-  const { dispatch } = useStoreon('history')
+  const { dispatch } = useStoreon('history', 'metadata')
 
   useEffect(() => {
+    dispatch('metadata/viewCount/count')
     dispatch('history/toggle', {
       internal: false,
       data: hentai,

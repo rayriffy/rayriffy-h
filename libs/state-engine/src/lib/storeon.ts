@@ -11,10 +11,6 @@ import { settings } from './states/settings'
 import { SettingsStore } from './@types/SettingsStore'
 import { SettingsEvent } from './@types/SettingsEvent'
 
-import { subtitle } from './states/subtitle'
-import { SubtitleStore } from './@types/SubtitleStore'
-import { SubtitleEvent } from './@types/SubtitleEvent'
-
 import { history } from './states/history'
 import { HistoryStore } from './@types/HistoryStore'
 import { HistoryEvent } from './@types/HistoryEvent'
@@ -23,22 +19,26 @@ import { search } from './states/search'
 import { SearchStore } from './@types/SearchStore'
 import { SearchEvent } from './@types/SearchEvent'
 
+import { metadata } from './states/metadata'
+import { MetadataStore } from './@types/MetadataStore'
+import { MetadataEvent } from './@types/MetadataEvent'
+
 export type Store = CollectionStore &
   SettingsStore &
-  SubtitleStore &
   HistoryStore &
-  SearchStore
+  SearchStore &
+  MetadataStore
 export type Event = CollectionEvent &
   SettingsEvent &
-  SubtitleEvent &
   HistoryEvent &
-  SearchEvent
+  SearchEvent &
+  MetadataEvent
 
 export const store = createStoreon<Store, Event>([
   settings,
   collection,
-  subtitle,
   history,
+  metadata,
   search,
   ...(typeof window !== 'undefined'
     ? [
@@ -47,8 +47,7 @@ export const store = createStoreon<Store, Event>([
           storage: sessionStorage,
         }),
         crossTab({
-          filter: (event, data) =>
-            event !== 'subtitle/setSubtitle' || event.startsWith('search/'),
+          filter: (event, data) => event.toString().startsWith('search/'),
         }),
       ]
     : []),

@@ -2,7 +2,7 @@ import React from 'react'
 
 import { X } from '@rayriffy-h/icons'
 
-import { Transition } from '../../core/components/transition'
+import { Transition } from '@headlessui/react'
 import { MobileNavbar } from './navbar/mobile'
 import { Offline } from './offline'
 
