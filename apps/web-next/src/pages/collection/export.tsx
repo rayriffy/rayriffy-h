@@ -63,8 +63,8 @@ const Page: NextPage = props => {
                     Following data will be exported from this device
                   </div>
                   <div className="py-4">
-                    <div className="bg-gray-100 p-4 rounded-md text-sm text-gray-900 prose prose-sm mx-auto">
-                      <ul>
+                    <div className="bg-gray-100 p-4 rounded-md text-sm text-gray-900 px-12">
+                      <ul className="list-disc">
                         <li>
                           Collections: {collection.data.length.toLocaleString()}{' '}
                           galleries
