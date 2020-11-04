@@ -14,7 +14,7 @@ interface IProps {
 
 export const Cache: React.FC<IProps> = React.memo(props => {
   const [modal, setModal] = useState<boolean>(false)
-  const [isProgress, setIsProgress] = useState<boolean>(!false)
+  const [isProgress, setIsProgress] = useState<boolean>(false)
   const nextImages = useCache(props.cacheName)
 
   const toggleModal = useCallback(() => setModal(o => !o), [])
@@ -61,7 +61,7 @@ export const Cache: React.FC<IProps> = React.memo(props => {
             className="font-medium text-red-600 hover:red-blue-500 transition ease-in-out duration-150"
             onClick={toggleModal}
           >
-            Clear all
+            Purge
           </button>
         </div>
       </div>
@@ -120,7 +120,7 @@ export const Cache: React.FC<IProps> = React.memo(props => {
                         : 'bg-red-600 hover:bg-red-500 focus:border-red-700'
                     }`}
                   >
-                    {isProgress ? 'Removing...' : 'Remove'}
+                    {isProgress ? 'Purging...' : 'Purge'}
                   </button>
                 </span>
                 <span className="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
