@@ -22,11 +22,6 @@ module.exports = {
   },
   plugins: [require('@tailwindcss/ui'), require('tailwindcss-filters')],
   purge: {
-    content: [
-      './apps/web-next/src/**/*.js',
-      './apps/web-next/src/**/*.jsx',
-      './apps/web-next/src/**/*.ts',
-      './apps/web-next/src/**/*.tsx',
-    ],
+    enable: false,
   },
 }

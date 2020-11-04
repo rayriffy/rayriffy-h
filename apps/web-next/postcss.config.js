@@ -20,7 +20,7 @@ module.exports = {
           // './components/**/*.{js,jsx,ts,tsx}',
         ],
         safelist: ['html', 'body'],
-        defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
+        defaultExtractor: content => content.match(/[\w-/:.%]+(?<!:)/g) || [],
       },
     ],
   ],
