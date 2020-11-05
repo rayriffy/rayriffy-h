@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react'
 
 import { useRouter } from 'next/router'
 
-import { Unstable } from './unstable'
+// import { Unstable } from './unstable'
 import { ServiceWorker } from './serviceWorker'
 import { MobileHeader } from './header/mobile'
 import { MobileOverlay } from './mobileOverlay'
@@ -22,7 +22,7 @@ export const AppLayout: React.FC = props => {
 
   return (
     <React.Fragment>
-      <Unstable />
+      {/* <Unstable /> */}
       <div className="h-screen flex overflow-hidden bg-gray-50">
         <MobileOverlay show={sidebarOpen} onToggleSidebar={onToggleSidebar} />
         <DesktopHeader />
