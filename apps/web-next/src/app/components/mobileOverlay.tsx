@@ -2,7 +2,7 @@ import React from 'react'
 
 import { X } from '@rayriffy-h/icons'
 
-import { Transition } from '@headlessui/react'
+import { Transition } from '../../core/components/transition'
 import { MobileNavbar } from './navbar/mobile'
 import { Offline } from './offline'
 
@@ -17,8 +17,9 @@ export const MobileOverlay: React.FC<IProps> = React.memo(props => {
   return (
     <Transition show={show}>
       <div className="lg:hidden">
-        <Transition show={show} className="fixed inset-0 flex z-40">
-          <Transition.Child
+        <div className="fixed inset-0 flex z-40">
+          <Transition
+            show={show}
             enter="transition-opacity ease-linear duration-300"
             enterFrom="opacity-0"
             enterTo="opacity-100"
@@ -29,8 +30,9 @@ export const MobileOverlay: React.FC<IProps> = React.memo(props => {
             <div className="fixed inset-0">
               <div className="absolute inset-0 bg-gray-600 opacity-75"></div>
             </div>
-          </Transition.Child>
-          <Transition.Child
+          </Transition>
+          <Transition
+            show={show}
             enter="transition ease-in-out duration-300 transform"
             enterFrom="-translate-x-full"
             enterTo="translate-x-0"
@@ -64,8 +66,8 @@ export const MobileOverlay: React.FC<IProps> = React.memo(props => {
                 {/* Dummy element to force sidebar to shrink to fit close icon */}
               </div>
             </React.Fragment>
-          </Transition.Child>
-        </Transition>
+          </Transition>
+        </div>
       </div>
     </Transition>
   )
