@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { NextPage, GetStaticProps, GetStaticPaths } from 'next'
+import { NextPage, GetStaticProps } from 'next'
 
-import { chunk, reverse } from 'lodash'
+import { chunk, reverse, get } from 'lodash'
 
 import { getHentai, Hentai } from '@rayriffy-h/helper'
 import { itemsPerPage } from '@rayriffy-h/constants'
@@ -25,7 +25,7 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
   const chunks = chunk(reverse(codes), itemsPerPage)
 
   const galleries = await Promise.all(
-    chunks[0].map(
+    get(chunks, 0).map(
       async code => await getHentai(typeof code === 'number' ? code : code.code)
     )
   )
