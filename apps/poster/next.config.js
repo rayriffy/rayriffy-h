@@ -34,5 +34,10 @@ module.exports = withPlugins(
   [
     // [withPreact]
   ],
-  {}
+  {
+    target: 'serverless',
+    experimental: {
+      modern: true,
+    },
+  }
 )
