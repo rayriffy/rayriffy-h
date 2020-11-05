@@ -55,17 +55,3 @@ jobs:
         on:
           repo: rayriffy/rayriffy-h
           branch: master
-    - name: apps/poster
-      script:
-        - yarn nx test poster
-        - yarn nx e2e poster-e2e
-      before_deploy:
-        - yarn global add netlify-cli
-        - yarn nx export poster --skip-nx-cache
-      deploy:
-        provider: script
-        script: netlify deploy --dir=dist/apps/poster/exported --message "Automatic deployment from Travis CI" --prod --site $NETLIFY_POSTER_ID
-        edge: true
-        on:
-          repo: rayriffy/rayriffy-h
-          branch: master
