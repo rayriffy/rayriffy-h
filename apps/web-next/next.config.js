@@ -59,7 +59,6 @@ module.exports = withPlugins(
   [[withOffline], [withWorkers], [withBundleAnalyzer]],
   {
     target: 'serverless',
-    analyticsId: 'BzLafBo4gAyYPBzwTZDHBMipDaj',
     env: {
       buildNumber: moment().tz('Asia/Bangkok').format('YYYYMMDD.HH'),
     },
