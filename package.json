@@ -171,7 +171,7 @@
     "postcss-flexbugs-fixes": "^5.0.0",
     "postcss-nesting": "^7.0.1",
     "prettier": "^2.1.2",
-    "ts-jest": "26.4.3",
+    "ts-jest": "26.4.4",
     "ts-node": "^9.0.0",
     "tsconfig-paths": "^3.9.0",
     "tsconfig-paths-webpack-plugin": "^3.3.0",
