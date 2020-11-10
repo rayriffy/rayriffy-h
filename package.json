@@ -88,7 +88,7 @@
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.31",
-    "next": "^10.0.1",
+    "next": "10.0.0",
     "next-compose-plugins": "^2.2.1",
     "next-offline": "^5.0.3",
     "postcss-import": "^13.0.0",
