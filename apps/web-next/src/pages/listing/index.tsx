@@ -20,6 +20,9 @@ const Page: NextPage<IProps> = props => {
 }
 
 export const getStaticProps: GetStaticProps<IProps> = async context => {
+  // const fs = await import('fs')
+  // const path = await import('path')
+
   const { codes } = await import('@rayriffy-h/datasource')
 
   const chunks = chunk(reverse(codes), itemsPerPage)
@@ -29,10 +32,20 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
       async code => await getHentai(typeof code === 'number' ? code : code.code)
     )
   )
+  const filteredGalleries: Hentai[] = galleries.map(gallery => ({
+    ...gallery,
+    images: {
+      ...gallery.images,
+      pages: [],
+    },
+  }))
+
+  // Dump data into cache
+  // const cachePath
 
   return {
     props: {
-      galleries,
+      galleries: filteredGalleries,
       currentPage: 1,
       maxPage: chunks.length,
     },

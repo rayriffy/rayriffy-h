@@ -9,6 +9,7 @@ export const rawHentaiToHentai = (hentai: Hentai): Hentai => {
       cover: hentai.images.cover,
       pages: hentai.images.pages,
     },
+    num_pages: hentai.num_pages,
     tags: hentai.tags.map(o => ({
       id: o.id,
       name: o.name,

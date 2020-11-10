@@ -14,4 +14,5 @@ export interface Hentai {
     pages: Image[]
   }
   tags: Tag[]
+  num_pages: number
 }
