@@ -52,6 +52,15 @@ export const ServiceWorker: React.FC = React.memo(props => {
         .catch(e => {
           console.error(`Error during service worker registration:`, e)
         })
+
+      // destroy gatsby cache
+      caches.keys().then(keys => {
+        keys.map(async key => {
+          if (key.startsWith('gatsby-plugin-offline')) {
+            await caches.delete(key)
+          }
+        })
+      })
     }
   }, [])
 
