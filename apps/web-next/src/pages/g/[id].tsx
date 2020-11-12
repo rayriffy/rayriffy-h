@@ -3,10 +3,10 @@ import React from 'react'
 import { getHentai, Hentai } from '@rayriffy-h/helper'
 
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { useRouter } from 'next/router'
 
 import { Reader } from '../../core/components/reader'
 import { HeadTitle } from '../../core/components/headTitle'
-import { useRouter } from 'next/router'
 
 interface IProps {
   gallery: Hentai
@@ -76,13 +76,20 @@ export const getStaticProps: GetStaticProps = async context => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const { codes } = await import('@rayriffy-h/datasource')
+  const { itemsPerPage } = await import('@rayriffy-h/constants')
 
   return {
-    paths: codes.map(code => ({
-      params: {
-        id: typeof code == 'number' ? code.toString() : code.code.toString(),
-      },
-    })),
+    paths: codes
+      .reverse()
+      .slice(
+        0,
+        codes.length > itemsPerPage * 10 ? itemsPerPage * 10 : codes.length
+      )
+      .map(code => ({
+        params: {
+          id: typeof code == 'number' ? code.toString() : code.code.toString(),
+        },
+      })),
     fallback: true,
   }
 }
