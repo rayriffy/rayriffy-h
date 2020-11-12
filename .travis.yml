@@ -22,25 +22,6 @@ script:
 
 jobs:
   include:
-    - name: apps/web
-      script:
-        - yarn nx test web
-        - yarn nx e2e web-e2e
-      before_deploy:
-        - pyenv install --list
-        - pyenv install 3.6.3
-        - pyenv local 3.6.3
-        - python --version
-        - pip install git+https://github.com/naftulikay/travis-pls
-        - yarn global add netlify-cli
-        - yarn nx:highmem build web --skip-nx-cache
-      deploy:
-        provider: script
-        script: travis-pls -i 300 netlify deploy --dir=apps/web/public --message "Automatic deployment from Travis CI" --prod --site $NETLIFY_WEB_ID
-        edge: true
-        on:
-          repo: rayriffy/rayriffy-h
-          branch: master
     - name: apps/api
       script:
         - yarn nx test api
