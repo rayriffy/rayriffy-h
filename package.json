@@ -113,7 +113,7 @@
     "@nrwl/react": "10.3.1",
     "@nrwl/web": "10.3.1",
     "@nrwl/workspace": "10.3.1",
-    "@testing-library/react": "11.1.1",
+    "@testing-library/react": "11.1.2",
     "@types/cors": "^2.8.8",
     "@types/express": "^4.17.8",
     "@types/fs-extra": "^9.0.3",
