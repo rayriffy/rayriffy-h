@@ -73,8 +73,8 @@ module.exports = withPlugins(
     async rewrites() {
       return [
         {
-          source: '/service-worker.js',
-          destination: '/_next/static/service-worker.js',
+          source: '/sw.js',
+          destination: '/_next/static/sw.js',
         },
       ]
     },
@@ -89,9 +89,7 @@ module.exports = withPlugins(
     },
     dontAutoRegisterSw: true,
     workboxOpts: {
-      swDest: process.env.NEXT_EXPORT
-        ? 'service-worker.js'
-        : 'static/service-worker.js',
+      swDest: process.env.NEXT_EXPORT ? 'sw.js' : 'static/sw.js',
       runtimeCaching: [
         // if you are customizing your runtime cache rules, please note that the
         // first item in the runtime cache configuration array MUST be "start-url"

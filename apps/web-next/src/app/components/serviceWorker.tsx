@@ -17,7 +17,7 @@ export const ServiceWorker: React.FC = React.memo(props => {
     // Service worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
-        .register('/service-worker.js')
+        .register('/sw.js')
         .then(reg => {
           console.log('Service worker installed! ', reg)
 
