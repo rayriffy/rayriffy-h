@@ -27,7 +27,7 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
 
   const chunks = chunk(reverse(codes), itemsPerPage)
 
-  const galleries = await Promise.all(
+  const galleries: Hentai[] = await Promise.all(
     get(chunks, 0).map(
       async code => await getHentai(typeof code === 'number' ? code : code.code)
     )
