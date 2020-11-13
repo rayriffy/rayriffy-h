@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react'
 
 import { Search } from '@rayriffy-h/icons'
 
-import { debounce } from 'lodash'
+import debounce from 'lodash/debounce'
 
 import { useSearchAvailable } from '../../services/useSearchAvailable'
 import { useSearch } from '../../services/useSearch'

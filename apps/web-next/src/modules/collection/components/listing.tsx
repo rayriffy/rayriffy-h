@@ -3,7 +3,7 @@ import React, { useCallback, useMemo } from 'react'
 import { useStoreon } from '@rayriffy-h/state-engine'
 import { itemsPerPage } from '@rayriffy-h/constants'
 
-import { chunk } from 'lodash'
+import chunk from 'lodash/chunk'
 
 import { Pagination } from '../../../core/components/pagination'
 import { Listing } from '../../../core/components/listing'

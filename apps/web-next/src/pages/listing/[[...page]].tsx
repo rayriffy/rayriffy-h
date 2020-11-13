@@ -2,7 +2,9 @@ import React from 'react'
 
 import { NextPage, GetStaticProps, GetStaticPaths } from 'next'
 
-import { chunk, reverse, get } from 'lodash'
+import chunk from 'lodash/chunk'
+import reverse from 'lodash/reverse'
+import get from 'lodash/get'
 
 import { getHentai, Hentai } from '@rayriffy-h/helper'
 import { itemsPerPage } from '@rayriffy-h/constants'

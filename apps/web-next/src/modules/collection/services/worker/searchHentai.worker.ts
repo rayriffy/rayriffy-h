@@ -1,4 +1,6 @@
-import { get, intersection, union } from 'lodash'
+import get from 'lodash/get'
+import intersection from 'lodash/intersection'
+import union from 'lodash/union'
 
 import { Hentai } from '@rayriffy-h/helper'
 
