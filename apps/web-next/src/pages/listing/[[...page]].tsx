@@ -7,7 +7,7 @@ import { chunk, reverse, get } from 'lodash'
 import { getHentai, Hentai } from '@rayriffy-h/helper'
 import { itemsPerPage } from '@rayriffy-h/constants'
 
-import { ListingModule } from '../../../modules/listing/components'
+import { ListingModule } from '../../modules/listing/components'
 
 interface IProps {
   galleries: Hentai[]
@@ -22,18 +22,31 @@ const Page: NextPage<IProps> = props => {
 export const getStaticProps: GetStaticProps<IProps> = async context => {
   const { codes } = await import('@rayriffy-h/datasource')
 
+  const { params } = context
+  const currentPage = Number(get(params, 'page[1]', '1'))
+
   const chunks = chunk(reverse(codes), itemsPerPage)
 
   const galleries = await Promise.all(
-    get(chunks, Number(context.params.page) - 1).map(
+    get(chunks, currentPage - 1).map(
       async code => await getHentai(typeof code === 'number' ? code : code.code)
     )
   )
+  const filteredGalleries: Hentai[] = galleries.map(gallery => ({
+    ...gallery,
+    images: {
+      ...gallery.images,
+      pages: [],
+    },
+  }))
+
+  // Dump data into cache
+  // const cachePath
 
   return {
     props: {
-      galleries,
-      currentPage: Number(context.params.page),
+      galleries: filteredGalleries,
+      currentPage,
       maxPage: chunks.length,
     },
   }
@@ -49,14 +62,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
       .map((_, i) => {
         const page = i + 1
 
-        if (page === 1) {
-          return undefined
-        } else {
-          return {
-            params: {
-              page: page.toString(),
-            },
-          }
+        return {
+          params: {
+            page: page === 1 ? [] : ['p', page.toString()],
+          },
         }
       })
       .filter(o => o !== undefined),
