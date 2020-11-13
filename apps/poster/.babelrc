@@ -4,7 +4,7 @@
   ],
   "plugins": [
     [
-      "emotion",
+      "@emotion",
       {
         "sourceMap": true,
         "cssPropOptimization": true
