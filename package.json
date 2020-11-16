@@ -45,7 +45,7 @@
     "@fullhuman/postcss-purgecss": "^3.0.0",
     "@headlessui/react": "^0.2.0",
     "@next/bundle-analyzer": "^10.0.1",
-    "@nrwl/nx-cloud": "10.1.8",
+    "@nrwl/nx-cloud": "10.1.9",
     "@storeon/crosstab": "^1.0.2",
     "@storeon/localstorage": "^1.2.0",
     "@tailwindcss/ui": "^0.7.2",
