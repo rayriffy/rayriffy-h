@@ -26,6 +26,7 @@ export const CollectionListing: React.FC = React.memo(props => {
           ),
     [collection, query]
   )
+
   const maxPage = useMemo(() => chunk(searchResult, itemsPerPage).length, [
     searchResult,
   ])

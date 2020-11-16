@@ -9,8 +9,10 @@ type RouteByType = {
 export const useSearchAvailable = () => {
   const router = useRouter()
 
+  console.log(router)
+
   const routeByType: RouteByType = {
-    listing: ['/listing', '/listing/p/[page]'],
+    listing: ['/listing/[[...page]]'],
     collection: ['/collection'],
     main: ['/', '/p/[page]'],
   }
@@ -18,7 +20,7 @@ export const useSearchAvailable = () => {
   const availableType = useMemo(
     () =>
       (Object.entries(routeByType).find(([key, val]) =>
-        val.includes(router.route)
+        val.includes(router.pathname)
       ) ?? [])[0],
     [router]
   )
