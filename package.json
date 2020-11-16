@@ -69,6 +69,7 @@
     "next-compose-plugins": "^2.2.1",
     "next-offline": "^5.0.3",
     "next-plugin-preact": "^3.0.3",
+    "playwright": "^1.6.1",
     "postcss-import": "^13.0.0",
     "preact": "^10.5.7",
     "preact-render-to-string": "^5.1.11",

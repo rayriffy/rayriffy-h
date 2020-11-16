@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useEffect, useMemo } from 'react'
 
 import { useRouter } from 'next/router'
 
@@ -20,23 +20,36 @@ export const AppLayout: React.FC = props => {
 
   const onToggleSidebar = useCallback(() => setSidebarOpen(o => !o), [])
 
-  return (
-    <React.Fragment>
-      {/* <Unstable /> */}
-      <div className="h-screen flex overflow-hidden bg-gray-50">
-        <MobileOverlay show={sidebarOpen} onToggleSidebar={onToggleSidebar} />
-        <DesktopHeader />
-        <div className="flex flex-col w-0 flex-1 overflow-hidden">
-          <MobileHeader onToggleSidebar={onToggleSidebar} />
-          <main
-            className="flex-1 relative z-0 overflow-y-auto focus:outline-none"
-            tabIndex={0}
-          >
-            {children}
-          </main>
+  const isHideLayout = useMemo(() => ['/og/[id]'].includes(router.pathname), [
+    router.pathname,
+  ])
+
+  if (isHideLayout) {
+    return (
+      <React.Fragment>
+        {/* boop */}
+        {children}
+      </React.Fragment>
+    )
+  } else {
+    return (
+      <React.Fragment>
+        {/* <Unstable /> */}
+        <div className="h-screen flex overflow-hidden bg-gray-50">
+          <MobileOverlay show={sidebarOpen} onToggleSidebar={onToggleSidebar} />
+          <DesktopHeader />
+          <div className="flex flex-col w-0 flex-1 overflow-hidden">
+            <MobileHeader onToggleSidebar={onToggleSidebar} />
+            <main
+              className="flex-1 relative z-0 overflow-y-auto focus:outline-none"
+              tabIndex={0}
+            >
+              {children}
+            </main>
+          </div>
         </div>
-      </div>
-      <ServiceWorker />
-    </React.Fragment>
-  )
+        <ServiceWorker />
+      </React.Fragment>
+    )
+  }
 }

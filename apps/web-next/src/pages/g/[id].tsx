@@ -38,7 +38,10 @@ const Page: NextPage<IProps> = props => {
   } else {
     return (
       <React.Fragment>
-        <HeadTitle title={gallery.title.pretty} />
+        <HeadTitle title={gallery.title.pretty}>
+          <meta property="og:image" content={`/api/og/${gallery.id}`} />
+          <meta property="twitter:image" content={`/api/og/${gallery.id}`} />
+        </HeadTitle>
         <Reader {...{ hentai: gallery, excludes }} />
       </React.Fragment>
     )
