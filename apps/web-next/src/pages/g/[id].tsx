@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { getHentai, Hentai } from '@rayriffy-h/helper'
+import { Hentai } from '@rayriffy-h/helper'
 
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 

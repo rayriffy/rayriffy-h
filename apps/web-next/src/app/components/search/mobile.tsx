@@ -7,7 +7,7 @@ import debounce from 'lodash/debounce'
 import { useSearchAvailable } from '../../services/useSearchAvailable'
 import { useSearch } from '../../services/useSearch'
 
-export const MobileSearch: React.FC = React.memo(props => {
+export const MobileSearch: React.FC = props => {
   const { isAvailable, availableType } = useSearchAvailable()
 
   const { query, dispatch } = useSearch(availableType)
@@ -21,7 +21,7 @@ export const MobileSearch: React.FC = React.memo(props => {
         })
       }
     }, 500),
-    [availableType]
+    []
   )
 
   const onChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
@@ -70,4 +70,4 @@ export const MobileSearch: React.FC = React.memo(props => {
       </div>
     </div>
   )
-})
+}

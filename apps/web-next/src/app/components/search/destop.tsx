@@ -7,11 +7,12 @@ import debounce from 'lodash/debounce'
 import { useSearchAvailable } from '../../services/useSearchAvailable'
 import { useSearch } from '../../services/useSearch'
 
-export const DesktopSearch: React.FC = React.memo(props => {
+export const DesktopSearch: React.FC = props => {
   const { isAvailable, availableType } = useSearchAvailable()
 
   const { query, dispatch } = useSearch(availableType)
   const [input, setInput] = useState(query ?? '')
+
   const setDebounceInput = useCallback<(val: string) => void>(
     debounce(value => {
       if (availableType !== undefined) {
@@ -60,4 +61,4 @@ export const DesktopSearch: React.FC = React.memo(props => {
       </div>
     </div>
   )
-})
+}
