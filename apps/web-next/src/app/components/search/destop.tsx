@@ -7,7 +7,7 @@ import debounce from 'lodash/debounce'
 import { useSearchAvailable } from '../../services/useSearchAvailable'
 import { useSearch } from '../../services/useSearch'
 
-export const DesktopSearch: React.FC = props => {
+export const DesktopSearch: React.FC = React.memo(props => {
   const { isAvailable, availableType } = useSearchAvailable()
 
   const { query, dispatch } = useSearch(availableType)
@@ -61,4 +61,4 @@ export const DesktopSearch: React.FC = props => {
       </div>
     </div>
   )
-}
+})

@@ -7,7 +7,7 @@ import debounce from 'lodash/debounce'
 import { useSearchAvailable } from '../../services/useSearchAvailable'
 import { useSearch } from '../../services/useSearch'
 
-export const MobileSearch: React.FC = props => {
+export const MobileSearch: React.FC = React.memo(props => {
   const { isAvailable, availableType } = useSearchAvailable()
 
   const { query, dispatch } = useSearch(availableType)
@@ -33,8 +33,11 @@ export const MobileSearch: React.FC = props => {
   )
 
   useEffect(() => {
+    console.log('availableType 2: ', availableType)
+  }, [availableType])
+
+  useEffect(() => {
     if (availableType !== undefined) {
-      console.log('availableType', availableType)
       setInput(query)
     }
   }, [query])
@@ -70,4 +73,4 @@ export const MobileSearch: React.FC = props => {
       </div>
     </div>
   )
-}
+})
