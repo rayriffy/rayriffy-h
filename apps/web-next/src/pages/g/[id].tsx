@@ -47,6 +47,9 @@ const Page: NextPage<IProps> = props => {
 
 export const getStaticProps: GetStaticProps = async context => {
   const { codes } = await import('@rayriffy-h/datasource')
+  const { getHentaiFromCache } = await import(
+    '../../core/services/getHentaiFromCache'
+  )
 
   try {
     // Find exclude properties
@@ -54,7 +57,7 @@ export const getStaticProps: GetStaticProps = async context => {
       typeof o === 'number' ? false : o.code.toString() === context.params.id
     )
 
-    const hentai = await getHentai(context.params.id as string)
+    const hentai = await getHentaiFromCache(context.params.id as string)
 
     return {
       props: {
