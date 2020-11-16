@@ -33,10 +33,6 @@ export const MobileSearch: React.FC = React.memo(props => {
   )
 
   useEffect(() => {
-    console.log('availableType 2: ', availableType)
-  }, [availableType])
-
-  useEffect(() => {
     if (availableType !== undefined) {
       setInput(query)
     }
