@@ -21,7 +21,7 @@ export const MobileSearch: React.FC = React.memo(props => {
         })
       }
     }, 500),
-    []
+    [availableType]
   )
 
   const onChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
@@ -34,6 +34,7 @@ export const MobileSearch: React.FC = React.memo(props => {
 
   useEffect(() => {
     if (availableType !== undefined) {
+      console.log('availableType', availableType)
       setInput(query)
     }
   }, [query])

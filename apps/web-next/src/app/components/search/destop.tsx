@@ -21,7 +21,7 @@ export const DesktopSearch: React.FC = React.memo(props => {
         })
       }
     }, 500),
-    []
+    [availableType]
   )
 
   const onChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(

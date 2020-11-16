@@ -15,10 +15,6 @@ export const useSearchAvailable = () => {
     main: ['/', '/p/[page]'],
   }
 
-  useEffect(() => {
-    console.log(router)
-  }, [router])
-
   const availableType = useMemo(() => {
     return (Object.entries(routeByType).find(([key, val]) =>
       val.includes(router.pathname)
