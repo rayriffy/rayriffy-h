@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { SearchStore } from '@rayriffy-h/state-engine'
 
@@ -15,9 +15,11 @@ export const useSearchAvailable = () => {
     main: ['/', '/p/[page]'],
   }
 
-  const availableType = useMemo(() => {
+  useEffect(() => {
     console.log(router)
+  }, [router])
 
+  const availableType = useMemo(() => {
     return (Object.entries(routeByType).find(([key, val]) =>
       val.includes(router.pathname)
     ) ?? [])[0]
