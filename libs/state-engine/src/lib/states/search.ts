@@ -41,8 +41,6 @@ export const search: StoreonModule<SearchStore, SearchEvent> = store => {
       ...state,
     }
 
-    console.log('call')
-
     payload.search[event.target] = {
       query: event.value,
       page: 1,
