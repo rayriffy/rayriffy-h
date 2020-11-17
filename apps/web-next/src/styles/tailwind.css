@@ -26,3 +26,8 @@ html, body, #__next {
   border-left-color: transparent;
   animation: spinnerSpin 0.45s linear infinite;
 }
+
+.font-noto {
+  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
+}

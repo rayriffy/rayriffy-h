@@ -2,7 +2,8 @@ import express from 'express'
 
 import { APIResponse } from '@rayriffy-h/helper'
 
-import * as playwright from 'playwright-aws-lambda'
+import puppeteer from 'puppeteer-core'
+import chrome from 'chrome-aws-lambda'
 
 const router = express.Router()
 
@@ -10,9 +11,27 @@ router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params
 
-    const browser = await playwright.launchChromium()
+    await chrome.font(
+      'https://cdn.jsdelivr.net/gh/googlefonts/noto-fonts@master/hinted/ttf/NotoSans/NotoSans-Regular.ttf'
+    )
+    await chrome.font(
+      'https://cdn.jsdelivr.net/gh/googlefonts/noto-fonts@master/hinted/ttf/NotoSans/NotoSans-Medium.ttf'
+    )
+    await chrome.font(
+      'https://cdn.jsdelivr.net/gh/googlefonts/noto-fonts@master/hinted/ttf/NotoSans/NotoSans-SemiBold.ttf'
+    )
+    await chrome.font(
+      'https://cdn.jsdelivr.net/gh/googlefonts/noto-fonts@master/hinted/ttf/NotoSans/NotoSans-Bold.ttf'
+    )
+
+    const browser = await puppeteer.launch({
+      headless: true,
+      args: chrome.args,
+      executablePath:
+        (await chrome.executablePath) || '/usr/bin/chromium-browser',
+    })
     const page = await browser.newPage()
-    await page.setViewportSize({
+    await page.setViewport({
       width: 1200,
       height: 630,
     })
@@ -20,7 +39,7 @@ router.get('/:id', async (req, res) => {
     await page.goto(`https://h.rayriffy.com/og/${id}`)
     await page.waitForTimeout(1000)
     // await page.waitForNavigation({
-    //   waitUntil: 'networkidle',
+    //   waitUntil: 'networkidle2',
     // })
     // await page.waitForNavigation()
     // await page.waitForSelector('#image-cover')
