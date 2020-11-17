@@ -63,7 +63,7 @@
     "isomorphic-unfetch": "^3.1.0",
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
-    "moment-timezone": "^0.5.31",
+    "moment-timezone": "^0.5.32",
     "next": "10.0.0",
     "next-compose-plugins": "^2.2.1",
     "next-offline": "^5.0.3",
