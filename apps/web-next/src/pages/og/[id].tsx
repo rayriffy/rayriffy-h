@@ -3,7 +3,7 @@ import React from 'react'
 import { GetServerSideProps, NextPage } from 'next'
 import Image from 'next/image'
 
-import { getImageUrl, Hentai } from '@rayriffy-h/helper'
+import { getHentai, getImageUrl, Hentai } from '@rayriffy-h/helper'
 
 import { TagRenderer } from '../../core/components/reader/tagRenderer'
 import Head from 'next/head'
@@ -63,19 +63,17 @@ const Page: NextPage<IProps> = props => {
 }
 
 export const getServerSideProps: GetServerSideProps<IProps> = async context => {
-  const { getHentaiFromCache } = await import(
-    '../../core/services/getHentaiFromCache'
-  )
-
   try {
-    const hentai = await getHentaiFromCache(context.params.id as string)
+    const hentai = await getHentai(context.params.id as string)
 
     return {
       props: {
         gallery: hentai,
       },
     }
-  } catch {
+  } catch (e) {
+    console.error(e)
+
     return {
       notFound: true,
     }

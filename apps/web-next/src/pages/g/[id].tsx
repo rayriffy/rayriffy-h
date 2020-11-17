@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Hentai } from '@rayriffy-h/helper'
+import { getHentai, Hentai } from '@rayriffy-h/helper'
 
 import { GetServerSideProps, NextPage } from 'next'
 
@@ -35,9 +35,6 @@ const Page: NextPage<IProps> = props => {
 
 export const getServerSideProps: GetServerSideProps = async context => {
   const { codes } = await import('@rayriffy-h/datasource')
-  const { getHentaiFromCache } = await import(
-    '../../core/services/getHentaiFromCache'
-  )
 
   try {
     // Find exclude properties
@@ -45,7 +42,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
       typeof o === 'number' ? false : o.code.toString() === context.params.id
     )
 
-    const hentai = await getHentaiFromCache(context.params.id as string)
+    const hentai = await getHentai(context.params.id as string)
 
     return {
       props: {
@@ -58,7 +55,9 @@ export const getServerSideProps: GetServerSideProps = async context => {
             : [],
       },
     }
-  } catch {
+  } catch (e) {
+    console.error(e)
+
     return {
       notFound: true,
     }
