@@ -21,6 +21,7 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
   const { codes } = await import('@rayriffy-h/datasource')
   const { default: chain } = await import('lodash/chain')
   const { default: get } = await import('lodash/get')
+  const { default: chunk } = await import('lodash/chunk')
 
   const { params } = context
   const currentPage = Number(get(params, 'page[1]', '1'))
@@ -48,7 +49,7 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
     props: {
       galleries: filteredGalleries,
       currentPage,
-      maxPage: chain(codes).chunk(itemsPerPage).value().length,
+      maxPage: chunk(codes, itemsPerPage).length,
     },
   }
 }
