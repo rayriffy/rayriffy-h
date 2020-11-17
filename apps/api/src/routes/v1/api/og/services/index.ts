@@ -2,7 +2,7 @@ import express from 'express'
 
 import { APIResponse } from '@rayriffy-h/helper'
 
-import { webkit } from 'playwright'
+import playwright from 'playwright-aws-lambda'
 
 const router = express.Router()
 
@@ -10,9 +10,7 @@ router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params
 
-    const browser = await webkit.launch({
-      headless: true,
-    })
+    const browser = await playwright.launchChromium()
     const page = await browser.newPage()
     await page.setViewportSize({
       width: 1200,
@@ -35,7 +33,9 @@ router.get('/:id', async (req, res) => {
 
     res.setHeader('Content-Type', 'image/jpeg')
     res.end(raw)
-  } catch {
+  } catch (e) {
+    console.error(e)
+
     const response: APIResponse<never> = {
       status: 'failed',
       code: 500,
