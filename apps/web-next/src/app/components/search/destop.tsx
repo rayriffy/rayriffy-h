@@ -10,6 +10,8 @@ import { useSearch } from '../../services/useSearch'
 export const DesktopSearch: React.FC = React.memo(props => {
   const { isAvailable, availableType } = useSearchAvailable()
 
+  console.log('availableType', availableType)
+
   const { query, dispatch } = useSearch(availableType)
   const [input, setInput] = useState(query ?? '')
 
@@ -22,7 +24,7 @@ export const DesktopSearch: React.FC = React.memo(props => {
         })
       }
     }, 500),
-    [availableType]
+    []
   )
 
   const onChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
