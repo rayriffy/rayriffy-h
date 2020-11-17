@@ -19,15 +19,14 @@ const Page: NextPage<IProps> = props => {
 
 export const getStaticProps: GetStaticProps<IProps> = async context => {
   const { codes } = await import('@rayriffy-h/datasource')
-  const { default: chain } = await import('lodash/chain')
+  const { default: _ } = await import('lodash')
   const { default: get } = await import('lodash/get')
-  const { default: chunk } = await import('lodash/chunk')
 
   const { params } = context
   const currentPage = Number(get(params, 'page[1]', '1'))
 
   const galleries = await Promise.all(
-    chain(codes)
+    _.chain(codes)
       .reverse()
       .chunk(itemsPerPage)
       .get(currentPage - 1)
@@ -49,17 +48,17 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
     props: {
       galleries: filteredGalleries,
       currentPage,
-      maxPage: chunk(codes, itemsPerPage).length,
+      maxPage: _.chain(codes).chunk(itemsPerPage).value().length,
     },
   }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const { codes } = await import('@rayriffy-h/datasource')
-  const { default: chain } = await import('lodash/chain')
+  const { default: _ } = await import('lodash')
 
   return {
-    paths: chain(codes)
+    paths: _.chain(codes)
       .chunk(itemsPerPage)
       .map((_, i) => {
         const page = i + 1
@@ -70,7 +69,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
           },
         }
       })
-      .filter(o => o !== undefined)
       .value(),
     fallback: false,
   }
