@@ -1,6 +1,6 @@
 import { NextApiHandler } from 'next'
 
-import playwright from 'playwright-aws-lambda'
+import * as playwright from 'playwright-aws-lambda'
 
 const api: NextApiHandler = async (req, res) => {
   const { id } = req.query

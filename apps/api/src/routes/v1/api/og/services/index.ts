@@ -2,7 +2,7 @@ import express from 'express'
 
 import { APIResponse } from '@rayriffy-h/helper'
 
-import playwright from 'playwright-aws-lambda'
+import * as playwright from 'playwright-aws-lambda'
 
 const router = express.Router()
 
