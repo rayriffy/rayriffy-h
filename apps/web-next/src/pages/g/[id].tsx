@@ -39,8 +39,14 @@ const Page: NextPage<IProps> = props => {
     return (
       <React.Fragment>
         <HeadTitle title={gallery.title.pretty}>
-          <meta property="og:image" content={`/api/og/${gallery.id}`} />
-          <meta property="twitter:image" content={`/api/og/${gallery.id}`} />
+          <meta
+            property="og:image"
+            content={`https://h.api.rayriffy.com/v1/og/${gallery.id}`}
+          />
+          <meta
+            property="twitter:image"
+            content={`https://h.api.rayriffy.com/v1/og/${gallery.id}`}
+          />
         </HeadTitle>
         <Reader {...{ hentai: gallery, excludes }} />
       </React.Fragment>
