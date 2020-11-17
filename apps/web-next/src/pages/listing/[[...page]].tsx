@@ -2,10 +2,6 @@ import React from 'react'
 
 import { NextPage, GetStaticProps, GetStaticPaths } from 'next'
 
-import chunk from 'lodash/chunk'
-import reverse from 'lodash/reverse'
-import get from 'lodash/get'
-
 import { getHentai, Hentai } from '@rayriffy-h/helper'
 import { itemsPerPage } from '@rayriffy-h/constants'
 
@@ -23,16 +19,22 @@ const Page: NextPage<IProps> = props => {
 
 export const getStaticProps: GetStaticProps<IProps> = async context => {
   const { codes } = await import('@rayriffy-h/datasource')
+  const { default: chain } = await import('lodash/chain')
+  const { default: get } = await import('lodash/get')
 
   const { params } = context
   const currentPage = Number(get(params, 'page[1]', '1'))
 
-  const chunks = chunk(reverse(codes), itemsPerPage)
-
   const galleries = await Promise.all(
-    get(chunks, currentPage - 1).map(
-      async code => await getHentai(typeof code === 'number' ? code : code.code)
-    )
+    chain(codes)
+      .reverse()
+      .chunk(itemsPerPage)
+      .get(currentPage - 1)
+      .map(
+        async code =>
+          await getHentai(typeof code === 'number' ? code : code.code)
+      )
+      .value()
   )
   const filteredGalleries: Hentai[] = galleries.map(gallery => ({
     ...gallery,
@@ -42,25 +44,22 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
     },
   }))
 
-  // Dump data into cache
-  // const cachePath
-
   return {
     props: {
       galleries: filteredGalleries,
       currentPage,
-      maxPage: chunks.length,
+      maxPage: chain(codes).chunk(itemsPerPage).value().length,
     },
   }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const { codes } = await import('@rayriffy-h/datasource')
-
-  const chunks = chunk(reverse(codes), itemsPerPage)
+  const { default: chain } = await import('lodash/chain')
 
   return {
-    paths: chunks
+    paths: chain(codes)
+      .chunk(itemsPerPage)
       .map((_, i) => {
         const page = i + 1
 
@@ -70,7 +69,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
           },
         }
       })
-      .filter(o => o !== undefined),
+      .filter(o => o !== undefined)
+      .value(),
     fallback: false,
   }
 }
