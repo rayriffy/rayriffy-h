@@ -19,7 +19,7 @@ export const getHentaiFromCache = async (
   const cacheDirectory = path.join(process.cwd(), './.cache')
 
   // If cacheDirectory does not exist, then create one
-  if (fs.existsSync(cacheDirectory)) {
+  if (!fs.existsSync(cacheDirectory)) {
     fs.mkdirSync(cacheDirectory)
   }
 
