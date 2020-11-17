@@ -10,8 +10,6 @@ import { useSearch } from '../../services/useSearch'
 export const DesktopSearch: React.FC = React.memo(props => {
   const { isAvailable, availableType } = useSearchAvailable()
 
-  console.log('availableType', availableType)
-
   const { query, dispatch } = useSearch(availableType)
   const [input, setInput] = useState(query ?? '')
 
@@ -29,7 +27,7 @@ export const DesktopSearch: React.FC = React.memo(props => {
       setInput(value)
       setDebounceInput(value)
     },
-    []
+    [availableType]
   )
 
   useEffect(() => {

@@ -26,7 +26,7 @@ export const MobileSearch: React.FC = React.memo(props => {
       setInput(value)
       setDebounceInput(value)
     },
-    []
+    [availableType]
   )
 
   useEffect(() => {
