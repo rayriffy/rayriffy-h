@@ -37,7 +37,7 @@ router.get('/:id', async (req, res) => {
     })
 
     await page.goto(`https://h.rayriffy.com/og/${id}`)
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(500)
     // await page.waitForNavigation({
     //   waitUntil: 'networkidle2',
     // })
