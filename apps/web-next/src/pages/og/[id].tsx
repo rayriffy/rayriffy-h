@@ -48,7 +48,7 @@ const Page: NextPage<IProps> = props => {
               <h1 className="font-bold text-4xl text-gray-900 leading-tight">
                 {gallery.title.pretty}
               </h1>
-              <h3 className="font-medium text-xl text-gray-500 pt-2">
+              <h3 className="font-semibold text-lg text-gray-500 pt-2">
                 {gallery.title.japanese}
               </h3>
             </div>
