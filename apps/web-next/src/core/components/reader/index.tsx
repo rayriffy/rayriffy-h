@@ -49,12 +49,15 @@ export const Reader: React.FC<IProps> = React.memo(props => {
         </div>
         <div className="text-gray-800 pl-6">
           <p className="font-semibold text-gray-500 text-md">{hentai.id}</p>
-          <h1 className="font-bold text-2xl leading-tight py-2 text-gray-700">
+          <h1 className="font-bold text-2xl leading-tight pt-2 text-gray-700">
             {hentai.title.pretty}
           </h1>
-          <h2 className="font-bold text-gray-500 text-md pb-2">
+          <h2 className="font-bold text-gray-500 text-md">
             {hentai.title.japanese}
           </h2>
+          <span className="text-gray-500 text-sm font-bold">
+            {hentai.images.pages.length - excludes.length} Pages
+          </span>
           <TagRenderer tags={hentai.tags} />
           <div className="py-6">
             <Favorite hentai={hentai} />

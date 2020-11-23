@@ -41,7 +41,7 @@ export const AppLayout: React.FC = props => {
           <div className="flex flex-col w-0 flex-1 overflow-hidden">
             <MobileHeader onToggleSidebar={onToggleSidebar} />
             <main
-              className="flex-1 relative z-0 overflow-y-auto focus:outline-none"
+              className="flex-1 relative z-0 overflow-y-auto focus:outline-none pb-6"
               tabIndex={0}
             >
               {children}

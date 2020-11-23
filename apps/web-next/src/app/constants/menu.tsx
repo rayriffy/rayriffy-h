@@ -1,4 +1,11 @@
-import { Home, Archive, Bookmark, Clock, Cog } from '@rayriffy-h/icons'
+import {
+  Home,
+  Archive,
+  Bookmark,
+  Clock,
+  Cog,
+  CursorClick,
+} from '@rayriffy-h/icons'
 
 export interface IMenu {
   icon: React.FC<React.SVGProps<SVGSVGElement>>
@@ -18,7 +25,13 @@ export const menus: IMenu[] = [
     icon: Archive,
     link: '/listing',
     name: 'Listing',
-    match: ['/listing', '/listing/p/[page]'],
+    match: ['/listing/[[...page]]'],
+  },
+  {
+    icon: CursorClick,
+    link: '/custom',
+    name: 'Custom',
+    match: ['/custom'],
   },
   {
     icon: Bookmark,
