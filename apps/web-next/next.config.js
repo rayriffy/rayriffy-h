@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const moment = require('moment-timezone')
+const dayjs = require('dayjs')
+const utc = require('dayjs/plugin/utc')
+const timezone = require('dayjs/plugin/timezone')
 
 const withPlugins = require('next-compose-plugins')
 
@@ -10,18 +12,20 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 const withPreact = require('next-plugin-preact')
 
+dayjs.extend(utc)
+dayjs.extend(timezone)
+
 module.exports = withPlugins(
   [[withOffline], [withWorkers], [withPreact], [withBundleAnalyzer]],
   {
     target: 'serverless',
     env: {
-      buildNumber: moment().tz('Asia/Bangkok').format('YYYYMMDD.HH'),
+      buildNumber: dayjs.tz(dayjs(), 'Asia/Bangkok').format('YYYYMMDD.HH'),
     },
     images: {
       domains: ['i.nhentai.net', 't.nhentai.net'],
     },
     experimental: {
-      modern: true,
       optimizeImages: true,
       scrollRestoration: true,
     },
