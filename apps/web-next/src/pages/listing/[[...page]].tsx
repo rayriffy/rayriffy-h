@@ -25,17 +25,22 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
   const { params } = context
   const currentPage = Number(get(params, 'page[1]', '1'))
 
-  const galleries = await Promise.all(
+  const gallerieCodes = await Promise.all(
     _.chain(codes)
       .reverse()
       .chunk(itemsPerPage)
       .get(currentPage - 1)
-      .map(
-        async code =>
-          await getHentai(typeof code === 'number' ? code : code.code)
-      )
       .value()
   )
+
+  const promises: Promise<Hentai>[] = []
+  for (const code of gallerieCodes) {
+    const gallery = getHentai(typeof code === 'number' ? code : code.code)
+    promises.push(gallery)
+  }
+
+  const galleries = await Promise.all(promises)
+
   const filteredGalleries: Hentai[] = galleries.map(gallery => ({
     ...gallery,
     images: {
