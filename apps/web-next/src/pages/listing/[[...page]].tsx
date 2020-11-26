@@ -21,17 +21,12 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
   const { codes } = await import('@rayriffy-h/datasource')
   const { default: _ } = await import('lodash')
   const { default: get } = await import('lodash/get')
+  const { getPage } = await import('../../core/services/getPage')
 
   const { params } = context
   const currentPage = Number(get(params, 'page[1]', '1'))
 
-  const gallerieCodes = await Promise.all(
-    _.chain(codes)
-      .reverse()
-      .chunk(itemsPerPage)
-      .get(currentPage - 1)
-      .value()
-  )
+  const gallerieCodes = getPage(currentPage)
 
   const promises: Promise<Hentai>[] = []
   for (const code of gallerieCodes) {
