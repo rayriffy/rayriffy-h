@@ -6,6 +6,6 @@ import get from 'lodash/get'
 import reverse from 'lodash/reverse'
 
 export const getPage = (page: number) => {
-  const chunkedCodes = reverse(chunk(codes, itemsPerPage))
+  const chunkedCodes = chunk(reverse(codes), itemsPerPage)
   return get(chunkedCodes, page - 1)
 }
