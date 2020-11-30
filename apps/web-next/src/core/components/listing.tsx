@@ -17,8 +17,9 @@ const Component: React.FC<IProps> = React.memo(props => {
 
   const mediaMd = useMedia('(min-width: 768px)')
   const mediaLg = useMedia('(min-width: 1024px)')
+  const mediaXl = useMedia('(min-width: 1280px)')
 
-  const column = useMemo(() => (mediaLg ? 5 : mediaMd ? 3 : 2), [
+  const column = useMemo(() => (mediaXl ? 5 : mediaLg ? 4 : mediaMd ? 3 : 2), [
     mediaLg,
     mediaMd,
   ])
@@ -28,7 +29,15 @@ const Component: React.FC<IProps> = React.memo(props => {
       {columnShuffle(galleries, column).map((chunk, i) => (
         <section
           key={`listing-section-${i}`}
-          className={column === 2 ? 'w-1/2' : column === 3 ? 'w-1/3' : 'w-1/5'}
+          className={
+            column === 2
+              ? 'w-1/2'
+              : column === 3
+              ? 'w-1/3'
+              : column === 4
+              ? 'w-1/4'
+              : 'w-1/5'
+          }
         >
           {chunk.map(hentai => (
             <div key={`poster-${hentai.id}`} className="p-3">
