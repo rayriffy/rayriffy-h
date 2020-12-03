@@ -20,9 +20,10 @@ export const AppLayout: React.FC = props => {
 
   const onToggleSidebar = useCallback(() => setSidebarOpen(o => !o), [])
 
-  const isHideLayout = useMemo(() => ['/og/[id]'].includes(router.pathname), [
-    router.pathname,
-  ])
+  const isHideLayout = useMemo(
+    () => ['/og/[id]', '/cast-receiver'].includes(router.pathname),
+    [router.pathname]
+  )
 
   if (isHideLayout) {
     return (
