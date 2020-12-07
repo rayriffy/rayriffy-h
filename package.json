@@ -79,7 +79,7 @@
     "react": "npm:@preact/compat",
     "react-dom": "npm:@preact/compat",
     "storeon": "^3.1.1",
-    "swr": "^0.3.8",
+    "swr": "^0.3.9",
     "tailwind": "^4.0.0",
     "tailwindcss": "^1.9.6",
     "tailwindcss-filters": "^3.0.0",
