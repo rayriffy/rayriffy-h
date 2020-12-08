@@ -69,7 +69,7 @@
     "next-offline": "^5.0.3",
     "next-plugin-preact": "^3.0.3",
     "playwright-aws-lambda": "^0.6.0",
-    "playwright-core": "^1.6.1",
+    "playwright-core": "^1.6.2",
     "postcss-import": "^13.0.0",
     "preact": "^10.5.7",
     "preact-render-to-string": "^5.1.12",
