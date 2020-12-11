@@ -27,6 +27,9 @@ module.exports = withPlugins(
       buildId: generatedId,
       buildNumber: dayjs.tz(dayjs(), 'Asia/Bangkok').format('YYYYMMDD.HH'),
     },
+    serverRuntimeConfig: {
+      buildId: generatedId,
+    },
     images: {
       domains: ['i.nhentai.net', 't.nhentai.net'],
     },
