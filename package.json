@@ -64,6 +64,7 @@
     "express": "4.17.1",
     "isomorphic-unfetch": "^3.1.0",
     "lodash": "^4.17.20",
+    "nanoid": "^3.1.20",
     "next": "^10.0.4-canary.1",
     "next-compose-plugins": "^2.2.1",
     "next-offline": "^5.0.3",

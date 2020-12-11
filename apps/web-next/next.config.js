@@ -3,6 +3,8 @@ const dayjs = require('dayjs')
 const utc = require('dayjs/plugin/utc')
 const timezone = require('dayjs/plugin/timezone')
 
+const { nanoid } = require('nanoid')
+
 const withPlugins = require('next-compose-plugins')
 
 const withWorkers = require('@zeit/next-workers')
@@ -15,21 +17,25 @@ const withPreact = require('next-plugin-preact')
 dayjs.extend(utc)
 dayjs.extend(timezone)
 
+const generatedId = nanoid()
+
 module.exports = withPlugins(
   [[withOffline], [withWorkers], [withPreact], [withBundleAnalyzer]],
   {
     target: 'serverless',
     env: {
+      buildId: generatedId,
       buildNumber: dayjs.tz(dayjs(), 'Asia/Bangkok').format('YYYYMMDD.HH'),
     },
     images: {
       domains: ['i.nhentai.net', 't.nhentai.net'],
     },
+    generateBuildId: () => generatedId,
     experimental: {
       optimizeImages: true,
       scrollRestoration: true,
     },
-    async rewrites() {
+    rewrites: async () => {
       return [
         {
           source: '/sw.js',
@@ -37,7 +43,7 @@ module.exports = withPlugins(
         },
       ]
     },
-    async redirects() {
+    redirects: async () => {
       return [
         {
           source: '/public/:slug*',
