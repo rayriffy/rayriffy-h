@@ -28,6 +28,7 @@ module.exports = withPlugins(
     experimental: {
       optimizeImages: true,
       scrollRestoration: true,
+      scriptLoader: true,
     },
     async rewrites() {
       return [

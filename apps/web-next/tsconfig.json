@@ -15,6 +15,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true
   },
+  "types": [
+    "chromecast-caf-receiver"
+  ],
   "include": [
     "**/*.ts",
     "**/*.tsx",
