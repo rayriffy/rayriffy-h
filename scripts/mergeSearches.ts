@@ -27,10 +27,6 @@ import { Hentai } from '../libs/helper/src'
         data => data.id.toString() === targetNumber.toString()
       )
 
-      if (targetHentai === undefined) {
-        console.log('Not found!', targetNumber)
-      }
-
       return targetHentai
     })
     .filter(o => o !== undefined)
