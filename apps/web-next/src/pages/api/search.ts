@@ -1,26 +1,42 @@
 import { NextApiHandler } from 'next'
 
+import { chunk, get } from 'lodash'
+
 import { APIResponse, Hentai } from '@rayriffy-h/helper'
+import { itemsPerPage } from '@rayriffy-h/constants'
 
 import { searchHentai } from '../../core/services/searchHentai'
 
 const api: NextApiHandler = async (req, res) => {
   try {
-    const { query } = req.query
+    console.log(req.query)
+
+    const { query, page } = req.query
     const host = req.headers.host
 
     const hentais: Hentai[] = await fetch(
-      `${host}/static/searchKey.json`
+      `${
+        /localhost/.test(host) ? 'http://' : 'https://'
+      }${host}/static/searchKey.json`
     ).then(o => o.json())
 
+    const targetPage = Number(page)
     const searchResult = await searchHentai(query as string, hentais)
 
-    const payload: APIResponse<Hentai[]> = {
+    const chunks = chunk(searchResult, itemsPerPage)
+
+    const payload: APIResponse<{
+      galleries: Hentai[]
+      maxPage: number
+    }> = {
       status: 'success',
       code: 200,
       response: {
         message: 'query success',
-        data: searchResult,
+        data: {
+          galleries: get(chunks, targetPage - 1, []),
+          maxPage: chunks.length,
+        },
       },
     }
 
