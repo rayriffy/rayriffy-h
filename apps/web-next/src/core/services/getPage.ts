@@ -1,11 +1,15 @@
 import { itemsPerPage } from '@rayriffy-h/constants'
 import { codes } from '@rayriffy-h/datasource'
 
-import chunk from 'lodash/chunk'
-import get from 'lodash/get'
-import reverse from 'lodash/reverse'
+const chunk = <T = unknown>(input: T[], size: number): T[][] => {
+  return input.reduce((arr, item, idx) => {
+    return idx % size === 0
+      ? [...arr, [item]]
+      : [...arr.slice(0, -1), [...arr.slice(-1)[0], item]]
+  }, [])
+}
 
 export const getPage = (page: number) => {
-  const chunkedCodes = chunk(reverse(codes), itemsPerPage)
-  return get(chunkedCodes, page - 1)
+  const chunkedCodes = chunk(codes.reverse(), itemsPerPage)
+  return chunkedCodes[page - 1]
 }
