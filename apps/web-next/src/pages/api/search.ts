@@ -5,10 +5,10 @@ import { APIResponse, Hentai } from '@rayriffy-h/helper'
 import { searchHentai } from '../../core/services/searchHentai'
 
 const api: NextApiHandler = async (req, res) => {
-  const { query } = req.query
-  const host = req.headers.host
-
   try {
+    const { query } = req.query
+    const host = req.headers.host
+
     const hentais: Hentai[] = await fetch(
       `${host}/static/searchKey.json`
     ).then(o => o.json())
@@ -26,8 +26,6 @@ const api: NextApiHandler = async (req, res) => {
 
     return res.status(200).send(payload)
   } catch (e) {
-    console.error(e)
-
     const payload: APIResponse<never> = {
       status: 'failed',
       code: 501,
@@ -35,7 +33,9 @@ const api: NextApiHandler = async (req, res) => {
         message: 'internal error',
       },
     }
-    return res.status(500).send(payload)
+    res.status(500).send(payload)
+
+    throw e
   }
 }
 
