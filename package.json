@@ -79,7 +79,7 @@
     "purgecss": "^3.0.0",
     "react": "npm:@preact/compat",
     "react-dom": "npm:@preact/compat",
-    "storeon": "^3.1.1",
+    "storeon": "^3.1.2",
     "swr": "^0.3.9",
     "tailwind": "^4.0.0",
     "tailwindcss": "^1.9.6",
