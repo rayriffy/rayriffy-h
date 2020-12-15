@@ -1,13 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { getImageUrl, Hentai } from '@rayriffy-h/helper'
 import { useStoreon } from '@rayriffy-h/state-engine'
+
+import ScriptLoader from 'next/dist/client/experimental-script'
 
 import { ImageBlur } from '../imageBlur'
 import { TagRenderer } from './tagRenderer'
 import { PagesRenderer } from './pagesRenderer'
 import { SafeMode } from './safeMode'
 import { Favorite } from './favorite'
+import { GoogleCastLauncher } from '../googleCastLauncher'
+import { CastSession } from 'chromecast-caf-receiver/cast.framework'
 
 interface IProps {
   hentai: Hentai
@@ -19,12 +23,50 @@ export const Reader: React.FC<IProps> = React.memo(props => {
 
   const { dispatch } = useStoreon('history', 'metadata')
 
+  const [castSession, setCastSession] = useState<CastSession | undefined>()
+
   useEffect(() => {
     dispatch('metadata/viewCount/count')
     dispatch('history/toggle', {
       internal: false,
       data: hentai,
     })
+  }, [])
+
+  const intitializeCastSender = async () => {
+    // const { cast } = chrome
+    // set options
+    console.log('hello')
+    cast.framework.CastContext.getInstance().setOptions({
+      receiverApplicationId: 'F951321A',
+      autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED,
+    })
+    const session = cast.framework.CastContext.getInstance().getCurrentSession()
+    console.log(session)
+    setCastSession(session)
+  }
+
+  // useEffect(() => {
+  //   if (window.cast !== undefined) {
+  //     console.log('ok')
+  //     // set options
+  //     cast.framework.CastContext.getInstance().setOptions({
+  //       receiverApplicationId: 'F951321A',
+  //       autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED,
+  //     })
+
+  //     const session = cast.framework.CastContext.getInstance().getCurrentSession()
+  //     console.log(session)
+  //     setCastSession(session)
+  //   }
+  // }, [window.cast])
+
+  useEffect(() => {
+    window['__onGCastApiAvailable'] = (isAvailable: boolean) => {
+      if (isAvailable) {
+        intitializeCastSender()
+      }
+    }
   }, [])
 
   return (
@@ -59,15 +101,25 @@ export const Reader: React.FC<IProps> = React.memo(props => {
             {hentai.images.pages.length - excludes.length} Pages
           </span>
           <TagRenderer tags={hentai.tags} />
-          <div className="py-6">
+          <div className="py-6 space-x-4">
             <Favorite hentai={hentai} />
+            <GoogleCastLauncher />
           </div>
+        </div>
+      </div>
+      <div className="py-4">
+        <div className="bg-gray-100 p-4 break-all">
+          {JSON.stringify(castSession)}
         </div>
       </div>
       <PagesRenderer
         pages={hentai.images.pages}
         mediaId={hentai.media_id}
         excludes={excludes}
+      />
+      <ScriptLoader
+        src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"
+        preload
       />
     </React.Fragment>
   )

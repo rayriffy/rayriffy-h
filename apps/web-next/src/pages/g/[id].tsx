@@ -4,9 +4,17 @@ import { getHentai, Hentai } from '@rayriffy-h/helper'
 
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
+import dynamic from 'next/dynamic'
 
-import { Reader } from '../../core/components/reader'
+// import { Reader } from '../../core/components/reader'
 import { HeadTitle } from '../../core/components/headTitle'
+
+const Reader = dynamic(
+  () => import('../../core/components/reader').then(o => o.Reader),
+  {
+    ssr: false,
+  }
+)
 
 interface IProps {
   gallery: Hentai
@@ -47,6 +55,7 @@ const Page: NextPage<IProps> = props => {
             property="twitter:image"
             content={`https://h.api.rayriffy.com/v1/og/${gallery.id}`}
           />
+          <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
         </HeadTitle>
         <Reader {...{ hentai: gallery, excludes }} />
       </React.Fragment>
