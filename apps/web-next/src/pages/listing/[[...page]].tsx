@@ -44,7 +44,8 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
   const galleries = await Promise.all(promises)
 
   const cacheDir = path.join(process.cwd(), '.cache')
-  const pageFile = path.join(cacheDir, `page-${currentPage}.json`)
+  const cachePageDir = path.join(cacheDir, 'pages')
+  const pageFile = path.join(cachePageDir, `page-${currentPage}.json`)
 
   const filteredGalleries: Hentai[] = galleries.map(gallery => ({
     ...gallery,
@@ -58,6 +59,10 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
   if (!fs.existsSync(cacheDir)) {
     fs.mkdirSync(cacheDir)
   }
+  if (!fs.existsSync(cachePageDir)) {
+    fs.mkdirSync(cachePageDir)
+  }
+
   fs.writeFileSync(pageFile, JSON.stringify(filteredGalleries))
 
   return {

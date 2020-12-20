@@ -7,14 +7,14 @@ import { itemsPerPage } from '../libs/constants/src'
 import { Hentai } from '../libs/helper/src'
 ;(async () => {
   const maxPage = chunk(codes, itemsPerPage).length
-  const cacheDir = path.join(process.cwd(), '.cache')
+  const cachePageDir = path.join(process.cwd(), '.cache', 'pages')
 
   const allMerged = flatten(
     Array.from({ length: maxPage }).map((_, i) => {
       const targetPage = i + 1
 
       // read
-      const targetFile = path.join(cacheDir, `page-${targetPage}.json`)
+      const targetFile = path.join(cachePageDir, `page-${targetPage}.json`)
       // console.log(targetFile)
       return JSON.parse(fs.readFileSync(targetFile).toString()) as Hentai[]
     })

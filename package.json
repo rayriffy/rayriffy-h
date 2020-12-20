@@ -25,7 +25,9 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "affectedProject": "yarn --silent ts-node --project scripts/tsconfig.json scripts/affectedProject.ts"
+    "affectedProject": "ts-node --project scripts/tsconfig.json scripts/affectedProject.ts",
+    "mergeSearches": "ts-node --project scripts/tsconfig.json scripts/mergeSearches.ts",
+    "generateChunks": "ts-node --project scripts/tsconfig.json scripts/generateChunks.ts"
   },
   "private": true,
   "husky": {
