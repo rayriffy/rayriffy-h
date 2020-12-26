@@ -109,7 +109,7 @@
     "@nrwl/web": "10.4.4",
     "@nrwl/workspace": "10.4.4",
     "@testing-library/react": "11.1.2",
-    "@types/chromecast-caf-receiver": "^5.0.12",
+    "@types/chromecast-caf-receiver": "^5.0.13",
     "@types/chromecast-caf-sender": "^1.0.3",
     "@types/cors": "^2.8.8",
     "@types/express": "^4.17.9",
