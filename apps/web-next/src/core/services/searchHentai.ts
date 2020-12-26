@@ -1,7 +1,10 @@
 import { Hentai } from '@rayriffy-h/helper'
 import { get, intersection, union } from 'lodash'
 
-export const searchHentai = async (query: string, raws: Hentai[]) => {
+export const searchHentai = async (
+  query: string,
+  raws: Hentai[]
+): Promise<Hentai[]> => {
   const resultsByWords = query
     .split(' ')
     .filter(o => o !== '')

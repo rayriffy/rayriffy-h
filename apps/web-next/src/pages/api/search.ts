@@ -9,10 +9,18 @@ import { searchHentai } from '../../core/services/searchHentai'
 
 const api: NextApiHandler = async (req, res) => {
   try {
-    console.log(req.query)
-
     const { query, page } = req.query
     const host = req.headers.host
+
+    if (query === '') {
+      return res.status(400).send({
+        status: 'failed',
+        code: 400,
+        response: {
+          message: 'empty query',
+        },
+      })
+    }
 
     const hentais: Hentai[] = await fetch(
       `${
@@ -34,7 +42,17 @@ const api: NextApiHandler = async (req, res) => {
       response: {
         message: 'query success',
         data: {
-          galleries: get(chunks, targetPage - 1, []),
+          galleries: get<Hentai[][], number, Hentai[]>(
+            chunks,
+            targetPage - 1,
+            []
+          ).map(gallery => ({
+            ...gallery,
+            images: {
+              ...gallery.images,
+              pages: [],
+            },
+          })),
           maxPage: chunks.length,
         },
       },

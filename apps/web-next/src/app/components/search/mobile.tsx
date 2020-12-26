@@ -12,6 +12,7 @@ export const MobileSearch: React.FC = React.memo(props => {
 
   const { query, dispatch } = useSearch(availableType)
   const [input, setInput] = useState(query ?? '')
+
   const setDebounceInput = debounce(value => {
     if (availableType !== undefined) {
       dispatch('search/query', {
