@@ -51,7 +51,7 @@
     "@storeon/crosstab": "^1.0.2",
     "@storeon/localstorage": "^1.2.0",
     "@tailwindcss/ui": "^0.7.2",
-    "@welldone-software/why-did-you-render": "^6.0.4",
+    "@welldone-software/why-did-you-render": "^6.0.5",
     "@zeit/next-workers": "^1.0.0",
     "autoprefixer": "^10.1.0",
     "babel-plugin-lodash": "^3.3.4",
