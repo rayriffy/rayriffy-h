@@ -2052,10 +2052,10 @@
     tslib "^2.0.0"
     yargs-parser "20.0.0"
 
-"@nrwl/tao@11.0.18":
-  version "11.0.18"
-  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-11.0.18.tgz#8f914345f25da9a53e447b9197e0c639455f32ec"
-  integrity sha512-ZNFWtSPj3w0y8gm6fhQ32v92m7uCXlUWVzuOEATt3ukt46O/zgrQMGy5MdBn2VoQ4S39sDOR3gMLhhzYHWAEdQ==
+"@nrwl/tao@11.0.20":
+  version "11.0.20"
+  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-11.0.20.tgz#dfca062d81bcb1ddff03cfe9f99ba05786cc101d"
+  integrity sha512-S/jaeenZ0ueQZgz54AGhMtK1Obs6KTwsojfHdB+FiEve2ipBbKKeBZXXfeXlH2priH5ej5FhosCEV1DKqXLlUg==
   dependencies:
     "@angular-devkit/architect" "~0.1100.1"
     "@angular-devkit/core" "~11.0.1"
