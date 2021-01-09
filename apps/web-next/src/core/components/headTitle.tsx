@@ -11,7 +11,7 @@ interface IProps {
 export const HeadTitle: React.FC<IProps> = props => {
   const {
     title,
-    description = 'The missing piece of NHentai',
+    description = 'The missing piece of nhentai',
     children,
   } = props
 

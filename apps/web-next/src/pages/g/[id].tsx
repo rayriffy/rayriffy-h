@@ -38,7 +38,10 @@ const Page: NextPage<IProps> = props => {
   } else {
     return (
       <React.Fragment>
-        <HeadTitle title={gallery.title.pretty}>
+        <HeadTitle
+          title={gallery.title.pretty}
+          description={`Read ${gallery.title.pretty} without ads or popups via Riffy H, alternate client for nhentai`}
+        >
           <meta
             property="og:image"
             content={`https://h.api.rayriffy.com/v1/og/${gallery.id}`}
