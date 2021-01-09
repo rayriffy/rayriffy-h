@@ -45,7 +45,7 @@ export const getServerSideProps: GetServerSideProps<IProps> = async context => {
       typeof o === 'number' ? false : o.code.toString() === context.params.id
     )
 
-    const hentai = await getHentai(context.params.id as string)
+    const hentai = await getHentai(context.params.id as string, true)
 
     return {
       props: {
