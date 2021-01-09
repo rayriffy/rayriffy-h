@@ -35,13 +35,11 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
 
   const gallerieCodes = getPage(currentPage)
 
-  const promises: Promise<Hentai>[] = []
-  for (const code of gallerieCodes) {
-    const gallery = getHentai(typeof code === 'number' ? code : code.code)
-    promises.push(gallery)
-  }
-
-  const galleries = await Promise.all(promises)
+  const galleries = await Promise.all(
+    gallerieCodes.map(code =>
+      getHentai(typeof code === 'number' ? code : code.code)
+    )
+  )
 
   const cacheDir = path.join(process.cwd(), '.cache')
   const cachePageDir = path.join(cacheDir, 'pages')

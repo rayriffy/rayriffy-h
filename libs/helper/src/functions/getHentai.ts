@@ -7,7 +7,12 @@ export const getHentai = async (
   id: number | string,
   server?: boolean
 ): Promise<Hentai> => {
-  const rawHentai = await getRawHentai(id, server)
+  try {
+    const rawHentai = await getRawHentai(id, server)
 
-  return rawHentaiToHentai(rawHentai)
+    return rawHentaiToHentai(rawHentai)
+  } catch (e) {
+    console.error(`error: nuable to fetch ${id}`)
+    throw e
+  }
 }
