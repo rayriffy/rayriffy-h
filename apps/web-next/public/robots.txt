@@ -1,4 +1,7 @@
 User-agent: *
 Disallow: /p
 Disallow: /og
+Disallow: /collection
+Disallow: /settings
+Disallow: /custom
 Disallow: /listing/p
