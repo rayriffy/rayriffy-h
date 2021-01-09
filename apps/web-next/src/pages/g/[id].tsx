@@ -40,7 +40,7 @@ const Page: NextPage<IProps> = props => {
       <React.Fragment>
         <HeadTitle
           title={gallery.title.pretty}
-          description={`Read ${gallery.title.pretty} without ads or popups via Riffy H, alternate client for nhentai`}
+          description={`Read ${gallery.title.pretty} without ads or popups via Riffy H, an alternate client for nhentai`}
         >
           <meta
             property="og:image"
