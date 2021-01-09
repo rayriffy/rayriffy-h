@@ -44,8 +44,6 @@ const publicDir = path.join(process.cwd(), 'public')
     [
       (path.join(nextDir, 'public', 'sitemap.xml'),
       path.join(publicDir, 'sitemap.xml')),
-    ].map(async targetPath =>
-      fs.writeFileSync(targetPath, JSON.stringify(sitemap))
-    )
+    ].map(async targetPath => fs.writeFileSync(targetPath, sitemap))
   )
 })()
