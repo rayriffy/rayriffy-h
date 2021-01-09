@@ -37,7 +37,7 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
 
   const galleries = await Promise.all(
     gallerieCodes.map(code =>
-      getHentai(typeof code === 'number' ? code : code.code)
+      getHentai(typeof code === 'number' ? code : code.code, true)
     )
   )
 
