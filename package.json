@@ -105,7 +105,7 @@
     "@nrwl/express": "11.1.1",
     "@nrwl/jest": "11.1.1",
     "@nrwl/next": "11.1.1",
-    "@nrwl/node": "11.1.1",
+    "@nrwl/node": "11.1.2",
     "@nrwl/react": "11.1.1",
     "@nrwl/tao": "11.1.1",
     "@nrwl/web": "11.1.1",
