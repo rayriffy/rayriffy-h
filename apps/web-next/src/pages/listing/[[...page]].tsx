@@ -6,7 +6,7 @@ import { getHentai, Hentai } from '@rayriffy-h/helper'
 import { itemsPerPage } from '@rayriffy-h/constants'
 
 import { ListingModule } from '../../modules/listing/components'
-import BuildManifestPlugin from 'next/dist/build/webpack/plugins/build-manifest-plugin'
+import { HeadTitle } from '../../core/components/headTitle'
 
 interface IProps {
   galleries: Hentai[]
@@ -15,7 +15,12 @@ interface IProps {
 }
 
 const Page: NextPage<IProps> = props => {
-  return <ListingModule {...props} />
+  return (
+    <React.Fragment>
+      <HeadTitle />
+      <ListingModule {...props} />
+    </React.Fragment>
+  )
 }
 
 export const getStaticProps: GetStaticProps<IProps> = async context => {
