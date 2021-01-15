@@ -10,6 +10,8 @@ const api: NextApiHandler = async (req, res) => {
     // get data
     const collection: CollectionStore['collection'] = req.body.collection
 
+    console.log(collection.data.length)
+
     // encrypt it
     // 32 character key
     const encryptedData = encrypt(
