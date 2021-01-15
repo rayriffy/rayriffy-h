@@ -5,6 +5,7 @@ import Link from 'next/link'
 
 import { CollectionStore, useStoreon } from '@rayriffy-h/state-engine'
 import { Check } from '@rayriffy-h/icons'
+import { APIResponse } from '@rayriffy-h/helper'
 
 import { Step } from '../../core/components/step'
 import { HeadTitle } from '../../core/components/headTitle'
@@ -21,36 +22,25 @@ const Page: NextPage = props => {
       setError(null)
       setStatus(1)
 
-      const res: CollectionStore['collection'] = await fetch(
-        `https://bytebin.lucko.me/${input}`
+      const res: APIResponse<CollectionStore['collection']> = await fetch(
+        `/api/collection/import/${input}`
       ).then(o => o.json())
 
-      if (
-        typeof res === 'object' &&
-        typeof res.version === 'number' &&
-        typeof res.data === 'object' &&
-        res.data.length !== undefined
-      ) {
-        if (res.version === collection.version) {
-          dispatch('collection/override', {
-            collection: {
-              ...collection,
-              data: res.data,
-            },
-          })
+      const remoteCollection = res.response.data
 
-          setStatus(2)
-        } else {
-          setError(
-            new Error(
-              'Mismatch version! Please make sure that both of device is running on latest version before exporting.'
-            )
-          )
-        }
+      if (remoteCollection.version === collection.version) {
+        dispatch('collection/override', {
+          collection: {
+            ...collection,
+            data: remoteCollection.data,
+          },
+        })
+
+        setStatus(2)
       } else {
         setError(
           new Error(
-            'Invalid data format, are you sure that you are using correct transfer key?'
+            'Mismatch version! Please make sure that both of device is running on latest version before exporting.'
           )
         )
       }

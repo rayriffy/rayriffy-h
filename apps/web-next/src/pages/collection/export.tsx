@@ -5,6 +5,7 @@ import Link from 'next/link'
 
 import { useStoreon } from '@rayriffy-h/state-engine'
 import { Check, Duplicate } from '@rayriffy-h/icons'
+import { APIResponse } from '@rayriffy-h/helper'
 
 import copy from 'copy-to-clipboard'
 
@@ -23,17 +24,16 @@ const Page: NextPage = props => {
     setError(false)
 
     try {
-      const res: { key: string } = await fetch(
-        `https://bytebin.lucko.me/post`,
-        {
-          credentials: 'same-origin',
-          method: 'POST',
-          body: JSON.stringify(collection),
-          headers: { 'Content-Type': 'application/json' },
-        }
-      ).then(o => o.json())
+      const res: APIResponse<string> = await fetch(`/api/collection/export`, {
+        credentials: 'same-origin',
+        method: 'POST',
+        body: JSON.stringify({
+          collection,
+        }),
+        headers: { 'Content-Type': 'application/json' },
+      }).then(o => o.json())
 
-      setCode(res.key)
+      setCode(res.response.data)
       setStatus(2)
     } catch {
       setError(true)
