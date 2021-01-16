@@ -43,7 +43,10 @@ const Component: React.FC<IProps> = React.memo(props => {
           }
         >
           {chunk.map(hentai => (
-            <div key={`poster-${hentai.id}`} className="p-3 flex items-center">
+            <div
+              key={`poster-${hentai.id}`}
+              className="p-3 flex justify-center"
+            >
               <Poster hentai={hentai} />
             </div>
           ))}
