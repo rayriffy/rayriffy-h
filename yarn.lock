@@ -2024,10 +2024,10 @@
     webpack-merge "4.2.1"
     webpack-node-externals "1.7.2"
 
-"@nrwl/nx-cloud@11.0.1":
-  version "11.0.1"
-  resolved "https://registry.yarnpkg.com/@nrwl/nx-cloud/-/nx-cloud-11.0.1.tgz#13cd7bbb609bee72959e071ebbe774d9a8e3634b"
-  integrity sha512-GP0AOIDhkG3HO708BQeOgAX0c2JX8TZjmTjLElTryVxpM48vra4I9jJXZhorgmo7ap+QzYugcYx6wtGw9PTfqA==
+"@nrwl/nx-cloud@11.0.2":
+  version "11.0.2"
+  resolved "https://registry.yarnpkg.com/@nrwl/nx-cloud/-/nx-cloud-11.0.2.tgz#367d096e00969925001ce9933711f787dc558eaa"
+  integrity sha512-3X/mGGVPN//8ZZw+HqRdMbQcwQF0wwamq0cl5fmwtXmzsxNgAunaU3wGVsK5JXcbGxkQqKWu/0k+pyGjUaKrAA==
   dependencies:
     "@angular-devkit/schematics" "11.0.0"
     axios "^0.21.1"
