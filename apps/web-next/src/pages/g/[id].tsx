@@ -41,10 +41,13 @@ export const getServerSideProps: GetServerSideProps<IProps> = async context => {
 
   try {
     // Find exclude properties
-    const result = codes.find(o =>
-      typeof o === 'number' ? false : o.code.toString() === context.params.id
-    )
     const targetId = context.params.id as string
+    const result = codes.find(o =>
+      typeof o === 'number' ? false : o.code.toString() === targetId
+    )
+
+    console.log(targetId)
+    console.log(ignoreList.map(o => o.toString()).includes(targetId))
 
     if (ignoreList.map(o => o.toString()).includes(targetId)) {
       return {
