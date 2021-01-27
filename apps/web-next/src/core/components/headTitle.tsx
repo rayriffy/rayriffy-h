@@ -38,6 +38,8 @@ export const HeadTitle: React.FC<IProps> = props => {
       <meta property="twitter:title" content={transformedTitle} />
       <meta property="twitter:description" content={description} />
 
+      <meta name="robots" content="noindex" />
+
       {children}
     </Head>
   )
