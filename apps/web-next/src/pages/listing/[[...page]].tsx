@@ -2,7 +2,7 @@ import React from 'react'
 
 import { NextPage, GetStaticProps, GetStaticPaths } from 'next'
 
-import { getHentai, Hentai } from '@rayriffy-h/helper'
+import { Hentai } from '@rayriffy-h/helper'
 import { itemsPerPage } from '@rayriffy-h/constants'
 
 import { ListingModule } from '../../modules/listing/components'
@@ -33,6 +33,7 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
   const { default: path } = await import('path')
 
   const { getPage } = await import('../../core/services/getPage')
+  const { getHentaiCache } = await import('../../core/services/getHentaiCache')
 
   const { params } = context
   const currentPage = Number(get(params, 'page[1]', '1'))
@@ -42,7 +43,7 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
 
   const galleries = await Promise.all(
     gallerieCodes.map(code =>
-      getHentai(typeof code === 'number' ? code : code.code)
+      getHentaiCache(typeof code === 'number' ? code : code.code)
     )
   )
 
