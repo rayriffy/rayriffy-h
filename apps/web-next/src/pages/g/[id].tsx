@@ -37,15 +37,22 @@ const Page: NextPage<IProps> = props => {
 }
 
 export const getServerSideProps: GetServerSideProps<IProps> = async context => {
-  const { codes } = await import('@rayriffy-h/datasource')
+  const { codes, ignoreList } = await import('@rayriffy-h/datasource')
 
   try {
     // Find exclude properties
     const result = codes.find(o =>
       typeof o === 'number' ? false : o.code.toString() === context.params.id
     )
+    const targetId = context.params.id as string
 
-    const hentai = await getHentai(context.params.id as string, true)
+    if (ignoreList.map(o => o.toString()).includes(targetId)) {
+      return {
+        notFound: true,
+      }
+    }
+
+    const hentai = await getHentai(targetId, true)
 
     return {
       props: {
