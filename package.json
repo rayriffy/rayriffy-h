@@ -104,7 +104,7 @@
     "@nrwl/eslint-plugin-nx": "11.1.5",
     "@nrwl/express": "11.1.5",
     "@nrwl/jest": "11.1.5",
-    "@nrwl/next": "11.1.5",
+    "@nrwl/next": "11.2.7",
     "@nrwl/node": "11.1.5",
     "@nrwl/react": "11.1.5",
     "@nrwl/tao": "11.1.5",
