@@ -106,7 +106,7 @@
     "@nrwl/jest": "11.2.10",
     "@nrwl/next": "11.2.10",
     "@nrwl/node": "11.2.10",
-    "@nrwl/react": "11.2.10",
+    "@nrwl/react": "11.2.12",
     "@nrwl/tao": "11.2.12",
     "@nrwl/web": "11.2.10",
     "@nrwl/workspace": "11.2.10",
