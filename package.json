@@ -113,7 +113,7 @@
     "@testing-library/react": "11.2.3",
     "@types/chromecast-caf-receiver": "^5.0.13",
     "@types/chromecast-caf-sender": "^1.0.3",
-    "@types/cors": "^2.8.9",
+    "@types/cors": "^2.8.10",
     "@types/express": "^4.17.11",
     "@types/jest": "26.0.20",
     "@types/lodash": "^4.14.168",
