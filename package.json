@@ -76,7 +76,7 @@
     "playwright-core": "^1.8.1",
     "postcss-import": "^14.0.0",
     "preact": "^10.5.12",
-    "preact-render-to-string": "^5.1.12",
+    "preact-render-to-string": "^5.1.14",
     "prop-types": "15.7.2",
     "puppeteer-core": "^7.0.1",
     "purgecss": "^4.0.2",
