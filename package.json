@@ -108,7 +108,7 @@
     "@nrwl/node": "11.4.0",
     "@nrwl/react": "11.4.0",
     "@nrwl/tao": "11.4.0",
-    "@nrwl/web": "11.4.0",
+    "@nrwl/web": "11.5.1",
     "@nrwl/workspace": "11.4.0",
     "@testing-library/react": "11.2.5",
     "@types/chromecast-caf-receiver": "^5.0.13",
