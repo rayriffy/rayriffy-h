@@ -78,7 +78,7 @@
     "preact": "^10.5.12",
     "preact-render-to-string": "^5.1.14",
     "prop-types": "15.7.2",
-    "puppeteer-core": "^7.0.1",
+    "puppeteer-core": "^7.0.4",
     "purgecss": "^4.0.2",
     "react": "npm:@preact/compat",
     "react-dom": "npm:@preact/compat",
