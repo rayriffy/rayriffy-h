@@ -1,11 +1,28 @@
 {
   "migrations": [
     {
-      "version": "11.2.0-beta.0",
-      "description": "Move react redux typings from dependencies to devDependencies in package.json",
-      "factory": "./src/migrations/update-11-2-0/move-react-redux-types-package-11-2-0",
-      "package": "@nrwl/react",
-      "name": "move-react-redux-types-package-11.2.0"
+      "cli": "nx",
+      "version": "11.5.0-beta.0",
+      "description": "Update project .eslintrc.json files to always use project level tsconfigs",
+      "factory": "./src/migrations/update-11-5-0/always-use-project-level-tsconfigs-with-eslint",
+      "package": "@nrwl/linter",
+      "name": "always-use-project-level-tsconfigs-with-eslint"
+    },
+    {
+      "cli": "nx",
+      "version": "11.5.0-beta.1",
+      "description": "Update .babelrc to use '@nrwl/next/babel' instead of 'next/babel'",
+      "factory": "./src/migrations/update-11-5-0/update-babel-config",
+      "package": "@nrwl/next",
+      "name": "update-babel-config-11.5.0"
+    },
+    {
+      "cli": "nx",
+      "version": "11.5.0-beta.1",
+      "description": "Remove tsconfig.app.json",
+      "factory": "./src/migrations/update-11-5-0/remove-tsconfig-app-11-5-0",
+      "package": "@nrwl/next",
+      "name": "remove-tsconfig-app-11.5.0"
     }
   ]
 }
