@@ -103,7 +103,7 @@
     "@nrwl/cli": "11.5.1",
     "@nrwl/cypress": "11.5.1",
     "@nrwl/eslint-plugin-nx": "11.5.1",
-    "@nrwl/express": "11.5.1",
+    "@nrwl/express": "11.5.2",
     "@nrwl/jest": "11.5.1",
     "@nrwl/next": "11.5.1",
     "@nrwl/node": "11.5.1",
