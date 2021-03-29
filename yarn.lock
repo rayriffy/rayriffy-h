@@ -1982,6 +1982,17 @@
     yargs "15.4.1"
     yargs-parser "20.0.0"
 
+"@nrwl/cli@11.6.0":
+  version "11.6.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-11.6.0.tgz#40e471e241cf31da0fc16fba82dbf6f430ed588a"
+  integrity sha512-dFnPrKuCFDmFyQtqE509UkG44aKT/NRuljDETaM2KPPuu5056KkvziHG7IQurYFTkuo52EKNMmttRu8HJ1nT0A==
+  dependencies:
+    "@nrwl/tao" "11.6.0"
+    chalk "4.1.0"
+    tmp "0.0.33"
+    yargs "15.4.1"
+    yargs-parser "20.0.0"
+
 "@nrwl/cypress@11.5.1":
   version "11.5.1"
   resolved "https://registry.yarnpkg.com/@nrwl/cypress/-/cypress-11.5.1.tgz#e21860d9077a683ec63d1b9e4b6675f04ae3e776"
@@ -2013,6 +2024,18 @@
     strip-json-comments "2.0.1"
     tslib "^2.0.0"
 
+"@nrwl/devkit@11.6.0":
+  version "11.6.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-11.6.0.tgz#26dd02bd3fd1a56c51a9f84e3e4db41c39188fc0"
+  integrity sha512-T5j0ojocWkTDZg9gN6gZ8xdz7BHbLhU51C9zOTEMtkb4AK1MVI01jNCcJS204t9/dFuFynJbPK1tFodTBeBkBw==
+  dependencies:
+    "@nrwl/tao" "11.6.0"
+    ejs "^3.1.5"
+    ignore "^5.0.4"
+    semver "7.3.4"
+    strip-json-comments "2.0.1"
+    tslib "^2.0.0"
+
 "@nrwl/eslint-plugin-nx@11.5.1":
   version "11.5.1"
   resolved "https://registry.yarnpkg.com/@nrwl/eslint-plugin-nx/-/eslint-plugin-nx-11.5.1.tgz#99c99b26784576ed1ed5fef15e27aaa965ac2d2d"
@@ -2023,16 +2046,16 @@
     "@typescript-eslint/experimental-utils" "^4.3.0"
     confusing-browser-globals "^1.0.9"
 
-"@nrwl/express@11.5.1":
-  version "11.5.1"
-  resolved "https://registry.yarnpkg.com/@nrwl/express/-/express-11.5.1.tgz#1e63d5a4175e2d0ec76d5097108bc001ae20eba2"
-  integrity sha512-tRni+bF5DIs4mt14/+lN0T+epJdYz+D3gXUAmYwAvK6Xx9BLgpQb0az9bU40NVR2KcH62zTf5yjbWaxOohwZ6g==
+"@nrwl/express@11.6.0":
+  version "11.6.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/express/-/express-11.6.0.tgz#0d706f0f24447b724c3857e27e483a1d216e8d17"
+  integrity sha512-T0THD7losUWbNaB+6dsTCh4Zcibc+VTeeADQgJ/pwE/QX1BiVeVwGci+xcLJQffxuFKAlJU3TPOvNb5lTD1zxA==
   dependencies:
     "@angular-devkit/core" "~11.2.0"
     "@angular-devkit/schematics" "~11.2.0"
-    "@nrwl/devkit" "11.5.1"
-    "@nrwl/jest" "11.5.1"
-    "@nrwl/node" "11.5.1"
+    "@nrwl/devkit" "11.6.0"
+    "@nrwl/jest" "11.6.0"
+    "@nrwl/node" "11.6.0"
 
 "@nrwl/jest@11.5.1":
   version "11.5.1"
@@ -2040,6 +2063,17 @@
   integrity sha512-9Lwc5F66WeRTADg5Di9HHdTBN97Ti3vlSLhJwwL86CyvBV4syKDa5Z0qc7g0o5+nMNzuDH3dwjARdHgFBUDVow==
   dependencies:
     "@nrwl/devkit" "11.5.1"
+    jest-resolve "^26.6.2"
+    rxjs "^6.5.4"
+    strip-json-comments "2.0.1"
+    tslib "^2.0.0"
+
+"@nrwl/jest@11.6.0":
+  version "11.6.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/jest/-/jest-11.6.0.tgz#7dc8e3dbc36f5277ad251b92481da34fefb72b1c"
+  integrity sha512-CWvQEXyEeZZ+5a6oB/Sb4YvxDxaGVrQW2mF/nJDlwMOzeQUeCUR/slsJg07QCgc8GAKMl9Tl+MPNvoNylkBLaw==
+  dependencies:
+    "@nrwl/devkit" "11.6.0"
     jest-resolve "^26.6.2"
     rxjs "^6.5.4"
     strip-json-comments "2.0.1"
@@ -2053,6 +2087,17 @@
     "@nrwl/devkit" "11.5.1"
     glob "7.1.4"
     minimatch "3.0.4"
+    tslib "^2.0.0"
+
+"@nrwl/linter@11.6.0":
+  version "11.6.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/linter/-/linter-11.6.0.tgz#a5fd6974fc8824f53e7cccd42ec62e3935264762"
+  integrity sha512-Rik7ItPbU+ezTONGDpnNyW6POBgUlaiF34jCix9Xp2n6ih48zLKLZXkHHPgoDRRw0UxkEBsyy+lOtst5840VqA==
+  dependencies:
+    "@nrwl/devkit" "11.6.0"
+    glob "7.1.4"
+    minimatch "3.0.4"
+    tmp "0.0.33"
     tslib "^2.0.0"
 
 "@nrwl/next@11.5.1":
@@ -2092,6 +2137,33 @@
     glob "7.1.4"
     license-webpack-plugin "2.1.2"
     rxjs "^6.5.4"
+    source-map-support "0.5.16"
+    tree-kill "1.2.2"
+    ts-loader "5.4.5"
+    tsconfig-paths-webpack-plugin "3.2.0"
+    tslib "^2.0.0"
+    webpack "4.42.0"
+    webpack-dev-server "3.11.0"
+    webpack-merge "4.2.1"
+    webpack-node-externals "1.7.2"
+
+"@nrwl/node@11.6.0":
+  version "11.6.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/node/-/node-11.6.0.tgz#dfb64fcd7d99022c5441d0a6e7d8b0982d5f0961"
+  integrity sha512-xLALQIvtR7nD68Q8eU2vMbYHQRH/wEACDH/yZJ518vJzWeO+mrnAEOhTPkoJzZ+WE75fvfKxV9xcIaRK5Y/vyQ==
+  dependencies:
+    "@nrwl/devkit" "11.6.0"
+    "@nrwl/jest" "11.6.0"
+    "@nrwl/linter" "11.6.0"
+    "@nrwl/workspace" "11.6.0"
+    circular-dependency-plugin "5.2.0"
+    copy-webpack-plugin "6.0.3"
+    fork-ts-checker-webpack-plugin "^3.1.1"
+    fs-extra "7.0.1"
+    glob "7.1.4"
+    license-webpack-plugin "2.1.2"
+    rxjs "^6.5.4"
+    rxjs-for-await "0.0.2"
     source-map-support "0.5.16"
     tree-kill "1.2.2"
     ts-loader "5.4.5"
@@ -2163,6 +2235,23 @@
     rxjs "^6.5.4"
     rxjs-for-await "0.0.2"
     semver "6.3.0"
+    strip-json-comments "2.0.1"
+    tmp "0.0.33"
+    tslib "^2.0.0"
+    yargs-parser "20.0.0"
+
+"@nrwl/tao@11.6.0":
+  version "11.6.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-11.6.0.tgz#9c2dcff5dafce50bf20d8a56dc0bdb7cb04189ef"
+  integrity sha512-Z0kKPzfa0UBB9fVKBZSFvwI1hnoXvV13LH+/5CRlZ+uPUKqPDG3GaxKwQeXJfmXNgpg6oaNfs6ToeEPJwTPQxw==
+  dependencies:
+    chalk "4.1.0"
+    fs-extra "7.0.1"
+    inquirer "^6.3.1"
+    minimist "^1.2.5"
+    rxjs "^6.5.4"
+    rxjs-for-await "0.0.2"
+    semver "7.3.4"
     strip-json-comments "2.0.1"
     tmp "0.0.33"
     tslib "^2.0.0"
@@ -2289,6 +2378,36 @@
     resolve "1.17.0"
     rxjs "^6.5.4"
     semver "6.3.0"
+    strip-json-comments "2.0.1"
+    tmp "0.0.33"
+    tslib "^2.0.0"
+    yargs "15.4.1"
+    yargs-parser "20.0.0"
+
+"@nrwl/workspace@11.6.0":
+  version "11.6.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/workspace/-/workspace-11.6.0.tgz#8e97625a4d79180d2c9d92a455684edf603567c0"
+  integrity sha512-RZ1kPL/w9Te2L+tvhfAZTnA+5tCUAvv6NUqTRUDZOMlKY+J0kwuKGnV64P1f5yiXMY5PSA3+H8HkLxPFnu5SjA==
+  dependencies:
+    "@nrwl/cli" "11.6.0"
+    "@nrwl/devkit" "11.6.0"
+    "@nrwl/jest" "11.6.0"
+    "@nrwl/linter" "11.6.0"
+    axios "0.21.1"
+    chalk "4.1.0"
+    cosmiconfig "^4.0.0"
+    dotenv "8.2.0"
+    flat "^5.0.2"
+    fs-extra "7.0.1"
+    ignore "^5.0.4"
+    inquirer "^6.3.1"
+    lodash "^4.17.20"
+    minimatch "3.0.4"
+    npm-run-all "^4.1.5"
+    opn "^5.3.0"
+    resolve "1.17.0"
+    rxjs "^6.5.4"
+    semver "7.3.4"
     strip-json-comments "2.0.1"
     tmp "0.0.33"
     tslib "^2.0.0"
