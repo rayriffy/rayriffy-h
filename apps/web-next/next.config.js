@@ -23,6 +23,9 @@ module.exports = withPlugins(
   [[withOffline], [withWorkers], [withPreact], [withBundleAnalyzer]],
   {
     target: 'serverless',
+    future: {
+      webpack5: true
+    },
     env: {
       buildId: generatedId,
       buildNumber: dayjs.tz(dayjs(), 'Asia/Bangkok').format('YYYYMMDD.HH'),
