@@ -1,5 +1,5 @@
 module.exports = {
-  mode: 'jit',
+  // mode: 'jit',
   theme: {
     filter: {
       none: 'none',
@@ -22,7 +22,7 @@ module.exports = {
     removeDeprecatedGapUtilities: true,
   },
   plugins: [require('@tailwindcss/ui'), require('tailwindcss-filters')],
-  purge: [
-    './[!node_modules]**/*.{ts,tsx}',
-  ],
+  // purge: [
+  //   './[!node_modules]**/*.{ts,tsx}',
+  // ],
 }
