@@ -85,7 +85,7 @@
     "storeon": "^3.1.4",
     "swr": "^0.5.3",
     "tailwind": "^4.0.0",
-    "tailwindcss": "^2.0.4",
+    "tailwindcss": "^2.1.1",
     "tailwindcss-filters": "^3.0.0",
     "web-api-hooks": "^3.0.2",
     "worker-loader": "^3.0.8",
