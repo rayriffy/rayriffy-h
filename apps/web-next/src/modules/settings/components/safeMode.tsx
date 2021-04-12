@@ -20,28 +20,25 @@ export const SafeMode: React.FC = props => {
               Preventing you from accidentally open unsafe image on public.
             </p>
           </div>
-          <div className="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
+          <button
+            type="button"
+            className={`relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 ${
+              settings.safemode ? 'bg-green-600' : 'bg-gray-200'
+            }`}
+            role="switch"
+            aria-checked={settings.safemode.toString() as 'true' | 'false'}
+            onClick={() => {
+              dispatch('setting/toggle', 'safemode')
+            }}
+          >
+            <span className="sr-only">Use setting</span>
             <span
-              role="checkbox"
-              tabIndex={0}
-              aria-checked="false"
-              aria-labelledby="renew-headline"
-              aria-describedby="renew-description"
-              onClick={() => {
-                dispatch('setting/toggle', 'safemode')
-              }}
-              className={`${
-                settings.safemode ? 'bg-green-600' : 'bg-gray-200'
-              } relative inline-block flex-no-shrink h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:shadow-outline`}
-            >
-              <span
-                aria-hidden="true"
-                className={`${
-                  settings.safemode ? 'translate-x-5' : 'translate-x-0'
-                } inline-block h-5 w-5 rounded-full bg-white shadow transform transition ease-in-out duration-200`}
-              ></span>
-            </span>
-          </div>
+              aria-hidden="true"
+              className={`translate-x-0 pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200 ${
+                settings.safemode ? 'translate-x-5' : 'translate-x-0'
+              }`}
+            ></span>
+          </button>
         </div>
       </div>
     </div>

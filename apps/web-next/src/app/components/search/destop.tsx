@@ -42,6 +42,24 @@ export const DesktopSearch: React.FC = React.memo(props => {
         Search
       </label>
       <div className="mt-1 relative rounded-md shadow-sm">
+        <div
+          className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+          aria-hidden="true"
+        >
+          <Search className="mr-3 h-4 w-4 text-gray-400" />
+        </div>
+        <input
+          type="text"
+          name="search-desktop"
+          id="search-desktop"
+          className={`focus:ring-blue-500 focus:border-blue-500 block w-full pl-9 sm:text-sm border-gray-300 rounded-md ${!isAvailable ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : ''}`}
+          placeholder="Search"
+          disabled={!isAvailable}
+          value={input}
+          onChange={onChange}
+        />
+      </div>
+      {/* <div className="mt-1 relative rounded-md shadow-sm">
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
           <Search className="mr-3 h-4 w-4 text-gray-400" />
         </div>
@@ -55,7 +73,7 @@ export const DesktopSearch: React.FC = React.memo(props => {
           value={input}
           onChange={onChange}
         />
-      </div>
+      </div> */}
     </div>
   )
 })

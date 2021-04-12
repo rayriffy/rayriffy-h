@@ -53,12 +53,11 @@ export const MobileSearch: React.FC = React.memo(props => {
             </div>
             <input
               id="search-mobile"
-              className={`block w-full h-full pl-8 pr-3 py-2 rounded-md placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 sm:text-sm ${
-                isAvailable ? 'text-gray-900' : 'text-gray-500 bg-gray-200'
-              }`}
+              name="search-mobile"
+              className={`border-none block w-full h-full pl-8 pr-3 py-2 border-transparent placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-gray-400 sm:text-sm ${isAvailable ? 'text-gray-900' : 'text-gray-500 bg-gray-200'}`}
               placeholder="Search"
-              disabled={!isAvailable}
               type="search"
+              disabled={!isAvailable}
               value={input}
               onChange={onChange}
             />

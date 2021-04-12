@@ -59,7 +59,7 @@ export const Favorite: React.FC<IProps> = React.memo(props => {
     <span className="inline-flex rounded-md shadow-sm">
       <button
         type="button"
-        className="inline-flex items-center p-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-pink-600 hover:bg-pink-500 focus:outline-none focus:border-pink-700 focus:shadow-outline-pink active:bg-pink-700 transition ease-in-out duration-150"
+        className="inline-flex items-center p-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
         onClick={toggleFavorite}
       >
         {isFavorited ? (
