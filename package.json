@@ -90,7 +90,7 @@
     "@babel/preset-env": "7.12.11",
     "@babel/preset-react": "7.12.13",
     "@babel/preset-typescript": "7.13.0",
-    "@commitlint/cli": "^12.0.1",
+    "@commitlint/cli": "^12.1.1",
     "@commitlint/config-conventional": "^12.1.1",
     "@nrwl/cli": "12.0.1",
     "@nrwl/cypress": "12.0.1",
