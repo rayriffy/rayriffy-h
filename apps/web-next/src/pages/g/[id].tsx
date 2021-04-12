@@ -46,9 +46,6 @@ export const getServerSideProps: GetServerSideProps<IProps> = async context => {
       typeof o === 'number' ? false : o.code.toString() === targetId
     )
 
-    console.log(targetId)
-    console.log(ignoreList.map(o => o.toString()).includes(targetId))
-
     if (ignoreList.map(o => o.toString()).includes(targetId)) {
       return {
         notFound: true,

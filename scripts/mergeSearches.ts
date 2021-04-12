@@ -15,7 +15,6 @@ import { Hentai } from '../libs/helper/src'
 
       // read
       const targetFile = path.join(cachePageDir, `page-${targetPage}.json`)
-      // console.log(targetFile)
       return JSON.parse(fs.readFileSync(targetFile).toString()) as Hentai[]
     })
   )
