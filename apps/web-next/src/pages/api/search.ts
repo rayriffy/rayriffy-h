@@ -1,6 +1,6 @@
 import { NextApiHandler } from 'next'
 
-import { chunk, get } from 'lodash'
+import { chunk } from 'lodash'
 
 import { APIResponse, Hentai } from '@rayriffy-h/helper'
 import { itemsPerPage } from '@rayriffy-h/constants'
@@ -31,8 +31,6 @@ const api: NextApiHandler = async (req, res) => {
     const targetPage = Number(page)
     const searchResult = await searchHentai(query as string, hentais)
 
-    const chunks = chunk(searchResult, itemsPerPage)
-
     const payload: APIResponse<{
       galleries: Hentai[]
       maxPage: number
@@ -42,18 +40,16 @@ const api: NextApiHandler = async (req, res) => {
       response: {
         message: 'query success',
         data: {
-          galleries: get<Hentai[][], number, Hentai[]>(
-            chunks,
-            targetPage - 1,
-            []
-          ).map(gallery => ({
-            ...gallery,
-            images: {
-              ...gallery.images,
-              pages: [],
-            },
-          })),
-          maxPage: chunks.length,
+          galleries: searchResult
+            .slice(itemsPerPage * (targetPage - 1), itemsPerPage * targetPage)
+            .map(gallery => ({
+              ...gallery,
+              images: {
+                ...gallery.images,
+                pages: [],
+              },
+            })),
+          maxPage: chunk(searchResult, itemsPerPage).length,
         },
       },
     }
