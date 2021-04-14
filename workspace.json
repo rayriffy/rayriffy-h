@@ -262,34 +262,6 @@
         }
       }
     },
-    "web-next-e2e": {
-      "root": "apps/web-next-e2e",
-      "sourceRoot": "apps/web-next-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/web-next-e2e/cypress.json",
-            "tsConfig": "apps/web-next-e2e/tsconfig.e2e.json",
-            "devServerTarget": "web-next:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "web-next:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/web-next-e2e/**/*.{js,ts}"
-            ]
-          }
-        }
-      }
-    },
     "icons": {
       "root": "libs/icons",
       "sourceRoot": "libs/icons/src",

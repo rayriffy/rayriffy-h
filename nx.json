@@ -42,10 +42,6 @@
     "web-next": {
       "tags": []
     },
-    "web-next-e2e": {
-      "tags": [],
-      "implicitDependencies": ["web-next"]
-    },
     "icons": {
       "tags": []
     },
