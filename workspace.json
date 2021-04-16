@@ -415,17 +415,6 @@
       "application": {
         "linter": "eslint"
       }
-    },
-    "@nrwl/express": {
-      "application": {
-        "linter": "eslint"
-      },
-      "library": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/gatsby": {
-      "application": {}
     }
   },
   "defaultProject": "poster"
