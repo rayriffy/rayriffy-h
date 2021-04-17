@@ -87,7 +87,7 @@ const Page: NextPage = props => {
                           id="transfer"
                           name="transfer"
                           type="text"
-                          className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                          className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
                           placeholder="Type your key here"
                           aria-describedby="transfer-description"
                           value={input}
@@ -109,7 +109,7 @@ const Page: NextPage = props => {
                           <a>
                             <button
                               type="button"
-                              className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                              className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                             >
                               Back
                             </button>
@@ -123,8 +123,8 @@ const Page: NextPage = props => {
                           disabled={input === ''}
                           className={`${
                             input === ''
-                              ? 'bg-indigo-400 hover:bg-indigo-500 focus:ring-indigo-300'
-                              : 'bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500'
+                              ? 'bg-blue-400 hover:bg-blue-500 focus:ring-blue-300'
+                              : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-500'
                           } inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2`}
                         >
                           {input === '' ? 'Missing input' : 'Import'}
@@ -165,7 +165,7 @@ const Page: NextPage = props => {
                           <a>
                             <button
                               type="button"
-                              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                             >
                               Back
                             </button>
