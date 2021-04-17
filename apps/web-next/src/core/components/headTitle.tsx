@@ -24,21 +24,21 @@ export const HeadTitle: React.FC<IProps> = props => {
 
   return (
     <Head>
-      <title>{transformedTitle}</title>
-      <meta name="title" content={transformedTitle} />
-      <meta name="description" content={description} />
+      <title key="head-title">{transformedTitle}</title>
+      <meta key="title" name="title" content={transformedTitle} />
+      <meta key="description" name="description" content={description} />
 
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content={router.asPath} />
-      <meta property="og:title" content={transformedTitle} />
-      <meta property="og:description" content={description} />
+      <meta key="og:type" property="og:type" content="website" />
+      <meta key="og:url" property="og:url" content={router.asPath} />
+      <meta key="og:title" property="og:title" content={transformedTitle} />
+      <meta key="og:description" property="og:description" content={description} />
 
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content={router.asPath} />
-      <meta property="twitter:title" content={transformedTitle} />
-      <meta property="twitter:description" content={description} />
+      <meta key="twitter:card" property="twitter:card" content="summary_large_image" />
+      <meta key="twitter:url" property="twitter:url" content={router.asPath} />
+      <meta key="twitter:title" property="twitter:title" content={transformedTitle} />
+      <meta key="twitter:description" property="twitter:description" content={description} />
 
-      <meta name="robots" content="noindex" />
+      <meta key="robots" name="robots" content="noindex" />
 
       {children}
     </Head>
