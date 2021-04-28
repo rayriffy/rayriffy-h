@@ -2505,6 +2505,17 @@
     yargs "15.4.1"
     yargs-parser "20.0.0"
 
+"@nrwl/cli@12.0.8":
+  version "12.0.8"
+  resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-12.0.8.tgz#86931f98a07f93eef89b6aee7ac15ce343f668ee"
+  integrity sha512-oAv/zjXyZzpZWx4VHjJwvC6zMFCCPkrqGF9ZIWo25uE5KM7pxrSxRa/Gmwbzh6NVsyokPG0OQ1F0Fo1OliRtow==
+  dependencies:
+    "@nrwl/tao" "12.0.8"
+    chalk "4.1.0"
+    v8-compile-cache "2.3.0"
+    yargs "15.4.1"
+    yargs-parser "20.0.0"
+
 "@nrwl/cypress@12.0.7":
   version "12.0.7"
   resolved "https://registry.yarnpkg.com/@nrwl/cypress/-/cypress-12.0.7.tgz#5a26ace43aa7aca3fa1ff7f431758f3c0db0c4e1"
@@ -2662,6 +2673,23 @@
   version "12.0.7"
   resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-12.0.7.tgz#bb7c3f94bddce8823154f8b8864129b736898e7f"
   integrity sha512-hLXkKiy940KgnPe9UR3e/A95CHzfSr375B1/fXqb3LwBz+JPdCa3GbXD3o0ZS0M++Dg4GCKNoYV9woHSAAW33g==
+  dependencies:
+    chalk "4.1.0"
+    enquirer "~2.3.6"
+    fs-extra "7.0.1"
+    minimist "^1.2.5"
+    rxjs "^6.5.4"
+    rxjs-for-await "0.0.2"
+    semver "7.3.4"
+    strip-json-comments "^3.1.1"
+    tmp "~0.2.1"
+    tslib "^2.0.0"
+    yargs-parser "20.0.0"
+
+"@nrwl/tao@12.0.8":
+  version "12.0.8"
+  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-12.0.8.tgz#97f1ce232cb7aa09d32ad6691a20a601a98db8cb"
+  integrity sha512-KUOAZBYLPPPZAWsQUxe9WHjWjJ8kJgfBpV5un1btiglXUfV1Hh80HyYbDrUEOKflsixanR8Dr7Oq3CmXtTd30A==
   dependencies:
     chalk "4.1.0"
     enquirer "~2.3.6"
@@ -14312,15 +14340,10 @@ uuid@^8.3.0:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
 
-v8-compile-cache@2.3.0:
+v8-compile-cache@2.3.0, v8-compile-cache@^2.0.3:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/v8-compile-cache/-/v8-compile-cache-2.3.0.tgz#2de19618c66dc247dcfb6f99338035d8245a2cee"
   integrity sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==
-
-v8-compile-cache@^2.0.3:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/v8-compile-cache/-/v8-compile-cache-2.2.0.tgz#9471efa3ef9128d2f7c6a7ca39c4dd6b5055b132"
-  integrity sha512-gTpR5XQNKFwOd4clxfnhaqvfqMpqEwr4tOtCyz4MtYZX2JYhfr1JvBFKdS+7K/9rfpZR3VLX+YWBbKoxCgS43Q==
 
 v8-to-istanbul@^7.0.0:
   version "7.0.0"
