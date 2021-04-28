@@ -2932,10 +2932,10 @@
   resolved "https://registry.yarnpkg.com/@storeon/crosstab/-/crosstab-1.0.2.tgz#72f1bb838347214f0394af6daf46ff4e95787487"
   integrity sha512-UKzJpJaJA12B9kc98MDfZ1Hh3M9HNAMSfgpjNHdg1JgZAHrmN6nXxaDsIlJYgSASND7IOoT/Q8yJB4uwTTodzA==
 
-"@storeon/localstorage@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@storeon/localstorage/-/localstorage-1.2.0.tgz#0ffcc5c0e270c908725bb337ff02e9e0877c6c84"
-  integrity sha512-GcUG67wzYEZmDZoG1gxSjGTaN9wk2P4FPffqkcHoUk/As4OawpQ91f5Z0pMaAG4o8GGe9cmoT7+dn3SqUPqUNg==
+"@storeon/localstorage@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@storeon/localstorage/-/localstorage-1.4.0.tgz#de1a76b2d86d2483e7be7c46664e4a4110e0a82c"
+  integrity sha512-WHYs8AGEI7RrFkhToSj8UX/OqkCBRp09f9BJQB7Dggth075qI+XsoFB4g/Y0vIL+wuZgznyAmdGB+J7zUu2dmA==
 
 "@surma/rollup-plugin-off-main-thread@^1.1.1":
   version "1.4.2"
