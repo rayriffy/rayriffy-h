@@ -10067,10 +10067,10 @@ next-compose-plugins@^2.2.1:
   resolved "https://registry.yarnpkg.com/next-compose-plugins/-/next-compose-plugins-2.2.1.tgz#020fc53f275a7e719d62521bef4300fbb6fde5ab"
   integrity sha512-OjJ+fV15FXO2uQXQagLD4C0abYErBjyjE0I0FHpOEIB8upw0hg1ldFP6cqHTJBH1cZqy96OeR3u1dJ+Ez2D4Bg==
 
-next-offline@^5.0.3:
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/next-offline/-/next-offline-5.0.3.tgz#99dfa8af54b34287618e8894494dbe3a719d0913"
-  integrity sha512-c0UwdaPZPpFWB25pIaaTKeD6cbqWoTyJRThDF3wCOTcBIXubso9NGF0yZ7xSOlZWix1UFixcITdSAaMyg0Wh1g==
+next-offline@^5.0.5:
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/next-offline/-/next-offline-5.0.5.tgz#91b2792f92a65e33eee00c9ab0dd1af9b9f71caa"
+  integrity sha512-GOpq+mD7ecrgW+A8+Y31BLNca3b8EeyRMhW5C9PsCc/C2RO1AzrssgIgQIrRulFuXDvXuPE5hWI4/DTHeOUp6Q==
   dependencies:
     copy-webpack-plugin "~5.1.2"
     fs-extra "~8.1.0"
