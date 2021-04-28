@@ -67,7 +67,7 @@
     "next-compose-plugins": "^2.2.1",
     "next-offline": "^5.0.3",
     "next-plugin-preact": "^3.0.4",
-    "postcss": "^8.2.9",
+    "postcss": "^8.2.13",
     "preact": "^10.5.13",
     "preact-render-to-string": "^5.1.19",
     "puppeteer-core": "^8.0.0",
