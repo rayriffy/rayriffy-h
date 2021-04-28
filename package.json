@@ -54,7 +54,7 @@
     "@tailwindcss/typography": "^0.4.0",
     "@zeit/next-workers": "^1.0.0",
     "autoprefixer": "^10.2.5",
-    "chrome-aws-lambda": "^8.0.0",
+    "chrome-aws-lambda": "^8.0.2",
     "copy-to-clipboard": "^3.3.1",
     "cors": "^2.8.5",
     "cwait": "^1.1.2",
