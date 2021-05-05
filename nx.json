@@ -23,13 +23,6 @@
     }
   },
   "projects": {
-    "poster": {
-      "tags": []
-    },
-    "poster-e2e": {
-      "tags": [],
-      "implicitDependencies": ["poster"]
-    },
     "api": {
       "tags": []
     },
