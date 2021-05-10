@@ -98,7 +98,7 @@
     "@nrwl/react": "12.1.1",
     "@nrwl/tao": "12.1.1",
     "@nrwl/web": "12.1.1",
-    "@nrwl/workspace": "12.1.1",
+    "@nrwl/workspace": "12.2.0",
     "@testing-library/react": "^11.2.6",
     "@types/chromecast-caf-receiver": "^5.0.13",
     "@types/chromecast-caf-sender": "^1.0.3",
