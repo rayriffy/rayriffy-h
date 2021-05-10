@@ -96,7 +96,7 @@
     "@nrwl/next": "12.1.1",
     "@nrwl/node": "12.1.1",
     "@nrwl/react": "12.1.1",
-    "@nrwl/tao": "12.1.1",
+    "@nrwl/tao": "12.2.0",
     "@nrwl/web": "12.1.1",
     "@nrwl/workspace": "12.1.1",
     "@testing-library/react": "^11.2.6",
