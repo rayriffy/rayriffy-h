@@ -99,7 +99,7 @@
     "@nrwl/tao": "12.3.3",
     "@nrwl/web": "12.3.3",
     "@nrwl/workspace": "12.3.3",
-    "@testing-library/react": "^11.2.6",
+    "@testing-library/react": "^11.2.7",
     "@types/chromecast-caf-receiver": "^5.0.13",
     "@types/chromecast-caf-sender": "^1.0.3",
     "@types/cors": "^2.8.10",
