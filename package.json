@@ -77,7 +77,7 @@
     "sitemap": "^7.0.0",
     "storeon": "^3.1.4",
     "swr": "^0.5.6",
-    "tailwindcss": "^2.1.1",
+    "tailwindcss": "^2.1.2",
     "tailwindcss-filters": "^3.0.0",
     "web-api-hooks": "^3.0.2",
     "worker-loader": "^3.0.8",
