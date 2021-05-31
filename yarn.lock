@@ -1850,6 +1850,18 @@
     strip-json-comments "^3.1.1"
     tslib "^2.0.0"
 
+"@nrwl/devkit@12.3.5":
+  version "12.3.5"
+  resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-12.3.5.tgz#5b1a9382f9a51f12ce133a95eb4d6731fc2cda03"
+  integrity sha512-bZi2WNHAAy/nSHAlA7r8zGpLuWPeurTbwBeNH9gm3It19fV5+hWoL1/pPlDBr2xEWjJQJNmWikxonxhw2ZIpGw==
+  dependencies:
+    "@nrwl/tao" "12.3.5"
+    ejs "^3.1.5"
+    ignore "^5.0.4"
+    semver "7.3.4"
+    strip-json-comments "^3.1.1"
+    tslib "^2.0.0"
+
 "@nrwl/eslint-plugin-nx@12.3.3":
   version "12.3.3"
   resolved "https://registry.yarnpkg.com/@nrwl/eslint-plugin-nx/-/eslint-plugin-nx-12.3.3.tgz#ae10dc135afc63f1b45ba0a5fe35911f87e6ab32"
@@ -1866,6 +1878,17 @@
   integrity sha512-XZBT+/cj/6352YsmmSa0Lx6HYqVn8eiCX/n8taH9NtDW5AugL70EaPG/tNw3iTBReTsGty+ElrdbRkmj9cMx7A==
   dependencies:
     "@nrwl/devkit" "12.3.3"
+    jest-resolve "^26.6.2"
+    rxjs "^6.5.4"
+    strip-json-comments "^3.1.1"
+    tslib "^2.0.0"
+
+"@nrwl/jest@12.3.5":
+  version "12.3.5"
+  resolved "https://registry.yarnpkg.com/@nrwl/jest/-/jest-12.3.5.tgz#6e74902cc290b8a7c6cdcf937d4634c4befea59e"
+  integrity sha512-pFaDcr7tGbYQ7NrWlym0cKAXFtphqLq8KlEoWM0aQcBQxv9VZtj4N8dwYPXPMAiAGYKYqgt9e74rgvN+bGeS1g==
+  dependencies:
+    "@nrwl/devkit" "12.3.5"
     jest-resolve "^26.6.2"
     rxjs "^6.5.4"
     strip-json-comments "^3.1.1"
@@ -1978,6 +2001,22 @@
   version "12.3.3"
   resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-12.3.3.tgz#5c78c0e86512fc83cca8a85012e85229f6dcc95e"
   integrity sha512-jVza/w34NtFZNQ1YbhdsHcWnoiA5gbTAY8Uvox75jvo2qz1T/D2U3FlbaXc6/J675n6htmNITXHpTuaJIYCtig==
+  dependencies:
+    chalk "4.1.0"
+    enquirer "~2.3.6"
+    fs-extra "^9.1.0"
+    rxjs "^6.5.4"
+    rxjs-for-await "0.0.2"
+    semver "7.3.4"
+    strip-json-comments "^3.1.1"
+    tmp "~0.2.1"
+    tslib "^2.0.0"
+    yargs-parser "20.0.0"
+
+"@nrwl/tao@12.3.5":
+  version "12.3.5"
+  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-12.3.5.tgz#7cbc65a561e5f9255403dc55bddf0f9a6743397c"
+  integrity sha512-K/Q0GsrLzqXubmLgm8tFSjvrG61lQ00DrtNZ5dHywOAXREeV11A0bR7lXVDTohABk3D9Wgly5IKZPZ3iUwscsg==
   dependencies:
     chalk "4.1.0"
     enquirer "~2.3.6"
@@ -11715,14 +11754,7 @@ rxjs@6.5.5:
   dependencies:
     tslib "^1.9.0"
 
-rxjs@^6.5.4:
-  version "6.6.3"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.6.3.tgz#8ca84635c4daa900c0d3967a6ee7ac60271ee552"
-  integrity sha512-trsQc+xYYXZ3urjOiJOuCOa5N3jAZ3eiSpQB5hIT8zGlL2QfnHLJ2r7GMkBGuIausdJN1OneaI6gQlsqNHHmZQ==
-  dependencies:
-    tslib "^1.9.0"
-
-rxjs@^6.6.7:
+rxjs@^6.5.4, rxjs@^6.6.7:
   version "6.6.7"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.6.7.tgz#90ac018acabf491bf65044235d5863c4dab804c9"
   integrity sha512-hTdwr+7yYNIT5n4AMYp85KA6yw2Va0FLa3Rguvbpa4W3I5xynaBZo41cM3XM+4Q6fRMj3sBYIR1VAmZMXYJvRQ==
