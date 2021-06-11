@@ -45,7 +45,7 @@
   "dependencies": {
     "@babel/plugin-transform-react-jsx-source": "^7.14.2",
     "@headlessui/react": "^1.2.0",
-    "@next/bundle-analyzer": "^10.2.0",
+    "@next/bundle-analyzer": "^10.2.3",
     "@nrwl/nx-cloud": "12.2.1",
     "@storeon/crosstab": "^1.0.2",
     "@storeon/localstorage": "^1.4.0",
