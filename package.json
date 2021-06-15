@@ -49,7 +49,7 @@
     "@nrwl/nx-cloud": "12.2.1",
     "@storeon/crosstab": "^1.0.2",
     "@storeon/localstorage": "^1.4.0",
-    "@tailwindcss/aspect-ratio": "^0.2.0",
+    "@tailwindcss/aspect-ratio": "^0.2.1",
     "@tailwindcss/forms": "^0.3.2",
     "@tailwindcss/typography": "^0.4.1",
     "@zeit/next-workers": "^1.0.0",
