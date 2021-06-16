@@ -30,25 +30,25 @@
     "api": {
       "tags": []
     },
+    "constants": {
+      "tags": []
+    },
+    "datasource": {
+      "tags": []
+    },
     "fetch": {
       "tags": []
     },
     "helper": {
       "tags": []
     },
-    "web-next": {
-      "tags": []
-    },
     "icons": {
-      "tags": []
-    },
-    "datasource": {
       "tags": []
     },
     "state-engine": {
       "tags": []
     },
-    "constants": {
+    "web-next": {
       "tags": []
     }
   },

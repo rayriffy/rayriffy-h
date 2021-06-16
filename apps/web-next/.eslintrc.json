@@ -14,9 +14,6 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "parserOptions": {
-        "project": ["apps/web-next/tsconfig(.*)?.json"]
-      },
       "rules": {}
     },
     {
