@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react'
 
 import { ExclamationIcon } from '@heroicons/react/outline'
 
-import { Transition } from '@headlessui/react/dist/components/transitions/transition'
+import { Transition } from '@headlessui/react'
 
 import { useCache } from '../../services/useCache'
 

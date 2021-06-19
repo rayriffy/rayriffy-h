@@ -2,7 +2,7 @@ import React from 'react'
 
 import { XIcon } from '@heroicons/react/outline'
 
-import { Transition } from '@headlessui/react/dist/components/transitions/transition'
+import { Transition } from '@headlessui/react'
 
 import { MobileNavbar } from './navbar/mobile'
 import { Offline } from './offline'
