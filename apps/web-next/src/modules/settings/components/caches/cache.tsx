@@ -1,4 +1,4 @@
-import { FunctionComponent, memo, useCallback, useState } from 'react'
+import { FunctionComponent, memo, useCallback, useState, SVGProps } from 'react'
 
 import { ExclamationIcon } from '@heroicons/react/outline'
 
@@ -8,7 +8,7 @@ import { useCache } from '../../services/useCache'
 
 interface IProps {
   cacheName: string
-  icon: FunctionComponent<React.SVGProps<SVGSVGElement>>
+  icon: FunctionComponent<SVGProps<SVGSVGElement>>
   title: string
 }
 

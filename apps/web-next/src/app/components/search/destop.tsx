@@ -1,4 +1,4 @@
-import { memo, useState, useCallback, useEffect } from 'react'
+import { memo, useState, useCallback, useEffect, ChangeEventHandler } from 'react'
 
 import { SearchIcon } from '@heroicons/react/outline'
 
@@ -22,7 +22,7 @@ export const DesktopSearch = memo(() => {
     }
   }, 500)
 
-  const onChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
+  const onChange = useCallback<ChangeEventHandler<HTMLInputElement>>(
     ({ target: { value } }) => {
       setInput(value)
       setDebounceInput(value)

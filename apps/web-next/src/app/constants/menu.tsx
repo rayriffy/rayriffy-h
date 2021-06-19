@@ -1,3 +1,5 @@
+import { FunctionComponent, SVGProps } from 'react'
+
 import {
   HomeIcon,
   ArchiveIcon,
@@ -8,7 +10,7 @@ import {
 } from '@heroicons/react/outline'
 
 export interface IMenu {
-  icon: FunctionComponent<React.SVGProps<SVGSVGElement>>
+  icon: FunctionComponent<SVGProps<SVGSVGElement>>
   link: string
   name: string
   match: string[]
