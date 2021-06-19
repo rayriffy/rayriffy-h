@@ -1,8 +1,8 @@
-import React from 'react'
+import { FunctionComponent } from 'react'
 
 import { useStoreon } from '@rayriffy-h/state-engine'
 
-export const SafeMode: React.FC = props => {
+export const SafeMode: FunctionComponent = () => {
   const { settings, dispatch } = useStoreon('settings')
   return (
     <div className="bg-white shadow sm:rounded-lg">

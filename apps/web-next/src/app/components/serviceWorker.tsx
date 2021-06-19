@@ -1,8 +1,8 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import { FunctionComponent, memo, useEffect, useMemo, useState } from 'react'
 
 import { SpeakerphoneIcon, XIcon } from '@heroicons/react/outline'
 
-export const ServiceWorker: React.FC = React.memo(props => {
+export const ServiceWorker = memo(() => {
   const [serviceWorkerStatus, setServiceWorkerStatus] = useState<string>('init')
   const [dismiss, setDismiss] = useState<boolean>(false)
 

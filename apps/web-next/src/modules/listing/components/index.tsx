@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { FunctionComponent } from 'react'
 
 import { Hentai } from '@rayriffy-h/helper'
 import { ExclamationIcon, QuestionMarkCircleIcon } from '@heroicons/react/outline'
@@ -13,7 +13,7 @@ interface IProps {
   currentPage: number
 }
 
-export const ListingModule: React.FC<IProps> = props => {
+export const ListingModule: FunctionComponent<IProps> = props => {
   const { galleries, maxPage, currentPage } = props
 
   const { data, isLoading, isError } = useListingNavigation(

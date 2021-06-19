@@ -8,7 +8,7 @@ import {
 } from '@heroicons/react/outline'
 
 export interface IMenu {
-  icon: React.FC<React.SVGProps<SVGSVGElement>>
+  icon: FunctionComponent<React.SVGProps<SVGSVGElement>>
   link: string
   name: string
   match: string[]

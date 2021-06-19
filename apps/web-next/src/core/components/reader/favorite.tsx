@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react'
+import { FunctionComponent, memo, useCallback, useMemo } from 'react'
 
 import { useStoreon } from '@rayriffy-h/state-engine'
 import { Hentai } from '@rayriffy-h/helper'
@@ -8,7 +8,7 @@ interface IProps {
   hentai: Hentai
 }
 
-export const Favorite: React.FC<IProps> = React.memo(props => {
+export const Favorite = memo<IProps>(props => {
   const { hentai } = props
 
   const { dispatch, collection } = useStoreon('collection')

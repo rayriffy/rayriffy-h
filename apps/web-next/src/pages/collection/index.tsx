@@ -1,4 +1,4 @@
-import React from 'react'
+import { Fragment } from 'react'
 
 import { NextPage } from 'next'
 import Link from 'next/link'
@@ -20,7 +20,7 @@ const CollectionListing = dynamic(
 
 const Page: NextPage = props => {
   return (
-    <React.Fragment>
+    <Fragment>
       <HeadTitle />
       <div className="p-2 sm:p-4">
         <div className="md:flex md:items-center md:justify-between pt-6 pb-2">
@@ -56,7 +56,7 @@ const Page: NextPage = props => {
         </div>
         <CollectionListing />
       </div>
-    </React.Fragment>
+    </Fragment>
   )
 }
 

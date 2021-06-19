@@ -1,9 +1,9 @@
-import React, { useCallback } from 'react'
+import { FunctionComponent, memo, useCallback } from 'react'
 
 import { InformationCircleIcon } from '@heroicons/react/outline'
 import { useStoreon } from '@rayriffy-h/state-engine'
 
-export const SafeMode: React.FC = React.memo(props => {
+export const SafeMode = memo(() => {
   const { settings, dispatch } = useStoreon('settings')
 
   const toggleSafeMode = useCallback(

@@ -1,6 +1,6 @@
-import React from 'react'
+import { FunctionComponent, memo } from 'react'
 
-export const ClearHistory: React.FC = props => {
+export const ClearHistory = memo(() => {
   return (
     <div className="bg-white shadow sm:rounded-lg">
       <div className="px-4 py-5 sm:p-6">
@@ -28,4 +28,4 @@ export const ClearHistory: React.FC = props => {
       </div>
     </div>
   )
-}
+})

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import { memo, useState, useCallback, useEffect } from 'react'
 
 import { SearchIcon } from '@heroicons/react/outline'
 
@@ -7,7 +7,7 @@ import debounce from 'lodash/debounce'
 import { useSearchAvailable } from '../../services/useSearchAvailable'
 import { useSearch } from '../../services/useSearch'
 
-export const DesktopSearch: React.FC = React.memo(props => {
+export const DesktopSearch = memo(() => {
   const { isAvailable, availableType } = useSearchAvailable()
 
   const { query, dispatch } = useSearch(availableType)

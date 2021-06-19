@@ -1,4 +1,4 @@
-import React from 'react'
+import { Fragment } from 'react'
 
 import { NextPage } from 'next'
 
@@ -11,14 +11,14 @@ const Page: NextPage = props => {
   const { history } = useStoreon('history')
 
   return (
-    <React.Fragment>
+    <Fragment>
       <HeadTitle />
       <div className="p-2 sm:p-4">
         <div className="py-4">
           <Listing galleries={history.items.map(o => o.data)} />
         </div>
       </div>
-    </React.Fragment>
+    </Fragment>
   )
 }
 

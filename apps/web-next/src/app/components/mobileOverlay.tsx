@@ -1,4 +1,4 @@
-import React from 'react'
+import { memo } from 'react'
 
 import { XIcon } from '@heroicons/react/outline'
 
@@ -12,7 +12,7 @@ interface IProps {
   onToggleSidebar?(): void
 }
 
-export const MobileOverlay: React.FC<IProps> = React.memo(props => {
+export const MobileOverlay = memo<IProps>(props => {
   const { show = false, onToggleSidebar = () => {} } = props
 
   return (

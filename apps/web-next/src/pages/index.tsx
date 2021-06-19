@@ -1,4 +1,4 @@
-import React from 'react'
+import { Fragment } from 'react'
 
 import { NextPage } from 'next'
 
@@ -7,10 +7,10 @@ import { HeadTitle } from '../core/components/headTitle'
 
 const Page: NextPage = props => {
   return (
-    <React.Fragment>
+    <Fragment>
       <HeadTitle />
       <MainListing page={1} />
-    </React.Fragment>
+    </Fragment>
   )
 }
 

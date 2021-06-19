@@ -1,4 +1,4 @@
-import React from 'react'
+import { Fragment } from 'react'
 
 import { NextPage, GetStaticProps, GetStaticPaths } from 'next'
 
@@ -16,10 +16,10 @@ interface IProps {
 
 const Page: NextPage<IProps> = props => {
   return (
-    <React.Fragment>
+    <Fragment>
       <HeadTitle />
       <ListingModule {...props} />
-    </React.Fragment>
+    </Fragment>
   )
 }
 

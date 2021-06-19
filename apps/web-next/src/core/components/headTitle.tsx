@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { FunctionComponent, useMemo } from 'react'
 
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -8,7 +8,7 @@ interface IProps {
   description?: string
 }
 
-export const HeadTitle: React.FC<IProps> = props => {
+export const HeadTitle: FunctionComponent<IProps> = props => {
   const {
     title,
     description = 'The missing piece of nhentai',

@@ -1,4 +1,4 @@
-import React from 'react'
+import { FunctionComponent, memo } from 'react'
 
 import Link from 'next/link'
 
@@ -14,7 +14,7 @@ interface IProps {
 
 const availableFlags = ['english', 'japanese', 'chinese']
 
-export const Poster: React.FC<IProps> = React.memo(props => {
+export const Poster = memo<IProps>(props => {
   const { hentai } = props
 
   return (

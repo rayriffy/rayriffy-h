@@ -1,12 +1,12 @@
-import React from 'react'
+import { FunctionComponent, memo, Fragment } from 'react'
 
 import { ArchiveIcon, BookOpenIcon, PhotographIcon } from '@heroicons/react/outline'
 
 import { Cache } from './cache'
 
-export const Caches: React.FC = React.memo(props => {
+export const Caches = memo(props => {
   return (
-    <React.Fragment>
+    <Fragment>
       <h3 className="text-lg leading-6 font-medium text-gray-900 pt-2 px-4 md:px-0">
         Offline Storage
       </h3>
@@ -32,6 +32,6 @@ export const Caches: React.FC = React.memo(props => {
           icon={ArchiveIcon}
         />
       </div>
-    </React.Fragment>
+    </Fragment>
   )
 })

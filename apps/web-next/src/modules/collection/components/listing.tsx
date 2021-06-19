@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react'
+import { FunctionComponent, memo, Fragment, useCallback, useMemo } from 'react'
 
 import { useStoreon } from '@rayriffy-h/state-engine'
 import { itemsPerPage } from '@rayriffy-h/constants'
@@ -11,7 +11,7 @@ import { Listing } from '../../../core/components/listing'
 import { searchHentai } from '../services/worker/searchHentai.worker'
 import { useSearch } from '../../../app/services/useSearch'
 
-export const CollectionListing: React.FC = React.memo(props => {
+export const CollectionListing = memo(() => {
   const { collection } = useStoreon('collection')
 
   const { query, page, dispatch } = useSearch('collection')
@@ -45,7 +45,7 @@ export const CollectionListing: React.FC = React.memo(props => {
   }, [])
 
   return (
-    <React.Fragment>
+    <Fragment>
       <div className="flex justify-center pt-4">
         <nav className="z-0">
           <Pagination
@@ -69,6 +69,6 @@ export const CollectionListing: React.FC = React.memo(props => {
           />
         </nav>
       </div>
-    </React.Fragment>
+    </Fragment>
   )
 })

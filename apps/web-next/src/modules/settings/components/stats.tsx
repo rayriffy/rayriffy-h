@@ -1,11 +1,11 @@
-import React, { useCallback } from 'react'
+import { FunctionComponent, memo, useCallback } from 'react'
 
 import Link from 'next/link'
 
 import { BookmarkIcon, ClockIcon, CursorClickIcon } from '@heroicons/react/outline'
 import { useStoreon } from '@rayriffy-h/state-engine'
 
-export const Stats: React.FC = props => {
+export const Stats: FunctionComponent = () => {
   const { collection, history, metadata, dispatch } = useStoreon(
     'collection',
     'history',

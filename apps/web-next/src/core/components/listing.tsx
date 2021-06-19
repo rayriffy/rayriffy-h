@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { FunctionComponent, memo, useMemo } from 'react'
 
 import dynamic from 'next/dynamic'
 
@@ -12,7 +12,7 @@ interface IProps {
   galleries: Hentai[]
 }
 
-const Component: React.FC<IProps> = React.memo(props => {
+const Component = memo<IProps>(props => {
   const { galleries } = props
 
   const mediaMd = useMedia('(min-width: 768px)')

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useMemo } from 'react'
+import { FunctionComponent, Fragment, useState, useCallback, useEffect, useMemo } from 'react'
 
 import { useRouter } from 'next/router'
 
@@ -8,7 +8,7 @@ import { MobileHeader } from './header/mobile'
 import { MobileOverlay } from './mobileOverlay'
 import { DesktopHeader } from './header/destop'
 
-export const AppLayout: React.FC = props => {
+export const AppLayout: FunctionComponent = props => {
   const { children } = props
 
   const router = useRouter()
@@ -27,14 +27,14 @@ export const AppLayout: React.FC = props => {
 
   if (isHideLayout) {
     return (
-      <React.Fragment>
+      <Fragment>
         {/* boop */}
         {children}
-      </React.Fragment>
+      </Fragment>
     )
   } else {
     return (
-      <React.Fragment>
+      <Fragment>
         {/* <Unstable /> */}
         <div className="h-screen flex overflow-hidden bg-gray-50">
           <MobileOverlay show={sidebarOpen} onToggleSidebar={onToggleSidebar} />
@@ -50,7 +50,7 @@ export const AppLayout: React.FC = props => {
           </div>
         </div>
         <ServiceWorker />
-      </React.Fragment>
+      </Fragment>
     )
   }
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import { FunctionComponent, memo } from 'react'
 
 import Link from 'next/link'
 
@@ -17,7 +17,7 @@ interface PageProps {
   onChange(page: number): void
 }
 
-const Page: React.FC<PageProps> = React.memo(props => {
+const Page = memo<PageProps>(props => {
   const { startPoint, current, i, onChange } = props
 
   return (
@@ -32,7 +32,7 @@ const Page: React.FC<PageProps> = React.memo(props => {
   )
 })
 
-export const Pagination: React.FC<Props> = React.memo(props => {
+export const Pagination = memo<Props>(props => {
   const { max, current, prefix = '/', link = true, onChange } = props
 
   const pageLength: number = max > 5 ? 5 : max

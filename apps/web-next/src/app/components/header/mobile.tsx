@@ -1,4 +1,4 @@
-import React from 'react'
+import { memo } from 'react'
 
 import { MenuAlt1Icon } from '@heroicons/react/outline'
 
@@ -10,7 +10,7 @@ interface IProps {
   onToggleSidebar?(): void
 }
 
-export const MobileHeader: React.FC<IProps> = React.memo(props => {
+export const MobileHeader = memo<IProps>(props => {
   const { onToggleSidebar = () => {} } = props
 
   return (
@@ -30,7 +30,7 @@ export const MobileHeader: React.FC<IProps> = React.memo(props => {
   )
 })
 
-const Indicator: React.FC = React.memo(props => {
+const Indicator = memo(props => {
   const isOnline = useNetworkAvailability()
 
   if (!isOnline) {

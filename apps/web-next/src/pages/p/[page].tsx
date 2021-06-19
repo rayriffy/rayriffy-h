@@ -1,4 +1,4 @@
-import React from 'react'
+import { Fragment } from 'react'
 
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
@@ -10,10 +10,10 @@ const Page: NextPage = props => {
   const router = useRouter()
 
   return (
-    <React.Fragment>
+    <Fragment>
       <HeadTitle />
       <MainListing page={Number(router.query.page as string)} />
-    </React.Fragment>
+    </Fragment>
   )
 }
 

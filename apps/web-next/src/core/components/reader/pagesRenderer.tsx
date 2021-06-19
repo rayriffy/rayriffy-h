@@ -1,4 +1,4 @@
-import React from 'react'
+import { FunctionComponent, memo } from 'react'
 
 import { getImageUrl, Image } from '@rayriffy-h/helper'
 
@@ -10,7 +10,7 @@ interface IProps {
   excludes: number[]
 }
 
-export const PagesRenderer: React.FC<IProps> = React.memo(props => {
+export const PagesRenderer = memo<IProps>(props => {
   const { pages, mediaId, excludes } = props
 
   return (

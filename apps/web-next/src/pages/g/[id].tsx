@@ -1,4 +1,4 @@
-import React from 'react'
+import { Fragment } from 'react'
 
 import { getHentai, Hentai } from '@rayriffy-h/helper'
 
@@ -17,7 +17,7 @@ const Page: NextPage<IProps> = props => {
   const { gallery, excludes } = props
 
   return (
-    <React.Fragment>
+    <Fragment>
       <HeadTitle
         title={gallery.title.pretty}
         description={`Read ${gallery.title.pretty} without ads or popups via Riffy H, an alternate client for nhentai`}
@@ -32,7 +32,7 @@ const Page: NextPage<IProps> = props => {
         />
       </HeadTitle>
       <Reader {...{ hentai: gallery, excludes }} />
-    </React.Fragment>
+    </Fragment>
   )
 }
 

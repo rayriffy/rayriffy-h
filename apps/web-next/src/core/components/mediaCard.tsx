@@ -1,4 +1,4 @@
-import React from 'react'
+import { FunctionComponent, memo } from 'react'
 
 interface IProps {
   media: string
@@ -6,7 +6,7 @@ interface IProps {
   subtitle: string
 }
 
-export const MediaCard: React.FC<IProps> = React.memo(props => {
+export const MediaCard = memo<IProps>(props => {
   const { media, title, subtitle } = props
 
   return (

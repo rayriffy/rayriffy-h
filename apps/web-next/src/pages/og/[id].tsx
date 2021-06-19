@@ -1,4 +1,4 @@
-import React from 'react'
+import { Fragment } from 'react'
 
 import { GetServerSideProps, NextPage } from 'next'
 import Image from 'next/image'
@@ -16,7 +16,7 @@ const Page: NextPage<IProps> = props => {
   const { gallery } = props
 
   return (
-    <React.Fragment>
+    <Fragment>
       <Head>
         <link rel="preconnect" href="https://fonts.gstatic.com"></link>
         <link
@@ -58,7 +58,7 @@ const Page: NextPage<IProps> = props => {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </Fragment>
   )
 }
 

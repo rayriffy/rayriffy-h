@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { NextPage } from 'next'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
@@ -7,7 +5,6 @@ import Head from 'next/head'
 import { Context } from '@rayriffy-h/state-engine'
 
 import { AppLayout } from '../app/components/appLayout'
-import { HeadTitle } from '../core/components/headTitle'
 
 import '../styles/custom.css'
 import '../styles/tailwind.css'

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { memo, Fragment, useMemo } from 'react'
 
 import { DatabaseTag, tags as tagTypes } from '@rayriffy-h/tags'
 import { filterTagByType, Tag } from '@rayriffy-h/helper'
@@ -7,7 +7,7 @@ interface IProps {
   tags: Tag[]
 }
 
-export const TagRenderer: React.FC<IProps> = React.memo(props => {
+export const TagRenderer = memo<IProps>(props => {
   const { tags } = props
 
   const sortedTags = useMemo<[DatabaseTag, Tag[]][]>(() => {
@@ -15,7 +15,7 @@ export const TagRenderer: React.FC<IProps> = React.memo(props => {
   }, [tags])
 
   return (
-    <React.Fragment>
+    <Fragment>
       {sortedTags.map(([sourceTag, tags]) => {
         if (tags.length === 0) {
           return null
@@ -28,7 +28,7 @@ export const TagRenderer: React.FC<IProps> = React.memo(props => {
           )
         }
       })}
-    </React.Fragment>
+    </Fragment>
   )
 })
 
@@ -37,7 +37,7 @@ interface TagGroupProps {
   tags: Tag[]
 }
 
-const TagGroup: React.FC<TagGroupProps> = React.memo(props => {
+const TagGroup = memo<TagGroupProps>(props => {
   const { sourceTag, tags } = props
 
   return (
@@ -63,7 +63,7 @@ interface SlugProps {
   color: string
 }
 
-export const Slug: React.FC<SlugProps> = React.memo(props => {
+export const Slug = memo<SlugProps>(props => {
   const { tag, color } = props
 
   return (

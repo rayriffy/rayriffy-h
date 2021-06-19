@@ -1,4 +1,4 @@
-import React from 'react'
+import { FunctionComponent } from 'react'
 
 import { ExclamationIcon, QuestionMarkCircleIcon } from '@heroicons/react/outline'
 
@@ -10,7 +10,7 @@ interface IProps {
   page: number
 }
 
-export const MainListing: React.FC<IProps> = props => {
+export const MainListing: FunctionComponent<IProps> = props => {
   const { page } = props
 
   const { data, isLoading, isError } = useMainNavigation(page)

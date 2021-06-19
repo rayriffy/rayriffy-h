@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { FunctionComponent, memo, Fragment, useEffect } from 'react'
 
 import { getImageUrl, Hentai } from '@rayriffy-h/helper'
 import { useStoreon } from '@rayriffy-h/state-engine'
@@ -14,7 +14,7 @@ interface IProps {
   excludes?: number[]
 }
 
-export const Reader: React.FC<IProps> = React.memo(props => {
+export const Reader = memo<IProps>(props => {
   const { hentai, excludes = [] } = props
 
   const { dispatch } = useStoreon('history', 'metadata')
@@ -28,7 +28,7 @@ export const Reader: React.FC<IProps> = React.memo(props => {
   }, [])
 
   return (
-    <React.Fragment>
+    <Fragment>
       <div className="max-w-3xl mx-auto block md:flex pt-0 md:pt-10">
         <div className="p-8 md:p-0">
           <div className="flex justify-center">
@@ -69,6 +69,6 @@ export const Reader: React.FC<IProps> = React.memo(props => {
         mediaId={hentai.media_id}
         excludes={excludes}
       />
-    </React.Fragment>
+    </Fragment>
   )
 })

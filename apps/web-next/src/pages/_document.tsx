@@ -1,5 +1,3 @@
-import React from 'react'
-
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 class NextDocument extends Document {
@@ -20,7 +18,7 @@ class NextDocument extends Document {
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-    
+
                 gtag('config', 'G-12TFVLTM16');
               `,
             }}

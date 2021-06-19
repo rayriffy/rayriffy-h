@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { FunctionComponent, memo, useMemo } from 'react'
 
 import { tags } from '@rayriffy-h/tags'
 
@@ -9,7 +9,7 @@ import capitalize from 'lodash/capitalize'
 
 import { IMenu, menus } from '../../constants/menu'
 
-const MobileMenuLink: React.FC<IMenu> = props => {
+const MobileMenuLink: FunctionComponent<IMenu> = props => {
   const { name, link } = props
 
   const router = useRouter()
@@ -35,7 +35,7 @@ const MobileMenuLink: React.FC<IMenu> = props => {
   )
 }
 
-export const MobileNavbar: React.FC = React.memo(props => {
+export const MobileNavbar = memo(() => {
   return (
     <nav className="px-2">
       <div className="space-y-1">

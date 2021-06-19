@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import { FunctionComponent, memo, useState } from 'react'
 
 import { XIcon } from '@heroicons/react/outline'
 
-export const Unstable: React.FC = React.memo(props => {
+export const Unstable = memo(() => {
   const [show, setShow] = useState<boolean>(true)
 
   if (show) {

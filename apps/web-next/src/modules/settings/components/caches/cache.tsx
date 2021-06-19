@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import { FunctionComponent, memo, useCallback, useState } from 'react'
 
 import { ExclamationIcon } from '@heroicons/react/outline'
 
@@ -8,11 +8,11 @@ import { useCache } from '../../services/useCache'
 
 interface IProps {
   cacheName: string
-  icon: React.FC<React.SVGProps<SVGSVGElement>>
+  icon: FunctionComponent<React.SVGProps<SVGSVGElement>>
   title: string
 }
 
-export const Cache: React.FC<IProps> = React.memo(props => {
+export const Cache = memo<IProps>(props => {
   const [modal, setModal] = useState<boolean>(false)
   const [isProgress, setIsProgress] = useState<boolean>(false)
   const nextImages = useCache(props.cacheName)
@@ -27,7 +27,7 @@ export const Cache: React.FC<IProps> = React.memo(props => {
     const keys = await cache.keys()
 
     await Promise.all(
-      await keys.map(async key => {
+      keys.map(async key => {
         return await cache.delete(key)
       })
     )

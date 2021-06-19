@@ -1,12 +1,10 @@
-import React from 'react'
+import { memo, ComponentProps } from 'react'
 
 import Image from 'next/image'
 
 import { useStoreon } from '@rayriffy-h/state-engine'
 
-export const ImageBlur: React.FC<React.ComponentProps<
-  typeof Image
->> = React.memo(props => {
+export const ImageBlur = memo<ComponentProps<typeof Image>>(props => {
   const { className, ...rest } = props
   const { settings } = useStoreon('settings')
 

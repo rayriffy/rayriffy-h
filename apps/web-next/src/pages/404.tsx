@@ -1,4 +1,4 @@
-import React from 'react'
+import { Fragment } from 'react'
 
 import { NextPage } from 'next'
 
@@ -7,7 +7,7 @@ import { HeadTitle } from '../core/components/headTitle'
 
 const Page: NextPage = props => {
   return (
-    <React.Fragment>
+    <Fragment>
       <HeadTitle />
       <div className="max-w-lg pt-6 mx-auto px-4">
         <MediaCard
@@ -16,7 +16,7 @@ const Page: NextPage = props => {
           subtitle="The page your're looking for is not found"
         />
       </div>
-    </React.Fragment>
+    </Fragment>
   )
 }
 

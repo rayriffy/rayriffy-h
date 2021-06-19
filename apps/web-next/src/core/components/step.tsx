@@ -1,11 +1,11 @@
-import React from 'react'
+import { FunctionComponent, memo } from 'react'
 
 interface IProps {
   current: number
   total: number
 }
 
-export const Step: React.FC<IProps> = React.memo(props => {
+export const Step = memo<IProps>(props => {
   const { current, total } = props
 
   return (

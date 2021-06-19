@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { Fragment, useState } from 'react'
 
 import { NextPage } from 'next'
 import Link from 'next/link'
@@ -55,7 +55,7 @@ const Page: NextPage = props => {
   }
 
   return (
-    <React.Fragment>
+    <Fragment>
       <HeadTitle />
       <div className="max-w-7xl mx-auto px-0 sm:px-4 lg:px-6 pt-6">
         <div className="max-w-3xl mx-auto space-y-6">
@@ -74,7 +74,7 @@ const Page: NextPage = props => {
               </div>
               <div className="pt-4">
                 {status === 0 ? (
-                  <React.Fragment>
+                  <Fragment>
                     <div className="pb-4">
                       <label
                         htmlFor="transfer"
@@ -131,7 +131,7 @@ const Page: NextPage = props => {
                         </button>
                       </span>
                     </div>
-                  </React.Fragment>
+                  </Fragment>
                 ) : status === 1 ? (
                   <div className="pt-4 pb-2">
                     <div className="flex justify-center">
@@ -180,7 +180,7 @@ const Page: NextPage = props => {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </Fragment>
   )
 }
 

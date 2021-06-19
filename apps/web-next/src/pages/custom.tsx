@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import { Fragment, useMemo, useState } from 'react'
 
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
@@ -14,7 +14,7 @@ const Page: NextPage = props => {
   ])
 
   return (
-    <React.Fragment>
+    <Fragment>
       <HeadTitle />
       <div className="max-w-2xl mx-auto px-0 sm:px-4 lg:px-6 pt-6">
         <div className="max-w-3xl mx-auto space-y-6 pb-8">
@@ -68,7 +68,7 @@ const Page: NextPage = props => {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </Fragment>
   )
 }
 
