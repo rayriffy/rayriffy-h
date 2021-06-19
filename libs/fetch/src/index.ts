@@ -1,1 +1,1 @@
-export * from './lib/fetch'
+export { customFetch as fetch } from './lib/fetch'

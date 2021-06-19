@@ -1,10 +1,8 @@
-import unfetch from 'isomorphic-unfetch'
-
-export const fetch = async <T = unknown>(
+export const customFetch = async <T = unknown>(
   input: RequestInfo,
   init?: RequestInit
 ): Promise<T> => {
-  const request = await unfetch(input, init)
+  const request = await fetch(input, init)
   const res: T = await request.json()
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
