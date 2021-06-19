@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 
-import { DatabaseTag, tags as tagTypes } from '@rayriffy-h/datasource'
+import { DatabaseTag, tags as tagTypes } from '@rayriffy-h/tags'
 import { filterTagByType, Tag } from '@rayriffy-h/helper'
 
 interface IProps {

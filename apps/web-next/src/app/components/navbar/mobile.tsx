@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 
-import { tags } from '@rayriffy-h/datasource'
+import { tags } from '@rayriffy-h/tags'
 
 import Link from 'next/link'
 import { useRouter } from 'next/router'

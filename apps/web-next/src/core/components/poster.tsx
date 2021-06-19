@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import { filterTagByType, getImageUrl, Hentai } from '@rayriffy-h/helper'
 import { BookOpenIcon } from '@heroicons/react/outline'
-import { tags } from '@rayriffy-h/datasource'
+import { tags } from '@rayriffy-h/tags'
 
 import { ImageBlur } from './imageBlur'
 
