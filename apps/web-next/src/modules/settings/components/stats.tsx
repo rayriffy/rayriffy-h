@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 
 import Link from 'next/link'
 
-import { Bookmark, Clock, CursorClick } from '@rayriffy-h/icons'
+import { BookmarkIcon, ClockIcon, CursorClickIcon } from '@heroicons/react/outline'
 import { useStoreon } from '@rayriffy-h/state-engine'
 
 export const Stats: React.FC = props => {
@@ -23,7 +23,7 @@ export const Stats: React.FC = props => {
         <div className="px-4 py-5 sm:p-6">
           <div className="flex items-center">
             <div className="flex-shrink-0 bg-blue-500 rounded-md p-3">
-              <Bookmark className="h-6 w-6 text-white" />
+              <BookmarkIcon className="h-6 w-6 text-white" />
             </div>
             <div className="ml-5 w-0 flex-1">
               <dl>
@@ -51,7 +51,7 @@ export const Stats: React.FC = props => {
         <div className="px-4 py-5 sm:p-6">
           <div className="flex items-center">
             <div className="flex-shrink-0 bg-blue-500 rounded-md p-3">
-              <Clock className="h-6 w-6 text-white" />
+              <ClockIcon className="h-6 w-6 text-white" />
             </div>
             <div className="ml-5 w-0 flex-1">
               <dl>
@@ -84,7 +84,7 @@ export const Stats: React.FC = props => {
         <div className="px-4 py-5 sm:p-6">
           <div className="flex items-center">
             <div className="flex-shrink-0 bg-blue-500 rounded-md p-3">
-              <CursorClick className="h-6 w-6 text-white" />
+              <CursorClickIcon className="h-6 w-6 text-white" />
             </div>
             <div className="ml-5 w-0 flex-1">
               <dl>

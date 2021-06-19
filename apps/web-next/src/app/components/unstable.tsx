@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { X } from '@rayriffy-h/icons'
+import { XIcon } from '@heroicons/react/outline'
 
 export const Unstable: React.FC = React.memo(props => {
   const [show, setShow] = useState<boolean>(true)
@@ -32,7 +32,7 @@ export const Unstable: React.FC = React.memo(props => {
               className="flex p-2 rounded-md hover:bg-orange-500 focus:outline-none focus:bg-orange-500 transition ease-in-out duration-150"
               aria-label="Dismiss"
             >
-              <X className="h-6 w-6 text-white" />
+              <XIcon className="h-6 w-6 text-white" />
             </button>
           </div>
         </div>

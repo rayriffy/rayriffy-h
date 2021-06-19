@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 
-import { Speakerphone, X } from '@rayriffy-h/icons'
+import { SpeakerphoneIcon, XIcon } from '@heroicons/react/outline'
 
 export const ServiceWorker: React.FC = React.memo(props => {
   const [serviceWorkerStatus, setServiceWorkerStatus] = useState<string>('init')
@@ -110,7 +110,7 @@ export const ServiceWorker: React.FC = React.memo(props => {
                     isInstalled ? 'bg-green-800' : 'bg-gray-800'
                   }`}
                 >
-                  <Speakerphone className="h-6 w-6 text-white" />
+                  <SpeakerphoneIcon className="h-6 w-6 text-white" />
                 </span>
                 <p className="ml-3 font-medium text-white truncate">
                   <span className="md:hidden">
@@ -144,7 +144,7 @@ export const ServiceWorker: React.FC = React.memo(props => {
                   }`}
                   aria-label="Dismiss"
                 >
-                  <X className="h-6 w-6 text-white" />
+                  <XIcon className="h-6 w-6 text-white" />
                 </button>
               </div>
             </div>

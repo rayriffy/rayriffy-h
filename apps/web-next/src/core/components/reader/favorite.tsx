@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react'
 
 import { useStoreon } from '@rayriffy-h/state-engine'
 import { Hentai } from '@rayriffy-h/helper'
-import { Heart, Minus, Plus } from '@rayriffy-h/icons'
+import { MinusIcon, PlusIcon } from '@heroicons/react/outline'
 
 interface IProps {
   hentai: Hentai
@@ -63,9 +63,9 @@ export const Favorite: React.FC<IProps> = React.memo(props => {
         onClick={toggleFavorite}
       >
         {isFavorited ? (
-          <Minus className="w-6 h-6" />
+          <MinusIcon className="w-6 h-6" />
         ) : (
-          <Plus className="w-6 h-6" />
+          <PlusIcon className="w-6 h-6" />
         )}
       </button>
     </span>

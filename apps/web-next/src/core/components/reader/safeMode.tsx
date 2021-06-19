@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 
-import { InformationCircle } from '@rayriffy-h/icons'
+import { InformationCircleIcon } from '@heroicons/react/outline'
 import { useStoreon } from '@rayriffy-h/state-engine'
 
 export const SafeMode: React.FC = React.memo(props => {
@@ -17,7 +17,7 @@ export const SafeMode: React.FC = React.memo(props => {
         <div className="bg-white shadow overflow-hidden rounded-md text-gray-900 text-sm">
           <div className="px-4 py-4 sm:px-6">
             <h2 className="uppercase text-gray-900 font-bold pb-1">
-              <InformationCircle className="w-6 h-6 inline mr-1" />
+              <InformationCircleIcon className="w-6 h-6 inline mr-1" />
               Information
             </h2>
             Safe mode has been enabled! Modify this behavior in settings.

@@ -1,11 +1,11 @@
 import {
-  Home,
-  Archive,
-  Bookmark,
-  Clock,
-  Cog,
-  CursorClick,
-} from '@rayriffy-h/icons'
+  HomeIcon,
+  ArchiveIcon,
+  BookmarkIcon,
+  ClockIcon,
+  CogIcon,
+  CursorClickIcon,
+} from '@heroicons/react/outline'
 
 export interface IMenu {
   icon: React.FC<React.SVGProps<SVGSVGElement>>
@@ -16,37 +16,37 @@ export interface IMenu {
 
 export const menus: IMenu[] = [
   {
-    icon: Home,
+    icon: HomeIcon,
     link: '/',
     name: 'Home',
     match: ['/'],
   },
   {
-    icon: Archive,
+    icon: ArchiveIcon,
     link: '/listing',
     name: 'Listing',
     match: ['/listing/[[...page]]'],
   },
   {
-    icon: CursorClick,
+    icon: CursorClickIcon,
     link: '/custom',
     name: 'Custom',
     match: ['/custom'],
   },
   {
-    icon: Bookmark,
+    icon: BookmarkIcon,
     link: '/collection',
     name: 'Collection',
     match: ['/collection', '/collection/import', '/collection/export'],
   },
   {
-    icon: Clock,
+    icon: ClockIcon,
     link: '/history',
     name: 'History',
     match: ['/history'],
   },
   {
-    icon: Cog,
+    icon: CogIcon,
     link: '/settings',
     name: 'Settings',
     match: ['/settings'],

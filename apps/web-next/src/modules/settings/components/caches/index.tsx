@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Archive, BookOpen, Photograph } from '@rayriffy-h/icons'
+import { ArchiveIcon, BookOpenIcon, PhotographIcon } from '@heroicons/react/outline'
 
 import { Cache } from './cache'
 
@@ -19,17 +19,17 @@ export const Caches: React.FC = React.memo(props => {
         <Cache
           cacheName="next-image-assets"
           title="Total images"
-          icon={Photograph}
+          icon={PhotographIcon}
         />
         <Cache
           cacheName="next-galleries"
           title="Total galleries"
-          icon={BookOpen}
+          icon={BookOpenIcon}
         />
         <Cache
           cacheName="next-listing"
           title="Total listing pages"
-          icon={Archive}
+          icon={ArchiveIcon}
         />
       </div>
     </React.Fragment>

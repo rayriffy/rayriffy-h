@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react'
 
-import { Search } from '@rayriffy-h/icons'
+import { SearchIcon } from '@heroicons/react/outline'
 
 import debounce from 'lodash/debounce'
 
@@ -49,7 +49,7 @@ export const MobileSearch: React.FC = React.memo(props => {
           </label>
           <div className="relative w-full text-gray-400 focus-within:text-gray-600">
             <div className="absolute inset-y-0 left-0 flex items-center pointer-events-none">
-              <Search className="h-5 w-5" />
+              <SearchIcon className="h-5 w-5" />
             </div>
             <input
               id="search-mobile"

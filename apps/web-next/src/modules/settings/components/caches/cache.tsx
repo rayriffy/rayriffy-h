@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react'
 
-import { Exclamation } from '@rayriffy-h/icons'
+import { ExclamationIcon } from '@heroicons/react/outline'
 
-import { Transition } from '@headlessui/react'
+import { Transition } from '@headlessui/react/dist/components/transitions/transition'
 
 import { useCache } from '../../services/useCache'
 
@@ -89,7 +89,7 @@ export const Cache: React.FC<IProps> = React.memo(props => {
             >
               <div className="sm:flex sm:items-start">
                 <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                  <Exclamation className="h-6 w-6 text-red-600" />
+                  <ExclamationIcon className="h-6 w-6 text-red-600" />
                 </div>
                 <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                   <h3

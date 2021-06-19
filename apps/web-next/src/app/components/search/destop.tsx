@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react'
 
-import { Search } from '@rayriffy-h/icons'
+import { SearchIcon } from '@heroicons/react/outline'
 
 import debounce from 'lodash/debounce'
 
@@ -46,7 +46,7 @@ export const DesktopSearch: React.FC = React.memo(props => {
           className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
           aria-hidden="true"
         >
-          <Search className="mr-3 h-4 w-4 text-gray-400" />
+          <SearchIcon className="mr-3 h-4 w-4 text-gray-400" />
         </div>
         <input
           type="text"

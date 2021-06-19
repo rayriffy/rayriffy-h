@@ -4,7 +4,7 @@ import { NextPage } from 'next'
 import Link from 'next/link'
 
 import { CollectionStore, useStoreon } from '@rayriffy-h/state-engine'
-import { Check } from '@rayriffy-h/icons'
+import { CheckIcon } from '@heroicons/react/outline'
 import { APIResponse } from '@rayriffy-h/helper'
 
 import { Step } from '../../core/components/step'
@@ -149,7 +149,7 @@ const Page: NextPage = props => {
                 ) : (
                   <div className="pt-4 pb-2">
                     <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
-                      <Check className="h-6 w-6 text-green-600" />
+                      <CheckIcon className="h-6 w-6 text-green-600" />
                     </div>
                     <div className="pt-2">
                       <p className="font-bold text-lg text-gray-800 text-center">

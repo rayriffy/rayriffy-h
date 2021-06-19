@@ -3,7 +3,7 @@ import React from 'react'
 import Link from 'next/link'
 
 import { filterTagByType, getImageUrl, Hentai } from '@rayriffy-h/helper'
-import { BookOpen } from '@rayriffy-h/icons'
+import { BookOpenIcon } from '@heroicons/react/outline'
 import { tags } from '@rayriffy-h/datasource'
 
 import { ImageBlur } from './imageBlur'
@@ -62,7 +62,7 @@ export const Poster: React.FC<IProps> = React.memo(props => {
             </div>
             <div className="pt-1 flex">
               <div className="flex items-center pr-2">
-                <BookOpen className="w-8 h-8 pr-2" /> {hentai.num_pages ?? 0}
+                <BookOpenIcon className="w-8 h-8 pr-2" /> {hentai.num_pages ?? 0}
               </div>
             </div>
           </div>

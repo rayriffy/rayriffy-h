@@ -20,8 +20,8 @@
       "@rayriffy-h/datasource": ["libs/datasource/src/index.ts"],
       "@rayriffy-h/fetch": ["libs/fetch/src/index.ts"],
       "@rayriffy-h/helper": ["libs/helper/src/index.ts"],
-      "@rayriffy-h/icons": ["libs/icons/src/index.ts"],
-      "@rayriffy-h/state-engine": ["libs/state-engine/src/index.ts"]
+      "@rayriffy-h/state-engine": ["libs/state-engine/src/index.ts"],
+      "@rayriffy-h/tags": ["libs/tags/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

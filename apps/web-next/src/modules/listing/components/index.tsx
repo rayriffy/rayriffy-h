@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 import { Hentai } from '@rayriffy-h/helper'
-import { Exclamation, QuestionMarkCircle } from '@rayriffy-h/icons'
+import { ExclamationIcon, QuestionMarkCircleIcon } from '@heroicons/react/outline'
 
 import { Listing } from '../../../core/components/listing'
 import { Pagination } from '../../../core/components/pagination'
@@ -42,7 +42,7 @@ export const ListingModule: React.FC<IProps> = props => {
     return (
       <div className="pt-16 max-w-xl mx-auto">
         <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
-          <Exclamation className="h-6 w-6 text-red-600" />
+          <ExclamationIcon className="h-6 w-6 text-red-600" />
         </div>
         <div className="pt-4">
           <p className="font-bold text-lg text-gray-800 text-center">Failed</p>
@@ -58,7 +58,7 @@ export const ListingModule: React.FC<IProps> = props => {
     return (
       <div className="pt-16 max-w-xl mx-auto">
         <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-orange-100">
-          <QuestionMarkCircle className="h-6 w-6 text-orange-600" />
+          <QuestionMarkCircleIcon className="h-6 w-6 text-orange-600" />
         </div>
         <div className="pt-4">
           <p className="font-bold text-lg text-gray-800 text-center">
