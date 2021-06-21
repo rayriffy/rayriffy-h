@@ -45,7 +45,7 @@
   "dependencies": {
     "@headlessui/react": "^1.2.0",
     "@heroicons/react": "^1.0.1",
-    "@next/bundle-analyzer": "^10.2.3",
+    "@next/bundle-analyzer": "^11.0.0",
     "@nrwl/nx-cloud": "12.2.4",
     "@storeon/crosstab": "^1.0.2",
     "@storeon/localstorage": "^1.4.0",
