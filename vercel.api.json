@@ -12,6 +12,12 @@
       }
     }
   ],
+  "functions": {
+    "dist/apps/api/main.js": {
+      "memory": 3008,
+      "maxDuration": 60
+    }
+  },
   "routes": [{
     "src": "/(.*)",
     "dest": "dist/apps/api/main.js"
