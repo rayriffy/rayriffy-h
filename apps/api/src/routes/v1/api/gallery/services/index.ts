@@ -19,6 +19,8 @@ router.get('/:id', async (req, res) => {
       },
     }
 
+    res.setHeader('Cache-Control', 's-maxage=15552000')
+
     return res.status(200).send(response)
   } catch (e) {
     const response: APIResponse<string> = {

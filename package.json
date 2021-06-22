@@ -81,6 +81,7 @@
     "tailwindcss-filters": "^3.0.0",
     "tslib": "^2.0.0",
     "web-api-hooks": "^3.0.2",
+    "webpack": "^5.40.0",
     "worker-loader": "^3.0.8"
   },
   "devDependencies": {

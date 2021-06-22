@@ -51,6 +51,7 @@ router.get('/:id', async (req, res) => {
     await browser.close()
 
     res.setHeader('Content-Type', 'image/jpeg')
+    res.setHeader('Cache-Control', 's-maxage=15552000')
     res.end(raw)
   } catch (e) {
     console.error(e)

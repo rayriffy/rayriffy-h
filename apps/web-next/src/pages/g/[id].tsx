@@ -52,7 +52,7 @@ export const getServerSideProps: GetServerSideProps<IProps> = async context => {
       }
     }
 
-    const hentai = await getHentai(targetId, true)
+    const hentai = await getHentai(targetId, false)
 
     return {
       props: {
