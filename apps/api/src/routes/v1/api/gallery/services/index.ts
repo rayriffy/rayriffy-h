@@ -23,6 +23,7 @@ router.get('/:id', async (req, res) => {
 
     return res.status(200).send(response)
   } catch (e) {
+    console.error(e)
     const response: APIResponse<string> = {
       status: 'failed',
       code: 407,

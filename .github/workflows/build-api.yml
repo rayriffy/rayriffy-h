@@ -1,4 +1,4 @@
-name: Deployment
+name: Deployment - API
 
 on:
   push:

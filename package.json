@@ -60,6 +60,7 @@
     "cors": "^2.8.5",
     "dayjs": "^1.10.5",
     "express": "4.17.1",
+    "isomorphic-unfetch": "^3.1.0",
     "lodash": "^4.17.21",
     "nanoid": "^3.1.23",
     "next": "^11.0.0",
