@@ -35,9 +35,14 @@ jobs:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           VERCEL_AUTH_TOKEN: ${{ secrets.VERCEL_AUTH_TOKEN }}
         run: |
-          yarn global add vercel
-          mv api.vercelignore .vercelignore
-          vercel -t $VERCEL_AUTH_TOKEN --local-config vercel.api.json --prod
+          isAffected=$(yarn --silent affectedProject --project api)
+          if $isAffected; then
+            yarn global add vercel
+            mv api.vercelignore .vercelignore
+            vercel -t $VERCEL_AUTH_TOKEN --local-config vercel.api.json --prod
+          else
+            echo "No changes found! Skipping..."
+          fi
       - name: "Artifacts: Upload"
         uses: actions/upload-artifact@v1
         with:
