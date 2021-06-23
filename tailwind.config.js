@@ -60,6 +60,7 @@ module.exports = {
       './apps/web-next/src/**/*.{js,jsx,ts,tsx}',
       './libs/constants/src/**/*.{js,jsx,ts,tsx}',
       './libs/datasource/src/**/*.{js,jsx,ts,tsx}',
+      './libs/tags/src/**/*.{js,jsx,ts,tsx}',
       './libs/icons/src/**/*.{js,jsx,ts,tsx}',
     ],
   }
