@@ -1,0 +1,52 @@
+name: Deployment - API
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy-api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - name: 'Intitialize: Summon NodeJS'
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: 'Cache: node_modules'
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            ~/.cache/Cypress
+            ~/.cache/yarn
+          key: ${{ runner.OS }}-node-yarn-cypress-devV3-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-yarn-cypress-devV3-${{ env.cache-name }}-
+            ${{ runner.OS }}-node-yarn-cypress-devV3-
+      - name: 'Intitialize: Install dependencies'
+        run: yarn
+      - name: "Nx: Build apps/api"
+        run: yarn nx build api --skip-nx-cache
+      - name: "Deploy: Upload to Vercel"
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_AUTH_TOKEN: ${{ secrets.VERCEL_AUTH_TOKEN }}
+        run: |
+          isAffected=$(yarn --silent affectedProject --project api)
+          if $isAffected; then
+            yarn global add vercel
+            mv api.vercelignore .vercelignore
+            vercel -t $VERCEL_AUTH_TOKEN --local-config vercel.api.json --prod
+          else
+            echo "No changes found! Skipping..."
+          fi
+      - name: "Artifacts: Upload"
+        uses: actions/upload-artifact@v1
+        with:
+          name: api
+          path: dist/apps/api

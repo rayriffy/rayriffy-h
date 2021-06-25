@@ -1,6 +1,6 @@
 import { NextApiHandler } from 'next'
 
-import { chunk } from 'lodash'
+import chunk from 'lodash/chunk'
 
 import { APIResponse, Hentai } from '@rayriffy-h/helper'
 import { itemsPerPage } from '@rayriffy-h/constants'

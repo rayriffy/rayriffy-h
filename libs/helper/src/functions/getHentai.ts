@@ -12,7 +12,7 @@ export const getHentai = async (
 
     return rawHentaiToHentai(rawHentai)
   } catch (e) {
-    console.error(`error: nuable to fetch ${id}`)
+    console.error(`error: unable to fetch ${id}`)
     throw e
   }
 }

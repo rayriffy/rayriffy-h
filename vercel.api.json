@@ -8,7 +8,9 @@
       "src": "dist/apps/api/main.js",
       "use": "@vercel/node",
       "config": {
-        "maxLambdaSize": "50mb"
+        "maxLambdaSize": "50mb",
+        "memory": 3008,
+        "maxDuration": 60
       }
     }
   ],

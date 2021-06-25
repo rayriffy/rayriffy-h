@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-unfetch'
+
 export const customFetch = async <T = unknown>(
   input: RequestInfo,
   init?: RequestInit
