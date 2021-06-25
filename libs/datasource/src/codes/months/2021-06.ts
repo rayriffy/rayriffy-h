@@ -153,4 +153,30 @@ export const data2021_06: DatabaseCode[] = [
   363152,
   359093,
   358612,
+  363678,
+  363679,
+  363680,
+  363729,
+  363732,
+  {
+    code: 363773,
+    exclude: Array.from({ length: 20 }).map((_, i) => i + 25),
+  },
+  363772,
+  363787,
+  363803,
+  363825,
+  363857,
+  363872,
+  363891,
+  {
+    code: 363905,
+    exclude: Array.from({ length: 8 }).map((_, i) => i + 10),
+  },
+  363908,
+  363909,
+  {
+    code: 363910,
+    exclude: Array.from({ length: 20 }).map((_, i) => i + 44),
+  }
 ]
