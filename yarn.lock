@@ -2456,6 +2456,17 @@
     yargs "15.4.1"
     yargs-parser "20.0.0"
 
+"@nrwl/cli@12.5.0":
+  version "12.5.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-12.5.0.tgz#9d8cf290998f4867808c8442a656d22e86a0abfc"
+  integrity sha512-jiFbOzeHN5epyDxdmaw9uScNmhOzxQsAGvEfZqZigy80ngx9/TX8epCpSNawm58c0G5S5wriQG5NkoQIfZ364g==
+  dependencies:
+    "@nrwl/tao" "12.5.0"
+    chalk "4.1.0"
+    v8-compile-cache "2.3.0"
+    yargs "15.4.1"
+    yargs-parser "20.0.0"
+
 "@nrwl/cypress@12.4.0":
   version "12.4.0"
   resolved "https://registry.yarnpkg.com/@nrwl/cypress/-/cypress-12.4.0.tgz#06ae5322c17ae944c41c2b510686c6de56fce52f"
@@ -2473,12 +2484,40 @@
     webpack-node-externals "1.7.2"
     yargs-parser "20.0.0"
 
+"@nrwl/cypress@12.5.0":
+  version "12.5.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/cypress/-/cypress-12.5.0.tgz#fd971fc0eed2569b7668a947e4f23e5fbec903bf"
+  integrity sha512-pwwZoDKyMy5aw4WD0yueL5KyLHm2bzW3MZRKwPj6pKJNj2h0VBmQPM7olfS7hjyt/v8ieobgRAnGGkbIw611Fg==
+  dependencies:
+    "@cypress/webpack-preprocessor" "~4.1.2"
+    "@nrwl/devkit" "12.5.0"
+    "@nrwl/linter" "12.5.0"
+    "@nrwl/workspace" "12.5.0"
+    fork-ts-checker-webpack-plugin "^3.1.1"
+    rxjs "^6.5.4"
+    ts-loader "5.4.5"
+    tsconfig-paths-webpack-plugin "3.2.0"
+    tslib "^2.0.0"
+    webpack-node-externals "1.7.2"
+    yargs-parser "20.0.0"
+
 "@nrwl/devkit@12.4.0":
   version "12.4.0"
   resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-12.4.0.tgz#6110327f1aed6d87d407929651e6f1140c779451"
   integrity sha512-kGw5/SH4ze4j+rG6seEcslNenscrZFZMGpcoc3OIxfTTGlFA0mCFasFgzN8osgTX4+PgEOushvm3yRAaMmLqIg==
   dependencies:
     "@nrwl/tao" "12.4.0"
+    ejs "^3.1.5"
+    ignore "^5.0.4"
+    semver "7.3.4"
+    tslib "^2.0.0"
+
+"@nrwl/devkit@12.5.0":
+  version "12.5.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-12.5.0.tgz#2818e6f4194851fe715c76ede4442168e3d29013"
+  integrity sha512-6XbS5uZPDXioxU2WSryrtWpLexZ49/07yu8lr93ALvn8DokrNmbmS8EoYPshFRhwZTQSba6a3iGiTmxs7Eauqg==
+  dependencies:
+    "@nrwl/tao" "12.5.0"
     ejs "^3.1.5"
     ignore "^5.0.4"
     semver "7.3.4"
@@ -2504,6 +2543,16 @@
     rxjs "^6.5.4"
     tslib "^2.0.0"
 
+"@nrwl/jest@12.5.0":
+  version "12.5.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/jest/-/jest-12.5.0.tgz#dbb80e3077f74f96fef708f91e25a9c67d636b3b"
+  integrity sha512-o+wshr+HUA0g2GGOIHDrF74fxyYVizWH2mTpKqMSk28+DfpQ7u9NWe6PUqeX6IrF67Ypx0uNrNPbnpXThv7XqQ==
+  dependencies:
+    "@nrwl/devkit" "12.5.0"
+    jest-resolve "^26.6.2"
+    rxjs "^6.5.4"
+    tslib "^2.0.0"
+
 "@nrwl/linter@12.4.0":
   version "12.4.0"
   resolved "https://registry.yarnpkg.com/@nrwl/linter/-/linter-12.4.0.tgz#61afc3d1bfb9e71ceea1ed820d15f4163911c00b"
@@ -2515,18 +2564,29 @@
     tmp "~0.2.1"
     tslib "^2.0.0"
 
-"@nrwl/next@12.4.0":
-  version "12.4.0"
-  resolved "https://registry.yarnpkg.com/@nrwl/next/-/next-12.4.0.tgz#d0f9ca3a89693a85826858fecaccd0b83f430021"
-  integrity sha512-9twbrmultN/s9Bh10znHKG4tOPc4xKpb0swsowz9muHVsHSXJpB6yXirl5EaRfzC0i12af1QDmNItnowTcFwqw==
+"@nrwl/linter@12.5.0":
+  version "12.5.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/linter/-/linter-12.5.0.tgz#f83a089b9979980529903e704b9ecea3a05a35fd"
+  integrity sha512-lryFCN+E7nVLLWp/6zww0mHTnh7eApA1VrNtCWgdBAiJymULTDm4a+yo141RiQV50Zgc7ngLP3UHJ7m4KnNCrQ==
+  dependencies:
+    "@nrwl/devkit" "12.5.0"
+    glob "7.1.4"
+    minimatch "3.0.4"
+    tmp "~0.2.1"
+    tslib "^2.0.0"
+
+"@nrwl/next@12.5.0":
+  version "12.5.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/next/-/next-12.5.0.tgz#67acc47211e65baa8408c7e6c6bef2d90f329f1b"
+  integrity sha512-GxKpp6N/JA2xuD0zEhMBo34K1cThsN54XdZaaaqVZ/siBu+JOCteTpZTJAItWJ87A4g6Hsnm+k6wNRaHsk0j1w==
   dependencies:
     "@babel/plugin-proposal-decorators" "7.12.13"
-    "@nrwl/cypress" "12.4.0"
-    "@nrwl/jest" "12.4.0"
-    "@nrwl/linter" "12.4.0"
-    "@nrwl/react" "12.4.0"
-    "@nrwl/web" "12.4.0"
-    "@nrwl/workspace" "12.4.0"
+    "@nrwl/cypress" "12.5.0"
+    "@nrwl/jest" "12.5.0"
+    "@nrwl/linter" "12.5.0"
+    "@nrwl/react" "12.5.0"
+    "@nrwl/web" "12.5.0"
+    "@nrwl/workspace" "12.5.0"
     "@svgr/webpack" "^5.4.0"
     chalk "4.1.0"
     copy-webpack-plugin "6.0.3"
@@ -2596,6 +2656,29 @@
     react-refresh "^0.9.0"
     url-loader "^3.0.0"
 
+"@nrwl/react@12.5.0":
+  version "12.5.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/react/-/react-12.5.0.tgz#ab905af4df3eea06bf1de91e0a04a7d9b66cec5b"
+  integrity sha512-jQ/JQtDGIQTKNy5KpOlDsVR7Jz4nQeCzEDsDVMa/Hf6ldpOGBsY0Ct6vzeO9C1xMam66eDpJnSM5NN8HJC3fVw==
+  dependencies:
+    "@babel/core" "7.12.13"
+    "@babel/preset-react" "7.12.13"
+    "@nrwl/cypress" "12.5.0"
+    "@nrwl/devkit" "12.5.0"
+    "@nrwl/jest" "12.5.0"
+    "@nrwl/linter" "12.5.0"
+    "@nrwl/storybook" "12.5.0"
+    "@nrwl/web" "12.5.0"
+    "@nrwl/workspace" "12.5.0"
+    "@pmmmwh/react-refresh-webpack-plugin" "^0.4.3"
+    "@svgr/webpack" "^5.4.0"
+    eslint-plugin-import "^2.22.1"
+    eslint-plugin-jsx-a11y "^6.4.1"
+    eslint-plugin-react "^7.23.1"
+    eslint-plugin-react-hooks "^4.2.0"
+    react-refresh "^0.9.0"
+    url-loader "^3.0.0"
+
 "@nrwl/storybook@12.4.0":
   version "12.4.0"
   resolved "https://registry.yarnpkg.com/@nrwl/storybook/-/storybook-12.4.0.tgz#a4ec4caee246f4cd2436b0ddf5d0c5ab319e8fa2"
@@ -2610,10 +2693,40 @@
     ts-loader "5.4.5"
     tsconfig-paths-webpack-plugin "3.2.0"
 
+"@nrwl/storybook@12.5.0":
+  version "12.5.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/storybook/-/storybook-12.5.0.tgz#6a7493b21d0c75b9340102a660c50b85107664a9"
+  integrity sha512-IUuYFcgFKAOv0bDH2rSFcOZviwkmSu9eu1CgNOYXdmEmYBEeEDKIP9mDUyR3wZQa2Z3LfjZgBR7FfOqUiiQfdA==
+  dependencies:
+    "@nrwl/cypress" "12.5.0"
+    "@nrwl/devkit" "12.5.0"
+    "@nrwl/linter" "12.5.0"
+    "@nrwl/workspace" "12.5.0"
+    core-js "^3.6.5"
+    semver "7.3.4"
+    ts-loader "5.4.5"
+    tsconfig-paths-webpack-plugin "3.2.0"
+
 "@nrwl/tao@12.4.0":
   version "12.4.0"
   resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-12.4.0.tgz#90620513fc66faca22c98a64623b2d1c058bb1a4"
   integrity sha512-WH8SqOuJuuBwXpLX9vIVVWEovDqfLmiyFQS4Ebz35KWXNoIv9MS3QgItXKCu7X463hiJnxjAA3RqVYIt8U1vXg==
+  dependencies:
+    chalk "4.1.0"
+    enquirer "~2.3.6"
+    fs-extra "^9.1.0"
+    jsonc-parser "3.0.0"
+    rxjs "^6.5.4"
+    rxjs-for-await "0.0.2"
+    semver "7.3.4"
+    tmp "~0.2.1"
+    tslib "^2.0.0"
+    yargs-parser "20.0.0"
+
+"@nrwl/tao@12.5.0":
+  version "12.5.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-12.5.0.tgz#fc1f20de507a5500b6a6a7f52cafee166f3bcde2"
+  integrity sha512-qX4cPkx20msOukdI+SdDbG/Qhm4ARbr4iNOdcHY8ZxuQaG4U6wo/GBwa/A+2tFnsHZegtPnvoNmEW137P3goNw==
   dependencies:
     chalk "4.1.0"
     enquirer "~2.3.6"
@@ -2711,6 +2824,91 @@
     webpack-subresource-integrity "^1.5.1"
     worker-plugin "3.2.0"
 
+"@nrwl/web@12.5.0":
+  version "12.5.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/web/-/web-12.5.0.tgz#7d7c92e60185abdb117070bfc96a017b7b988891"
+  integrity sha512-z02/zwr10uB2lN0jdZdu0JqsUDsQ4ahdVusQHQcRBaO5jm8PKYfrn69c6McoI4LHAa1tP9aM1Pqu0fz69OwTvg==
+  dependencies:
+    "@babel/core" "7.12.13"
+    "@babel/plugin-proposal-class-properties" "7.12.13"
+    "@babel/plugin-proposal-decorators" "7.12.13"
+    "@babel/plugin-transform-regenerator" "7.12.13"
+    "@babel/plugin-transform-runtime" "7.12.13"
+    "@babel/preset-env" "7.12.13"
+    "@babel/preset-typescript" "7.12.13"
+    "@babel/runtime" "7.12.13"
+    "@nrwl/cypress" "12.5.0"
+    "@nrwl/devkit" "12.5.0"
+    "@nrwl/jest" "12.5.0"
+    "@nrwl/linter" "12.5.0"
+    "@nrwl/workspace" "12.5.0"
+    "@rollup/plugin-babel" "5.0.2"
+    "@rollup/plugin-commonjs" "11.0.2"
+    "@rollup/plugin-image" "2.0.4"
+    "@rollup/plugin-json" "^4.1.0"
+    "@rollup/plugin-node-resolve" "7.1.1"
+    autoprefixer "^10.2.5"
+    babel-loader "8.1.0"
+    babel-plugin-const-enum "^1.0.1"
+    babel-plugin-macros "^2.8.0"
+    babel-plugin-transform-async-to-promises "^0.8.15"
+    babel-plugin-transform-typescript-metadata "^0.3.1"
+    browserslist "^4.16.6"
+    caniuse-lite "^1.0.30001030"
+    chalk "4.1.0"
+    chokidar "^3.5.1"
+    circular-dependency-plugin "5.2.0"
+    clean-css "4.2.1"
+    copy-webpack-plugin "6.0.3"
+    core-js "^3.6.5"
+    css-loader "3.6.0"
+    file-loader "4.2.0"
+    fork-ts-checker-webpack-plugin "^3.1.1"
+    fs-extra "^9.1.0"
+    http-server "0.12.3"
+    identity-obj-proxy "3.0.0"
+    ignore "^5.0.4"
+    less "3.12.2"
+    less-loader "5.0.0"
+    license-webpack-plugin "2.1.2"
+    loader-utils "1.2.3"
+    mini-css-extract-plugin "0.8.0"
+    open "^7.4.2"
+    parse5 "4.0.0"
+    postcss "8.3.0"
+    postcss-import "14.0.2"
+    postcss-loader "4.2.0"
+    raw-loader "3.1.0"
+    rimraf "^3.0.2"
+    rollup "1.31.1"
+    rollup-plugin-copy "^3.3.0"
+    rollup-plugin-filesize "^9.0.0"
+    rollup-plugin-local-resolve "^1.0.7"
+    rollup-plugin-peer-deps-external "^2.2.2"
+    rollup-plugin-postcss "^4.0.0"
+    rollup-plugin-typescript2 "^0.30.0"
+    rxjs "^6.5.4"
+    rxjs-for-await "0.0.2"
+    sass "^1.26.3"
+    sass-loader "8.0.2"
+    semver "7.3.4"
+    source-map "0.7.3"
+    source-map-loader "0.2.4"
+    style-loader "1.0.0"
+    stylus "0.54.5"
+    stylus-loader "3.0.2"
+    terser "4.3.8"
+    terser-webpack-plugin "2.3.8"
+    ts-loader "5.4.5"
+    tsconfig-paths-webpack-plugin "3.2.0"
+    tslib "^2.0.0"
+    webpack "4.42.0"
+    webpack-dev-server "3.11.2"
+    webpack-merge "4.2.1"
+    webpack-sources "1.4.3"
+    webpack-subresource-integrity "^1.5.1"
+    worker-plugin "3.2.0"
+
 "@nrwl/workspace@12.4.0":
   version "12.4.0"
   resolved "https://registry.yarnpkg.com/@nrwl/workspace/-/workspace-12.4.0.tgz#095d29bbb1d19f6266af06c528ebc83392d07654"
@@ -2721,6 +2919,34 @@
     "@nrwl/jest" "12.4.0"
     "@nrwl/linter" "12.4.0"
     chalk "4.1.0"
+    cosmiconfig "^4.0.0"
+    dotenv "8.2.0"
+    enquirer "~2.3.6"
+    flat "^5.0.2"
+    fs-extra "^9.1.0"
+    glob "7.1.4"
+    ignore "^5.0.4"
+    minimatch "3.0.4"
+    npm-run-all "^4.1.5"
+    open "^7.4.2"
+    rxjs "^6.5.4"
+    semver "7.3.4"
+    tmp "~0.2.1"
+    tslib "^2.0.0"
+    yargs "15.4.1"
+    yargs-parser "20.0.0"
+
+"@nrwl/workspace@12.5.0":
+  version "12.5.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/workspace/-/workspace-12.5.0.tgz#4cb33d092fb056d4f144549b480278f64dd4ab74"
+  integrity sha512-hbG8MAdeV7Y+IC0vjILmk1HqRVBHCnh1Jv2gh8XAHav+KZAc8NCw7jFl70/WI11wz0hC8LKbUS1FRdfmh3zj4g==
+  dependencies:
+    "@nrwl/cli" "12.5.0"
+    "@nrwl/devkit" "12.5.0"
+    "@nrwl/jest" "12.5.0"
+    "@nrwl/linter" "12.5.0"
+    chalk "4.1.0"
+    chokidar "^3.5.1"
     cosmiconfig "^4.0.0"
     dotenv "8.2.0"
     enquirer "~2.3.6"
