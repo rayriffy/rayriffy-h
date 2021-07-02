@@ -107,7 +107,7 @@
     "@types/chromecast-caf-receiver": "^5.0.13",
     "@types/chromecast-caf-sender": "^1.0.3",
     "@types/cors": "^2.8.10",
-    "@types/express": "^4.17.11",
+    "@types/express": "^4.17.12",
     "@types/jest": "26.0.23",
     "@types/lodash": "^4.14.170",
     "@types/node": "^15.12.2",
