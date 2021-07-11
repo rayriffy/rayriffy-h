@@ -70,4 +70,8 @@ export const data2021_07: DatabaseCode[] = [
   358291,
   365528,
   365535,
+  {
+    code: 365584,
+    exclude: Array.from({ length: 53 }).map((o, i) => i + 55),
+  },
 ]
