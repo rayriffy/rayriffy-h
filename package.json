@@ -70,7 +70,7 @@
     "next-offline": "^5.0.5",
     "next-plugin-preact": "^3.0.6",
     "postcss": "^8.3.5",
-    "preact": "^10.5.13",
+    "preact": "^10.5.14",
     "preact-render-to-string": "^5.1.19",
     "puppeteer-core": "^10.0.0",
     "react": "npm:@preact/compat",
