@@ -94,7 +94,7 @@
     "@babel/preset-typescript": "7.13.0",
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
-    "@nrwl/cli": "12.5.7",
+    "@nrwl/cli": "12.5.8",
     "@nrwl/eslint-plugin-nx": "12.5.7",
     "@nrwl/jest": "12.5.7",
     "@nrwl/next": "12.5.7",
