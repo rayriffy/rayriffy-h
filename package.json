@@ -102,7 +102,7 @@
     "@nrwl/react": "12.5.7",
     "@nrwl/tao": "12.5.7",
     "@nrwl/web": "12.5.7",
-    "@nrwl/workspace": "12.5.7",
+    "@nrwl/workspace": "12.5.8",
     "@testing-library/react": "^11.2.7",
     "@types/chromecast-caf-receiver": "^5.0.13",
     "@types/chromecast-caf-sender": "^1.0.3",
