@@ -108,7 +108,7 @@
     "@types/chromecast-caf-sender": "^1.0.3",
     "@types/cors": "^2.8.10",
     "@types/express": "^4.17.12",
-    "@types/jest": "26.0.23",
+    "@types/jest": "26.0.24",
     "@types/lodash": "^4.14.171",
     "@types/node": "^15.12.2",
     "@types/puppeteer-core": "^5.4.0",
