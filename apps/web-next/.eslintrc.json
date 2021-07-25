@@ -1,5 +1,10 @@
 {
-  "extends": ["plugin:@nrwl/nx/react", "../../.eslintrc.json"],
+  "extends": [
+    "plugin:@nrwl/nx/react-typescript",
+    "../../.eslintrc.json",
+    "next",
+    "next/core-web-vitals"
+  ],
   "ignorePatterns": ["!**/*"],
   "rules": {
     "react-hooks/exhaustive-deps": "off",
@@ -24,5 +29,8 @@
       "files": ["*.js", "*.jsx"],
       "rules": {}
     }
-  ]
+  ],
+  "env": {
+    "jest": true
+  }
 }
