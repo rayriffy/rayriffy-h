@@ -7,6 +7,7 @@
   ],
   "ignorePatterns": ["!**/*"],
   "rules": {
+    "@next/next/no-page-custom-font": "off",
     "react-hooks/exhaustive-deps": "off",
     "jsx-a11y/anchor-is-valid": [
       "warn",

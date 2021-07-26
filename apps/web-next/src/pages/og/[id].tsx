@@ -34,6 +34,7 @@ const Page: NextPage<IProps> = props => {
                   mediaId: gallery.media_id,
                   type: 'cover',
                 })}
+                alt="cover"
                 className="rounded-lg"
                 width={gallery.images.cover.w}
                 height={gallery.images.cover.h}
