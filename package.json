@@ -76,7 +76,7 @@
     "react": "npm:@preact/compat",
     "react-dom": "npm:@preact/compat",
     "react-ssr-prepass": "npm:preact-ssr-prepass",
-    "regenerator-runtime": "0.13.7",
+    "regenerator-runtime": "0.13.9",
     "sitemap": "^7.0.0",
     "storeon": "^3.1.4",
     "swr": "^0.5.6",
