@@ -54,6 +54,8 @@ export const getServerSideProps: GetServerSideProps<IProps> = async context => {
 
     const hentai = await getHentai(targetId, false)
 
+    context.res.setHeader('Cache-Control', 's-maxage=604800')
+
     return {
       props: {
         gallery: hentai,
