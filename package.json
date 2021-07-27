@@ -80,7 +80,7 @@
     "sitemap": "^7.0.0",
     "storeon": "^3.1.4",
     "swr": "^0.5.6",
-    "tailwindcss": "^2.1.4",
+    "tailwindcss": "^2.2.7",
     "tailwindcss-filters": "^3.0.0",
     "tslib": "^2.3.0",
     "web-api-hooks": "^3.0.2",
