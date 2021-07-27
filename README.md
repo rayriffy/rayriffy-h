@@ -1,5 +1,3 @@
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frayriffy%2Frayriffy-h.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Frayriffy%2Frayriffy-h?ref=badge_shield)
-
 Riffy H
 =======
 
@@ -25,8 +23,3 @@ License
 -------
 
 All of **Riffy H** application and libraries are licensed under the [MIT licence](https://opensource.org/licenses/MIT). Please see [the licence file](LICENCE) for more information. [tl;dr](https://tldrlegal.com/license/mit-license) you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source.
-
-
-
-## License
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frayriffy%2Frayriffy-h.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Frayriffy%2Frayriffy-h?ref=badge_large)
