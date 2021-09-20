@@ -1591,13 +1591,7 @@ export const original: DatabaseCode[] = [
   325801,
   326090,
   326088,
-  283036,
-  326076,
-  311531,
   326017,
-  260043,
-  215971,
-  325833,
   325907,
   325825,
   325820,
@@ -1727,30 +1721,6 @@ export const original: DatabaseCode[] = [
   331461,
   256920,
   331338,
-  331363,
-  331364,
-  331366,
-  331367,
-  331368,
-  331369,
-  {
-    code: 331363,
-    exclude: Array.from({ length: 46 })
-      .map((_, i) => i + 1)
-      .filter(o => o >= 1 && o <= 38),
-  },
-  {
-    code: 331370,
-    exclude: Array.from({ length: 46 })
-      .map((_, i) => i + 1)
-      .filter(o => o >= 1 && o <= 32),
-  },
-  {
-    code: 331372,
-    exclude: Array.from({ length: 46 })
-      .map((_, i) => i + 1)
-      .filter(o => o >= 1 && o <= 32),
-  },
   261373,
   248686,
   194277,
