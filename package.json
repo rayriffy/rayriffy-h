@@ -28,7 +28,8 @@
     "mergeSearches": "ts-node --project scripts/tsconfig.json scripts/mergeSearches.ts",
     "generateChunks": "ts-node --project scripts/tsconfig.json scripts/generateChunks.ts",
     "generateSitemap": "ts-node --project scripts/tsconfig.json scripts/generateSitemap.ts",
-    "workspace-generator": "nx workspace-generator"
+    "workspace-generator": "nx workspace-generator",
+    "build:web-next": "pnpm generateChunks && pnpm nx build web-next && pnpm ts-node --project scripts/tsconfig.json scripts/mergeSearches.ts && pnpm ts-node --project scripts/tsconfig.json scripts/generateSitemap.ts"
   },
   "private": true,
   "husky": {
