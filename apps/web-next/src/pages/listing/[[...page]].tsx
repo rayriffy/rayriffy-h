@@ -33,7 +33,6 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
   const { default: path } = await import('path')
 
   const { getPage } = await import('../../core/services/getPage')
-  const { getHentaiCache } = await import('../../core/services/getHentaiCache')
 
   const { params } = context
   const currentPage = Number(get(params, 'page[1]', '1'))
@@ -41,14 +40,13 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
 
   const gallerieCodes = getPage(currentPage)
 
-  const galleries = await Promise.all(
-    gallerieCodes.map(code =>
-      getHentaiCache(typeof code === 'number' ? code : code.code)
-    )
-  )
+  const galleries = gallerieCodes.map(code => {
+    const targetCode = typeof code === 'number' ? code : code.code
 
-  const cacheDir = path.join(process.cwd(), '.next', 'cache', 'listingPages')
-  const pageFile = path.join(cacheDir, `page-${currentPage}.json`)
+    const hentai: Hentai = JSON.parse(fs.readFileSync(path.join(process.cwd(), '.next', 'cache', 'hentai', `${targetCode}.json`)).toString())
+
+    return hentai
+  })
 
   const filteredGalleries: Hentai[] = galleries.map(gallery => ({
     ...gallery,
@@ -57,13 +55,6 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
       pages: [],
     },
   }))
-
-  // Dump files into cache
-  if (!fs.existsSync(cacheDir)) {
-    fs.mkdirSync(cacheDir, { recursive: true })
-  }
-
-  fs.writeFileSync(pageFile, JSON.stringify(filteredGalleries))
 
   return {
     props: {

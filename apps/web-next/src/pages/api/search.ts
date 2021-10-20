@@ -1,11 +1,23 @@
 import { NextApiHandler } from 'next'
 
+import { gunzip } from 'zlib'
+
 import chunk from 'lodash/chunk'
 
 import { APIResponse, Hentai } from '@rayriffy-h/helper'
 import { itemsPerPage } from '@rayriffy-h/constants'
 
 import { searchHentai } from '../../core/services/searchHentai'
+
+const promiseGunzip = (input: Buffer) => new Promise<Buffer>((res, rej) => {
+  gunzip(input, (err, buffer) => {
+    if (err === null) {
+      res(buffer)
+    } else {
+      rej(err)
+    }
+  })
+})
 
 const api: NextApiHandler = async (req, res) => {
   try {
@@ -22,11 +34,14 @@ const api: NextApiHandler = async (req, res) => {
       })
     }
 
-    const hentais: Hentai[] = await fetch(
+    const rawCompressedData = await fetch(
       `${
         /localhost/.test(host) ? 'http://' : 'https://'
-      }${host}/static/searchKey.json`
-    ).then(o => o.json())
+      }${host}/static/searchKey.opt`
+    )
+    const arrayBuffer = await rawCompressedData.arrayBuffer()
+
+    const hentais: Hentai[] = await promiseGunzip(Buffer.from(arrayBuffer)).then(o => JSON.parse(o.toString()))
 
     const targetPage = Number(page)
     const searchResult = await searchHentai(query as string, hentais)

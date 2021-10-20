@@ -7,6 +7,7 @@ To develop
 ---
 
 ```
+pnpm bakeData
 nx serve web-next
 ```
 
@@ -14,5 +15,6 @@ To build
 ---
 
 ```
+pnpm bakeData
 nx build web-next
 ```

@@ -26,6 +26,7 @@ specifiers:
   '@tailwindcss/forms': ^0.3.4
   '@tailwindcss/typography': ^0.4.1
   '@testing-library/react': 11.2.6
+  '@types/bluebird': ^3.5.36
   '@types/chromecast-caf-receiver': ^6.0.6
   '@types/chromecast-caf-sender': ^1.0.3
   '@types/cors': ^2.8.12
@@ -40,12 +41,15 @@ specifiers:
   '@typescript-eslint/parser': 4.33.0
   '@zeit/next-workers': ^1.0.0
   autoprefixer: ^10.3.7
+  axios: ^0.23.0
   babel-jest: 27.2.3
+  bluebird: ^3.7.2
   chrome-aws-lambda: ^10.1.0
   commander: ^8.2.0
   copy-to-clipboard: ^3.3.1
   core-js: ^3.18.2
   cors: ^2.8.5
+  cwait: ^1.1.2
   dayjs: ^1.10.7
   eslint: 7.32.0
   eslint-config-next: 11.1.2
@@ -80,6 +84,7 @@ specifiers:
   swr: ^1.0.1
   tailwindcss: ^2.2.16
   tailwindcss-filters: ^3.0.0
+  tasuku: ^1.0.2
   ts-jest: 27.0.5
   ts-node: ^10.2.1
   tslib: ^2.3.1
@@ -100,11 +105,14 @@ dependencies:
   '@tailwindcss/typography': 0.4.1_tailwindcss@2.2.16
   '@zeit/next-workers': 1.0.0_worker-loader@3.0.8
   autoprefixer: 10.3.7_postcss@8.3.9
+  axios: 0.23.0
+  bluebird: 3.7.2
   chrome-aws-lambda: 10.1.0_puppeteer-core@10.4.0
   commander: 8.2.0
   copy-to-clipboard: 3.3.1
   core-js: 3.18.2
   cors: 2.8.5
+  cwait: 1.1.2
   dayjs: 1.10.7
   express: 4.17.1
   isomorphic-unfetch: 3.1.0
@@ -127,6 +135,7 @@ dependencies:
   swr: 1.0.1_@preact+compat@17.0.2
   tailwindcss: 2.2.16_ba2252d83c8288346bcfc2a763b91967
   tailwindcss-filters: 3.0.0
+  tasuku: 1.0.2
   tslib: 2.3.1
   web-api-hooks: 3.0.2_@preact+compat@17.0.2
   webpack: 5.57.1
@@ -149,6 +158,7 @@ devDependencies:
   '@nrwl/web': 12.10.0_adca34652038254fe37cb5e6fa648222
   '@nrwl/workspace': 12.10.0_prettier@2.4.1+ts-node@10.2.1
   '@testing-library/react': 11.2.6_82cb9fd171153d2c613334009d54eb8b
+  '@types/bluebird': 3.5.36
   '@types/chromecast-caf-receiver': 6.0.6
   '@types/chromecast-caf-sender': 1.0.4
   '@types/cors': 2.8.12
@@ -3526,6 +3536,10 @@ packages:
       '@babel/types': 7.15.6
     dev: true
 
+  /@types/bluebird/3.5.36:
+    resolution: {integrity: sha512-HBNx4lhkxN7bx6P0++W8E289foSu8kO8GCk2unhuVggO+cE7rh9DhZUyPhUxNRG9m+5B5BTKxZQ5ZP92x/mx9Q==}
+    dev: true
+
   /@types/body-parser/1.19.1:
     resolution: {integrity: sha512-a6bTJ21vFOGIkwM0kzh9Yr89ziVxq4vYH2fQ6N8AeipEzai/cFK6aGMArIkUeIdRIgpwQa+2bXiLuUJCpSf2Cg==}
     dependencies:
@@ -3828,6 +3842,10 @@ packages:
       '@types/node': 16.10.3
     dev: false
     optional: true
+
+  /@types/yoga-layout/1.9.2:
+    resolution: {integrity: sha512-S9q47ByT2pPvD65IvrWp7qppVMpk9WGMbVq9wbWZOHg6tnXSD4vyhao6nOSBwwfDdV2p3Kx9evA9vI+XWTfDvw==}
+    dev: false
 
   /@typescript-eslint/eslint-plugin/4.33.0_d753869925cce96d3eb2141eeedafe57:
     resolution: {integrity: sha512-aINiAxGVdOl1eJyVjaWn/YcVAq4Gi/Yo35qHGCnqbWVz61g39D0h23veY/MA0rFFGfxK7TySg2uwDeNv+JgVpg==}
@@ -4814,6 +4832,14 @@ packages:
       - debug
     dev: false
 
+  /axios/0.23.0:
+    resolution: {integrity: sha512-NmvAE4i0YAv5cKq8zlDoPd1VLKAqX5oLuZKs8xkJa4qi6RGn0uhCYFjWtHHC9EM/MwOwYWOs53W+V0aqEXq1sg==}
+    dependencies:
+      follow-redirects: 1.14.4
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   /axobject-query/2.2.0:
     resolution: {integrity: sha512-Td525n+iPOOyUQIeBfcASuG6uJsDOITl7Mds5gFyerkWiX7qhUTdYUBlSgNMyVqtSJqwpt1kXGLdUt6SykLMRA==}
     dev: true
@@ -5491,6 +5517,10 @@ packages:
   /caseless/0.12.0:
     resolution: {integrity: sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=}
     dev: true
+
+  /cdata/0.1.3:
+    resolution: {integrity: sha512-z0R4cT5357OEAVkP1CEFTHz1egpu2gYiWm2WJOY/sQDhojEXUYL4m3v2kYi5wER3PkMRL+GgfDhed2kGzrHSZA==}
+    dev: false
 
   /chalk/2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
@@ -6359,6 +6389,12 @@ packages:
   /csstype/3.0.9:
     resolution: {integrity: sha512-rpw6JPxK6Rfg1zLOYCSwle2GFOOsnjmDYDaBwEcwoOg4qlsIVCN789VkBZDJAGi4T07gI4YSutR43t9Zz4Lzuw==}
     dev: true
+
+  /cwait/1.1.2:
+    resolution: {integrity: sha512-kIx8zE5jJ1iBgZytTr01aj57HdC+thPsg8W9Tw0gbf30/F7wfRRUS+BiXT90Dn+A0oGtF0xLT5293Ua4w/ZsNA==}
+    dependencies:
+      cdata: 0.1.3
+    dev: false
 
   /cyclist/1.0.1:
     resolution: {integrity: sha1-WW6WmP0MgOEgOMK4LW6xs1tiJNk=}
@@ -14141,6 +14177,12 @@ packages:
       mkdirp: 1.0.4
       yallist: 4.0.0
 
+  /tasuku/1.0.2:
+    resolution: {integrity: sha512-3rAYwGQbTITch8WvyKZV4PW/jG2VRLhDGT2fa2XBDYFFlQyJFKmU1wG/oX1Y40X5t0+BKRGGPN1jdUY755LvHg==}
+    dependencies:
+      yoga-layout-prebuilt: 1.10.0
+    dev: false
+
   /temp-dir/1.0.0:
     resolution: {integrity: sha1-CnwOom06Oa+n4OvqnB/AvE2qAR0=}
     engines: {node: '>=4'}
@@ -15674,3 +15716,10 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+
+  /yoga-layout-prebuilt/1.10.0:
+    resolution: {integrity: sha512-YnOmtSbv4MTf7RGJMK0FvZ+KD8OEe/J5BNnR0GHhD8J/XcG/Qvxgszm0Un6FTHWW4uHlTgP0IztiXQnGyIR45g==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@types/yoga-layout': 1.9.2
+    dev: false

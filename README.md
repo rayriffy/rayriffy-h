@@ -15,7 +15,7 @@ We have 3 seperated applications in this monorepo.
 Requirements
 ------------
 
-- [yarn](https://yarnpkg.com/) (yarn 2 is not supported)
+- [pnpm](https://pnpm.io/)
 - Node LTS
 - [@nrwl/cli](https://nx.dev/react) installed globally (`yarn global add @nrwl/cli`)
 
