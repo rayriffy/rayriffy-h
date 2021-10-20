@@ -1,7 +1,5 @@
 import { NextApiHandler } from 'next'
 
-import { gunzip } from 'zlib'
-
 import chunk from 'lodash/chunk'
 
 import { APIResponse, Hentai } from '@rayriffy-h/helper'
