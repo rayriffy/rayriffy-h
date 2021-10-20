@@ -6,20 +6,16 @@ import { chunk, reverse } from 'lodash'
 import { codes } from '../libs/datasource/src'
 import { itemsPerPage } from '../libs/constants/src'
 ;(async () => {
-  const cacheDir = path.join(process.cwd(), '.cache')
-  const cacheChunkDir = path.join(cacheDir, 'chunks')
+  const cacheDir = path.join(process.cwd(), '.next', 'cache', 'prebuiltChunks')
 
   if (!fs.existsSync(cacheDir)) {
-    fs.mkdirSync(cacheDir)
-  }
-  if (!fs.existsSync(cacheChunkDir)) {
-    fs.mkdirSync(cacheChunkDir)
+    fs.mkdirSync(cacheDir, { recursive: true })
   }
 
   const chunks = chunk(reverse(codes), itemsPerPage)
 
   chunks.map((chunk, i) => {
-    const chunkFile = path.join(cacheChunkDir, `chunk-${i + 1}.json`)
+    const chunkFile = path.join(cacheDir, `chunk-${i + 1}.json`)
     fs.writeFileSync(chunkFile, JSON.stringify(chunk))
   })
 })()

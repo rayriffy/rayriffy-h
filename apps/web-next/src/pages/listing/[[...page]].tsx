@@ -47,9 +47,8 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
     )
   )
 
-  const cacheDir = path.join(process.cwd(), '.cache')
-  const cachePageDir = path.join(cacheDir, 'pages')
-  const pageFile = path.join(cachePageDir, `page-${currentPage}.json`)
+  const cacheDir = path.join(process.cwd(), '.next', 'cache', 'listingPages')
+  const pageFile = path.join(cacheDir, `page-${currentPage}.json`)
 
   const filteredGalleries: Hentai[] = galleries.map(gallery => ({
     ...gallery,
@@ -61,10 +60,7 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
 
   // Dump files into cache
   if (!fs.existsSync(cacheDir)) {
-    fs.mkdirSync(cacheDir)
-  }
-  if (!fs.existsSync(cachePageDir)) {
-    fs.mkdirSync(cachePageDir)
+    fs.mkdirSync(cacheDir, { recursive: true })
   }
 
   fs.writeFileSync(pageFile, JSON.stringify(filteredGalleries))

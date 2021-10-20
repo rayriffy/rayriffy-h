@@ -1,20 +1,28 @@
+import fs from 'fs'
+import path from 'path'
 import { getHentai, Hentai } from '@rayriffy-h/helper'
 
 export const getHentaiCache = async (id: string | number) => {
-  // try {
-  //   const res: Hentai[] = await fetch(
-  //     'https://h.rayriffy.com/static/searchKey.json'
-  //   ).then(o => o.json())
+  const cachePath = path.join(process.cwd(), '.next', 'cache', 'hentai')
+  const hentaiCacheFile = path.join(cachePath, `${id}.json`)
 
-  //   const targetHentai = res.find(o => o.id.toString() === id.toString())
+  // if cache not found, then get fresh data
+  if (!fs.existsSync(hentaiCacheFile)) {
+    const hentai = await getHentai(id)
 
-  //   if (targetHentai) {
-  //     return targetHentai
-  //   } else {
-  //     throw new Error('cache-miss')
-  //   }
-  // } catch {
-  //   return await getHentai(id)
-  // }
-  return await getHentai(id)
+    // create cache folder if not exist
+    if (!fs.existsSync(cachePath)) {
+      fs.mkdirSync(cachePath, { recursive: true })
+    }
+
+    // write cache
+    fs.writeFileSync(hentaiCacheFile, JSON.stringify(hentai))
+
+    return hentai
+  } else {
+    // read cache
+    const hentai: Hentai = JSON.parse(fs.readFileSync(hentaiCacheFile).toString())
+
+    return hentai
+  }
 }

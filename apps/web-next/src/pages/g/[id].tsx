@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 
-import { getHentai, Hentai } from '@rayriffy-h/helper'
+import { Hentai } from '@rayriffy-h/helper'
 
 import { GetServerSideProps, NextPage } from 'next'
 
@@ -38,6 +38,8 @@ const Page: NextPage<IProps> = props => {
 
 export const getServerSideProps: GetServerSideProps<IProps> = async context => {
   const { codes, ignoreList } = await import('@rayriffy-h/datasource')
+  // const { getHentai } = await import('@rayriffy-h/helper')
+  const { getHentaiCache } = await import('../../core/services/getHentaiCache')
 
   try {
     // Find exclude properties
@@ -52,7 +54,7 @@ export const getServerSideProps: GetServerSideProps<IProps> = async context => {
       }
     }
 
-    const hentai = await getHentai(targetId, false)
+    const hentai = await getHentaiCache(targetId)
 
     context.res.setHeader('Cache-Control', 's-maxage=604800')
 

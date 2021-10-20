@@ -7,7 +7,7 @@ import { itemsPerPage } from '../libs/constants/src'
 import { Hentai } from '../libs/helper/src'
 ;(async () => {
   const maxPage = chunk(codes, itemsPerPage).length
-  const cachePageDir = path.join(process.cwd(), '.cache', 'pages')
+  const cachePageDir = path.join(process.cwd(), '.next', 'cache', 'listingPages')
 
   const allMerged = flatten(
     Array.from({ length: maxPage }).map((_, i) => {
