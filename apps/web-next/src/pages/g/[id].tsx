@@ -38,8 +38,7 @@ const Page: NextPage<IProps> = props => {
 
 export const getServerSideProps: GetServerSideProps<IProps> = async context => {
   const { codes, ignoreList } = await import('@rayriffy-h/datasource')
-  // const { getHentai } = await import('@rayriffy-h/helper')
-  const { getHentaiCache } = await import('../../core/services/getHentaiCache')
+  const { getHentai } = await import('@rayriffy-h/helper')
 
   try {
     // Find exclude properties
@@ -54,7 +53,7 @@ export const getServerSideProps: GetServerSideProps<IProps> = async context => {
       }
     }
 
-    const hentai = await getHentaiCache(targetId)
+    const hentai = await getHentai(targetId)
 
     context.res.setHeader('Cache-Control', 's-maxage=604800')
 
@@ -69,7 +68,7 @@ export const getServerSideProps: GetServerSideProps<IProps> = async context => {
             : [],
       },
     }
-  } catch {
+  } catch (e) {
     return {
       notFound: true,
     }
