@@ -80,6 +80,7 @@ export const getServerSideProps: GetServerSideProps<IProps> = async context => {
       },
     }
   } catch (e) {
+    console.error(e)
     return {
       notFound: true,
     }

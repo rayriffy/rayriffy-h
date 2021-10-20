@@ -72,6 +72,7 @@ export const getServerSideProps: GetServerSideProps<IProps> = async ctx => {
       }
     }
   } catch (e) {
+    console.error(e)
     return {
       notFound: true,
     }
