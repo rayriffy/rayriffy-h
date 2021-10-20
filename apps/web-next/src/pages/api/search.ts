@@ -28,7 +28,7 @@ const api: NextApiHandler = async (req, res) => {
 
     const searchKeyFile = await promiseGunzip(
       fs.readFileSync(
-        path.join(process.cwd(), '.next/cache', 'searchKey.opt')
+        path.join(process.cwd(), 'apps/web-next/public/static', 'searchKey.opt')
       )
     )
     const hentais: Hentai[] = JSON.parse(searchKeyFile.toString())

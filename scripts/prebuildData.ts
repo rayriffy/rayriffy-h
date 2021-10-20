@@ -103,7 +103,7 @@ const queue = new TaskQueue(BluebirdPromise, process.env.CI === 'true' ? 20 : 5)
 
   // merging those into one searchKey
   console.log('post-processing')
-  const targetSearchKey = path.join(nextCacheDirectory, 'searchKey.opt')
+  const targetSearchKey = path.join(__dirname, '../apps/web-next/public/static', 'searchKey.opt')
 
   const promiseGzip = (input: Buffer) => new Promise<Buffer>((res, rej) => {
     gzip(input, (err, buffer) => {
