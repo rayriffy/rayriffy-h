@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import capitalize from 'lodash/capitalize'
+import kebabCase from 'lodash/kebabCase'
 
 import { IMenu, menus } from '../../constants/menu'
 
@@ -59,9 +60,11 @@ export const MobileNavbar = memo(() => {
           aria-labelledby="teams-headline"
         >
           {tags.map(tag => (
+            <Link
+              href={`/tags/${kebabCase(tag.name)}`}
+              key={`navbar-mobile-tag-${tag.prefix}`}
+            >
             <a
-              href="#"
-              key={`navbar-mobile-tag-${tag.name}`}
               className="group flex items-center px-3 py-2 text-base leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition ease-in-out duration-150"
             >
               <span
@@ -69,6 +72,7 @@ export const MobileNavbar = memo(() => {
               ></span>
               <span className="truncate">{capitalize(tag.name)}</span>
             </a>
+            </Link>
           ))}
         </div>
       </div>

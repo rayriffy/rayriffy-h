@@ -5,3 +5,5 @@ Disallow: /collection
 Disallow: /settings
 Disallow: /custom
 Disallow: /listing/p
+Disallow: /tag
+Disallow: /tags

@@ -8,16 +8,7 @@ import { APIResponse, Hentai } from '@rayriffy-h/helper'
 import { itemsPerPage } from '@rayriffy-h/constants'
 
 import { searchHentai } from '../../core/services/searchHentai'
-
-const promiseGunzip = (input: Buffer) => new Promise<Buffer>((res, rej) => {
-  gunzip(input, (err, buffer) => {
-    if (err === null) {
-      res(buffer)
-    } else {
-      rej(err)
-    }
-  })
-})
+import { promiseGunzip } from '../../core/services/promiseGunzip'
 
 const api: NextApiHandler = async (req, res) => {
   try {

@@ -1,7 +1,11 @@
 import { memo, Fragment, useMemo } from 'react'
 
+import Link from 'next/link'
+
 import { DatabaseTag, tags as tagTypes } from '@rayriffy-h/tags'
 import { filterTagByType, Tag } from '@rayriffy-h/helper'
+
+import kebabCase from 'lodash/kebabCase'
 
 interface IProps {
   tags: Tag[]
@@ -68,11 +72,13 @@ export const Slug = memo<SlugProps>(props => {
 
   return (
     <div className="p-1">
-      <div
-        className={`text-xs uppercase rounded-md px-2 py-1 text-white ${color} font-semibold`}
-      >
-        {tag.name}
-      </div>
+      <Link href={`/tag/${kebabCase(tag.name)}`}>
+        <a
+          className={`text-xs uppercase rounded-md px-2 py-1 text-white ${color} font-semibold`}
+        >
+          {tag.name}
+        </a>
+      </Link>
     </div>
   )
 })
