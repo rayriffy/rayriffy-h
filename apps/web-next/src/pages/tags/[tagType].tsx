@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import { Hentai, Tag } from '@rayriffy-h/helper'
 
-import kebabCase from 'lodash/kebabCase'
+import kebabCase from 'lodash.kebabcase'
 import { HeadTitle } from '../../core/components/headTitle'
 
 interface IProps {
@@ -37,7 +37,7 @@ const Page: NextPage<IProps> = props => {
 export const getStaticProps: GetStaticProps<IProps> = async ctx => {
   const { default: fs } = await import('fs')
   const { default: path } = await import('path')
-  const { default: sortBy } = await import('lodash/sortBy')
+  const { default: sortBy } = await import('lodash.sortby')
 
   const { promiseGunzip } = await import('../../core/services/promiseGunzip')
 

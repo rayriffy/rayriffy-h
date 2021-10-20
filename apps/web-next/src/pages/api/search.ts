@@ -3,7 +3,7 @@ import { NextApiHandler } from 'next'
 import fs from 'fs'
 import path from 'path'
 
-import chunk from 'lodash/chunk'
+import chunk from 'lodash.chunk'
 
 import { APIResponse, Hentai } from '@rayriffy-h/helper'
 import { itemsPerPage } from '@rayriffy-h/constants'

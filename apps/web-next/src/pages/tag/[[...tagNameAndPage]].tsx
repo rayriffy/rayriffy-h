@@ -31,8 +31,8 @@ export const getServerSideProps: GetServerSideProps<IProps> = async ctx => {
   const { default: fs } = await import('fs')
   const { default: path } = await import('path')
 
-  const { default: chunk } = await import('lodash/chunk')
-  const { default: kebabCase } = await import('lodash/kebabCase')
+  const { default: chunk } = await import('lodash.chunk')
+  const { default: kebabCase } = await import('lodash.kebabcase')
 
   const { itemsPerPage } = await import('@rayriffy-h/constants')
 

@@ -2,7 +2,7 @@ import { memo, useState, useCallback, useEffect, ChangeEventHandler } from 'reac
 
 import { SearchIcon } from '@heroicons/react/outline'
 
-import debounce from 'lodash/debounce'
+import debounce from 'lodash.debounce'
 
 import { useSearchAvailable } from '../../services/useSearchAvailable'
 import { useSearch } from '../../services/useSearch'

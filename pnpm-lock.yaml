@@ -34,7 +34,11 @@ specifiers:
   '@types/jest': 27.0.2
   '@types/lodash': ^4.14.175
   '@types/lodash.capitalize': ^4.2.6
+  '@types/lodash.debounce': ^4.0.6
   '@types/lodash.intersection': ^4.4.6
+  '@types/lodash.kebabcase': ^4.1.6
+  '@types/lodash.sortby': ^4.7.6
+  '@types/lodash.union': ^4.6.6
   '@types/node': ^16.10.3
   '@types/puppeteer-core': ^5.4.0
   '@types/react': 17.0.27
@@ -67,7 +71,13 @@ specifiers:
   lint-staged: ^11.2.0
   lodash: ^4.17.21
   lodash.capitalize: ^4.2.1
+  lodash.chunk: ^4.2.0
+  lodash.debounce: ^4.0.8
+  lodash.get: ^4.4.2
   lodash.intersection: ^4.4.0
+  lodash.kebabcase: ^4.1.1
+  lodash.sortby: ^4.7.0
+  lodash.union: ^4.6.0
   nanoid: ^3.1.29
   next: 11.1.2
   next-compose-plugins: ^2.2.1
@@ -122,7 +132,13 @@ dependencies:
   isomorphic-unfetch: 3.1.0
   lodash: 4.17.21
   lodash.capitalize: 4.2.1
+  lodash.chunk: 4.2.0
+  lodash.debounce: 4.0.8
+  lodash.get: 4.4.2
   lodash.intersection: 4.4.0
+  lodash.kebabcase: 4.1.1
+  lodash.sortby: 4.7.0
+  lodash.union: 4.6.0
   nanoid: 3.1.29
   next: 11.1.2_ddee5750ddb4c5ad2e5e0e4f5e2a01f0
   next-compose-plugins: 2.2.1
@@ -172,7 +188,11 @@ devDependencies:
   '@types/jest': 27.0.2
   '@types/lodash': 4.14.175
   '@types/lodash.capitalize': 4.2.6
+  '@types/lodash.debounce': 4.0.6
   '@types/lodash.intersection': 4.4.6
+  '@types/lodash.kebabcase': 4.1.6
+  '@types/lodash.sortby': 4.7.6
+  '@types/lodash.union': 4.6.6
   '@types/node': 16.10.3
   '@types/puppeteer-core': 5.4.0
   '@types/react': 17.0.27
@@ -3688,8 +3708,32 @@ packages:
       '@types/lodash': 4.14.175
     dev: true
 
+  /@types/lodash.debounce/4.0.6:
+    resolution: {integrity: sha512-4WTmnnhCfDvvuLMaF3KV4Qfki93KebocUF45msxhYyjMttZDQYzHkO639ohhk8+oco2cluAFL3t5+Jn4mleylQ==}
+    dependencies:
+      '@types/lodash': 4.14.175
+    dev: true
+
   /@types/lodash.intersection/4.4.6:
     resolution: {integrity: sha512-6ewsKax7+HgT+7mEhzXT6tIyIHc/mjCwZJnarvLbCrtW21qmDQHWbaJj4Ht4DQDBmMdnvZe8APuVlsMpZ5E5mQ==}
+    dependencies:
+      '@types/lodash': 4.14.175
+    dev: true
+
+  /@types/lodash.kebabcase/4.1.6:
+    resolution: {integrity: sha512-+RAD9pCAa8kuVyCYTeDNiwBXwD/0u0p+hos3NSqD+tXTjJextbfF3farfYB+ssAKgEssoewXEtBsfwBpsI7gsA==}
+    dependencies:
+      '@types/lodash': 4.14.175
+    dev: true
+
+  /@types/lodash.sortby/4.7.6:
+    resolution: {integrity: sha512-EnvAOmKvEg7gdYpYrS6+fVFPw5dL9rBnJi3vcKI7wqWQcLJVF/KRXK9dH29HjGNVvFUj0s9prRP3J8jEGnGKDw==}
+    dependencies:
+      '@types/lodash': 4.14.175
+    dev: true
+
+  /@types/lodash.union/4.6.6:
+    resolution: {integrity: sha512-Wu0ZEVNcyCz8eAn6TlUbYWZoGbH9E+iOHxAZbwUoCEXdUiy6qpcz5o44mMXViM4vlPLLCPlkAubEP1gokoSZaw==}
     dependencies:
       '@types/lodash': 4.14.175
     dev: true
@@ -10154,6 +10198,10 @@ packages:
     resolution: {integrity: sha1-wCUTUV4wna3dTCTGDP3c9ZdtkRU=}
     dev: false
 
+  /lodash.chunk/4.2.0:
+    resolution: {integrity: sha1-ZuXOH3btJ7QwPYxlEujRIW6BBrw=}
+    dev: false
+
   /lodash.clonedeep/4.5.0:
     resolution: {integrity: sha1-4j8/nE+Pvd6HJSnBBxhXoIblzO8=}
     dev: true
@@ -10163,7 +10211,6 @@ packages:
 
   /lodash.get/4.4.2:
     resolution: {integrity: sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=}
-    dev: true
 
   /lodash.intersection/4.4.0:
     resolution: {integrity: sha1-ChG6Yx0OlcI8fy9Mu5ppLtF45wU=}
@@ -10171,6 +10218,10 @@ packages:
 
   /lodash.isplainobject/4.0.6:
     resolution: {integrity: sha1-fFJqUtibRcRcxpC4gWO+BJf1UMs=}
+    dev: false
+
+  /lodash.kebabcase/4.1.1:
+    resolution: {integrity: sha1-hImxyw0p/4gZXM7KRI/21swpXDY=}
     dev: false
 
   /lodash.memoize/4.1.2:
@@ -10204,6 +10255,10 @@ packages:
   /lodash.truncate/4.4.2:
     resolution: {integrity: sha1-WjUNoLERO4N+z//VgSy+WNbq4ZM=}
     dev: true
+
+  /lodash.union/4.6.0:
+    resolution: {integrity: sha1-SLtQiECfFvGCFmZkHETdGqrjzYg=}
+    dev: false
 
   /lodash.uniq/4.5.0:
     resolution: {integrity: sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=}

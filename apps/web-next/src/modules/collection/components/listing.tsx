@@ -3,7 +3,7 @@ import { FunctionComponent, memo, Fragment, useCallback, useMemo } from 'react'
 import { useStoreon } from '@rayriffy-h/state-engine'
 import { itemsPerPage } from '@rayriffy-h/constants'
 
-import chunk from 'lodash/chunk'
+import chunk from 'lodash.chunk'
 
 import { Pagination } from '../../../core/components/pagination'
 import { Listing } from '../../../core/components/listing'

@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import capitalize from 'lodash.capitalize'
-import kebabCase from 'lodash/kebabCase'
+import kebabCase from 'lodash.kebabcase'
 
 import { IMenu, menus } from '../../constants/menu'
 

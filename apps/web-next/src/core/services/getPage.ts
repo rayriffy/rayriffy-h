@@ -4,7 +4,7 @@ import path from 'path'
 import { itemsPerPage } from '@rayriffy-h/constants'
 import { codes, DatabaseCode } from '@rayriffy-h/datasource'
 
-import chunk from 'lodash/chunk'
+import chunk from 'lodash.chunk'
 
 export const getPage = (page: number) => {
   const cacheChunkDir = path.join(process.cwd(), '.next', 'cache', 'prebuiltChunks')

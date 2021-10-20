@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { DatabaseTag, tags as tagTypes } from '@rayriffy-h/tags'
 import { filterTagByType, Tag } from '@rayriffy-h/helper'
 
-import kebabCase from 'lodash/kebabCase'
+import kebabCase from 'lodash.kebabcase'
 
 interface IProps {
   tags: Tag[]

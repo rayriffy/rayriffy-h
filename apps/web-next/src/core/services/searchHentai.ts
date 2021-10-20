@@ -1,8 +1,8 @@
 import { Hentai } from '@rayriffy-h/helper'
 
-import get from 'lodash/get'
+import get from 'lodash.get'
 import intersection from 'lodash.intersection'
-import union from 'lodash/union'
+import union from 'lodash.union'
 
 export const searchHentai = async (
   query: string,

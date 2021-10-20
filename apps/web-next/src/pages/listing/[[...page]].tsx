@@ -27,7 +27,7 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
   const { codes } = await import('@rayriffy-h/datasource')
 
   const { default: _ } = await import('lodash')
-  const { default: get } = await import('lodash/get')
+  const { default: get } = await import('lodash.get')
 
   const { default: fs } = await import('fs')
   const { default: path } = await import('path')
