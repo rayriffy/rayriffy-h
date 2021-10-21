@@ -5,7 +5,7 @@ import { tags } from '@rayriffy-h/tags'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import capitalize from 'lodash.capitalize'
+import capitalize from 'lodash/capitalize'
 import kebabCase from 'lodash/kebabCase'
 
 import { IMenu, menus } from '../../constants/menu'
