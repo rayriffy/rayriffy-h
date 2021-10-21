@@ -29,7 +29,6 @@ const api: NextApiHandler = async (req, res) => {
       }${host}/static/searchKey.opt`
     )
     const arrayBuffer = await rawCompressedData.arrayBuffer()
-
     const hentais: Hentai[] = await promiseGunzip(Buffer.from(arrayBuffer)).then(o => JSON.parse(o.toString()))
 
     const targetPage = Number(page)

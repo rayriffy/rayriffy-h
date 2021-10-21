@@ -6,7 +6,7 @@ import axios from 'axios'
 
 import { TaskQueue } from 'cwait'
 import { Promise as BluebirdPromise } from 'bluebird'
-import { chunk, reverse, flatten } from 'lodash'
+import { chunk, reverse, flatten, kebabCase } from 'lodash'
 
 import { rawHentaiToHentai } from '../libs/helper/src/functions/rawHentaiToHentai'
 import { codes, DatabaseCode } from '../libs/datasource/src'
@@ -15,6 +15,7 @@ import { itemsPerPage } from '../libs/constants/src'
 import { APIResponse } from '../libs/helper/src/@types/APIResponse'
 import { Hentai } from '../libs/helper/src/@types/Hentai'
 import { RawHentai } from '../libs/helper/src/@types/RawHentai'
+import { Tag } from '../libs/helper/src/@types/Tag'
 
 const nextCacheDirectory = path.join(process.cwd(), '.next', 'cache')
 
@@ -132,4 +133,29 @@ const queue = new TaskQueue(BluebirdPromise, process.env.CI === 'true' ? 20 : 5)
 
   const gzippedBuffer = await promiseGzip(Buffer.from(JSON.stringify(orderedHentai)))
   fs.writeFileSync(targetSearchKey, gzippedBuffer)
+
+  // searchKey by tag
+  const tagPool: Tag[] = []
+  orderedHentai.map(hentai => {
+    hentai.tags.map(tag => {
+      const targetTagPool = tagPool.find(pool => pool.id === tag.id)
+
+      if (!targetTagPool) {
+        tagPool.push(tag)
+      }
+    })
+  })
+
+  const rootKeyDirectory = path.join(__dirname, '../apps/web-next/public/static/key')
+
+  if (!fs.existsSync(rootKeyDirectory)) {
+    fs.mkdirSync(rootKeyDirectory, { recursive: true })
+  }
+
+  await Promise.all(tagPool.map(async tag => {
+    const targetTagFile = path.join(rootKeyDirectory, `${kebabCase(tag.name)}.opt`)
+
+    const gzippedBuffer = await promiseGzip(Buffer.from(JSON.stringify(orderedHentai.filter(o => o.tags.find(t => t.id === tag.id)))))
+    await fs.promises.writeFile(targetTagFile, gzippedBuffer)
+  }))
 })()
