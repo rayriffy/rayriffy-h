@@ -43,8 +43,6 @@ export const getServerSideProps: GetServerSideProps<IProps> = async context => {
   const { codes, ignoreList } = await import('@rayriffy-h/datasource')
   const { getHentai } = await import('@rayriffy-h/helper')
 
-  const { promiseGunzip } = await import('../../core/services/promiseGunzip')
-
   try {
     // Find exclude properties
     const targetId = context.params.id as string
@@ -59,12 +57,8 @@ export const getServerSideProps: GetServerSideProps<IProps> = async context => {
     }
 
     // if no hentai in cache, then fetch
-    const searchKeyFile = await promiseGunzip(
-      fs.readFileSync(
-        path.join(process.cwd(), 'apps/web-next/public/static', 'searchKey.opt')
-      )
-    )
-    const hentai: Hentai = (JSON.parse(searchKeyFile.toString()) as Hentai[]).find(hentai => Number(hentai.id) === Number(targetId)) || await getHentai(targetId)
+    const hentaiFile = path.join(process.cwd(), '.next/cache', 'hentai', `${targetId}.json`)
+    const hentai = !fs.existsSync(hentaiFile) ? await getHentai(targetId) : JSON.parse(fs.readFileSync(hentaiFile).toString())
 
     context.res.setHeader('Cache-Control', 's-maxage=604800')
 

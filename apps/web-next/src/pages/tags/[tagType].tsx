@@ -43,7 +43,7 @@ export const getStaticProps: GetStaticProps<IProps> = async ctx => {
 
   const searchKeyFile = await promiseGunzip(
     fs.readFileSync(
-      path.join(process.cwd(), 'apps/web-next/public/static', 'searchKey.opt')
+      path.join(process.cwd(), '.next/cache', 'searchKey.opt')
     )
   )
   const searchKey: Hentai[] = JSON.parse(searchKeyFile.toString())

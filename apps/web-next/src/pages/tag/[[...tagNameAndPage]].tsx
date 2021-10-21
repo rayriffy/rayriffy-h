@@ -46,7 +46,7 @@ export const getServerSideProps: GetServerSideProps<IProps> = async ctx => {
       tagNameAndPage.length === 1 ? 1 : Number(tagNameAndPage.reverse()[0])
 
     const searchKeyFile = await promiseGunzip(
-      fs.readFileSync(path.join(process.cwd(), 'apps/web-next/public/static', 'searchKey.opt'))
+      fs.readFileSync(path.join(process.cwd(), '.next/cache', 'searchKey.opt'))
     )
     const searchKey: Hentai[] = JSON.parse(searchKeyFile.toString())
 
