@@ -3,6 +3,8 @@ const dayjs = require('dayjs')
 const utc = require('dayjs/plugin/utc')
 const timezone = require('dayjs/plugin/timezone')
 
+const withNx = require('@nrwl/next/plugins/with-nx')
+
 const { nanoid } = require('nanoid')
 
 const withPlugins = require('next-compose-plugins')
@@ -21,7 +23,7 @@ dayjs.extend(timezone)
 const generatedId = nanoid()
 
 module.exports = withPlugins(
-  [[withWorkers], [withOffline], [withBundleAnalyzer]],
+  [[withNx], [withWorkers], [withOffline], [withBundleAnalyzer]],
   {
     target: 'serverless',
     env: {
