@@ -1,8 +1,5 @@
 import { NextApiHandler } from 'next'
 
-import fs from 'fs'
-import path from 'path'
-
 import chunk from 'lodash/chunk'
 
 import { APIResponse, Hentai } from '@rayriffy-h/helper'
@@ -26,12 +23,14 @@ const api: NextApiHandler = async (req, res) => {
       })
     }
 
-    const searchKeyFile = await promiseGunzip(
-      fs.readFileSync(
-        path.join(process.cwd(), '.next/cache', 'searchKey.opt')
-      )
+    const rawCompressedData = await fetch(
+      `${
+        /localhost/.test(host) ? 'http://' : 'https://'
+      }${host}/static/searchKey.opt`
     )
-    const hentais: Hentai[] = JSON.parse(searchKeyFile.toString())
+    const arrayBuffer = await rawCompressedData.arrayBuffer()
+
+    const hentais: Hentai[] = await promiseGunzip(Buffer.from(arrayBuffer)).then(o => JSON.parse(o.toString()))
 
     const targetPage = Number(page)
     const searchResult = await searchHentai(query as string, hentais)

@@ -38,7 +38,6 @@ module.exports = withPlugins(
     experimental: {
       optimizeImages: true,
       scrollRestoration: true,
-      nftTracing: true,
     },
     rewrites: async () => {
       return [
