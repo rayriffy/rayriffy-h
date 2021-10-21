@@ -14,8 +14,7 @@ const withOffline = require('next-offline')
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
-
-// const withPreact = require('next-plugin-preact')
+const withPreact = require('next-plugin-preact')
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
@@ -23,7 +22,7 @@ dayjs.extend(timezone)
 const generatedId = nanoid()
 
 module.exports = withPlugins(
-  [[withNx], [withWorkers], [withOffline], [withBundleAnalyzer]],
+  [[withNx], [withWorkers], [withOffline], [withPreact], [withBundleAnalyzer]],
   {
     target: 'serverless',
     env: {
@@ -40,7 +39,7 @@ module.exports = withPlugins(
     experimental: {
       optimizeImages: true,
       scrollRestoration: true,
-      outputFileTracing: true,
+      nftTracing: true,
     },
     rewrites: async () => {
       return [
