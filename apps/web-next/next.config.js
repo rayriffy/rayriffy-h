@@ -13,13 +13,15 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 
+const withPreact = require('next-plugin-preact')
+
 dayjs.extend(utc)
 dayjs.extend(timezone)
 
 const generatedId = nanoid()
 
 module.exports = withPlugins(
-  [[withWorkers], [withOffline], [withBundleAnalyzer]],
+  [[withWorkers], [withOffline], [withPreact], [withBundleAnalyzer]],
   {
     env: {
       buildId: generatedId,
@@ -37,7 +39,6 @@ module.exports = withPlugins(
       optimizeImages: true,
       scrollRestoration: true,
       swcMinify: false,
-      concurrentFeatures: true,
     },
     rewrites: async () => {
       return [
