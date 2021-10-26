@@ -13,8 +13,7 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "incremental": true
+    "isolatedModules": true
   },
   "include": [
     "**/*.ts",
