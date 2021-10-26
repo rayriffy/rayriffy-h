@@ -26,7 +26,7 @@ const Page: NextPage<IProps> = props => {
 export const getStaticProps: GetStaticProps<IProps> = async context => {
   const { codes } = await import('@rayriffy-h/datasource')
 
-  const { default: _ } = await import('lodash')
+  const { default: chunk } = await import('lodash/chunk')
   const { default: get } = await import('lodash/get')
 
   const { default: fs } = await import('fs')
@@ -36,7 +36,7 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
 
   const { params } = context
   const currentPage = Number(get(params, 'page[1]', '1'))
-  const maxPage = _.chain(codes).chunk(itemsPerPage).value().length
+  const maxPage = chunk(codes, itemsPerPage).length
 
   const gallerieCodes = getPage(currentPage)
 
@@ -67,21 +67,20 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const { codes } = await import('@rayriffy-h/datasource')
-  const { default: _ } = await import('lodash')
+  const { default: chunk } = await import('lodash/chunk')
+
+  const paths = chunk(codes, itemsPerPage).map((_, i) => {
+    const page = i + 1
+
+    return {
+      params: {
+        page: page === 1 ? [] : ['p', page.toString()],
+      }
+    }
+  })
 
   return {
-    paths: _.chain(codes)
-      .chunk(itemsPerPage)
-      .map((_, i) => {
-        const page = i + 1
-
-        return {
-          params: {
-            page: page === 1 ? [] : ['p', page.toString()],
-          },
-        }
-      })
-      .value(),
+    paths,
     fallback: false,
   }
 }

@@ -23,7 +23,6 @@ const generatedId = nanoid()
 module.exports = withPlugins(
   [[withWorkers], [withOffline], [withPreact], [withBundleAnalyzer]],
   {
-    target: 'serverless',
     env: {
       buildId: generatedId,
       buildNumber: dayjs.tz(dayjs(), 'Asia/Bangkok').format('YYYYMMDD.HH'),
@@ -33,6 +32,7 @@ module.exports = withPlugins(
     },
     images: {
       domains: ['i.nhentai.net', 't.nhentai.net'],
+      formats: ['image/avif', 'image/webp'],
     },
     generateBuildId: () => generatedId,
     experimental: {
