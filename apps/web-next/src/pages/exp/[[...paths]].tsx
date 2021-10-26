@@ -33,7 +33,7 @@ export const getServerSideProps: GetServerSideProps<IProps> = async ctx => {
   const { default: fs } = await import('fs')
   const { default: path } = await import('path')
 
-  const { default: sortBy } = await import('lodash/sortby')
+  const { default: sortBy } = await import('lodash/sortBy')
 
   const targetPath = (paths === undefined || paths.length === undefined ? [(paths || '')] : (paths as string[])).join('/')
   const scanedPaths = sortBy(fs.readdirSync(path.join(process.cwd(), targetPath)).map(o => ({
