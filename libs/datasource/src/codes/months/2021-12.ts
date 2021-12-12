@@ -44,4 +44,5 @@ export const data2021_12: DatabaseCode[] = [
   383388,
   383407,
   383416,
+  374049,
 ]
