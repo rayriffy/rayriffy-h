@@ -13,15 +13,13 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 
-const withPreact = require('next-plugin-preact')
-
 dayjs.extend(utc)
 dayjs.extend(timezone)
 
 const generatedId = nanoid()
 
 module.exports = withPlugins(
-  [[withWorkers], [withOffline], [withPreact], [withBundleAnalyzer]],
+  [[withWorkers], [withOffline], [withBundleAnalyzer]],
   {
     target: 'serverless',
     env: {

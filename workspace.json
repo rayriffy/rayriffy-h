@@ -54,7 +54,8 @@
           },
           "outputs": ["coverage/apps/api"]
         }
-      }
+      },
+      "tags": []
     },
     "constants": {
       "root": "libs/constants",
@@ -76,7 +77,8 @@
           },
           "outputs": ["coverage/libs/constants"]
         }
-      }
+      },
+      "tags": []
     },
     "datasource": {
       "root": "libs/datasource",
@@ -98,7 +100,8 @@
           },
           "outputs": ["coverage/libs/datasource"]
         }
-      }
+      },
+      "tags": []
     },
     "fetch": {
       "root": "libs/fetch",
@@ -127,7 +130,8 @@
           },
           "outputs": ["coverage/libs/fetch"]
         }
-      }
+      },
+      "tags": []
     },
     "helper": {
       "root": "libs/helper",
@@ -156,7 +160,8 @@
           },
           "outputs": ["coverage/libs/helper"]
         }
-      }
+      },
+      "tags": []
     },
     "state-engine": {
       "root": "libs/state-engine",
@@ -178,7 +183,8 @@
           },
           "outputs": ["coverage/libs/state-engine"]
         }
-      }
+      },
+      "tags": []
     },
     "tags": {
       "root": "libs/tags",
@@ -199,7 +205,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "web-next": {
       "root": "apps/web-next",
@@ -251,58 +258,8 @@
           },
           "outputs": ["coverage/apps/web-next"]
         }
-      }
-    }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/next"
-  },
-  "schematics": {
-    "@nrwl/workspace": {
-      "library": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/cypress": {
-      "cypress-project": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/react": {
-      "application": {
-        "linter": "eslint",
-        "babel": true
-      }
-    },
-    "@nrwl/next": {
-      "application": {
-        "style": "@emotion/styled",
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/web": {
-      "application": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/node": {
-      "application": {
-        "linter": "eslint"
       },
-      "library": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/nx-plugin": {
-      "plugin": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/nest": {
-      "application": {
-        "linter": "eslint"
-      }
+      "tags": []
     }
-  },
-  "defaultProject": "web-next"
+  }
 }
