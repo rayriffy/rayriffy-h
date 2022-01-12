@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "prepare": "husky install",
     "nx": "nx",
     "nx:highmem": "node --max_old_space_size=6144 node_modules/@nrwl/cli/bin/nx.js",
     "start": "nx serve",
@@ -33,12 +34,6 @@
     "bakeData": "ts-node --project scripts/tsconfig.json scripts/prebuildData.ts"
   },
   "private": true,
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "prettier --write",
