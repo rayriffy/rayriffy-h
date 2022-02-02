@@ -44,7 +44,7 @@
     "@headlessui/react": "^1.4.2",
     "@heroicons/react": "^1.0.5",
     "@next/bundle-analyzer": "^12.0.8",
-    "@nrwl/nx-cloud": "13.0.2",
+    "@nrwl/nx-cloud": "13.1.2",
     "@storeon/crosstab": "^1.0.2",
     "@storeon/localstorage": "^1.4.0",
     "@tailwindcss/aspect-ratio": "^0.4.0",
@@ -91,15 +91,15 @@
     "@babel/preset-typescript": "7.16.7",
     "@commitlint/cli": "^16.0.2",
     "@commitlint/config-conventional": "^16.0.0",
-    "@nrwl/cli": "13.4.4",
-    "@nrwl/eslint-plugin-nx": "13.4.4",
-    "@nrwl/jest": "13.4.4",
-    "@nrwl/next": "13.4.4",
-    "@nrwl/node": "13.4.4",
-    "@nrwl/react": "13.4.4",
-    "@nrwl/tao": "13.4.4",
-    "@nrwl/web": "13.4.4",
-    "@nrwl/workspace": "13.4.4",
+    "@nrwl/cli": "13.7.1",
+    "@nrwl/eslint-plugin-nx": "13.7.1",
+    "@nrwl/jest": "13.7.1",
+    "@nrwl/next": "13.7.1",
+    "@nrwl/node": "13.7.1",
+    "@nrwl/react": "13.7.1",
+    "@nrwl/tao": "13.7.1",
+    "@nrwl/web": "13.7.1",
+    "@nrwl/workspace": "13.7.1",
     "@testing-library/react": "12.1.2",
     "@types/bluebird": "^3.5.36",
     "@types/chromecast-caf-receiver": "^6.0.6",
@@ -132,3 +132,4 @@
     "typescript": "4.5.4"
   }
 }
+
