@@ -124,24 +124,30 @@ const queue = new TaskQueue(BluebirdPromise, process.env.CI === 'true' ? 20 : 5)
       })
     })
 
-  const orderedHentai = codes.map(code => {
-    const targetCode = typeof code === 'number' ? code : code.code
-    const targetHentai: Hentai = JSON.parse(
-      fs
-        .readFileSync(path.join(hentaiDirectory, `${targetCode}.json`))
-        .toString()
-    )
+  const orderedHentai = codes
+    .map(code => {
+      try {
+        const targetCode = typeof code === 'number' ? code : code.code
+        const targetHentai: Hentai = JSON.parse(
+          fs
+            .readFileSync(path.join(hentaiDirectory, `${targetCode}.json`))
+            .toString()
+        )
 
-    const transformedHentai: Hentai = {
-      ...targetHentai,
-      images: {
-        ...targetHentai.images,
-        pages: [],
-      },
-    }
+        const transformedHentai: Hentai = {
+          ...targetHentai,
+          images: {
+            ...targetHentai.images,
+            pages: [],
+          },
+        }
 
-    return transformedHentai
-  })
+        return transformedHentai
+      } catch (e) {
+        return null
+      }
+    })
+    .filter(o => o !== null)
 
   const gzippedBuffer = await promiseGzip(
     Buffer.from(JSON.stringify(orderedHentai))
