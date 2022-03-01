@@ -97,28 +97,40 @@ const queue = new TaskQueue(BluebirdPromise, process.env.CI === 'true' ? 20 : 5)
         fs.writeFileSync(hentaiFile, JSON.stringify(hentai))
       } catch (e) {
         console.error(`failed to get gallery ${targetCode}`)
-        throw 'failed-to-fetch'
+
+        if (fs.existsSync(hentaiFile)) {
+          fs.rmSync(hentaiFile)
+        }
       }
     })
   )
 
   // merging those into one searchKey
   console.log('post-processing')
-  const targetSearchKey = path.join(__dirname, '../apps/web-next/public/static', 'searchKey.opt')
+  const targetSearchKey = path.join(
+    __dirname,
+    '../apps/web-next/public/static',
+    'searchKey.opt'
+  )
 
-  const promiseGzip = (input: Buffer) => new Promise<Buffer>((res, rej) => {
-    gzip(input, (err, buffer) => {
-      if (err === null) {
-        res(buffer)
-      } else {
-        rej(err)
-      }
+  const promiseGzip = (input: Buffer) =>
+    new Promise<Buffer>((res, rej) => {
+      gzip(input, (err, buffer) => {
+        if (err === null) {
+          res(buffer)
+        } else {
+          rej(err)
+        }
+      })
     })
-  })
 
   const orderedHentai = codes.map(code => {
     const targetCode = typeof code === 'number' ? code : code.code
-    const targetHentai: Hentai = JSON.parse(fs.readFileSync(path.join(hentaiDirectory, `${targetCode}.json`)).toString())
+    const targetHentai: Hentai = JSON.parse(
+      fs
+        .readFileSync(path.join(hentaiDirectory, `${targetCode}.json`))
+        .toString()
+    )
 
     const transformedHentai: Hentai = {
       ...targetHentai,
@@ -131,7 +143,9 @@ const queue = new TaskQueue(BluebirdPromise, process.env.CI === 'true' ? 20 : 5)
     return transformedHentai
   })
 
-  const gzippedBuffer = await promiseGzip(Buffer.from(JSON.stringify(orderedHentai)))
+  const gzippedBuffer = await promiseGzip(
+    Buffer.from(JSON.stringify(orderedHentai))
+  )
   fs.writeFileSync(targetSearchKey, gzippedBuffer)
 
   // searchKey by tag
@@ -146,16 +160,30 @@ const queue = new TaskQueue(BluebirdPromise, process.env.CI === 'true' ? 20 : 5)
     })
   })
 
-  const rootKeyDirectory = path.join(__dirname, '../apps/web-next/public/static/key')
+  const rootKeyDirectory = path.join(
+    __dirname,
+    '../apps/web-next/public/static/key'
+  )
 
   if (!fs.existsSync(rootKeyDirectory)) {
     fs.mkdirSync(rootKeyDirectory, { recursive: true })
   }
 
-  await Promise.all(tagPool.map(async tag => {
-    const targetTagFile = path.join(rootKeyDirectory, `${kebabCase(tag.name)}.opt`)
+  await Promise.all(
+    tagPool.map(async tag => {
+      const targetTagFile = path.join(
+        rootKeyDirectory,
+        `${kebabCase(tag.name)}.opt`
+      )
 
-    const gzippedBuffer = await promiseGzip(Buffer.from(JSON.stringify(orderedHentai.filter(o => o.tags.find(t => t.id === tag.id)))))
-    await fs.promises.writeFile(targetTagFile, gzippedBuffer)
-  }))
+      const gzippedBuffer = await promiseGzip(
+        Buffer.from(
+          JSON.stringify(
+            orderedHentai.filter(o => o.tags.find(t => t.id === tag.id))
+          )
+        )
+      )
+      await fs.promises.writeFile(targetTagFile, gzippedBuffer)
+    })
+  )
 })()
