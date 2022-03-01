@@ -1,17 +1,14 @@
-apps/api
-===
+# apps/api
 
 [source](apps/api)
 
 APIs of Riffy H
 
-API
----
+## API
 
 The API is based on HTTPS requests and JSON responses. The stable HTTPS endpoint for the latest version is: `https://h.api.rayriffy.com/v1`
 
-HTTP status Codes
----
+## HTTP status Codes
 
 The following HTTP status codes are returned by the API
 
@@ -31,8 +28,7 @@ Otherwise, successful response can be check by using modulo operation
 const isSuccessful = res.code % 100 === 2
 ```
 
-Response structure
----
+## Response structure
 
 The following JSON data is returned in the response body
 
@@ -43,8 +39,7 @@ The following JSON data is returned in the response body
 | response.message | String | Result summary                                                                |
 | response.data    | Any    | (Optional) Provide useful data for processing                                 |
 
-Get encoded image
----
+## Get encoded image
 
 Render a SFW version of an image that can be decodable
 
@@ -78,10 +73,10 @@ Returns a 200 HTTP status code and a JSON object with the following data.
     "data": "data:image/jpeg;base64,<base64 data>"
 }
 ```
+
 </details>
 
-Get gallery
----
+## Get gallery
 
 Get JSON format of NHentai gallery
 
@@ -205,10 +200,10 @@ Returns a 200 HTTP status code and a JSON object with the following data.
   }
 }
 ```
+
 </details>
 
-Get related gallery
----
+## Get related gallery
 
 Get 5 related galleries by refering to gallery ID
 
@@ -454,9 +449,10 @@ Returns a 200 HTTP status code and a JSON object with the following data.
             "type": "group"
           }
         ]
-      },
+      }
     ]
   }
 }
 ```
+
 </details>

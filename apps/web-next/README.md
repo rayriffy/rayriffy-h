@@ -1,18 +1,15 @@
-apps/web-next
-===
+# apps/web-next
 
 New Riffy H built with [Next](https://nextjs.org) to maximize the performance.
 
-To develop
----
+## To develop
 
 ```
 pnpm bakeData
 nx serve web-next
 ```
 
-To build
----
+## To build
 
 ```
 pnpm bakeData

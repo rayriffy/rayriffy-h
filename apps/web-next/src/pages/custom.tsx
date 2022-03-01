@@ -9,9 +9,10 @@ const Page: NextPage = props => {
   const router = useRouter()
 
   const [input, setInput] = useState('')
-  const isDisabled = useMemo(() => input.length === 0 || input.length > 6, [
-    input,
-  ])
+  const isDisabled = useMemo(
+    () => input.length === 0 || input.length > 6,
+    [input]
+  )
 
   return (
     <Fragment>
@@ -51,7 +52,11 @@ const Page: NextPage = props => {
                   <button
                     type="button"
                     disabled={isDisabled}
-                    className={`inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 ${isDisabled ? 'bg-gray-600 hover:bg-gray-700 focus:ring-gray-500' : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-500'}`}
+                    className={`inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                      isDisabled
+                        ? 'bg-gray-600 hover:bg-gray-700 focus:ring-gray-500'
+                        : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-500'
+                    }`}
                     onClick={() => {
                       router.push(`/g/${input}`)
                     }}

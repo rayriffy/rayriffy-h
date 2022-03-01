@@ -19,9 +19,8 @@ const api: NextApiHandler = async (req, res) => {
 
       // decrypt it
       const decryptedData = decrypt(bytebinRes, process.env.SECRET_KEY)
-      const transformedData: CollectionStore['collection'] = JSON.parse(
-        decryptedData
-      )
+      const transformedData: CollectionStore['collection'] =
+        JSON.parse(decryptedData)
 
       const payload: APIResponse<CollectionStore['collection']> = {
         status: 'success',

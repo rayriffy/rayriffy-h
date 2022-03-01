@@ -27,9 +27,10 @@ export const CollectionListing = memo(() => {
     [collection, query]
   )
 
-  const maxPage = useMemo(() => chunk(searchResult, itemsPerPage).length, [
-    searchResult,
-  ])
+  const maxPage = useMemo(
+    () => chunk(searchResult, itemsPerPage).length,
+    [searchResult]
+  )
   const galleries = useMemo(
     () => chunk(searchResult, itemsPerPage)[page - 1] ?? [],
     [page, searchResult]

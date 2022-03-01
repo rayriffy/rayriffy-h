@@ -30,7 +30,7 @@ export const useListingNavigation = (
 
   const { data, error } = useSWR<APIResponse<Data>>(
     `/api/search?${transformedQuery}`,
-    url => query === '' ? null : fetch(url).then(r => r.json())
+    url => (query === '' ? null : fetch(url).then(r => r.json()))
   )
 
   if (query === '') {

@@ -2,7 +2,11 @@ import { FunctionComponent, memo, useCallback } from 'react'
 
 import Link from 'next/link'
 
-import { BookmarkIcon, ClockIcon, CursorClickIcon } from '@heroicons/react/outline'
+import {
+  BookmarkIcon,
+  ClockIcon,
+  CursorClickIcon,
+} from '@heroicons/react/outline'
 import { useStoreon } from '@rayriffy-h/state-engine'
 
 export const Stats: FunctionComponent = () => {

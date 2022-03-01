@@ -1,4 +1,10 @@
-import { memo, useState, useCallback, useEffect, ChangeEventHandler } from 'react'
+import {
+  memo,
+  useState,
+  useCallback,
+  useEffect,
+  ChangeEventHandler,
+} from 'react'
 
 import { SearchIcon } from '@heroicons/react/outline'
 
@@ -54,7 +60,9 @@ export const MobileSearch = memo(() => {
             <input
               id="search-mobile"
               name="search-mobile"
-              className={`border-none block w-full h-full pl-8 pr-3 py-2 border-transparent placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-gray-400 sm:text-sm ${isAvailable ? 'text-gray-900' : 'text-gray-500 bg-gray-200'}`}
+              className={`border-none block w-full h-full pl-8 pr-3 py-2 border-transparent placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-gray-400 sm:text-sm ${
+                isAvailable ? 'text-gray-900' : 'text-gray-500 bg-gray-200'
+              }`}
               placeholder="Search"
               type="search"
               disabled={!isAvailable}

@@ -1,4 +1,10 @@
-import { memo, useState, useCallback, useEffect, ChangeEventHandler } from 'react'
+import {
+  memo,
+  useState,
+  useCallback,
+  useEffect,
+  ChangeEventHandler,
+} from 'react'
 
 import { SearchIcon } from '@heroicons/react/outline'
 
@@ -52,7 +58,9 @@ export const DesktopSearch = memo(() => {
           type="text"
           name="search-desktop"
           id="search-desktop"
-          className={`focus:ring-blue-500 focus:border-blue-500 block w-full pl-9 sm:text-sm border-gray-300 rounded-md ${!isAvailable ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : ''}`}
+          className={`focus:ring-blue-500 focus:border-blue-500 block w-full pl-9 sm:text-sm border-gray-300 rounded-md ${
+            !isAvailable ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : ''
+          }`}
           placeholder="Search"
           disabled={!isAvailable}
           value={input}

@@ -1,5 +1,10 @@
 import { Fragment } from 'react'
-import { GetServerSideProps, GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import {
+  GetServerSideProps,
+  GetStaticPaths,
+  GetStaticProps,
+  NextPage,
+} from 'next'
 
 import { Hentai, Tag } from '@rayriffy-h/helper'
 
@@ -36,17 +41,20 @@ export const getServerSideProps: GetServerSideProps<IProps> = async ctx => {
   const tagNameAndPage = ctx.params.tagNameAndPage as string[]
 
   const targetTag = tagNameAndPage[0]
-  const targetPage = tagNameAndPage.length === 1 ? 1 : Number(tagNameAndPage.reverse()[0])
+  const targetPage =
+    tagNameAndPage.length === 1 ? 1 : Number(tagNameAndPage.reverse()[0])
 
   const urls = new URL(ctx.req.url, `http://${ctx.req.headers.host}`)
 
   const rawCompressedData = await fetch(
-    `${
-      /localhost/.test(urls.host) ? 'http://' : 'https://'
-    }${urls.host}/static/key/${targetTag}.opt`
+    `${/localhost/.test(urls.host) ? 'http://' : 'https://'}${
+      urls.host
+    }/static/key/${targetTag}.opt`
   )
   const arrayBuffer = await rawCompressedData.arrayBuffer()
-  const hentais: Hentai[] = await promiseGunzip(Buffer.from(arrayBuffer)).then(o => JSON.parse(o.toString()))
+  const hentais: Hentai[] = await promiseGunzip(Buffer.from(arrayBuffer)).then(
+    o => JSON.parse(o.toString())
+  )
 
   const filteredHentaiTagChunks = chunk(hentais, itemsPerPage)
 
@@ -56,7 +64,7 @@ export const getServerSideProps: GetServerSideProps<IProps> = async ctx => {
       galleries: filteredHentaiTagChunks[targetPage - 1],
       maxPage: filteredHentaiTagChunks.length,
       currentPage: targetPage,
-    }
+    },
   }
 }
 

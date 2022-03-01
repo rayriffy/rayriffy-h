@@ -62,7 +62,8 @@ export const Poster = memo<IProps>(props => {
             </div>
             <div className="pt-1 flex">
               <div className="flex items-center pr-2">
-                <BookOpenIcon className="w-8 h-8 pr-2" /> {hentai.num_pages ?? 0}
+                <BookOpenIcon className="w-8 h-8 pr-2" />{' '}
+                {hentai.num_pages ?? 0}
               </div>
             </div>
           </div>

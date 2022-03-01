@@ -86,7 +86,8 @@ module.exports = withPlugins(
           },
         },
         {
-          urlPattern: /\/_next\/data\/[A-Za-z0-9_-]{21}\/listing(\/p\/\d)?.json/i,
+          urlPattern:
+            /\/_next\/data\/[A-Za-z0-9_-]{21}\/listing(\/p\/\d)?.json/i,
           handler: 'NetworkFirst',
           options: {
             cacheName: 'next-listing',

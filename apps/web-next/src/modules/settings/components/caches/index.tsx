@@ -1,6 +1,10 @@
 import { FunctionComponent, memo, Fragment } from 'react'
 
-import { ArchiveIcon, BookOpenIcon, PhotographIcon } from '@heroicons/react/outline'
+import {
+  ArchiveIcon,
+  BookOpenIcon,
+  PhotographIcon,
+} from '@heroicons/react/outline'
 
 import { Cache } from './cache'
 

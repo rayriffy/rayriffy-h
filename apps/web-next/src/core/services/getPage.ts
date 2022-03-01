@@ -7,7 +7,12 @@ import { codes, DatabaseCode } from '@rayriffy-h/datasource'
 import chunk from 'lodash/chunk'
 
 export const getPage = (page: number) => {
-  const cacheChunkDir = path.join(process.cwd(), '.next', 'cache', 'prebuiltChunks')
+  const cacheChunkDir = path.join(
+    process.cwd(),
+    '.next',
+    'cache',
+    'prebuiltChunks'
+  )
 
   const chunkFile = path.join(cacheChunkDir, `chunk-${page}.json`)
 

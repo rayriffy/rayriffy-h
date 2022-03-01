@@ -1,7 +1,10 @@
 import { FunctionComponent } from 'react'
 
 import { Hentai } from '@rayriffy-h/helper'
-import { ExclamationIcon, QuestionMarkCircleIcon } from '@heroicons/react/outline'
+import {
+  ExclamationIcon,
+  QuestionMarkCircleIcon,
+} from '@heroicons/react/outline'
 
 import { Listing } from '../../../core/components/listing'
 import { Pagination } from '../../../core/components/pagination'

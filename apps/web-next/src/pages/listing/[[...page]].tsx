@@ -43,7 +43,19 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
   const galleries = gallerieCodes.map(code => {
     const targetCode = typeof code === 'number' ? code : code.code
 
-    const hentai: Hentai = JSON.parse(fs.readFileSync(path.join(process.cwd(), '.next', 'cache', 'hentai', `${targetCode}.json`)).toString())
+    const hentai: Hentai = JSON.parse(
+      fs
+        .readFileSync(
+          path.join(
+            process.cwd(),
+            '.next',
+            'cache',
+            'hentai',
+            `${targetCode}.json`
+          )
+        )
+        .toString()
+    )
 
     return hentai
   })

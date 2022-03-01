@@ -21,7 +21,9 @@ export const getHentaiCache = async (id: string | number) => {
     return hentai
   } else {
     // read cache
-    const hentai: Hentai = JSON.parse(fs.readFileSync(hentaiCacheFile).toString())
+    const hentai: Hentai = JSON.parse(
+      fs.readFileSync(hentaiCacheFile).toString()
+    )
 
     return hentai
   }
