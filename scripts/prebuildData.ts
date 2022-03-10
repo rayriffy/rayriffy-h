@@ -96,6 +96,7 @@ const queue = new TaskQueue(BluebirdPromise, process.env.CI === 'true' ? 20 : 5)
 
         fs.writeFileSync(hentaiFile, JSON.stringify(hentai))
       } catch (e) {
+        console.log(e)
         console.error(`failed to get gallery ${targetCode}`)
 
         if (fs.existsSync(hentaiFile)) {
