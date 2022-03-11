@@ -1,12 +1,7 @@
 import { Fragment } from 'react'
-import {
-  GetServerSideProps,
-  GetStaticPaths,
-  GetStaticProps,
-  NextPage,
-} from 'next'
+import { GetServerSideProps, NextPage } from 'next'
 
-import { Hentai, Tag } from '@rayriffy-h/helper'
+import { Hentai } from '@rayriffy-h/helper'
 
 import { HeadTitle } from '../../core/components/headTitle'
 import { TagModule } from '../../modules/tag/components'
@@ -28,11 +23,7 @@ const Page: NextPage<IProps> = props => {
 }
 
 export const getServerSideProps: GetServerSideProps<IProps> = async ctx => {
-  const { default: fs } = await import('fs')
-  const { default: path } = await import('path')
-
   const { default: chunk } = await import('lodash/chunk')
-  const { default: kebabCase } = await import('lodash/kebabCase')
 
   const { itemsPerPage } = await import('@rayriffy-h/constants')
 
