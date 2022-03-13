@@ -1,8 +1,9 @@
 import { NextFetchEvent, NextRequest, NextResponse } from 'next/server'
 
 export function middleware(req: NextRequest, ev: NextFetchEvent) {
-  console.log(req.geo.country)
-  if (['th'].includes(req.geo.country.toLowerCase())) {
+  if (['robots.txt'].some(o => req.url.includes(o))) {
+    return NextResponse.next()
+  } else if (['th', 'sg'].includes(req.geo.country.toLowerCase())) {
     return NextResponse.next()
   } else {
     return new Response(undefined, {
