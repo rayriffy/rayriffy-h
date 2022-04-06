@@ -1,5 +1,3 @@
-const colors = require('tailwindcss/colors')
-
 module.exports = {
   mode: 'jit',
   theme: {
@@ -36,10 +34,10 @@ module.exports = {
     require('tailwindcss-filters'),
   ],
   content: [
-    './apps/web-next/src/**/*.{js,jsx,ts,tsx}',
-    './libs/constants/src/**/*.{js,jsx,ts,tsx}',
-    './libs/datasource/src/**/*.{js,jsx,ts,tsx}',
-    './libs/tags/src/**/*.{js,jsx,ts,tsx}',
-    './libs/icons/src/**/*.{js,jsx,ts,tsx}',
+    './src/**/*.html',
+    './src/**/*.tsx',
+    './src/**/*.ts',
+    './src/**/*.jsx',
+    './src/**/*.js',
   ],
 }

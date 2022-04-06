@@ -1,23 +1,31 @@
 Riffy H
-=======
+===
 
-The monorepo of [Riffy H](https://h.rayriffy.com)
-
-What's included?
-----------------
-
-We have 3 seperated applications in this monorepo.
-
-1. [apps/web](apps/web): **(DEPRECATED)** The frontend of **Riffy H**, built with [Gatsby](https://gatsbyjs.org/)
-2. [apps/web-next](apps/web-next): New Riffy H built with [Next](https://nextjs.org) to maximize the performance.
-3. [apps/api](apps/api): Public REST API for serving **Riffy H**
+The missing pieces of nhentai
 
 Requirements
 ------------
 
 - [pnpm](https://pnpm.io/)
 - Node LTS
-- [@nrwl/cli](https://nx.dev/react) installed globally (`yarn global add @nrwl/cli`)
+
+Development
+---
+
+```
+# Prebuild data
+pnpm build:data
+
+# Start development server
+pnpm dev
+```
+
+Build
+---
+
+```
+pnpm build
+```
 
 License
 -------
