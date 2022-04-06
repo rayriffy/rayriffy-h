@@ -1,3 +1,0 @@
-# libs/fetch
-
-Fetch functions
