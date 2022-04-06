@@ -5,10 +5,11 @@
   "scripts": {
     "prepare": "husky install",
     "dev": "next",
-    "build": "pnpm build:data && pnpm build:next",
+    "build": "pnpm partytown && pnpm build:data && pnpm build:next",
     "build:next": "next build",
     "build:data": "node -r @swc-node/register tools/prebuildData.ts",
-    "start": "next start"
+    "start": "next start",
+    "partytown": "partytown copylib public/~partytown"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
     ]
   },
   "dependencies": {
+    "@builder.io/partytown": "^0.5.2",
     "@headlessui/react": "^1.5.0",
     "@heroicons/react": "^1.0.6",
     "@next/bundle-analyzer": "^12.1.4",
