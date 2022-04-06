@@ -33,7 +33,6 @@ specifiers:
   storeon: ^3.1.5
   swr: ^1.2.2
   tailwindcss: ^3.0.23
-  tailwindcss-filters: ^3.0.0
   typescript: ^4.6.3
   web-api-hooks: ^3.0.2
 
@@ -60,7 +59,6 @@ dependencies:
   storeon: 3.1.5_react@18.0.0
   swr: 1.2.2_react@18.0.0
   tailwindcss: 3.0.23
-  tailwindcss-filters: 3.0.0
   web-api-hooks: 3.0.2_react@18.0.0
 
 devDependencies:
@@ -4429,13 +4427,6 @@ packages:
       react: ^16.11.0 || ^17.0.0 || ^18.0.0
     dependencies:
       react: 18.0.0
-    dev: false
-
-  /tailwindcss-filters/3.0.0:
-    resolution: {integrity: sha512-xhortqs8fSp9id17EnneYhmruA5DfU6K0zvN6/mgDlEXKaHthjXlR74Ta+4lrX5Lp7tp6YigB09WO0TOWn7VEQ==}
-    deprecated: Use Tailwind's filter utilities
-    dependencies:
-      lodash: 4.17.21
     dev: false
 
   /tailwindcss/3.0.23:

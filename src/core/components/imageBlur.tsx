@@ -11,7 +11,7 @@ export const ImageBlur = memo<ComponentProps<typeof Image>>(props => {
   return (
     <div
       className={`${className} overflow-hidden ${
-        settings.safemode ? 'filter-blur transform scale-105' : ''
+        settings.safemode ? 'blur-lg transform scale-105' : ''
       }`}
     >
       <Image {...rest} />

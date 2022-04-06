@@ -42,12 +42,16 @@ module.exports = withPlugins(
     serverRuntimeConfig: {
       buildId: generatedId,
     },
+    eslint: {
+      ignoreDuringBuilds: true,
+    },
     images: {
       domains: ['i.nhentai.net', 't.nhentai.net'],
     },
     generateBuildId: () => generatedId,
     experimental: {
-      optimizeImages: true,
+      reactRoot: 'concurrent',
+      polyfillsOptimization: true,
       scrollRestoration: true,
     },
   }
