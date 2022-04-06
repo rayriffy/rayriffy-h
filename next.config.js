@@ -53,6 +53,7 @@ module.exports = withPlugins(
       reactRoot: 'concurrent',
       polyfillsOptimization: true,
       scrollRestoration: true,
+      // outputStandalone: true,
     },
   }
 )
