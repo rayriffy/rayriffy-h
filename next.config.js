@@ -29,6 +29,7 @@ module.exports = withPlugins(
           register: false,
           skipWaiting: true,
           runtimeCaching,
+          publicExcludes: ['!static/key/**/*', '!static/searchKey.opt'],
         },
       },
     ],
