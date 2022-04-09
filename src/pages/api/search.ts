@@ -3,7 +3,7 @@ import { NextApiHandler } from 'next'
 import chunk from 'lodash/chunk'
 
 import { searchHentai } from '../../core/services/searchHentai'
-import { promiseGunzip } from '../../core/services/promiseGunzip'
+import { promiseBrotliDecompress } from '../../core/services/promiseBrotliDecompress'
 import { APIResponse } from '../../core/@types/APIResponse'
 import { Hentai } from '../../core/@types/Hentai'
 import { itemsPerPage } from '../../core/constants/itemsPerPage'
@@ -29,7 +29,7 @@ const api: NextApiHandler = async (req, res) => {
       }${host}/static/searchKey.opt`
     )
     const arrayBuffer = await rawCompressedData.arrayBuffer()
-    const hentais: Hentai[] = await promiseGunzip(
+    const hentais: Hentai[] = await promiseBrotliDecompress(
       Buffer.from(arrayBuffer)
     ).then(o => JSON.parse(o.toString()))
 

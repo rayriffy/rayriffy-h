@@ -1,11 +1,10 @@
-import * as fs from 'fs'
-import * as path from 'path'
-import { gzip, gunzip } from 'zlib'
+import fs from 'fs'
+import path from 'path'
 
 import axios from 'axios'
 
 import { TaskQueue } from 'cwait'
-import { chunk, reverse, flatten, kebabCase } from 'lodash'
+import { chunk, reverse, kebabCase } from 'lodash'
 
 import { codes } from '../src/core/constants/codes'
 import { itemsPerPage } from '../src/core/constants/itemsPerPage'
@@ -17,10 +16,11 @@ import { Hentai } from '../src/core/@types/Hentai'
 import { RawHentai } from '../src/core/@types/RawHentai'
 import { Tag } from '../src/core/@types/Tag'
 import { DatabaseCode } from '../src/core/@types/DatabaseCode'
+import { promiseBrotliCompress } from '../src/core/services/promiseBrotliCompress'
 
 const nextCacheDirectory = path.join(__dirname, '..', '.next', 'cache')
 
-const queue = new TaskQueue(Promise, process.env.CI === 'true' ? 20 : 5)
+const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 20 : 5)
 
 ;(async () => {
   // generating chunks
@@ -83,7 +83,7 @@ const queue = new TaskQueue(Promise, process.env.CI === 'true' ? 20 : 5)
 
   await Promise.all(
     codes.map(
-      queue.wrap<void, DatabaseCode>(async code => {
+      fetchQueue.wrap<void, DatabaseCode>(async code => {
         const targetCode = typeof code === 'number' ? code : code.code
         const hentaiFile = path.join(hentaiDirectory, `${targetCode}.json`)
 
@@ -116,17 +116,6 @@ const queue = new TaskQueue(Promise, process.env.CI === 'true' ? 20 : 5)
     'searchKey.opt'
   )
 
-  const promiseGzip = (input: Buffer) =>
-    new Promise<Buffer>((res, rej) => {
-      gzip(input, (err, buffer) => {
-        if (err === null) {
-          res(buffer)
-        } else {
-          rej(err)
-        }
-      })
-    })
-
   const orderedHentai = codes
     .map(code => {
       try {
@@ -152,10 +141,10 @@ const queue = new TaskQueue(Promise, process.env.CI === 'true' ? 20 : 5)
     })
     .filter(o => o !== null)
 
-  const gzippedBuffer = await promiseGzip(
+  const compressedBuffer = await promiseBrotliCompress(
     Buffer.from(JSON.stringify(orderedHentai))
   )
-  fs.writeFileSync(targetSearchKey, gzippedBuffer)
+  fs.writeFileSync(targetSearchKey, compressedBuffer)
 
   // searchKey by tag
   const tagPool: Tag[] = []
@@ -182,14 +171,14 @@ const queue = new TaskQueue(Promise, process.env.CI === 'true' ? 20 : 5)
         `${kebabCase(tag.name)}.opt`
       )
 
-      const gzippedBuffer = await promiseGzip(
+      const compressedBuffer = await promiseBrotliCompress(
         Buffer.from(
           JSON.stringify(
             orderedHentai.filter(o => o.tags.find(t => t.id === tag.id))
           )
         )
       )
-      await fs.promises.writeFile(targetTagFile, gzippedBuffer)
+      await fs.promises.writeFile(targetTagFile, compressedBuffer)
     })
   )
 })()

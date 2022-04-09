@@ -25,7 +25,9 @@ export const getServerSideProps: GetServerSideProps<IProps> = async ctx => {
   const { default: chunk } = await import('lodash/chunk')
 
   const { itemsPerPage } = await import('../../core/constants/itemsPerPage')
-  const { promiseGunzip } = await import('../../core/services/promiseGunzip')
+  const { promiseBrotliDecompress } = await import(
+    '../../core/services/promiseBrotliDecompress'
+  )
 
   const tagNameAndPage = ctx.params.tagNameAndPage as string[]
 
@@ -41,9 +43,9 @@ export const getServerSideProps: GetServerSideProps<IProps> = async ctx => {
     }/static/key/${targetTag}.opt`
   )
   const arrayBuffer = await rawCompressedData.arrayBuffer()
-  const hentais: Hentai[] = await promiseGunzip(Buffer.from(arrayBuffer)).then(
-    o => JSON.parse(o.toString())
-  )
+  const hentais: Hentai[] = await promiseBrotliDecompress(
+    Buffer.from(arrayBuffer)
+  ).then(o => JSON.parse(o.toString()))
 
   const filteredHentaiTagChunks = chunk(hentais, itemsPerPage)
 

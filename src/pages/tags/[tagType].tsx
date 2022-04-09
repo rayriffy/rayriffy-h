@@ -38,9 +38,11 @@ export const getStaticProps: GetStaticProps<IProps> = async ctx => {
   const { default: path } = await import('path')
   const { default: sortBy } = await import('lodash/sortBy')
 
-  const { promiseGunzip } = await import('../../core/services/promiseGunzip')
+  const { promiseBrotliDecompress } = await import(
+    '../../core/services/promiseBrotliDecompress'
+  )
 
-  const searchKeyFile = await promiseGunzip(
+  const searchKeyFile = await promiseBrotliDecompress(
     fs.readFileSync(path.join(process.cwd(), 'public/static', 'searchKey.opt'))
   )
   const searchKey: Hentai[] = JSON.parse(searchKeyFile.toString())
