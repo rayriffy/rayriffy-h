@@ -1,4 +1,4 @@
-import { FunctionComponent, memo, useCallback } from 'react'
+import { FunctionComponent, memo, PropsWithChildren, useCallback } from 'react'
 
 import Link from 'next/link'
 
@@ -9,7 +9,7 @@ import {
 } from '@heroicons/react/outline'
 import { useStoreon } from '../../../context'
 
-export const Stats: FunctionComponent = () => {
+export const Stats: FunctionComponent<PropsWithChildren<{}>> = () => {
   const { collection, history, metadata, dispatch } = useStoreon(
     'collection',
     'history',

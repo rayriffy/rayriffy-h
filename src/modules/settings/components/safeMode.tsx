@@ -1,7 +1,7 @@
-import { FunctionComponent } from 'react'
+import { FunctionComponent, PropsWithChildren } from 'react'
 import { useStoreon } from '../../../context'
 
-export const SafeMode: FunctionComponent = () => {
+export const SafeMode: FunctionComponent<PropsWithChildren<{}>> = () => {
   const { settings, dispatch } = useStoreon('settings')
   return (
     <div className="bg-white shadow sm:rounded-lg">

@@ -1,9 +1,9 @@
-import { FunctionComponent, useMemo } from 'react'
+import { FunctionComponent, PropsWithChildren, useMemo } from 'react'
 
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
-interface IProps {
+interface IProps extends PropsWithChildren<{}> {
   title?: string
   description?: string
 }
