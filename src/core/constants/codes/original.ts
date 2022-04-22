@@ -683,7 +683,6 @@ export const original: DatabaseCode[] = [
   287467,
   155394,
   150216,
-  293007,
   283491,
   208480,
   264577,
