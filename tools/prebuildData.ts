@@ -110,6 +110,7 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 20 : 5)
             throw new Error('null')
           }
         } catch (e) {
+          console.log(e)
           console.error(`failed to get gallery ${targetCode} - ${e}`)
 
           if (fs.existsSync(hentaiFile)) {
