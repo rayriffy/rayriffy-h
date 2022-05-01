@@ -76,7 +76,7 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 20 : 5)
       }
     } catch (e) {
       if (secondAttempt) {
-        throw new Error((e as AxiosError).code)
+        throw e
       } else {
         return fetchHentai(code, true)
       }
@@ -107,11 +107,14 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 20 : 5)
           if (hentai !== null) {
             fs.writeFileSync(hentaiFile, JSON.stringify(hentai))
           } else {
-            throw new Error('null')
+            throw 'null'
           }
         } catch (e) {
-          console.log(e)
-          console.error(`failed to get gallery ${targetCode} - ${e}`)
+          console.error(
+            `failed to get gallery ${targetCode} - ${
+              (e as AxiosError)?.code ?? e
+            }`
+          )
 
           if (fs.existsSync(hentaiFile)) {
             fs.rmSync(hentaiFile)
