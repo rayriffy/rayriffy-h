@@ -21,6 +21,8 @@ import { hifuminHentaiQuery } from '../src/core/constants/hifuminHentaiQuery'
 dotenv.config()
 const { HIFUMIN_API_URL } = process.env
 
+console.log({ HIFUMIN_API_URL })
+
 const nextCacheDirectory = path.join(__dirname, '..', '.next', 'cache')
 
 const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 20 : 5)
