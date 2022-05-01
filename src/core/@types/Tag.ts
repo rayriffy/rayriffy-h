@@ -1,7 +1,7 @@
 import { TagType } from './TagType'
 
 export interface Tag {
-  id: number
+  id: string
   type: TagType
   name: string
 }

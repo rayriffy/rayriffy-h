@@ -1,7 +1,8 @@
 import fs from 'fs'
 import path from 'path'
 
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
+import dotenv from 'dotenv'
 
 import { TaskQueue } from 'cwait'
 import { chunk, reverse, kebabCase } from 'lodash'
@@ -9,14 +10,16 @@ import { chunk, reverse, kebabCase } from 'lodash'
 import { codes } from '../src/core/constants/codes'
 import { itemsPerPage } from '../src/core/constants/itemsPerPage'
 
-import { rawHentaiToHentai } from '../src/core/services/rawHentaiToHentai'
-
-import { APIResponse } from '../src/core/@types/APIResponse'
 import { Hentai } from '../src/core/@types/Hentai'
-import { RawHentai } from '../src/core/@types/RawHentai'
 import { Tag } from '../src/core/@types/Tag'
 import { DatabaseCode } from '../src/core/@types/DatabaseCode'
 import { promiseBrotliCompress } from '../src/core/services/promiseBrotliCompress'
+import { HifuminSingleResponse } from '../src/core/@types/HifuminSingleResponse'
+import { hifuminHentaiToHentai } from '../src/core/services/hifuminHentaiToHentai'
+import { hifuminHentaiQuery } from '../src/core/constants/hifuminHentaiQuery'
+
+dotenv.config()
+const { HIFUMIN_API_URL } = process.env
 
 const nextCacheDirectory = path.join(__dirname, '..', '.next', 'cache')
 
@@ -42,32 +45,36 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 20 : 5)
   const fetchHentai = async (
     code: string | number,
     secondAttempt = false
-  ): Promise<Hentai> => {
+  ): Promise<Hentai | null> => {
     try {
-      const rawResult = await axios.get<APIResponse<RawHentai>>(
-        `https://h.api.rayriffy.com/v1/gallery/${code}`
+      const { data } = await axios.post<HifuminSingleResponse>(
+        HIFUMIN_API_URL,
+        {
+          query: `
+          query SingleHentaiQuery ($hentaiId: Int!) {
+            nhql {
+              by (id: $hentaiId) {
+                data {
+                  ${hifuminHentaiQuery}
+                }
+              }
+            }
+          }
+        `,
+          variables: {
+            hentaiId: Number(code),
+          },
+        }
       )
 
-      const rawHentai = rawResult.data.response.data
-      const transformedRawHentai: RawHentai = {
-        ...rawHentai,
-        title: {
-          ...rawHentai.title,
-          english:
-            rawHentai.title.english === null
-              ? rawHentai.title.japanese
-              : rawHentai.title.english,
-          japanese:
-            rawHentai.title.japanese === null
-              ? rawHentai.title.english
-              : rawHentai.title.japanese,
-        },
+      if (data.data.nhql.by.data === null) {
+        return null
+      } else {
+        return hifuminHentaiToHentai(data.data.nhql.by.data)
       }
-
-      return rawHentaiToHentai(transformedRawHentai)
     } catch (e) {
       if (secondAttempt) {
-        throw e
+        throw new Error((e as AxiosError).code)
       } else {
         return fetchHentai(code, true)
       }
@@ -93,12 +100,16 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 20 : 5)
             return
           }
 
+          console.log(`fetching ${targetCode}`)
           const hentai = await fetchHentai(targetCode)
 
-          fs.writeFileSync(hentaiFile, JSON.stringify(hentai))
+          if (hentai !== null) {
+            fs.writeFileSync(hentaiFile, JSON.stringify(hentai))
+          } else {
+            throw new Error('null')
+          }
         } catch (e) {
-          console.log(e)
-          console.error(`failed to get gallery ${targetCode}`)
+          console.error(`failed to get gallery ${targetCode} - ${e}`)
 
           if (fs.existsSync(hentaiFile)) {
             fs.rmSync(hentaiFile)
