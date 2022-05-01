@@ -100,7 +100,6 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 20 : 5)
             return
           }
 
-          console.log(`fetching ${targetCode}`)
           const hentai = await fetchHentai(targetCode)
 
           if (hentai !== null) {
