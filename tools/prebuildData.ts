@@ -47,7 +47,6 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 20 : 5)
     secondAttempt = false
   ): Promise<Hentai | null> => {
     try {
-      console.log({ HIFUMIN_API_URL })
       const { data } = await axios.post<HifuminSingleResponse>(
         HIFUMIN_API_URL,
         {
