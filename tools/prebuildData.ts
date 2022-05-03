@@ -74,6 +74,7 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 20 : 5)
       }
     } catch (e) {
       if (secondAttempt) {
+        console.log(e.response.data)
         throw e
       } else {
         return fetchHentai(code, true)
