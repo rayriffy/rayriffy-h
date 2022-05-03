@@ -37,9 +37,6 @@ const Page: NextPage<IProps> = props => {
 }
 
 export const getServerSideProps: GetServerSideProps<IProps> = async context => {
-  const { default: fs } = await import('fs')
-  const { default: path } = await import('path')
-
   const { codes } = await import('../../core/constants/codes')
   const { ignoreList } = await import('../../core/constants/ignoreList')
 
@@ -58,17 +55,7 @@ export const getServerSideProps: GetServerSideProps<IProps> = async context => {
       }
     }
 
-    const expectedCachePath = path.join(
-      process.cwd(),
-      '.next',
-      'cache',
-      'hentai',
-      `${targetId}.json`
-    )
-
-    const hentai = fs.existsSync(expectedCachePath)
-      ? (JSON.parse(fs.readFileSync(expectedCachePath, 'utf8')) as Hentai)
-      : await getHentai(targetId)
+    const hentai = await getHentai(targetId)
 
     context.res.setHeader('Cache-Control', 's-maxage=2629800')
 
