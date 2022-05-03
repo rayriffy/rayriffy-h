@@ -1,3 +1,4 @@
+import { kebabCase } from 'lodash'
 import { Hentai } from '../@types/Hentai'
 
 export const rawHentaiToHentai = (hentai: Hentai): Hentai => {
@@ -11,7 +12,7 @@ export const rawHentaiToHentai = (hentai: Hentai): Hentai => {
     },
     num_pages: hentai.num_pages,
     tags: hentai.tags.map(o => ({
-      id: o.id,
+      id: kebabCase(o.name),
       name: o.name,
       type: o.type,
     })),

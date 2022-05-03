@@ -1,6 +1,3 @@
-import fs from 'fs'
-import path from 'path'
-
 import { NextApiHandler } from 'next'
 
 import chunk from 'lodash/chunk'
@@ -26,11 +23,14 @@ const api: NextApiHandler = async (req, res) => {
       })
     }
 
-    const compressedData = fs.readFileSync(
-      path.join(process.cwd(), 'public', 'static', 'searchKey.opt')
+    const rawCompressedData = await fetch(
+      `${
+        /localhost/.test(host) ? 'http://' : 'https://'
+      }${host}/static/searchKey.opt`
     )
+    const arrayBuffer = await rawCompressedData.arrayBuffer()
     const hentais: Hentai[] = await promiseBrotliDecompress(
-      compressedData
+      Buffer.from(arrayBuffer)
     ).then(o => JSON.parse(o.toString()))
 
     const targetPage = Number(page)
