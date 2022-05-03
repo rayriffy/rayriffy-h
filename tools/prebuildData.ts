@@ -19,7 +19,7 @@ import { hifuminHentaiToHentai } from '../src/core/services/hifuminHentaiToHenta
 import { hifuminHentaiQuery } from '../src/core/constants/hifuminHentaiQuery'
 
 dotenv.config()
-const { HIFUMIN_API_URL } = process.env
+const { HIFUMIN_API_URL, USER_AGENT } = process.env
 
 const nextCacheDirectory = path.join(__dirname, '..', '.next', 'cache')
 
@@ -63,6 +63,11 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 20 : 5)
         `,
           variables: {
             hentaiId: Number(code),
+          },
+        },
+        {
+          headers: {
+            'User-Agent': USER_AGENT,
           },
         }
       )

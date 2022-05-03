@@ -26,6 +26,11 @@ export const getHentai = async (id: number | string): Promise<Hentai> => {
         variables: {
           hentaiId: Number(id),
         },
+      },
+      {
+        headers: {
+          'User-Agent': process.env.USER_AGENT,
+        },
       }
     )
 
