@@ -2,6 +2,7 @@ import { memo, Fragment, useMemo } from 'react'
 
 import Link from 'next/link'
 
+import kebabCase from 'lodash/kebabCase'
 import { Tag } from '../../@types/Tag'
 import { DatabaseTag } from '../../@types/DatabaseTag'
 import { filterTagByType } from '../../services/filterTagByType'
@@ -72,7 +73,7 @@ export const Slug = memo<SlugProps>(props => {
 
   return (
     <div className="p-1">
-      <Link href={`/tag/${tag.name}`}>
+      <Link href={`/tag/${kebabCase(tag.name)}`}>
         <a
           className={`text-xs uppercase rounded-md px-2 py-1 text-white ${color} font-semibold`}
         >
