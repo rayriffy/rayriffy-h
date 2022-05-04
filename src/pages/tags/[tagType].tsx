@@ -21,7 +21,7 @@ const Page: NextPage<IProps> = props => {
       <div className="pt-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {tags.map(tag => (
-            <Link href={`/tag/${tag.name}`} key={`tag-${tag.id}`}>
+            <Link href={`/tag/${tag.id}`} key={`tag-${tag.id}`}>
               <a className="bg-white px-4 py-3 shadow rounded-lg">{tag.name}</a>
             </Link>
           ))}

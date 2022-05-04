@@ -72,7 +72,7 @@ export const Slug = memo<SlugProps>(props => {
 
   return (
     <div className="p-1">
-      <Link href={`/tag/${tag.name}`}>
+      <Link href={`/tag/${tag.id}`}>
         <a
           className={`text-xs uppercase rounded-md px-2 py-1 text-white ${color} font-semibold`}
         >
