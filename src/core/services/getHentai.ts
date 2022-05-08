@@ -1,16 +1,39 @@
-import { getRawHentai } from './getRawHentai'
+import axios from 'axios'
+
+import { hifuminHentaiToHentai } from './hifuminHentaiToHentai'
+
+import { hifuminHentaiQuery } from '../constants/hifuminHentaiQuery'
 
 import { Hentai } from '../@types/Hentai'
-import { rawHentaiToHentai } from './rawHentaiToHentai'
+import { HifuminSingleResponse } from '../@types/HifuminSingleResponse'
 
-export const getHentai = async (
-  id: number | string,
-  server?: boolean
-): Promise<Hentai> => {
+export const getHentai = async (id: number | string): Promise<Hentai> => {
   try {
-    const rawHentai = await getRawHentai(id, server)
+    const { data } = await axios.post<HifuminSingleResponse>(
+      process.env.HIFUMIN_API_URL,
+      {
+        query: `
+        query SingleHentaiQuery ($hentaiId: Int!) {
+          nhql {
+            by (id: $hentaiId) {
+              data {
+                ${hifuminHentaiQuery}
+              }
+            }
+          }
+        }
+      `,
+        variables: {
+          hentaiId: Number(id),
+        },
+      }
+    )
 
-    return rawHentaiToHentai(rawHentai)
+    if (data.data.nhql.by.data === null) {
+      throw new Error('Hentai not found')
+    } else {
+      return hifuminHentaiToHentai(data.data.nhql.by.data)
+    }
   } catch (e) {
     console.error(`error: unable to fetch ${id}`)
     throw e
