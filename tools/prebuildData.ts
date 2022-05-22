@@ -25,7 +25,7 @@ console.log({ HIFUMIN_API_URL })
 
 const nextCacheDirectory = path.join(__dirname, '..', '.next', 'cache')
 
-const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 20 : 5)
+const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
 
 ;(async () => {
   // generating chunks
