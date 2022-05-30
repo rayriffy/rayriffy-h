@@ -4,12 +4,12 @@ import useSWR from 'swr'
 import { stringify } from 'querystring'
 
 import { useSearch } from '../../../app/services/useSearch'
-import { RawHentai } from '../../../core/@types/RawHentai'
 import { APIResponse } from '../../../core/@types/APIResponse'
 import { rawHentaiToHentai } from '../../../core/services/rawHentaiToHentai'
+import { Hentai } from '../../../core/@types/Hentai'
 
 interface ExportedFunction {
-  raw: RawHentai[]
+  items: Hentai[]
   maxPage: number
 }
 
@@ -18,18 +18,15 @@ export const useMainNavigation = (page: number) => {
 
   const transformedQuery = useMemo(
     () =>
-      stringify({
-        query:
-          query === ''
-            ? '-thisisrandomstringtomakesurethatthereisnoanytagbeingexcluded'
-            : query,
-        page,
+      new URLSearchParams({
+        query: query === '' ? 'doujinshi' : query,
+        page: page.toString(),
       }),
     [page, query]
   )
 
   const { data, error } = useSWR<APIResponse<ExportedFunction>>(
-    `https://h.api.rayriffy.com/v1/search?${transformedQuery}`,
+    `/api/nh-search?${transformedQuery}`,
     url => fetch(url).then(r => r.json())
   )
 
@@ -40,7 +37,7 @@ export const useMainNavigation = (page: number) => {
       data.response.data.maxPage !== undefined
         ? {
             maxPage: data.response.data.maxPage,
-            galleries: data.response.data.raw.map(o => rawHentaiToHentai(o)),
+            galleries: data.response.data.items,
           }
         : undefined,
     isLoading: !error && !data,

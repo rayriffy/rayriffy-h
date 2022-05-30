@@ -59,6 +59,8 @@ const api: NextApiHandler = async (req, res) => {
       },
     }
 
+    res.setHeader('Cache-Control', 's-maxage=300')
+
     return res.status(200).send(payload)
   } catch (e) {
     const payload: APIResponse<never> = {

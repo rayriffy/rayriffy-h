@@ -1,7 +1,6 @@
 import { useMemo } from 'react'
 
 import useSWR from 'swr'
-import { stringify } from 'querystring'
 
 import { useSearch } from '../../../app/services/useSearch'
 import { Hentai } from '../../../core/@types/Hentai'
@@ -21,10 +20,10 @@ export const useListingNavigation = (
 
   const transformedQuery = useMemo(
     () =>
-      stringify({
+      new URLSearchParams({
         query,
-        page,
-      }),
+        page: page.toString(),
+      }).toString(),
     [page, query]
   )
 
