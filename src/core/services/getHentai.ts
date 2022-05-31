@@ -35,6 +35,7 @@ export const getHentai = async (id: number | string): Promise<Hentai> => {
       return hifuminHentaiToHentai(data.data.nhql.by.data)
     }
   } catch (e) {
+    console.log(e?.response?.data)
     console.error(`error: unable to fetch ${id}`)
     throw e
   }
