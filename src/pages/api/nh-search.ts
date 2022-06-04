@@ -8,26 +8,27 @@ import { hifuminHentaiToHentai } from '../../core/services/hifuminHentaiToHentai
 const api: NextApiHandler = async (req, res) => {
   const { query, page } = req.query
 
-  interface QueryResult {
-    data: {
-      nhql: {
-        search: {
-          data: HifuminHentai[]
+  try {
+    interface QueryResult {
+      data: {
+        nhql: {
+          search: {
+            data: HifuminHentai[]
+          }
         }
       }
     }
-  }
 
-  const {
-    data: {
+    const {
       data: {
-        nhql: {
-          search: { data: searchResult },
+        data: {
+          nhql: {
+            search: { data: searchResult },
+          },
         },
       },
-    },
-  } = await axios.post<QueryResult>(process.env.HIFUMIN_API_URL, {
-    query: `
+    } = await axios.post<QueryResult>(process.env.HIFUMIN_API_URL, {
+      query: `
       query RiffyHSearch($query: String!, $page: Int!) {
         nhql {
           search(with: $query, page: $page) {
@@ -38,34 +39,40 @@ const api: NextApiHandler = async (req, res) => {
         }
       }
     `,
-    variables: {
-      query: query as string,
-      page: Number(page),
-    },
-  })
-
-  // convert
-  const parsedGalleries = searchResult
-    .map(item => hifuminHentaiToHentai(item))
-    .map(o => ({
-      ...o,
-      images: {
-        ...o.images,
-        pages: [],
+      variables: {
+        query: query as string,
+        page: Number(page),
       },
-    }))
+    })
 
-  res.setHeader('Cache-Control', 's-maxage=300')
+    // convert
+    const parsedGalleries = searchResult
+      .map(item => hifuminHentaiToHentai(item))
+      .map(o => ({
+        ...o,
+        images: {
+          ...o.images,
+          pages: [],
+        },
+      }))
 
-  return res.status(200).send({
-    status: 'success',
-    response: {
-      data: {
-        maxPage: 999,
-        items: parsedGalleries,
+    res.setHeader('Cache-Control', 's-maxage=300')
+
+    return res.status(200).send({
+      status: 'success',
+      response: {
+        data: {
+          maxPage: 999,
+          items: parsedGalleries,
+        },
       },
-    },
-  })
+    })
+  } catch (e) {
+    return res.status(500).send({
+      status: 'failed',
+      response: e.response.data,
+    })
+  }
 }
 
 export default api
