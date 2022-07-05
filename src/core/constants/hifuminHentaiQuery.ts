@@ -20,7 +20,6 @@ export const hifuminHentaiQuery = `
   info {
     amount
     mediaId
-    channel
   }
   images {
     cover {

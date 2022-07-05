@@ -102,7 +102,7 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
             return
           }
 
-          console.log(`fetching ${targetCode} to api`)
+          // console.log(`fetching ${targetCode} to api`)
 
           const hentai = await fetchHentai(targetCode)
 

@@ -15,7 +15,6 @@ export interface HifuminHentai {
   info: {
     amount: number
     mediaId: string
-    channel: 'HIFUMIN_FIRST' | 'HIFUMIN' | 'NHENTAI'
   }
   metadata: {
     language: string
