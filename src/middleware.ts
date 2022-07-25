@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 const middleware = (req: NextRequest) => {
+  console.log(`${req.url}\n${req.headers.get('referer')}\n${req.geo?.country}`)
   if (['robots.txt'].some(o => req.url.includes(o))) {
     return NextResponse.next()
   } else if (
