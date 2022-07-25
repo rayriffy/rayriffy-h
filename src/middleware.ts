@@ -6,8 +6,8 @@ const middleware = (req: NextRequest) => {
   } else if (
     process.env.NODE_ENV === 'development' ||
     (['th', 'sg'].includes((req.geo?.country ?? '').toLowerCase()) &&
-      (req.headers.get('referer') ?? '').startsWith(
-        'https://xn--vdkuc.xn--dck3c9b5d7d.xn--q9jyb4c'
+      ['xn--vdkuc.xn--dck3c9b5d7d.xn--q9jyb4c', 'vercel.com'].some(o =>
+        (req.headers.get('referer') ?? '').startsWith(`https://${o}`)
       ))
   ) {
     return NextResponse.next()
