@@ -90,6 +90,8 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
     fs.mkdirSync(hentaiDirectory, { recursive: true })
   }
 
+  let hasError = false
+
   await Promise.all(
     codes.map(
       fetchQueue.wrap<void, DatabaseCode>(async code => {
@@ -112,6 +114,7 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
             throw 'null'
           }
         } catch (e) {
+          hasError = true
           console.error(
             `failed to get gallery ${targetCode} - ${
               (e as AxiosError)?.code ?? e
@@ -125,6 +128,11 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
       })
     )
   )
+
+  if (hasError) {
+    console.error("there's some error during fetching! crashing...")
+    process.exit(1)
+  }
 
   // merging those into one searchKey
   console.log('post-processing')
