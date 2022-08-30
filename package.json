@@ -5,11 +5,15 @@
   "scripts": {
     "prepare": "husky install",
     "dev": "next",
-    "build": "pnpm partytown && pnpm build:data && pnpm build:next",
+    "build": "concurrently \"pnpm partytown\" \"pnpm prisma:generate\" && pnpm build:data && concurrently\"pnpm build:next\" \"pnpm sync:data\"",
     "build:next": "next build",
     "build:data": "node -r @swc-node/register tools/prebuildData.ts",
+    "sync:data": "node -r @swc-node/register tools/sync.ts",
     "start": "next start",
-    "partytown": "partytown copylib public/~partytown"
+    "partytown": "partytown copylib public/~partytown",
+    "prisma:generate": "prisma generate",
+    "prisma:commit": "prisma migrate dev",
+    "prisma:deploy": "prisma migrate deploy"
   },
   "repository": {
     "type": "git",
@@ -34,6 +38,7 @@
     "@headlessui/react": "^1.6.6",
     "@heroicons/react": "^1.0.6",
     "@next/bundle-analyzer": "^12.2.3",
+    "@prisma/client": "^4.3.0",
     "@storeon/crosstab": "^1.0.2",
     "@storeon/localstorage": "^1.4.0",
     "@tailwindcss/aspect-ratio": "^0.4.0",
@@ -64,10 +69,12 @@
     "@types/lodash": "^4.14.182",
     "@types/node": "^18.6.1",
     "@types/react": "^18.0.15",
+    "concurrently": "^7.3.0",
     "dotenv": "^16.0.1",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
+    "prisma": "^4.3.0",
     "regenerator-runtime": "^0.13.9",
     "typescript": "^4.7.4"
   }

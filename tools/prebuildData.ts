@@ -1,9 +1,9 @@
 import fs from 'fs'
 import path from 'path'
 
+import { Prisma, PrismaClient } from '@prisma/client'
 import axios, { AxiosError } from 'axios'
 import dotenv from 'dotenv'
-
 import { TaskQueue } from 'cwait'
 import { chunk, reverse, kebabCase } from 'lodash'
 
@@ -20,8 +20,6 @@ import { hifuminHentaiQuery } from '../src/core/constants/hifuminHentaiQuery'
 
 dotenv.config()
 const { HIFUMIN_API_URL } = process.env
-
-console.log({ HIFUMIN_API_URL })
 
 const nextCacheDirectory = path.join(__dirname, '..', '.next', 'cache')
 
@@ -92,6 +90,8 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
 
   let hasError = false
 
+  const prisma = new PrismaClient()
+
   await Promise.all(
     codes.map(
       fetchQueue.wrap<void, DatabaseCode>(async code => {
@@ -99,19 +99,32 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
         const hentaiFile = path.join(hentaiDirectory, `${targetCode}.json`)
 
         try {
-          // skip if already exists
+          /**
+           * If file cache exists, then no need to do anything
+           */
           if (fs.existsSync(hentaiFile)) {
             return
           }
 
-          // console.log(`fetching ${targetCode} to api`)
+          /**
+           * If hentai exists on local cache, then pull data from local cache
+           */
+          const localCacheItem = await prisma.hentai.findUnique({
+            where: {
+              id: Number(targetCode),
+            },
+          })
 
-          const hentai = await fetchHentai(targetCode)
+          if (localCacheItem === null) {
+            const hentai = await fetchHentai(targetCode)
 
-          if (hentai !== null) {
-            fs.writeFileSync(hentaiFile, JSON.stringify(hentai))
+            if (hentai !== null) {
+              fs.writeFileSync(hentaiFile, JSON.stringify(hentai))
+            } else {
+              throw 'null'
+            }
           } else {
-            throw 'null'
+            fs.writeFileSync(hentaiFile, JSON.stringify(localCacheItem))
           }
         } catch (e) {
           hasError = true
