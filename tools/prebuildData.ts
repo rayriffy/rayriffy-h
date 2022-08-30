@@ -124,7 +124,7 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
               throw 'null'
             }
           } else {
-            fs.writeFileSync(hentaiFile, JSON.stringify(localCacheItem))
+            fs.writeFileSync(hentaiFile, localCacheItem.data as string)
           }
         } catch (e) {
           hasError = true
