@@ -1,0 +1,31 @@
+name: deploys
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      APP_NAME: riffyh-runtime
+      IMAGE_NAME: ghcr.io/rayriffy/riffyh-runtime
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: rayriffy
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Docker image
+        run: docker build --build-arg secret_key="${{ secrets.SECRET_KEY }}" --build-arg hifumin_url="${{ secrets.HIFUMIN_API_URL }}" --build-arg database_url="${{ secrets.DATABASE_URL }}" -t $APP_NAME .
+
+      - name: Tag Docker image
+        run: docker tag $APP_NAME $IMAGE_NAME
+
+      - name: Push Docker image
+        run: docker push $IMAGE_NAME

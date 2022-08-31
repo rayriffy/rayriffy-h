@@ -59,5 +59,6 @@ module.exports = withPlugins(
       scrollRestoration: true,
       // outputStandalone: true,
     },
+    output: 'standalone',
   }
 )
