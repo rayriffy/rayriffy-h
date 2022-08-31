@@ -5,7 +5,7 @@
   "scripts": {
     "prepare": "husky install",
     "dev": "next",
-    "build": "concurrently \"pnpm partytown\" \"pnpm prisma:generate\" && pnpm build:data && concurrently \"pnpm build:next\" \"pnpm sync:data\"",
+    "build": "concurrently \"pnpm partytown\" \"pnpm prisma:generate && pnpm build:data\" && concurrently \"pnpm build:next\" \"pnpm sync:data\"",
     "build:next": "next build",
     "build:data": "node -r @swc-node/register tools/prebuildData.ts",
     "sync:data": "node -r @swc-node/register tools/sync.ts",
