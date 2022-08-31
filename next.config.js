@@ -40,6 +40,9 @@ module.exports = withPlugins(
       buildId: generatedId,
       buildNumber: dayjs.tz(dayjs(), 'Asia/Bangkok').format('YYYYMMDD.HH'),
     },
+    api: {
+      responseLimit: '20mb',
+    },
     serverRuntimeConfig: {
       buildId: generatedId,
     },
