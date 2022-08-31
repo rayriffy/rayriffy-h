@@ -19,7 +19,12 @@ import { hifuminHentaiToHentai } from '../src/core/services/hifuminHentaiToHenta
 import { hifuminHentaiQuery } from '../src/core/constants/hifuminHentaiQuery'
 
 dotenv.config()
-const { HIFUMIN_API_URL } = process.env
+const { HIFUMIN_API_URL, DATABASE_URL } = process.env
+
+console.log({
+  HIFUMIN_API_URL,
+  DATABASE_URL,
+})
 
 const nextCacheDirectory = path.join(__dirname, '..', '.next', 'cache')
 
