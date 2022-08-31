@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 const middleware = (req: NextRequest) => {
+  console.log(
+    `${req.url} <-> ${req.headers.get('referer')} <-> ${req.geo?.country}`
+  )
+
   if (['robots.txt'].some(o => req.url.includes(o))) {
     return NextResponse.next()
   } else if (
@@ -16,7 +20,18 @@ const middleware = (req: NextRequest) => {
 }
 
 export const config = {
-  matcher: ['/:path*'],
+  matcher: [
+    '/',
+    '/history',
+    '/custom',
+    '/settings',
+    '/tag:path*',
+    '/collection/:path*',
+    '/g/:path*',
+    '/listing/:path*',
+    '/og/:path*',
+    '/p/:path*',
+  ],
 }
 
 export default middleware
