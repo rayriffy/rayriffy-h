@@ -32,3 +32,15 @@ jobs:
 
       - name: Push Docker image
         run: docker push $IMAGE_NAME
+
+      - uses: deploys-app/deploys-action@v1
+        with:
+          project: rayriffy-h
+          location: gke.cluster-rcf2
+          name: riffyh-runtime
+          image: ghcr.io/rayriffy/riffyh-runtime
+          minReplicas: 2
+          maxReplicas: 10
+        env:
+          DEPLOYS_AUTH_USER: ${{ secrets.DEPLOYS_AUTH_USER }}
+          DEPLOYS_AUTH_PASS: ${{ secrets.DEPLOYS_AUTH_PASS }}
