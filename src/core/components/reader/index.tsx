@@ -1,5 +1,7 @@
 import { memo, Fragment, useEffect } from 'react'
 
+import { ExternalLinkIcon } from '@heroicons/react/outline'
+
 import { ImageBlur } from '../imageBlur'
 import { TagRenderer } from './tagRenderer'
 import { PagesRenderer } from './pagesRenderer'
@@ -31,7 +33,7 @@ export const Reader = memo<IProps>(props => {
   return (
     <Fragment>
       <div className="max-w-3xl mx-auto block md:flex pt-0 md:pt-10">
-        <div className="p-8 md:p-0">
+        <div className="p-8 md:p-0 shrink-0">
           <div className="flex justify-center">
             <div className="overflow-hidden rounded-md">
               <ImageBlur
@@ -60,8 +62,16 @@ export const Reader = memo<IProps>(props => {
             {hentai.images.pages.length - excludes.length} Pages
           </span>
           <TagRenderer tags={hentai.tags} />
-          <div className="py-6">
+          <div className="py-6 flex space-x-4">
             <Favorite hentai={hentai} />
+            <a
+              href={`/api/pdf/${hentai.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-md border border-transparent bg-indigo-100 px-4 py-2 text-sm font-medium text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              PDF <ExternalLinkIcon className="w-4 h-4 ml-1" />
+            </a>
           </div>
         </div>
       </div>

@@ -1,15 +1,17 @@
 import { NextApiHandler } from 'next'
 
 import PDFKit from 'pdfkit'
-import axios from 'axios'
 import { sortBy } from 'lodash'
 import { TaskQueue } from 'cwait'
 
 import { getHentai } from '../../../core/services/getHentai'
 import { getImageUrl } from '../../../core/services/getImageUrl'
-import { Image } from '../../../core/@types/Image'
+import { processImage } from '../../../modules/ebook/services/processImage'
 
-const imageDownloadQueue = new TaskQueue(Promise, 40)
+import { Image } from '../../../core/@types/Image'
+import { ProcessedImage } from '../../../modules/ebook/@types/ProcessedImage'
+
+const imageDownloadQueue = new TaskQueue(Promise, 20)
 const b5PaperDimension = {
   width: 498.9,
   height: 708.66,
@@ -28,11 +30,6 @@ const api: NextApiHandler = async (req, res) => {
   /**
    * Download all images into Buffer
    */
-  interface ProcessedImage {
-    page: number
-    image: Image
-    data: Buffer
-  }
   const processedImages = await Promise.all(
     hentai.images.pages.map(
       imageDownloadQueue.wrap<ProcessedImage, Image, number>(
@@ -47,11 +44,7 @@ const api: NextApiHandler = async (req, res) => {
           return {
             page: i + 1,
             image: page,
-            data: await axios
-              .get(targetUrl, {
-                responseType: 'arraybuffer',
-              })
-              .then(o => o.data),
+            data: await processImage(targetUrl, page.w / page.h),
           }
         }
       )
@@ -64,6 +57,17 @@ const api: NextApiHandler = async (req, res) => {
   const pdfDocument = new PDFKit({
     size: 'B5',
     autoFirstPage: false,
+    info: {
+      Title: hentai.title.pretty,
+      Author: hentai.tags
+        .filter(o => o.type === 'artist')
+        .map(o => o.name)
+        .join(';'),
+      Keywords: hentai.tags
+        .filter(o => o.type === 'tag')
+        .map(o => o.name)
+        .join(';'),
+    },
   })
   const createPage = createPageInstance(pdfDocument)
 
