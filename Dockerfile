@@ -8,10 +8,6 @@ FROM node:16-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-ENV SECRET_KEY=$secret_key
-ENV HIFUMIN_API_URL=$hifumin_url
-ENV DATABASE_URL=$database_url
-
 # Install dependencies based on the preferred package manager
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN yarn global add pnpm && pnpm -r i --frozen-lockfile
@@ -22,6 +18,10 @@ FROM node:16-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+ENV SECRET_KEY=$secret_key
+ENV HIFUMIN_API_URL=$hifumin_url
+ENV DATABASE_URL=$database_url
 
 RUN yarn global add pnpm && pnpm build
 
