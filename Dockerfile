@@ -1,6 +1,5 @@
-ARG secret_key
-ARG hifumin_url
-ARG database_url
+ARG HIFUMIN_API_URL
+ARG DATABASE_URL
 
 # Install dependencies only when needed
 FROM node:16-alpine AS deps
@@ -19,9 +18,8 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-ENV SECRET_KEY=$secret_key
-ENV HIFUMIN_API_URL=$hifumin_url
-ENV DATABASE_URL=$database_url
+ENV HIFUMIN_API_URL ${HIFUMIN_API_URL}
+ENV DATABASE_URL ${DATABASE_URL}
 
 RUN yarn global add pnpm && pnpm build
 
@@ -35,10 +33,6 @@ WORKDIR /app
 ENV NODE_ENV production
 # Uncomment the following line in case you want to disable telemetry during runtime.
 # ENV NEXT_TELEMETRY_DISABLED 1
-
-ENV SECRET_KEY=$secret_key
-ENV HIFUMIN_API_URL=$hifumin_url
-ENV DATABASE_URL=$database_url
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
