@@ -23,7 +23,6 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 RUN yarn global add pnpm && pnpm build
-RUN cat ./public/sw.js
 
 # If using npm comment out above and use below instead
 # RUN npm run build
@@ -47,9 +46,6 @@ COPY --from=builder /app/public/workbox-*.js ./public/
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-# Double check service worker exists
-RUN cat ./public/sw.js
 
 USER nextjs
 
