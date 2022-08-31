@@ -1,14 +1,8 @@
-ARG HIFUMIN_API_URL
-ARG DATABASE_URL
-
 # Install dependencies only when needed
 FROM node:16-alpine AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
-
-RUN echo ${HIFUMIN_API_URL}
-RUN echo ${DATABASE_URL}
 
 # Install dependencies based on the preferred package manager
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
@@ -17,11 +11,18 @@ RUN yarn global add pnpm && pnpm -r i --frozen-lockfile
 
 # Rebuild the source code only when needed
 FROM node:16-alpine AS builder
+
+ARG HIFUMIN_API_URL
+ARG DATABASE_URL
+
+ENV HIFUMIN_API_URL ${HIFUMIN_API_URL}
+ENV DATABASE_URL ${DATABASE_URL}
+
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-RUN yarn global add pnpm && DATABASE_URL=${DATABASE_URL} HIFUMIN_API_URL=${HIFUMIN_API_URL} pnpm build
+RUN yarn global add pnpm && pnpm build
 
 # If using npm comment out above and use below instead
 # RUN npm run build
