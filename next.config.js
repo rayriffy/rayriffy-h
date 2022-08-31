@@ -4,7 +4,6 @@
 const dayjs = require('dayjs')
 const utc = require('dayjs/plugin/utc')
 const timezone = require('dayjs/plugin/timezone')
-const { nanoid } = require('nanoid')
 
 /**
  * Local imports
@@ -30,18 +29,12 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 dayjs.extend(utc)
 dayjs.extend(timezone)
 
-const generatedId = nanoid()
-
 module.exports = withPlugins([[withPWA], [withBundleAnalyzer]], {
   env: {
-    buildId: generatedId,
     buildNumber: dayjs.tz(dayjs(), 'Asia/Bangkok').format('YYYYMMDD.HH'),
   },
   api: {
     responseLimit: '20mb',
-  },
-  serverRuntimeConfig: {
-    buildId: generatedId,
   },
   eslint: {
     ignoreDuringBuilds: true,
@@ -49,7 +42,7 @@ module.exports = withPlugins([[withPWA], [withBundleAnalyzer]], {
   images: {
     domains: ['i.nhentai.net', 't.nhentai.net'],
   },
-  generateBuildId: () => generatedId,
+  generateBuildId: () => 'staticRuntimeId',
   experimental: {
     reactRoot: 'concurrent',
     polyfillsOptimization: true,
