@@ -76,7 +76,7 @@ exports.runtimeCaching = [
     },
   },
   {
-    urlPattern: /^https?:\/\/h\.api\.rayriffy\.com/i,
+    urlPattern: /^https?:\/\/xn--vdkuc\.xn--dck3c9b5d7d\.xn--q9jyb4c/i,
     handler: 'NetworkFirst',
     method: 'GET',
     options: {
