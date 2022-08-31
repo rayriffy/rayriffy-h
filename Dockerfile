@@ -7,6 +7,9 @@ FROM node:16-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
+RUN echo ${HIFUMIN_API_URL}
+RUN echo ${DATABASE_URL}
+
 # Install dependencies based on the preferred package manager
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN yarn global add pnpm && pnpm -r i --frozen-lockfile
@@ -18,10 +21,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-ENV HIFUMIN_API_URL ${HIFUMIN_API_URL}
-ENV DATABASE_URL ${DATABASE_URL}
-
-RUN yarn global add pnpm && pnpm build
+RUN yarn global add pnpm && DATABASE_URL=${DATABASE_URL} HIFUMIN_API_URL=${HIFUMIN_API_URL} pnpm build
 
 # If using npm comment out above and use below instead
 # RUN npm run build

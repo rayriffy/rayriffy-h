@@ -11,8 +11,6 @@ jobs:
     env:
       APP_NAME: riffyh-runtime
       IMAGE_NAME: ghcr.io/rayriffy/riffyh-runtime
-      HIFUMIN_API_URL: ${{ secrets.HIFUMIN_API_URL }}
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
     steps:
       - uses: actions/checkout@v3
 
@@ -24,6 +22,9 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Docker image
+        env:
+          HIFUMIN_API_URL: ${{ secrets.HIFUMIN_API_URL }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: docker build --build-arg HIFUMIN_API_URL --build-arg DATABASE_URL -t $APP_NAME .
 
       - name: Tag Docker image
