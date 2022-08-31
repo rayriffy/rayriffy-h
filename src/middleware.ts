@@ -9,7 +9,8 @@ const middleware = (req: NextRequest) => {
     return NextResponse.next()
   } else if (
     process.env.NODE_ENV === 'development' ||
-    ['th', 'sg'].includes((req.geo?.country ?? '').toLowerCase())
+    true
+    // ['th', 'sg'].includes((req.geo?.country ?? '').toLowerCase())
   ) {
     return NextResponse.next()
   } else {
