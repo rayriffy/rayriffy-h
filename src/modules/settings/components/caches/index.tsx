@@ -1,10 +1,10 @@
-import { FunctionComponent, memo, Fragment } from 'react'
+import { memo, Fragment } from 'react'
 
 import {
-  ArchiveIcon,
+  ArchiveBoxIcon,
   BookOpenIcon,
-  PhotographIcon,
-} from '@heroicons/react/outline'
+  PhotoIcon,
+} from '@heroicons/react/24/outline'
 
 import { Cache } from './cache'
 
@@ -23,7 +23,7 @@ export const Caches = memo(props => {
         <Cache
           cacheName="next-image-assets"
           title="Total images"
-          icon={PhotographIcon}
+          icon={PhotoIcon}
         />
         <Cache
           cacheName="next-galleries"
@@ -33,7 +33,7 @@ export const Caches = memo(props => {
         <Cache
           cacheName="next-listing"
           title="Total listing pages"
-          icon={ArchiveIcon}
+          icon={ArchiveBoxIcon}
         />
       </div>
     </Fragment>

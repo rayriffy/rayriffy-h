@@ -1,9 +1,9 @@
 import { FunctionComponent } from 'react'
 
 import {
-  ExclamationIcon,
+  ExclamationTriangleIcon,
   QuestionMarkCircleIcon,
-} from '@heroicons/react/outline'
+} from '@heroicons/react/24/outline'
 
 import { Listing } from '../../../core/components/listing'
 import { Pagination } from '../../../core/components/pagination'
@@ -38,7 +38,7 @@ export const MainListing: FunctionComponent<IProps> = props => {
     return (
       <div className="pt-16 max-w-xl mx-auto">
         <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
-          <ExclamationIcon className="h-6 w-6 text-red-600" />
+          <ExclamationTriangleIcon className="h-6 w-6 text-red-600" />
         </div>
         <div className="pt-4">
           <p className="font-bold text-lg text-gray-800 text-center">Failed</p>

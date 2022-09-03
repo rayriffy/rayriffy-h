@@ -5,8 +5,8 @@ import Link from 'next/link'
 import {
   BookmarkIcon,
   ClockIcon,
-  CursorClickIcon,
-} from '@heroicons/react/outline'
+  CursorArrowRaysIcon,
+} from '@heroicons/react/24/outline'
 import { useStoreon } from '../../../context'
 
 export const Stats: FunctionComponent<PropsWithChildren<{}>> = () => {
@@ -88,7 +88,7 @@ export const Stats: FunctionComponent<PropsWithChildren<{}>> = () => {
         <div className="px-4 py-5 sm:p-6">
           <div className="flex items-center">
             <div className="flex-shrink-0 bg-blue-500 rounded-md p-3">
-              <CursorClickIcon className="h-6 w-6 text-white" />
+              <CursorArrowRaysIcon className="h-6 w-6 text-white" />
             </div>
             <div className="ml-5 w-0 flex-1">
               <dl>

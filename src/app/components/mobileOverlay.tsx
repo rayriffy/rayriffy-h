@@ -1,6 +1,6 @@
 import { memo } from 'react'
 
-import { XIcon } from '@heroicons/react/outline'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 
 import { Transition } from '@headlessui/react'
 
@@ -44,7 +44,7 @@ export const MobileOverlay = memo<IProps>(props => {
               className="flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-gray-600"
               aria-label="Close sidebar"
             >
-              <XIcon className="h-6 w-6 text-white" />
+              <XMarkIcon className="h-6 w-6 text-white" />
             </button>
           </div>
           <div className="px-4">

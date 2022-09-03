@@ -3,7 +3,7 @@ import { Fragment, useState } from 'react'
 import { NextPage } from 'next'
 import Link from 'next/link'
 
-import { CheckIcon, DuplicateIcon } from '@heroicons/react/outline'
+import { CheckIcon, DocumentDuplicateIcon } from '@heroicons/react/24/outline'
 
 import copy from 'copy-to-clipboard'
 
@@ -132,7 +132,7 @@ const Page: NextPage = props => {
                             className="ml-2 hover:text-gray-700 active:text-gray-700"
                             onClick={() => copy(code)}
                           >
-                            <DuplicateIcon className="w-8 h-8" />
+                            <DocumentDuplicateIcon className="w-8 h-8" />
                           </button>
                         </div>
                       </div>

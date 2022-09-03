@@ -1,6 +1,6 @@
 import { memo, useEffect, useMemo, useState } from 'react'
 
-import { SpeakerphoneIcon, XIcon } from '@heroicons/react/outline'
+import { MegaphoneIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 export const ServiceWorker = memo(() => {
   const [serviceWorkerStatus, setServiceWorkerStatus] = useState<string>('init')
@@ -110,7 +110,7 @@ export const ServiceWorker = memo(() => {
                     isInstalled ? 'bg-green-800' : 'bg-gray-800'
                   }`}
                 >
-                  <SpeakerphoneIcon className="h-6 w-6 text-white" />
+                  <MegaphoneIcon className="h-6 w-6 text-white" />
                 </span>
                 <p className="ml-3 font-medium text-white truncate">
                   <span className="md:hidden">
@@ -144,7 +144,7 @@ export const ServiceWorker = memo(() => {
                   }`}
                   aria-label="Dismiss"
                 >
-                  <XIcon className="h-6 w-6 text-white" />
+                  <XMarkIcon className="h-6 w-6 text-white" />
                 </button>
               </div>
             </div>

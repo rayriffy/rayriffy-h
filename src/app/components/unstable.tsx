@@ -1,6 +1,6 @@
-import { FunctionComponent, memo, useState } from 'react'
+import { memo, useState } from 'react'
 
-import { XIcon } from '@heroicons/react/outline'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 
 export const Unstable = memo(() => {
   const [show, setShow] = useState<boolean>(true)
@@ -32,7 +32,7 @@ export const Unstable = memo(() => {
               className="flex p-2 rounded-md hover:bg-orange-500 focus:outline-none focus:bg-orange-500 transition ease-in-out duration-150"
               aria-label="Dismiss"
             >
-              <XIcon className="h-6 w-6 text-white" />
+              <XMarkIcon className="h-6 w-6 text-white" />
             </button>
           </div>
         </div>

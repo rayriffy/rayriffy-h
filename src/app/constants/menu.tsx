@@ -2,12 +2,12 @@ import { FunctionComponent, SVGProps } from 'react'
 
 import {
   HomeIcon,
-  ArchiveIcon,
+  ArchiveBoxIcon,
   BookmarkIcon,
   ClockIcon,
   CogIcon,
-  CursorClickIcon,
-} from '@heroicons/react/outline'
+  CursorArrowRaysIcon,
+} from '@heroicons/react/24/outline'
 
 export interface IMenu {
   icon: FunctionComponent<SVGProps<SVGSVGElement>>
@@ -24,13 +24,13 @@ export const menus: IMenu[] = [
     match: ['/'],
   },
   {
-    icon: ArchiveIcon,
+    icon: ArchiveBoxIcon,
     link: '/listing',
     name: 'Listing',
     match: ['/listing/[[...page]]'],
   },
   {
-    icon: CursorClickIcon,
+    icon: CursorArrowRaysIcon,
     link: '/custom',
     name: 'Custom',
     match: ['/custom'],

@@ -1,6 +1,6 @@
 import { memo } from 'react'
 
-import { MenuAlt1Icon } from '@heroicons/react/outline'
+import { Bars3CenterLeftIcon } from '@heroicons/react/24/outline'
 
 import { useNetworkAvailability } from 'web-api-hooks'
 
@@ -21,7 +21,7 @@ export const MobileHeader = memo<IProps>(props => {
         aria-label="Open sidebar"
       >
         <div className="inline-block relative">
-          <MenuAlt1Icon className="h-6 w-6" />
+          <Bars3CenterLeftIcon className="h-6 w-6" />
           <Indicator />
         </div>
       </button>

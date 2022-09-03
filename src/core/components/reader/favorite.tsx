@@ -1,6 +1,6 @@
 import { memo, useCallback, useMemo } from 'react'
 
-import { MinusIcon, PlusIcon } from '@heroicons/react/outline'
+import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline'
 
 import { Hentai } from '../../@types/Hentai'
 import { useStoreon } from '../../../context'

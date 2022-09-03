@@ -3,7 +3,7 @@ import { Fragment, useState } from 'react'
 import { NextPage } from 'next'
 import Link from 'next/link'
 
-import { CheckIcon } from '@heroicons/react/outline'
+import { CheckIcon } from '@heroicons/react/24/outline'
 
 import { Step } from '../../core/components/step'
 import { HeadTitle } from '../../core/components/headTitle'

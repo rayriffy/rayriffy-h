@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react'
 
-import { InformationCircleIcon } from '@heroicons/react/outline'
+import { InformationCircleIcon } from '@heroicons/react/24/outline'
 
 import { useStoreon } from '../../../context'
 

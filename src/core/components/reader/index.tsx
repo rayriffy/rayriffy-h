@@ -1,6 +1,6 @@
 import { memo, Fragment, useEffect } from 'react'
 
-import { ExternalLinkIcon } from '@heroicons/react/outline'
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 
 import { ImageBlur } from '../imageBlur'
 import { TagRenderer } from './tagRenderer'
@@ -70,7 +70,7 @@ export const Reader = memo<IProps>(props => {
               rel="noopener noreferrer"
               className="inline-flex items-center rounded-md border border-transparent bg-indigo-100 px-4 py-2 text-sm font-medium text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
-              PDF <ExternalLinkIcon className="w-4 h-4 ml-1" />
+              PDF <ArrowTopRightOnSquareIcon className="w-4 h-4 ml-1" />
             </a>
           </div>
         </div>
