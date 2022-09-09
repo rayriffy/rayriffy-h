@@ -4,10 +4,7 @@ import union from 'lodash/union'
 
 import { Hentai } from '../@types/Hentai'
 
-export const searchHentai = async (
-  query: string,
-  raws: Hentai[]
-): Promise<Hentai[]> => {
+export const searchHentai = (query: string, raws: Hentai[]): Hentai[] => {
   const resultsByWords = query
     .split(' ')
     .filter(o => o !== '')

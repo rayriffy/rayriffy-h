@@ -34,7 +34,7 @@ const api: NextApiHandler = async (req, res) => {
     ).then(o => JSON.parse(o.toString()))
 
     const targetPage = Number(page)
-    const searchResult = await searchHentai(query as string, hentais)
+    const searchResult = searchHentai(query as string, hentais)
 
     const payload: APIResponse<{
       galleries: Hentai[]
