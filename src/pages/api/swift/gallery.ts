@@ -12,6 +12,7 @@ const api: NextApiHandler = async (req, res) => {
   // look for local cache
   const hentai = await getHentai(code)
 
+  res.setHeader('Cache-Control', 's-maxage=2629800')
   return res.send({
     message: 'ok',
     data: hentai,
