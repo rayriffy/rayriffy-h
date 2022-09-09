@@ -41,6 +41,8 @@ const api: NextApiHandler = async (req, res) => {
       }
     }
 
+    const targetSearchQuery =
+      query.length === 0 ? 'doujinshi' : (query as string)
     const {
       data: {
         data: {
@@ -62,7 +64,7 @@ const api: NextApiHandler = async (req, res) => {
       }
     `,
       variables: {
-        query: query as string,
+        query: targetSearchQuery,
         page: numberizedPage,
       },
     })
