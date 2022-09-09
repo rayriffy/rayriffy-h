@@ -77,6 +77,7 @@ const api: NextApiHandler = async (req, res) => {
         },
       }))
 
+    res.setHeader('Cache-Control', 's-maxage=300')
     return res.send({
       message: 'ok',
       data: parsedGalleries,
@@ -120,6 +121,7 @@ const api: NextApiHandler = async (req, res) => {
         },
       }))
 
+      res.setHeader('Cache-Control', 's-maxage=300')
       return res.send({
         message: 'ok',
         data: filteredGalleries,
@@ -147,6 +149,7 @@ const api: NextApiHandler = async (req, res) => {
           },
         }))
 
+      res.setHeader('Cache-Control', 's-maxage=300')
       return res.send({
         message: 'ok',
         data: searchResult,
