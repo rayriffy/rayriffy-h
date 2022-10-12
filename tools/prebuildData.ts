@@ -47,20 +47,22 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
     secondAttempt = false
   ): Promise<Hentai | null> => {
     try {
-      const { data } = await axios.post<HifuminSingleResponse>(
-        HIFUMIN_API_URL,
-        {
-          query: `
-          query SingleHentaiQuery ($hentaiId: Int!) {
-            nhql {
-              by (id: $hentaiId) {
-                data {
-                  ${hifuminHentaiQuery}
-                }
+      const query = `
+        query SingleHentaiQuery ($hentaiId: Int!) {
+          nhql {
+            by (id: $hentaiId) {
+              data {
+                ${hifuminHentaiQuery}
               }
             }
           }
-        `,
+        }
+      `
+
+      const { data } = await axios.post<HifuminSingleResponse>(
+        HIFUMIN_API_URL,
+        {
+          query,
           variables: {
             hentaiId: Number(code),
           },

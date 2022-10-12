@@ -29,6 +29,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 dayjs.extend(utc)
 dayjs.extend(timezone)
 
+/** @type {import('next').NextConfig} */
 module.exports = withPlugins([[withPWA], [withBundleAnalyzer]], {
   env: {
     buildNumber: dayjs.tz(dayjs(), 'Asia/Bangkok').format('YYYYMMDD.HH'),

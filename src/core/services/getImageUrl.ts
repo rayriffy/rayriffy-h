@@ -11,7 +11,7 @@ export const getImageUrl = (args: GetImageUrlArgs): string => {
   const { image, type, mediaId, page } = args
 
   return `https://${
-    type === 'gallery' ? 'i' : 't'
+    type === 'gallery' ? 'i5' : 't3'
   }.nhentai.net/galleries/${mediaId}/${
     type === 'cover' ? 'cover' : `${page}${type === 'thumbnail' ? 't' : ''}`
   }.${image.t === 'p' ? 'png' : image.t === 'g' ? 'gif' : 'jpg'}`

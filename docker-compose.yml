@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  riffy-h-cache:
+    container_name: riffy-h-cache
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_PASSWORD: supersecretpassword
+    restart: unless-stopped
+    image: postgres:alpine
+
+  riffy-h-runtime:
+    container_name: riffy-h-runtime
+    ports:
+      - 8082:3000
+    restart: unless-stopped
+    build:
+      context: ./
+      dockerfile: Dockerfile
