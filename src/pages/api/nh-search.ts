@@ -4,6 +4,7 @@ import axios from 'axios'
 import { hifuminHentaiQuery } from '../../core/constants/hifuminHentaiQuery'
 import { HifuminHentai } from '../../core/@types/HifuminHentai'
 import { hifuminHentaiToHentai } from '../../core/services/hifuminHentaiToHentai'
+import { hentaiToMinifiedHentaiForListing } from '../../core/services/hentaiToMinifiedHentaiForListing'
 
 const api: NextApiHandler = async (req, res) => {
   const { query, page } = req.query
@@ -46,15 +47,9 @@ const api: NextApiHandler = async (req, res) => {
     })
 
     // convert
-    const parsedGalleries = searchResult
-      .map(item => hifuminHentaiToHentai(item))
-      .map(o => ({
-        ...o,
-        images: {
-          ...o.images,
-          pages: [],
-        },
-      }))
+    const parsedGalleries = searchResult.map(item =>
+      hentaiToMinifiedHentaiForListing(hifuminHentaiToHentai(item))
+    )
 
     res.setHeader('Cache-Control', 's-maxage=300')
 

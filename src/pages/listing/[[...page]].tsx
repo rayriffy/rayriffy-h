@@ -4,10 +4,13 @@ import { NextPage, GetStaticProps, GetStaticPaths } from 'next'
 
 import { ListingModule } from '../../modules/listing/components'
 import { HeadTitle } from '../../core/components/headTitle'
+import { hentaiToMinifiedHentaiForListing } from '../../core/services/hentaiToMinifiedHentaiForListing'
+
 import { Hentai } from '../../core/@types/Hentai'
+import { MinifiedHentaiForListing } from '../../core/@types/MinifiedHentaiForListing'
 
 interface IProps {
-  galleries: Hentai[]
+  galleries: MinifiedHentaiForListing[]
   maxPage: number
   currentPage: number
 }
@@ -58,13 +61,9 @@ export const getStaticProps: GetStaticProps<IProps> = async context => {
     return hentai
   })
 
-  const filteredGalleries: Hentai[] = galleries.map(gallery => ({
-    ...gallery,
-    images: {
-      ...gallery.images,
-      pages: [],
-    },
-  }))
+  const filteredGalleries: MinifiedHentaiForListing[] = galleries.map(gallery =>
+    hentaiToMinifiedHentaiForListing(gallery)
+  )
 
   return {
     props: {

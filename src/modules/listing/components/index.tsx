@@ -8,10 +8,11 @@ import {
 import { Listing } from '../../../core/components/listing'
 import { Pagination } from '../../../core/components/pagination'
 import { useListingNavigation } from '../services/useListingNavigation'
-import { Hentai } from '../../../core/@types/Hentai'
+
+import { MinifiedHentaiForListing } from '../../../core/@types/MinifiedHentaiForListing'
 
 interface IProps {
-  galleries: Hentai[]
+  galleries: MinifiedHentaiForListing[]
   maxPage: number
   currentPage: number
 }

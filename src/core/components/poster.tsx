@@ -5,14 +5,13 @@ import Link from 'next/link'
 import { BookOpenIcon } from '@heroicons/react/24/outline'
 
 import { ImageBlur } from './imageBlur'
-import { filterTagByType } from '../services/filterTagByType'
 import { getImageUrl } from '../services/getImageUrl'
 import { tags } from '../constants/tags'
 
-import { Hentai } from '../@types/Hentai'
+import { MinifiedHentaiForListing } from '../@types/MinifiedHentaiForListing'
 
 interface IProps {
-  hentai: Hentai
+  hentai: MinifiedHentaiForListing
 }
 
 const availableFlags = ['english', 'japanese', 'chinese']
@@ -20,13 +19,15 @@ const availableFlags = ['english', 'japanese', 'chinese']
 export const Poster = memo<IProps>(props => {
   const { hentai } = props
 
+  console.log(hentai)
+
   return (
     <div className="bg-gray-200 overflow-hidden rounded-xl relative">
       <Link href={`/g/${hentai.id}`} scroll>
         <div className="absolute top-0 bottom-0 left-0 right-0 w-full bg-black-overlay z-10 transition ease-in-out duration-200 opacity-0 hover:opacity-100 text-white flex flex-col justify-between px-4 py-8 md:px-5 lg:px-6 md:py-9 lg:py-10">
           <div>
             <div className="flex">
-              {filterTagByType(hentai.tags, 'language').map(lang =>
+              {hentai.languages.map(lang =>
                 availableFlags.includes(lang.name) ? (
                   <div
                     className="pb-2 pr-2 w-10"
@@ -41,11 +42,11 @@ export const Poster = memo<IProps>(props => {
               )}
             </div>
             <p className="font-semibold truncate text-md sm:text-lg md:text-xl">
-              {hentai.title.pretty}
+              {hentai.title}
             </p>
             <div className="pt-2 sm:pt-4 md:pt-6 flex justify-evenly text-center text-xs sm:text-sm md:text-md">
               {tags.map(tag => {
-                const amount = filterTagByType(hentai.tags, tag.name).length
+                const { amount } = hentai.tags.find(o => o.name === tag.name)
 
                 if (amount === 0) {
                   return null
@@ -74,7 +75,7 @@ export const Poster = memo<IProps>(props => {
             type: 'cover',
             mediaId: hentai.media_id,
           })}
-          alt={hentai.title.pretty}
+          alt={hentai.title}
           width={hentai.images.cover.w}
           height={hentai.images.cover.h}
         />

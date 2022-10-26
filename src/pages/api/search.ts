@@ -10,6 +10,8 @@ import { promiseBrotliDecompress } from '../../core/services/promiseBrotliDecomp
 import { APIResponse } from '../../core/@types/APIResponse'
 import { Hentai } from '../../core/@types/Hentai'
 import { itemsPerPage } from '../../core/constants/itemsPerPage'
+import { MinifiedHentaiForListing } from '../../core/@types/MinifiedHentaiForListing'
+import { hentaiToMinifiedHentaiForListing } from '../../core/services/hentaiToMinifiedHentaiForListing'
 
 const api: NextApiHandler = async (req, res) => {
   try {
@@ -37,7 +39,7 @@ const api: NextApiHandler = async (req, res) => {
     const searchResult = searchHentai(query as string, hentais)
 
     const payload: APIResponse<{
-      galleries: Hentai[]
+      galleries: MinifiedHentaiForListing[]
       maxPage: number
     }> = {
       status: 'success',
@@ -47,13 +49,7 @@ const api: NextApiHandler = async (req, res) => {
         data: {
           galleries: searchResult
             .slice(itemsPerPage * (targetPage - 1), itemsPerPage * targetPage)
-            .map(gallery => ({
-              ...gallery,
-              images: {
-                ...gallery.images,
-                pages: [],
-              },
-            })),
+            .map(gallery => hentaiToMinifiedHentaiForListing(gallery)),
           maxPage: chunk(searchResult, itemsPerPage).length,
         },
       },

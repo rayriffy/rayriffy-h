@@ -7,10 +7,10 @@ import { useMedia } from 'web-api-hooks'
 import { Poster } from './poster'
 
 import { columnShuffle } from '../services/columnShuffle'
-import { Hentai } from '../@types/Hentai'
+import { MinifiedHentaiForListing } from '../@types/MinifiedHentaiForListing'
 
 interface IProps {
-  galleries: Hentai[]
+  galleries: MinifiedHentaiForListing[]
 }
 
 const Component = memo<IProps>(props => {

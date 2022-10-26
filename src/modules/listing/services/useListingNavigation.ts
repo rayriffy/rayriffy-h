@@ -3,18 +3,19 @@ import { useMemo } from 'react'
 import useSWR from 'swr'
 
 import { useSearch } from '../../../layout/services/useSearch'
-import { Hentai } from '../../../core/@types/Hentai'
+
 import { APIResponse } from '../../../core/@types/APIResponse'
+import { MinifiedHentaiForListing } from '../../../core/@types/MinifiedHentaiForListing'
 
 interface Data {
-  galleries: Hentai[]
+  galleries: MinifiedHentaiForListing[]
   maxPage: number
 }
 
 export const useListingNavigation = (
   page: number,
   maxPage: number,
-  defaultGalleries: Hentai[]
+  defaultGalleries: MinifiedHentaiForListing[]
 ) => {
   const { query } = useSearch('listing')
 
