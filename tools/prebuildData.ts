@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-import { Prisma, PrismaClient } from '@prisma/client'
+import { PrismaClient, Hentai as PrismaHentai } from '@prisma/client'
 import axios, { AxiosError } from 'axios'
 import dotenv from 'dotenv'
 import { TaskQueue } from 'cwait'
@@ -92,7 +92,11 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
 
   let hasError = false
 
-  const prisma = new PrismaClient()
+  let prisma: PrismaClient | undefined
+
+  if (process.env.DATABASE_URL !== undefined) {
+    prisma = new PrismaClient()
+  }
 
   await Promise.all(
     codes.map(
@@ -111,11 +115,15 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
           /**
            * If hentai exists on local cache, then pull data from local cache
            */
-          const localCacheItem = await prisma.hentai.findUnique({
-            where: {
-              id: Number(targetCode),
-            },
-          })
+          let localCacheItem: PrismaHentai | null = null
+
+          if (prisma !== undefined) {
+            localCacheItem = await prisma.hentai.findUnique({
+              where: {
+                id: Number(targetCode),
+              },
+            })
+          }
 
           if (localCacheItem === null) {
             const hentai = await fetchHentai(targetCode)

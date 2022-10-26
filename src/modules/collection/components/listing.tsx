@@ -6,7 +6,7 @@ import { Pagination } from '../../../core/components/pagination'
 import { Listing } from '../../../core/components/listing'
 
 import { searchHentai } from '../services/worker/searchHentai.worker'
-import { useSearch } from '../../../app/services/useSearch'
+import { useSearch } from '../../../layout/services/useSearch'
 import { useStoreon } from '../../../context'
 import { itemsPerPage } from '../../../core/constants/itemsPerPage'
 

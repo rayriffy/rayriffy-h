@@ -10,6 +10,10 @@ dotenv.config()
 const hentaiDirectory = path.join(__dirname, '../.next/cache/hentai')
 
 ;(async () => {
+  if (process.env.DATABASE_URL === undefined) {
+    return
+  }
+
   const prisma = new PrismaClient()
   try {
     // list ids in local cache

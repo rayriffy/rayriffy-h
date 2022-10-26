@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import useSWR from 'swr'
 import { stringify } from 'querystring'
 
-import { useSearch } from '../../../app/services/useSearch'
+import { useSearch } from '../../../layout/services/useSearch'
 import { APIResponse } from '../../../core/@types/APIResponse'
 import { rawHentaiToHentai } from '../../../core/services/rawHentaiToHentai'
 import { Hentai } from '../../../core/@types/Hentai'

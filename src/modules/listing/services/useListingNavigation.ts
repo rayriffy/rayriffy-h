@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 
 import useSWR from 'swr'
 
-import { useSearch } from '../../../app/services/useSearch'
+import { useSearch } from '../../../layout/services/useSearch'
 import { Hentai } from '../../../core/@types/Hentai'
 import { APIResponse } from '../../../core/@types/APIResponse'
 

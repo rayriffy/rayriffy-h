@@ -51,7 +51,8 @@ module.exports = withPlugins([[withPWA], [withBundleAnalyzer]], {
     images: {
       allowFutureImage: true,
     },
-    outputStandalone: !['true', '1'].includes(process.env.VERCEL ?? ''),
   },
-  output: 'standalone',
+  output: ['true', '1'].includes(process.env.VERCEL ?? '')
+    ? undefined
+    : 'standalone',
 })
