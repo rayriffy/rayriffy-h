@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 
 import { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/future/image'
+import Image from 'next/image'
 
 import { TagRenderer } from '../../core/components/reader/tagRenderer'
 import { Hentai } from '../../core/@types/Hentai'
