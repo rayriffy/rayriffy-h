@@ -1,12 +1,12 @@
 import { FunctionComponent } from 'react'
-import { Hentai } from '../../../core/@types/Hentai'
+import { MinifiedHentaiForListing } from '../../../core/@types/MinifiedHentaiForListing'
 
 import { Listing } from '../../../core/components/listing'
 import { Pagination } from '../../../core/components/pagination'
 
 interface IProps {
   tagName: string
-  galleries: Hentai[]
+  galleries: MinifiedHentaiForListing[]
   maxPage: number
   currentPage: number
 }

@@ -4,10 +4,12 @@ import { GetServerSideProps, NextPage } from 'next'
 import { HeadTitle } from '../../core/components/headTitle'
 import { TagModule } from '../../modules/tag/components'
 import { Hentai } from '../../core/@types/Hentai'
+import { MinifiedHentaiForListing } from '../../core/@types/MinifiedHentaiForListing'
+import { hentaiToMinifiedHentaiForListing } from '../../core/services/hentaiToMinifiedHentaiForListing'
 
 interface IProps {
   tagName: string
-  galleries: Hentai[]
+  galleries: MinifiedHentaiForListing[]
   maxPage: number
   currentPage: number
 }
@@ -52,7 +54,9 @@ export const getServerSideProps: GetServerSideProps<IProps> = async ctx => {
   return {
     props: {
       tagName: targetTag,
-      galleries: filteredHentaiTagChunks[targetPage - 1],
+      galleries: filteredHentaiTagChunks[targetPage - 1].map(o =>
+        hentaiToMinifiedHentaiForListing(o)
+      ),
       maxPage: filteredHentaiTagChunks.length,
       currentPage: targetPage,
     },

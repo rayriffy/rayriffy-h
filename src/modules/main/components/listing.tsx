@@ -8,6 +8,7 @@ import {
 import { Listing } from '../../../core/components/listing'
 import { Pagination } from '../../../core/components/pagination'
 import { useMainNavigation } from '../services/useMainNavigation'
+import { hentaiToMinifiedHentaiForListing } from '../../../core/services/hentaiToMinifiedHentaiForListing'
 
 interface IProps {
   page: number

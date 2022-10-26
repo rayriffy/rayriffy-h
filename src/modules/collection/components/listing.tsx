@@ -9,6 +9,7 @@ import { searchHentai } from '../services/worker/searchHentai.worker'
 import { useSearch } from '../../../layout/services/useSearch'
 import { useStoreon } from '../../../context'
 import { itemsPerPage } from '../../../core/constants/itemsPerPage'
+import { hentaiToMinifiedHentaiForListing } from '../../../core/services/hentaiToMinifiedHentaiForListing'
 
 export const CollectionListing = memo(() => {
   const { collection } = useStoreon('collection')
@@ -57,7 +58,11 @@ export const CollectionListing = memo(() => {
         </nav>
       </div>
       <div className="py-4">
-        <Listing {...{ galleries: galleries }} />
+        <Listing
+          {...{
+            galleries: galleries.map(o => hentaiToMinifiedHentaiForListing(o)),
+          }}
+        />
       </div>
       <div className="flex justify-center pb-4">
         <nav className="z-0">
