@@ -16,21 +16,20 @@ const MobileMenuLink: FunctionComponent<IMenu> = props => {
   const isMatch = useMemo(() => props.match.includes(router.pathname), [router])
 
   return (
-    <Link href={link}>
-      <a
-        className={`group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md focus:outline-none transition ease-in-out duration-150 ${
-          isMatch
-            ? 'text-gray-900 bg-gray-100 hover:bg-gray-100 focus:bg-gray-200 hover:text-gray-900'
-            : 'text-gray-600 hover:bg-gray-50 focus:bg-gray-50 hover:text-gray-90'
+    <Link
+      href={link}
+      className={`group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md focus:outline-none transition ease-in-out duration-150 ${
+        isMatch
+          ? 'text-gray-900 bg-gray-100 hover:bg-gray-100 focus:bg-gray-200 hover:text-gray-900'
+          : 'text-gray-600 hover:bg-gray-50 focus:bg-gray-50 hover:text-gray-90'
+      }`}
+    >
+      <props.icon
+        className={`mr-3 h-6 w-6 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150 ${
+          isMatch ? 'text-gray-500' : 'text-gray-400'
         }`}
-      >
-        <props.icon
-          className={`mr-3 h-6 w-6 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150 ${
-            isMatch ? 'text-gray-500' : 'text-gray-400'
-          }`}
-        />
-        {name}
-      </a>
+      />
+      {name}
     </Link>
   )
 }
@@ -62,13 +61,12 @@ export const MobileNavbar = memo(() => {
             <Link
               href={`/tags/${kebabCase(tag.name)}`}
               key={`navbar-mobile-tag-${tag.prefix}`}
+              className="group flex items-center px-3 py-2 text-base leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition ease-in-out duration-150"
             >
-              <a className="group flex items-center px-3 py-2 text-base leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition ease-in-out duration-150">
-                <span
-                  className={`w-2.5 h-2.5 mr-4 rounded-full ${tag.color}`}
-                ></span>
-                <span className="truncate">{capitalize(tag.name)}</span>
-              </a>
+              <span
+                className={`w-2.5 h-2.5 mr-4 rounded-full ${tag.color}`}
+              ></span>
+              <span className="truncate">{capitalize(tag.name)}</span>
             </Link>
           ))}
         </div>

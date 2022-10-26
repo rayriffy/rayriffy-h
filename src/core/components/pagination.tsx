@@ -61,12 +61,10 @@ export const Pagination = memo<Props>(props => {
               }
               aria-label={`${startPoint + i + 1}`}
             >
-              <a>
-                <Page
-                  {...{ startPoint, i, current }}
-                  onChange={page => (onChange ? onChange(page) : null)}
-                />
-              </a>
+              <Page
+                {...{ startPoint, i, current }}
+                onChange={page => (onChange ? onChange(page) : null)}
+              />
             </Link>
           ) : (
             <Page

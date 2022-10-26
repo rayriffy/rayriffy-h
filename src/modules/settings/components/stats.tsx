@@ -43,10 +43,11 @@ export const Stats: FunctionComponent<PropsWithChildren<{}>> = () => {
         </div>
         <div className="bg-gray-50 px-4 py-4 sm:px-6">
           <div className="text-sm leading-5">
-            <Link href="/collection">
-              <a className="font-medium text-blue-600 hover:text-blue-500 transition ease-in-out duration-150">
-                View all
-              </a>
+            <Link
+              href="/collection"
+              className="font-medium text-blue-600 hover:text-blue-500 transition ease-in-out duration-150"
+            >
+              View all
             </Link>
           </div>
         </div>
@@ -76,10 +77,11 @@ export const Stats: FunctionComponent<PropsWithChildren<{}>> = () => {
         </div>
         <div className="bg-gray-50 px-4 py-4 sm:px-6">
           <div className="text-sm leading-5">
-            <Link href="/history">
-              <a className="font-medium text-blue-600 hover:text-blue-500 transition ease-in-out duration-150">
-                View all
-              </a>
+            <Link
+              href="/history"
+              className="font-medium text-blue-600 hover:text-blue-500 transition ease-in-out duration-150"
+            >
+              View all
             </Link>
           </div>
         </div>

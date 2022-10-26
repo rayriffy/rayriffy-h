@@ -107,14 +107,12 @@ const Page: NextPage = props => {
                     <div className="">
                       <span className="inline-flex rounded-md shadow-sm mr-4">
                         <Link href="/collection">
-                          <a>
-                            <button
-                              type="button"
-                              className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                            >
-                              Back
-                            </button>
-                          </a>
+                          <button
+                            type="button"
+                            className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                          >
+                            Back
+                          </button>
                         </Link>
                       </span>
                       <span className="inline-flex rounded-md shadow-sm">
@@ -163,14 +161,12 @@ const Page: NextPage = props => {
                     <div className="flex justify-center pt-4">
                       <span className="inline-flex rounded-md shadow-sm">
                         <Link href="/collection">
-                          <a>
-                            <button
-                              type="button"
-                              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                            >
-                              Back
-                            </button>
-                          </a>
+                          <button
+                            type="button"
+                            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                          >
+                            Back
+                          </button>
                         </Link>
                       </span>
                     </div>
