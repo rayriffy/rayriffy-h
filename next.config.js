@@ -45,14 +45,7 @@ module.exports = withPlugins([[withPWA], [withBundleAnalyzer]], {
   },
   generateBuildId: () => 'staticRuntimeId',
   experimental: {
-    reactRoot: 'concurrent',
-    polyfillsOptimization: true,
     scrollRestoration: true,
-    images: {
-      allowFutureImage: true,
-    },
   },
-  output: ['true', '1'].includes(process.env.VERCEL ?? '')
-    ? undefined
-    : 'standalone',
+  output: 'standalone',
 })
