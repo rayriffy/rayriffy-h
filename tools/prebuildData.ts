@@ -31,15 +31,17 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
   const prebuiltChunkDirectory = path.join(nextCacheDirectory, 'prebuiltChunks')
 
   if (!fs.existsSync(prebuiltChunkDirectory)) {
-    fs.mkdirSync(prebuiltChunkDirectory, { recursive: true })
+    await fs.promises.mkdir(prebuiltChunkDirectory, { recursive: true })
   }
 
   const chunks = chunk(reverse(codes), itemsPerPage)
 
-  chunks.map((chunk, i) => {
-    const chunkFile = path.join(prebuiltChunkDirectory, `chunk-${i + 1}.json`)
-    fs.writeFileSync(chunkFile, JSON.stringify(chunk))
-  })
+  await Promise.all(
+    chunks.map(async (chunk, i) => {
+      const chunkFile = path.join(prebuiltChunkDirectory, `chunk-${i + 1}.json`)
+      await fs.promises.writeFile(chunkFile, JSON.stringify(chunk))
+    })
+  )
 
   // fetch all hentai
   const fetchHentai = async (
@@ -87,7 +89,7 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
   const hentaiDirectory = path.join(nextCacheDirectory, 'hentai')
 
   if (!fs.existsSync(hentaiDirectory)) {
-    fs.mkdirSync(hentaiDirectory, { recursive: true })
+    await fs.promises.mkdir(hentaiDirectory, { recursive: true })
   }
 
   let hasError = false
@@ -129,12 +131,15 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
             const hentai = await fetchHentai(targetCode)
 
             if (hentai !== null) {
-              fs.writeFileSync(hentaiFile, JSON.stringify(hentai))
+              await fs.promises.writeFile(hentaiFile, JSON.stringify(hentai))
             } else {
               throw 'null'
             }
           } else {
-            fs.writeFileSync(hentaiFile, localCacheItem.data as string)
+            await fs.promises.writeFile(
+              hentaiFile,
+              localCacheItem.data as string
+            )
           }
         } catch (e) {
           hasError = true
@@ -145,7 +150,7 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
           )
 
           if (fs.existsSync(hentaiFile)) {
-            fs.rmSync(hentaiFile)
+            await fs.promises.rm(hentaiFile)
           }
         }
       })
