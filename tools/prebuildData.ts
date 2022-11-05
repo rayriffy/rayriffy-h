@@ -193,7 +193,7 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
   const compressedBuffer = await promiseBrotliCompress(
     Buffer.from(JSON.stringify(orderedHentai))
   )
-  fs.writeFileSync(targetSearchKey, compressedBuffer)
+  await fs.promises.writeFile(targetSearchKey, compressedBuffer)
 
   // searchKey by tag
   const tagPool: Tag[] = []
@@ -210,7 +210,7 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
   const rootKeyDirectory = path.join(__dirname, '../public/static/key')
 
   if (!fs.existsSync(rootKeyDirectory)) {
-    fs.mkdirSync(rootKeyDirectory, { recursive: true })
+    await fs.promises.mkdir(rootKeyDirectory, { recursive: true })
   }
 
   await Promise.all(
