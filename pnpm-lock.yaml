@@ -7,13 +7,13 @@ specifiers:
   '@headlessui/react': ^1.7.4
   '@heroicons/react': ^2.0.13
   '@next/bundle-analyzer': ^13.0.2
-  '@prisma/client': ^4.5.0
+  '@prisma/client': ^4.6.0
   '@storeon/crosstab': ^1.0.2
   '@storeon/localstorage': ^1.5.0
   '@swc-node/register': ^1.5.4
   '@tailwindcss/aspect-ratio': ^0.4.2
   '@tailwindcss/forms': ^0.5.3
-  '@tailwindcss/typography': ^0.5.7
+  '@tailwindcss/typography': ^0.5.8
   '@types/lodash': ^4.14.188
   '@types/node': ^18.11.9
   '@types/pdfkit': ^0.12.8
@@ -25,7 +25,7 @@ specifiers:
   cwait: ^1.1.2
   dayjs: ^1.11.6
   dotenv: ^16.0.3
-  husky: ^8.0.1
+  husky: ^8.0.2
   lint-staged: ^13.0.3
   lodash: ^4.17.21
   next: ^13.0.2
@@ -33,14 +33,14 @@ specifiers:
   next-pwa: ^5.6.0
   pdfkit: ^0.13.0
   prettier: ^2.7.1
-  prisma: ^4.5.0
+  prisma: ^4.6.0
   react: ^18.2.0
   react-dom: ^18.2.0
   regenerator-runtime: ^0.13.10
   sharp: ^0.31.2
   storeon: ^3.1.5
   swr: ^1.3.0
-  tailwindcss: ^3.2.1
+  tailwindcss: ^3.2.2
   typescript: ^4.8.4
   web-api-hooks: ^3.0.2
 
@@ -49,12 +49,12 @@ dependencies:
   '@headlessui/react': 1.7.4_biqbaboplfbrettd7655fr4n2y
   '@heroicons/react': 2.0.13_react@18.2.0
   '@next/bundle-analyzer': 13.0.2
-  '@prisma/client': 4.5.0_prisma@4.5.0
+  '@prisma/client': 4.6.0_prisma@4.6.0
   '@storeon/crosstab': 1.0.2
   '@storeon/localstorage': 1.5.0
-  '@tailwindcss/aspect-ratio': 0.4.2_tailwindcss@3.2.1
-  '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.1
-  '@tailwindcss/typography': 0.5.7_tailwindcss@3.2.1
+  '@tailwindcss/aspect-ratio': 0.4.2_tailwindcss@3.2.2
+  '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.2
+  '@tailwindcss/typography': 0.5.8_tailwindcss@3.2.2
   axios: 1.1.3
   copy-to-clipboard: 3.3.2
   cwait: 1.1.2
@@ -68,7 +68,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   storeon: 3.1.5_react@18.2.0
   swr: 1.3.0_react@18.2.0
-  tailwindcss: 3.2.1_neo3lunb2qpadwxplzw7r2isgm
+  tailwindcss: 3.2.2_neo3lunb2qpadwxplzw7r2isgm
   web-api-hooks: 3.0.2_react@18.2.0
 
 devDependencies:
@@ -82,10 +82,10 @@ devDependencies:
   '@types/sharp': 0.31.0
   concurrently: 7.5.0
   dotenv: 16.0.3
-  husky: 8.0.1
+  husky: 8.0.2
   lint-staged: 13.0.3
   prettier: 2.7.1
-  prisma: 4.5.0
+  prisma: 4.6.0
   regenerator-runtime: 0.13.10
   sharp: 0.31.2
   typescript: 4.8.4
@@ -157,11 +157,11 @@ packages:
     dependencies:
       '@ampproject/remapping': 2.2.0
       '@babel/code-frame': 7.18.6
-      '@babel/generator': 7.20.2
+      '@babel/generator': 7.20.3
       '@babel/helper-compilation-targets': 7.20.0_@babel+core@7.20.2
       '@babel/helper-module-transforms': 7.20.2
       '@babel/helpers': 7.20.1
-      '@babel/parser': 7.20.2
+      '@babel/parser': 7.20.3
       '@babel/template': 7.18.10
       '@babel/traverse': 7.20.1
       '@babel/types': 7.20.2
@@ -183,8 +183,8 @@ packages:
       jsesc: 2.5.2
     dev: false
 
-  /@babel/generator/7.20.2:
-    resolution: {integrity: sha512-SD75PMIK6i9H8G/tfGvB4KKl4Nw6Ssos9nGgYwxbgyTP0iX/Z55DveoH86rmUB/YHTQQ+ZC0F7xxaY8l2OF44Q==}
+  /@babel/generator/7.20.3:
+    resolution: {integrity: sha512-Wl5ilw2UD1+ZYprHVprxHZJCFeBWlzZYOovE4SDYLZnqCOD11j+0QzNeEWKLLTWM7nixrZEh7vNIyb76MyJg3A==}
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/types': 7.20.2
@@ -501,8 +501,8 @@ packages:
       '@babel/types': 7.18.13
     dev: false
 
-  /@babel/parser/7.20.2:
-    resolution: {integrity: sha512-afk318kh2uKbo7BEj2QtEi8HVCGrwHUffrYDy7dgVcSa2j9lY3LDjPzcyGdpX7xgm35aWqvciZJ4WKmdF/SxYg==}
+  /@babel/parser/7.20.3:
+    resolution: {integrity: sha512-OP/s5a94frIPXwjzEcv5S/tpQfc6XhxYUnmWpgdqMWGgYCuErA3SzozaRAMQgSZWKeTJxht9aWAkUY+0UzvOFg==}
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
@@ -1354,12 +1354,12 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/code-frame': 7.18.6
-      '@babel/generator': 7.20.2
+      '@babel/generator': 7.20.3
       '@babel/helper-environment-visitor': 7.18.9
       '@babel/helper-function-name': 7.19.0
       '@babel/helper-hoist-variables': 7.18.6
       '@babel/helper-split-export-declaration': 7.18.6
-      '@babel/parser': 7.20.2
+      '@babel/parser': 7.20.3
       '@babel/types': 7.20.2
       debug: 4.3.4
       globals: 11.12.0
@@ -1782,8 +1782,8 @@ packages:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
     dev: false
 
-  /@prisma/client/4.5.0_prisma@4.5.0:
-    resolution: {integrity: sha512-B2cV0OPI1smhdYUxsJoLYQLoMlLH06MUxgFUWQnHodGMX98VRVXKmQE/9OcrTNkqtke5RC+YU24Szxd04tZA2g==}
+  /@prisma/client/4.6.0_prisma@4.6.0:
+    resolution: {integrity: sha512-D9LaQinDxOHinRpcJTw2tjMtjhc9HTP+aF1IRd2oLldp/8TiwIfxK8x17OhBBiX4y1PzbJXXET7kS+5wB3es/w==}
     engines: {node: '>=14.17'}
     requiresBuild: true
     peerDependencies:
@@ -1792,16 +1792,16 @@ packages:
       prisma:
         optional: true
     dependencies:
-      '@prisma/engines-version': 4.5.0-43.0362da9eebca54d94c8ef5edd3b2e90af99ba452
-      prisma: 4.5.0
+      '@prisma/engines-version': 4.6.0-53.2e719efb80b56a3f32d18a62489de95bb9c130e3
+      prisma: 4.6.0
     dev: false
 
-  /@prisma/engines-version/4.5.0-43.0362da9eebca54d94c8ef5edd3b2e90af99ba452:
-    resolution: {integrity: sha512-o7LyVx8PPJBLrEzLl6lpxxk2D5VnlM4Fwmrbq0NoT6pr5aa1OuHD9ZG+WJY6TlR/iD9bhmo2LNcxddCMr5Rv2A==}
+  /@prisma/engines-version/4.6.0-53.2e719efb80b56a3f32d18a62489de95bb9c130e3:
+    resolution: {integrity: sha512-0CTnfEuUbLlO6n1fM89ERDbSwI4LoyZn+1OKVSwG+aVqohj34+mXRfwOWIM0ONtYtLGGBpddvQAnAZkg+cgS6g==}
     dev: false
 
-  /@prisma/engines/4.5.0:
-    resolution: {integrity: sha512-4t9ir2SbQQr/wMCNU4YpHWp5hU14J2m3wHUZnGJPpmBF8YtkisxyVyQsKd1e6FyLTaGq8LOLhm6VLYHKqKNm+g==}
+  /@prisma/engines/4.6.0:
+    resolution: {integrity: sha512-S+72PAl0zTCbIGou1uXD/McvzdtP+bjOs0LRmGZfcOQcVqR9x/0f6Z+dqpUU0zIcqHEl+0DOB8UXaTwRvssFsQ==}
     requiresBuild: true
 
   /@rollup/plugin-babel/5.3.1_2uin6pbxavst3oir53roxbd5qi:
@@ -2018,25 +2018,25 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /@tailwindcss/aspect-ratio/0.4.2_tailwindcss@3.2.1:
+  /@tailwindcss/aspect-ratio/0.4.2_tailwindcss@3.2.2:
     resolution: {integrity: sha512-8QPrypskfBa7QIMuKHg2TA7BqES6vhBrDLOv8Unb6FcFyd3TjKbc6lcmb9UPQHxfl24sXoJ41ux/H7qQQvfaSQ==}
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
-      tailwindcss: 3.2.1_neo3lunb2qpadwxplzw7r2isgm
+      tailwindcss: 3.2.2_neo3lunb2qpadwxplzw7r2isgm
     dev: false
 
-  /@tailwindcss/forms/0.5.3_tailwindcss@3.2.1:
+  /@tailwindcss/forms/0.5.3_tailwindcss@3.2.2:
     resolution: {integrity: sha512-y5mb86JUoiUgBjY/o6FJSFZSEttfb3Q5gllE4xoKjAAD+vBrnIhE4dViwUuow3va8mpH4s9jyUbUbrRGoRdc2Q==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.2.1_neo3lunb2qpadwxplzw7r2isgm
+      tailwindcss: 3.2.2_neo3lunb2qpadwxplzw7r2isgm
     dev: false
 
-  /@tailwindcss/typography/0.5.7_tailwindcss@3.2.1:
-    resolution: {integrity: sha512-JTTSTrgZfp6Ki4svhPA4mkd9nmQ/j9EfE7SbHJ1cLtthKkpW2OxsFXzSmxbhYbEkfNIyAyhle5p4SYyKRbz/jg==}
+  /@tailwindcss/typography/0.5.8_tailwindcss@3.2.2:
+    resolution: {integrity: sha512-xGQEp8KXN8Sd8m6R4xYmwxghmswrd0cPnNI2Lc6fmrC3OojysTBJJGSIVwPV56q4t6THFUK3HJ0EaWwpglSxWw==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
     dependencies:
@@ -2044,7 +2044,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.2.1_neo3lunb2qpadwxplzw7r2isgm
+      tailwindcss: 3.2.2_neo3lunb2qpadwxplzw7r2isgm
     dev: false
 
   /@tsconfig/node10/1.0.9:
@@ -2593,7 +2593,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001430
+      caniuse-lite: 1.0.30001431
       electron-to-chromium: 1.4.284
       node-releases: 2.0.6
       update-browserslist-db: 1.0.10_browserslist@4.21.4
@@ -2651,6 +2651,10 @@ packages:
 
   /caniuse-lite/1.0.30001430:
     resolution: {integrity: sha512-IB1BXTZKPDVPM7cnV4iaKaHxckvdr/3xtctB3f7Hmenx3qYBhGtTZ//7EllK66aKXW98Lx0+7Yr0kxBtIt3tzg==}
+    dev: false
+
+  /caniuse-lite/1.0.30001431:
+    resolution: {integrity: sha512-zBUoFU0ZcxpvSt9IU66dXVT/3ctO1cy4y9cscs1szkPlcWb6pasYM144GqrUygUbT+k7cmUCW61cvskjcv0enQ==}
     dev: false
 
   /cdata/0.1.3:
@@ -3659,8 +3663,8 @@ packages:
     engines: {node: '>=12.20.0'}
     dev: true
 
-  /husky/8.0.1:
-    resolution: {integrity: sha512-xs7/chUH/CKdOCs7Zy0Aev9e/dKOMZf3K1Az1nar3tzlv0jfqnYtu235bstsWTmXOR0EfINrPa97yy4Lz6RiKw==}
+  /husky/8.0.2:
+    resolution: {integrity: sha512-Tkv80jtvbnkK3mYWxPZePGFpQ/tT3HNSs/sasF9P2YfkMezDl3ON37YN6jUUI4eTg5LcyVynlb6r4eyvOmspvg==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
@@ -3756,16 +3760,10 @@ packages:
     engines: {node: '>= 0.4'}
     dev: false
 
-  /is-core-module/2.10.0:
-    resolution: {integrity: sha512-Erxj2n/LDAZ7H8WNJXd9tw38GYM3dv8rk8Zcs+jJuxYTW7sozH+SS8NtrSjVL1/vpLvWi1hxy96IzjJ3EHTJJg==}
-    dependencies:
-      has: 1.0.3
-
   /is-core-module/2.11.0:
     resolution: {integrity: sha512-RRjxlvLDkD1YJwDbroBHMb+cukurkDWNyHx7D3oNB5x9rb5ogcksMC5wHCadcXoo67gVr/+3GFySh3134zi6rw==}
     dependencies:
       has: 1.0.3
-    dev: true
 
   /is-date-object/1.0.5:
     resolution: {integrity: sha512-9YQaSxsAiSwcvS33MBk3wTCVnWK+HhF8VZR2jRxehM16QcVOdHqPn4VPHmRK4lSr38n9JriurInLcP90xsYNfQ==}
@@ -4763,13 +4761,13 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  /prisma/4.5.0:
-    resolution: {integrity: sha512-9Aeg4qiKlv9Wsjz4NO8k2CzRzlvS3A4FYVJ5+28sBBZ0eEwbiVOE/Jj7v6rZC1tFW2s4GSICQOAyuOjc6WsNew==}
+  /prisma/4.6.0:
+    resolution: {integrity: sha512-TAnObUMGCM9NLt9nsRs1WWYQGPKsJOK8bN/7gSAnBcYIxMCFFDe+XtFYJbyTzsJZ/i+0rH4zg8au3m7HX354LA==}
     engines: {node: '>=14.17'}
     hasBin: true
     requiresBuild: true
     dependencies:
-      '@prisma/engines': 4.5.0
+      '@prisma/engines': 4.6.0
 
   /proxy-from-env/1.1.0:
     resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
@@ -4969,7 +4967,7 @@ packages:
     resolution: {integrity: sha512-nBpuuYuY5jFsli/JIs1oldw6fOQCBioohqWZg/2hiaOybXOft4lonv85uDOKXdf8rhyK159cxU5cDcK/NKk8zw==}
     hasBin: true
     dependencies:
-      is-core-module: 2.10.0
+      is-core-module: 2.11.0
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
 
@@ -5447,8 +5445,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /tailwindcss/3.2.1_neo3lunb2qpadwxplzw7r2isgm:
-    resolution: {integrity: sha512-Uw+GVSxp5CM48krnjHObqoOwlCt5Qo6nw1jlCRwfGy68dSYb/LwS9ZFidYGRiM+w6rMawkZiu1mEMAsHYAfoLg==}
+  /tailwindcss/3.2.2_neo3lunb2qpadwxplzw7r2isgm:
+    resolution: {integrity: sha512-c2GtSdqg+harR4QeoTmex0Ngfg8IIHNeLQH5yr2B9uZbZR1Xt1rYbjWOWTcj3YLTZhrmZnPowoQDbSRFyZHQ5Q==}
     engines: {node: '>=12.13.0'}
     hasBin: true
     peerDependencies:
