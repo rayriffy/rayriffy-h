@@ -29,6 +29,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 dayjs.extend(utc)
 dayjs.extend(timezone)
 
+const { DISABLE_AIO } = process.env
+
 /** @type {import('next').NextConfig} */
 module.exports = withPlugins([[withPWA], [withBundleAnalyzer]], {
   env: {
@@ -41,7 +43,13 @@ module.exports = withPlugins([[withPWA], [withBundleAnalyzer]], {
     ignoreDuringBuilds: true,
   },
   images: {
-    domains: ['i.nhentai.net', 't.nhentai.net'],
+    ...(DISABLE_AIO === 'true'
+      ? {
+          unoptimized: true,
+        }
+      : {
+          domains: ['i.nhentai.net', 't.nhentai.net'],
+        }),
   },
   generateBuildId: () => 'staticRuntimeId',
   experimental: {
