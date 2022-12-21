@@ -25,6 +25,7 @@ import { data2022_08 } from './months/2022-08'
 import { data2022_09 } from './months/2022-09'
 import { data2022_10 } from './months/2022-10'
 import { data2022_11 } from './months/2022-11'
+import { data2022_12 } from './months/2022-12'
 
 import { DatabaseCode } from '../../@types/DatabaseCode'
 
@@ -54,3 +55,4 @@ export const codes: DatabaseCode[] = original
   .concat(data2022_09)
   .concat(data2022_10)
   .concat(data2022_11)
+  .concat(data2022_12)
