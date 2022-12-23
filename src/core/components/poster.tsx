@@ -19,8 +19,6 @@ const availableFlags = ['english', 'japanese', 'chinese']
 export const Poster = memo<IProps>(props => {
   const { hentai } = props
 
-  console.log(hentai)
-
   return (
     <div className="bg-gray-200 overflow-hidden rounded-xl relative">
       <Link href={`/g/${hentai.id}`} scroll>
