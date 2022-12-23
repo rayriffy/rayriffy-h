@@ -68,6 +68,11 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
           variables: {
             hentaiId: Number(code),
           },
+        },
+        {
+          headers: {
+            'Accept-Encoding': '*',
+          },
         }
       )
 
