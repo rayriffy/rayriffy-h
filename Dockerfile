@@ -18,6 +18,7 @@ ENV BUILD_MODE ${BUILD_MODE}
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+COPY .next .next
 
 RUN yarn global add pnpm && pnpm concurrently "pnpm prisma:generate" "pnpm build:data" && pnpm build
 
