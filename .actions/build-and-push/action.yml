@@ -36,7 +36,7 @@ runs:
       with:
         project: rayriffy-h
         location: gke.cluster-rcf2
-        name: riffyh-runtime
+        name: runtime-${{ inputs.mode }}
         image: ${{ inputs.target_image }}
         minReplicas: 1
         maxReplicas: 10
