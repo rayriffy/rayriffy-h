@@ -5,15 +5,13 @@ import { PrismaClient, Hentai as PrismaHentai } from '@prisma/client'
 import { AxiosError } from 'axios'
 import dotenv from 'dotenv'
 import { TaskQueue } from 'cwait'
-import { chunk, reverse, kebabCase } from 'lodash'
+import { chunk, reverse } from 'lodash'
 
 import { codes } from '../src/core/constants/codes'
 import { itemsPerPage } from '../src/core/constants/itemsPerPage'
 
 import { Hentai } from '../src/core/@types/Hentai'
-import { Tag } from '../src/core/@types/Tag'
 import { DatabaseCode } from '../src/core/@types/DatabaseCode'
-import { promiseBrotliCompress } from '../src/core/services/promiseBrotliCompress'
 import { HifuminSingleResponse } from '../src/core/@types/HifuminSingleResponse'
 import { hifuminHentaiToHentai } from '../src/core/services/hifuminHentaiToHentai'
 import { hifuminHentaiQuery } from '../src/core/constants/hifuminHentaiQuery'
@@ -158,78 +156,4 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
     console.error("there's some error during fetching! crashing...")
     process.exit(1)
   }
-
-  // merging those into one searchKey
-  console.log('post-processing')
-  const targetSearchKey = path.join(
-    __dirname,
-    '../public/static',
-    'searchKey.opt'
-  )
-
-  const orderedHentai = codes
-    .map(code => {
-      try {
-        const targetCode = typeof code === 'number' ? code : code.code
-        const targetHentai: Hentai = JSON.parse(
-          fs
-            .readFileSync(path.join(hentaiDirectory, `${targetCode}.json`))
-            .toString()
-        )
-
-        const transformedHentai: Hentai = {
-          ...targetHentai,
-          images: {
-            ...targetHentai.images,
-            pages: [],
-          },
-        }
-
-        return transformedHentai
-      } catch (e) {
-        return null
-      }
-    })
-    .filter(o => o !== null)
-
-  const compressedBuffer = await promiseBrotliCompress(
-    Buffer.from(JSON.stringify(orderedHentai))
-  )
-  await fs.promises.writeFile(targetSearchKey, compressedBuffer)
-
-  // searchKey by tag
-  const tagPool: Tag[] = []
-  orderedHentai.map(hentai => {
-    hentai.tags.map(tag => {
-      const targetTagPool = tagPool.find(pool => pool.id === tag.id)
-
-      if (!targetTagPool) {
-        tagPool.push(tag)
-      }
-    })
-  })
-
-  const rootKeyDirectory = path.join(__dirname, '../public/static/key')
-
-  if (!fs.existsSync(rootKeyDirectory)) {
-    await fs.promises.mkdir(rootKeyDirectory, { recursive: true })
-  }
-
-  await Promise.all(
-    tagPool.map(async tag => {
-      const targetTagFile = path.join(
-        rootKeyDirectory,
-        `${kebabCase(tag.name)}.opt`
-      )
-
-      const compressedBuffer = await promiseBrotliCompress(
-        Buffer.from(
-          JSON.stringify(
-            orderedHentai.filter(o => o.tags.find(t => t.id === tag.id))
-          )
-        )
-      )
-      await fs.promises.writeFile(targetTagFile, compressedBuffer)
-    })
-  )
 })()

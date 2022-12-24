@@ -6,13 +6,66 @@ on:
       - main
 
 jobs:
-  build:
+  fetch:
     runs-on: ubuntu-latest
     env:
-      APP_NAME: riffyh-runtime
-      IMAGE_NAME: ghcr.io/rayriffy/riffyh-runtime
+      HIFUMIN_API_URL: ${{ secrets.HIFUMIN_API_URL }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
     steps:
       - uses: actions/checkout@v3
+      - name: 'Intitialize: Summon NodeJS'
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: 'Initialize'
+        uses: ./.actions/initialize
+        with:
+          hash: ${{ secrets.CACHE_HASH }}
+          run_install: 'true'
+      - name: 'Cache: .next data'
+        uses: actions/cache@v3
+        with:
+          path: |
+            .next/cache/hentai
+            .next/cache/prebuiltChunks
+          key: hentai-cache-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
+          restore-keys: |
+            hentai-cache-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
+            hentai-cache-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
+      - name: 'Fetch all data'
+        run: pnpm fetch:data
+      - name: 'Post-processing data'
+        run: pnpm concurrently "pnpm sync:data" "pnpm build:data"
+      - uses: actions/upload-artifact@v3
+        with:
+          name: compressed-keys
+          path: public
+          retention-days: 1
+      - uses: actions/upload-artifact@v3
+        with:
+          name: cached-keys
+          path: .next
+          retention-days: 1
+
+  build:
+    name: build-${{ matrix.disableAIO }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        mode: ["public", "private"]
+    env:
+      APP_NAME: riffyh-runtime-private
+      IMAGE_NAME: ghcr.io/rayriffy/riffyh-runtime-private
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+        with:
+          name: compressed-keys
+          path: public
+      - uses: actions/download-artifact@v3
+        with:
+          name: cached-keys
+          path: .next
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
@@ -21,26 +74,10 @@ jobs:
           username: rayriffy
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build Docker image
-        env:
-          HIFUMIN_API_URL: ${{ secrets.HIFUMIN_API_URL }}
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: docker build --build-arg HIFUMIN_API_URL --build-arg DATABASE_URL -t $APP_NAME .
-
-      - name: Tag Docker image
-        run: docker tag $APP_NAME $IMAGE_NAME
-
-      - name: Push Docker image
-        run: docker push $IMAGE_NAME
-
-      - uses: deploys-app/deploys-action@v1
+      - name: 'Build and push'
+        uses: ./.actions/build-and-push
         with:
-          project: rayriffy-h
-          location: gke.cluster-rcf2
-          name: riffyh-runtime
-          image: ghcr.io/rayriffy/riffyh-runtime
-          minReplicas: 1
-          maxReplicas: 10
-        env:
-          DEPLOYS_AUTH_USER: ${{ secrets.DEPLOYS_AUTH_USER }}
-          DEPLOYS_AUTH_PASS: ${{ secrets.DEPLOYS_AUTH_PASS }}
+          target_image: ghcr.io/rayriffy/riffyh-runtime-${{ matrix.mode }}
+          mode: ${{ matrix.mode }}
+          deploys_user: ${{ secrets.DEPLOYS_AUTH_USER }}
+          deploys_pass: ${{ secrets.DEPLOYS_AUTH_PASS }}

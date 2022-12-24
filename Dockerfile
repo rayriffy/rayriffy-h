@@ -12,17 +12,16 @@ RUN yarn global add pnpm && pnpm -r i --frozen-lockfile
 # Rebuild the source code only when needed
 FROM node:16-alpine AS builder
 
-ARG HIFUMIN_API_URL
-ARG DATABASE_URL
-
-ENV HIFUMIN_API_URL ${HIFUMIN_API_URL}
-ENV DATABASE_URL ${DATABASE_URL}
+ARG BUILD_MODE
+ENV BUILD_MODE ${BUILD_MODE}
 
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+COPY .next/cache/hentai .next/cache/hentai
+COPY .next/cache/prebuiltChunks .next/cache/prebuiltChunks
 
-RUN yarn global add pnpm && pnpm build
+RUN yarn global add pnpm && pnpm build:data && pnpm build
 
 # If using npm comment out above and use below instead
 # RUN npm run build
@@ -30,6 +29,9 @@ RUN yarn global add pnpm && pnpm build
 # Production image, copy all the files and run next
 FROM node:16-alpine AS runner
 WORKDIR /app
+
+ARG BUILD_MODE
+ENV BUILD_MODE ${BUILD_MODE}
 
 ENV NODE_ENV production
 # Uncomment the following line in case you want to disable telemetry during runtime.

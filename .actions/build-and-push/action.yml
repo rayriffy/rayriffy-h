@@ -1,0 +1,45 @@
+name: Initialize
+description: "Composite actions to setup Node environments, and pnpm with cache handling"
+
+inputs:
+  deploys_user:
+    description: Deploys.app service account
+    required: true
+  deploys_pass:
+    description: Deploys.app secrets
+    required: true
+  target_image:
+    description: Target image name
+    required: true
+  mode:
+    description: Build mode
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Build Docker image
+      shell: bash
+      env:
+        DISABLE_AIO: ${{ inputs.disable_aio }}
+      run: docker build --build-arg DISABLE_AIO -t built-image .
+
+    - name: Tag Docker image
+      shell: bash
+      run: docker tag built-image ${{ inputs.target_image }}
+
+    - name: Push Docker image
+      shell: bash
+      run: docker push ${{ inputs.target_image }}
+
+    - uses: deploys-app/deploys-action@v1
+      with:
+        project: rayriffy-h
+        location: gke.cluster-rcf2
+        name: riffyh-runtime
+        image: ${{ inputs.target_image }}
+        minReplicas: 1
+        maxReplicas: 10
+      env:
+        DEPLOYS_AUTH_USER: ${{ inputs.deploys_user }}
+        DEPLOYS_AUTH_PASS: ${{ inputs.deploys_pass }}

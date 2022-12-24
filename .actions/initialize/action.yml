@@ -1,0 +1,43 @@
+name: Initialize
+description: "Composite actions to setup Node environments, and pnpm with cache handling"
+
+inputs:
+  hash:
+    description: Cache hash for static-cahcing reset
+    required: true
+  run_install:
+    description: 'Execute `pnpm i`'
+    default: 'false'
+    required: false
+  prefix:
+    description: Prefix cache name
+    required: false
+    default: 'default'
+
+runs:
+  using: "composite"
+  steps:
+    - name: 'Intitialize: Summon NodeJS'
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - uses: pnpm/action-setup@v2.2.4
+      name: 'Intitialize: Configure pnpm'
+      id: pnpm-install
+      with:
+        version: 7
+        run_install: false
+    - name: 'Cache: node_modules'
+      uses: actions/cache@v3
+      with:
+        path: |
+          node_modules
+          ~/.local/share/pnpm/store/v3
+        key: ${{ runner.OS }}-x86-compositeV2-node16-pnpm7-${{ inputs.prefix }}-${{ inputs.hash }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.OS }}-x86-compositeV2-node16-pnpm7-${{ inputs.prefix }}-${{ inputs.hash }}-${{ env.cache-name }}-
+          ${{ runner.OS }}-x86-compositeV2-node16-pnpm7-${{ inputs.prefix }}-${{ inputs.hash }}-
+    - name: 'Intitialize: Install dependencies'
+      if: ${{ inputs.run_install != 'false' }}
+      shell: bash
+      run: pnpm -r i --shamefully-hoist --prefer-offline

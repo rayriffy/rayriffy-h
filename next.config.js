@@ -43,7 +43,7 @@ module.exports = withPlugins([[withPWA], [withBundleAnalyzer]], {
     ignoreDuringBuilds: true,
   },
   images: {
-    ...(DISABLE_AIO === 'true'
+    ...(BUILD_MODE === 'public'
       ? {
           unoptimized: true,
         }
