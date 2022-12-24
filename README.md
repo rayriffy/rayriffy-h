@@ -13,7 +13,19 @@ Development
 ---
 
 ```
-# Prebuild data
+# Run local database cache server
+docker-compose up -d
+
+# Copy .env.example file and please adjust it accordingly
+cp .env.example .env
+
+# Generate Prisma types definition
+pnpm prisma:generate
+
+# Fetch data to local cache
+pnpm fetch:data
+
+# Post-processing data
 pnpm build:data
 
 # Start development server
@@ -26,6 +38,8 @@ Build
 ```
 pnpm build
 ```
+
+More updated instructions please see CI specification, and Dockerfile
 
 License
 -------
