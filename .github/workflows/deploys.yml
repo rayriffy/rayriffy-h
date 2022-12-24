@@ -26,7 +26,7 @@ jobs:
           key: hentai-cache-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
           restore-keys: |
             hentai-cache-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
-            hentai-cache-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
+            hentai-cache-${{ secrets.CACHE_HASH }}-
       - run: pnpm fetch:data
       - run: pnpm sync:data
 
@@ -51,7 +51,7 @@ jobs:
           key: hentai-cache-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
           restore-keys: |
             hentai-cache-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
-            hentai-cache-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
+            hentai-cache-${{ secrets.CACHE_HASH }}-
 
       - uses: docker/login-action@v2
         with:
