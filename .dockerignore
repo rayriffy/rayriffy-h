@@ -1,6 +1,7 @@
+.actions
+.github
+.husky
 .vercel
 node_modules
-.husky
-.github
 public/static/key
 public/static/searchKey.opt

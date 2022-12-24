@@ -21,8 +21,8 @@ runs:
     - name: Build Docker image
       shell: bash
       env:
-        DISABLE_AIO: ${{ inputs.disable_aio }}
-      run: docker build --build-arg DISABLE_AIO -t built-image .
+        BUILD_MODE: ${{ inputs.mode }}
+      run: docker build --build-arg BUILD_MODE -t built-image .
 
     - name: Tag Docker image
       shell: bash
