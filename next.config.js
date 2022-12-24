@@ -29,7 +29,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 dayjs.extend(utc)
 dayjs.extend(timezone)
 
-const { DISABLE_AIO } = process.env
+const { BUILD_MODE } = process.env
 
 /** @type {import('next').NextConfig} */
 module.exports = withPlugins([[withPWA], [withBundleAnalyzer]], {

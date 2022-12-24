@@ -18,8 +18,6 @@ ENV BUILD_MODE ${BUILD_MODE}
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-COPY .next/cache/hentai .next/cache/hentai
-COPY .next/cache/prebuiltChunks .next/cache/prebuiltChunks
 
 RUN yarn global add pnpm && pnpm build:data && pnpm build
 
