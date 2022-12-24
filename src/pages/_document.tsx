@@ -8,6 +8,8 @@ class NextDocument extends Document {
         <Head>
           <Partytown forward={['dataLayer.push']} />
 
+          <meta name="referrer" content="same-origin" />
+
           <script
             async
             src="https://www.googletagmanager.com/gtag/js?id=G-12TFVLTM16"
