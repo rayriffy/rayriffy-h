@@ -13,17 +13,12 @@ jobs:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
     steps:
       - uses: actions/checkout@v3
-      - name: 'Intitialize: Summon NodeJS'
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - name: 'Initialize'
-        uses: ./.actions/initialize
+
+      - uses: ./.actions/initialize
         with:
           hash: ${{ secrets.CACHE_HASH }}
           run_install: 'true'
-      - name: 'Cache: .next data'
-        uses: actions/cache@v3
+      - uses: actions/cache@v3
         with:
           path: |
             .next/cache/hentai
@@ -32,15 +27,8 @@ jobs:
           restore-keys: |
             hentai-cache-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
             hentai-cache-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
-      - name: 'Fetch all data'
-        run: pnpm fetch:data
-      - name: 'Sync data'
-        run: pnpm sync:data
-      - uses: actions/upload-artifact@v3
-        with:
-          name: cached-keys
-          path: .next
-          retention-days: 1
+      - run: pnpm fetch:data
+      - run: pnpm sync:data
 
   build:
     name: build-${{ matrix.mode }}
@@ -54,24 +42,24 @@ jobs:
       IMAGE_NAME: ghcr.io/rayriffy/riffyh-runtime-private
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/download-artifact@v3
-        with:
-          name: compressed-keys
-          path: public
-      - uses: actions/download-artifact@v3
-        with:
-          name: cached-keys
-          path: .next
 
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v2
+      - uses: actions/cache@v3
+        with:
+          path: |
+            .next/cache/hentai
+            .next/cache/prebuiltChunks
+          key: hentai-cache-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
+          restore-keys: |
+            hentai-cache-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
+            hentai-cache-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
+
+      - uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: rayriffy
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 'Build and push'
-        uses: ./.actions/build-and-push
+      - uses: ./.actions/build-and-push
         with:
           target_image: ghcr.io/rayriffy/riffyh-runtime-${{ matrix.mode }}
           mode: ${{ matrix.mode }}
