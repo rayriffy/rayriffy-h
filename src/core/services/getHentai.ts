@@ -1,11 +1,10 @@
 import fs from 'fs'
 import path from 'path'
 
-import axios from 'axios'
-
 import { hifuminHentaiToHentai } from './hifuminHentaiToHentai'
 
 import { hifuminHentaiQuery } from '../constants/hifuminHentaiQuery'
+import { hifuminInstance } from '../constants/hifuminInstance'
 
 import { Hentai } from '../@types/Hentai'
 import { HifuminSingleResponse } from '../@types/HifuminSingleResponse'
@@ -32,10 +31,8 @@ export const getHentai = async (id: number | string): Promise<Hentai> => {
      */
 
     try {
-      const { data } = await axios.post<HifuminSingleResponse>(
-        process.env.HIFUMIN_API_URL,
-        {
-          query: `
+      const { data } = await hifuminInstance.post<HifuminSingleResponse>('', {
+        query: `
           query SingleHentaiQuery ($hentaiId: Int!) {
             nhql {
               by (id: $hentaiId) {
@@ -46,11 +43,10 @@ export const getHentai = async (id: number | string): Promise<Hentai> => {
             }
           }
         `,
-          variables: {
-            hentaiId: Number(id),
-          },
-        }
-      )
+        variables: {
+          hentaiId: Number(id),
+        },
+      })
 
       if (data.data.nhql.by.data === null) {
         throw new Error('Hentai not found')

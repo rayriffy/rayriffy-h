@@ -1,11 +1,11 @@
 import fs from 'fs'
 import path from 'path'
 
-import axios from 'axios'
 import { NextApiHandler } from 'next'
 
 import { hifuminHentaiQuery } from '../../../core/constants/hifuminHentaiQuery'
 import { itemsPerPage } from '../../../core/constants/itemsPerPage'
+import { hifuminInstance } from '../../../core/constants/hifuminInstance'
 
 import { getPage } from '../../../core/services/getPage'
 import { searchHentai } from '../../../core/services/searchHentai'
@@ -51,7 +51,7 @@ const api: NextApiHandler = async (req, res) => {
           },
         },
       },
-    } = await axios.post<QueryResult>(process.env.HIFUMIN_API_URL, {
+    } = await hifuminInstance.post<QueryResult>('', {
       query: `
       query RiffyHSearch($query: String!, $page: Int!) {
         nhql {

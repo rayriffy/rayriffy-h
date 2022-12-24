@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 
 import { PrismaClient, Hentai as PrismaHentai } from '@prisma/client'
-import axios, { AxiosError } from 'axios'
+import { AxiosError } from 'axios'
 import dotenv from 'dotenv'
 import { TaskQueue } from 'cwait'
 import { chunk, reverse, kebabCase } from 'lodash'
@@ -17,9 +17,9 @@ import { promiseBrotliCompress } from '../src/core/services/promiseBrotliCompres
 import { HifuminSingleResponse } from '../src/core/@types/HifuminSingleResponse'
 import { hifuminHentaiToHentai } from '../src/core/services/hifuminHentaiToHentai'
 import { hifuminHentaiQuery } from '../src/core/constants/hifuminHentaiQuery'
+import { hifuminInstance } from '../src/core/constants/hifuminInstance'
 
 dotenv.config()
-const { HIFUMIN_API_URL } = process.env
 
 const nextCacheDirectory = path.join(__dirname, '..', '.next', 'cache')
 
@@ -61,20 +61,12 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
         }
       `
 
-      const { data } = await axios.post<HifuminSingleResponse>(
-        HIFUMIN_API_URL,
-        {
-          query,
-          variables: {
-            hentaiId: Number(code),
-          },
+      const { data } = await hifuminInstance.post<HifuminSingleResponse>('', {
+        query,
+        variables: {
+          hentaiId: Number(code),
         },
-        {
-          headers: {
-            'Accept-Encoding': '*',
-          },
-        }
-      )
+      })
 
       if (data.data.nhql.by.data === null) {
         return null

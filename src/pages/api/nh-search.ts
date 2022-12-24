@@ -1,10 +1,12 @@
 import { NextApiHandler } from 'next'
 
-import axios from 'axios'
 import { hifuminHentaiQuery } from '../../core/constants/hifuminHentaiQuery'
-import { HifuminHentai } from '../../core/@types/HifuminHentai'
+import { hifuminInstance } from '../../core/constants/hifuminInstance'
+
 import { hifuminHentaiToHentai } from '../../core/services/hifuminHentaiToHentai'
 import { hentaiToMinifiedHentaiForListing } from '../../core/services/hentaiToMinifiedHentaiForListing'
+
+import { HifuminHentai } from '../../core/@types/HifuminHentai'
 
 const api: NextApiHandler = async (req, res) => {
   const { query, page } = req.query
@@ -28,7 +30,7 @@ const api: NextApiHandler = async (req, res) => {
           },
         },
       },
-    } = await axios.post<QueryResult>(process.env.HIFUMIN_API_URL, {
+    } = await hifuminInstance.post<QueryResult>('', {
       query: `
       query RiffyHSearch($query: String!, $page: Int!) {
         nhql {
