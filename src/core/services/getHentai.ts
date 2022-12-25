@@ -1,35 +1,21 @@
-import fs from 'fs'
-import path from 'path'
-
+import { hifuminInstance } from '../constants/hifuminInstance'
+import { hifuminHentaiQuery } from '../constants/hifuminHentaiQuery'
 import { hifuminHentaiToHentai } from './hifuminHentaiToHentai'
 
-import { hifuminHentaiQuery } from '../constants/hifuminHentaiQuery'
-import { hifuminInstance } from '../constants/hifuminInstance'
+import type { AxiosError } from 'axios'
+import type { HifuminSingleResponse } from '../@types/HifuminSingleResponse'
 
-import { Hentai } from '../@types/Hentai'
-import { HifuminSingleResponse } from '../@types/HifuminSingleResponse'
+export const getHentai = async (id: number | string) => {
+  // check if there's local cache
+  const cacheHit = false
 
-export const getHentai = async (id: number | string): Promise<Hentai> => {
-  // if cache exists, then pull data from cache
-  const expectedCachePath = path.join(
-    process.cwd(),
-    '.next',
-    'cache',
-    'hentai',
-    `${id}.json`
-  )
+  console.log({
+    cwd: process.cwd(),
+  })
 
-  if (fs.existsSync(expectedCachePath)) {
-    const hentai: Hentai = JSON.parse(
-      fs.readFileSync(expectedCachePath, 'utf8')
-    )
-
-    return hentai
+  // if found then use local data, otherwise fetch from api
+  if (cacheHit) {
   } else {
-    /**
-     * Cache not found, fething from API server
-     */
-
     try {
       const { data } = await hifuminInstance.post<HifuminSingleResponse>('', {
         query: `
@@ -54,7 +40,7 @@ export const getHentai = async (id: number | string): Promise<Hentai> => {
         return hifuminHentaiToHentai(data.data.nhql.by.data)
       }
     } catch (e) {
-      console.log(e?.response?.data)
+      // console.log((e as AxiosError).response?.data)
       console.error(`error: unable to fetch ${id}`)
       throw e
     }

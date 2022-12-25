@@ -1,4 +1,4 @@
-import { HifuminHentai } from './HifuminHentai'
+import type { HifuminHentai } from './HifuminHentai'
 
 export interface HifuminSingleResponse {
   data: {

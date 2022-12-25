@@ -1,8 +1,15 @@
-# Add files here to ignore them from prettier formatting
+.DS_Store
+node_modules
+/build
+/.svelte-kit
+/package
+.env
+.env.*
+!.env.example
 
-/dist
-/coverage
+# Ignore files for PNPM, NPM and YARN
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
 
-/apps/web/node_modules
-/apps/web/public
-/apps/web/.cache
+data

@@ -1,16 +1,13 @@
-Riffy H
-===
+# Riffy H
 
 The missing pieces of nhentai
 
-Requirements
-------------
+## Requirements
 
 - [pnpm](https://pnpm.io/)
 - Node LTS
 
-Development
----
+## Development
 
 ```
 # Run local database cache server
@@ -32,8 +29,7 @@ pnpm build:data
 pnpm dev
 ```
 
-Build
----
+## Build
 
 ```
 pnpm build
@@ -41,7 +37,6 @@ pnpm build
 
 More updated instructions please see CI specification, and Dockerfile
 
-License
--------
+## License
 
 All of **Riffy H** application and libraries are licensed under the [MIT licence](https://opensource.org/licenses/MIT). Please see [the licence file](LICENCE) for more information. [tl;dr](https://tldrlegal.com/license/mit-license) you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source.

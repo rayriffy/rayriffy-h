@@ -1,5 +1,5 @@
 name: Initialize
-description: "Composite actions to setup Node environments, and pnpm with cache handling"
+description: 'Composite actions to setup Node environments, and pnpm with cache handling'
 
 inputs:
   hash:
@@ -15,7 +15,7 @@ inputs:
     default: 'default'
 
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: 'Intitialize: Summon NodeJS'
       uses: actions/setup-node@v3

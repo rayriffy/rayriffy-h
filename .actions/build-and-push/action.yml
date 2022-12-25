@@ -1,5 +1,5 @@
 name: Initialize
-description: "Composite actions to setup Node environments, and pnpm with cache handling"
+description: 'Composite actions to setup Node environments, and pnpm with cache handling'
 
 inputs:
   deploys_user:
@@ -16,7 +16,7 @@ inputs:
     required: true
 
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: Build Docker image
       shell: bash
