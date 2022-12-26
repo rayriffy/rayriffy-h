@@ -17,10 +17,6 @@ import type { RequestHandler } from './$types'
 import type { ResponsePayload } from '../../../core/@types/image/ResponsePayload'
 
 export const GET: RequestHandler = async event => {
-  let upstreamBuffer: Buffer
-  let upstreamType: string | null
-  let maxAge: number
-
   // get variables
   const url = event.url.searchParams.get('url') ?? ''
   const width = Number(event.url.searchParams.get('w') ?? '')
@@ -46,11 +42,11 @@ export const GET: RequestHandler = async event => {
     const fetchedImage = await axios.get(url, {
       responseType: 'arraybuffer',
     })
-    upstreamBuffer = fetchedImage.data
-    upstreamType =
+    const upstreamBuffer = fetchedImage.data
+    const upstreamType =
       detectContentType(upstreamBuffer) ||
       (fetchedImage.headers['Content-Type'] ?? '')
-    maxAge = getMaxAge(fetchedImage.headers['Cache-Control'] ?? '')
+    const maxAge = getMaxAge(fetchedImage.headers['Cache-Control'] ?? '')
 
     // get content type
     let contentType: string
@@ -83,8 +79,8 @@ export const GET: RequestHandler = async event => {
         etag: getHash([optimizedBuffer]),
       }
 
-      // write file to local storage
-      await writeImageToFileSystem(
+      // write file to local storage, not await since this is not prioritised
+      writeImageToFileSystem(
         cacheKey,
         contentType,
         payload.maxAge,
