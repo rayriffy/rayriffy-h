@@ -1,20 +1,20 @@
 import { error } from '@sveltejs/kit'
 
 import axios from 'axios'
-import { detectContentType } from '../../core/services/image/detectContentType'
-import { getMaxAge } from '../../core/services/image/getMaxAge'
-import { getSupportedMimeType } from '../../core/services/image/getSupportedMimeType'
-import { getExtension } from '../../core/services/image/getExtension'
-import { AVIF, JPEG, WEBP } from '../../core/constants/image/mimeTypes'
-import { getCacheKey } from '../../core/services/image/getCacheKey'
-import { getHash } from '../../core/services/image/getHash'
-import { optimizeImage } from '../../core/services/image/optimizeImage'
-import { writeImageToFileSystem } from '../../core/services/image/writeImageToFileSystem'
-import { sendResponse } from '../../core/services/image/sendResponse'
-import { readImageFileSystem } from '../../core/services/image/readImageFileSystem'
+import { detectContentType } from '../../../core/services/image/detectContentType'
+import { getMaxAge } from '../../../core/services/image/getMaxAge'
+import { getSupportedMimeType } from '../../../core/services/image/getSupportedMimeType'
+import { getExtension } from '../../../core/services/image/getExtension'
+import { AVIF, JPEG, WEBP } from '../../../core/constants/image/mimeTypes'
+import { getCacheKey } from '../../../core/services/image/getCacheKey'
+import { getHash } from '../../../core/services/image/getHash'
+import { optimizeImage } from '../../../core/services/image/optimizeImage'
+import { writeImageToFileSystem } from '../../../core/services/image/writeImageToFileSystem'
+import { sendResponse } from '../../../core/services/image/sendResponse'
+import { readImageFileSystem } from '../../../core/services/image/readImageFileSystem'
 
 import type { RequestHandler } from './$types'
-import type { ResponsePayload } from '../../core/@types/image/ResponsePayload'
+import type { ResponsePayload } from '../../../core/@types/image/ResponsePayload'
 
 export const GET: RequestHandler = async event => {
   let upstreamBuffer: Buffer

@@ -38,6 +38,7 @@
     "@hapi/accept": "^6.0.0",
     "@prisma/client": "^4.8.0",
     "axios": "^1.2.1",
+    "daisyui": "^2.46.0",
     "lodash": "^4.17.21",
     "send": "^0.18.0",
     "sharp": "^0.31.3"

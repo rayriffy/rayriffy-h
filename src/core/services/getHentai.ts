@@ -1,21 +1,22 @@
+import fs from 'fs'
+import path from 'path'
+
 import { hifuminInstance } from '../constants/hifuminInstance'
 import { hifuminHentaiQuery } from '../constants/hifuminHentaiQuery'
 import { hifuminHentaiToHentai } from './hifuminHentaiToHentai'
 
-import type { AxiosError } from 'axios'
 import type { HifuminSingleResponse } from '../@types/HifuminSingleResponse'
+import type { Hentai } from '../@types/Hentai'
 
 export const getHentai = async (id: number | string) => {
-  // check if there's local cache
-  const cacheHit = false
-
-  console.log({
-    cwd: process.cwd(),
-  })
-
-  // if found then use local data, otherwise fetch from api
-  if (cacheHit) {
-  } else {
+  // try to read local cache, if unable then fetch from scratch
+  try {
+    const hentai = await fs.promises.readFile(
+      path.join(process.cwd(), 'data/hentai', `${id}.json`),
+      'utf8'
+    )
+    return JSON.parse(hentai) as Hentai
+  } catch (_) {
     try {
       const { data } = await hifuminInstance.post<HifuminSingleResponse>('', {
         query: `

@@ -1,5 +1,9 @@
 import send from 'send'
 
+send.mime.define({
+  'image/avif': ['avif'],
+})
+
 export function getExtension(contentType: string): string | null {
   const { mime } = send
   if ('getExtension' in mime) {
