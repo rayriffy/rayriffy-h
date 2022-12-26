@@ -8,8 +8,6 @@ export const optimizeImage = async (
   width: number,
   height?: number
 ) => {
-  let optimizedBuffer = buffer
-
   // Begin sharp transformation logic
   const transformer = sharp(buffer)
 
@@ -43,7 +41,5 @@ export const optimizeImage = async (
     transformer.jpeg({ quality })
   }
 
-  optimizedBuffer = await transformer.toBuffer()
-
-  return optimizedBuffer
+  return transformer.toBuffer()
 }
