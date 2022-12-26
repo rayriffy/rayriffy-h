@@ -35,15 +35,20 @@
   },
   "homepage": "https://h.rayriffy.com",
   "dependencies": {
+    "@hapi/accept": "^6.0.0",
     "@prisma/client": "^4.8.0",
     "axios": "^1.2.1",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "send": "^0.18.0",
+    "sharp": "^0.31.3"
   },
   "devDependencies": {
     "@sveltejs/adapter-node": "^1.0.0",
     "@sveltejs/kit": "^1.0.0",
     "@types/cookie": "^0.5.1",
     "@types/lodash": "^4.14.191",
+    "@types/send": "^0.17.1",
+    "@types/sharp": "^0.31.0",
     "autoprefixer": "^10.4.13",
     "dotenv": "^16.0.3",
     "lint-staged": "^13.1.0",
