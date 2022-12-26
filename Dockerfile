@@ -1,44 +1,58 @@
-FROM node:16-slim as deps
+FROM debian:slim as deps
 
 WORKDIR /app
 
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
-RUN yarn global add pnpm && pnpm -r i --frozen-lockfile
+RUN apt update
+RUN apt install curl unzip -y
+
+RUN curl https://bun.sh/install | bash
+
+COPY package.json .
+COPY bun.lockb .
+
+RUN /root/.bun/bin/bun install
 
 # ? -------------------------
 
-FROM node:16-slim as deps-prod
+FROM debian:slim as deps-prod
 
 WORKDIR /app
 
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
-RUN yarn global add pnpm && pnpm -r i --frozen-lockfile --prod
+COPY --from=deps /root/.bun/bin/bun bun
+
+COPY package.json .
+COPY bun.lockb .
+
+RUN /app/bun install --production
 
 # ? -------------------------
 
-FROM node:16-slim as builder
+FROM debian:slim as builder
 
 WORKDIR /app
 COPY src ./src
 COPY static ./static
-COPY package.json pnpm-lock.yaml* postcss.config.cjs svelte.config.js tailwind.config.cjs tsconfig.json vite.config.js ./
+COPY package.json bun.lockb* pnpm-lock.yaml* postcss.config.cjs svelte.config.js tailwind.config.cjs tsconfig.json vite.config.js ./
+COPY --from=deps /root/.bun/bin/bun bun
 COPY --from=deps /app/node_modules ./node_modules
 
-RUN yarn global add pnpm && pnpm build
+RUN /app/bun run build
 
 # ? -------------------------
 
-FROM gcr.io/distroless/nodejs:16 as runner
+FROM gcr.io/distroless/base as runner
 
-ENV NODE_ENV production
+WORKDIR /app
 
 COPY data ./data
-COPY package.json pnpm-lock.yaml ./
+COPY package.json ./
+COPY --from=deps /root/.bun/bin/bun bun
 COPY --from=deps-prod /app/node_modules ./node_modules
 COPY --from=builder /app/.svelte-kit ./.svelte-kit
 COPY --from=builder /app/build ./build
 
 EXPOSE 3000
 ENV PORT 3000
+ENV ENV production
 
-CMD ["./build/index.js"]
+CMD ["./bun", "build/index.js"]
