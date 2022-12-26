@@ -21,7 +21,7 @@ FROM node:16-slim as builder
 WORKDIR /app
 COPY src ./src
 COPY static ./static
-COPY package.json pnpm-lock.yaml* postcss.config.cjs svelte.config.js tailwind.config.cjs tsconfig.json vite.config.js .
+COPY package.json pnpm-lock.yaml* postcss.config.cjs svelte.config.js tailwind.config.cjs tsconfig.json vite.config.js ./
 COPY --from=deps /app/node_modules ./node_modules
 
 RUN yarn global add pnpm && pnpm build
