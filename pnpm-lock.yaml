@@ -23,7 +23,6 @@ specifiers:
   send: ^0.18.0
   sharp: ^0.31.3
   svelte: ^3.54.0
-  svelte-adapter-bun: ^0.3.1
   svelte-check: ^2.9.2
   tailwindcss: ^3.2.4
   ts-node: ^10.9.1
@@ -56,7 +55,6 @@ devDependencies:
   prettier-plugin-svelte: 2.9.0_ajxj753sv7dbwexjherrch25ta
   prisma: 4.8.0
   svelte: 3.55.0
-  svelte-adapter-bun: 0.3.1
   svelte-check: 2.10.3_qs7rgzvahok4cbkjoy5bgypde4
   tailwindcss: 3.2.4_ra2vnoek4vhbzktaezawwqbin4
   ts-node: 10.9.1_typescript@4.9.4
@@ -2091,12 +2089,6 @@ packages:
   /supports-preserve-symlinks-flag/1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
-
-  /svelte-adapter-bun/0.3.1:
-    resolution: {integrity: sha512-IoxRX6VYd7JlX+g5NVRH2Uc6WadQMPEOF2Cz4y7XasyY1XC8DriD8osdhm8ENQYf8/ou8fCjuddh1MiHqGFQDA==}
-    dependencies:
-      tiny-glob: 0.2.9
-    dev: true
 
   /svelte-check/2.10.3_qs7rgzvahok4cbkjoy5bgypde4:
     resolution: {integrity: sha512-Nt1aWHTOKFReBpmJ1vPug0aGysqPwJh2seM1OvICfM2oeyaA62mOiy5EvkXhltGfhCcIQcq2LoE0l1CwcWPjlw==}

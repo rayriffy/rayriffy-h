@@ -1,4 +1,4 @@
-FROM node:16-slim as deps
+FROM node:18-slim as deps
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ RUN yarn global add pnpm && pnpm -r i --frozen-lockfile
 
 # ? -------------------------
 
-FROM node:16-slim as deps-prod
+FROM node:18-slim as deps-prod
 
 WORKDIR /app
 
@@ -16,7 +16,7 @@ RUN yarn global add pnpm && pnpm -r i --frozen-lockfile --prod
 
 # ? -------------------------
 
-FROM node:16-slim as builder
+FROM node:18-slim as builder
 
 WORKDIR /app
 COPY src ./src
@@ -28,7 +28,7 @@ RUN yarn global add pnpm && pnpm build
 
 # ? -------------------------
 
-FROM gcr.io/distroless/nodejs:16 as runner
+FROM gcr.io/distroless/nodejs:18 as runner
 
 ENV NODE_ENV production
 
