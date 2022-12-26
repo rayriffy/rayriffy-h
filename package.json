@@ -60,7 +60,6 @@
     "prettier-plugin-svelte": "^2.8.1",
     "prisma": "^4.8.0",
     "svelte": "^3.54.0",
-    "svelte-adapter-bun": "^0.3.1",
     "svelte-check": "^2.9.2",
     "tailwindcss": "^3.2.4",
     "ts-node": "^10.9.1",
