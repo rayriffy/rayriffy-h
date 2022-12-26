@@ -24,7 +24,7 @@ export const GET: RequestHandler = async event => {
 
   // get target file type to optimize
   const mimeType = getSupportedMimeType(
-    ['image/webp', 'image/avif'],
+    ['image/webp'],
     event.request.headers.get('accept') ?? ''
   )
 
