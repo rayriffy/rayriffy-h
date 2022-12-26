@@ -24,7 +24,11 @@ export const GET: RequestHandler = async event => {
 
   // get target file type to optimize
   const mimeType = getSupportedMimeType(
-    ['image/webp'],
+    /**
+     * UNSTABLE
+     * at the time of writing, AVIF is very CPU and memory intensive tasks. not recommended for production
+     */
+    ['image/webp' /* , 'image/avif' */],
     event.request.headers.get('accept') ?? ''
   )
 
