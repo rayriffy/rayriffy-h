@@ -1,7 +1,8 @@
 import fs from 'fs'
 import path from 'path'
 
-import { hifuminInstance } from '../constants/hifuminInstance'
+import { env } from '$env/dynamic/private'
+
 import { hifuminHentaiQuery } from '../constants/hifuminHentaiQuery'
 import { hifuminHentaiToHentai } from './hifuminHentaiToHentai'
 
@@ -18,21 +19,34 @@ export const getHentai = async (id: number | string) => {
     return JSON.parse(hentai) as Hentai
   } catch (_) {
     try {
-      const { data } = await hifuminInstance.post<HifuminSingleResponse>('', {
-        query: `
-          query SingleHentaiQuery ($hentaiId: Int!) {
-            nhql {
-              by (id: $hentaiId) {
-                data {
-                  ${hifuminHentaiQuery}
+      const data = await fetch(env.HIFUMIN_API_URL, {
+        body: JSON.stringify({
+          query: `
+            query SingleHentaiQuery ($hentaiId: Int!) {
+              nhql {
+                by (id: $hentaiId) {
+                  data {
+                    ${hifuminHentaiQuery}
+                  }
                 }
               }
             }
-          }
-        `,
-        variables: {
-          hentaiId: Number(id),
+          `,
+          variables: {
+            hentaiId: Number(id),
+          },
+        }),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
         },
+        method: 'POST',
+      }).then(async o => {
+        if (o.status === 200) {
+          return o.json() as Promise<HifuminSingleResponse>
+        } else {
+          throw new Error(await o.json())
+        }
       })
 
       if (data.data.nhql.by.data === null) {

@@ -1,6 +1,5 @@
 import { error } from '@sveltejs/kit'
 
-import axios from 'axios'
 import { AVIF, JPEG, WEBP } from '../../../core/constants/image/mimeTypes'
 
 import { detectContentType } from '../../../core/services/image/detectContentType'
@@ -44,14 +43,12 @@ export const GET: RequestHandler = async event => {
     }
 
     // get image
-    const fetchedImage = await axios.get(url, {
-      responseType: 'arraybuffer',
-    })
-    const upstreamBuffer = fetchedImage.data
+    const fetchedImage = await fetch(url)
+    const upstreamBuffer = Buffer.from(await fetchedImage.arrayBuffer())
     const upstreamType =
       detectContentType(upstreamBuffer) ||
-      (fetchedImage.headers['Content-Type'] ?? '')
-    const maxAge = getMaxAge(fetchedImage.headers['Cache-Control'] ?? '')
+      (fetchedImage.headers.get('Content-Type') ?? '')
+    const maxAge = getMaxAge(fetchedImage.headers.get('Cache-Control'))
 
     // get content type
     let contentType: string
@@ -76,7 +73,7 @@ export const GET: RequestHandler = async event => {
       width
     )
 
-    if (optimizedBuffer) {
+    if (optimizedBuffer !== null) {
       const payload: ResponsePayload = {
         buffer: optimizedBuffer,
         contentType,
@@ -97,6 +94,14 @@ export const GET: RequestHandler = async event => {
       return sendResponse(payload, 'MISS')
     } else {
       throw error(500, 'unable to optimize image')
+      // return sendResponse({
+      //   buffer: upstreamBuffer,
+      //   contentType,
+      //   maxAge: 0,
+      //   etag: getHash([upstreamBuffer])
+      // }, 'MISS', {
+      //   'X-RiffyH-Optimization': 'failure'
+      // })
     }
   } catch (e) {
     throw error(500, 'unable to optimize image')

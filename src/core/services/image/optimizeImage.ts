@@ -8,38 +8,42 @@ export const optimizeImage = async (
   width: number,
   height?: number
 ) => {
-  // Begin sharp transformation logic
-  const transformer = sharp(buffer)
+  try {
+    // Begin sharp transformation logic
+    const transformer = sharp(buffer)
 
-  transformer.rotate()
+    transformer.rotate()
 
-  if (height) {
-    transformer.resize(width, height)
-  } else {
-    const { width: metaWidth } = await transformer.metadata()
-
-    if (metaWidth && metaWidth > width) {
-      transformer.resize(width)
-    }
-  }
-
-  if (contentType === AVIF) {
-    if (transformer.avif) {
-      const avifQuality = quality - 15
-      transformer.avif({
-        quality: Math.max(avifQuality, 0),
-        chromaSubsampling: '4:2:0', // same as webp
-      })
+    if (height) {
+      transformer.resize(width, height)
     } else {
-      transformer.webp({ quality })
-    }
-  } else if (contentType === WEBP) {
-    transformer.webp({ quality })
-  } else if (contentType === PNG) {
-    transformer.png({ quality })
-  } else if (contentType === JPEG) {
-    transformer.jpeg({ quality })
-  }
+      const { width: metaWidth } = await transformer.metadata()
 
-  return transformer.toBuffer()
+      if (metaWidth && metaWidth > width) {
+        transformer.resize(width)
+      }
+    }
+
+    if (contentType === AVIF) {
+      if (transformer.avif) {
+        const avifQuality = quality - 15
+        transformer.avif({
+          quality: Math.max(avifQuality, 0),
+          chromaSubsampling: '4:2:0', // same as webp
+        })
+      } else {
+        transformer.webp({ quality })
+      }
+    } else if (contentType === WEBP) {
+      transformer.webp({ quality })
+    } else if (contentType === PNG) {
+      transformer.png({ quality })
+    } else if (contentType === JPEG) {
+      transformer.jpeg({ quality })
+    }
+
+    return transformer.toBuffer()
+  } catch (_) {
+    return null
+  }
 }

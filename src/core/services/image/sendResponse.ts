@@ -2,7 +2,8 @@ import type { ResponsePayload } from '../../@types/image/ResponsePayload'
 
 export const sendResponse = (
   payload: ResponsePayload,
-  cacheHit: 'HIT' | 'MISS'
+  cacheHit: 'HIT' | 'MISS',
+  extraHeaders: Record<string, string> = {}
 ) =>
   new Response(payload.buffer, {
     headers: {
@@ -16,5 +17,6 @@ export const sendResponse = (
         'max-age=31536000; includeSubDomains; preload',
       ETag: payload.etag,
       'X-RiffyH-Cache': cacheHit,
+      ...extraHeaders,
     },
   })

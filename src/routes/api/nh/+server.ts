@@ -1,12 +1,11 @@
 import { json } from '@sveltejs/kit'
+import { env } from '$env/dynamic/private'
 
-import { hifuminInstance } from '../../../core/constants/hifuminInstance'
 import { hifuminHentaiQuery } from '../../../core/constants/hifuminHentaiQuery'
 
 import { hentaiToMinifiedHentaiForListing } from '../../../core/services/hentaiToMinifiedHentaiForListing'
 import { hifuminHentaiToHentai } from '../../../core/services/hifuminHentaiToHentai'
 
-import type { AxiosError } from 'axios'
 import type { RequestHandler } from './$types'
 import type { HifuminHentai } from '../../../core/@types/HifuminHentai'
 
@@ -27,28 +26,40 @@ export const GET: RequestHandler = async event => {
 
     const {
       data: {
-        data: {
-          nhql: {
-            search: { data: searchResult },
-          },
+        nhql: {
+          search: { data: searchResult },
         },
       },
-    } = await hifuminInstance.post<QueryResult>('', {
-      query: `
-      query RiffyHSearch($query: String!, $page: Int!) {
-        nhql {
-          search(with: $query, page: $page) {
-            data {
-              ${hifuminHentaiQuery}
+    } = await fetch(env.HIFUMIN_API_URL, {
+      body: JSON.stringify({
+        query: `
+        query RiffyHSearch($query: String!, $page: Int!) {
+          nhql {
+            search(with: $query, page: $page) {
+              data {
+                ${hifuminHentaiQuery}
+              }
             }
           }
         }
-      }
-    `,
-      variables: {
-        query: query as string,
-        page: Number(page),
+      `,
+        variables: {
+          query: query as string,
+          page: Number(page),
+        },
+      }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
+      method: 'POST',
+    }).then(async o => {
+      console.log('status: ', o.status)
+      if (o.status === 200) {
+        return o.json() as Promise<QueryResult>
+      } else {
+        throw new Error(await o.json())
+      }
     })
 
     // convert
@@ -74,10 +85,11 @@ export const GET: RequestHandler = async event => {
       }
     )
   } catch (e) {
+    console.log(e)
     return json(
       {
         status: 'failed',
-        response: (e as AxiosError)?.response?.data ?? null,
+        response: (e as Error)?.message ?? null,
       },
       {
         status: 500,
