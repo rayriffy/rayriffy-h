@@ -1,5 +1,5 @@
 <script lang="ts">
-  import OptimizedImage from '../../core/components/OptimizedImage.svelte'
+  import OptimizedImage from 'svelte-aio'
   import { getImageUrl } from '../../core/services/getImageUrl'
 
   import type { Image } from '../../core/@types/Image'

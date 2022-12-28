@@ -1,5 +1,5 @@
 <script lang="ts">
-  import OptimizedImage from './OptimizedImage.svelte'
+  import Image from 'svelte-aio'
 
   import { getImageUrl } from '../services/getImageUrl'
   import { tags } from '../../core/constants/tags'
@@ -58,7 +58,7 @@
       </div>
     </div>
   </div>
-  <OptimizedImage
+  <Image
     src={getImageUrl({
       image: hentai.images.cover,
       type: 'cover',
