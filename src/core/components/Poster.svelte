@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Image from 'svelte-aio'
+  import BlurredImage from './BlurredImage.svelte'
 
   import { getImageUrl } from '../services/getImageUrl'
   import { tags } from '../../core/constants/tags'
@@ -19,7 +19,7 @@
 
 <article class="group relative rounded-lg overflow-hidden">
   <div
-    class="absolute top-0 bottom-0 left-0 right-0 w-full transition opacity-0 hover:opacity-100 text-white flex flex-col justify-between px-4 py-8 bg-black/80"
+    class="absolute top-0 bottom-0 left-0 right-0 w-full transition opacity-0 group-hover:opacity-100 text-white flex flex-col justify-between px-4 py-8 bg-black/75 z-10"
   >
     <div>
       <div class="flex items-center pb-2 justify-between">
@@ -58,7 +58,7 @@
       </div>
     </div>
   </div>
-  <Image
+  <BlurredImage
     src={getImageUrl({
       image: hentai.images.cover,
       type: 'cover',

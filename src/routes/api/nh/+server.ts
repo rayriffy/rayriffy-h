@@ -1,13 +1,13 @@
 import { json } from '@sveltejs/kit'
 import { env } from '$env/dynamic/private'
 
-import { hifuminHentaiQuery } from '../../../core/constants/hifuminHentaiQuery'
+import { hifuminHentaiQuery } from '$core/constants/hifuminHentaiQuery'
 
-import { hentaiToMinifiedHentaiForListing } from '../../../core/services/hentaiToMinifiedHentaiForListing'
-import { hifuminHentaiToHentai } from '../../../core/services/hifuminHentaiToHentai'
+import { hentaiToMinifiedHentaiForListing } from '$core/services/hentaiToMinifiedHentaiForListing'
+import { hifuminHentaiToHentai } from '$core/services/hifuminHentaiToHentai'
 
 import type { RequestHandler } from './$types'
-import type { HifuminHentai } from '../../../core/@types/HifuminHentai'
+import type { HifuminHentai } from '$core/@types/HifuminHentai'
 
 export const GET: RequestHandler = async event => {
   const query = event.url.searchParams.get('query')

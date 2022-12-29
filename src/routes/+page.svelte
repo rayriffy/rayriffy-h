@@ -1,9 +1,9 @@
 <script lang="ts">
   import { onMount } from 'svelte'
 
-  import Poster from '../core/components/Poster.svelte'
+  import Poster from '$core/components/Poster.svelte'
 
-  import type { MinifiedHentaiForListing } from '../core/@types/MinifiedHentaiForListing'
+  import type { MinifiedHentaiForListing } from '$core/@types/MinifiedHentaiForListing'
 
   interface APIResponse<T> {
     status: 'success' | 'failed'

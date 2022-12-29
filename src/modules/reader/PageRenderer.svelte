@@ -1,5 +1,5 @@
 <script lang="ts">
-  import OptimizedImage from 'svelte-aio'
+  import BlurredImage from '../../core/components/BlurredImage.svelte'
   import { getImageUrl } from '../../core/services/getImageUrl'
 
   import type { Image } from '../../core/@types/Image'
@@ -12,7 +12,7 @@
 <section>
   {#each pages as page, i}
     {#if !excludes.includes(i + 1)}
-      <OptimizedImage
+      <BlurredImage
         src={getImageUrl({
           image: page,
           mediaId: mediaId,

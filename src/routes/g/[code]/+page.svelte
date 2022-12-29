@@ -1,5 +1,5 @@
 <script lang="ts">
-  import PageRenderer from '../../../modules/reader/PageRenderer.svelte'
+  import PageRenderer from '$modules/reader/PageRenderer.svelte'
   import type { PageData } from './$types'
 
   export let data: PageData

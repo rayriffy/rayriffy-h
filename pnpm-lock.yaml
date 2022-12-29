@@ -3,6 +3,9 @@ lockfileVersion: 5.4
 specifiers:
   '@hapi/accept': ^6.0.0
   '@prisma/client': ^4.8.0
+  '@storeon/crosstab': ^1.0.2
+  '@storeon/localstorage': ^1.5.0
+  '@storeon/svelte': ^1.0.0
   '@sveltejs/adapter-node': ^1.0.0
   '@sveltejs/kit': ^1.0.0
   '@types/cookie': ^0.5.1
@@ -22,6 +25,7 @@ specifiers:
   prisma: ^4.8.0
   send: ^0.18.0
   sharp: ^0.31.3
+  storeon: ^3.1.5
   svelte: ^3.54.0
   svelte-aio: ^0.1.1
   svelte-check: ^2.9.2
@@ -34,11 +38,15 @@ specifiers:
 dependencies:
   '@hapi/accept': 6.0.0
   '@prisma/client': 4.8.0_prisma@4.8.0
+  '@storeon/crosstab': 1.0.2
+  '@storeon/localstorage': 1.5.0
+  '@storeon/svelte': 1.0.0_64iderbp2zbcgqceqgpe3hky6u
   axios: 1.2.1
   daisyui: 2.46.0_63gb4bqnxhe4g6pce5lz6sagrm
   lodash: 4.17.21
   send: 0.18.0
   sharp: 0.31.3
+  storeon: 3.1.5
   svelte-aio: 0.1.1
 
 devDependencies:
@@ -414,6 +422,24 @@ packages:
       picomatch: 2.3.1
       rollup: 3.8.1
     dev: true
+
+  /@storeon/crosstab/1.0.2:
+    resolution: {integrity: sha512-UKzJpJaJA12B9kc98MDfZ1Hh3M9HNAMSfgpjNHdg1JgZAHrmN6nXxaDsIlJYgSASND7IOoT/Q8yJB4uwTTodzA==}
+    dev: false
+
+  /@storeon/localstorage/1.5.0:
+    resolution: {integrity: sha512-FVosJE+DKjd4aYL407i4ZvBmYQ+43Uqud+RLjGlxMYjY3Lpe6MZZljc/1kSn4FFcjbthV/zDmAEjTGRFiThntw==}
+    dev: false
+
+  /@storeon/svelte/1.0.0_64iderbp2zbcgqceqgpe3hky6u:
+    resolution: {integrity: sha512-0JGvuYGbkhKlPObs4v2RfpKttYP2z4DP9ndPTnxtoS3gwHhDxO8OpSkUxokbfhnn/mWzuW1jNjv1QzrfgoCWgg==}
+    peerDependencies:
+      storeon: ^3.0.0
+      svelte: ^3.20.0
+    dependencies:
+      storeon: 3.1.5
+      svelte: 3.55.0
+    dev: false
 
   /@sveltejs/adapter-node/1.0.0_@sveltejs+kit@1.0.1:
     resolution: {integrity: sha512-Q8an8CXEt5XlFbyT1NBM4xELNZD8xPVZfKCcgorCfPkeBP5ftDgPaK12JIokXA5koYJ54AJcNY4ams9TZ7yGxA==}
@@ -2023,6 +2049,19 @@ packages:
     engines: {node: '>= 0.8'}
     dev: false
 
+  /storeon/3.1.5:
+    resolution: {integrity: sha512-VuW4GQr3LGQr+gqscqsOz2c9asK9N+B+8+sWs7Pj4OqU7bngYIqsPF3IYpkbmccKNWjs7wwxUAlR+gtL9cEMEg==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      preact: '>=10.0.0'
+      react: '>=16.8.0'
+    peerDependenciesMeta:
+      preact:
+        optional: true
+      react:
+        optional: true
+    dev: false
+
   /streamsearch/1.1.0:
     resolution: {integrity: sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==}
     engines: {node: '>=10.0.0'}
@@ -2194,7 +2233,6 @@ packages:
   /svelte/3.55.0:
     resolution: {integrity: sha512-uGu2FVMlOuey4JoKHKrpZFkoYyj0VLjJdz47zX5+gVK5odxHM40RVhar9/iK2YFRVxvfg9FkhfVlR0sjeIrOiA==}
     engines: {node: '>= 8'}
-    dev: true
 
   /tailwindcss/3.2.4_ra2vnoek4vhbzktaezawwqbin4:
     resolution: {integrity: sha512-AhwtHCKMtR71JgeYDaswmZXhPcW9iuI9Sp2LvZPo9upDZ7231ZJ7eA9RaURbhpXGVlrjX4cFNlB4ieTetEb7hQ==}

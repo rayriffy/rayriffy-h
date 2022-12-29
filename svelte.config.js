@@ -11,6 +11,11 @@ const config = {
     env: {
       publicPrefix: 'PUBLIC_',
     },
+    alias: {
+      $storeon: 'src/context',
+      '$core/*': 'src/core',
+      '$modules/*': 'src/modules',
+    },
   },
 }
 

@@ -1,5 +1,5 @@
-import { codes } from '../../../core/constants/codes'
-import { getHentai } from '../../../core/services/getHentai'
+import { codes } from '$core/constants/codes'
+import { getHentai } from '$core/services/getHentai'
 
 import type { PageServerLoad } from './$types'
 
