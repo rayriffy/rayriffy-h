@@ -10,8 +10,10 @@ import type { RequestHandler } from './$types'
 import type { HifuminHentai } from '$core/@types/HifuminHentai'
 
 export const GET: RequestHandler = async event => {
-  const query = event.url.searchParams.get('query')
+  let query = event.url.searchParams.get('query')
   const page = event.url.searchParams.get('page')
+
+  if (query === '') query = 'doujinshi'
 
   try {
     interface QueryResult {
@@ -54,10 +56,10 @@ export const GET: RequestHandler = async event => {
       },
       method: 'POST',
     }).then(async o => {
-      console.log('status: ', o.status)
       if (o.status === 200) {
         return o.json() as Promise<QueryResult>
       } else {
+        console.log('status: ', o.status)
         throw new Error(await o.json())
       }
     })

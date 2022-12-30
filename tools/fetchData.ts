@@ -168,4 +168,36 @@ const fetchQueue = new PQueue({
     console.error("there's some error during fetching! crashing...")
     process.exit(1)
   }
+
+  /**
+   * Create search keys for searching
+   */
+  const orderedHentai = codes
+    .map(code => {
+      try {
+        const targetCode = typeof code === 'number' ? code : code.code
+        const targetHentai: Hentai = JSON.parse(
+          fs
+            .readFileSync(path.join(hentaiDirectory, `${targetCode}.json`))
+            .toString()
+        )
+
+        const transformedHentai: Hentai = {
+          ...targetHentai,
+          images: {
+            ...targetHentai.images,
+            pages: [],
+          },
+        }
+
+        return transformedHentai
+      } catch (e) {
+        return null
+      }
+    })
+    .filter(o => o !== null)
+  await fs.promises.writeFile(
+    path.join(cacheDirectory, 'searchKey.json'),
+    JSON.stringify(orderedHentai)
+  )
 })()

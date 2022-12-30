@@ -1,8 +1,10 @@
 <script lang="ts">
+  import { page } from '$app/stores'
+
   import SearchBar from '$core/components/SearchBar.svelte'
   import Listing from '$modules/listing/components/Listing.svelte'
 </script>
 
-<SearchBar section="main" />
+<SearchBar section="listing" />
 
-<Listing section="main" page={1} />
+<Listing section="listing" page={Number($page.params.page)} />

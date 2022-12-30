@@ -1,7 +1,8 @@
 <script lang="ts">
   import Image from 'svelte-aio'
+  import { useStore } from '$storeon'
 
-  let blur = true
+  const { settings } = useStore('settings')
 
   export let src: string
   export let width: number
@@ -10,14 +11,18 @@
 
   let klass: string | undefined = ''
   export { klass as class }
+
+  $: blur = $settings.safemode
 </script>
 
-<Image
-  {...{
-    src,
-    width,
-    height,
-    alt,
-    class: `${klass}${blur ? ' blur-lg' : ''}`,
-  }}
-/>
+<div class={`overflow-hidden ${klass}`}>
+  <Image
+    {...{
+      src,
+      width,
+      height,
+      alt,
+      class: blur ? ' blur-xl' : undefined,
+    }}
+  />
+</div>

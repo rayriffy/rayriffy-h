@@ -3,6 +3,6 @@
   import Listing from '$modules/listing/components/Listing.svelte'
 </script>
 
-<SearchBar section="main" />
+<SearchBar section="listing" />
 
-<Listing section="main" page={1} />
+<Listing section="listing" page={1} />
