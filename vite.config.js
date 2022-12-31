@@ -6,11 +6,8 @@ const config = {
   plugins: [
     sveltekit(),
     SvelteKitPWA({
-      srcDir: './src',
       scope: '/',
       base: '/',
-      strategies: 'injectManifest',
-      registerType: 'autoUpdate',
       manifest: {
         short_name: 'Riffy H',
         name: 'Riffy H',
