@@ -6,8 +6,47 @@ const config = {
   plugins: [
     sveltekit(),
     SvelteKitPWA({
+      srcDir: './src',
+      scope: '/',
+      base: '/',
+      strategies: 'injectManifest',
       registerType: 'autoUpdate',
+      manifest: {
+        short_name: 'Riffy H',
+        name: 'Riffy H',
+        start_url: '/',
+        scope: '/',
+        display: 'standalone',
+        theme_color: '#161e2e',
+        background_color: '#ffffff',
+        icons: [
+          {
+            src: '/icon-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: '/icon-256x256.png',
+            sizes: '256x256',
+            type: 'image/png',
+          },
+          {
+            src: '/icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+          {
+            src: '/icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any maskable',
+          },
+        ],
+      },
       workbox: {
+        cleanupOutdatedCaches: true,
+        skipWaiting: true,
+        clientsClaim: true,
         runtimeCaching: [
           // optimized image
           {

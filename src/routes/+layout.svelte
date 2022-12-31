@@ -32,8 +32,11 @@
   })
 
   $: webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : ''
-  $: console.log({ webManifest })
 </script>
+
+<svelte:head>
+  {@html webManifest}
+</svelte:head>
 
 <div class="app max-w-lg mx-auto">
   <main class="pb-16">
