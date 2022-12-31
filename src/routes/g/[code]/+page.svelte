@@ -1,9 +1,11 @@
 <script lang="ts">
   import BlurredImage from '$core/components/BlurredImage.svelte'
-  import { getImageUrl } from '$core/services/getImageUrl'
+  import Favorite from '$modules/reader/Favorite.svelte'
   import PageRenderer from '$modules/reader/PageRenderer.svelte'
   import TagsRenderer from '$modules/reader/TagsRenderer.svelte'
   import BookContentIcon from '@svicons/boxicons-regular/book-content.svelte'
+
+  import { getImageUrl } from '$core/services/getImageUrl'
 
   import type { PageData } from './$types'
 
@@ -36,8 +38,11 @@
         <TagsRenderer tags={data.hentai.tags} />
       </div>
     </article>
+    <div class="w-full">
+      <Favorite hentai={data.hentai} />
+    </div>
   </section>
-  <div class="divider">
+  <div class="divider mb-8">
     <BookContentIcon class="w-12 text-base-300" />
   </div>
   <PageRenderer

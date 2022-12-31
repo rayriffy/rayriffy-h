@@ -7,15 +7,21 @@
 
   import type { SearchStore } from '$storeon/@types/SearchStore'
 
-  export let section: keyof SearchStore['search']
+  export let section: keyof SearchStore['search'] | 'tag'
   export let page: number
+  export let tagKey: string = ''
 
-  const prefix = section === 'main' ? '/' : '/listing/'
+  const prefix =
+    section === 'listing'
+      ? '/listing/'
+      : section === 'tag'
+      ? `/tag/${tagKey}/`
+      : ''
 
   const { search } = useStore('search')
 </script>
 
-{#await getListing(page, $search[section], section)}
+{#await getListing(page, section === 'tag' ? tagKey : $search[section], section)}
   <div class="p-32 flex flex-col items-center">
     <progress class="progress w-56" />
     <p class="text-base-content text-sm pt-2">Loading...</p>

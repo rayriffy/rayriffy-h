@@ -5,7 +5,7 @@ import type { SearchStore } from '$storeon/@types/SearchStore'
 export const getListing = async (
   page: number,
   query: string,
-  mode: keyof SearchStore['search']
+  mode: keyof SearchStore['search'] | 'tag'
 ) => {
   interface ExportedFunction {
     items: MinifiedHentaiForListing[]
