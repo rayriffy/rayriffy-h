@@ -8,7 +8,7 @@ const config = {
     SvelteKitPWA({
       scope: '/',
       base: '/',
-      // registerType: 'prompt',
+      registerType: 'prompt',
       manifest: {
         short_name: 'Riffy H',
         name: 'Riffy H',
