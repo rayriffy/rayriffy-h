@@ -2,6 +2,8 @@ import { sveltekit } from '@sveltejs/kit/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import { SvelteKitPWA } from '@vite-pwa/sveltekit'
 
+import { runtimeCaching } from './runtimeCaching'
+
 /** @type {import('vite').UserConfig} */
 const config = {
   plugins: [
@@ -11,7 +13,7 @@ const config = {
       registerType: 'autoUpdate',
       injectRegister: 'auto',
       workbox: {
-        runtimeCaching: {},
+        runtimeCaching,
       },
     }),
   ],
