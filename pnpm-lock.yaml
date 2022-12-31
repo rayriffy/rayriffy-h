@@ -37,10 +37,6 @@ specifiers:
   typescript: ^4.9.3
   vite: ^4.0.0
   vite-plugin-pwa: ^0.14.0
-  workbox-expiration: ^6.5.4
-  workbox-precaching: ^6.5.4
-  workbox-routing: ^6.5.4
-  workbox-strategies: ^6.5.4
   workbox-window: ^6.5.4
 
 dependencies:
@@ -82,10 +78,6 @@ devDependencies:
   typescript: 4.9.4
   vite: 4.0.3
   vite-plugin-pwa: 0.14.0_kd2yym7bvosszn2volak4ngp5q
-  workbox-expiration: 6.5.4
-  workbox-precaching: 6.5.4
-  workbox-routing: 6.5.4
-  workbox-strategies: 6.5.4
   workbox-window: 6.5.4
 
 packages:
