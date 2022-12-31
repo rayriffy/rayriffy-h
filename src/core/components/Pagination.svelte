@@ -1,6 +1,4 @@
 <script lang="ts">
-  import PaginationPage from './PaginationPage.svelte'
-
   export let max: number
   export let current: number
   export let prefix: string = '/'
@@ -18,12 +16,10 @@
 
 <div class="btn-group">
   {#each Array.from({ length: pageLength }) as _, i}
-    <PaginationPage
-      page={i + pageStartAt + 1}
-      {...{
-        current,
-        prefix,
-      }}
-    />
+    {@const page = i + pageStartAt + 1}
+    <a
+      href={`${prefix}${page === 1 ? '' : `p/${page}`}`}
+      class={`btn btn-sm${page === current ? ' btn-active' : ''}`}>{page}</a
+    >
   {/each}
 </div>

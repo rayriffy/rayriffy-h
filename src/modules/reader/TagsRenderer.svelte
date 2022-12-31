@@ -21,14 +21,12 @@
     </span>
     <div class="flex flex-wrap">
       {#each tags as tag}
-        <div class="p-1">
-          <a
-            href={`/tag/${tag.id}`}
-            class={`text-xs uppercase rounded-md px-2 py-1 text-white ${type.color} font-semibold`}
-          >
-            {tag.name}
-          </a>
-        </div>
+        <a
+          href={`/tag/${tag.id}`}
+          class={`text-xs uppercase rounded-md px-2 py-1 text-white ${type.color} font-semibold m-1`}
+        >
+          {tag.name}
+        </a>
       {/each}
     </div>
   </div>

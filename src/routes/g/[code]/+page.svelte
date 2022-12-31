@@ -12,7 +12,7 @@
 
 {#if data.hentai}
   <section class="p-4 flex flex-col items-center space-y-6">
-    <div class="rounded-xl overflow-hidden">
+    <div class="rounded-xl overflow-hidden shadow-md">
       <BlurredImage
         src={getImageUrl({
           image: data.hentai.images.cover,

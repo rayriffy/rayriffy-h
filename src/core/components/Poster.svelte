@@ -2,19 +2,12 @@
   import BlurredImage from './BlurredImage.svelte'
 
   import { getImageUrl } from '../services/getImageUrl'
-  import { tags } from '../../core/constants/tags'
 
   import type { MinifiedHentaiForListing } from '../@types/MinifiedHentaiForListing'
 
   export let hentai: MinifiedHentaiForListing
 
   const availableFlags = ['english', 'japanese', 'chinese']
-  const filteredTags = tags
-    .map(o => ({
-      ...o,
-      count: hentai.tags.find(j => j.name === o.name)?.amount ?? 0,
-    }))
-    .filter(o => o.count !== 0)
 </script>
 
 <article class="group relative">
