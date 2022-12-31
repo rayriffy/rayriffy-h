@@ -10,7 +10,7 @@
 </script>
 
 <div class="app max-w-lg mx-auto">
-  <main class="p-4 pb-16">
+  <main class="pb-16">
     <slot />
   </main>
   <Navbar />

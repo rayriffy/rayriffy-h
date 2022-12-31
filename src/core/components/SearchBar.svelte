@@ -20,13 +20,15 @@
   }
 </script>
 
-<input
-  type="search"
-  placeholder="Keywords or 6-digit code"
-  class="input w-full bg-base-200"
-  value={$search[section]}
-  on:input={({ target }) => {
-    // @ts-ignore
-    return debounce(target?.value ?? '')
-  }}
-/>
+<section class="px-4 pt-4">
+  <input
+    type="search"
+    placeholder="Keywords or 6-digit code"
+    class="input w-full bg-base-200"
+    value={$search[section]}
+    on:input={({ target }) => {
+      // @ts-ignore
+      return debounce(target?.value ?? '')
+    }}
+  />
+</section>

@@ -18,17 +18,18 @@
 </script>
 
 <article class="group relative">
-  <BlurredImage
-    src={getImageUrl({
-      image: hentai.images.cover,
-      type: 'cover',
-      mediaId: hentai.media_id,
-    })}
-    alt={hentai.title}
-    width={hentai.images.cover.w}
-    height={hentai.images.cover.h}
-    class="shadow-md rounded-xl"
-  />
+  <div class="rounded-xl overflow-hidden shadow-md">
+    <BlurredImage
+      src={getImageUrl({
+        image: hentai.images.cover,
+        type: 'cover',
+        mediaId: hentai.media_id,
+      })}
+      alt={hentai.title}
+      width={hentai.images.cover.w}
+      height={hentai.images.cover.h}
+    />
+  </div>
   <section class="mt-3">
     <div class="flex items-center space-x-2">
       {#each hentai.languages.filter( lang => availableFlags.includes(lang.name) ) as language}

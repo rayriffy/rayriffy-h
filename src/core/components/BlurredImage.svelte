@@ -15,14 +15,12 @@
   $: blur = $settings.safemode
 </script>
 
-<div class={`overflow-hidden ${klass}`}>
-  <Image
-    {...{
-      src,
-      width,
-      height,
-      alt,
-      class: blur ? ' blur-xl' : undefined,
-    }}
-  />
-</div>
+<Image
+  {...{
+    src,
+    width,
+    height,
+    alt,
+    class: `${klass} ${blur ? ' blur-xl' : ''}`,
+  }}
+/>
