@@ -41,6 +41,8 @@ const config = {
         ],
       },
       workbox: {
+        globDirectory: 'build',
+        globPatterns: ['client/**/*.{js,css,ico,png,svg,webp,woff,woff2}'],
         cleanupOutdatedCaches: true,
         skipWaiting: true,
         clientsClaim: true,
