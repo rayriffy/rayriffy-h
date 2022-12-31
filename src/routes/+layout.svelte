@@ -11,7 +11,10 @@
   provideStoreon(store)
 
   onMount(async () => {
-    console.log({ pwaInfo })
+    caches.delete('next-image-assets')
+    caches.delete('next-galleries')
+    caches.delete('next-listing')
+
     if (pwaInfo) {
       const { registerSW } = await import('virtual:pwa-register')
       registerSW({
