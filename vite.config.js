@@ -8,6 +8,7 @@ const config = {
     SvelteKitPWA({
       scope: '/',
       base: '/',
+      // registerType: 'prompt',
       manifest: {
         short_name: 'Riffy H',
         name: 'Riffy H',
@@ -44,8 +45,6 @@ const config = {
         globDirectory: 'build',
         globPatterns: ['client/**/*.{js,css,ico,png,svg,webp,woff,woff2}'],
         cleanupOutdatedCaches: true,
-        skipWaiting: true,
-        clientsClaim: true,
         runtimeCaching: [
           // optimized image
           {
