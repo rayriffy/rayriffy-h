@@ -7,7 +7,6 @@ const config = {
     sveltekit(),
     SvelteKitPWA({
       registerType: 'autoUpdate',
-      injectRegister: 'auto',
       workbox: {
         runtimeCaching: [
           // optimized image
