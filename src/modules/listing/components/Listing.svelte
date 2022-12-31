@@ -32,7 +32,7 @@
   </section>
 
   <section class="grid grid-cols-2 gap-4 items-center px-4">
-    {#each items as hentai (hentai.id)}
+    {#each items as hentai}
       <a href={`/g/${hentai.id}`}>
         <Poster {hentai} />
       </a>

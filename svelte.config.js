@@ -10,7 +10,7 @@ const config = {
   kit: {
     adapter: adapter(),
     env: {
-      publicPrefix: 'PUBLIC_',
+      publicPrefix: 'RIFFYH_',
     },
     alias: {
       $storeon: 'src/context',

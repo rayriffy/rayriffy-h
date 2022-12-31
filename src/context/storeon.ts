@@ -2,7 +2,6 @@ import { createStoreon } from 'storeon'
 
 import { persistState } from '@storeon/localstorage'
 import { crossTab } from '@storeon/crosstab'
-import { useStoreon } from '@storeon/svelte'
 
 import { collection } from './states/collection'
 import type { CollectionStore } from './@types/CollectionStore'
@@ -48,7 +47,10 @@ export const store = createStoreon<Store, Event>([
           storage: sessionStorage,
         }),
         crossTab({
-          filter: (event, data) => event.toString().startsWith('search/'),
+          filter: (event, data) =>
+            ['search/', 'collection/', 'history/', 'metadata/'].some(o =>
+              event.toString().startsWith(o)
+            ),
         }),
       ]
     : []),
