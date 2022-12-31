@@ -37,6 +37,7 @@ specifiers:
   typescript: ^4.9.3
   vite: ^4.0.0
   vite-plugin-pwa: ^0.14.0
+  workbox-window: ^6.5.4
 
 dependencies:
   '@hapi/accept': 6.0.0
@@ -76,7 +77,8 @@ devDependencies:
   tslib: 2.4.1
   typescript: 4.9.4
   vite: 4.0.3
-  vite-plugin-pwa: 0.14.0_vite@4.0.3
+  vite-plugin-pwa: 0.14.0_kd2yym7bvosszn2volak4ngp5q
+  workbox-window: 6.5.4
 
 packages:
 
@@ -1857,7 +1859,7 @@ packages:
       vite-plugin-pwa: ^0.14.0
     dependencies:
       '@sveltejs/kit': 1.0.1_svelte@3.55.0+vite@4.0.3
-      vite-plugin-pwa: 0.14.0_vite@4.0.3
+      vite-plugin-pwa: 0.14.0_kd2yym7bvosszn2volak4ngp5q
     dev: true
 
   /acorn-node/1.8.2:
@@ -4480,10 +4482,11 @@ packages:
   /v8-compile-cache-lib/3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}
 
-  /vite-plugin-pwa/0.14.0_vite@4.0.3:
+  /vite-plugin-pwa/0.14.0_kd2yym7bvosszn2volak4ngp5q:
     resolution: {integrity: sha512-3wZx47PLWTckOQhc8Y6YZjAbNZ89Ovh4TdCT97MGhgl7aFd2LUekVnAmIgFwgMqyxzJ93nmkPF/ALpEW/i2qCg==}
     peerDependencies:
       vite: ^3.1.0 || ^4.0.0
+      workbox-window: ^6.5.4
     dependencies:
       '@rollup/plugin-replace': 5.0.2_rollup@3.8.1
       debug: 4.3.4
