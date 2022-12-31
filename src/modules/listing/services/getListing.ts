@@ -1,18 +1,14 @@
 import type { APIResponse } from '$core/@types/APIResponse'
-import type { MinifiedHentaiForListing } from '$core/@types/MinifiedHentaiForListing'
+import type { ListingResult } from '$core/@types/ListingResult'
 import type { SearchStore } from '$storeon/@types/SearchStore'
+import type { MinifiedHentaiForListing } from '$core/@types/MinifiedHentaiForListing'
 
 export const getListing = async (
   page: number,
   query: string,
   mode: keyof SearchStore['search'] | 'tag'
 ) => {
-  interface ExportedFunction {
-    items: MinifiedHentaiForListing[]
-    maxPage: number
-  }
-
-  const fetchedData: APIResponse<ExportedFunction> = await fetch(
+  const fetchedData: APIResponse<ListingResult> = await fetch(
     `/api/${mode}?${new URLSearchParams({
       query: query,
       page: page.toString(),

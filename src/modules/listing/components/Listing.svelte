@@ -16,7 +16,7 @@
       ? '/listing/'
       : section === 'tag'
       ? `/tag/${tagKey}/`
-      : ''
+      : '/'
 
   const { search } = useStore('search')
 </script>
@@ -31,8 +31,8 @@
     <Pagination max={maxPage} current={page} {prefix} />
   </section>
 
-  <section class="grid grid-cols-2 gap-8 items-center px-4">
-    {#each items as hentai}
+  <section class="grid grid-cols-2 gap-4 items-center px-4">
+    {#each items as hentai (hentai.id)}
       <a href={`/g/${hentai.id}`}>
         <Poster {hentai} />
       </a>

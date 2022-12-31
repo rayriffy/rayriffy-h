@@ -21,13 +21,13 @@
   >
     <BoxIcon class="h-5 w-5" />
   </a>
-  <button>
+  <a href="/custom" class={printClass(['/custom'])}>
     <NavigationIcon class="h-5 w-5" />
-  </button>
-  <button>
+  </a>
+  <a href="/collection" class={printClass(['/collection'])}>
     <BookmarksIcon class="h-5 w-5" />
-  </button>
-  <button>
+  </a>
+  <a href="/settings" class={printClass(['/settings'])}>
     <CogIcon class="h-5 w-5" />
-  </button>
+  </a>
 </nav>
