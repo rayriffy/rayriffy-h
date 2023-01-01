@@ -2,11 +2,14 @@
   import '../styles/tailwind.css'
 
   import Navbar from '$core/components/Navbar.svelte'
+  import UpvoteIcon from '@svicons/boxicons-regular/upvote.svelte'
 
   import { onMount } from 'svelte'
   import { provideStoreon } from '@storeon/svelte'
   import { store } from '$storeon'
   import { pwaInfo } from 'virtual:pwa-info'
+
+  let isUpdateAvailable = false
 
   provideStoreon(store)
 
@@ -19,6 +22,9 @@
       const { registerSW } = await import('virtual:pwa-register')
       registerSW({
         immediate: true,
+        onNeedRefresh() {
+          isUpdateAvailable = true
+        },
         onRegistered(r) {
           // uncomment following code if you want check for updates
           // r && setInterval(() => {
@@ -42,6 +48,20 @@
 </svelte:head>
 
 <div class="app max-w-lg mx-auto">
+  {#if isUpdateAvailable}
+    <div class="toast toast-top toast-end">
+      <button
+        class="alert alert-info px-4 py-1 text-sm"
+        on:click={() => window.location.reload()}
+      >
+        <div>
+          <span class="flex"
+            ><UpvoteIcon class="w-5 pr-1" /> Update available</span
+          >
+        </div>
+      </button>
+    </div>
+  {/if}
   <main class="pb-16">
     <slot />
   </main>
