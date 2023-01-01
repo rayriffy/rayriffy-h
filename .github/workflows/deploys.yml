@@ -27,7 +27,7 @@ jobs:
             hentai-cache-v2-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
             hentai-cache-v2-${{ secrets.CACHE_HASH }}-
       - run: pnpm fetch:data
-      # - run: pnpm sync:data
+      - run: pnpm sync:data
 
   build:
     name: build-${{ matrix.mode }}
