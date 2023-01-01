@@ -2,7 +2,6 @@ import fs from 'fs'
 import path from 'path'
 
 import { PrismaClient } from '@prisma/client'
-import axios from 'axios'
 import dotenv from 'dotenv'
 import PQueue from 'p-queue'
 import chunk from 'lodash/chunk'
@@ -15,7 +14,6 @@ import { hifuminHentaiQuery } from '../src/core/constants/hifuminHentaiQuery'
 import { hifuminHentaiToHentai } from '../src/core/services/hifuminHentaiToHentai'
 
 import type { Hentai as PrismaHentai } from '@prisma/client'
-import type { AxiosError } from 'axios'
 import type { Hentai } from '../src/core/@types/Hentai'
 import type { HifuminSingleResponse } from '../src/core/@types/HifuminSingleResponse'
 
@@ -63,20 +61,27 @@ const fetchQueue = new PQueue({
         }
       `
 
-      const { data } = await axios.post<HifuminSingleResponse>(
+      const data: HifuminSingleResponse = await fetch(
         process.env.HIFUMIN_API_URL as string,
         {
-          query,
-          variables: {
-            hentaiId: Number(code),
-          },
-        },
-        {
+          body: JSON.stringify({
+            query,
+            variables: {
+              hentaiId: Number(code),
+            },
+          }),
           headers: {
-            'Accept-Encoding': '*',
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
           },
         }
-      )
+      ).then(async o => {
+        if (o.status === 200) {
+          return await o.json()
+        } else {
+          throw new Error(await o.text())
+        }
+      })
 
       if (data.data.nhql.by.data === null) {
         return null
@@ -152,7 +157,7 @@ const fetchQueue = new PQueue({
           hasError = true
           console.error(
             `failed to get gallery ${targetCode} - ${
-              (e as AxiosError)?.code ?? e
+              (e as Error)?.message ?? e
             }`
           )
 
