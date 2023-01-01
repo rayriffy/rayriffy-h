@@ -6,7 +6,7 @@
   import type { APIResponse } from '$core/@types/APIResponse'
   import type { CollectionStore } from '$storeon/@types/CollectionStore'
 
-  let status: 'wait' | 'process' | 'done' = 'done'
+  let status: 'wait' | 'process' | 'done' = 'wait'
   let error: string | null = null
   let inputKey: string = ''
 
