@@ -64,6 +64,7 @@ const fetchQueue = new PQueue({
       const data: HifuminSingleResponse = await fetch(
         process.env.HIFUMIN_API_URL as string,
         {
+          method: 'POST',
           body: JSON.stringify({
             query,
             variables: {
