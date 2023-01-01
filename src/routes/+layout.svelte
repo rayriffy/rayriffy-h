@@ -20,10 +20,11 @@
 
     if (pwaInfo) {
       const { registerSW } = await import('virtual:pwa-register')
-      registerSW({
+      const updateSW = registerSW({
         immediate: true,
         onNeedRefresh() {
-          isUpdateAvailable = true
+          updateSW()
+          // isUpdateAvailable = true
         },
         onRegistered(r) {
           // uncomment following code if you want check for updates
