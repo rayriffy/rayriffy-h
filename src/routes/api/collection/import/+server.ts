@@ -9,7 +9,7 @@ import type { CollectionStore } from '$storeon/@types/CollectionStore'
 import type { APIResponse } from '$core/@types/APIResponse'
 
 export const GET: RequestHandler = async event => {
-  const code = event.url.searchParams.get('code ')
+  const code = event.url.searchParams.get('code')
 
   try {
     const bytebinRes: EncryptedData = await fetch(
