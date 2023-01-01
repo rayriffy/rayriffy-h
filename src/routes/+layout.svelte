@@ -4,7 +4,7 @@
   import Navbar from '$core/components/Navbar.svelte'
   import ReloadPrompt from '$core/components/ReloadPrompt.svelte'
 
-  import { onMount, SvelteComponent } from 'svelte'
+  import { onMount } from 'svelte'
   import { provideStoreon } from '@storeon/svelte'
   import { store } from '$storeon'
   import { pwaInfo } from 'virtual:pwa-info'
