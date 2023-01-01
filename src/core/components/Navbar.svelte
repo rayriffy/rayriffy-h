@@ -24,7 +24,14 @@
   <a href="/custom" class={printClass(['/custom'])}>
     <NavigationIcon class="h-5 w-5" />
   </a>
-  <a href="/collection" class={printClass(['/collection'])}>
+  <a
+    href="/collection"
+    class={printClass([
+      '/collection',
+      '/collection/import',
+      '/collection/export',
+    ])}
+  >
     <BookmarksIcon class="h-5 w-5" />
   </a>
   <a href="/settings" class={printClass(['/settings'])}>

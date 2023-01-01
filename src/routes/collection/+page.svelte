@@ -18,6 +18,11 @@
 
 <SearchBar section="collection" />
 
+<div class="btn-group px-4 pt-4 -mb-2">
+  <a href="/collection/import" class="btn btn-sm">Import</a>
+  <a href="/collection/export" class="btn btn-sm btn-active">Export</a>
+</div>
+
 {#await getCollectionListing( page, $search.collection, $collection.data.map(o => o.data) )}
   <div class="p-32 flex flex-col items-center">
     <progress class="progress w-56" />
