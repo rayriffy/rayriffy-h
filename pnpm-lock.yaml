@@ -10,6 +10,7 @@ specifiers:
   '@svicons/boxicons-regular': ^0.1.11
   '@types/cookie': ^0.5.1
   '@types/lodash': ^4.14.191
+  '@types/sharp': ^0.31.1
   '@vite-pwa/sveltekit': ^0.1.1
   autoprefixer: ^10.4.13
   axios: ^1.2.2
@@ -22,6 +23,7 @@ specifiers:
   prettier: ^2.8.0
   prettier-plugin-svelte: ^2.8.1
   prisma: ^4.8.0
+  sharp: ^0.31.3
   storeon: ^3.1.5
   svelte: ^3.54.0
   svelte-aio: ^0.1.1
@@ -40,6 +42,7 @@ dependencies:
   '@storeon/localstorage': 1.5.0
   '@storeon/svelte': 1.0.0_64iderbp2zbcgqceqgpe3hky6u
   lodash: 4.17.21
+  sharp: 0.31.3
   storeon: 3.1.5
   svelte-aio: 0.1.1
 
@@ -49,6 +52,7 @@ devDependencies:
   '@svicons/boxicons-regular': 0.1.11
   '@types/cookie': 0.5.1
   '@types/lodash': 4.14.191
+  '@types/sharp': 0.31.1
   '@vite-pwa/sveltekit': 0.1.1_g44reapwivs7njcwlqiaafvh4a
   autoprefixer: 10.4.13_postcss@8.4.20
   axios: 1.2.2
@@ -1827,6 +1831,12 @@ packages:
 
   /@types/sass/1.43.1:
     resolution: {integrity: sha512-BPdoIt1lfJ6B7rw35ncdwBZrAssjcwzI5LByIrYs+tpXlj/CAkuVdRsgZDdP4lq5EjyWzwxZCqAoFyHKFwp32g==}
+    dependencies:
+      '@types/node': 18.11.17
+    dev: true
+
+  /@types/sharp/0.31.1:
+    resolution: {integrity: sha512-5nWwamN9ZFHXaYEincMSuza8nNfOof8nmO+mcI+Agx1uMUk4/pQnNIcix+9rLPXzKrm1pS34+6WRDbDV0Jn7ag==}
     dependencies:
       '@types/node': 18.11.17
     dev: true
