@@ -5,8 +5,8 @@
   export let current: number
   export let prefix: string = ''
 
-  const pageLength: number = max > 5 ? 5 : max
-  const pageStartAt: number =
+  $: pageLength = max > 5 ? 5 : max
+  $: pageStartAt =
     max > 5
       ? current - 2 < 1
         ? 0
