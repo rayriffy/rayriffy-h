@@ -27,7 +27,7 @@
     }
 </script>
 
-<section class="pt-16 px-8 space-y-2">
+<section class="pt-4 px-4 space-y-2">
   <div class="flex justify-evenly" id="code-digit">
     {#each Array.from({ length: 6 }) as _, i (`code-input-${i}`)}
       <input
