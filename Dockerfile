@@ -25,6 +25,9 @@ COPY tools ./tools
 COPY package.json pnpm-lock.yaml* postcss.config.cjs svelte.config.js tailwind.config.cjs tsconfig.json vite.config.js ./
 COPY --from=deps /app/node_modules ./node_modules
 
+ARG BUILD_MODE
+ENV RIFFYH_BUILD_MODE ${BUILD_MODE}
+
 RUN yarn global add pnpm && pnpm build
 
 # ? -------------------------

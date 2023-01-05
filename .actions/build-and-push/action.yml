@@ -21,12 +21,12 @@ runs:
     - uses: docker/setup-buildx-action@v2
 
     - uses: docker/build-push-action@v3
-      env:
-        RIFFYH_BUILD_MODE: 'private'
       with:
         context: .
         push: true
         tags: ${{ inputs.target_image }}
+        build-args:
+          BUILD_MODE: 'private'
 
     - uses: deploys-app/deploys-action@v1
       with:
