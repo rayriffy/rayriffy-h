@@ -25,8 +25,7 @@ runs:
         context: .
         push: true
         tags: ${{ inputs.target_image }}
-        build-args:
-          BUILD_MODE: 'private'
+        build-args: 'BUILD_MODE=private'
 
     - uses: deploys-app/deploys-action@v1
       with:
