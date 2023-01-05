@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { goto } from '$app/navigation'
   import type { FormEventHandler, MouseEventHandler } from 'svelte/elements'
 
   let customCode: (string | null)[] = [null, null, null, null, null, null]
@@ -19,7 +20,8 @@
       if (value.replace(/[^0-9]/g, '') !== '') {
         // if last element, then execute something
         if (index === 5) {
-          console.log({ code: customCode.join('') })
+          // console.log({ code: customCode.join('') })
+          goto(`/g/${Number(customCode.join(''))}`)
         } else {
           document.getElementById(`code-digit-${index + 1}`)?.focus()
         }
