@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { RIFFYH_BUILD_MODE } from '$env/static/public'
+
   import Image from 'svelte-aio'
   import { useStore } from '$storeon'
 
@@ -12,15 +14,18 @@
   let klass: string | undefined = ''
   export { klass as class }
 
-  $: blur = $settings.safemode
-</script>
-
-<Image
-  {...{
+  $: finalProps = {
     src,
     width,
     height,
     alt,
-    class: `${klass} ${blur ? ' blur-xl' : ''}`,
-  }}
-/>
+    class: `${klass} ${$settings.safemode ? ' blur-xl' : ''}`,
+  }
+</script>
+
+{#if RIFFYH_BUILD_MODE !== 'private'}
+  <!-- svelte-ignore a11y-missing-attribute -->
+  <img {...finalProps} />
+{:else}
+  <Image {...finalProps} />
+{/if}
