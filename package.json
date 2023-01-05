@@ -35,7 +35,7 @@
   },
   "homepage": "https://h.rayriffy.com",
   "dependencies": {
-    "@prisma/client": "^4.8.0",
+    "@prisma/client": "^4.8.1",
     "@storeon/crosstab": "^1.0.2",
     "@storeon/localstorage": "^1.5.0",
     "@storeon/svelte": "^1.0.0",
@@ -45,13 +45,13 @@
     "svelte-aio": "^0.1.2"
   },
   "devDependencies": {
-    "@sveltejs/adapter-node": "^1.0.0",
-    "@sveltejs/kit": "^1.0.0",
+    "@sveltejs/adapter-node": "^1.0.1",
+    "@sveltejs/kit": "^1.0.2",
     "@svicons/boxicons-regular": "^0.1.11",
     "@types/cookie": "^0.5.1",
     "@types/lodash": "^4.14.191",
     "@types/sharp": "^0.31.1",
-    "@vite-pwa/sveltekit": "^0.1.1",
+    "@vite-pwa/sveltekit": "^0.1.2",
     "autoprefixer": "^10.4.13",
     "daisyui": "^2.46.1",
     "dotenv": "^16.0.3",
@@ -60,7 +60,7 @@
     "postcss": "^8.4.20",
     "prettier": "^2.8.0",
     "prettier-plugin-svelte": "^2.8.1",
-    "prisma": "^4.8.0",
+    "prisma": "^4.8.1",
     "svelte": "^3.54.0",
     "svelte-check": "^3.0.1",
     "tailwindcss": "^3.2.4",
@@ -68,7 +68,7 @@
     "tslib": "^2.4.1",
     "typescript": "^4.9.3",
     "vite": "^4.0.4",
-    "vite-plugin-pwa": "^0.14.0",
+    "vite-plugin-pwa": "^0.14.1",
     "workbox-window": "^6.5.4"
   }
 }
