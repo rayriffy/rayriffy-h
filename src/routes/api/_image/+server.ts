@@ -1,3 +1,4 @@
+import { env } from '$env/dynamic/private'
 import { RIFFYH_BUILD_MODE } from '$env/static/public'
 
 import { requestHandler } from 'svelte-aio/api'
@@ -13,9 +14,7 @@ export const GET: RequestHandler = event => {
 
   return requestHandler({
     remoteDomains: ['i.nhentai.net', 't.nhentai.net'],
-    allowedDomains: [
-      'next.h.rayriffy.com',
-      'xn--vdkuc.xn--dck3c9b5d7d.xn--q9jyb4c',
-    ],
+    allowedDomains:
+      env.IMAGE_DOMAIN !== undefined ? [env.IMAGE_DOMAIN] : undefined,
   })(event)
 }
