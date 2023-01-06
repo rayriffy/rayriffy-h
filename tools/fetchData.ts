@@ -4,8 +4,6 @@ import path from 'path'
 import { PrismaClient } from '@prisma/client'
 import dotenv from 'dotenv'
 import PQueue from 'p-queue'
-import chunk from 'lodash/chunk'
-import reverse from 'lodash/reverse'
 
 import { codes } from '../src/core/constants/codes'
 import { itemsPerPage } from '../src/core/constants/itemsPerPage'
@@ -21,6 +19,11 @@ dotenv.config()
 
 const cacheDirectory = path.join(process.cwd(), 'data')
 
+const chunk = <T>(arr: T[], size: number): T[][] =>
+  Array.from({ length: Math.ceil(arr.length / size) }, (_, i: number) =>
+    arr.slice(i * size, i * size + size)
+  )
+
 const fetchQueue = new PQueue({
   concurrency: process.env.CI === 'true' ? 40 : 20,
 })
@@ -34,7 +37,7 @@ const fetchQueue = new PQueue({
     await fs.promises.mkdir(prebuiltChunkDirectory, { recursive: true })
   }
 
-  const chunks = chunk(reverse(codes), itemsPerPage)
+  const chunks = chunk(codes.reverse(), itemsPerPage)
 
   await Promise.all(
     chunks.map(async (chunk, i) => {

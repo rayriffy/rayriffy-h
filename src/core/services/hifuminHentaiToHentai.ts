@@ -1,4 +1,4 @@
-import kebabCase from 'lodash/kebabCase'
+import kebabCase from 'lodash.kebabcase'
 
 import type { Hentai } from '../@types/Hentai'
 import type { Image } from '../@types/Image'

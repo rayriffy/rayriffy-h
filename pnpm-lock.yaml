@@ -5,18 +5,18 @@ specifiers:
   '@storeon/crosstab': ^1.0.2
   '@storeon/localstorage': ^1.5.0
   '@storeon/svelte': ^1.0.0
-  '@sveltejs/adapter-node': ^1.0.1
-  '@sveltejs/kit': ^1.0.2
+  '@sveltejs/adapter-node': ^1.1.0
+  '@sveltejs/kit': ^1.0.5
   '@svicons/boxicons-regular': ^0.1.11
   '@types/cookie': ^0.5.1
-  '@types/lodash': ^4.14.191
+  '@types/lodash.kebabcase': ^4.1.7
   '@types/sharp': ^0.31.1
   '@vite-pwa/sveltekit': ^0.1.2
   autoprefixer: ^10.4.13
   daisyui: ^2.46.1
   dotenv: ^16.0.3
   lint-staged: ^13.1.0
-  lodash: ^4.17.21
+  lodash.kebabcase: ^4.1.1
   p-queue: ^7.3.0
   postcss: ^8.4.20
   prettier: ^2.8.0
@@ -40,23 +40,23 @@ dependencies:
   '@storeon/crosstab': 1.0.2
   '@storeon/localstorage': 1.5.0
   '@storeon/svelte': 1.0.0_64iderbp2zbcgqceqgpe3hky6u
-  lodash: 4.17.21
   sharp: 0.31.3
   storeon: 3.1.5
   svelte-aio: 0.1.2
 
 devDependencies:
-  '@sveltejs/adapter-node': 1.0.1_@sveltejs+kit@1.0.2
-  '@sveltejs/kit': 1.0.2_svelte@3.55.0+vite@4.0.4
+  '@sveltejs/adapter-node': 1.1.0_@sveltejs+kit@1.0.5
+  '@sveltejs/kit': 1.0.5_svelte@3.55.0+vite@4.0.4
   '@svicons/boxicons-regular': 0.1.11
   '@types/cookie': 0.5.1
-  '@types/lodash': 4.14.191
+  '@types/lodash.kebabcase': 4.1.7
   '@types/sharp': 0.31.1
-  '@vite-pwa/sveltekit': 0.1.2_vl2i6gnm7dx4z3c7fnlafbghgm
+  '@vite-pwa/sveltekit': 0.1.2_r2vblkzbduyujirm6xtqkakvaa
   autoprefixer: 10.4.13_postcss@8.4.20
   daisyui: 2.46.1_63gb4bqnxhe4g6pce5lz6sagrm
   dotenv: 16.0.3
   lint-staged: 13.1.0
+  lodash.kebabcase: 4.1.1
   p-queue: 7.3.0
   postcss: 8.4.20
   prettier: 2.8.1
@@ -1715,20 +1715,20 @@ packages:
       string.prototype.matchall: 4.0.8
     dev: true
 
-  /@sveltejs/adapter-node/1.0.1_@sveltejs+kit@1.0.2:
-    resolution: {integrity: sha512-Lbk97qUJzCgSLEUtfSn3GDxMXtAkhzooYNdIT9NbfP6KQ8Itg6x+5haOGxumuVXUJbZuh8VY9gPo9qLM6x41ww==}
+  /@sveltejs/adapter-node/1.1.0_@sveltejs+kit@1.0.5:
+    resolution: {integrity: sha512-br/KlTI24/TFOuQ+SmoTSfwzgWjslGXkSreOYALW8ElVsG8dAh8stDM07hDZjtQQ46r6snd2tev89Sagh8ZOtA==}
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
     dependencies:
       '@rollup/plugin-commonjs': 24.0.0_rollup@3.9.1
       '@rollup/plugin-json': 6.0.0_rollup@3.9.1
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.9.1
-      '@sveltejs/kit': 1.0.2_svelte@3.55.0+vite@4.0.4
+      '@sveltejs/kit': 1.0.5_svelte@3.55.0+vite@4.0.4
       rollup: 3.9.1
     dev: true
 
-  /@sveltejs/kit/1.0.2_svelte@3.55.0+vite@4.0.4:
-    resolution: {integrity: sha512-NY+FOsmXzev8shSoHEAU+394ERzHMq/rQvqdMIAA4ukhP/qYDV/5caM+FJ3NliOT/qdlkQluZTF48AtO+aKQzg==}
+  /@sveltejs/kit/1.0.5_svelte@3.55.0+vite@4.0.4:
+    resolution: {integrity: sha512-8DXJiAaaW9FBaJ0i5MereT2nHN9ofTGsBO+N3RvFOPu2lc074DXu+SmGBX1Vw9zAdw5qL9j0y6GqRbYuH00PCg==}
     engines: {node: ^16.14 || >=18}
     hasBin: true
     requiresBuild: true
@@ -1806,6 +1806,12 @@ packages:
     resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
     dev: true
 
+  /@types/lodash.kebabcase/4.1.7:
+    resolution: {integrity: sha512-qzrcpK5uiADZ9OyZaegalM0b9Y3WetoBQ04RAtP3xZFGC5ul1UxmbjZ3j6suCh0BDkvgQmoMh8t5e9cVrdJYMw==}
+    dependencies:
+      '@types/lodash': 4.14.191
+    dev: true
+
   /@types/lodash/4.14.191:
     resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
     dev: true
@@ -1848,14 +1854,14 @@ packages:
     resolution: {integrity: sha512-F5DIZ36YVLE+PN+Zwws4kJogq47hNgX3Nx6WyDJ3kcplxyke3XIzB8uK5n/Lpm1HBsbGzd6nmGehL8cPekP+Tg==}
     dev: true
 
-  /@vite-pwa/sveltekit/0.1.2_vl2i6gnm7dx4z3c7fnlafbghgm:
+  /@vite-pwa/sveltekit/0.1.2_r2vblkzbduyujirm6xtqkakvaa:
     resolution: {integrity: sha512-zO6nZA+Z8F707VAaw7+bkAI2cYLnLb+/szNmU54L+Qtitq19RaStOytSpgp6lny/V76F9ckn6iN5QUumG5cWlQ==}
     engines: {node: '>=16.14'}
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
       vite-plugin-pwa: ^0.14.0
     dependencies:
-      '@sveltejs/kit': 1.0.2_svelte@3.55.0+vite@4.0.4
+      '@sveltejs/kit': 1.0.5_svelte@3.55.0+vite@4.0.4
       vite-plugin-pwa: 0.14.1_aln3rhi4rqbizqxdkcc2hwlswu
     dev: true
 
@@ -2461,7 +2467,7 @@ packages:
     engines: {node: '>= 0.4'}
     dependencies:
       call-bind: 1.0.2
-      es-set-tostringtag: 2.0.0
+      es-set-tostringtag: 2.0.1
       es-to-primitive: 1.2.1
       function-bind: 1.1.1
       function.prototype.name: 1.1.5
@@ -2474,7 +2480,7 @@ packages:
       has-proto: 1.0.1
       has-symbols: 1.0.3
       internal-slot: 1.0.4
-      is-array-buffer: 3.0.0
+      is-array-buffer: 3.0.1
       is-callable: 1.2.7
       is-negative-zero: 2.0.2
       is-regex: 1.1.4
@@ -2494,11 +2500,12 @@ packages:
       which-typed-array: 1.1.9
     dev: true
 
-  /es-set-tostringtag/2.0.0:
-    resolution: {integrity: sha512-vZVAIWss0FcR/+a08s6e2/GjGjjYBCZJXDrOnj6l5kJCKhQvJs4cnVqUxkVepIhqHbKHm3uwOvPb8lRcqA3DSg==}
+  /es-set-tostringtag/2.0.1:
+    resolution: {integrity: sha512-g3OMbtlwY3QewlqAiMLI47KywjWZoEytKr8pf6iTC8uJq5bIAH52Z9pnQ8pVL6whrCto53JZDuUIsifGeLorTg==}
     engines: {node: '>= 0.4'}
     dependencies:
       get-intrinsic: 1.1.3
+      has: 1.0.3
       has-tostringtag: 1.0.0
     dev: true
 
@@ -2914,11 +2921,12 @@ packages:
     resolution: {integrity: sha512-+Hi3UdXHV/3ZgxdO9Ik45ciNhDlYrDOIdGz7Cj7ybddWnYBi4kwBuGMn79Xa2Js4VldgX5e3943Djsr/KYSPbA==}
     dev: false
 
-  /is-array-buffer/3.0.0:
-    resolution: {integrity: sha512-TI2hnvT6dPUnn/jARFCJBKL1eeabAfLnKZ2lmW5Uh317s1Ii2IMroL1yMciEk/G+OETykVzlsH6x/L4q/avhgw==}
+  /is-array-buffer/3.0.1:
+    resolution: {integrity: sha512-ASfLknmY8Xa2XtB4wmbz13Wu202baeA18cJBCeCy0wXUHZF0IPyVEXqKEcd+t2fNSLLL1vC6k7lxZEojNbISXQ==}
     dependencies:
       call-bind: 1.0.2
       get-intrinsic: 1.1.3
+      is-typed-array: 1.1.10
     dev: true
 
   /is-arrayish/0.3.2:
@@ -3211,12 +3219,17 @@ packages:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
     dev: true
 
+  /lodash.kebabcase/4.1.1:
+    resolution: {integrity: sha512-N8XRTIMMqqDgSy4VLKPnJ/+hpGZN+PHQiJnSenYqPaVV/NCqEogTnAdZLQiGKhxX+JCs8waWq2t1XHWKOmlY8g==}
+    dev: true
+
   /lodash.sortby/4.7.0:
     resolution: {integrity: sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==}
     dev: true
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+    dev: true
 
   /log-update/4.0.0:
     resolution: {integrity: sha512-9fkkDevMefjg0mmzWFBW8YkFP91OrizzkW3diF7CpG+S2EYdy4+TVfGwz1zeF8x7hCx1ovSPTOE9Ngib74qqUg==}
