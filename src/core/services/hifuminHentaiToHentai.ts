@@ -1,12 +1,12 @@
-import { kebabCase } from 'lodash'
+import kebabCase from 'lodash.kebabcase'
 
-import { Hentai } from '../@types/Hentai'
-import { Image } from '../@types/Image'
-import { HifuminHentai } from '../@types/HifuminHentai'
-import { HifuminImage } from '../@types/HifuminImage'
-import { HifuminTag } from '../@types/HifuminTag'
-import { Tag } from '../@types/Tag'
-import { TagType } from '../@types/TagType'
+import type { Hentai } from '../@types/Hentai'
+import type { Image } from '../@types/Image'
+import type { HifuminHentai } from '../@types/HifuminHentai'
+import type { HifuminImage } from '../@types/HifuminImage'
+import type { HifuminTag } from '../@types/HifuminTag'
+import type { Tag } from '../@types/Tag'
+import type { TagType } from '../@types/TagType'
 
 const hifuminImageToImage = (hifuminImage: HifuminImage): Image => ({
   t: hifuminImage.info.type[0] as 'j' | 'p' | 'g',

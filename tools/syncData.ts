@@ -4,10 +4,10 @@ import path from 'path'
 import { PrismaClient } from '@prisma/client'
 import dotenv from 'dotenv'
 
-import { Hentai } from '../src/core/@types/Hentai'
+import type { Hentai } from '../src/core/@types/Hentai'
 
 dotenv.config()
-const hentaiDirectory = path.join(__dirname, '../.next/cache/hentai')
+const hentaiDirectory = path.join(process.cwd(), 'data/hentai')
 
 ;(async () => {
   if (process.env.DATABASE_URL === undefined) {

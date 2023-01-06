@@ -1,7 +1,1 @@
-.actions
-.github
-.husky
-.vercel
-node_modules
-public/static/key
-public/static/searchKey.opt
+.svelte-kit

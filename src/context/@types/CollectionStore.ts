@@ -1,4 +1,4 @@
-import { Favorite } from './Favorite'
+import type { Favorite } from './Favorite'
 
 export interface CollectionStore {
   collection: {

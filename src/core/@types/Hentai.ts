@@ -1,5 +1,5 @@
-import { Image } from './Image'
-import { Tag } from './Tag'
+import type { Image } from './Image'
+import type { Tag } from './Tag'
 
 export interface Hentai {
   id: number

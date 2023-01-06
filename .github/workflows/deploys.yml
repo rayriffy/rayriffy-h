@@ -20,13 +20,11 @@ jobs:
           run_install: 'true'
       - uses: actions/cache@v3
         with:
-          path: |
-            .next/cache/hentai
-            .next/cache/prebuiltChunks
-          key: hentai-cache-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
+          path: data
+          key: hentai-cache-v2-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
           restore-keys: |
-            hentai-cache-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
-            hentai-cache-${{ secrets.CACHE_HASH }}-
+            hentai-cache-v2-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
+            hentai-cache-v2-${{ secrets.CACHE_HASH }}-
       - run: pnpm fetch:data
       - run: pnpm sync:data
 
@@ -36,7 +34,7 @@ jobs:
     needs: [fetch]
     strategy:
       matrix:
-        mode: ["public", "private"]
+        mode: ['public', 'private']
     env:
       APP_NAME: riffyh-runtime-private
       IMAGE_NAME: ghcr.io/rayriffy/riffyh-runtime-private
@@ -45,13 +43,11 @@ jobs:
 
       - uses: actions/cache@v3
         with:
-          path: |
-            .next/cache/hentai
-            .next/cache/prebuiltChunks
-          key: hentai-cache-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
+          path: data
+          key: hentai-cache-v2-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
           restore-keys: |
-            hentai-cache-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
-            hentai-cache-${{ secrets.CACHE_HASH }}-
+            hentai-cache-v2-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
+            hentai-cache-v2-${{ secrets.CACHE_HASH }}-
 
       - uses: docker/login-action@v2
         with:

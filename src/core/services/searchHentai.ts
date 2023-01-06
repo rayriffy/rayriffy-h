@@ -1,48 +1,34 @@
-import get from 'lodash/get'
-import intersection from 'lodash/intersection'
-import union from 'lodash/union'
+import type { Hentai } from '$core/@types/Hentai'
+import { itemsPerPage } from '$core/constants/itemsPerPage'
 
-import { Hentai } from '../@types/Hentai'
-
-export const searchHentai = (query: string, raws: Hentai[]): Hentai[] => {
-  const resultsByWords = query
+export const searchHentai = (
+  query: string,
+  page: number,
+  hentais: Hentai[]
+) => {
+  const splittedQueries = query
     .split(' ')
     .filter(o => o !== '')
-    .map(subquery => {
-      /**
-       * Filter the search by names
-       */
+    .map(o => o.toLowerCase())
 
-      const languages = ['english', 'japanese', 'pretty']
-
-      const typeName = union(
-        ...languages.map(language => {
-          return raws.filter(raw => {
-            const title = get(raw, `title.${language}`, '')
-
-            return RegExp(subquery.toLocaleLowerCase()).test(
-              title === null ? '' : title.toLocaleLowerCase()
-            )
-          })
-        })
-      ).reduce((a, b) => a.concat(b), [])
-
-      /**
-       * Filter the search by tags
-       */
-
-      const typeTag = raws.filter(raw => {
-        const tagResult = raw.tags.map(tag => {
-          const name = tag.name.toLocaleLowerCase()
-
-          return RegExp(subquery.toLocaleLowerCase()).test(name)
-        })
-
-        return tagResult.some(o => o === true)
-      })
-
-      return union(typeName, typeTag)
+  const filteredHentais = hentais.filter(hentai => {
+    return splittedQueries.every(query => {
+      return [
+        hentai.title.english,
+        hentai.title.japanese,
+        hentai.title.pretty,
+        ...hentai.tags.map(o => o.name),
+      ]
+        .map(o => (o ?? '').toLowerCase())
+        .some(o => o.includes(query))
     })
+  })
 
-  return intersection(...resultsByWords)
+  return {
+    totalPages: Math.ceil(filteredHentais.length / itemsPerPage),
+    hentais: filteredHentais.slice(
+      (page - 1) * itemsPerPage,
+      itemsPerPage * page
+    ),
+  }
 }

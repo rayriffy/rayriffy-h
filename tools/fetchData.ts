@@ -1,38 +1,43 @@
 import fs from 'fs'
 import path from 'path'
 
-import { PrismaClient, Hentai as PrismaHentai } from '@prisma/client'
-import { AxiosError } from 'axios'
+import { PrismaClient } from '@prisma/client'
 import dotenv from 'dotenv'
-import { TaskQueue } from 'cwait'
-import { chunk, reverse } from 'lodash'
+import PQueue from 'p-queue'
 
 import { codes } from '../src/core/constants/codes'
 import { itemsPerPage } from '../src/core/constants/itemsPerPage'
-
-import { Hentai } from '../src/core/@types/Hentai'
-import { DatabaseCode } from '../src/core/@types/DatabaseCode'
-import { HifuminSingleResponse } from '../src/core/@types/HifuminSingleResponse'
-import { hifuminHentaiToHentai } from '../src/core/services/hifuminHentaiToHentai'
 import { hifuminHentaiQuery } from '../src/core/constants/hifuminHentaiQuery'
-import { hifuminInstance } from '../src/core/constants/hifuminInstance'
+
+import { hifuminHentaiToHentai } from '../src/core/services/hifuminHentaiToHentai'
+
+import type { Hentai as PrismaHentai } from '@prisma/client'
+import type { Hentai } from '../src/core/@types/Hentai'
+import type { HifuminSingleResponse } from '../src/core/@types/HifuminSingleResponse'
 
 dotenv.config()
 
-const nextCacheDirectory = path.join(__dirname, '..', '.next', 'cache')
+const cacheDirectory = path.join(process.cwd(), 'data')
 
-const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
+const chunk = <T>(arr: T[], size: number): T[][] =>
+  Array.from({ length: Math.ceil(arr.length / size) }, (_, i: number) =>
+    arr.slice(i * size, i * size + size)
+  )
+
+const fetchQueue = new PQueue({
+  concurrency: process.env.CI === 'true' ? 40 : 20,
+})
 
 ;(async () => {
   // generating chunks
   console.log('generating chunks')
-  const prebuiltChunkDirectory = path.join(nextCacheDirectory, 'prebuiltChunks')
+  const prebuiltChunkDirectory = path.join(cacheDirectory, 'prebuiltChunks')
 
   if (!fs.existsSync(prebuiltChunkDirectory)) {
     await fs.promises.mkdir(prebuiltChunkDirectory, { recursive: true })
   }
 
-  const chunks = chunk(reverse(codes), itemsPerPage)
+  const chunks = chunk(codes.reverse(), itemsPerPage)
 
   await Promise.all(
     chunks.map(async (chunk, i) => {
@@ -59,11 +64,27 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
         }
       `
 
-      const { data } = await hifuminInstance.post<HifuminSingleResponse>('', {
-        query,
-        variables: {
-          hentaiId: Number(code),
-        },
+      const data: HifuminSingleResponse = await fetch(
+        process.env.HIFUMIN_API_URL as string,
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            query,
+            variables: {
+              hentaiId: Number(code),
+            },
+          }),
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        }
+      ).then(async o => {
+        if (o.status === 200) {
+          return await o.json()
+        } else {
+          throw new Error(await o.text())
+        }
       })
 
       if (data.data.nhql.by.data === null) {
@@ -81,7 +102,7 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
   }
 
   console.log('fetching all galleries')
-  const hentaiDirectory = path.join(nextCacheDirectory, 'hentai')
+  const hentaiDirectory = path.join(cacheDirectory, 'hentai')
 
   if (!fs.existsSync(hentaiDirectory)) {
     await fs.promises.mkdir(hentaiDirectory, { recursive: true })
@@ -96,8 +117,8 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
   }
 
   await Promise.all(
-    codes.map(
-      fetchQueue.wrap<void, DatabaseCode>(async code => {
+    codes.map(code =>
+      fetchQueue.add(async () => {
         const targetCode = typeof code === 'number' ? code : code.code
         const hentaiFile = path.join(hentaiDirectory, `${targetCode}.json`)
 
@@ -140,7 +161,7 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
           hasError = true
           console.error(
             `failed to get gallery ${targetCode} - ${
-              (e as AxiosError)?.code ?? e
+              (e as Error)?.message ?? e
             }`
           )
 
@@ -156,4 +177,36 @@ const fetchQueue = new TaskQueue(Promise, process.env.CI === 'true' ? 40 : 20)
     console.error("there's some error during fetching! crashing...")
     process.exit(1)
   }
+
+  /**
+   * Create search keys for searching
+   */
+  const orderedHentai = codes
+    .map(code => {
+      try {
+        const targetCode = typeof code === 'number' ? code : code.code
+        const targetHentai: Hentai = JSON.parse(
+          fs
+            .readFileSync(path.join(hentaiDirectory, `${targetCode}.json`))
+            .toString()
+        )
+
+        const transformedHentai: Hentai = {
+          ...targetHentai,
+          images: {
+            ...targetHentai.images,
+            pages: [],
+          },
+        }
+
+        return transformedHentai
+      } catch (e) {
+        return null
+      }
+    })
+    .filter(o => o !== null)
+  await fs.promises.writeFile(
+    path.join(cacheDirectory, 'searchKey.json'),
+    JSON.stringify(orderedHentai)
+  )
 })()

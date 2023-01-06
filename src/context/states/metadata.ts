@@ -1,7 +1,7 @@
-import { StoreonModule } from 'storeon'
+import type { StoreonModule } from 'storeon'
 
-import { MetadataStore } from '../@types/MetadataStore'
-import { MetadataEvent } from '../@types/MetadataEvent'
+import type { MetadataStore } from '../@types/MetadataStore'
+import type { MetadataEvent } from '../@types/MetadataEvent'
 
 export const metadata: StoreonModule<MetadataStore, MetadataEvent> = store => {
   store.on('@init', () => ({

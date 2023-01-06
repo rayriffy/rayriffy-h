@@ -28,7 +28,7 @@ import { data2022_11 } from './months/2022-11'
 import { data2022_12 } from './months/2022-12'
 import { data2023_01 } from './months/2023-01'
 
-import { DatabaseCode } from '../../@types/DatabaseCode'
+import type { DatabaseCode } from '../../@types/DatabaseCode'
 
 export const codes: DatabaseCode[] = original
   .concat(data2020_11)

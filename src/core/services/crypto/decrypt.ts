@@ -1,6 +1,6 @@
 import crypto from 'crypto'
 
-import { EncryptedData } from '../../@types/EncryptedData'
+import type { EncryptedData } from '../../@types/EncryptedData'
 
 export const decrypt = (enc: EncryptedData, key: string): string => {
   const encryptionKey = Buffer.from(key)

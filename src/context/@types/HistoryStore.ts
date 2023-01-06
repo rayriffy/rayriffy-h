@@ -1,4 +1,4 @@
-import { Hentai } from '../../core/@types/Hentai'
+import type { Hentai } from '../../core/@types/Hentai'
 
 export interface HistoryItem {
   internal: boolean

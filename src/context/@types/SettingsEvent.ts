@@ -1,4 +1,4 @@
-import { SettingsStore } from './SettingsStore'
+import type { SettingsStore } from './SettingsStore'
 
 export interface SettingsEvent {
   'setting/toggle': 'safemode'

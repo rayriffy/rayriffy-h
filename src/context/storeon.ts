@@ -4,24 +4,24 @@ import { persistState } from '@storeon/localstorage'
 import { crossTab } from '@storeon/crosstab'
 
 import { collection } from './states/collection'
-import { CollectionStore } from './@types/CollectionStore'
-import { CollectionEvent } from './@types/CollectionEvent'
+import type { CollectionStore } from './@types/CollectionStore'
+import type { CollectionEvent } from './@types/CollectionEvent'
 
 import { settings } from './states/settings'
-import { SettingsStore } from './@types/SettingsStore'
-import { SettingsEvent } from './@types/SettingsEvent'
+import type { SettingsStore } from './@types/SettingsStore'
+import type { SettingsEvent } from './@types/SettingsEvent'
 
 import { history } from './states/history'
-import { HistoryStore } from './@types/HistoryStore'
-import { HistoryEvent } from './@types/HistoryEvent'
+import type { HistoryStore } from './@types/HistoryStore'
+import type { HistoryEvent } from './@types/HistoryEvent'
 
 import { search } from './states/search'
-import { SearchStore } from './@types/SearchStore'
-import { SearchEvent } from './@types/SearchEvent'
+import type { SearchStore } from './@types/SearchStore'
+import type { SearchEvent } from './@types/SearchEvent'
 
 import { metadata } from './states/metadata'
-import { MetadataStore } from './@types/MetadataStore'
-import { MetadataEvent } from './@types/MetadataEvent'
+import type { MetadataStore } from './@types/MetadataStore'
+import type { MetadataEvent } from './@types/MetadataEvent'
 
 export type Store = CollectionStore &
   SettingsStore &
@@ -47,7 +47,10 @@ export const store = createStoreon<Store, Event>([
           storage: sessionStorage,
         }),
         crossTab({
-          filter: (event, data) => event.toString().startsWith('search/'),
+          filter: (event, data) =>
+            ['search/', 'collection/', 'history/', 'metadata/'].some(o =>
+              event.toString().startsWith(o)
+            ),
         }),
       ]
     : []),

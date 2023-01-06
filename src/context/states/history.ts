@@ -1,7 +1,7 @@
-import { StoreonModule } from 'storeon'
+import type { StoreonModule } from 'storeon'
 
-import { HistoryStore } from '../@types/HistoryStore'
-import { HistoryEvent } from '../@types/HistoryEvent'
+import type { HistoryStore } from '../@types/HistoryStore'
+import type { HistoryEvent } from '../@types/HistoryEvent'
 
 import { itemsPerPage } from '../../core/constants/itemsPerPage'
 

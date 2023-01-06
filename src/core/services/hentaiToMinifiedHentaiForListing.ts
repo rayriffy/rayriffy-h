@@ -2,8 +2,8 @@ import { filterTagByType } from './filterTagByType'
 
 import { tags } from '../constants/tags'
 
-import { Hentai } from '../@types/Hentai'
-import { MinifiedHentaiForListing } from '../@types/MinifiedHentaiForListing'
+import type { Hentai } from '../@types/Hentai'
+import type { MinifiedHentaiForListing } from '../@types/MinifiedHentaiForListing'
 
 export const hentaiToMinifiedHentaiForListing = (
   hentai: Hentai

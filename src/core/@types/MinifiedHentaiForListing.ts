@@ -1,6 +1,6 @@
-import { Hentai } from './Hentai'
-import { Tag } from './Tag'
-import { TagType } from './TagType'
+import type { Hentai } from './Hentai'
+import type { Tag } from './Tag'
+import type { TagType } from './TagType'
 
 export type MinifiedHentaiForListing = Omit<Hentai, 'tags' | 'title'> & {
   title: string

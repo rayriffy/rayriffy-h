@@ -1,5 +1,5 @@
-import { HifuminImage } from './HifuminImage'
-import { HifuminTag } from './HifuminTag'
+import type { HifuminImage } from './HifuminImage'
+import type { HifuminTag } from './HifuminTag'
 
 export interface HifuminHentai {
   id: number

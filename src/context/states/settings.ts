@@ -1,7 +1,7 @@
-import { StoreonModule } from 'storeon'
+import type { StoreonModule } from 'storeon'
 
-import { SettingsStore } from '../@types/SettingsStore'
-import { SettingsEvent } from '../@types/SettingsEvent'
+import type { SettingsStore } from '../@types/SettingsStore'
+import type { SettingsEvent } from '../@types/SettingsEvent'
 
 export const settings: StoreonModule<SettingsStore, SettingsEvent> = store => {
   store.on('@init', () => ({
