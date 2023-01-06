@@ -35,15 +35,13 @@
   },
   "homepage": "https://h.rayriffy.com",
   "dependencies": {
+    "sharp": "^0.31.3"
+  },
+  "devDependencies": {
     "@prisma/client": "^4.8.1",
     "@storeon/crosstab": "^1.0.2",
     "@storeon/localstorage": "^1.5.0",
     "@storeon/svelte": "^1.0.0",
-    "sharp": "^0.31.3",
-    "storeon": "^3.1.5",
-    "svelte-aio": "^0.1.2"
-  },
-  "devDependencies": {
     "@sveltejs/adapter-node": "^1.1.0",
     "@sveltejs/kit": "^1.0.5",
     "@svicons/boxicons-regular": "^0.1.11",
@@ -61,7 +59,9 @@
     "prettier": "^2.8.0",
     "prettier-plugin-svelte": "^2.8.1",
     "prisma": "^4.8.1",
+    "storeon": "^3.1.5",
     "svelte": "^3.54.0",
+    "svelte-aio": "^0.1.2",
     "svelte-check": "^3.0.1",
     "tailwindcss": "^3.2.4",
     "ts-node": "^10.9.1",
