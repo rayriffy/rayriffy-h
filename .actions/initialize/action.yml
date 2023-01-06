@@ -20,7 +20,7 @@ runs:
     - name: 'Intitialize: Summon NodeJS'
       uses: actions/setup-node@v3
       with:
-        node-version: 16
+        node-version: 18
     - uses: pnpm/action-setup@v2.2.4
       name: 'Intitialize: Configure pnpm'
       id: pnpm-install
@@ -33,10 +33,10 @@ runs:
         path: |
           node_modules
           ~/.local/share/pnpm/store/v3
-        key: ${{ runner.OS }}-x86-compositeV2-node16-pnpm7-${{ inputs.prefix }}-${{ inputs.hash }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+        key: ${{ runner.OS }}-x86-compositeV2-node18-pnpm7-${{ inputs.prefix }}-${{ inputs.hash }}-${{ hashFiles('**/pnpm-lock.yaml') }}
         restore-keys: |
-          ${{ runner.OS }}-x86-compositeV2-node16-pnpm7-${{ inputs.prefix }}-${{ inputs.hash }}-${{ env.cache-name }}-
-          ${{ runner.OS }}-x86-compositeV2-node16-pnpm7-${{ inputs.prefix }}-${{ inputs.hash }}-
+          ${{ runner.OS }}-x86-compositeV2-node18-pnpm7-${{ inputs.prefix }}-${{ inputs.hash }}-${{ env.cache-name }}-
+          ${{ runner.OS }}-x86-compositeV2-node18-pnpm7-${{ inputs.prefix }}-${{ inputs.hash }}-
     - name: 'Intitialize: Install dependencies'
       if: ${{ inputs.run_install != 'false' }}
       shell: bash
