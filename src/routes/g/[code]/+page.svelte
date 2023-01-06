@@ -27,11 +27,15 @@
       />
     </div>
     <article class="w-full">
-      <span class="font-semibold text-gray-600">{data.hentai.id}</span>
-      <h1 class="font-bold text-2xl leading-tight pt-2 text-gray-700">
+      <span class="font-semibold text-gray-600 dark:text-gray-300"
+        >{data.hentai.id}</span
+      >
+      <h1
+        class="font-bold text-2xl leading-tight pt-2 text-gray-700 dark:text-white"
+      >
         {data.hentai.title.pretty}
       </h1>
-      <h2 class="font-bold text-gray-500 text-md">
+      <h2 class="font-bold text-gray-500 text-md dark:text-gray-400">
         {data.hentai.title.japanese}
       </h2>
       <div class="pt-2">
@@ -43,7 +47,7 @@
     </div>
   </section>
   <div class="divider mb-8">
-    <BookContentIcon class="w-12 text-base-300" />
+    <BookContentIcon class="w-12 divider-item" />
   </div>
   <PageRenderer
     pages={data.hentai.images.pages}
@@ -51,3 +55,9 @@
     excludes={data.excludes}
   />
 {/if}
+
+<style>
+  .divider-item {
+    color: hsl(var(--bc) / var(--tw-bg-opacity));
+  }
+</style>

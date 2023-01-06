@@ -16,7 +16,9 @@
 
 {#each sortedTags as [type, tags]}
   <div class="pt-2 flex">
-    <span class="uppercase text-sm text-gray-700 font-bold pr-2 pt-1">
+    <span
+      class="uppercase text-sm text-gray-700 dark:text-white font-bold pr-2 pt-1"
+    >
       {type.name}
     </span>
     <div class="flex flex-wrap">
