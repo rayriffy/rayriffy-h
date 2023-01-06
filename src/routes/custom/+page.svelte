@@ -29,6 +29,10 @@
     }
 </script>
 
+<svelte:head>
+  <title>Custom · Riffy H</title>
+</svelte:head>
+
 <section class="pt-4 px-4 space-y-2">
   <div class="flex justify-evenly" id="code-digit">
     {#each Array.from({ length: 6 }) as _, i (`code-input-${i}`)}

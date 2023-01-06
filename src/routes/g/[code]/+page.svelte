@@ -12,6 +12,14 @@
   export let data: PageData
 </script>
 
+<svelte:head>
+  {#if data.hentai}
+    <title>{data.hentai.title.pretty} · Riffy H</title>
+  {:else}
+    <title>Riffy H</title>
+  {/if}
+</svelte:head>
+
 {#if data.hentai}
   <section class="p-4 flex flex-col items-center space-y-6">
     <div class="rounded-xl overflow-hidden shadow-md">

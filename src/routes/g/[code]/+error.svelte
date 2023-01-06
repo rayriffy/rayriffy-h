@@ -1,3 +1,7 @@
+<svelte:head>
+  <title>Error · Riffy H</title>
+</svelte:head>
+
 <section class="p-8">
   <div class="card card-compact bg-base-100 shadow-xl">
     <figure>

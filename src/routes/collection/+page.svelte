@@ -16,6 +16,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>Collection · Riffy H</title>
+</svelte:head>
+
 <SearchBar section="collection" />
 
 <div class="btn-group px-4 pt-4 -mb-2">

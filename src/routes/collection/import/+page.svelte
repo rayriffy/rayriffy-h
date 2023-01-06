@@ -46,6 +46,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>Import · Riffy H</title>
+</svelte:head>
+
 <section class="p-4">
   <div class="card bg-base-100 shadow-xl">
     <div class="card-body">
