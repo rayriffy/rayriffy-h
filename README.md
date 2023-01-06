@@ -22,9 +22,6 @@ pnpm prisma:generate
 # Fetch data to local cache
 pnpm fetch:data
 
-# Post-processing data
-pnpm build:data
-
 # Start development server
 pnpm dev
 ```
