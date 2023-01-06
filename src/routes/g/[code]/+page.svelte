@@ -54,8 +54,8 @@
       <Favorite hentai={data.hentai} />
     </div>
   </section>
-  <div class="divider mb-8">
-    <BookContentIcon class="w-12 divider-item" />
+  <div class="divider mb-8 divider-item">
+    <BookContentIcon class="w-12" />
   </div>
   <PageRenderer
     pages={data.hentai.images.pages}
