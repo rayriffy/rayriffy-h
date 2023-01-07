@@ -22,7 +22,7 @@ WORKDIR /app
 COPY src ./src
 COPY static ./static
 COPY tools ./tools
-COPY package.json pnpm-lock.yaml* postcss.config.cjs svelte.config.js tailwind.config.cjs tsconfig.json vite.config.js ./
+COPY package.json pnpm-lock.yaml* postcss.config.cjs svelte.config.js tailwind.config.cjs tsconfig.json vite.config.ts ./
 COPY --from=deps /app/node_modules ./node_modules
 
 ARG BUILD_MODE
