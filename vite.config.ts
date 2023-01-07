@@ -1,8 +1,9 @@
 import { sveltekit } from '@sveltejs/kit/vite'
 import { SvelteKitPWA } from '@vite-pwa/sveltekit'
 
-/** @type {import('vite').UserConfig} */
-const config = {
+import type { UserConfig } from 'vite'
+
+const config: UserConfig = {
   plugins: [
     sveltekit(),
     SvelteKitPWA({
