@@ -21,7 +21,7 @@
   const { search } = useStore('search')
 </script>
 
-{#await getListing(page, section === 'tag' ? tagKey : $search[section], section)}
+{#await getListing(page, section === 'tag' ? tagKey : $search[section].query, section)}
   <div class="p-32 flex flex-col items-center">
     <progress class="progress w-56" />
     <p class="text-base-content text-sm pt-2">Loading...</p>
