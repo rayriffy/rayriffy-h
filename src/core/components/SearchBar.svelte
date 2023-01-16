@@ -25,7 +25,7 @@
     type="search"
     placeholder="Keywords or 6-digit code"
     class="input w-full bg-base-200"
-    value={$search[section]}
+    value={$search[section].query}
     on:input={({ target }) => {
       // @ts-ignore
       return debounce(target?.value ?? '')
