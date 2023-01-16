@@ -46,6 +46,9 @@
       <h2 class="font-bold text-gray-500 text-md dark:text-gray-400">
         {data.hentai.title.japanese}
       </h2>
+      <h3 class="font-bold text-gray-500 text-sm dark:text-gray-400">
+        {data.hentai.images.pages.length} pages
+      </h3>
       <div class="pt-2">
         <TagsRenderer tags={data.hentai.tags} />
       </div>
