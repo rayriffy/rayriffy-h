@@ -14,7 +14,7 @@
       console.log('value: ', value)
       dispatch('search/query', {
         target: section,
-        value,
+        query: value,
       })
     }, 500)
   }

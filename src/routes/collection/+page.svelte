@@ -7,12 +7,13 @@
   import { getCollectionListing } from '$modules/listing/services/getCollectionListing'
   import Pagination from '$core/components/Pagination.svelte'
 
-  const { collection, search } = useStore('collection', 'search')
-
-  let page = 1
+  const { collection, search, dispatch } = useStore('collection', 'search')
 
   const onPaginate = (event: CustomEvent<{ page: number }>) => {
-    page = event.detail.page
+    dispatch('search/query', {
+      target: 'collection',
+      page: event.detail.page,
+    })
   }
 </script>
 
@@ -27,14 +28,18 @@
   <a href="/collection/export" class="btn btn-sm btn-active">Export</a>
 </div>
 
-{#await getCollectionListing( page, $search.collection, $collection.data.map(o => o.data) )}
+{#await getCollectionListing( $search.collection.page, $search.collection.query, $collection.data.map(o => o.data) )}
   <div class="p-32 flex flex-col items-center">
     <progress class="progress w-56" />
     <p class="text-base-content text-sm pt-2">Loading...</p>
   </div>
 {:then { items, maxPage }}
   <section class="flex justify-center py-6">
-    <Pagination max={maxPage} current={page} on:paginate={onPaginate} />
+    <Pagination
+      max={maxPage}
+      current={$search.collection.page}
+      on:paginate={onPaginate}
+    />
   </section>
 
   <section class="grid grid-cols-2 gap-4 items-center px-4">
@@ -46,7 +51,11 @@
   </section>
 
   <section class="flex justify-center py-6">
-    <Pagination max={maxPage} current={page} on:paginate={onPaginate} />
+    <Pagination
+      max={maxPage}
+      current={$search.collection.page}
+      on:paginate={onPaginate}
+    />
   </section>
 {:catch}
   <p>Failed</p>

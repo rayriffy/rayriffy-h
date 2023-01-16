@@ -7,9 +7,16 @@ export const search: StoreonModule<SearchStore, SearchEvent> = store => {
   store.on('@init', () => {
     return {
       search: {
-        main: '',
-        listing: '',
-        collection: '',
+        main: {
+          query: '',
+        },
+        listing: {
+          query: '',
+        },
+        collection: {
+          page: 1,
+          query: '',
+        },
       },
     }
   })
@@ -20,7 +27,12 @@ export const search: StoreonModule<SearchStore, SearchEvent> = store => {
       ...state,
     }
 
-    payload.search[event.target] = event.value
+    if (event.query !== undefined)
+      payload.search[event.target].query = event.query
+
+    if (event.page !== undefined)
+      // @ts-ignore
+      payload.search[event.target].page = event.page
 
     return payload
   })
