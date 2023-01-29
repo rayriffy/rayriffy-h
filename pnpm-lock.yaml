@@ -6,7 +6,7 @@ specifiers:
   '@storeon/localstorage': ^1.5.0
   '@storeon/svelte': ^1.0.0
   '@sveltejs/adapter-node': ^1.1.4
-  '@sveltejs/kit': ^1.3.1
+  '@sveltejs/kit': ^1.3.3
   '@svicons/boxicons-regular': ^0.1.11
   '@types/cookie': ^0.5.1
   '@types/lodash.kebabcase': ^4.1.7
@@ -30,7 +30,7 @@ specifiers:
   tailwindcss: ^3.2.4
   ts-node: ^10.9.1
   tslib: ^2.5.0
-  typescript: ^4.9.3
+  typescript: 5.0.0-beta
   vite: ^4.0.4
   vite-plugin-pwa: ^0.14.1
   workbox-window: ^6.5.4
@@ -43,13 +43,13 @@ devDependencies:
   '@storeon/crosstab': 1.0.2
   '@storeon/localstorage': 1.5.0
   '@storeon/svelte': 1.0.0_n3k7dwzc6qmxldefnmfadpzfam
-  '@sveltejs/adapter-node': 1.1.4_@sveltejs+kit@1.3.1
-  '@sveltejs/kit': 1.3.1_svelte@3.55.1+vite@4.0.4
+  '@sveltejs/adapter-node': 1.1.4_@sveltejs+kit@1.3.3
+  '@sveltejs/kit': 1.3.3_svelte@3.55.1+vite@4.0.4
   '@svicons/boxicons-regular': 0.1.11
   '@types/cookie': 0.5.1
   '@types/lodash.kebabcase': 4.1.7
   '@types/sharp': 0.31.1
-  '@vite-pwa/sveltekit': 0.1.2_3yoa7kz2zr7u3b2la5y44j5pgq
+  '@vite-pwa/sveltekit': 0.1.2_3zv4dkdapkw25yanjoltn7oei4
   autoprefixer: 10.4.13_postcss@8.4.21
   daisyui: 2.49.0_by5iqycgvtroytm54ytclj4zzi
   dotenv: 16.0.3
@@ -65,9 +65,9 @@ devDependencies:
   svelte-aio: 0.1.2
   svelte-check: 3.0.3_pehl75e5jsy22vp33udjja4soi
   tailwindcss: 3.2.4_aesdjsunmf4wiehhujt67my7tu
-  ts-node: 10.9.1_typescript@4.9.4
+  ts-node: 10.9.1_typescript@5.0.0-beta
   tslib: 2.5.0
-  typescript: 4.9.4
+  typescript: 5.0.0-beta
   vite: 4.0.4
   vite-plugin-pwa: 0.14.1_aln3rhi4rqbizqxdkcc2hwlswu
   workbox-window: 6.5.4
@@ -1731,7 +1731,7 @@ packages:
       string.prototype.matchall: 4.0.8
     dev: true
 
-  /@sveltejs/adapter-node/1.1.4_@sveltejs+kit@1.3.1:
+  /@sveltejs/adapter-node/1.1.4_@sveltejs+kit@1.3.3:
     resolution: {integrity: sha512-3iEBqi1fXLXP9YIbVuz2LXajoebRJCmAFEQbN40DlxAnA7G+InxUgnqFun3q9gBMz2Qvd99K51g/HxWetXRe8Q==}
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
@@ -1739,12 +1739,12 @@ packages:
       '@rollup/plugin-commonjs': 24.0.0_rollup@3.10.0
       '@rollup/plugin-json': 6.0.0_rollup@3.10.0
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.10.0
-      '@sveltejs/kit': 1.3.1_svelte@3.55.1+vite@4.0.4
+      '@sveltejs/kit': 1.3.3_svelte@3.55.1+vite@4.0.4
       rollup: 3.10.0
     dev: true
 
-  /@sveltejs/kit/1.3.1_svelte@3.55.1+vite@4.0.4:
-    resolution: {integrity: sha512-IjZDhByOlWiyJRsa2SQhSYsMqJu62UGMVdSP0hFWIiKOxqHjmixZwIVUBljG2YSMmb0JP3hA9/oaCdstGWRu/Q==}
+  /@sveltejs/kit/1.3.3_svelte@3.55.1+vite@4.0.4:
+    resolution: {integrity: sha512-z/Of+rnKhNCvFArymTpmiNsAZZnclD8qR9d/YZJi3ZziLh/OI7L/Ca8/n6Hnd5NqLKB6/NzOC0Fgr12VHMY3nQ==}
     engines: {node: ^16.14 || >=18}
     hasBin: true
     requiresBuild: true
@@ -1870,14 +1870,14 @@ packages:
     resolution: {integrity: sha512-F5DIZ36YVLE+PN+Zwws4kJogq47hNgX3Nx6WyDJ3kcplxyke3XIzB8uK5n/Lpm1HBsbGzd6nmGehL8cPekP+Tg==}
     dev: true
 
-  /@vite-pwa/sveltekit/0.1.2_3yoa7kz2zr7u3b2la5y44j5pgq:
+  /@vite-pwa/sveltekit/0.1.2_3zv4dkdapkw25yanjoltn7oei4:
     resolution: {integrity: sha512-zO6nZA+Z8F707VAaw7+bkAI2cYLnLb+/szNmU54L+Qtitq19RaStOytSpgp6lny/V76F9ckn6iN5QUumG5cWlQ==}
     engines: {node: '>=16.14'}
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
       vite-plugin-pwa: ^0.14.0
     dependencies:
-      '@sveltejs/kit': 1.3.1_svelte@3.55.1+vite@4.0.4
+      '@sveltejs/kit': 1.3.3_svelte@3.55.1+vite@4.0.4
       vite-plugin-pwa: 0.14.1_aln3rhi4rqbizqxdkcc2hwlswu
     dev: true
 
@@ -3567,7 +3567,7 @@ packages:
     dependencies:
       lilconfig: 2.0.6
       postcss: 8.4.21
-      ts-node: 10.9.1_typescript@4.9.4
+      ts-node: 10.9.1_typescript@5.0.0-beta
       yaml: 1.10.2
     dev: true
 
@@ -4423,7 +4423,7 @@ packages:
       punycode: 2.1.1
     dev: true
 
-  /ts-node/10.9.1_typescript@4.9.4:
+  /ts-node/10.9.1_typescript@5.0.0-beta:
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -4448,7 +4448,7 @@ packages:
       create-require: 1.1.1
       diff: 4.0.2
       make-error: 1.3.6
-      typescript: 4.9.4
+      typescript: 5.0.0-beta
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
     dev: true
@@ -4482,6 +4482,12 @@ packages:
 
   /typescript/4.9.4:
     resolution: {integrity: sha512-Uz+dTXYzxXXbsFpM86Wh3dKCxrQqUcVMxwU54orwlJjOpO3ao8L7j5lH+dWfTwgCwIuM9GQ2kvVotzYJMXTBZg==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
+    dev: true
+
+  /typescript/5.0.0-beta:
+    resolution: {integrity: sha512-+SSabbSXG5mtF+QGdV9uXXt9Saq1cSyI6hSG7znhaLoquleJpnmfkwSxFngK9c2fWWi1W/263TuzXQOsIcdjjA==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true
