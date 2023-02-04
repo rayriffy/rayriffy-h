@@ -64,7 +64,7 @@ const fetchQueue = new PQueue({
         }
       `
 
-      const data: HifuminSingleResponse = await fetch(
+      const { data }: HifuminSingleResponse = await fetch(
         process.env.HIFUMIN_API_URL as string,
         {
           method: 'POST',
@@ -80,22 +80,23 @@ const fetchQueue = new PQueue({
           },
         }
       ).then(async o => {
-        if (o.status === 200) {
+        if (o.ok) {
           return await o.json()
         } else {
           throw new Error(await o.text())
         }
       })
 
-      if (data.data.nhql.by.data === null) {
-        return null
+      if (data.nhql.by.data === null) {
+        throw null
       } else {
-        return hifuminHentaiToHentai(data.data.nhql.by.data)
+        return hifuminHentaiToHentai(data.nhql.by.data)
       }
     } catch (e) {
       if (secondAttempt) {
-        throw e
+        throw null
       } else {
+        await new Promise(res => setTimeout(res, 3000))
         return fetchHentai(code, true)
       }
     }
