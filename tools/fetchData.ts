@@ -25,7 +25,7 @@ const chunk = <T>(arr: T[], size: number): T[][] =>
   )
 
 const fetchQueue = new PQueue({
-  concurrency: process.env.CI === 'true' ? 40 : 20,
+  concurrency: 8,
 })
 
 ;(async () => {
