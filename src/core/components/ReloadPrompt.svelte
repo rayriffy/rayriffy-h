@@ -1,5 +1,5 @@
 <script lang="ts">
-  import UpvoteIcon from '@svicons/boxicons-regular/upvote.svelte'
+  import UpvoteIcon from '$icons/upvote.svelte'
 
   import { useRegisterSW } from 'virtual:pwa-register/svelte'
 

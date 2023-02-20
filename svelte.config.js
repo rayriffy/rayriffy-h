@@ -15,6 +15,7 @@ const config = {
     alias: {
       $storeon: 'src/context',
       '$core/*': 'src/core',
+      '$icons/*': 'src/icons',
       '$modules/*': 'src/modules',
     },
   },

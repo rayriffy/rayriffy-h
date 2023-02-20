@@ -3,7 +3,7 @@
   import Favorite from '$modules/reader/Favorite.svelte'
   import PageRenderer from '$modules/reader/PageRenderer.svelte'
   import TagsRenderer from '$modules/reader/TagsRenderer.svelte'
-  import BookContentIcon from '@svicons/boxicons-regular/book-content.svelte'
+  import BookContentIcon from '$icons/bookContent.svelte'
 
   import { getImageUrl } from '$core/services/getImageUrl'
 

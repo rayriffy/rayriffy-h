@@ -1,11 +1,11 @@
 <script lang="ts">
   import { page } from '$app/stores'
 
-  import HomeIcon from '@svicons/boxicons-regular/home.svelte'
-  import BoxIcon from '@svicons/boxicons-regular/box.svelte'
-  import NavigationIcon from '@svicons/boxicons-regular/navigation.svelte'
-  import BookmarksIcon from '@svicons/boxicons-regular/bookmarks.svelte'
-  import CogIcon from '@svicons/boxicons-regular/cog.svelte'
+  import HomeIcon from '$icons/home.svelte'
+  import BoxIcon from '$icons/box.svelte'
+  import NavigationIcon from '$icons/navigation.svelte'
+  import BookmarksIcon from '$icons/bookmarks.svelte'
+  import CogIcon from '$icons/cog.svelte'
 
   $: printClass = (routes: string[]) =>
     routes.includes($page.route.id ?? '') ? 'active' : ''

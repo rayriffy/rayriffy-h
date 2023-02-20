@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ErrorIcon from '@svicons/boxicons-regular/error-circle.svelte'
+  import ErrorIcon from '$icons/error-circle.svelte'
 
   import { useStore } from '$storeon'
 

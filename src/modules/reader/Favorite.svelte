@@ -1,8 +1,8 @@
 <script lang="ts">
   import { useStore } from '$storeon'
 
-  import PlusIcon from '@svicons/boxicons-regular/plus.svelte'
-  import MinusIcon from '@svicons/boxicons-regular/minus.svelte'
+  import PlusIcon from '$icons/plus.svelte'
+  import MinusIcon from '$icons/minus.svelte'
 
   import type { Hentai } from '$core/@types/Hentai'
 
