@@ -12,20 +12,22 @@
 </script>
 
 <nav class="btm-nav bg-base-100/80 backdrop-blur-lg max-w-lg mx-auto">
-  <a href="/" class={printClass(['/', '/p/[page=integer]'])}>
+  <a href="/" aria-label="home" class={printClass(['/', '/p/[page=integer]'])}>
     <HomeIcon class="h-5 w-5" />
   </a>
   <a
     href="/listing"
+    aria-label="listing"
     class={printClass(['/listing', '/listing/p/[page=integer]'])}
   >
     <BoxIcon class="h-5 w-5" />
   </a>
-  <a href="/custom" class={printClass(['/custom'])}>
+  <a href="/custom" aria-label="custom" class={printClass(['/custom'])}>
     <NavigationIcon class="h-5 w-5" />
   </a>
   <a
     href="/collection"
+    aria-label="collection"
     class={printClass([
       '/collection',
       '/collection/import',
@@ -34,7 +36,7 @@
   >
     <BookmarksIcon class="h-5 w-5" />
   </a>
-  <a href="/settings" class={printClass(['/settings'])}>
+  <a href="/settings" aria-label="settings" class={printClass(['/settings'])}>
     <CogIcon class="h-5 w-5" />
   </a>
 </nav>
