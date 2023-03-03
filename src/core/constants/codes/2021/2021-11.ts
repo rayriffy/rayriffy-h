@@ -1,4 +1,4 @@
-import type { DatabaseCode } from '../../../@types/DatabaseCode'
+import type { DatabaseCode } from '$core/@types/DatabaseCode'
 
 export const data2021_11: DatabaseCode[] = [
   135042, 378974, 379057, 379118, 313423, 179919, 379129, 379174, 379175,

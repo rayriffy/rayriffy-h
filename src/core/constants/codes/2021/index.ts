@@ -11,7 +11,7 @@ import { data2021_10 } from './2021-10'
 import { data2021_11 } from './2021-11'
 import { data2021_12 } from './2021-12'
 
-import type { DatabaseCode } from '../../../@types/DatabaseCode'
+import type { DatabaseCode } from '$core/@types/DatabaseCode'
 
 export const year2021 = ([] as DatabaseCode[])
   .concat(data2021_01)
