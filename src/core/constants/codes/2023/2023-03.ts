@@ -1,3 +1,7 @@
 import type { DatabaseCode } from '$core/@types/DatabaseCode'
 
-export const data2023_03: DatabaseCode[] = [413959]
+export const data2023_03: DatabaseCode[] = [
+  413959, 444849, 407284, 398846, 283609, 444830, 409295, 444821, 444816,
+  444797, 444785, 444716, 444677, 444672, 444590, 437293, 444567, 444537,
+  444449, 444418, 444383,
+]
