@@ -43,7 +43,7 @@
     "@storeon/localstorage": "^1.5.0",
     "@storeon/svelte": "^1.0.0",
     "@sveltejs/adapter-node": "^1.2.1",
-    "@sveltejs/kit": "^1.9.3",
+    "@sveltejs/kit": "^1.10.0",
     "@types/cookie": "^0.5.1",
     "@types/lodash.kebabcase": "^4.1.7",
     "@types/sharp": "^0.31.1",

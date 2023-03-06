@@ -6,7 +6,7 @@ specifiers:
   '@storeon/localstorage': ^1.5.0
   '@storeon/svelte': ^1.0.0
   '@sveltejs/adapter-node': ^1.2.1
-  '@sveltejs/kit': ^1.9.3
+  '@sveltejs/kit': ^1.10.0
   '@types/cookie': ^0.5.1
   '@types/lodash.kebabcase': ^4.1.7
   '@types/sharp': ^0.31.1
@@ -42,12 +42,12 @@ devDependencies:
   '@storeon/crosstab': 1.0.2
   '@storeon/localstorage': 1.5.0
   '@storeon/svelte': 1.0.0_n3k7dwzc6qmxldefnmfadpzfam
-  '@sveltejs/adapter-node': 1.2.1_@sveltejs+kit@1.9.3
-  '@sveltejs/kit': 1.9.3_svelte@3.55.1+vite@4.1.4
+  '@sveltejs/adapter-node': 1.2.1_@sveltejs+kit@1.10.0
+  '@sveltejs/kit': 1.10.0_svelte@3.55.1+vite@4.1.4
   '@types/cookie': 0.5.1
   '@types/lodash.kebabcase': 4.1.7
   '@types/sharp': 0.31.1
-  '@vite-pwa/sveltekit': 0.1.3_zs4j3fez4t2qko6swvezrijrb4
+  '@vite-pwa/sveltekit': 0.1.3_ck3tocm4p42vl53zhclbcxcjea
   autoprefixer: 10.4.13_postcss@8.4.21
   daisyui: 2.51.3_by5iqycgvtroytm54ytclj4zzi
   dotenv: 16.0.3
@@ -1733,7 +1733,7 @@ packages:
       string.prototype.matchall: 4.0.8
     dev: true
 
-  /@sveltejs/adapter-node/1.2.1_@sveltejs+kit@1.9.3:
+  /@sveltejs/adapter-node/1.2.1_@sveltejs+kit@1.10.0:
     resolution: {integrity: sha512-mEGDCaZVU3qvFdUI8CMKv+BSzpBYpTpcx85u8bfJ+vcv57pu4UXjZg7ivOoxWZdunUeqq4oEyE+kHmlgBRAalg==}
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
@@ -1741,12 +1741,12 @@ packages:
       '@rollup/plugin-commonjs': 24.0.1_rollup@3.18.0
       '@rollup/plugin-json': 6.0.0_rollup@3.18.0
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.18.0
-      '@sveltejs/kit': 1.9.3_svelte@3.55.1+vite@4.1.4
+      '@sveltejs/kit': 1.10.0_svelte@3.55.1+vite@4.1.4
       rollup: 3.18.0
     dev: true
 
-  /@sveltejs/kit/1.9.3_svelte@3.55.1+vite@4.1.4:
-    resolution: {integrity: sha512-rh9FbGfS8w328JZSZmG/ahabBbE50TisHvfz4sVNU3IM3AOhgUAv3EhAJ2dij9R8uARbDHRTY8jOQbIPjcKBZQ==}
+  /@sveltejs/kit/1.10.0_svelte@3.55.1+vite@4.1.4:
+    resolution: {integrity: sha512-0P35zHrByfbF3Ym3RdQL+RvzgsCDSyO3imSwuZ67XAD5HoCQFF3a8Mhh0V3sObz3rc5aJd4Qn82UpAihJqZ6gQ==}
     engines: {node: ^16.14 || >=18}
     hasBin: true
     requiresBuild: true
@@ -1872,14 +1872,14 @@ packages:
     resolution: {integrity: sha512-F5DIZ36YVLE+PN+Zwws4kJogq47hNgX3Nx6WyDJ3kcplxyke3XIzB8uK5n/Lpm1HBsbGzd6nmGehL8cPekP+Tg==}
     dev: true
 
-  /@vite-pwa/sveltekit/0.1.3_zs4j3fez4t2qko6swvezrijrb4:
+  /@vite-pwa/sveltekit/0.1.3_ck3tocm4p42vl53zhclbcxcjea:
     resolution: {integrity: sha512-wOo8riFow/eT+5UWyOcfO3ol72+2bT2fHDwd+sryqqriCWbRxOSUBKivVLlqzyna0QA0sNkM1jDGjJShpwq7aQ==}
     engines: {node: '>=16.14'}
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
       vite-plugin-pwa: ^0.14.0
     dependencies:
-      '@sveltejs/kit': 1.9.3_svelte@3.55.1+vite@4.1.4
+      '@sveltejs/kit': 1.10.0_svelte@3.55.1+vite@4.1.4
       vite-plugin-pwa: 0.14.4_pchkumgzq6po4w4enhsumrku2u
     dev: true
 
