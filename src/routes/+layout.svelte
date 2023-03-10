@@ -29,23 +29,6 @@
 
 <svelte:head>
   {@html webManifest}
-  {#if RIFFYH_BUILD_MODE === 'public'}
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-12TFVLTM16"
-    >
-    </script>
-    <script>
-      window.dataLayer = window.dataLayer || []
-
-      function gtag() {
-        dataLayer.push(arguments)
-      }
-
-      gtag('js', new Date())
-      gtag('config', 'G-12TFVLTM16')
-    </script>
-  {/if}
 </svelte:head>
 
 <div class="app max-w-lg mx-auto">
