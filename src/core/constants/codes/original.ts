@@ -817,7 +817,6 @@ export const original: DatabaseCode[] = [
     code: 285530,
     exclude: [21, 22, 28, 29, 30, 31, 32],
   },
-  300215,
   299347,
   299105,
   299796,
