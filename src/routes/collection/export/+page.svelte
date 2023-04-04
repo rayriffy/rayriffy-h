@@ -35,7 +35,8 @@
       status = 'done'
     } catch (e) {
       console.error((e))
-      error = 'Unable to export collection at the moment, please try again'
+      error = e?.stack ?? e?.message
+      // error = 'Unable to export collection at the moment, please try again'
       status = 'wait'
     }
   }
