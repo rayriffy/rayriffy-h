@@ -34,6 +34,8 @@
       exportCode = response.response.data
       status = 'done'
     } catch (e) {
+      alert(typeof e)
+      alert(e?.stack)
       console.error((e))
       error = e?.stack ?? e?.message
       // error = 'Unable to export collection at the moment, please try again'
