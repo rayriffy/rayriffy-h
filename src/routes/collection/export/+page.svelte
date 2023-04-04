@@ -32,16 +32,10 @@
         }
       ).then(o => o.json())
 
-      console.log(response)
-
-      alert(JSON.stringify({ response } ))
-
       exportCode = response.response.data
       status = 'done'
     } catch (e) {
-      console.error((e))
-      error = JSON.stringify(e?.stack ?? e?.message ?? e)
-      // error = 'Unable to export collection at the moment, please try again'
+      error = 'Unable to export collection at the moment, please try again'
       status = 'wait'
     }
   }
