@@ -7,7 +7,6 @@
   import { provideStoreon } from '@storeon/svelte'
   import { store } from '$storeon'
   import { pwaInfo } from 'virtual:pwa-info'
-  import { RIFFYH_BUILD_MODE } from '$env/static/public'
 
   import type { ComponentType } from 'svelte'
 
