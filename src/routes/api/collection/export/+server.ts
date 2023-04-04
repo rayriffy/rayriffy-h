@@ -13,6 +13,8 @@ export const POST: RequestHandler = async event => {
     const collection: CollectionStore['collection'] = (await event.request.json())
       .collection
 
+    console.log(`read ${collection.data.length} items`)
+
     // encrypt it
     // 32 character key
     const encryptedData = encrypt(JSON.stringify(collection), env.SECRET_KEY)
