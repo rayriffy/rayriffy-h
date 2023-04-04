@@ -27,7 +27,7 @@
           }),
           headers: {
             'Content-Type': 'application/json',
-            'Accepts': 'application/json',
+            'Accept': 'application/json',
           },
         }
       ).then(o => o.json())
