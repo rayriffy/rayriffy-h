@@ -20,7 +20,7 @@
       const response: APIResponse<string> = await fetch(
         `/api/collection/export`,
         {
-          credentials: 'same-origin',
+          // credentials: 'same-origin',
           method: 'POST',
           body: JSON.stringify({
             collection,
@@ -31,13 +31,13 @@
 
       console.log(response)
 
+      alert(JSON.stringify({ response } ))
+
       exportCode = response.response.data
       status = 'done'
     } catch (e) {
-      alert(typeof e)
-      alert(e?.stack)
       console.error((e))
-      error = e?.stack ?? e?.message ?? JSON.stringify(e)
+      error = JSON.stringify(e?.stack ?? e?.message ?? e)
       // error = 'Unable to export collection at the moment, please try again'
       status = 'wait'
     }
