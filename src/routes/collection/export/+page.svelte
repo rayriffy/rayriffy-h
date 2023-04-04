@@ -25,7 +25,10 @@
           body: JSON.stringify({
             collection,
           }),
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'Accepts': 'application/json',
+          },
         }
       ).then(o => o.json())
 
