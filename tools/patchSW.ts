@@ -10,7 +10,7 @@ import path from 'path'
       fs.promises.writeFile(
         filePath,
         originalContent.replace(
-          `,e.registerRoute(new e.NavigationRoute(e.createHandlerBoundToURL("./")))`,
+          `e.registerRoute(new e.NavigationRoute(e.createHandlerBoundToURL("/"))),`,
           ''
         )
       )
