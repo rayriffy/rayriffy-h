@@ -37,7 +37,7 @@
       alert(typeof e)
       alert(e?.stack)
       console.error((e))
-      error = e?.stack ?? e?.message
+      error = e?.stack ?? e?.message ?? JSON.stringify(e)
       // error = 'Unable to export collection at the moment, please try again'
       status = 'wait'
     }

@@ -27,6 +27,8 @@ export const POST: RequestHandler = async event => {
     }
   ).then(o => o.json())
 
+  console.log(bytebinRes)
+
   // send result
   const payload: APIResponse<string> = {
     status: 'success',
