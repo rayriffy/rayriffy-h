@@ -10,14 +10,14 @@ import type { APIResponse } from '$core/@types/APIResponse'
 export const POST: RequestHandler = async event => {
   try {
     // get data
-    const collection: CollectionStore['collection'] = (await event.request.json())
-      .collection
+    const hentaiIds: (string | number)[] = (await event.request.json())
+      .hentaiIds
 
-    console.log(`read ${collection.data.length} items`)
+    console.log(`read ${hentaiIds.length} items`)
 
     // encrypt it
     // 32 character key
-    const encryptedData = encrypt(JSON.stringify(collection), env.SECRET_KEY)
+    const encryptedData = encrypt(JSON.stringify(hentaiIds), env.SECRET_KEY)
 
     // push to bytebin
     const bytebinRes: { key: string } = await fetch(

@@ -23,7 +23,7 @@
           // credentials: 'same-origin',
           method: 'POST',
           body: JSON.stringify({
-            collection,
+            hentaiIds: collection.data.map(item => item.id),
           }),
           headers: {
             'Content-Type': 'application/json',

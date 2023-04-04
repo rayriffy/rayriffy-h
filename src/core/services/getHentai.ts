@@ -42,7 +42,7 @@ export const getHentai = async (id: number | string) => {
         },
         method: 'POST',
       }).then(async o => {
-        if (o.status === 200) {
+        if (o.ok) {
           return o.json() as Promise<HifuminSingleResponse>
         } else {
           throw new Error(await o.json())
