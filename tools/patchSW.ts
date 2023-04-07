@@ -7,13 +7,22 @@ import path from 'path'
       path.join(process.cwd(), 'build/client/sw.js'),
     ].map(async filePath => {
       const originalContent = await fs.promises.readFile(filePath, 'utf8')
-      fs.promises.writeFile(
-        filePath,
-        originalContent.replace(
-          `e.registerRoute(new e.NavigationRoute(e.createHandlerBoundToURL("/"))),`,
-          ''
+
+      const targetString = 'e.registerRoute(new e.NavigationRoute(e.createHandlerBoundToURL("/"))),'
+
+      if (originalContent.includes(targetString))
+        await fs.promises.writeFile(
+          filePath,
+          originalContent.replace(
+            `e.registerRoute(new e.NavigationRoute(e.createHandlerBoundToURL("/"))),`,
+            ''
+          )
         )
-      )
+      else
+        throw new Error('no replacement found')
     })
   )
-})()
+})().catch(e => {
+  console.error(e)
+  process.exit(1)
+})
