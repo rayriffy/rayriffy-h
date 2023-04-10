@@ -149,7 +149,7 @@ const fetchQueue = new PQueue({
             localCacheItem =
               (await kysely
                 .selectFrom('Hentai')
-                .where('id', '==', Number(targetCode))
+                .where('id', '=', Number(targetCode))
                 .selectAll()
                 .executeTakeFirst()) ?? null
           }
