@@ -1,6 +1,8 @@
 import { json } from '@sveltejs/kit'
 import { env } from '$env/dynamic/private'
 
+import destr from 'destr'
+
 import { hifuminHentaiQuery } from '$core/constants/hifuminHentaiQuery'
 
 import { hentaiToMinifiedHentaiForListing } from '$core/services/hentaiToMinifiedHentaiForListing'
@@ -57,10 +59,10 @@ export const GET: RequestHandler = async event => {
       method: 'POST',
     }).then(async o => {
       if (o.status === 200) {
-        return o.json() as Promise<QueryResult>
+        return destr(await o.text()) as QueryResult
       } else {
         console.log('status: ', o.status)
-        throw new Error(await o.json())
+        throw new Error(destr(await o.text()))
       }
     })
 

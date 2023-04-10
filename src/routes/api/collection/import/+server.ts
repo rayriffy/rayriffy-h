@@ -2,6 +2,7 @@ import { json } from '@sveltejs/kit'
 import { env } from '$env/dynamic/private'
 
 import PQueue from 'p-queue'
+import destr from 'destr'
 
 import { decrypt } from '$core/services/crypto/decrypt'
 import { getHentai } from '$core/services/getHentai'
@@ -23,12 +24,12 @@ export const GET: RequestHandler = async event => {
   try {
     const bytebinRes: EncryptedData = await fetch(
       `https://bytebin.lucko.me/${code}`
-    ).then(o => o.json())
+    ).then(async o => destr(await o.text()))
 
     // decrypt it
     const decryptedData = decrypt(bytebinRes, env.SECRET_KEY)
     const decryptedHentaiIds: (string | number)[] =
-      JSON.parse(decryptedData)
+      destr(decryptedData)
     
     // parse into collections
     let fetchedHentais: Hentai[] = []

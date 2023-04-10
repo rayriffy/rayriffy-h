@@ -35,6 +35,7 @@
   },
   "homepage": "https://h.rayriffy.com",
   "dependencies": {
+    "destr": "^1.2.2",
     "sharp": "^0.32.0"
   },
   "devDependencies": {
@@ -58,6 +59,7 @@
     "prettier": "^2.8.7",
     "prettier-plugin-svelte": "^2.10.0",
     "prisma": "^4.12.0",
+    "rollup-plugin-visualizer": "^5.9.0",
     "storeon": "^3.1.5",
     "svelte": "^3.58.0",
     "svelte-aio": "^0.1.2",

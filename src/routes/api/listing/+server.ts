@@ -3,6 +3,8 @@ import { json } from '@sveltejs/kit'
 import fs from 'fs'
 import path from 'path'
 
+import destr from 'destr'
+
 import { searchHentai } from '$core/services/searchHentai'
 import { hentaiToMinifiedHentaiForListing } from '$core/services/hentaiToMinifiedHentaiForListing'
 
@@ -20,7 +22,7 @@ export const GET: RequestHandler = async event => {
       : searchHentai(
           query ?? '',
           Number(page),
-          JSON.parse(
+            destr(
             await fs.promises.readFile(
               path.join(process.cwd(), 'data/searchKey.json'),
               'utf8'
@@ -39,12 +41,12 @@ export const GET: RequestHandler = async event => {
         path.join(process.cwd(), 'data/prebuiltChunks', `chunk-${page}.json`),
         'utf8'
       )
-      .then(value => JSON.parse(value) as number[])
+      .then(value => destr(value) as number[])
       .then(codes =>
         Promise.all(
           codes.map(
             async code =>
-              JSON.parse(
+            destr(
                 await fs.promises.readFile(
                   path.join(process.cwd(), 'data/hentai', `${code}.json`),
                   'utf8'

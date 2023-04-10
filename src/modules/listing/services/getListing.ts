@@ -1,7 +1,6 @@
 import type { APIResponse } from '$core/@types/APIResponse'
 import type { ListingResult } from '$core/@types/ListingResult'
 import type { SearchStore } from '$storeon/@types/SearchStore'
-import type { MinifiedHentaiForListing } from '$core/@types/MinifiedHentaiForListing'
 
 export const getListing = async (
   page: number,

@@ -1,5 +1,6 @@
 import { sveltekit } from '@sveltejs/kit/vite'
 import { SvelteKitPWA } from '@vite-pwa/sveltekit'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 import type { UserConfig } from 'vite'
 
@@ -163,6 +164,14 @@ const config: UserConfig = {
         ],
       },
     }),
+    // @ts-ignore
+    ...(process.env.ANALYZE === 'true'
+      ? [
+          visualizer({
+            open: true,
+          }),
+        ]
+      : []),
   ],
 }
 

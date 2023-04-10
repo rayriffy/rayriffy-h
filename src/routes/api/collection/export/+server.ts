@@ -1,6 +1,8 @@
 import { json } from '@sveltejs/kit'
 import { env } from '$env/dynamic/private'
 
+import destr from 'destr'
+
 import { encrypt } from '$core/services/crypto/encrypt'
 
 import type { RequestHandler } from './$types'
@@ -9,7 +11,7 @@ import type { APIResponse } from '$core/@types/APIResponse'
 export const POST: RequestHandler = async event => {
   try {
     // get data
-    const hentaiIds: (string | number)[] = (await event.request.json())
+    const hentaiIds: (string | number)[] = (destr(await event.request.text()))
       .hentaiIds
 
     console.log(`read ${hentaiIds.length} items`)
@@ -27,7 +29,7 @@ export const POST: RequestHandler = async event => {
         body: JSON.stringify(encryptedData),
         headers: { 'Content-Type': 'application/json' },
       }
-    ).then(o => o.json())
+    ).then(async o => destr(await o.text()))
 
     console.log(bytebinRes)
 

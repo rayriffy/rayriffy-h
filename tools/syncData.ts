@@ -3,6 +3,7 @@ import path from 'path'
 
 import { PrismaClient } from '@prisma/client'
 import dotenv from 'dotenv'
+import destr from 'destr'
 
 import type { Hentai } from '../src/core/@types/Hentai'
 
@@ -32,14 +33,14 @@ const hentaiDirectory = path.join(process.cwd(), 'data/hentai')
             .map(p => p.id)
             .includes(
               (
-                JSON.parse(
+                destr(
                   fs.readFileSync(path.join(hentaiDirectory, o), 'utf8')
                 ) as Hentai
               ).id
             )
       )
       .map(file => {
-        return JSON.parse(
+        return destr(
           fs.readFileSync(path.join(hentaiDirectory, file), 'utf8')
         ) as Hentai
       })
