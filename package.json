@@ -24,12 +24,6 @@
   "bugs": {
     "url": "https://github.com/rayriffy/rayriffy-h/issues"
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,svelte}": [
-      "prettier --plugin-search-dir . --write",
-      "git add"
-    ]
-  },
   "homepage": "https://h.rayriffy.com",
   "dependencies": {
     "sharp": "^0.32.0"
@@ -50,7 +44,6 @@
     "destr": "^1.2.2",
     "dotenv": "^16.0.3",
     "kysely": "^0.24.2",
-    "lint-staged": "^13.2.1",
     "lodash.kebabcase": "^4.1.1",
     "p-queue": "^7.3.4",
     "pg": "^8.10.0",
