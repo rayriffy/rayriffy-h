@@ -22,7 +22,7 @@ export const GET: RequestHandler = async event => {
       : searchHentai(
           query ?? '',
           Number(page),
-            destr(
+          destr(
             await fs.promises.readFile(
               path.join(process.cwd(), 'data/searchKey.json'),
               'utf8'
@@ -46,7 +46,7 @@ export const GET: RequestHandler = async event => {
         Promise.all(
           codes.map(
             async code =>
-            destr(
+              destr(
                 await fs.promises.readFile(
                   path.join(process.cwd(), 'data/hentai', `${code}.json`),
                   'utf8'

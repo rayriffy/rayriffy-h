@@ -8,7 +8,8 @@ import path from 'path'
     ].map(async filePath => {
       const originalContent = await fs.promises.readFile(filePath, 'utf8')
 
-      const targetString = 'e.registerRoute(new e.NavigationRoute(e.createHandlerBoundToURL("/"))),'
+      const targetString =
+        'e.registerRoute(new e.NavigationRoute(e.createHandlerBoundToURL("/"))),'
 
       if (originalContent.includes(targetString))
         await fs.promises.writeFile(
@@ -18,8 +19,7 @@ import path from 'path'
             ''
           )
         )
-      else
-        throw new Error('no replacement found')
+      else throw new Error('no replacement found')
     })
   )
 })().catch(e => {

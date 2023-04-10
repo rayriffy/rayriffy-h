@@ -11,8 +11,9 @@ import type { APIResponse } from '$core/@types/APIResponse'
 export const POST: RequestHandler = async event => {
   try {
     // get data
-    const hentaiIds: (string | number)[] = (destr(await event.request.text()))
-      .hentaiIds
+    const hentaiIds: (string | number)[] = destr(
+      await event.request.text()
+    ).hentaiIds
 
     console.log(`read ${hentaiIds.length} items`)
 
@@ -46,14 +47,17 @@ export const POST: RequestHandler = async event => {
     return json(payload)
   } catch (e) {
     console.error(e)
-    return json({
-      status: 'failure',
-      code: 500,
-      response: {
-        message: 'server failure',
+    return json(
+      {
+        status: 'failure',
+        code: 500,
+        response: {
+          message: 'server failure',
+        },
       },
-    }, {
-      status: 500
-    })
+      {
+        status: 500,
+      }
+    )
   }
 }

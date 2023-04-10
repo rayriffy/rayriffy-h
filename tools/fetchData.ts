@@ -120,7 +120,7 @@ const fetchQueue = new PQueue({
     kysely = new Kysely<DB>({
       dialect: new PostgresDialect({
         pool: new pg.Pool({
-          connectionString: process.env.DATABASE_URL
+          connectionString: process.env.DATABASE_URL,
         }),
       }),
     })
@@ -146,11 +146,12 @@ const fetchQueue = new PQueue({
           let localCacheItem: DBHentai | null = null
 
           if (kysely !== undefined) {
-            localCacheItem = (await kysely
-              .selectFrom('Hentai')
-              .where('id', '==', Number(targetCode))
-              .selectAll()
-              .executeTakeFirst()) ?? null
+            localCacheItem =
+              (await kysely
+                .selectFrom('Hentai')
+                .where('id', '==', Number(targetCode))
+                .selectAll()
+                .executeTakeFirst()) ?? null
           }
 
           if (localCacheItem === null) {

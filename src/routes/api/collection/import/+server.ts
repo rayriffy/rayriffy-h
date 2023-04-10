@@ -28,23 +28,24 @@ export const GET: RequestHandler = async event => {
 
     // decrypt it
     const decryptedData = decrypt(bytebinRes, env.SECRET_KEY)
-    const decryptedHentaiIds: (string | number)[] =
-      destr(decryptedData)
-    
+    const decryptedHentaiIds: (string | number)[] = destr(decryptedData)
+
     // parse into collections
     let fetchedHentais: Hentai[] = []
-    await Promise.all(decryptedHentaiIds.map(id => fetchQueue.add(async () => {
-      try {
-        fetchedHentais.push(await getHentai(id))
-      } catch (e) {
-        console.log('failed to import item id ', id)
-      }
-    })))
+    await Promise.all(
+      decryptedHentaiIds.map(id =>
+        fetchQueue.add(async () => {
+          try {
+            fetchedHentais.push(await getHentai(id))
+          } catch (e) {
+            console.log('failed to import item id ', id)
+          }
+        })
+      )
+    )
 
     let orderedItems: Favorite[] = decryptedHentaiIds
-      .map(id =>
-        fetchedHentais.find(o => Number(o.id) === Number(id))
-      )
+      .map(id => fetchedHentais.find(o => Number(o.id) === Number(id)))
       .filter(o => o !== undefined)
       .map(hentai => ({
         id: hentai!.id,
@@ -53,14 +54,14 @@ export const GET: RequestHandler = async event => {
           ...hentai!,
           images: {
             ...hentai!.images,
-            pages: []
+            pages: [],
           },
-        }
+        },
       }))
 
     const transformedData: CollectionStore['collection'] = {
       version: 2,
-      data: orderedItems
+      data: orderedItems,
     }
 
     const payload: APIResponse<CollectionStore['collection']> = {

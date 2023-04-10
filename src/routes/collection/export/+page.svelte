@@ -27,7 +27,7 @@
           }),
           headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json',
+            Accept: 'application/json',
           },
         }
       ).then(o => o.json())
@@ -82,7 +82,7 @@
       {:else if status === 'done'}
         <div class="flex flex-col items-center">
           <p class="text-base-content text-sm pt-2">Collection Exported! 👍🏼</p>
-          <div class="my-4 bg-base-200 px-6 py-4 font-mono  text-xl rounded-xl">
+          <div class="my-4 bg-base-200 px-6 py-4 font-mono text-xl rounded-xl">
             {exportCode}
           </div>
         </div>
