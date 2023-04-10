@@ -1,14 +1,11 @@
 import fs from 'fs'
 import path from 'path'
 
-import { Kysely, PostgresDialect } from 'kysely'
-import pg from 'pg'
-
+import { PrismaClient } from '@prisma/client'
 import dotenv from 'dotenv'
 import destr from 'destr'
 
 import type { Hentai } from '../src/core/@types/Hentai'
-import type { DB } from './@types/DB'
 
 dotenv.config()
 const hentaiDirectory = path.join(process.cwd(), 'data/hentai')
@@ -18,17 +15,14 @@ const hentaiDirectory = path.join(process.cwd(), 'data/hentai')
     return
   }
 
-  const kysely = new Kysely<DB>({
-    dialect: new PostgresDialect({
-      pool: new pg.Pool({
-        connectionString: process.env.DATABASE_URL,
-      }),
-    }),
-  })
+  const prisma = new PrismaClient()
   try {
     // list ids in local cache
-    const ids = await kysely.selectFrom('Hentai').select('id').execute()
-
+    const ids = await prisma.hentai.findMany({
+      select: {
+        id: true,
+      },
+    })
     // push new data to local cache
     const itemsToPush = fs
       .readdirSync(hentaiDirectory)
@@ -50,20 +44,14 @@ const hentaiDirectory = path.join(process.cwd(), 'data/hentai')
           fs.readFileSync(path.join(hentaiDirectory, file), 'utf8')
         ) as Hentai
       })
-
-    if (itemsToPush.length !== 0)
-      await kysely
-        .insertInto('Hentai')
-        .values(
-          itemsToPush.map(item => ({
-            id: item.id,
-            data: JSON.stringify(item),
-          }))
-        )
-        .execute()
+    await prisma.hentai.createMany({
+      data: itemsToPush.map(item => ({
+        id: item.id,
+        data: JSON.stringify(item),
+      })),
+    })
   } catch (e) {
     console.log(e)
-  } finally {
-    await kysely.destroy()
+    await prisma.$disconnect()
   }
 })()

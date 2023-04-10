@@ -1,9 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-import { Kysely, PostgresDialect } from 'kysely'
-import pg from 'pg'
-
+import { PrismaClient } from '@prisma/client'
 import dotenv from 'dotenv'
 import PQueue from 'p-queue'
 import destr from 'destr'
@@ -14,9 +12,9 @@ import { hifuminHentaiQuery } from '../src/core/constants/hifuminHentaiQuery'
 
 import { hifuminHentaiToHentai } from '../src/core/services/hifuminHentaiToHentai'
 
+import type { Hentai as PrismaHentai } from '@prisma/client'
 import type { Hentai } from '../src/core/@types/Hentai'
 import type { HifuminSingleResponse } from '../src/core/@types/HifuminSingleResponse'
-import type { DB, Hentai as DBHentai } from './@types/DB'
 
 dotenv.config()
 
@@ -114,16 +112,10 @@ const fetchQueue = new PQueue({
 
   let hasError = false
 
-  let kysely: Kysely<DB> | undefined
+  let prisma: PrismaClient | undefined
 
   if (process.env.DATABASE_URL !== undefined) {
-    kysely = new Kysely<DB>({
-      dialect: new PostgresDialect({
-        pool: new pg.Pool({
-          connectionString: process.env.DATABASE_URL,
-        }),
-      }),
-    })
+    prisma = new PrismaClient()
   }
 
   await Promise.all(
@@ -143,15 +135,14 @@ const fetchQueue = new PQueue({
           /**
            * If hentai exists on local cache, then pull data from local cache
            */
-          let localCacheItem: DBHentai | null = null
+          let localCacheItem: PrismaHentai | null = null
 
-          if (kysely !== undefined) {
-            localCacheItem =
-              (await kysely
-                .selectFrom('Hentai')
-                .where('id', '==', Number(targetCode))
-                .selectAll()
-                .executeTakeFirst()) ?? null
+          if (prisma !== undefined) {
+            localCacheItem = await prisma.hentai.findUnique({
+              where: {
+                id: Number(targetCode),
+              },
+            })
           }
 
           if (localCacheItem === null) {
@@ -183,8 +174,6 @@ const fetchQueue = new PQueue({
       })
     )
   )
-
-  await kysely?.destroy()
 
   if (hasError) {
     console.error("there's some error during fetching! crashing...")
