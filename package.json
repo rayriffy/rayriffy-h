@@ -35,7 +35,6 @@
   },
   "homepage": "https://h.rayriffy.com",
   "dependencies": {
-    "destr": "^1.2.2",
     "sharp": "^0.32.0"
   },
   "devDependencies": {
@@ -51,6 +50,7 @@
     "@vite-pwa/sveltekit": "^0.2.1",
     "autoprefixer": "^10.4.14",
     "daisyui": "^2.51.5",
+    "destr": "^1.2.2",
     "dotenv": "^16.0.3",
     "lint-staged": "^13.2.1",
     "lodash.kebabcase": "^4.1.1",
