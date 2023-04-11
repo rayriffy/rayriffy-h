@@ -21,8 +21,8 @@
 </svelte:head>
 
 {#if data.hentai}
-  <section class="p-4 flex flex-col items-center space-y-6">
-    <div class="rounded-xl overflow-hidden shadow-md">
+  <section class="flex flex-col items-center space-y-6 p-4">
+    <div class="overflow-hidden rounded-xl shadow-md">
       <BlurredImage
         src={getImageUrl({
           image: data.hentai.images.cover,
@@ -39,14 +39,14 @@
         >{data.hentai.id}</span
       >
       <h1
-        class="font-bold text-2xl leading-tight pt-2 text-gray-700 dark:text-white"
+        class="pt-2 text-2xl font-bold leading-tight text-gray-700 dark:text-white"
       >
         {data.hentai.title.pretty}
       </h1>
-      <h2 class="font-bold text-gray-500 text-md dark:text-gray-400">
+      <h2 class="text-md font-bold text-gray-500 dark:text-gray-400">
         {data.hentai.title.japanese}
       </h2>
-      <h3 class="font-bold text-gray-500 text-sm dark:text-gray-400">
+      <h3 class="text-sm font-bold text-gray-500 dark:text-gray-400">
         {data.hentai.images.pages.length} pages
       </h3>
       <div class="pt-2">
@@ -57,7 +57,7 @@
       <Favorite hentai={data.hentai} />
     </div>
   </section>
-  <div class="divider mb-8 divider-item">
+  <div class="divider-item divider mb-8">
     <BookContentIcon class="w-12" />
   </div>
   <PageRenderer

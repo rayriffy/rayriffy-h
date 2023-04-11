@@ -15,9 +15,9 @@
 </script>
 
 {#each sortedTags as [type, tags]}
-  <div class="pt-2 flex">
+  <div class="flex pt-2">
     <span
-      class="uppercase text-sm text-gray-700 dark:text-white font-bold pr-2 pt-1"
+      class="pr-2 pt-1 text-sm font-bold uppercase text-gray-700 dark:text-white"
     >
       {type.name}
     </span>
@@ -25,7 +25,7 @@
       {#each tags as tag}
         <a
           href={`/tag/${tag.id}`}
-          class={`text-xs uppercase rounded-md px-2 py-1 text-white ${type.color} font-semibold m-1`}
+          class={`rounded-md px-2 py-1 text-xs uppercase text-white ${type.color} m-1 font-semibold`}
         >
           {tag.name}
         </a>

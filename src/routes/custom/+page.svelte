@@ -33,7 +33,7 @@
   <title>Custom · Riffy H</title>
 </svelte:head>
 
-<section class="pt-4 px-4 space-y-2">
+<section class="space-y-2 px-4 pt-4">
   <div class="flex justify-evenly" id="code-digit">
     {#each Array.from({ length: 6 }) as _, i (`code-input-${i}`)}
       <input
@@ -41,7 +41,7 @@
         placeholder="0"
         maxlength="1"
         id={`code-digit-${i}`}
-        class="input input-bordered w-14 h-14 font-mono text-center"
+        class="input-bordered input h-14 w-14 text-center font-mono"
         bind:value={customCode[i]}
         on:click={onClick}
         on:input|preventDefault={onInputEvent(i)}
@@ -49,7 +49,7 @@
     {/each}
   </div>
 
-  <p class="text-gray-400 text-sm">
+  <p class="text-sm text-gray-400">
     If code is less than 6 digites, then prefix with <code>0</code>
   </p>
 </section>

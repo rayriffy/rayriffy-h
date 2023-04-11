@@ -30,7 +30,7 @@
   {@html webManifest}
 </svelte:head>
 
-<div class="app max-w-lg mx-auto">
+<div class="app mx-auto max-w-lg">
   {#if ReloadPrompt}
     <svelte:component this={ReloadPrompt} />
   {/if}

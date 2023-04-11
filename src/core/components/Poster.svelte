@@ -11,7 +11,7 @@
 </script>
 
 <article class="group relative">
-  <div class="rounded-xl overflow-hidden shadow-md">
+  <div class="overflow-hidden rounded-xl shadow-md">
     <BlurredImage
       src={getImageUrl({
         image: hentai.images.cover,
@@ -32,7 +32,7 @@
           class="h-5"
         />
       {/each}
-      <p class="truncate text-base-content font-medium">
+      <p class="truncate font-medium text-base-content">
         {hentai.title}
       </p>
     </div>

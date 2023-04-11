@@ -23,15 +23,15 @@
 
 <SearchBar section="collection" />
 
-<div class="btn-group px-4 pt-4 -mb-2">
-  <a href="/collection/import" class="btn btn-sm">Import</a>
-  <a href="/collection/export" class="btn btn-sm btn-active">Export</a>
+<div class="btn-group -mb-2 px-4 pt-4">
+  <a href="/collection/import" class="btn-sm btn">Import</a>
+  <a href="/collection/export" class="btn-active btn-sm btn">Export</a>
 </div>
 
 {#await getCollectionListing( $search.collection.page, $search.collection.query, $collection.data.map(o => o.data) )}
-  <div class="p-32 flex flex-col items-center">
+  <div class="flex flex-col items-center p-32">
     <progress class="progress w-56" />
-    <p class="text-base-content text-sm pt-2">Loading...</p>
+    <p class="pt-2 text-sm text-base-content">Loading...</p>
   </div>
 {:then { items, maxPage }}
   <section class="flex justify-center py-6">
@@ -42,7 +42,7 @@
     />
   </section>
 
-  <section class="grid grid-cols-2 gap-4 items-center px-4">
+  <section class="grid grid-cols-2 items-center gap-4 px-4">
     {#each items as hentai (hentai.id)}
       <a href={`/g/${hentai.id}`}>
         <Poster {hentai} />

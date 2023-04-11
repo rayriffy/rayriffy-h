@@ -58,9 +58,9 @@
         Transfer collection from other deivces by using temporary key.
       </p>
       {#if error !== null}
-        <div class="alert alert-error shadow-lg text-sm my-2">
+        <div class="alert alert-error my-2 text-sm shadow-lg">
           <div>
-            <ErrorIcon class="flex-shrink-0 h-6 w-6" />
+            <ErrorIcon class="h-6 w-6 flex-shrink-0" />
             <span>{error}</span>
           </div>
         </div>
@@ -69,7 +69,7 @@
         <input
           type="text"
           placeholder="Temporary key"
-          class="input input-bordered w-full font-mono"
+          class="input-bordered input w-full font-mono"
           on:input={({ target }) => {
             // @ts-ignore
             inputKey = target?.value ?? ''
@@ -77,23 +77,23 @@
         />
         <div class="card-actions justify-end pt-2">
           <button
-            class="btn btn-primary"
+            class="btn-primary btn"
             disabled={inputKey === ''}
             on:click={() => onSubmit(inputKey)}
             >{inputKey !== '' ? 'Import' : 'Missing input'}</button
           >
         </div>
       {:else if status === 'process'}
-        <div class="pt-8 pb-2 flex flex-col items-center">
+        <div class="flex flex-col items-center pb-2 pt-8">
           <progress class="progress w-56" />
-          <p class="text-base-content text-sm pt-2">Importing...</p>
+          <p class="pt-2 text-sm text-base-content">Importing...</p>
         </div>
       {:else if status === 'done'}
-        <div class="pt-6 pb-4 flex flex-col items-center">
-          <p class="text-base-content pt-2">Collection imported! 👍🏼</p>
+        <div class="flex flex-col items-center pb-4 pt-6">
+          <p class="pt-2 text-base-content">Collection imported! 👍🏼</p>
         </div>
         <div class="card-actions justify-end pt-2">
-          <a href="/collection" class="btn btn-primary">Done</a>
+          <a href="/collection" class="btn-primary btn">Done</a>
         </div>
       {/if}
     </div>

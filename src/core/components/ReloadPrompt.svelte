@@ -19,7 +19,7 @@
 </script>
 
 {#if $needRefresh}
-  <div class="toast toast-top toast-end">
+  <div class="toast-end toast toast-top">
     <button
       class="alert alert-info px-4 py-1 text-sm"
       on:click={() => updateServiceWorker(true)}

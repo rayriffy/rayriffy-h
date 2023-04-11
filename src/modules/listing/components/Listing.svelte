@@ -22,16 +22,16 @@
 </script>
 
 {#await getListing(page, section === 'tag' ? tagKey : $search[section].query, section)}
-  <div class="p-32 flex flex-col items-center">
+  <div class="flex flex-col items-center p-32">
     <progress class="progress w-56" />
-    <p class="text-base-content text-sm pt-2">Loading...</p>
+    <p class="pt-2 text-sm text-base-content">Loading...</p>
   </div>
 {:then { items, maxPage }}
   <section class="flex justify-center py-6">
     <Pagination max={maxPage} current={page} {prefix} />
   </section>
 
-  <section class="grid grid-cols-2 gap-4 items-center px-4">
+  <section class="grid grid-cols-2 items-center gap-4 px-4">
     {#each items as hentai}
       <a href={`/g/${hentai.id}`}>
         <Poster {hentai} />

@@ -12,7 +12,7 @@
 </script>
 
 <button
-  class="btn btn-secondary btn-square"
+  class="btn-secondary btn-square btn"
   on:click={() => dispatch('collection/toggle', hentai)}
 >
   {#if $collection.data.find(o => Number(o.id) === Number(hentai.id)) !== undefined}

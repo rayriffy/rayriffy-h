@@ -53,15 +53,15 @@
         Transfer collection to other deivces by using temporary key.
       </p>
       {#if error !== null}
-        <div class="alert alert-error shadow-lg text-sm my-2">
+        <div class="alert alert-error my-2 text-sm shadow-lg">
           <div>
-            <ErrorIcon class="flex-shrink-0 h-6 w-6" />
+            <ErrorIcon class="h-6 w-6 flex-shrink-0" />
             <span>{error}</span>
           </div>
         </div>
       {/if}
       {#if status === 'wait'}
-        <div class="alert alert-info shadow-lg text-sm my-2">
+        <div class="alert alert-info my-2 text-sm shadow-lg">
           <div>
             <span
               >You're about to exporting <b>{$collection.data.length} items</b>
@@ -70,24 +70,24 @@
           </div>
         </div>
         <div class="card-actions justify-end pt-2">
-          <button class="btn btn-primary" on:click={() => onExport($collection)}
+          <button class="btn-primary btn" on:click={() => onExport($collection)}
             >Export</button
           >
         </div>
       {:else if status === 'process'}
-        <div class="pt-8 pb-2 flex flex-col items-center">
+        <div class="flex flex-col items-center pb-2 pt-8">
           <progress class="progress w-56" />
-          <p class="text-base-content text-sm pt-2">Exporting...</p>
+          <p class="pt-2 text-sm text-base-content">Exporting...</p>
         </div>
       {:else if status === 'done'}
         <div class="flex flex-col items-center">
-          <p class="text-base-content text-sm pt-2">Collection Exported! 👍🏼</p>
-          <div class="my-4 bg-base-200 px-6 py-4 font-mono text-xl rounded-xl">
+          <p class="pt-2 text-sm text-base-content">Collection Exported! 👍🏼</p>
+          <div class="my-4 rounded-xl bg-base-200 px-6 py-4 font-mono text-xl">
             {exportCode}
           </div>
         </div>
         <div class="card-actions justify-end pt-2">
-          <a href="/collection" class="btn btn-primary">Done</a>
+          <a href="/collection" class="btn-primary btn">Done</a>
         </div>
       {/if}
     </div>
