@@ -32,12 +32,12 @@
     "sharp": "^0.32.0"
   },
   "devDependencies": {
-    "@prisma/client": "^4.12.0",
+    "@prisma/client": "^4.13.0",
     "@storeon/crosstab": "^1.0.2",
     "@storeon/localstorage": "^1.5.0",
     "@storeon/svelte": "^1.0.0",
     "@sveltejs/adapter-node": "^1.2.3",
-    "@sveltejs/kit": "^1.15.2",
+    "@sveltejs/kit": "^1.15.7",
     "@types/cookie": "^0.5.1",
     "@types/lodash.kebabcase": "^4.1.7",
     "@types/sharp": "^0.31.1",
@@ -48,11 +48,11 @@
     "dotenv": "^16.0.3",
     "lodash.kebabcase": "^4.1.1",
     "p-queue": "^7.3.4",
-    "postcss": "^8.4.21",
+    "postcss": "^8.4.23",
     "prettier": "^2.8.7",
     "prettier-plugin-svelte": "^2.10.0",
     "prettier-plugin-tailwindcss": "^0.2.7",
-    "prisma": "^4.12.0",
+    "prisma": "^4.13.0",
     "rollup-plugin-visualizer": "^5.9.0",
     "storeon": "^3.1.5",
     "svelte": "^3.58.0",
@@ -62,7 +62,7 @@
     "ts-node": "^10.9.1",
     "tslib": "^2.5.0",
     "typescript": "5.0.4",
-    "vite": "^4.2.1",
+    "vite": "^4.3.0",
     "vite-plugin-pwa": "^0.14.7",
     "workbox-window": "^6.5.4"
   }
