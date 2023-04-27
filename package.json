@@ -29,21 +29,21 @@
   },
   "homepage": "https://h.rayriffy.com",
   "dependencies": {
-    "sharp": "^0.32.0"
+    "sharp": "^0.32.1"
   },
   "devDependencies": {
     "@prisma/client": "^4.13.0",
     "@storeon/crosstab": "^1.0.2",
     "@storeon/localstorage": "^1.5.0",
     "@storeon/svelte": "^1.0.0",
-    "@sveltejs/adapter-node": "^1.2.3",
-    "@sveltejs/kit": "^1.15.7",
+    "@sveltejs/adapter-node": "^1.2.4",
+    "@sveltejs/kit": "^1.15.9",
     "@types/cookie": "^0.5.1",
     "@types/lodash.kebabcase": "^4.1.7",
-    "@types/sharp": "^0.31.1",
+    "@types/sharp": "^0.32.0",
     "@vite-pwa/sveltekit": "^0.2.1",
     "autoprefixer": "^10.4.14",
-    "daisyui": "^2.51.5",
+    "daisyui": "^2.51.6",
     "destr": "^1.2.2",
     "dotenv": "^16.0.3",
     "lodash.kebabcase": "^4.1.1",
@@ -58,11 +58,11 @@
     "svelte": "^3.58.0",
     "svelte-aio": "^0.1.2",
     "svelte-check": "^3.2.0",
-    "tailwindcss": "^3.3.1",
+    "tailwindcss": "^3.3.2",
     "ts-node": "^10.9.1",
     "tslib": "^2.5.0",
     "typescript": "5.0.4",
-    "vite": "^4.3.1",
+    "vite": "^4.3.3",
     "vite-plugin-pwa": "^0.14.7",
     "workbox-window": "^6.5.4"
   }
