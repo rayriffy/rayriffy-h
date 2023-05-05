@@ -29,12 +29,12 @@ runs:
 
     - uses: deploys-app/deploys-action@v1
       with:
-        project: rayriffy-h
+        project: rayriffy
         location: gke.cluster-rcf2
-        name: runtime-${{ inputs.mode }}
+        name: ${{ github.event.repository.name }}-${{ inputs.mode }}
         image: ${{ inputs.target_image }}
         minReplicas: 1
-        maxReplicas: 10
+        maxReplicas: 4
       env:
         DEPLOYS_AUTH_USER: ${{ inputs.deploys_user }}
         DEPLOYS_AUTH_PASS: ${{ inputs.deploys_pass }}
