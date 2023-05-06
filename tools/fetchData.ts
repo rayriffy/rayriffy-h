@@ -10,6 +10,7 @@ import { codes } from '../src/core/constants/codes'
 import { itemsPerPage } from '../src/core/constants/itemsPerPage'
 import { hifuminHentaiQuery } from '../src/core/constants/hifuminHentaiQuery'
 
+import { getHentaiFromNH } from '../src/core/services/getHentaiFromNH'
 import { hifuminHentaiToHentai } from '../src/core/services/hifuminHentaiToHentai'
 
 import type { Hentai as PrismaHentai } from '@prisma/client'
@@ -95,7 +96,7 @@ const fetchQueue = new PQueue({
       }
     } catch (e) {
       if (secondAttempt) {
-        throw null
+        return getHentaiFromNH(code)
       } else {
         await new Promise(res => setTimeout(res, 3000))
         return fetchHentai(code, true)

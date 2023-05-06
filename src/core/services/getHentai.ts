@@ -10,6 +10,7 @@ import { hifuminHentaiToHentai } from './hifuminHentaiToHentai'
 
 import type { HifuminSingleResponse } from '../@types/HifuminSingleResponse'
 import type { Hentai } from '../@types/Hentai'
+import { getHentaiFromNH } from './getHentaiFromNH'
 
 export const getHentai = async (id: number | string) => {
   // try to read local cache, if unable then fetch from scratch
@@ -57,8 +58,9 @@ export const getHentai = async (id: number | string) => {
         return hifuminHentaiToHentai(data.data.nhql.by.data)
       }
     } catch (e) {
-      console.error(`error: unable to fetch ${id}`)
-      throw e
+      return getHentaiFromNH(id)
+      // console.error(`error: unable to fetch ${id}`)
+      // throw e
     }
   }
 }
