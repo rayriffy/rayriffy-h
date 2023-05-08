@@ -26,7 +26,7 @@ RUN npx pnpm build
 
 # ? -------------------------
 
-FROM gcr.io/distroless/nodejs:18 as runner
+FROM gcr.io/distroless/nodejs18-debian11 as runner
 
 ENV NODE_ENV production
 
