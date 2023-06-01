@@ -16,9 +16,6 @@ docker-compose up -d
 # Copy .env.example file and please adjust it accordingly
 cp .env.example .env
 
-# Generate Prisma types definition
-pnpm prisma:generate
-
 # Fetch data to local cache
 pnpm fetch:data
 
