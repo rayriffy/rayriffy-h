@@ -6,7 +6,7 @@
   "author": "Phumrapee Limpianchop <contact@rayriffy.com>",
   "license": "MIT",
   "scripts": {
-    "prepare": "prisma generate",
+    "prepare": "prisma generate || true",
     "dev": "vite dev",
     "build": "vite build && pnpm tem tools/patchSW.ts",
     "preview": "vite preview",

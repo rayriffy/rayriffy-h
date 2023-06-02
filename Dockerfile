@@ -3,7 +3,7 @@ FROM node:18-slim as deps-prod
 WORKDIR /app
 
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
-RUN npx pnpm -r i --frozen-lockfile --prod --ignore-scripts
+RUN npx pnpm -r i --frozen-lockfile --prod
 
 # ? -------------------------
 
