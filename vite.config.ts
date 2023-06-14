@@ -55,7 +55,7 @@ const config: UserConfig = {
             options: {
               cacheName: 'riffyh-svelte-optimized-image',
               expiration: {
-                maxAgeSeconds: 60 * 60 * 24 * 30 * 6, // 6 months
+                maxAgeSeconds: 60 * 60 * 24 * 7, // 7 days
               },
             },
           },
