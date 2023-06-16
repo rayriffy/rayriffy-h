@@ -19,9 +19,6 @@ COPY static ./static
 COPY tools ./tools
 COPY src ./src
 
-ARG BUILD_MODE
-ENV RIFFYH_BUILD_MODE ${BUILD_MODE}
-
 RUN npx pnpm build
 
 # ? -------------------------

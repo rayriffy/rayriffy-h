@@ -11,9 +11,6 @@ inputs:
   target_image:
     description: Target image name
     required: true
-  mode:
-    description: Build mode
-    required: true
 
 runs:
   using: 'composite'
@@ -25,13 +22,12 @@ runs:
         context: .
         push: true
         tags: ${{ inputs.target_image }}
-        build-args: 'BUILD_MODE=${{ inputs.mode }}'
 
     - uses: deploys-app/deploys-action@v1
       with:
         project: rayriffy
         location: gke.cluster-rcf2
-        name: ${{ github.event.repository.name }}-${{ inputs.mode }}
+        name: ${{ github.event.repository.name }}
         image: ${{ inputs.target_image }}
         minReplicas: 1
         maxReplicas: 4

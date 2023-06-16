@@ -29,12 +29,8 @@ jobs:
       - run: pnpm sync:data
 
   build:
-    name: build-${{ matrix.mode }}
     runs-on: ubuntu-latest
     needs: [fetch]
-    strategy:
-      matrix:
-        mode: ['public', 'private']
     env:
       APP_NAME: riffyh-runtime-private
       IMAGE_NAME: ghcr.io/rayriffy/riffyh-runtime-private
@@ -57,7 +53,6 @@ jobs:
 
       - uses: ./.actions/build-and-push
         with:
-          target_image: ghcr.io/rayriffy/riffyh-runtime-${{ matrix.mode }}
-          mode: ${{ matrix.mode }}
+          target_image: ghcr.io/rayriffy/riffyh-runtime
           deploys_user: ${{ secrets.DEPLOYS_AUTH_USER }}
           deploys_pass: ${{ secrets.DEPLOYS_AUTH_PASS }}

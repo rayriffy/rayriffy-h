@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { RIFFYH_BUILD_MODE } from '$env/static/public'
-
   import Image from 'svelte-aio'
   import { useStore } from '$storeon'
 
@@ -23,9 +21,4 @@
   }
 </script>
 
-{#if RIFFYH_BUILD_MODE !== 'private'}
-  <!-- svelte-ignore a11y-missing-attribute -->
-  <img {...finalProps} />
-{:else}
-  <Image {...finalProps} />
-{/if}
+<Image {...finalProps} />
