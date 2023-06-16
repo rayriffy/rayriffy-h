@@ -4,7 +4,7 @@ import path from 'path'
 import { PrismaClient } from '@prisma/client'
 import dotenv from 'dotenv'
 import PQueue from 'p-queue'
-import destr from 'destr'
+import { destr } from 'destr'
 
 import { codes } from '../src/core/constants/codes'
 import { itemsPerPage } from '../src/core/constants/itemsPerPage'
@@ -188,7 +188,7 @@ const fetchQueue = new PQueue({
     .map(code => {
       try {
         const targetCode = typeof code === 'number' ? code : code.code
-        const targetHentai: Hentai = destr(
+        const targetHentai = destr<Hentai>(
           fs
             .readFileSync(path.join(hentaiDirectory, `${targetCode}.json`))
             .toString()

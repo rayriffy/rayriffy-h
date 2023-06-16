@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-import destr from 'destr'
+import { destr } from 'destr'
 
 import { env } from '$env/dynamic/private'
 
@@ -19,7 +19,7 @@ export const getHentai = async (id: number | string) => {
       path.join(process.cwd(), 'data/hentai', `${id}.json`),
       'utf8'
     )
-    return destr(hentai) as Hentai
+    return destr<Hentai>(hentai)
   } catch (_) {
     try {
       const data = await fetch(env.HIFUMIN_API_URL, {
@@ -46,7 +46,7 @@ export const getHentai = async (id: number | string) => {
         method: 'POST',
       }).then(async o => {
         if (o.ok) {
-          return destr(await o.text()) as Promise<HifuminSingleResponse>
+          return destr<HifuminSingleResponse>(await o.text())
         } else {
           throw new Error(destr(await o.text()))
         }

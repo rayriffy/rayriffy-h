@@ -1,7 +1,7 @@
 import { json } from '@sveltejs/kit'
 import { env } from '$env/dynamic/private'
 
-import destr from 'destr'
+import { destr } from 'destr'
 
 import { hifuminHentaiQuery } from '$core/constants/hifuminHentaiQuery'
 
@@ -59,7 +59,7 @@ export const GET: RequestHandler = async event => {
       method: 'POST',
     }).then(async o => {
       if (o.status === 200) {
-        return destr(await o.text()) as QueryResult
+        return destr<QueryResult>(await o.text())
       } else {
         console.log('status: ', o.status)
         throw new Error(destr(await o.text()))

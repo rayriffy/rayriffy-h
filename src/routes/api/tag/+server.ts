@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-import destr from 'destr'
+import { destr } from 'destr'
 
 import { json } from '@sveltejs/kit'
 import { itemsPerPage } from '$core/constants/itemsPerPage'
@@ -14,7 +14,7 @@ export const GET: RequestHandler = async event => {
   const query = event.url.searchParams.get('query')
   const page = event.url.searchParams.get('page')
 
-  const searchKeyHentais: Hentai[] = destr(
+  const searchKeyHentais = destr<Hentai[]>(
     await fs.promises.readFile(
       path.join(process.cwd(), 'data/searchKey.json'),
       'utf8'
