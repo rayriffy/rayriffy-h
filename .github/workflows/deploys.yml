@@ -12,21 +12,31 @@ jobs:
       HIFUMIN_API_URL: ${{ secrets.HIFUMIN_API_URL }}
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: ./.actions/initialize
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: pnpm
+        uses: pnpm/action-setup@v2.2.4
         with:
-          hash: ${{ secrets.CACHE_HASH }}
-          run_install: 'true'
-      - uses: actions/cache@v3
+          version: 8
+      - name: node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: pnpm
+      - name: install
+        run: pnpm -r i --frozen-lockfile
+      - name: cache
+        uses: actions/cache@v3
         with:
           path: data
           key: hentai-cache-v2-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
           restore-keys: |
             hentai-cache-v2-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
             hentai-cache-v2-${{ secrets.CACHE_HASH }}-
-      - run: pnpm fetch:data
-      - run: pnpm sync:data
+      - name: fetch
+        run: pnpm fetch:data
+      - name: sync
+        run: pnpm sync:data
 
   build:
     runs-on: ubuntu-latest
@@ -35,24 +45,39 @@ jobs:
       APP_NAME: riffyh-runtime-private
       IMAGE_NAME: ghcr.io/rayriffy/riffyh-runtime-private
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/cache@v3
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: cache
+        uses: actions/cache@v3
         with:
           path: data
           key: hentai-cache-v2-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
           restore-keys: |
             hentai-cache-v2-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
             hentai-cache-v2-${{ secrets.CACHE_HASH }}-
-
-      - uses: docker/login-action@v2
+      - name: login
+        uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: rayriffy
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: ./.actions/build-and-push
+      - name: buildx
+        uses: docker/setup-buildx-action@v2
+      - name: build-and-push
+        uses: docker/build-push-action@v3
         with:
-          target_image: ghcr.io/rayriffy/riffyh-runtime
-          deploys_user: ${{ secrets.DEPLOYS_AUTH_USER }}
-          deploys_pass: ${{ secrets.DEPLOYS_AUTH_PASS }}
+          context: .
+          push: true
+          tags: ghcr.io/rayriffy/riffyh-runtime
+      - name: deploy
+        uses: deploys-app/deploys-action@v1
+        with:
+          project: rayriffy
+          location: gke.cluster-rcf2
+          name: riffy-h
+          image: ghcr.io/rayriffy/riffyh-runtime
+          minReplicas: 1
+          maxReplicas: 4
+        env:
+          DEPLOYS_AUTH_USER: ${{ secrets.DEPLOYS_AUTH_USER }}
+          DEPLOYS_AUTH_PASS: ${{ secrets.DEPLOYS_AUTH_PASS }}
