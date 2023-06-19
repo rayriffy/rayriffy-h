@@ -1,4 +1,4 @@
-FROM node:18-slim as deps-prod
+FROM cgr.dev/chainguard/node:18 as deps-prod
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ RUN npx pnpm -r i --frozen-lockfile --prod
 
 # ? -------------------------
 
-FROM node:18-slim as builder
+FROM cgr.dev/chainguard/node:18 as builder
 
 WORKDIR /app
 
@@ -23,7 +23,7 @@ RUN npx pnpm build
 
 # ? -------------------------
 
-FROM gcr.io/distroless/nodejs18-debian11 as runner
+FROM cgr.dev/chainguard/node:18 as runner
 
 ENV NODE_ENV production
 
