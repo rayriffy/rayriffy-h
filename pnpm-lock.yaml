@@ -5,17 +5,14 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@nanostores/persistent':
-    specifier: ^0.9.0
-    version: 0.9.0(nanostores@0.9.2)
-  nanostores:
-    specifier: ^0.9.2
-    version: 0.9.2
   sharp:
     specifier: ^0.32.1
     version: 0.32.1
 
 devDependencies:
+  '@nanostores/persistent':
+    specifier: ^0.9.0
+    version: 0.9.0(nanostores@0.9.2)
   '@prisma/client':
     specifier: ^4.16.1
     version: 4.16.1(prisma@4.16.1)
@@ -52,6 +49,9 @@ devDependencies:
   lodash.kebabcase:
     specifier: ^4.1.1
     version: 4.1.1
+  nanostores:
+    specifier: ^0.9.2
+    version: 0.9.2
   p-queue:
     specifier: ^7.3.4
     version: 7.3.4
@@ -1614,7 +1614,7 @@ packages:
       nanostores: ^0.9.0
     dependencies:
       nanostores: 0.9.2
-    dev: false
+    dev: true
 
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -3380,7 +3380,7 @@ packages:
   /nanostores@0.9.2:
     resolution: {integrity: sha512-wfKlqLGtOYV9+qzGveqDOSWZUBgTeMr/g+JzfV/GofXQ//0wp0cgHF+QBVlmNH/JW9YA9QN+vR6N0vpniPpARA==}
     engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
-    dev: false
+    dev: true
 
   /napi-build-utils@1.0.2:
     resolution: {integrity: sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg==}
