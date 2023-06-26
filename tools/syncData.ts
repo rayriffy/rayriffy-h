@@ -32,10 +32,8 @@ const hentaiDirectory = path.join(process.cwd(), 'data/hentai')
           !ids
             .map(p => p.id)
             .includes(
-              (
-                destr<Hentai>(
-                  fs.readFileSync(path.join(hentaiDirectory, o), 'utf8')
-                )
+              destr<Hentai>(
+                fs.readFileSync(path.join(hentaiDirectory, o), 'utf8')
               ).id
             )
       )

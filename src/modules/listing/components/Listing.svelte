@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { useStore } from '$storeon'
   import Pagination from '$core/components/Pagination.svelte'
   import Poster from '$core/components/Poster.svelte'
 
+  import { search } from '$nanostores/search'
   import { getListing } from '../services/getListing'
 
-  import type { SearchStore } from '$storeon/@types/SearchStore'
+  import type { Search } from '$nanostores/@types/Search'
 
-  export let section: keyof SearchStore['search'] | 'tag'
+  export let section: keyof Search | 'tag'
   export let page: number
   export let tagKey: string = ''
 
@@ -17,8 +17,6 @@
       : section === 'tag'
       ? `/tag/${tagKey}/`
       : '/'
-
-  const { search } = useStore('search')
 </script>
 
 {#await getListing(page, section === 'tag' ? tagKey : $search[section].query, section)}

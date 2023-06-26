@@ -4,19 +4,40 @@
   import Navbar from '$core/components/Navbar.svelte'
 
   import { onMount } from 'svelte'
-  import { provideStoreon } from '@storeon/svelte'
-  import { store } from '$storeon'
   import { pwaInfo } from 'virtual:pwa-info'
 
-  import type { ComponentType } from 'svelte'
+  import { settings } from '$nanostores/settings'
+  import { collection } from '$nanostores/collection'
+  import { search } from '$nanostores/search'
+  import { defaultSearch } from '$nanostores/constants/defaultSearch'
 
-  provideStoreon(store)
+  import type { ComponentType } from 'svelte'
 
   let ReloadPrompt: ComponentType
   onMount(async () => {
     caches.delete('next-image-assets')
     caches.delete('next-galleries')
     caches.delete('next-listing')
+
+    // migrate storeon data to nanostores
+    try {
+      const storeon = JSON.parse(window.localStorage.getItem('storeon')!)
+
+      if (storeon !== null) {
+        settings.setKey('safemode', storeon.settings.safemode)
+        collection.set(storeon.collection.data)
+
+        window.localStorage.removeItem('storeon')
+      }
+    } catch (e) {
+      console.error('failed to parse storeon')
+    }
+
+    // if new session, then reset search
+    if (window.sessionStorage.getItem('riffyh-session') !== 'true') {
+      search.set(defaultSearch)
+      window.sessionStorage.setItem('riffyh-session', 'true')
+    }
 
     pwaInfo &&
       (ReloadPrompt = (await import('$core/components/ReloadPrompt.svelte'))

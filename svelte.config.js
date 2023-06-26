@@ -13,7 +13,7 @@ const config = {
       publicPrefix: 'RIFFYH_',
     },
     alias: {
-      $storeon: 'src/context',
+      '$nanostores/*': 'src/context',
       '$core/*': 'src/core',
       '$icons/*': 'src/icons',
       '$modules/*': 'src/modules',

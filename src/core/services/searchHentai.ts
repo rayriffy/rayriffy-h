@@ -4,7 +4,7 @@ import { itemsPerPage } from '$core/constants/itemsPerPage'
 export const searchHentai = (
   query: string,
   page: number,
-  hentais: Hentai[]
+  hentais: readonly Hentai[]
 ) => {
   const splittedQueries = query
     .split(' ')

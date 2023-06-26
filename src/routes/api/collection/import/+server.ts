@@ -9,10 +9,9 @@ import { getHentai } from '$core/services/getHentai'
 
 import type { EncryptedData } from '$core/@types/EncryptedData'
 import type { RequestHandler } from './$types'
-import type { CollectionStore } from '$storeon/@types/CollectionStore'
 import type { APIResponse } from '$core/@types/APIResponse'
 import type { Hentai } from '$core/@types/Hentai'
-import type { Favorite } from '$storeon/@types/Favorite'
+import type { Favorite } from '$nanostores/@types/Favorite'
 
 const fetchQueue = new PQueue({
   concurrency: 20,
@@ -22,9 +21,9 @@ export const GET: RequestHandler = async event => {
   const code = event.url.searchParams.get('code')
 
   try {
-    const bytebinRes = await fetch(
-      `https://bytebin.lucko.me/${code}`
-    ).then(async o => destr<EncryptedData>(await o.text()))
+    const bytebinRes = await fetch(`https://bytebin.lucko.me/${code}`).then(
+      async o => destr<EncryptedData>(await o.text())
+    )
 
     // decrypt it
     const decryptedData = decrypt(bytebinRes, env.SECRET_KEY)
@@ -59,17 +58,12 @@ export const GET: RequestHandler = async event => {
         },
       }))
 
-    const transformedData: CollectionStore['collection'] = {
-      version: 2,
-      data: orderedItems,
-    }
-
-    const payload: APIResponse<CollectionStore['collection']> = {
+    const payload: APIResponse<Favorite[]> = {
       status: 'success',
       code: 200,
       response: {
         message: 'done',
-        data: transformedData,
+        data: orderedItems,
       },
     }
 

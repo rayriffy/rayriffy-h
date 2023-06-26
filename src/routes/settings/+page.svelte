@@ -1,7 +1,5 @@
 <script lang="ts">
-  import { useStore } from '$storeon'
-
-  const { settings, dispatch } = useStore('settings')
+  import { settings } from '$nanostores/settings'
 </script>
 
 <svelte:head>
@@ -20,7 +18,7 @@
           type="checkbox"
           class="toggle-primary toggle"
           checked={$settings.safemode}
-          on:click={() => dispatch('setting/toggle', 'safemode')}
+          on:click={() => settings.setKey('safemode', !settings.get().safemode)}
         />
       </div>
     </div>

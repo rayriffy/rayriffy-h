@@ -1,11 +1,11 @@
 import type { APIResponse } from '$core/@types/APIResponse'
 import type { ListingResult } from '$core/@types/ListingResult'
-import type { SearchStore } from '$storeon/@types/SearchStore'
+import type { Search } from '$nanostores/@types/Search'
 
 export const getListing = async (
   page: number,
   query: string,
-  mode: keyof SearchStore['search'] | 'tag'
+  mode: keyof Search | 'tag'
 ) => {
   const fetchedData: APIResponse<ListingResult> = await fetch(
     `/api/${mode}?${new URLSearchParams({

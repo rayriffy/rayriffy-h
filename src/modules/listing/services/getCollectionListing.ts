@@ -1,14 +1,14 @@
-import { searchHentai } from '$core/services/searchHentai'
 import { itemsPerPage } from '$core/constants/itemsPerPage'
+import { searchHentai } from '$core/services/searchHentai'
+import { hentaiToMinifiedHentaiForListing } from '$core/services/hentaiToMinifiedHentaiForListing'
 
 import type { Hentai } from '$core/@types/Hentai'
 import type { ListingResult } from '$core/@types/ListingResult'
-import { hentaiToMinifiedHentaiForListing } from '$core/services/hentaiToMinifiedHentaiForListing'
 
 export const getCollectionListing = (
   page: number,
   query: string,
-  hentais: Hentai[]
+  hentais: readonly Hentai[]
 ): ListingResult => {
   const queryResult =
     query === ''

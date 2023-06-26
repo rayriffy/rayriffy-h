@@ -44,14 +44,13 @@ export const GET: RequestHandler = async event => {
       .then(value => destr<number[]>(value))
       .then(codes =>
         Promise.all(
-          codes.map(
-            async code =>
-              destr<Hentai>(
-                await fs.promises.readFile(
-                  path.join(process.cwd(), 'data/hentai', `${code}.json`),
-                  'utf8'
-                )
+          codes.map(async code =>
+            destr<Hentai>(
+              await fs.promises.readFile(
+                path.join(process.cwd(), 'data/hentai', `${code}.json`),
+                'utf8'
               )
+            )
           )
         )
       ))

@@ -4,10 +4,8 @@ import type { Hentai } from '../src/core/@types/Hentai'
 
 export const backupFetch = async (id: string | number): Promise<Hentai> => {
   const data = await fetch(`https://nhentai.net/api/gallery/${id}`).then(o => {
-    if (o.ok)
-      return o.json() as Promise<Hentai>
-    else
-      throw o
+    if (o.ok) return o.json() as Promise<Hentai>
+    else throw o
   })
 
   return {

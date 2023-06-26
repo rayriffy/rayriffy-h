@@ -1,19 +1,16 @@
 <script lang="ts">
-  import { useStore } from '$storeon'
+  import { search } from '$nanostores/search'
 
-  import type { SearchStore } from '$storeon/@types/SearchStore'
+  import type { Search } from '$nanostores/@types/Search'
 
-  export let section: keyof SearchStore['search']
+  export let section: keyof Search
   let timer: NodeJS.Timeout
-
-  const { search, dispatch } = useStore('search')
 
   const debounce = (value: string) => {
     clearTimeout(timer)
     timer = setTimeout(() => {
       console.log('value: ', value)
-      dispatch('search/query', {
-        target: section,
+      search.setKey(section, {
         query: value,
       })
     }, 500)

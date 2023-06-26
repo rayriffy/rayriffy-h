@@ -1,18 +1,15 @@
 <script lang="ts">
   import ErrorIcon from '$icons/errorCircle.svelte'
 
-  import { useStore } from '$storeon'
+  import { collection } from '$nanostores/collection'
 
   import type { APIResponse } from '$core/@types/APIResponse'
-  import type { CollectionStore } from '$storeon/@types/CollectionStore'
-
-  const { collection } = useStore('collection')
 
   let status: 'wait' | 'process' | 'done' = 'wait'
   let error: string | null = null
   let exportCode: string
 
-  const onExport = async (collection: CollectionStore['collection']) => {
+  const onExport = async () => {
     status = 'process'
     error = null
 
@@ -23,7 +20,7 @@
           // credentials: 'same-origin',
           method: 'POST',
           body: JSON.stringify({
-            hentaiIds: collection.data.map(item => item.id),
+            hentaiIds: collection.get().map(item => item.id),
           }),
           headers: {
             'Content-Type': 'application/json',
@@ -64,13 +61,13 @@
         <div class="alert alert-info my-2 text-sm shadow-lg">
           <div>
             <span
-              >You're about to exporting <b>{$collection.data.length} items</b>
+              >You're about to exporting <b>{$collection.length} items</b>
               from this device...press <b>Export</b> button to continue</span
             >
           </div>
         </div>
         <div class="card-actions justify-end pt-2">
-          <button class="btn-primary btn" on:click={() => onExport($collection)}
+          <button class="btn-primary btn" on:click={() => onExport()}
             >Export</button
           >
         </div>

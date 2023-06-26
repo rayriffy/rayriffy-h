@@ -1,22 +1,20 @@
 <script lang="ts">
   import ErrorIcon from '$icons/errorCircle.svelte'
 
-  import { useStore } from '$storeon'
+  import { collection } from '$nanostores/collection'
 
   import type { APIResponse } from '$core/@types/APIResponse'
-  import type { CollectionStore } from '$storeon/@types/CollectionStore'
+  import type { Favorite } from '$nanostores/@types/Favorite'
 
   let status: 'wait' | 'process' | 'done' = 'wait'
   let error: string | null = null
   let inputKey: string = ''
 
-  const { collection, dispatch } = useStore('collection')
-
   const onSubmit = async (targetKey: string) => {
     status = 'process'
     error = null
 
-    const response: APIResponse<CollectionStore['collection']> = await fetch(
+    const response: APIResponse<Favorite[]> = await fetch(
       `/api/collection/import?${new URLSearchParams({
         code: targetKey,
       }).toString()}`,
@@ -32,15 +30,8 @@
       error =
         'Unable to import collection you specified, maybe code is already expired'
       status = 'wait'
-    } else if (response.response.data.version !== $collection.version) {
-      error =
-        'Mismathed version! Please make sure both device are running the latest version before exporting/importing'
-      status = 'wait'
     } else {
-      dispatch('collection/override', {
-        collection: response.response.data,
-      })
-
+      collection.set(response.response.data)
       status = 'done'
     }
   }

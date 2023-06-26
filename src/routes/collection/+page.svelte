@@ -1,17 +1,15 @@
 <script lang="ts">
-  import { useStore } from '$storeon'
-
   import Poster from '$core/components/Poster.svelte'
   import SearchBar from '$core/components/SearchBar.svelte'
-
-  import { getCollectionListing } from '$modules/listing/services/getCollectionListing'
   import Pagination from '$core/components/Pagination.svelte'
 
-  const { collection, search, dispatch } = useStore('collection', 'search')
+  import { search } from '$nanostores/search'
+  import { getCollectionListing } from '$modules/listing/services/getCollectionListing'
+  import { collectionToHentai } from '$nanostores/computed/collectionToHentai'
 
   const onPaginate = (event: CustomEvent<{ page: number }>) => {
-    dispatch('search/query', {
-      target: 'collection',
+    search.setKey('collection', {
+      ...search.get().collection,
       page: event.detail.page,
     })
   }
@@ -28,7 +26,7 @@
   <a href="/collection/export" class="btn-active btn-sm btn">Export</a>
 </div>
 
-{#await getCollectionListing( $search.collection.page, $search.collection.query, $collection.data.map(o => o.data) )}
+{#await getCollectionListing($search.collection.page, $search.collection.query, $collectionToHentai)}
   <div class="flex flex-col items-center p-32">
     <progress class="progress w-56" />
     <p class="pt-2 text-sm text-base-content">Loading...</p>

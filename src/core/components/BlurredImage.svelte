@@ -1,8 +1,7 @@
 <script lang="ts">
   import Image from 'svelte-aio'
-  import { useStore } from '$storeon'
 
-  const { settings } = useStore('settings')
+  import { settings } from '$nanostores/settings'
 
   export let src: string
   export let width: number

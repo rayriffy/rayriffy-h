@@ -5,6 +5,12 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@nanostores/persistent':
+    specifier: ^0.9.0
+    version: 0.9.0(nanostores@0.9.2)
+  nanostores:
+    specifier: ^0.9.2
+    version: 0.9.2
   sharp:
     specifier: ^0.32.1
     version: 0.32.1
@@ -13,15 +19,6 @@ devDependencies:
   '@prisma/client':
     specifier: ^4.16.1
     version: 4.16.1(prisma@4.16.1)
-  '@storeon/crosstab':
-    specifier: ^1.0.2
-    version: 1.0.2
-  '@storeon/localstorage':
-    specifier: ^1.5.0
-    version: 1.5.0
-  '@storeon/svelte':
-    specifier: ^1.0.0
-    version: 1.0.0(storeon@3.1.5)(svelte@4.0.0)
   '@sveltejs/adapter-node':
     specifier: ^1.2.4
     version: 1.2.4(@sveltejs/kit@1.20.4)
@@ -76,9 +73,6 @@ devDependencies:
   rollup-plugin-visualizer:
     specifier: ^5.9.2
     version: 5.9.2(rollup@2.79.1)
-  storeon:
-    specifier: ^3.1.5
-    version: 3.1.5
   svelte:
     specifier: ^4.0.0
     version: 4.0.0
@@ -1613,6 +1607,15 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
+  /@nanostores/persistent@0.9.0(nanostores@0.9.2):
+    resolution: {integrity: sha512-9OvMOWs0NRiFXmZQXYsb7vGKTt+3XM0/gHl/gGdRTGvYBSaUwJrcmrOx8oc2jmj3QEGoT7JoeUStTGZUy0fSsw==}
+    engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
+    peerDependencies:
+      nanostores: ^0.9.0
+    dependencies:
+      nanostores: 0.9.2
+    dev: false
+
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -1777,24 +1780,6 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
       rollup: 3.21.0
-    dev: true
-
-  /@storeon/crosstab@1.0.2:
-    resolution: {integrity: sha512-UKzJpJaJA12B9kc98MDfZ1Hh3M9HNAMSfgpjNHdg1JgZAHrmN6nXxaDsIlJYgSASND7IOoT/Q8yJB4uwTTodzA==}
-    dev: true
-
-  /@storeon/localstorage@1.5.0:
-    resolution: {integrity: sha512-FVosJE+DKjd4aYL407i4ZvBmYQ+43Uqud+RLjGlxMYjY3Lpe6MZZljc/1kSn4FFcjbthV/zDmAEjTGRFiThntw==}
-    dev: true
-
-  /@storeon/svelte@1.0.0(storeon@3.1.5)(svelte@4.0.0):
-    resolution: {integrity: sha512-0JGvuYGbkhKlPObs4v2RfpKttYP2z4DP9ndPTnxtoS3gwHhDxO8OpSkUxokbfhnn/mWzuW1jNjv1QzrfgoCWgg==}
-    peerDependencies:
-      storeon: ^3.0.0
-      svelte: ^3.20.0
-    dependencies:
-      storeon: 3.1.5
-      svelte: 4.0.0
     dev: true
 
   /@surma/rollup-plugin-off-main-thread@2.2.3:
@@ -3392,6 +3377,11 @@ packages:
     hasBin: true
     dev: true
 
+  /nanostores@0.9.2:
+    resolution: {integrity: sha512-wfKlqLGtOYV9+qzGveqDOSWZUBgTeMr/g+JzfV/GofXQ//0wp0cgHF+QBVlmNH/JW9YA9QN+vR6N0vpniPpARA==}
+    engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
+    dev: false
+
   /napi-build-utils@1.0.2:
     resolution: {integrity: sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg==}
 
@@ -4083,19 +4073,6 @@ packages:
   /statuses@2.0.1:
     resolution: {integrity: sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ==}
     engines: {node: '>= 0.8'}
-    dev: true
-
-  /storeon@3.1.5:
-    resolution: {integrity: sha512-VuW4GQr3LGQr+gqscqsOz2c9asK9N+B+8+sWs7Pj4OqU7bngYIqsPF3IYpkbmccKNWjs7wwxUAlR+gtL9cEMEg==}
-    engines: {node: '>=10.0.0'}
-    peerDependencies:
-      preact: '>=10.0.0'
-      react: '>=16.8.0'
-    peerDependenciesMeta:
-      preact:
-        optional: true
-      react:
-        optional: true
     dev: true
 
   /streamsearch@1.1.0:
