@@ -11,6 +11,7 @@
     timer = setTimeout(() => {
       console.log('value: ', value)
       search.setKey(section, {
+        ...search.get()[section],
         query: value,
       })
     }, 500)
