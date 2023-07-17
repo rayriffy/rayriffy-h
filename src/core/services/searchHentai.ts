@@ -14,12 +14,13 @@ export const searchHentai = (
   const filteredHentais = hentais.filter(hentai => {
     return splittedQueries.every(query => {
       return [
+        hentai.id,
         hentai.title.english,
         hentai.title.japanese,
         hentai.title.pretty,
         ...hentai.tags.map(o => o.name),
       ]
-        .map(o => (o ?? '').toLowerCase())
+        .map(o => String(o ?? '').toLowerCase())
         .some(o => o.includes(query))
     })
   })
