@@ -44,7 +44,7 @@ const fetchQueue = new PQueue({
   await Promise.all(
     chunks.map(async (chunk, i) => {
       const chunkFile = path.join(prebuiltChunkDirectory, `chunk-${i + 1}.json`)
-      await fs.promises.writeFile(chunkFile, JSON.stringify(chunk))
+      await fs.promises.writeFile(chunkFile, JSON.stringify(chunk.map(o => typeof o === 'number' ? o : o.code)))
     })
   )
 
