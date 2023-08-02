@@ -19,7 +19,8 @@
     "prisma:generate": "prisma generate",
     "prisma:commit": "prisma migrate dev",
     "prisma:deploy": "prisma migrate deploy",
-    "tem": "node --experimental-specifier-resolution=node --loader ts-node/esm"
+    "tem": "node --experimental-specifier-resolution=node --loader ts-node/esm",
+    "sync": "pnpm fetch:data && pnpm sync:data"
   },
   "repository": {
     "type": "git",
