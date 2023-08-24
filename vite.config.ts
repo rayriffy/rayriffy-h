@@ -59,17 +59,6 @@ const config: UserConfig = {
               },
             },
           },
-          // original nh image
-          {
-            urlPattern: /^https:\/\/[it]\.nhentai.net\/galleries\/\d+/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'riffyh-svelte-unoptimized-image',
-              expiration: {
-                maxAgeSeconds: 60 * 60 * 24 * 30, // 1 month
-              },
-            },
-          },
           {
             urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
             handler: 'CacheFirst',
