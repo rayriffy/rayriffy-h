@@ -24,7 +24,7 @@ jobs:
           node-version: 18
           cache: pnpm
       - name: install
-        run: pnpm -r i --frozen-lockfile
+        run: pnpm -r i --frozen-lockfile && pnpm svelte-kit sync
       - name: cache
         uses: actions/cache@v3
         with:
