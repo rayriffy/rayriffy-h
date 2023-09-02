@@ -10,60 +10,61 @@
   import type { PageData } from './$types'
 
   export let data: PageData
+  const { hentai, excludes } = data
 </script>
 
 <svelte:head>
-  {#if data.hentai}
-    <title>{data.hentai.title.pretty} · Riffy H</title>
+  {#if hentai}
+    <title>{hentai.title.pretty} · Riffy H</title>
   {:else}
     <title>Riffy H</title>
   {/if}
 </svelte:head>
 
-{#if data.hentai}
+{#if hentai}
   <section class="flex flex-col items-center space-y-6 p-4">
     <div class="overflow-hidden rounded-xl shadow-md">
       <BlurredImage
         src={getImageUrl({
-          image: data.hentai.images.cover,
-          mediaId: data.hentai.media_id,
+          image: hentai.images.cover,
+          mediaId: hentai.media_id,
           type: 'cover',
         })}
-        width={data.hentai.images.cover.w}
-        height={data.hentai.images.cover.h}
+        width={hentai.images.cover.w}
+        height={hentai.images.cover.h}
         class="w-80"
       />
     </div>
     <article class="w-full">
       <span class="font-semibold text-gray-600 dark:text-gray-300"
-        >{data.hentai.id}</span
+        >{hentai.id}</span
       >
       <h1
         class="pt-2 text-2xl font-bold leading-tight text-gray-700 dark:text-white"
       >
-        {data.hentai.title.pretty}
+        {hentai.title.pretty}
       </h1>
       <h2 class="text-md font-bold text-gray-500 dark:text-gray-400">
-        {data.hentai.title.japanese}
+        {hentai.title.japanese}
       </h2>
       <h3 class="text-sm font-bold text-gray-500 dark:text-gray-400">
-        {data.hentai.images.pages.length} pages
+        {hentai.images.pages.length} pages
       </h3>
       <div class="pt-2">
-        <TagsRenderer tags={data.hentai.tags} />
+        <TagsRenderer tags={hentai.tags} />
       </div>
     </article>
     <div class="w-full">
-      <Favorite hentai={data.hentai} />
+      <Favorite {hentai} />
     </div>
   </section>
   <div class="divider-item divider mb-8">
     <BookContentIcon class="w-12" />
   </div>
   <PageRenderer
-    pages={data.hentai.images.pages}
-    mediaId={data.hentai.media_id}
-    excludes={data.excludes}
+    pages={hentai.images.pages}
+    mediaId={hentai.media_id}
+    {excludes}
   />
 {/if}
 
