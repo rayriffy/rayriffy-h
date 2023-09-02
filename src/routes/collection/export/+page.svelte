@@ -67,7 +67,7 @@
           </div>
         </div>
         <div class="card-actions justify-end pt-2">
-          <button class="btn-primary btn" on:click={() => onExport()}
+          <button class="btn btn-primary" on:click={() => onExport()}
             >Export</button
           >
         </div>
@@ -84,7 +84,7 @@
           </div>
         </div>
         <div class="card-actions justify-end pt-2">
-          <a href="/collection" class="btn-primary btn">Done</a>
+          <a href="/collection" class="btn btn-primary">Done</a>
         </div>
       {/if}
     </div>

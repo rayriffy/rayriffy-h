@@ -60,7 +60,7 @@
         <input
           type="text"
           placeholder="Temporary key"
-          class="input-bordered input w-full font-mono"
+          class="input input-bordered w-full font-mono"
           on:input={({ target }) => {
             // @ts-ignore
             inputKey = target?.value ?? ''
@@ -68,7 +68,7 @@
         />
         <div class="card-actions justify-end pt-2">
           <button
-            class="btn-primary btn"
+            class="btn btn-primary"
             disabled={inputKey === ''}
             on:click={() => onSubmit(inputKey)}
             >{inputKey !== '' ? 'Import' : 'Missing input'}</button
@@ -84,7 +84,7 @@
           <p class="pt-2 text-base-content">Collection imported! 👍🏼</p>
         </div>
         <div class="card-actions justify-end pt-2">
-          <a href="/collection" class="btn-primary btn">Done</a>
+          <a href="/collection" class="btn btn-primary">Done</a>
         </div>
       {/if}
     </div>

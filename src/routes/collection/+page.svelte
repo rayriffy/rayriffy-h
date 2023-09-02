@@ -22,8 +22,8 @@
 <SearchBar section="collection" />
 
 <div class="btn-group -mb-2 px-4 pt-4">
-  <a href="/collection/import" class="btn-sm btn">Import</a>
-  <a href="/collection/export" class="btn-active btn-sm btn">Export</a>
+  <a href="/collection/import" class="btn btn-sm">Import</a>
+  <a href="/collection/export" class="btn btn-active btn-sm">Export</a>
 </div>
 
 {#await getCollectionListing($search.collection.page, $search.collection.query, $collectionToHentai)}

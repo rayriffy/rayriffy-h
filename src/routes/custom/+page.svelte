@@ -41,7 +41,7 @@
         placeholder="0"
         maxlength="1"
         id={`code-digit-${i}`}
-        class="input-bordered input h-14 w-14 text-center font-mono"
+        class="input input-bordered h-14 w-14 text-center font-mono"
         bind:value={customCode[i]}
         on:click={onClick}
         on:input|preventDefault={onInputEvent(i)}

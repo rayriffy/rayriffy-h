@@ -30,7 +30,7 @@
   }
 </script>
 
-<button class="btn-secondary btn-square btn" on:click={onToggleCollection}>
+<button class="btn btn-square btn-secondary" on:click={onToggleCollection}>
   {#if isFavorited}
     <MinusIcon class="w-8" />
   {:else}

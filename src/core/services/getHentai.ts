@@ -13,6 +13,8 @@ import type { Hentai } from '../@types/Hentai'
 import { getHentaiFromNH } from './getHentaiFromNH'
 
 export const getHentai = async (id: number | string) => {
+  await new Promise(r => setTimeout(r, 2000))
+
   // try to read local cache, if unable then fetch from scratch
   try {
     const hentai = await fs.promises.readFile(
