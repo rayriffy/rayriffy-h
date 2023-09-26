@@ -16,7 +16,10 @@ WORKDIR /app
 
 COPY package.json bun.lockb ./
 RUN bun i --production
-RUN cd node_modules/sharp && bun run install
+RUN cd node_modules/sharp && \
+    bun run ./install/dll-copy.js && \
+    bun run prebuild-install && \
+    cd ../..
 
 # ? -------------------------
 
@@ -25,7 +28,10 @@ WORKDIR /app
 
 COPY package.json bun.lockb ./
 RUN bun i
-RUN cd node_modules/sharp && bun run install && cd ../..
+RUN cd node_modules/sharp && \
+    bun run ./install/dll-copy.js && \
+    bun run prebuild-install && \
+    cd ../..
 
 COPY postcss.config.cjs svelte.config.js tailwind.config.cjs tsconfig.json vite.config.ts ./
 COPY static ./static
