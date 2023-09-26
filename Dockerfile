@@ -17,6 +17,7 @@ WORKDIR /app
 COPY package.json bun.lockb ./
 RUN bun i --production
 RUN cd node_modules/sharp && \
+    bun run ./install/libvips.js && \
     bun run ./install/dll-copy.js && \
     bun run prebuild-install && \
     cd ../..
@@ -29,6 +30,7 @@ WORKDIR /app
 COPY package.json bun.lockb ./
 RUN bun i
 RUN cd node_modules/sharp && \
+    bun run ./install/libvips.js && \
     bun run ./install/dll-copy.js && \
     bun run prebuild-install && \
     cd ../..
