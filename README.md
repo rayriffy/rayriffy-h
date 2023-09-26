@@ -4,8 +4,7 @@ The missing pieces of nhentai
 
 ## Requirements
 
-- [pnpm](https://pnpm.io/)
-- Node LTS
+- [bun](https://bun.sh/)
 
 ## Development
 
@@ -17,16 +16,16 @@ docker-compose up -d
 cp .env.example .env
 
 # Fetch data to local cache
-pnpm fetch:data
+bun run fetch:data
 
 # Start development server
-pnpm dev
+bun run dev
 ```
 
 ## Build
 
 ```
-pnpm build
+bun run build
 ```
 
 More updated instructions please see CI specification, and Dockerfile
