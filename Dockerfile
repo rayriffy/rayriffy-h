@@ -63,6 +63,7 @@ ENV NODE_ENV production
 EXPOSE 8080
 
 COPY package.json ./
+COPY --from=base /root/.bun/bin/bun bun
 COPY --from=deps-prod /app/node_modules ./node_modules
 COPY --from=builder /app/.svelte-kit ./.svelte-kit
 COPY --from=builder /app/build ./build
