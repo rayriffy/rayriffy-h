@@ -56,7 +56,11 @@ RUN bun ./tools/patchSW.ts
 FROM gcr.io/distroless/base
 WORKDIR /app
 
+ENV HOST 0.0.0.0
+ENV PORT 8080
 ENV NODE_ENV production
+
+EXPOSE 8080
 
 COPY package.json ./
 COPY --from=deps-prod /app/node_modules ./node_modules
@@ -66,5 +70,3 @@ COPY data ./data
 # COPY public public
 
 CMD ["./bun", "./build/index.js"]
-
-EXPOSE 3000
