@@ -6,6 +6,9 @@ ENV PATH="${PATH}:/root/.bun/bin"
 RUN apt update
 RUN apt install curl unzip patch -y
 
+RUN mkdir -p /opt && \
+    cp -a --parents /usr/lib/*/libstdc++.* /opt
+
 RUN curl https://bun.sh/install | bash
 RUN bun -v
 
@@ -64,6 +67,7 @@ EXPOSE 8080
 
 COPY package.json ./
 COPY --from=base /root/.bun/bin/bun bun
+COPY --from=base /opt /
 COPY --from=deps-prod /app/node_modules ./build/node_modules
 COPY --from=builder /app/build ./build
 COPY --from=builder /app/.svelte-kit ./.svelte-kit
