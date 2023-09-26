@@ -50,6 +50,7 @@ COPY src ./src
 
 RUN bun --bun run vite build
 RUN bun ./tools/patchSW.ts
+RUN rm -rf build/package.json
 
 # ? -------------------------
 
