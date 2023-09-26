@@ -4,7 +4,11 @@ WORKDIR /app
 ENV PATH="${PATH}:/root/.bun/bin"
 
 RUN apt update
+RUN apt install pkg-config -y
 RUN apt install curl wget unzip -y
+
+# RUN apt install curl wget unzip libvips-dev -y
+# RUN pkg-config --modversion vips-cpp
 
 RUN curl https://bun.sh/install | bash
 RUN bun -v
