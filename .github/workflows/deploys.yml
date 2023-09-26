@@ -17,7 +17,7 @@ jobs:
       - name: bun
         uses: oven-sh/setup-bun@v1
         with:
-          bun-version: 1.0.0
+          bun-version: 0.8.1
       - name: install
         run: bun i
       - name: cache
