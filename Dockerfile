@@ -50,7 +50,7 @@ COPY src ./src
 
 RUN bun --bun run vite build
 RUN bun ./tools/patchSW.ts
-RUN rm -rf build/package.json
+RUN rm -rf ./build/package.json
 
 # ? -------------------------
 
@@ -65,9 +65,9 @@ EXPOSE 8080
 
 COPY package.json ./
 COPY --from=base /root/.bun/bin/bun bun
-COPY --from=deps-prod /app/node_modules ./node_modules
-COPY --from=builder /app/.svelte-kit ./.svelte-kit
 COPY --from=builder /app/build ./build
+COPY --from=builder /app/.svelte-kit ./.svelte-kit
+COPY --from=deps-prod /app/node_modules ./build/node_modules
 COPY data ./data
 # COPY public public
 
