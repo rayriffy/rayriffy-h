@@ -4,11 +4,7 @@ WORKDIR /app
 ENV PATH="${PATH}:/root/.bun/bin"
 
 RUN apt update
-RUN apt install pkg-config -y
-RUN apt install curl wget unzip -y
-
-# RUN apt install curl wget unzip libvips-dev -y
-# RUN pkg-config --modversion vips-cpp
+RUN apt install curl wget unzip patch -y
 
 RUN curl https://bun.sh/install | bash
 RUN bun -v
@@ -20,6 +16,10 @@ WORKDIR /app
 
 COPY package.json bun.lockb ./
 RUN bun i --production
+
+COPY patches ./patches
+RUN bun run patch:sharp
+
 RUN cd node_modules/sharp && \
     bun run ./install/libvips.js && \
     bun run ./install/dll-copy.js && \
@@ -33,6 +33,10 @@ WORKDIR /app
 
 COPY package.json bun.lockb ./
 RUN bun i
+
+COPY patches ./patches
+RUN bun run patch:sharp
+
 RUN cd node_modules/sharp && \
     bun run ./install/libvips.js && \
     bun run ./install/dll-copy.js && \

@@ -1,0 +1,133 @@
+@@ -4,17 +4,14 @@
+ 'use strict';
+ 
+ const fs = require('fs');
+-const os = require('os');
+ const path = require('path');
+ const stream = require('stream');
+ const zlib = require('zlib');
+-const { createHash } = require('crypto');
+ 
+ const detectLibc = require('detect-libc');
+ const semverCoerce = require('semver/functions/coerce');
+ const semverLessThan = require('semver/functions/lt');
+ const semverSatisfies = require('semver/functions/satisfies');
+-const simpleGet = require('simple-get');
+ const tarFs = require('tar-fs');
+ 
+ const agent = require('../lib/agent');
+@@ -63,39 +60,9 @@
+   }
+ };
+ 
+-const verifyIntegrity = function (platformAndArch) {
+-  const expected = libvips.integrity(platformAndArch);
+-  if (installationForced || !expected) {
+-    libvips.log(`Integrity check skipped for ${platformAndArch}`);
+-    return new stream.PassThrough();
+-  }
+-  const hash = createHash('sha512');
+-  return new stream.Transform({
+-    transform: function (chunk, _encoding, done) {
+-      hash.update(chunk);
+-      done(null, chunk);
+-    },
+-    flush: function (done) {
+-      const digest = `sha512-${hash.digest('base64')}`;
+-      if (expected !== digest) {
+-        try {
+-          libvips.removeVendoredLibvips();
+-        } catch (err) {
+-          libvips.log(err.message);
+-        }
+-        libvips.log(`Integrity expected: ${expected}`);
+-        libvips.log(`Integrity received: ${digest}`);
+-        done(new Error(`Integrity check failed for ${platformAndArch}`));
+-      } else {
+-        libvips.log(`Integrity check passed for ${platformAndArch}`);
+-        done();
+-      }
+-    }
+-  });
+-};
+-
+ const extractTarball = function (tarPath, platformAndArch) {
+   const versionedVendorPath = path.join(__dirname, '..', 'vendor', minimumLibvipsVersion, platformAndArch);
++  console.log({versionedVendorPath, tarPath})
+   libvips.mkdirSync(versionedVendorPath);
+ 
+   const ignoreVendorInclude = hasSharpPrebuild.includes(platformAndArch) && !process.env.npm_config_build_from_source;
+@@ -104,9 +71,8 @@
+   };
+ 
+   stream.pipeline(
+-    fs.createReadStream(tarPath),
+-    verifyIntegrity(platformAndArch),
+-    new zlib.BrotliDecompress(),
++    fs.createReadStream(path.resolve(tarPath)),
++    zlib.createGunzip(),
+     tarFs.extract(versionedVendorPath, { ignore }),
+     function (err) {
+       if (err) {
+@@ -161,7 +127,7 @@
+       handleError(new Error(`Expected Node.js version ${supportedNodeVersion} but found ${process.versions.node}`));
+     }
+     // Download to per-process temporary file
+-    const tarFilename = ['libvips', minimumLibvipsVersionLabelled, platformAndArch].join('-') + '.tar.br';
++    const tarFilename = ['libvips', minimumLibvipsVersionLabelled, platformAndArch].join('-') + '.tar.gz';
+     const tarPathCache = path.join(libvips.cachePath(), tarFilename);
+     if (fs.existsSync(tarPathCache)) {
+       libvips.log(`Using cached ${tarPathCache}`);
+@@ -174,47 +140,11 @@
+     } else {
+       const url = distBaseUrl + tarFilename;
+       libvips.log(`Downloading ${url}`);
+-      simpleGet({ url: url, agent: agent(libvips.log) }, function (err, response) {
+-        if (err) {
+-          fail(err);
+-        } else if (response.statusCode === 404) {
+-          fail(new Error(`Prebuilt libvips ${minimumLibvipsVersion} binaries are not yet available for ${platformAndArch}`));
+-        } else if (response.statusCode !== 200) {
+-          fail(new Error(`Status ${response.statusCode} ${response.statusMessage}`));
+-        } else {
+-          const tarPathTemp = path.join(os.tmpdir(), `${process.pid}-${tarFilename}`);
+-          const tmpFileStream = fs.createWriteStream(tarPathTemp);
+-          response
+-            .on('error', function (err) {
+-              tmpFileStream.destroy(err);
+-            })
+-            .on('close', function () {
+-              if (!response.complete) {
+-                tmpFileStream.destroy(new Error('Download incomplete (connection was terminated)'));
+-              }
+-            })
+-            .pipe(tmpFileStream);
+-          tmpFileStream
+-            .on('error', function (err) {
+-              // Clean up temporary file
+-              try {
+-                fs.unlinkSync(tarPathTemp);
+-              } catch (e) {}
+-              fail(err);
+-            })
+-            .on('close', function () {
+-              try {
+-                // Attempt to rename
+-                fs.renameSync(tarPathTemp, tarPathCache);
+-              } catch (err) {
+-                // Fall back to copy and unlink
+-                fs.copyFileSync(tarPathTemp, tarPathCache);
+-                fs.unlinkSync(tarPathTemp);
+-              }
+-              extractTarball(tarPathCache, platformAndArch);
+-            });
+-        }
+-      });
++      const file = await fetch(url, {
++        agent: agent(libvips.log)
++      })
++      await fs.writeFileSync(tarPathCache, Buffer.from(await file.arrayBuffer()))
++      extractTarball(tarPathCache, platformAndArch);
+     }
+   }
+ } catch (err) {

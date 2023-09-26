@@ -53,12 +53,15 @@
     "format": "prettier --write \"**/*.{ts,tsx,md,astro}\"",
     "fetch:data": "bun tools/fetchData.ts",
     "sync:data": "bun tools/syncData.ts",
+    "patch:sharp": "patch node_modules/sharp/install/libvips.js < patches/sharp.patch",
     "prisma:generate": "prisma generate",
     "prisma:commit": "prisma migrate dev",
     "prisma:deploy": "prisma migrate deploy",
     "sync": "bun run fetch:data && bun run sync:data"
   },
-  "trustedDependencies": ["sharp"],
+  "trustedDependencies": [
+    "sharp"
+  ],
   "type": "module",
   "dependencies": {
     "sharp": "^0.32.6"
