@@ -4,7 +4,7 @@ WORKDIR /app
 ENV PATH="${PATH}:/root/.bun/bin"
 
 RUN apt update
-RUN apt install curl wget unzip patch -y
+RUN apt install curl unzip patch -y
 
 RUN curl https://bun.sh/install | bash
 RUN bun -v
