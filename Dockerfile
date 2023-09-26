@@ -7,6 +7,7 @@ RUN apt update
 RUN apt install curl unzip -y
 
 RUN curl https://bun.sh/install | bash
+RUN bun -v
 
 # ? -------------------------
 

@@ -1,35 +1,10 @@
 {
   "name": "svelte",
   "version": "0.0.1",
-  "type": "module",
-  "private": true,
   "author": "Phumrapee Limpianchop <contact@rayriffy.com>",
-  "license": "MIT",
-  "scripts": {
-    "prepare": "prisma generate || true",
-    "dev": "vite dev",
-    "build": "vite build && bun tools/patchSW.ts",
-    "preview": "vite preview",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "format": "prettier --write \"**/*.{ts,tsx,md,astro}\"",
-    "fetch:data": "bun tools/fetchData.ts",
-    "sync:data": "bun tools/syncData.ts",
-    "prisma:generate": "prisma generate",
-    "prisma:commit": "prisma migrate dev",
-    "prisma:deploy": "prisma migrate deploy",
-    "sync": "bun run fetch:data && bun run sync:data"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rayriffy/rayriffy-h.git"
-  },
-  "bugs": {
-    "url": "https://github.com/rayriffy/rayriffy-h/issues"
-  },
-  "homepage": "https://h.rayriffy.com",
-  "trustedDependencies": ["sharp"],
-  "dependencies": {
-    "sharp": "^0.32.6"
   },
   "devDependencies": {
     "@nanostores/persistent": "^0.9.1",
@@ -62,5 +37,30 @@
     "vite": "^4.4.9",
     "vite-plugin-pwa": "^0.16.5",
     "workbox-window": "^7.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/rayriffy/rayriffy-h/issues"
+  },
+  "homepage": "https://h.rayriffy.com",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "prepare": "prisma generate || true",
+    "dev": "vite dev",
+    "build": "vite build && bun tools/patchSW.ts",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "format": "prettier --write \"**/*.{ts,tsx,md,astro}\"",
+    "fetch:data": "bun tools/fetchData.ts",
+    "sync:data": "bun tools/syncData.ts",
+    "prisma:generate": "prisma generate",
+    "prisma:commit": "prisma migrate dev",
+    "prisma:deploy": "prisma migrate deploy",
+    "sync": "bun run fetch:data && bun run sync:data"
+  },
+  "trustedDependencies": ["sharp"],
+  "type": "module",
+  "dependencies": {
+    "sharp": "^0.32.6"
   }
 }
