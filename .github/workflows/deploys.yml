@@ -14,17 +14,12 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
-      - name: pnpm
-        uses: pnpm/action-setup@v2.2.4
+      - name: bun
+        uses: oven-sh/setup-bun@v1
         with:
-          version: 8
-      - name: node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: pnpm
+          bun-version: 1.0.0
       - name: install
-        run: pnpm -r i --frozen-lockfile && pnpm svelte-kit sync
+        run: bun i
       - name: cache
         uses: actions/cache@v3
         with:
@@ -34,9 +29,9 @@ jobs:
             hentai-cache-v2-${{ secrets.CACHE_HASH }}-${{ hashFiles('src/core/constants/codes/**/*.ts') }}
             hentai-cache-v2-${{ secrets.CACHE_HASH }}-
       - name: fetch
-        run: pnpm fetch:data
+        run: bun fetch:data
       - name: sync
-        run: pnpm sync:data
+        run: bun sync:data
 
   build:
     runs-on: ubuntu-latest

@@ -2,12 +2,10 @@ import fs from 'fs'
 import path from 'path'
 
 import { PrismaClient } from '@prisma/client'
-import dotenv from 'dotenv'
 import { destr } from 'destr'
 
 import type { Hentai } from '../src/core/@types/Hentai'
 
-dotenv.config()
 const hentaiDirectory = path.join(process.cwd(), 'data/hentai')
 
 ;(async () => {

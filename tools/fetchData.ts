@@ -2,29 +2,16 @@ import fs from 'fs'
 import path from 'path'
 
 import { PrismaClient } from '@prisma/client'
-import dotenv from 'dotenv'
 import PQueue from 'p-queue'
 import { destr } from 'destr'
 
+import { chunk } from './constants/chunk'
+import { cacheDirectory } from './constants/cacheDirectory'
+import { getRemoteHentai } from './functions/getRemoteHentai'
 import { codes } from '../src/core/constants/codes'
 import { itemsPerPage } from '../src/core/constants/itemsPerPage'
-import { hifuminHentaiQuery } from '../src/core/constants/hifuminHentaiQuery'
 
-import { getHentaiFromNH } from '../src/core/services/getHentaiFromNH'
-import { hifuminHentaiToHentai } from '../src/core/services/hifuminHentaiToHentai'
-
-import type { Hentai as PrismaHentai } from '@prisma/client'
 import type { Hentai } from '../src/core/@types/Hentai'
-import type { HifuminSingleResponse } from '../src/core/@types/HifuminSingleResponse'
-
-dotenv.config()
-
-const cacheDirectory = path.join(process.cwd(), 'data')
-
-const chunk = <T>(arr: T[], size: number): T[][] =>
-  Array.from({ length: Math.ceil(arr.length / size) }, (_, i: number) =>
-    arr.slice(i * size, i * size + size)
-  )
 
 const fetchQueue = new PQueue({
   concurrency: 8,
@@ -51,62 +38,6 @@ const fetchQueue = new PQueue({
     })
   )
 
-  // fetch all hentai
-  const fetchHentai = async (
-    code: string | number,
-    secondAttempt = false
-  ): Promise<Hentai | null> => {
-    try {
-      const query = `
-        query SingleHentaiQuery ($hentaiId: Int!) {
-          nhql {
-            by (id: $hentaiId) {
-              data {
-                ${hifuminHentaiQuery}
-              }
-            }
-          }
-        }
-      `
-
-      const { data }: HifuminSingleResponse = await fetch(
-        process.env.HIFUMIN_API_URL as string,
-        {
-          method: 'POST',
-          body: JSON.stringify({
-            query,
-            variables: {
-              hentaiId: Number(code),
-            },
-          }),
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-        }
-      ).then(async o => {
-        if (o.ok) {
-          return destr(await o.text())
-        } else {
-          throw new Error(await o.text())
-        }
-      })
-
-      if (data.nhql.by.data === null) {
-        throw null
-      } else {
-        return hifuminHentaiToHentai(data.nhql.by.data)
-      }
-    } catch (e) {
-      if (secondAttempt) {
-        return getHentaiFromNH(code)
-      } else {
-        await new Promise(res => setTimeout(res, 3000))
-        return fetchHentai(code, true)
-      }
-    }
-  }
-
   console.log('fetching all galleries')
   const hentaiDirectory = path.join(cacheDirectory, 'hentai')
 
@@ -114,8 +45,7 @@ const fetchQueue = new PQueue({
     await fs.promises.mkdir(hentaiDirectory, { recursive: true })
   }
 
-  let hasError = false
-
+  let hasError
   let prisma: PrismaClient | undefined
 
   if (process.env.DATABASE_URL !== undefined) {
@@ -124,64 +54,19 @@ const fetchQueue = new PQueue({
 
   await Promise.all(
     codes.map(code =>
-      fetchQueue.add(async () => {
-        const targetCode = typeof code === 'number' ? code : code.code
-        const hentaiFile = path.join(hentaiDirectory, `${targetCode}.json`)
-
-        try {
-          /**
-           * If file cache exists, then no need to do anything
-           */
-          if (fs.existsSync(hentaiFile)) {
-            return
-          }
-
-          /**
-           * If hentai exists on local cache, then pull data from local cache
-           */
-          let localCacheItem: PrismaHentai | null = null
-
-          if (prisma !== undefined) {
-            localCacheItem = await prisma.hentai.findUnique({
-              where: {
-                id: Number(targetCode),
-              },
-            })
-          }
-
-          if (localCacheItem === null) {
-            const hentai = await fetchHentai(targetCode)
-
-            if (hentai !== null) {
-              await fs.promises.writeFile(hentaiFile, JSON.stringify(hentai))
-            } else {
-              throw 'null'
-            }
-          } else {
-            await fs.promises.writeFile(
-              hentaiFile,
-              localCacheItem.data as string
-            )
-          }
-        } catch (e) {
-          hasError = true
-          console.error(
-            `failed to get gallery ${targetCode} - ${
-              (e as Error)?.message ?? e
-            }`
-          )
-
-          if (fs.existsSync(hentaiFile)) {
-            await fs.promises.rm(hentaiFile)
-          }
-        }
-      })
+      fetchQueue.add(() => getRemoteHentai(code, prisma).catch(() => {
+        hasError = true
+      }))
     )
   )
+
+  await fetchQueue.onIdle()
 
   if (hasError) {
     console.error("there's some error during fetching! crashing...")
     process.exit(1)
+  } else {
+    console.log('fetched all galleries')
   }
 
   /**

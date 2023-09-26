@@ -1,29 +1,41 @@
-FROM node:18-slim as deps-prod
-
+FROM debian:11.6-slim as base
 WORKDIR /app
 
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
-RUN npx pnpm -r i --frozen-lockfile --prod
+ENV PATH="${PATH}:/root/.bun/bin"
+
+RUN apt update
+RUN apt install curl unzip -y
+
+RUN curl https://bun.sh/install | bash
 
 # ? -------------------------
 
-FROM node:18-slim as builder
-
+FROM base as deps-prod
 WORKDIR /app
 
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
-RUN npx pnpm -r i --frozen-lockfile
+COPY package.json bun.lockb ./
+RUN bun i --production
+
+# ? -------------------------
+
+FROM base as builder
+WORKDIR /app
+
+COPY package.json bun.lockb ./
+RUN bun i
 
 COPY postcss.config.cjs svelte.config.js tailwind.config.cjs tsconfig.json vite.config.ts ./
 COPY static ./static
 COPY tools ./tools
 COPY src ./src
 
-RUN npx pnpm build
+RUN bun --bun run vite build
+RUN bun ./tools/patchSW.ts
 
 # ? -------------------------
 
-FROM gcr.io/distroless/nodejs18-debian11 as runner
+FROM gcr.io/distroless/base
+WORKDIR /app
 
 ENV NODE_ENV production
 
@@ -32,8 +44,8 @@ COPY --from=deps-prod /app/node_modules ./node_modules
 COPY --from=builder /app/.svelte-kit ./.svelte-kit
 COPY --from=builder /app/build ./build
 COPY data ./data
+# COPY public public
+
+CMD ["./bun", "./build/index.js"]
 
 EXPOSE 3000
-ENV PORT 3000
-
-CMD ["./build/index.js"]
