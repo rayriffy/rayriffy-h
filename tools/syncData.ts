@@ -8,8 +8,7 @@ import type { Hentai } from '../src/core/@types/Hentai'
 
 const hentaiDirectory = path.join(process.cwd(), 'data/hentai')
 
-if (process.env.DATABASE_URL === undefined)
-  process.exit(0)
+if (process.env.DATABASE_URL === undefined) process.exit(0)
 
 const prisma = new PrismaClient()
 try {

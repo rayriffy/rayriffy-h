@@ -1,13 +1,13 @@
-import destr from "destr"
+import destr from 'destr'
 
 import { hifuminHentaiQuery } from '../../src/core/constants/hifuminHentaiQuery'
 import { getHentaiFromNH } from '../../src/core/services/getHentaiFromNH'
 import { hifuminHentaiToHentai } from '../../src/core/services/hifuminHentaiToHentai'
 
 import type { Hentai } from '../../src/core/@types/Hentai'
-import type { HifuminSingleResponse } from "../../src/core/@types/HifuminSingleResponse"
+import type { HifuminSingleResponse } from '../../src/core/@types/HifuminSingleResponse'
 
-export   const fetchHentai = async (
+export const fetchHentai = async (
   code: string | number,
   secondAttempt = false
 ): Promise<Hentai | null> => {

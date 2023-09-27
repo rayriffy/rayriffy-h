@@ -54,7 +54,8 @@
     "sync": "bun run fetch:data && bun run sync:data"
   },
   "trustedDependencies": [
-    "sharp"
+    "sharp",
+    "prettier"
   ],
   "type": "module",
   "dependencies": {
