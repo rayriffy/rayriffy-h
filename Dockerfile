@@ -6,13 +6,8 @@ ENV PATH="${PATH}:/root/.bun/bin"
 RUN apt update
 RUN apt install curl unzip patch -y
 
-# RUN mkdir -p /opt && \
-#     cp -a --parents /usr/lib/*/libstdc++.* /opt
+RUN curl https://bun.sh/install | bash -s -- bun-v1.0.3
 
-RUN curl -fsSL https://github.com/owenizedd/bum/raw/main/install.sh | bash
-# RUN curl https://bun.sh/install | bash
-RUN bum use 1.0.3
-RUN which bun
 RUN bun -v
 
 # ? -------------------------
