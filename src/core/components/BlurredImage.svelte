@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Image from 'svelte-aio'
+  import Image from '@urami/svelte'
 
   import { settings } from '$nanostores/settings'
 
