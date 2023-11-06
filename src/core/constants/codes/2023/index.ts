@@ -8,6 +8,7 @@ import { data2023_07 } from './2023-07'
 import { data2023_08 } from './2023-08'
 import { data2023_09 } from './2023-09'
 import { data2023_10 } from './2023-10'
+import { data2023_11 } from './2023-11'
 
 import type { DatabaseCode } from '$core/@types/DatabaseCode'
 
@@ -22,3 +23,4 @@ export const year2023 = ([] as DatabaseCode[])
   .concat(data2023_08)
   .concat(data2023_09)
   .concat(data2023_10)
+  .concat(data2023_11)
