@@ -6,7 +6,7 @@ ENV PATH="${PATH}:/root/.bun/bin"
 RUN apt update
 RUN apt install curl unzip patch -y
 
-RUN curl https://bun.sh/install | bash -s -- bun-v1.0.3
+RUN curl https://bun.sh/install | bash -s -- bun-v1.0.14
 
 RUN bun -v
 
