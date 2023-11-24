@@ -16,7 +16,7 @@ FROM base as deps-prod
 WORKDIR /app
 
 COPY package.json bun.lockb ./
-RUN bun i --production
+RUN bun i --production --ignore-scripts
 
 COPY patches ./patches
 RUN bun run patch:sharp
@@ -33,7 +33,7 @@ FROM base as builder
 WORKDIR /app
 
 COPY package.json bun.lockb ./
-RUN bun i
+RUN bun i --ignore-scripts
 
 COPY patches ./patches
 RUN bun run patch:sharp
