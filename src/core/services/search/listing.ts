@@ -1,5 +1,3 @@
-import { json } from '@sveltejs/kit'
-
 import fs from 'fs'
 import path from 'path'
 
@@ -8,18 +6,17 @@ import { destr } from 'destr'
 import { searchHentai } from '$core/services/searchHentai'
 import { hentaiToMinifiedHentaiForListing } from '$core/services/hentaiToMinifiedHentaiForListing'
 
-import type { RequestHandler } from './$types'
+import type { SearchInput } from '$core/constants/schema/searchInput'
 import type { Hentai } from '$core/@types/Hentai'
 
-export const GET: RequestHandler = async event => {
-  const query = event.url.searchParams.get('query')
-  const page = event.url.searchParams.get('page')
-  const filteredTags =
-    JSON.parse(event.url.searchParams.get('filteredTags') as string) ?? []
-
+export const searchListing = async ({
+  query,
+  page,
+  excludeTags,
+}: Omit<SearchInput, 'mode'>) => {
   // if no search query then local search return null, otherwise return search results
   const localSearch =
-    query === '' && filteredTags.length === 0
+    query === '' && excludeTags.length === 0
       ? null
       : searchHentai(
           query ?? '',
@@ -30,7 +27,7 @@ export const GET: RequestHandler = async event => {
               'utf8'
             )
           ),
-          filteredTags
+          excludeTags
         )
 
   const totalListingPages =
@@ -58,21 +55,8 @@ export const GET: RequestHandler = async event => {
         )
       ))
 
-  return json(
-    {
-      status: 'success',
-      response: {
-        data: {
-          maxPage: totalListingPages,
-          items: hentais.map(o => hentaiToMinifiedHentaiForListing(o)),
-        },
-      },
-    },
-    {
-      status: 200,
-      headers: {
-        'Cache-Control': 's-maxage=300',
-      },
-    }
-  )
+  return {
+    maxPage: totalListingPages,
+    items: hentais.map(o => hentaiToMinifiedHentaiForListing(o)),
+  }
 }

@@ -11,8 +11,8 @@
       ? current - 2 < 1
         ? 0
         : current + 2 > max
-        ? max - pageLength
-        : current - (pageLength - 2)
+          ? max - pageLength
+          : current - (pageLength - 2)
       : 0
 
   const dispatch = createEventDispatcher<{ paginate: { page: number } }>()

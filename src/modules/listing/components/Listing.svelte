@@ -6,9 +6,7 @@
   import { getListing } from '../services/getListing'
   import { settings } from '$nanostores/settings'
 
-  import type { Search } from '$nanostores/@types/Search'
-
-  export let section: keyof Search | 'tag'
+  export let section: 'main' | 'listing' | 'tag'
   export let page: number
   export let tagKey: string = ''
 
@@ -16,8 +14,8 @@
     section === 'listing'
       ? '/listing/'
       : section === 'tag'
-      ? `/tag/${tagKey}/`
-      : '/'
+        ? `/tag/${tagKey}/`
+        : '/'
 
   $: filteredTags = $settings.filteredTags ?? []
 </script>

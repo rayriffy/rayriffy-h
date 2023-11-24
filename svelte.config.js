@@ -16,6 +16,7 @@ const config = {
       '$core/*': 'src/core',
       '$icons/*': 'src/icons',
       '$modules/*': 'src/modules',
+      '$trpc/*': 'src/trpc',
     },
   },
 }

@@ -3,7 +3,7 @@
 
   import { collection } from '$nanostores/collection'
 
-  import type { APIResponse } from '$core/@types/APIResponse'
+  import { api } from '$trpc/client'
 
   let status: 'wait' | 'process' | 'done' = 'wait'
   let error: string | null = null
@@ -14,22 +14,9 @@
     error = null
 
     try {
-      const response: APIResponse<string> = await fetch(
-        `/api/collection/export`,
-        {
-          // credentials: 'same-origin',
-          method: 'POST',
-          body: JSON.stringify({
-            hentaiIds: collection.get().map(item => item.id),
-          }),
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-        }
-      ).then(o => o.json())
-
-      exportCode = response.response.data
+      exportCode = await api().collection.export.mutate({
+        ids: collection.get().map(item => item.id),
+      })
       status = 'done'
     } catch (e) {
       error = 'Unable to export collection at the moment, please try again'

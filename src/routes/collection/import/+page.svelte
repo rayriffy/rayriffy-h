@@ -1,10 +1,7 @@
 <script lang="ts">
   import ErrorIcon from '$icons/errorCircle.svelte'
-
   import { collection } from '$nanostores/collection'
-
-  import type { APIResponse } from '$core/@types/APIResponse'
-  import type { Favorite } from '$nanostores/@types/Favorite'
+  import { api } from '$trpc/client'
 
   let status: 'wait' | 'process' | 'done' = 'wait'
   let error: string | null = null
@@ -14,25 +11,17 @@
     status = 'process'
     error = null
 
-    const response: APIResponse<Favorite[]> = await fetch(
-      `/api/collection/import?${new URLSearchParams({
+    try {
+      const importedCollection = await api().collection.import.query({
         code: targetKey,
-      }).toString()}`,
-      {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }
-    ).then(o => o.json())
+      })
 
-    if (response.status === 'failed') {
+      collection.set(importedCollection)
+      status = 'done'
+    } catch (e) {
       error =
         'Unable to import collection you specified, maybe code is already expired'
       status = 'wait'
-    } else {
-      collection.set(response.response.data)
-      status = 'done'
     }
   }
 </script>

@@ -11,6 +11,7 @@ node_modules
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 data
+.urami
 stats.html
 pnpm-lock.yaml
 yarn.lock

@@ -43,7 +43,7 @@
     "build": "vite build && bun tools/patchSW.ts",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "format": "prettier --write \"**/*.{ts,tsx,md,astro}\"",
+    "format": "prettier --write \"**/*.{ts,tsx,md,astro,svelte}\"",
     "fetch:data": "bun tools/fetchData.ts",
     "sync:data": "bun tools/syncData.ts",
     "patch:sharp": "patch node_modules/sharp/install/libvips.js < patches/sharp.patch",
@@ -58,6 +58,8 @@
   "type": "module",
   "dependencies": {
     "@nanostores/persistent": "0.9.1",
+    "@trpc/client": "10.44.1",
+    "@trpc/server": "10.44.1",
     "@urami/core": "1.2.2",
     "@urami/svelte": "1.1.1",
     "cookie": "0.6.0",
@@ -67,7 +69,9 @@
     "nanostores": "0.9.5",
     "p-queue": "7.4.1",
     "set-cookie-parser": "2.6.0",
-    "sharp": "0.32.6"
+    "sharp": "0.32.6",
+    "trpc-sveltekit": "^3.5.22",
+    "zod": "3.22.4"
   },
   "overrides": {
     "@rollup/plugin-node-resolve": "15.2.3"
