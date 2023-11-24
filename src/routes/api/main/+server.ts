@@ -8,13 +8,37 @@ import type { RequestHandler } from './$types'
 import type { NHHentai } from '$core/@types/NHHentai'
 import type { Hentai } from '$core/@types/Hentai'
 import kebabCase from 'lodash.kebabcase'
+import type { TagType } from '$core/@types/TagType'
 
 const defaultQuery =
   '-thisisrandomstringtomakesurethatthereisnoanytagbeingexcluded'
 
 export const GET: RequestHandler = async event => {
-  let query = event.url.searchParams.get('query')
+  let query = event.url.searchParams.get('query') ?? ''
   const page = event.url.searchParams.get('page')
+  const filteredTags: string[] =
+    JSON.parse(event.url.searchParams.get('filteredTags') as string) ?? []
+
+  if (filteredTags.length > 0)
+    query = query
+      .split(' ')
+      .filter(o => o !== '')
+      .concat(
+        filteredTags.map(tag => {
+          const prefixes: TagType[] = [
+            'parody',
+            'tag',
+            'language',
+            'character',
+            'group',
+            'artist',
+            'category',
+          ]
+
+          return prefixes.map(prefix => `-${prefix}:"${tag}"`).join(' ')
+        })
+      )
+      .join(' ')
 
   if (query === '') query = defaultQuery
 

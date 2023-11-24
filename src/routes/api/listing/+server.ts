@@ -14,10 +14,12 @@ import type { Hentai } from '$core/@types/Hentai'
 export const GET: RequestHandler = async event => {
   const query = event.url.searchParams.get('query')
   const page = event.url.searchParams.get('page')
+  const filteredTags =
+    JSON.parse(event.url.searchParams.get('filteredTags') as string) ?? []
 
   // if no search query then local search return null, otherwise return search results
   const localSearch =
-    query === ''
+    query === '' && filteredTags.length === 0
       ? null
       : searchHentai(
           query ?? '',
@@ -27,7 +29,8 @@ export const GET: RequestHandler = async event => {
               path.join(process.cwd(), 'data/searchKey.json'),
               'utf8'
             )
-          )
+          ),
+          filteredTags
         )
 
   const totalListingPages =

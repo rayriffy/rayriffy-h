@@ -5,12 +5,14 @@ import type { Search } from '$nanostores/@types/Search'
 export const getListing = async (
   page: number,
   query: string,
-  mode: keyof Search | 'tag'
+  mode: keyof Search | 'tag',
+  filteredTags: string[]
 ) => {
   const fetchedData: APIResponse<ListingResult> = await fetch(
     `/api/${mode}?${new URLSearchParams({
       query: query,
       page: page.toString(),
+      filteredTags: JSON.stringify(filteredTags),
     }).toString()}`,
     {
       headers: {

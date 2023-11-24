@@ -4,6 +4,7 @@
 
   import { search } from '$nanostores/search'
   import { getListing } from '../services/getListing'
+  import { settings } from '$nanostores/settings'
 
   import type { Search } from '$nanostores/@types/Search'
 
@@ -17,9 +18,11 @@
       : section === 'tag'
       ? `/tag/${tagKey}/`
       : '/'
+
+  $: filteredTags = $settings.filteredTags ?? []
 </script>
 
-{#await getListing(page, section === 'tag' ? tagKey : $search[section].query, section)}
+{#await getListing(page, section === 'tag' ? tagKey : $search[section].query, section, filteredTags)}
   <div class="flex flex-col items-center p-32">
     <progress class="progress w-56" />
     <p class="pt-2 text-sm text-base-content">Loading...</p>

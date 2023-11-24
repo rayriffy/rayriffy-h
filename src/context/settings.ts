@@ -6,6 +6,7 @@ export const settings = persistentMap<Settings>(
   'settings',
   {
     safemode: false,
+    filteredTags: [],
   },
   {
     encode: JSON.stringify,
