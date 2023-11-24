@@ -61,6 +61,10 @@ ENV HOST 0.0.0.0
 ENV PORT 8080
 ENV NODE_ENV production
 
+# https://github.com/gornostay25/svelte-adapter-bun/issues/39
+ENV PROTOCOL_HEADER x-forwarded-proto
+ENV HOST_HEADER x-forwarded-host
+
 EXPOSE 8080
 
 COPY package.json ./
