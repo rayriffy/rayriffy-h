@@ -69,5 +69,8 @@
     "p-queue": "7.4.1",
     "set-cookie-parser": "2.6.0",
     "sharp": "0.32.6"
+  },
+  "overrides": {
+    "@rollup/plugin-node-resolve": "15.2.3"
   }
 }
