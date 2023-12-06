@@ -6,7 +6,7 @@ ENV PATH="${PATH}:/root/.bun/bin"
 RUN apt update
 RUN apt install curl unzip patch -y
 
-RUN curl https://bun.sh/install | bash -s -- bun-v1.0.14
+RUN curl https://bun.sh/install | bash -s -- bun-v1.0.15
 
 RUN bun -v
 
@@ -18,15 +18,6 @@ WORKDIR /app
 COPY package.json bun.lockb ./
 RUN bun i --production --ignore-scripts
 
-COPY patches ./patches
-RUN bun run patch:sharp
-
-RUN cd node_modules/sharp && \
-    bun run ./install/libvips.js && \
-    bun run ./install/dll-copy.js && \
-    bun run prebuild-install && \
-    cd ../..
-
 # ? -------------------------
 
 FROM base as builder
@@ -34,15 +25,6 @@ WORKDIR /app
 
 COPY package.json bun.lockb ./
 RUN bun i --ignore-scripts
-
-COPY patches ./patches
-RUN bun run patch:sharp
-
-RUN cd node_modules/sharp && \
-    bun run ./install/libvips.js && \
-    bun run ./install/dll-copy.js && \
-    bun run prebuild-install && \
-    cd ../..
 
 COPY postcss.config.cjs svelte.config.js tailwind.config.cjs tsconfig.json vite.config.ts ./
 COPY static ./static
