@@ -5,23 +5,18 @@
 
   import { api } from '$trpc/client'
 
-  let status: 'wait' | 'process' | 'done' = 'wait'
-  let error: string | null = null
   let exportCode: string
 
-  const onExport = async () => {
-    status = 'process'
-    error = null
+  const exporter = api.collection.export.mutation({
+    onSuccess: data => {
+      exportCode = data
+    },
+  })
 
-    try {
-      exportCode = await api().collection.export.mutate({
-        ids: collection.get().map(item => item.id),
-      })
-      status = 'done'
-    } catch (e) {
-      error = 'Unable to export collection at the moment, please try again'
-      status = 'wait'
-    }
+  const handleClick = () => {
+    $exporter.mutate({
+      ids: collection.get().map(item => item.id),
+    })
   }
 </script>
 
@@ -36,15 +31,15 @@
       <p class="text-gray-500">
         Transfer collection to other deivces by using temporary key.
       </p>
-      {#if error !== null}
+      {#if $exporter.isError}
         <div class="alert alert-error my-2 text-sm shadow-lg">
           <div>
             <ErrorIcon class="h-6 w-6 flex-shrink-0" />
-            <span>{error}</span>
+            <span>Unable to export collection at the moment, please try again</span>
           </div>
         </div>
       {/if}
-      {#if status === 'wait'}
+      {#if $exporter.isIdle}
         <div class="alert alert-info my-2 text-sm shadow-lg">
           <div>
             <span
@@ -54,16 +49,14 @@
           </div>
         </div>
         <div class="card-actions justify-end pt-2">
-          <button class="btn btn-primary" on:click={() => onExport()}
-            >Export</button
-          >
+          <button class="btn btn-primary" on:click={handleClick}>Export</button>
         </div>
-      {:else if status === 'process'}
+      {:else if $exporter.isPending}
         <div class="flex flex-col items-center pb-2 pt-8">
           <progress class="progress w-56" />
           <p class="pt-2 text-sm text-base-content">Exporting...</p>
         </div>
-      {:else if status === 'done'}
+      {:else if $exporter.isSuccess}
         <div class="flex flex-col items-center">
           <p class="pt-2 text-sm text-base-content">Collection Exported! 👍🏼</p>
           <div class="my-4 rounded-xl bg-base-200 px-6 py-4 font-mono text-xl">

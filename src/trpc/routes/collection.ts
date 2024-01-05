@@ -20,7 +20,7 @@ export const collectionRouter = createTRPCRouter({
         code: z.string(),
       })
     )
-    .query(async ({ input }) => {
+    .mutation(async ({ input }) => {
       const fetchQueue = new PQueue({
         concurrency: 20,
       })

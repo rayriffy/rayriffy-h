@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { page } from '$app/stores'
+
   import BlurredImage from '$core/components/BlurredImage.svelte'
   import Favorite from '$modules/reader/Favorite.svelte'
   import PageRenderer from '$modules/reader/PageRenderer.svelte'
@@ -9,19 +11,23 @@
 
   import type { PageData } from './$types'
 
-  export let data: PageData
-  const { hentai, excludes } = data
+  import { api } from '$trpc/client'
+
+  const query = api.hentai.get.query({
+    code: $page.params.code,
+  })
 </script>
 
 <svelte:head>
-  {#if hentai}
-    <title>{hentai.title.pretty} · Riffy H</title>
+  {#if $query.isSuccess}
+    <title>{$query.data.hentai.title.pretty} · Riffy H</title>
   {:else}
     <title>Riffy H</title>
   {/if}
 </svelte:head>
 
-{#if hentai}
+{#if $query.isSuccess}
+  {@const { hentai, excludes } = $query.data}
   <section class="flex flex-col items-center space-y-6 p-4">
     <div class="overflow-hidden rounded-xl shadow-md">
       <BlurredImage
@@ -66,6 +72,13 @@
     mediaId={hentai.media_id}
     {excludes}
   />
+{:else if $query.isLoading}
+  <div class="flex flex-col items-center p-32">
+    <progress class="progress w-56" />
+    <p class="pt-2 text-sm text-base-content">Loading...</p>
+  </div>
+{:else}
+  <p>Failed</p>
 {/if}
 
 <style>

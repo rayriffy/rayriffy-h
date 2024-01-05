@@ -1,6 +1,9 @@
 <script lang="ts">
   import '../styles/tailwind.css'
 
+  import { QueryClientProvider } from '@tanstack/svelte-query'
+  import { api } from '$trpc/client'
+
   import Navbar from '$core/components/Navbar.svelte'
 
   import { onMount } from 'svelte'
@@ -12,6 +15,10 @@
   import { defaultSearch } from '$nanostores/constants/defaultSearch'
 
   import type { ComponentType } from 'svelte'
+
+  import type { LayoutData } from './$types'
+
+  export let data: LayoutData
 
   let ReloadPrompt: ComponentType
   onMount(async () => {
@@ -45,18 +52,22 @@
   })
 
   $: webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : ''
+  // @ts-expect-error
+  $: client = api.hydrateFromServer(data.trpc)
 </script>
 
 <svelte:head>
   {@html webManifest}
 </svelte:head>
 
-<div class="app mx-auto max-w-lg">
-  {#if ReloadPrompt}
-    <svelte:component this={ReloadPrompt} />
-  {/if}
-  <main class="pb-16">
-    <slot />
-  </main>
-  <Navbar />
-</div>
+<QueryClientProvider client={client}>
+  <div class="app mx-auto max-w-lg">
+    {#if ReloadPrompt}
+      <svelte:component this={ReloadPrompt} />
+    {/if}
+    <main class="pb-16">
+      <slot />
+    </main>
+    <Navbar />
+  </div>
+</QueryClientProvider>

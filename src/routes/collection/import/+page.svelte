@@ -3,26 +3,18 @@
   import { collection } from '$nanostores/collection'
   import { api } from '$trpc/client'
 
-  let status: 'wait' | 'process' | 'done' = 'wait'
-  let error: string | null = null
   let inputKey: string = ''
 
-  const onSubmit = async (targetKey: string) => {
-    status = 'process'
-    error = null
+  const importer = api.collection.import.mutation({
+    onSuccess: data => {
+      collection.set(data)
+    },
+  })
 
-    try {
-      const importedCollection = await api().collection.import.query({
-        code: targetKey,
-      })
-
-      collection.set(importedCollection)
-      status = 'done'
-    } catch (e) {
-      error =
-        'Unable to import collection you specified, maybe code is already expired'
-      status = 'wait'
-    }
+  const onSubmit = (targetKey: string) => {
+    $importer.mutate({
+      code: targetKey
+    })
   }
 </script>
 
@@ -37,15 +29,27 @@
       <p class="text-gray-500">
         Transfer collection from other deivces by using temporary key.
       </p>
-      {#if error !== null}
+      {#if $importer.isError}
         <div class="alert alert-error my-2 text-sm shadow-lg">
           <div>
             <ErrorIcon class="h-6 w-6 flex-shrink-0" />
-            <span>{error}</span>
+            <span>Unable to import collection you specified, maybe code is already expired</span>
           </div>
         </div>
       {/if}
-      {#if status === 'wait'}
+      {#if $importer.isPending}
+        <div class="flex flex-col items-center pb-2 pt-8">
+          <progress class="progress w-56" />
+          <p class="pt-2 text-sm text-base-content">Importing...</p>
+        </div>
+      {:else if $importer.isSuccess}
+        <div class="flex flex-col items-center pb-4 pt-6">
+          <p class="pt-2 text-base-content">Collection imported! 👍🏼</p>
+        </div>
+        <div class="card-actions justify-end pt-2">
+          <a href="/collection" class="btn btn-primary">Done</a>
+        </div>
+      {:else}
         <input
           type="text"
           placeholder="Temporary key"
@@ -62,18 +66,6 @@
             on:click={() => onSubmit(inputKey)}
             >{inputKey !== '' ? 'Import' : 'Missing input'}</button
           >
-        </div>
-      {:else if status === 'process'}
-        <div class="flex flex-col items-center pb-2 pt-8">
-          <progress class="progress w-56" />
-          <p class="pt-2 text-sm text-base-content">Importing...</p>
-        </div>
-      {:else if status === 'done'}
-        <div class="flex flex-col items-center pb-4 pt-6">
-          <p class="pt-2 text-base-content">Collection imported! 👍🏼</p>
-        </div>
-        <div class="card-actions justify-end pt-2">
-          <a href="/collection" class="btn btn-primary">Done</a>
         </div>
       {/if}
     </div>

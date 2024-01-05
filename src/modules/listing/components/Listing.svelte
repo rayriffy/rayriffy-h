@@ -3,8 +3,8 @@
   import Poster from '$core/components/Poster.svelte'
 
   import { search } from '$nanostores/search'
-  import { getListing } from '../services/getListing'
   import { settings } from '$nanostores/settings'
+  import { api } from '$trpc/client'
 
   export let section: 'main' | 'listing' | 'tag'
   export let page: number
@@ -17,15 +17,22 @@
         ? `/tag/${tagKey}/`
         : '/'
 
-  $: filteredTags = $settings.filteredTags ?? []
+  const listing = api.hentai.search.query({
+    mode: section,
+    query: section === 'tag' ? tagKey : $search[section].query,
+    excludeTags: $settings.filteredTags ?? [],
+    page,
+  })
 </script>
 
-{#await getListing(page, section === 'tag' ? tagKey : $search[section].query, section, filteredTags)}
+{#if $listing.isLoading}
   <div class="flex flex-col items-center p-32">
     <progress class="progress w-56" />
     <p class="pt-2 text-sm text-base-content">Loading...</p>
   </div>
-{:then { items, maxPage }}
+{:else if $listing.isSuccess}
+  {@const { items, maxPage } = $listing.data}
+
   <section class="flex justify-center py-6">
     <Pagination max={maxPage} current={page} {prefix} />
   </section>
@@ -41,6 +48,6 @@
   <section class="flex justify-center py-6">
     <Pagination max={maxPage} current={page} {prefix} />
   </section>
-{:catch}
+{:else}
   <p>Failed</p>
-{/await}
+{/if}
