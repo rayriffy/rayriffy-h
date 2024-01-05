@@ -50,34 +50,13 @@ const config: UserConfig = {
         runtimeCaching: [
           // optimized image
           {
-            urlPattern: /\/api\/_image\?url=.+$/i,
+            urlPattern: /\/api\/_image.+$/i,
             handler: 'CacheFirst',
             options: {
-              cacheName: 'riffyh-svelte-optimized-image',
+              cacheName: 'urami-image',
               expiration: {
+                maxEntries: 1000,
                 maxAgeSeconds: 60 * 60 * 24 * 7, // 7 days
-              },
-            },
-          },
-          {
-            urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'google-fonts',
-              expiration: {
-                maxEntries: 4,
-                maxAgeSeconds: 365 * 24 * 60 * 60, // 365 days
-              },
-            },
-          },
-          {
-            urlPattern: /\.(?:eot|otf|ttc|ttf|woff|woff2|font.css)$/i,
-            handler: 'StaleWhileRevalidate',
-            options: {
-              cacheName: 'static-font-assets',
-              expiration: {
-                maxEntries: 4,
-                maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days
               },
             },
           },
@@ -98,7 +77,7 @@ const config: UserConfig = {
             options: {
               cacheName: 'static-js-assets',
               expiration: {
-                maxEntries: 32,
+                maxEntries: 64,
                 maxAgeSeconds: 24 * 60 * 60, // 24 hours
               },
             },
@@ -132,7 +111,7 @@ const config: UserConfig = {
             options: {
               cacheName: 'apis',
               expiration: {
-                maxEntries: 16,
+                maxEntries: 200,
                 maxAgeSeconds: 24 * 60 * 60, // 24 hours
               },
               networkTimeoutSeconds: 10, // fall back to cache if api does not response within 10 seconds
