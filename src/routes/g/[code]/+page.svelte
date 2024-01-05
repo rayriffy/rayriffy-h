@@ -9,11 +9,9 @@
 
   import { getImageUrl } from '$core/services/getImageUrl'
 
-  import type { PageData } from './$types'
-
   import { api } from '$trpc/client'
 
-  const query = api.hentai.get.query({
+  $: query = api.hentai.get.query({
     code: $page.params.code,
   })
 </script>

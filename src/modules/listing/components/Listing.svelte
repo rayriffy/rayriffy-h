@@ -17,7 +17,7 @@
         ? `/tag/${tagKey}/`
         : '/'
 
-  const listing = api.hentai.search.query({
+  $: listing = api.hentai.search.query({
     mode: section,
     query: section === 'tag' ? tagKey : $search[section].query,
     excludeTags: $settings.filteredTags ?? [],
