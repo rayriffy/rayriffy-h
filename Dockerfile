@@ -27,8 +27,7 @@ COPY . .
 RUN bun i
 
 RUN cd web
-RUN bun --bun run vite build
-RUN bun ./tools/patchSW.ts
+RUN bun --bun run build
 
 # ? -------------------------
 
