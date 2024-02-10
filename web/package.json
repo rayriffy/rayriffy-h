@@ -1,0 +1,74 @@
+{
+  "name": "@riffyh/web",
+  "version": "0.0.1",
+  "author": "Phumrapee Limpianchop <contact@rayriffy.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rayriffy/rayriffy-h.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rayriffy/rayriffy-h/issues"
+  },
+  "homepage": "https://h.rayriffy.com",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build && bun tools/patchSW.ts",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "format": "prettier --write \"**/*.{ts,tsx,md,astro,svelte}\"",
+    "fetch:data": "bun tools/fetchData.ts",
+    "sync:data": "bun tools/syncData.ts",
+    "patch:sharp": "patch node_modules/sharp/install/libvips.js < patches/sharp.patch",
+    "sync": "bun run fetch:data && bun run sync:data"
+  },
+  "trustedDependencies": [
+    "prettier"
+  ],
+  "type": "module",
+  "dependencies": {
+    "@nanostores/persistent": "0.9.1",
+    "@riffyh/commons": "workspace:*",
+    "@tanstack/svelte-query": "5.17.1",
+    "@trpc/client": "10.45.0",
+    "@trpc/server": "10.45.0",
+    "@urami/core": "1.2.3",
+    "@urami/svelte": "1.1.1",
+    "cookie": "0.6.0",
+    "destr": "2.0.2",
+    "devalue": "4.3.2",
+    "lodash.kebabcase": "4.1.1",
+    "nanostores": "0.9.5",
+    "p-queue": "7.4.1",
+    "set-cookie-parser": "2.6.0",
+    "sharp": "0.33.1",
+    "trpc-svelte-query": "2.0.5",
+    "zod": "3.22.4"
+  },
+  "devDependencies": {
+    "@sveltejs/kit": "2.0.6",
+    "@sveltejs/vite-plugin-svelte": "3.0.1",
+    "@types/cookie": "0.6.0",
+    "@types/lodash.kebabcase": "4.1.9",
+    "@vite-pwa/sveltekit": "0.3.0",
+    "autoprefixer": "10.4.16",
+    "daisyui": "4.5.0",
+    "postcss": "8.4.32",
+    "prettier": "3.1.1",
+    "prettier-plugin-svelte": "3.1.2",
+    "prettier-plugin-tailwindcss": "0.5.10",
+    "rollup-plugin-visualizer": "5.12.0",
+    "svelte": "4.2.8",
+    "svelte-adapter-bun": "0.5.1",
+    "svelte-check": "3.6.2",
+    "tailwindcss": "3.4.0",
+    "vite": "5.0.10",
+    "vite-plugin-pwa": "0.17.4",
+    "workbox-window": "7.0.0"
+  },
+  "overrides": {
+    "@rollup/plugin-node-resolve": "15.2.3",
+    "sharp": "0.33.1"
+  }
+}

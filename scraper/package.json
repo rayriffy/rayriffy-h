@@ -1,0 +1,30 @@
+{
+  "name": "@riffyh/scraper",
+  "version": "1.0.2",
+  "bin": "dist/index.js",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rayriffy/rayriffy-h.git"
+  },
+  "scripts": {
+    "build": "bun build src/index.ts --outfile dist/index.js --target bun -e kysely -e pg -e p-queue -e yargs"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "kysely": "0.27.2",
+    "pg": "8.11.3",
+    "p-queue": "8.0.1",
+    "yargs": "17.7.2"
+  },
+  "devDependencies": {
+    "@riffyh/commons": "workspace:*",
+    "@types/pg": "8.11.0",
+    "@types/yargs": "17.0.32"
+  }
+}

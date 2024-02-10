@@ -1,0 +1,5 @@
+{
+  "name": "@riffyh/commons",
+  "main": "src/index.ts",
+  "private": true
+}

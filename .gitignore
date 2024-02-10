@@ -1,8 +1,8 @@
 .DS_Store
 node_modules
-/build
-/.svelte-kit
-/package
+build
+.svelte-kit
+package
 .env
 .env.*
 !.env.example
@@ -15,3 +15,4 @@ data
 stats.html
 pnpm-lock.yaml
 yarn.lock
+dist
