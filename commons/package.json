@@ -1,5 +1,23 @@
 {
   "name": "@riffyh/commons",
+  "version": "1.0.0",
   "main": "src/index.ts",
-  "private": true
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rayriffy/rayriffy-h.git"
+  },
+  "files": [
+    "src/"
+  ],
+  "dependencies": {
+    "lodash": "4.17.21"
+  },
+  "devDependencies": {
+    "@types/lodash": "4.14.202",
+    "tsup": "8.0.2"
+  }
 }
