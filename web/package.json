@@ -66,9 +66,5 @@
     "vite": "5.0.10",
     "vite-plugin-pwa": "0.17.4",
     "workbox-window": "7.0.0"
-  },
-  "overrides": {
-    "@rollup/plugin-node-resolve": "15.2.3",
-    "sharp": "0.33.1"
   }
 }

@@ -26,8 +26,8 @@ WORKDIR /app
 COPY . .
 RUN bun i
 
-RUN cd web
-RUN bun --bun run build
+RUN cd web && bun --bun run vite build
+RUN cd web && bun ./tools/patchSW.ts
 
 # ? -------------------------
 
