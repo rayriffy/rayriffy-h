@@ -15,22 +15,18 @@ RUN bun -v
 FROM base as deps-prod
 WORKDIR /app
 
-COPY package.json bun.lockb ./
-RUN bun i --production --ignore-scripts
+COPY . .
+RUN bun i --production
 
 # ? -------------------------
 
 FROM base as builder
 WORKDIR /app
 
-COPY package.json bun.lockb ./
-RUN bun i --ignore-scripts
+COPY . .
+RUN bun i
 
-COPY postcss.config.cjs svelte.config.js tailwind.config.cjs tsconfig.json vite.config.ts ./
-COPY static ./static
-COPY tools ./tools
-COPY src ./src
-
+RUN cd web
 RUN bun --bun run vite build
 RUN bun ./tools/patchSW.ts
 
@@ -53,8 +49,8 @@ COPY package.json ./
 COPY --from=base /root/.bun/bin/bun bun
 # COPY --from=base /opt /
 COPY --from=deps-prod /app/node_modules ./build/node_modules
-COPY --from=builder /app/build ./build
-COPY --from=builder /app/.svelte-kit ./.svelte-kit
+COPY --from=builder /app/web/build ./build
+COPY --from=builder /app/web/.svelte-kit ./.svelte-kit
 # COPY public public
 
 CMD ["./bun", "./build/index.js"]
