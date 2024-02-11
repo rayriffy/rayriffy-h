@@ -16,9 +16,13 @@ const fetchQueue = new PQueue({
 })
 
 export const fetch = async (entryPoint: string) => {
-  const { default: codes } = (await import(entryPoint)) as {
+  const { default: codes } = (await import(
+    path.join(process.cwd(), entryPoint)
+  )) as {
     default: DatabaseCode[]
   }
+
+  console.log('read ' + codes.length + ' items')
 
   /**
    * Step 1: Generate chunks
