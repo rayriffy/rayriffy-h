@@ -46,12 +46,15 @@ export const sync = async () => {
 
       console.log(itemsToPush.length + ' items to push')
 
-      await db.insertInto('Hentai').values(
-        itemsToPush.map(item => ({
-          id: item.id,
-          data: jsonb(JSON.stringify(item)),
-        }))
-      )
+      await db
+        .insertInto('Hentai')
+        .values(
+          itemsToPush.map(item => ({
+            id: item.id,
+            data: jsonb(JSON.stringify(item)),
+          }))
+        )
+        .execute()
     } catch (e) {
       console.log(e)
     } finally {

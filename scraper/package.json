@@ -1,6 +1,6 @@
 {
   "name": "@riffyh/scraper",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "bin": "dist/index.js",
   "publishConfig": {
     "access": "public",
