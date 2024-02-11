@@ -24,4 +24,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/rayriffy/riffyh-runtime
+          tags: ghcr.io/rayriffy/riffyh-core
