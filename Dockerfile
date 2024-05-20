@@ -1,4 +1,4 @@
-FROM debian:11.6-slim as base
+FROM debian:12-slim as base
 WORKDIR /app
 
 ENV PATH="${PATH}:/root/.bun/bin"
@@ -6,7 +6,7 @@ ENV PATH="${PATH}:/root/.bun/bin"
 RUN apt update
 RUN apt install curl unzip patch -y
 
-RUN curl https://bun.sh/install | bash -s -- bun-v1.0.21
+RUN curl https://bun.sh/install
 
 RUN bun -v
 
@@ -31,7 +31,7 @@ RUN cd web && bun ./tools/patchSW.ts
 
 # ? -------------------------
 
-FROM gcr.io/distroless/cc
+FROM gcr.io/distroless/cc-debian12
 WORKDIR /app
 
 ENV HOST 0.0.0.0
