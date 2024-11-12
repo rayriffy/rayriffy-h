@@ -42,7 +42,7 @@
     "nanostores": "0.11.3",
     "p-queue": "8.0.1",
     "set-cookie-parser": "2.7.0",
-    "sharp": "0.32.6",
+    "sharp": "0.33.0",
     "trpc-svelte-query": "2.1.0",
     "zod": "3.23.8"
   },
