@@ -6,7 +6,24 @@ import type { RequestHandler } from './$types'
 import {URL} from "node:url";
 
 const requestHandler = createRequestHandler({
-  remoteDomains: ['i.nhentai.net', 't.nhentai.net'],
+  remoteDomains: [
+    'i.nhentai.net',
+    'i1.nhentai.net',
+    'i2.nhentai.net',
+    'i3.nhentai.net',
+    'i4.nhentai.net',
+    'i5.nhentai.net',
+    'i6.nhentai.net',
+    'i7.nhentai.net',
+    't.nhentai.net',
+    't1.nhentai.net',
+    't2.nhentai.net',
+    't3.nhentai.net',
+    't4.nhentai.net',
+    't5.nhentai.net',
+    't6.nhentai.net',
+    't7.nhentai.net',
+  ],
   allowedDomains:
     env.IMAGE_DOMAIN !== undefined ? [env.IMAGE_DOMAIN] : undefined,
 })

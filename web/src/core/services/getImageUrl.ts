@@ -12,7 +12,7 @@ export const getImageUrl = (args: GetImageUrlArgs): string => {
 
   return `https://${
     type === 'gallery' ? 'i' : 't'
-  }.nhentai.net/galleries/${mediaId}/${
+  }4.nhentai.net/galleries/${mediaId}/${
     type === 'cover' ? 'cover' : `${page}${type === 'thumbnail' ? 't' : ''}`
   }.${image.t === 'p' ? 'png' : image.t === 'g' ? 'gif' : Number(mediaId) > 3110425 ? 'webp' : 'jpg'}`
 }
