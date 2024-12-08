@@ -6,6 +6,7 @@
     "scraper/",
     "commons/"
   ],
+  "private": true,
   "dependencies": {
     "lodash": "4.17.21"
   },
@@ -20,5 +21,5 @@
     "@rollup/plugin-node-resolve": "15.2.3",
     "sharp": "0.33.0"
   },
-  "packageManager": "pnpm@9.10.0+sha512.73a29afa36a0d092ece5271de5177ecbf8318d454ecd701343131b8ebc0c1a91c487da46ab77c8e596d6acf1461e3594ced4becedf8921b074fbd8653ed7051c"
+  "packageManager": "pnpm@9.14.4+sha512.c8180b3fbe4e4bca02c94234717896b5529740a6cbadf19fa78254270403ea2f27d4e1d46a08a0f56c89b63dc8ebfd3ee53326da720273794e6200fcf0d184ab"
 }
