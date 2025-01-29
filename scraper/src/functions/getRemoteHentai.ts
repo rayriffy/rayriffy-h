@@ -13,7 +13,7 @@ export const getRemoteHentai = async (
   code: DatabaseCode,
   db?: Kysely<SQLDatabase>
 ) => {
-  const targetCode = typeof code === 'number' ? code : code.code
+  const targetCode = typeof code === 'object' ? code.code : Number(code)
   const hentaiFile = path.join(hentaiDirectory, `${targetCode}.json`)
 
   try {
