@@ -9,8 +9,7 @@ import { hentaiDirectory } from '../constants/hentaiDirectory'
 import { parseUrl } from "../functions/parseUrl";
 import { getGalleriesViaBrowser } from "../functions/getGalleriesViaBrowser";
 import { getGalleriesViaFetch } from "../functions/getGalleriesViaFetch";
-import { collections } from "../constants/mongo";
-import { writeItem } from "../functions/writeItem";
+import { getGalleriesViaCache } from "../functions/getGalleriesViaCache";
 
 export const fetch = async (entryPoint: string, browserMode: boolean) => {
   if (process.env.MONGODB_URL === undefined) {
@@ -70,20 +69,13 @@ export const fetch = async (entryPoint: string, browserMode: boolean) => {
   console.log(`${idsNeedsToBeFetched.length} galleries needs to be fetched`)
 
   if (idsNeedsToBeFetched.length > 0) {
-    // look for hot-cache first
-    const mongoItems = await collections.galleries.find({
-      id: { $in: idsNeedsToBeFetched }
-    }, {
-      projection: { _id: 0 }
-    }).toArray()
+    const idsFetchedFromMongo = await getGalleriesViaCache(idsNeedsToBeFetched)
 
-    await Promise.all(mongoItems.map(item =>
-      writeItem(item.id, item)
-    ))
+    console.log(`${idsNeedsToBeFetched.length - idsFetchedFromMongo.length} needs to be fetched further`)
 
-    console.log(`${mongoItems.length} found in cache! ${idsNeedsToBeFetched.length - mongoItems.length} needs to be fetched further`)
-
-    const fetchResult = await (browserMode ? getGalleriesViaBrowser : getGalleriesViaFetch)(idsNeedsToBeFetched)
+    const fetchResult = await (browserMode ? getGalleriesViaBrowser : getGalleriesViaFetch)(
+      idsNeedsToBeFetched.filter(o => !idsFetchedFromMongo.includes(o))
+    )
 
     if (fetchResult.failure > 0) {
       console.error("there's some error during fetching! crashing...")

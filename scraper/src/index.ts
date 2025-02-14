@@ -1,10 +1,12 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 
 import { fetch } from './commands/fetch'
 import { sync } from './commands/sync'
+
+import 'dotenv/config'
 
 yargs(hideBin(process.argv))
   .command<{ file: string, browser: boolean }>(

@@ -1,7 +1,7 @@
 {
   "name": "@riffyh/scraper",
-  "version": "1.0.5",
-  "bin": "dist/index.js",
+  "version": "1.1.9",
+  "bin": "dist/index.mjs",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
@@ -11,12 +11,13 @@
     "url": "git+https://github.com/rayriffy/rayriffy-h.git"
   },
   "scripts": {
-    "build": "bun build src/index.ts --outfile dist/index.js --target bun -e kysely -e pg -e p-queue -e yargs"
+    "build": "tsup"
   },
   "files": [
     "dist"
   ],
   "dependencies": {
+    "dotenv": "16.4.7",
     "mongodb": "6.13.0",
     "p-queue": "8.0.1",
     "puppeteer": "24.1.1",
@@ -27,6 +28,7 @@
   "devDependencies": {
     "@riffyh/commons": "workspace:*",
     "@types/pg": "8.11.10",
-    "@types/yargs": "17.0.33"
+    "@types/yargs": "17.0.33",
+    "tsup": "8.3.6"
   }
 }
