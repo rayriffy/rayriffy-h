@@ -1,22 +1,16 @@
 import fs from 'fs'
 import path from 'path'
 
-import PQueue from 'p-queue'
 import { DatabaseCode, Hentai, itemsPerPage } from '@riffyh/commons'
 
 import { chunk } from '../constants/chunk'
 import { cacheDirectory } from '../constants/cacheDirectory'
-import { Kysely } from 'kysely'
-import { SQLDatabase } from '../@types/SQLDatabase'
-import { createDBConnection } from '../functions/createDBConnection'
-import { getRemoteHentai } from '../functions/getRemoteHentai'
-import {parseUrl} from "../functions/parseUrl";
+import { hentaiDirectory } from '../constants/hentaiDirectory'
+import { parseUrl } from "../functions/parseUrl";
+import {getGalleriesViaBrowser} from "../functions/getGalleriesViaBrowser";
+import {getGalleriesViaFetch} from "../functions/getGalleriesViaFetch";
 
-const fetchQueue = new PQueue({
-  concurrency: 8,
-})
-
-export const fetch = async (entryPoint: string) => {
+export const fetch = async (entryPoint: string, browserMode: boolean) => {
   const { default: codes } = (await import(
     path.join(process.cwd(), entryPoint)
   )) as {
@@ -48,34 +42,27 @@ export const fetch = async (entryPoint: string) => {
     })
   )
 
+  console.log(`${chunks.length} chunks generated`)
+
   /**
    * Step 2: Fetch all items
    */
-  console.log('fetching all galleries')
-  const hentaiDirectory = path.join(cacheDirectory, 'hentai')
-
+  console.log('fetching galleries...')
   if (!fs.existsSync(hentaiDirectory))
     await fs.promises.mkdir(hentaiDirectory, { recursive: true })
 
-  let hasError
-  let db: Kysely<SQLDatabase> | undefined
+  // let hasError
+  const idsNeedsToBeFetched = codes
+    .map(code => typeof code === 'object' ? code.code : code)
+    .filter(code => {
+      return !fs.existsSync(path.join(hentaiDirectory, `${code}.json`))
+    })
 
-  if (process.env.DATABASE_URL !== undefined) db = createDBConnection()
+  console.log(`${idsNeedsToBeFetched.length} galleries needs to be fetched`)
 
-  await Promise.all(
-    codes.map(code =>
-      fetchQueue.add(() =>
-        getRemoteHentai(code, db).catch(() => {
-          hasError = true
-        })
-      )
-    )
-  )
+  const fetchResult = await (browserMode ? getGalleriesViaBrowser : getGalleriesViaFetch)(idsNeedsToBeFetched)
 
-  await fetchQueue.onIdle()
-  await db?.destroy()
-
-  if (hasError) {
+  if (fetchResult.failure > 0) {
     console.error("there's some error during fetching! crashing...")
     process.exit(1)
   } else {
@@ -85,6 +72,7 @@ export const fetch = async (entryPoint: string) => {
   /**
    * Create search keys for searching
    */
+  console.log('generating search keys...')
   const orderedHentai = codes
     .map(code => {
       try {
@@ -114,4 +102,5 @@ export const fetch = async (entryPoint: string) => {
     path.join(cacheDirectory, 'searchKey.json'),
     JSON.stringify(orderedHentai)
   )
+  console.log('completed!')
 }

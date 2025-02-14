@@ -8,7 +8,18 @@ import { sync } from './commands/sync'
 import { seed } from './commands/seed'
 
 yargs(hideBin(process.argv))
-  .command<{ file: string }>('fetch <file>', 'fetch file from raw source', () => {}, argv => fetch(argv.file))
+  .command<{ file: string, browser: boolean }>(
+    'fetch <file>', 'fetch file from raw source',
+    yargs => {
+      yargs.option('browser', {
+        type: 'boolean',
+        describe:
+          'fetch using full-browser mode in case of cloudflare protection turned on',
+        default: false,
+      });
+    },
+    argv => fetch(argv.file, argv.browser)
+  )
   .command('sync', 'sync data to database', () => {}, sync)
   .command('seed', 'generate cache table on database', () => {}, seed)
   .demandCommand(1)
