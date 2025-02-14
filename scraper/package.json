@@ -17,9 +17,8 @@
     "dist"
   ],
   "dependencies": {
-    "kysely": "0.27.4",
+    "mongodb": "6.13.0",
     "p-queue": "8.0.1",
-    "pg": "8.13.1",
     "puppeteer": "24.1.1",
     "puppeteer-extra": "3.3.6",
     "puppeteer-extra-plugin-stealth": "2.11.2",

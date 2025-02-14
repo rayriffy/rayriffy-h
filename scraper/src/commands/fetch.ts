@@ -7,10 +7,19 @@ import { chunk } from '../constants/chunk'
 import { cacheDirectory } from '../constants/cacheDirectory'
 import { hentaiDirectory } from '../constants/hentaiDirectory'
 import { parseUrl } from "../functions/parseUrl";
-import {getGalleriesViaBrowser} from "../functions/getGalleriesViaBrowser";
-import {getGalleriesViaFetch} from "../functions/getGalleriesViaFetch";
+import { getGalleriesViaBrowser } from "../functions/getGalleriesViaBrowser";
+import { getGalleriesViaFetch } from "../functions/getGalleriesViaFetch";
+import { collections } from "../constants/mongo";
+import { writeItem } from "../functions/writeItem";
 
 export const fetch = async (entryPoint: string, browserMode: boolean) => {
+  if (process.env.MONGODB_URL === undefined) {
+    console.error(
+      'no database url provided, please provide postgres connection url'
+    )
+    return process.exit(1)
+  }
+
   const { default: codes } = (await import(
     path.join(process.cwd(), entryPoint)
   )) as {
@@ -51,22 +60,37 @@ export const fetch = async (entryPoint: string, browserMode: boolean) => {
   if (!fs.existsSync(hentaiDirectory))
     await fs.promises.mkdir(hentaiDirectory, { recursive: true })
 
-  // let hasError
   const idsNeedsToBeFetched = codes
     .map(code => typeof code === 'object' ? code.code : code)
+    .map(code => Number(code))
     .filter(code => {
       return !fs.existsSync(path.join(hentaiDirectory, `${code}.json`))
     })
 
   console.log(`${idsNeedsToBeFetched.length} galleries needs to be fetched`)
 
-  const fetchResult = await (browserMode ? getGalleriesViaBrowser : getGalleriesViaFetch)(idsNeedsToBeFetched)
+  if (idsNeedsToBeFetched.length > 0) {
+    // look for hot-cache first
+    const mongoItems = await collections.galleries.find({
+      id: { $in: idsNeedsToBeFetched }
+    }, {
+      projection: { _id: 0 }
+    }).toArray()
 
-  if (fetchResult.failure > 0) {
-    console.error("there's some error during fetching! crashing...")
-    process.exit(1)
-  } else {
-    console.log('fetched all galleries')
+    await Promise.all(mongoItems.map(item =>
+      writeItem(item.id, item)
+    ))
+
+    console.log(`${mongoItems.length} found in cache! ${idsNeedsToBeFetched.length - mongoItems.length} needs to be fetched further`)
+
+    const fetchResult = await (browserMode ? getGalleriesViaBrowser : getGalleriesViaFetch)(idsNeedsToBeFetched)
+
+    if (fetchResult.failure > 0) {
+      console.error("there's some error during fetching! crashing...")
+      process.exit(1)
+    } else {
+      console.log('fetched all galleries')
+    }
   }
 
   /**
@@ -102,5 +126,6 @@ export const fetch = async (entryPoint: string, browserMode: boolean) => {
     path.join(cacheDirectory, 'searchKey.json'),
     JSON.stringify(orderedHentai)
   )
+
   console.log('completed!')
 }
