@@ -45,7 +45,9 @@ export const fetch = async (entryPoint: string, browserMode: boolean) => {
       const chunkFile = path.join(prebuiltChunkDirectory, `chunk-${i + 1}.json`)
       await fs.promises.writeFile(
         chunkFile,
-        JSON.stringify(chunk.map(o => (typeof o === 'number' ? o : typeof o === 'string' ? parseUrl(o) : o.code)))
+        JSON.stringify(
+          chunk.map(o => (typeof o === 'number' ? o : typeof o === 'string' ? parseUrl(o) : o.code))
+        )
       )
     })
   )

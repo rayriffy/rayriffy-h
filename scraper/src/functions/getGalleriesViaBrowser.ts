@@ -1,7 +1,6 @@
 import puppeteer from 'puppeteer-extra'
 import StealthPlugin from 'puppeteer-extra-plugin-stealth'
 import PQueue from "p-queue";
-import type { DatabaseCode } from "@riffyh/commons/dist";
 import type { Browser } from "puppeteer";
 import { writeItem } from "./writeItem";
 import type { FetchResult } from "../@types/FetchResult";

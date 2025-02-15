@@ -1,5 +1,4 @@
 import PQueue from "p-queue";
-import type { DatabaseCode } from "@riffyh/commons";
 import { fetchHentai } from "./fetchHentai";
 import type { FetchResult } from "../@types/FetchResult";
 
