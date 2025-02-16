@@ -122,4 +122,5 @@ export const fetch = async (entryPoint: string, browserMode: boolean) => {
   )
 
   console.log('completed!')
+  process.exit(0)
 }
