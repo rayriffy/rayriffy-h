@@ -1,5 +1,5 @@
 import { destr } from 'destr'
-import kebabCase from 'lodash.kebabcase'
+import kebabCase from 'lodash/kebabcase'
 
 import { hentaiToMinifiedHentaiForListing } from '$core/services/hentaiToMinifiedHentaiForListing'
 

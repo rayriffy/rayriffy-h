@@ -17,7 +17,7 @@
     "lodash": "4.17.21"
   },
   "devDependencies": {
-    "@types/lodash": "4.17.13",
-    "tsup": "8.3.5"
+    "@types/lodash": "4.17.15",
+    "tsup": "8.3.6"
   }
 }

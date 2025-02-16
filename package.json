@@ -11,15 +11,15 @@
     "lodash": "4.17.21"
   },
   "devDependencies": {
-    "@types/lodash": "4.17.10",
-    "@types/node": "22.7.5",
-    "bun-types": "1.1.30",
-    "tslib": "2.7.0",
-    "typescript": "5.6.2"
+    "@types/lodash": "4.17.15",
+    "@types/node": "22.13.4",
+    "bun-types": "1.2.2",
+    "tslib": "2.8.1",
+    "typescript": "5.7.3"
   },
   "overrides": {
-    "@rollup/plugin-node-resolve": "15.2.3",
-    "sharp": "0.33.0"
+    "@rollup/plugin-node-resolve": "16.0.0",
+    "sharp": "0.33.5"
   },
   "packageManager": "pnpm@9.14.4+sha512.c8180b3fbe4e4bca02c94234717896b5529740a6cbadf19fa78254270403ea2f27d4e1d46a08a0f56c89b63dc8ebfd3ee53326da720273794e6200fcf0d184ab"
 }
