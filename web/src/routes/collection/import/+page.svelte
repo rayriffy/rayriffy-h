@@ -32,14 +32,14 @@
       {#if $importer.isError}
         <div class="alert alert-error my-2 text-sm shadow-lg">
           <div>
-            <ErrorIcon class="h-6 w-6 flex-shrink-0" />
+            <ErrorIcon class="h-6 w-6 shrink-0" />
             <span>Unable to import collection you specified, maybe code is already expired</span>
           </div>
         </div>
       {/if}
       {#if $importer.isPending}
         <div class="flex flex-col items-center pb-2 pt-8">
-          <progress class="progress w-56" />
+          <progress class="progress w-56"></progress>
           <p class="pt-2 text-sm text-base-content">Importing...</p>
         </div>
       {:else if $importer.isSuccess}

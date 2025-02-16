@@ -8,10 +8,10 @@
   import CogIcon from '$icons/cog.svelte'
 
   $: printClass = (routes: string[]) =>
-    routes.includes($page.route.id ?? '') ? 'active' : ''
+    routes.includes($page.route.id ?? '') ? 'dock-active' : ''
 </script>
 
-<nav class="btm-nav mx-auto max-w-lg bg-base-100/80 backdrop-blur-lg">
+<nav class="dock mx-auto max-w-lg bg-base-100/80 backdrop-blur-lg">
   <a href="/" aria-label="home" class={printClass(['/', '/p/[page=integer]'])}>
     <HomeIcon class="h-5 w-5" />
   </a>

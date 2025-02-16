@@ -1,11 +1,13 @@
 import { sveltekit } from '@sveltejs/kit/vite'
 import { SvelteKitPWA } from '@vite-pwa/sveltekit'
 import { visualizer } from 'rollup-plugin-visualizer'
+import tailwindcss from "@tailwindcss/vite";
 
 import type { UserConfig } from 'vite'
 
 const config: UserConfig = {
   plugins: [
+    tailwindcss(),
     sveltekit(),
     SvelteKitPWA({
       scope: '/',

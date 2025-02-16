@@ -19,14 +19,17 @@
 </script>
 
 <section class="px-4 pt-4">
-  <input
-    type="search"
-    placeholder="Keywords or 6-digit code"
-    class="input w-full bg-base-200"
-    value={$search[section].query}
-    on:input={({ target }) => {
+  <label class="input w-full">
+    <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></g></svg>
+    <input
+      type="search"
+      class="grow"
+      placeholder="Keywords or 6-digit code"
+      value={$search[section].query}
+      on:input={({ target }) => {
       // @ts-ignore
       return debounce(target?.value ?? '')
     }}
-  />
+    />
+  </label>
 </section>

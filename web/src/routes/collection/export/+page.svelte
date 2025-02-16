@@ -34,7 +34,7 @@
       {#if $exporter.isError}
         <div class="alert alert-error my-2 text-sm shadow-lg">
           <div>
-            <ErrorIcon class="h-6 w-6 flex-shrink-0" />
+            <ErrorIcon class="h-6 w-6 shrink-0" />
             <span>Unable to export collection at the moment, please try again</span>
           </div>
         </div>
@@ -53,7 +53,7 @@
         </div>
       {:else if $exporter.isPending}
         <div class="flex flex-col items-center pb-2 pt-8">
-          <progress class="progress w-56" />
+          <progress class="progress w-56"></progress>
           <p class="pt-2 text-sm text-base-content">Exporting...</p>
         </div>
       {:else if $exporter.isSuccess}

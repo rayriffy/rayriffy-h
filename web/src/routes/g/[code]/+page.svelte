@@ -72,7 +72,7 @@
   />
 {:else if $query.isLoading}
   <div class="flex flex-col items-center p-32">
-    <progress class="progress w-56" />
+    <progress class="progress w-56"></progress>
     <p class="pt-2 text-sm text-base-content">Loading...</p>
   </div>
 {:else}

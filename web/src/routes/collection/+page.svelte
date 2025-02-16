@@ -21,14 +21,14 @@
 
 <SearchBar section="collection" />
 
-<div class="btn-group -mb-2 px-4 pt-4">
-  <a href="/collection/import" class="btn btn-sm">Import</a>
-  <a href="/collection/export" class="btn btn-active btn-sm">Export</a>
+<div class="join -mb-2 px-4 pt-4">
+  <a href="/collection/import" class="btn btn-sm join-item">Import</a>
+  <a href="/collection/export" class="btn btn-active btn-sm join-item">Export</a>
 </div>
 
 {#await getCollectionListing($search.collection.page, $search.collection.query, $collectionToHentai)}
   <div class="flex flex-col items-center p-32">
-    <progress class="progress w-56" />
+    <progress class="progress w-56"></progress>
     <p class="pt-2 text-sm text-base-content">Loading...</p>
   </div>
 {:then { items, maxPage }}
