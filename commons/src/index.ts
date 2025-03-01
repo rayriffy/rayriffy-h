@@ -3,6 +3,13 @@ export { itemsPerPage } from './constants/itemsPerPage'
 
 // functions
 export { getHentaiFromNH } from './functions/getHentaiFromNH'
+export { 
+  filterTagsByType,
+  hentaiMatchesSearch,
+  getHentaiDisplayTitle,
+  prepareSearchQueries
+} from './functions/hentaiTransformers'
+export { readJsonFile, readDataFile } from './functions/fileUtils'
 
 // types
 export type { DatabaseCode } from './@types/DatabaseCode'

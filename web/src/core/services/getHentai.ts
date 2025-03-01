@@ -1,19 +1,14 @@
-import fs from 'fs'
 import path from 'path'
-
-import { destr } from 'destr'
-import { getHentaiFromNH } from '@riffyh/commons'
-
+import { getHentaiFromNH, readDataFile } from '@riffyh/commons'
 import type { Hentai } from '@riffyh/commons'
 
 export const getHentai = async (id: number | string) => {
   // try to read local cache, if unable then fetch from scratch
   try {
-    const hentai = await fs.promises.readFile(
-      path.join(process.cwd(), 'data/hentai', `${id}.json`),
-      'utf8'
+    return await readDataFile<Hentai>(
+      process.cwd(), 
+      path.join('hentai', `${id}.json`)
     )
-    return destr<Hentai>(hentai)
   } catch (_) {
     return getHentaiFromNH(id)
   }

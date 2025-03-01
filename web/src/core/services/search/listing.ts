@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-import { destr } from 'destr'
+import { readDataFile } from '@riffyh/commons'
 
 import { searchHentai } from '$core/services/searchHentai'
 import { hentaiToMinifiedHentaiForListing } from '$core/services/hentaiToMinifiedHentaiForListing'
@@ -14,6 +14,8 @@ export const searchListing = async ({
   page,
   excludeTags,
 }: Omit<SearchInput, 'mode'>) => {
+  const cwd = process.cwd()
+  
   // if no search query then local search return null, otherwise return search results
   const localSearch =
     query === '' && excludeTags.length === 0
@@ -21,36 +23,21 @@ export const searchListing = async ({
       : searchHentai(
           query ?? '',
           Number(page),
-          destr<Hentai[]>(
-            await fs.promises.readFile(
-              path.join(process.cwd(), 'data/searchKey.json'),
-              'utf8'
-            )
-          ),
+          await readDataFile<Hentai[]>(cwd, 'searchKey.json'),
           excludeTags
         )
 
   const totalListingPages =
     localSearch?.totalPages ??
-    (await fs.promises.readdir(path.join(process.cwd(), 'data/prebuiltChunks')))
-      .length
+    (await fs.promises.readdir(path.join(cwd, 'data/prebuiltChunks'))).length
+    
   const hentais =
     (localSearch?.hentais as Hentai[]) ??
-    (await fs.promises
-      .readFile(
-        path.join(process.cwd(), 'data/prebuiltChunks', `chunk-${page}.json`),
-        'utf8'
-      )
-      .then(value => destr<number[]>(value))
+    (await readDataFile<number[]>(cwd, path.join('prebuiltChunks', `chunk-${page}.json`))
       .then(codes =>
         Promise.all(
           codes.map(async code =>
-            destr<Hentai>(
-              await fs.promises.readFile(
-                path.join(process.cwd(), 'data/hentai', `${code}.json`),
-                'utf8'
-              )
-            )
+            readDataFile<Hentai>(cwd, path.join('hentai', `${code}.json`))
           )
         )
       ))

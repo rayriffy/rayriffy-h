@@ -1,4 +1,4 @@
-import { filterTagByType } from './filterTagByType'
+import { filterTagsByType, getHentaiDisplayTitle } from '@riffyh/commons'
 
 import { tags } from '../constants/tags'
 
@@ -15,8 +15,8 @@ export const hentaiToMinifiedHentaiForListing = (
   },
   tags: tags.map(tag => ({
     name: tag.name,
-    amount: filterTagByType(hentai.tags, tag.name).length,
+    amount: filterTagsByType(hentai.tags, tag.name).length,
   })),
-  languages: hentai.tags.filter(o => o.type === 'language'),
-  title: hentai.title.pretty ?? hentai.title.english ?? hentai.title.japanese,
+  languages: filterTagsByType(hentai.tags, 'language'),
+  title: getHentaiDisplayTitle(hentai),
 })
