@@ -16,3 +16,4 @@ stats.html
 pnpm-lock.yaml
 yarn.lock
 dist
+.idea
