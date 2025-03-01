@@ -7,9 +7,24 @@ export {
   filterTagsByType,
   hentaiMatchesSearch,
   getHentaiDisplayTitle,
-  prepareSearchQueries
+  prepareSearchQueries,
+  minifyHentai,
+  countTagsByType,
+  transformHentai,
+  getHentaiLanguages
 } from './functions/hentaiTransformers'
-export { readJsonFile, readDataFile } from './functions/fileUtils'
+export { 
+  readJsonFile, 
+  readDataFile,
+  writeJsonFile,
+  writeDataFile,
+  fileExists,
+  ensureDir
+} from './functions/fileUtils'
+export {
+  paginateItems,
+  getPaginationParams
+} from './functions/paginationUtils'
 
 // types
 export type { DatabaseCode } from './@types/DatabaseCode'

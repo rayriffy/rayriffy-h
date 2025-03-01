@@ -1,7 +1,7 @@
 import { 
-  itemsPerPage, 
   hentaiMatchesSearch, 
-  prepareSearchQueries 
+  prepareSearchQueries,
+  paginateItems
 } from '@riffyh/commons'
 import type { Hentai } from '@riffyh/commons'
 
@@ -16,11 +16,10 @@ export const searchHentai = (
     hentaiMatchesSearch(hentai, splittedQueries, filteredTags)
   )
 
+  const { totalPages, items } = paginateItems(filteredHentais, page)
+
   return {
-    totalPages: Math.ceil(filteredHentais.length / itemsPerPage),
-    hentais: filteredHentais.slice(
-      (page - 1) * itemsPerPage,
-      itemsPerPage * page
-    ),
+    totalPages,
+    hentais: items,
   }
 }
