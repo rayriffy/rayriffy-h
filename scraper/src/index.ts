@@ -5,6 +5,7 @@ import { hideBin } from 'yargs/helpers'
 
 import { fetch } from './commands/fetch'
 import { sync } from './commands/sync'
+import { doomsday } from "./commands/doomsday";
 
 import 'dotenv/config'
 
@@ -20,6 +21,18 @@ yargs(hideBin(process.argv))
       });
     },
     argv => fetch(argv.file, argv.browser)
+  )
+  .command<{ concurrency: number }>(
+    'doomsday',
+    'download all images to data partition',
+    yargs => {
+      yargs.option('concurrency', {
+        type: 'number',
+        describe: 'number of concurrent downloads',
+        default: 20,
+      });
+    },
+    argv => doomsday(argv.concurrency)
   )
   .command('sync', 'sync data to database', () => {}, sync)
   .demandCommand(1)
