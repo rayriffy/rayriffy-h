@@ -1,11 +1,4 @@
-import type { Image } from '@riffyh/commons'
-
-export interface GetImageUrlArgs {
-  image: Image
-  mediaId: number | string
-  page?: number
-  type: 'cover' | 'thumbnail' | 'gallery'
-}
+import { GetImageUrlArgs } from "../@types/GetImageUrlArgs";
 
 export const getImageUrl = (args: GetImageUrlArgs): string => {
   const { image, type, mediaId, page } = args

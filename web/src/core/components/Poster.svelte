@@ -1,7 +1,7 @@
 <script lang="ts">
   import BlurredImage from './BlurredImage.svelte'
 
-  import { getImageUrl } from '../services/getImageUrl'
+  import { getImageUrl } from '@riffyh/commons'
 
   import type { MinifiedHentaiForListing } from '../@types/MinifiedHentaiForListing'
 

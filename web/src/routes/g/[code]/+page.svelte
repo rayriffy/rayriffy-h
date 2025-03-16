@@ -7,7 +7,7 @@
   import TagsRenderer from '$modules/reader/TagsRenderer.svelte'
   import BookContentIcon from '$icons/bookContent.svelte'
 
-  import { getImageUrl } from '$core/services/getImageUrl'
+  import { getImageUrl } from '@riffyh/commons'
 
   import { api } from '$trpc/client'
 

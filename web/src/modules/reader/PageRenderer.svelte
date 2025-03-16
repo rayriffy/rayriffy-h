@@ -1,8 +1,6 @@
 <script lang="ts">
   import BlurredImage from '$core/components/BlurredImage.svelte'
-  import { getImageUrl } from '$core/services/getImageUrl'
-
-  import type { Image } from '@riffyh/commons'
+  import { getImageUrl, type Image } from '@riffyh/commons'
 
   export let pages: Image[]
   export let mediaId: string

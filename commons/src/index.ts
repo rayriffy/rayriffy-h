@@ -25,6 +25,7 @@ export {
   paginateItems,
   getPaginationParams
 } from './functions/paginationUtils'
+export { getImageUrl } from './functions/getImageUrl'
 
 // types
 export type { DatabaseCode } from './@types/DatabaseCode'
@@ -34,3 +35,4 @@ export type { Image } from './@types/Image'
 export type { NHHentai } from './@types/NHHentai'
 export type { Tag } from './@types/Tag'
 export type { TagType } from './@types/TagType'
+export type { GetImageUrlArgs } from './@types/GetImageUrlArgs'
