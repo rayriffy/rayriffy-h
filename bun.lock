@@ -49,7 +49,7 @@
         "@tanstack/svelte-query": "5.66.3",
         "@trpc/client": "10.45.2",
         "@trpc/server": "10.45.2",
-        "@urami/core": "1.3.0",
+        "@urami/core": "1.4.0",
         "@urami/svelte": "1.2.0",
         "destr": "2.0.3",
         "lodash": "4.17.21",
@@ -511,7 +511,7 @@
 
     "@types/yauzl": ["@types/yauzl@2.10.3", "", { "dependencies": { "@types/node": "*" } }, "sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q=="],
 
-    "@urami/core": ["@urami/core@1.3.0", "", { "dependencies": { "@hapi/accept": "^6.0.2", "is-animated": "^2.0.2", "send": "^0.18.0" }, "peerDependencies": { "sharp": "^0.32.5" } }, "sha512-DhlLBLMUEBLqfswiZODcfPVbbxHYf+ZKAr5Atx5uD3hhXvbmhFTqMQruE7wUTlPr2TojnINDe49yKHrqjMO+IQ=="],
+    "@urami/core": ["@urami/core@1.4.0", "", { "dependencies": { "@hapi/accept": "^6.0.2", "is-animated": "^2.0.2", "send": "^0.18.0" }, "peerDependencies": { "sharp": "^0.32.5" } }, "sha512-vHjy7a1ag61XwtBvtPbpZ3B1phBUDhts/DkBF592Wl/ih8A+4jgdgidK1AtCVLMlBCJxT5JULx4Ap5/soPSqxA=="],
 
     "@urami/svelte": ["@urami/svelte@1.2.0", "", { "dependencies": { "@urami/utils": "1.1.0" }, "peerDependencies": { "svelte": "^4.0.0" } }, "sha512-plv1pRuMHIZIolwtxpNTsAPOHT0Q3S8rl+Fh4kSZlVzCyOnyVZ9u+MxXehyYDv/OgAU1N7iXjF7HR7CIBdlkhQ=="],
 
