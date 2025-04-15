@@ -3,7 +3,7 @@ import kebabCase from 'lodash/kebabCase'
 
 import { hentaiToMinifiedHentaiForListing } from '$core/services/hentaiToMinifiedHentaiForListing'
 
-import type { NHHentai, Hentai, TagType } from '@riffyh/commons'
+import type { NHHentai, Hentai } from '@riffyh/commons'
 import type { SearchInput } from '$core/constants/schema/searchInput'
 
 const defaultQuery =
@@ -18,21 +18,7 @@ export const searchMain = async ({
     query = query
       .split(' ')
       .filter(o => o !== '')
-      .concat(
-        excludeTags.map(tag => {
-          const prefixes: TagType[] = [
-            'parody',
-            'tag',
-            'language',
-            'character',
-            'group',
-            'artist',
-            'category',
-          ]
-
-          return prefixes.map(prefix => `-${prefix}:"${tag}"`).join(' ')
-        })
-      )
+      .concat(excludeTags.map(tag => `-${tag}`))
       .join(' ')
 
   if (query === '') query = defaultQuery
