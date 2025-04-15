@@ -38,8 +38,17 @@ export const sync = async () => {
 
     console.log(itemsToPush.length + ' items to push')
 
-    if (itemsToPush.length > 0)
-      await collection.insertMany(itemsToPush)
+    if (itemsToPush.length > 0) {
+      const batchSize = parseInt(process.env.BATCH_SIZE || '200', 10)
+      console.log(`Using batch size of ${batchSize}`)
+      
+      // Split items into batches
+      for (let i = 0; i < itemsToPush.length; i += batchSize) {
+        const batch = itemsToPush.slice(i, i + batchSize)
+        console.log(`Inserting batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(itemsToPush.length / batchSize)} (${batch.length} items)`)
+        await collection.insertMany(batch)
+      }
+    }
 
     await mongo.close()
     process.exit(0)

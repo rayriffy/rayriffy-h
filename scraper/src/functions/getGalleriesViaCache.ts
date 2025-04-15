@@ -23,7 +23,8 @@ export const getGalleriesViaCache = async (codes: number[]): Promise<number[]> =
       .find({
         id: { $in: codes }
       }, {
-        projection: { _id: 0 }
+        projection: { _id: 0 },
+        enableUtf8Validation: false,
       })
       .skip(i)
       .limit(paginationSize)
