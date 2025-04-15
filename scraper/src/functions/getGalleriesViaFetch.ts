@@ -2,8 +2,10 @@ import PQueue from "p-queue";
 import { fetchHentai } from "./fetchHentai";
 import type { FetchResult } from "../@types/FetchResult";
 
+const concurrency = Number(process.env.FETCH_CONCURRENCY) || 8
+
 const fetchQueue = new PQueue({
-  concurrency: 8,
+  concurrency,
 })
 
 export const getGalleriesViaFetch = async (codes: (string | number)[]): Promise<FetchResult> => {

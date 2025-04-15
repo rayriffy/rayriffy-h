@@ -5,8 +5,10 @@ import type { Browser } from "puppeteer";
 import { writeItem } from "./writeItem";
 import type { FetchResult } from "../@types/FetchResult";
 
+const concurrency = Number(process.env.FETCH_CONCURRENCY) || 8
+
 const fetchQueue = new PQueue({
-  concurrency: 8,
+  concurrency,
 })
 
 export const getGalleriesViaBrowser = async (codes: (string | number)[]): Promise<FetchResult> => {
