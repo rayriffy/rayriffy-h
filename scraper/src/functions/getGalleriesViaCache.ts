@@ -8,26 +8,34 @@ export const getGalleriesViaCache = async (codes: number[]): Promise<number[]> =
   await mongo.connect()
   const collection = mongo.db('riffyh-data').collection<Hentai>('nh-galleries')
 
-  const amountOfGalleries = await collection.countDocuments({
-    id: { $in: codes }
-  })
+  // Chunk the codes array into smaller pieces to avoid MongoDB issues
+  const chunkSize = 400
+  const chunkedCodes: number[][] = []
+  for (let i = 0; i < codes.length; i += chunkSize) {
+    chunkedCodes.push(codes.slice(i, i + chunkSize))
+  }
 
-  console.log(`${amountOfGalleries} items found in cache! writing to file...`)
-
-  if (amountOfGalleries === 0) return []
-
-  const paginationSize = 300
+  console.log(`Processing ${chunkedCodes.length} chunks of codes (max ${chunkSize} per chunk)`)
+  
   const writtenIds: number[] = []
-  for (let i = 0; i < amountOfGalleries; i += paginationSize) {
+
+  // Process each chunk separately
+  for (const codeChunk of chunkedCodes) {
+    const amountOfGalleries = await collection.countDocuments({
+      id: { $in: codeChunk }
+    })
+
+    console.log(`${amountOfGalleries} items found in cache for current chunk! writing to file...`)
+
+    if (amountOfGalleries === 0) continue
+
     const items = await collection
       .find({
-        id: { $in: codes }
+        id: { $in: codeChunk }
       }, {
         projection: { _id: 0 },
         enableUtf8Validation: false,
       })
-      .skip(i)
-      .limit(paginationSize)
       .toArray()
 
     await Promise.all(

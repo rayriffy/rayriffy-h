@@ -2,8 +2,10 @@ import puppeteer from 'puppeteer-extra'
 import StealthPlugin from 'puppeteer-extra-plugin-stealth'
 import PQueue from "p-queue";
 import type { Browser } from "puppeteer";
+import kebabCase from 'lodash/kebabCase'
 import { writeItem } from "./writeItem";
 import type { FetchResult } from "../@types/FetchResult";
+import { Hentai } from '@riffyh/commons';
 
 const concurrency = Number(process.env.FETCH_CONCURRENCY) || 8
 
@@ -68,8 +70,30 @@ const getItem = async (code: string | number, browser: Browser) => {
   if ((await page.title()).toLowerCase().includes('just a moment'))
     await page.waitForNetworkIdle()
 
-  const content = await page.$eval('pre', el => el.textContent) ?? ''
+  let content: Hentai = JSON.parse((await page.$eval('pre', el => el.textContent))!)
   await page.close()
 
-  await writeItem(code, content)
+  // @ts-expect-error
+  if (typeof content.error === 'string') {
+    // @ts-expect-error
+    throw Error(`${code} has error: ${content.error}`)
+  }
+
+  const sanitizedContent = {
+    id: Number(content.id),
+    media_id: content.media_id,
+    title: content.title,
+    images: {
+      cover: content.images.cover,
+      pages: content.images.pages,
+    },
+    tags: content.tags.map(o => ({
+      id: kebabCase(o.name),
+      type: o.type,
+      name: o.name,
+    })),
+    num_pages: content.num_pages,
+  }
+
+  await writeItem(code, JSON.stringify(sanitizedContent))
 }
