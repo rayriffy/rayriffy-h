@@ -61,13 +61,11 @@
 </svelte:head>
 
 <QueryClientProvider client={client}>
-  <div class="app mx-auto max-w-lg">
-    {#if ReloadPrompt}
-      <svelte:component this={ReloadPrompt} />
-    {/if}
-    <main class="pb-16">
-      <slot />
-    </main>
-    <Navbar />
-  </div>
+  {#if ReloadPrompt}
+    <svelte:component this={ReloadPrompt} />
+  {/if}
+  <main class="pb-16">
+    <slot />
+  </main>
+  <Navbar />
 </QueryClientProvider>

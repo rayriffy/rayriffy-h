@@ -22,7 +22,7 @@
   <title>Import · Riffy H</title>
 </svelte:head>
 
-<section class="p-4">
+<section class="p-4 container-lg">
   <div class="card bg-base-100 shadow-xl">
     <div class="card-body">
       <h2 class="card-title">Import</h2>

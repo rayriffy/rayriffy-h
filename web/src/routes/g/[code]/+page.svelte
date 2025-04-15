@@ -26,7 +26,7 @@
 
 {#if $query.isSuccess}
   {@const { hentai, excludes } = $query.data}
-  <section class="flex flex-col items-center space-y-6 p-4">
+  <section class="flex flex-col items-center space-y-6 p-4 container-lg">
     <div class="overflow-hidden rounded-xl shadow-md">
       <BlurredImage
         src={getImageUrl({
@@ -62,7 +62,7 @@
       <Favorite {hentai} />
     </div>
   </section>
-  <div class="divider-item divider mb-8">
+  <div class="divider-item divider mb-8 container-4xl">
     <BookContentIcon class="w-12" />
   </div>
   <PageRenderer

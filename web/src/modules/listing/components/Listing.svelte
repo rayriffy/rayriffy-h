@@ -37,7 +37,7 @@
     <Pagination max={maxPage} current={page} {prefix} />
   </section>
 
-  <section class="grid grid-cols-2 items-center gap-4 px-4">
+  <section class="gallery-grid">
     {#each items as hentai}
       <a href={`/g/${hentai.id}`}>
         <Poster {hentai} />

@@ -19,12 +19,12 @@
   <title>Collection · Riffy H</title>
 </svelte:head>
 
-<SearchBar section="collection" />
-
-<div class="join -mb-2 px-4 pt-4">
-  <a href="/collection/import" class="btn btn-sm join-item">Import</a>
-  <a href="/collection/export" class="btn btn-active btn-sm join-item">Export</a>
-</div>
+<SearchBar section="collection">
+  <div class="join pt-4">
+    <a href="/collection/import" class="btn btn-sm join-item">Import</a>
+    <a href="/collection/export" class="btn btn-active btn-sm join-item">Export</a>
+  </div>
+</SearchBar>
 
 {#await getCollectionListing($search.collection.page, $search.collection.query, $collectionToHentai)}
   <div class="flex flex-col items-center p-32">
@@ -40,7 +40,7 @@
     />
   </section>
 
-  <section class="grid grid-cols-2 items-center gap-4 px-4">
+  <section class="gallery-grid">
     {#each items as hentai (hentai.id)}
       <a href={`/g/${hentai.id}`}>
         <Poster {hentai} />

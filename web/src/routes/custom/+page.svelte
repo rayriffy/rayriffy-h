@@ -33,7 +33,7 @@
   <title>Custom · Riffy H</title>
 </svelte:head>
 
-<section class="space-y-2 px-4 pt-4">
+<section class="space-y-2 px-4 pt-4 container-lg">
   <div class="flex justify-evenly" id="code-digit">
     {#each Array.from({ length: 6 }) as _, i (`code-input-${i}`)}
       <input

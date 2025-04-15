@@ -7,7 +7,7 @@
   export let excludes: number[]
 </script>
 
-<section class="overflow-hidden">
+<section class="overflow-hidden container-4xl">
   {#each pages as page, i}
     {#if !excludes.includes(i + 1)}
       <BlurredImage

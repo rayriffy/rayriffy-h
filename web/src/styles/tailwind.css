@@ -30,3 +30,15 @@
   font-family: 'Noto Sans', sans-serif;
   font-family: 'Noto Sans JP', sans-serif;
 }
+
+.container-lg {
+  @apply max-w-lg mx-auto;
+}
+
+.container-4xl {
+  @apply max-w-4xl mx-auto;
+}
+
+.gallery-grid {
+  @apply grid grid-cols-2 items-center gap-4 px-4 max-w-4xl mx-auto sm:grid-cols-3;
+}

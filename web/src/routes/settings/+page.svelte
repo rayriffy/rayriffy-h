@@ -7,7 +7,7 @@
   <title>Settings · Riffy H</title>
 </svelte:head>
 
-<section class="p-4 space-y-4">
+<section class="p-4 space-y-4 container-lg">
   <div class="card bg-base-100 shadow-xl">
     <div class="card-body">
       <div class="space-y-4">
