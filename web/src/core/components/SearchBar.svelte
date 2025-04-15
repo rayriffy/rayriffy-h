@@ -24,6 +24,7 @@
     <input
       type="search"
       class="grow"
+      autocomplete="off"
       placeholder="Keywords or 6-digit code"
       value={$search[section].query}
       on:input={({ target }) => {

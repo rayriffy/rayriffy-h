@@ -12,6 +12,10 @@
   }
 }
 
+@utility input {
+  @apply text-[16px];
+}
+
 .spinner {
   display: inline-block;
   border-color: currentColor;
