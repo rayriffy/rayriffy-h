@@ -26,6 +26,7 @@ export {
   getPaginationParams
 } from './functions/paginationUtils'
 export { getImageUrl } from './functions/getImageUrl'
+export { sanitizeContent } from './functions/sanitizeContent'
 
 // types
 export type { DatabaseCode } from './@types/DatabaseCode'
