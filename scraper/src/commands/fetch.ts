@@ -11,7 +11,12 @@ import { getGalleriesViaBrowser } from "../functions/getGalleriesViaBrowser";
 import { getGalleriesViaFetch } from "../functions/getGalleriesViaFetch";
 import { getGalleriesViaCache } from "../functions/getGalleriesViaCache";
 
-export const fetch = async (entryPoint: string, browserMode: boolean) => {
+export const fetch = async (
+  entryPoint: string, 
+  browserMode: boolean, 
+  headless: boolean = true, 
+  concurrency: number = 8
+) => {
   if (process.env.MONGODB_URL === undefined) {
     console.error(
       'no database url provided, please provide postgres connection url'
@@ -75,8 +80,10 @@ export const fetch = async (entryPoint: string, browserMode: boolean) => {
 
     console.log(`${idsNeedsToBeFetched.length - idsFetchedFromMongo.length} needs to be fetched further`)
 
-    const fetchResult = await (browserMode ? getGalleriesViaBrowser : getGalleriesViaFetch)(
-      idsNeedsToBeFetched.filter(o => !idsFetchedFromMongo.includes(o))
+    const unfetchedIds = idsNeedsToBeFetched.filter(o => !idsFetchedFromMongo.includes(o))
+    const fetchResult = await (browserMode 
+      ? getGalleriesViaBrowser(unfetchedIds, headless, concurrency) 
+      : getGalleriesViaFetch(unfetchedIds, concurrency)
     )
 
     if (fetchResult.failure > 0) {

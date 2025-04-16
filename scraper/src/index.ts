@@ -10,7 +10,7 @@ import { doomsday } from "./commands/doomsday";
 import 'dotenv/config'
 
 yargs(hideBin(process.argv))
-  .command<{ file: string, browser: boolean }>(
+  .command<{ file: string, browser: boolean, headless: boolean, concurrency: number }>(
     'fetch <file>', 'fetch file from raw source',
     yargs => {
       yargs.option('browser', {
@@ -19,8 +19,18 @@ yargs(hideBin(process.argv))
           'fetch using full-browser mode in case of cloudflare protection turned on',
         default: false,
       });
+      yargs.option('headless', {
+        type: 'boolean',
+        describe: 'run puppeteer in headless mode',
+        default: true,
+      });
+      yargs.option('concurrency', {
+        type: 'number',
+        describe: 'number of concurrent fetch operations',
+        default: 8,
+      });
     },
-    argv => fetch(argv.file, argv.browser)
+    argv => fetch(argv.file, argv.browser, argv.headless, argv.concurrency)
   )
   .command<{ concurrency: number }>(
     'doomsday',

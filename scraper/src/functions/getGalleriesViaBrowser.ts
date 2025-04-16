@@ -6,13 +6,11 @@ import { writeItem } from "./writeItem";
 import type { FetchResult } from "../@types/FetchResult";
 import { sanitizeContent, type Hentai } from '@riffyh/commons';
 
-const concurrency = Number(process.env.FETCH_CONCURRENCY) || 8
-
-const fetchQueue = new PQueue({
-  concurrency,
-})
-
-export const getGalleriesViaBrowser = async (codes: (string | number)[]): Promise<FetchResult> => {
+export const getGalleriesViaBrowser = async (
+  codes: (string | number)[], 
+  headless: boolean = true,
+  concurrency: number = Number(process.env.FETCH_CONCURRENCY) || 8
+): Promise<FetchResult> => {
   const [firstGallery, ...galleries] = codes
 
   let success = 0
@@ -24,11 +22,15 @@ export const getGalleriesViaBrowser = async (codes: (string | number)[]): Promis
       failure
     }
 
+  const fetchQueue = new PQueue({
+    concurrency,
+  })
+
   puppeteer.use(StealthPlugin())
   const browser = await puppeteer
     .use(StealthPlugin())
     .launch({
-      headless: false,
+      headless: headless,
       defaultViewport: {
         width: 1190,
         height: 700

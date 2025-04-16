@@ -1,7 +1,7 @@
 import kebabCase from "lodash/kebabCase";
 import type { Hentai } from "@riffyh/commons";
 
-export const sanitizeContent = (content: Hentai) => ({
+export const sanitizeContent = (content: Hentai): Hentai => ({
   id: Number(content.id),
   media_id: content.media_id,
   title: content.title,
