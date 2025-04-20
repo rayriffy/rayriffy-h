@@ -14,7 +14,7 @@ import { getGalleriesViaCache } from "../functions/getGalleriesViaCache";
 export const fetch = async (
   entryPoint: string, 
   browserMode: boolean, 
-  headless: boolean = true, 
+  headless: boolean = false, 
   concurrency: number = 8
 ) => {
   if (process.env.MONGODB_URL === undefined) {

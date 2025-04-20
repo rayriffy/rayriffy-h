@@ -21,8 +21,8 @@ yargs(hideBin(process.argv))
       });
       yargs.option('headless', {
         type: 'boolean',
-        describe: 'run puppeteer in headless mode',
-        default: true,
+        describe: 'run puppeteer in headless mode (visible browser by default)',
+        default: false,
       });
       yargs.option('concurrency', {
         type: 'number',

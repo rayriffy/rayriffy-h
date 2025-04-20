@@ -8,7 +8,7 @@ import { sanitizeContent, type Hentai } from '@riffyh/commons';
 
 export const getGalleriesViaBrowser = async (
   codes: (string | number)[], 
-  headless: boolean = true,
+  headless: boolean = false,
   concurrency: number = Number(process.env.FETCH_CONCURRENCY) || 8
 ): Promise<FetchResult> => {
   const [firstGallery, ...galleries] = codes
