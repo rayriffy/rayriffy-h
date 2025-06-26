@@ -37,6 +37,7 @@
     "@urami/svelte": "1.2.0",
     "destr": "2.0.5",
     "lodash": "4.17.21",
+    "lz-string": "^1.5.0",
     "nanostores": "1.0.1",
     "p-queue": "8.1.0",
     "sharp": "0.34.1",
