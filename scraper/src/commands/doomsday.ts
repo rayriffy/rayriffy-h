@@ -6,6 +6,7 @@ import { getImageUrl, type Hentai } from "@riffyh/commons";
 
 import { hentaiDirectory } from "../constants/hentaiDirectory";
 import { imageDirectory } from "../constants/imageDirectory";
+import { downloadImage } from '../functions/downloadImage';
 
 export const doomsday = async (concurrency = 20, verbose: boolean = false) => {
   // locate list of hentai generated into hentai directory
@@ -63,19 +64,7 @@ export const doomsday = async (concurrency = 20, verbose: boolean = false) => {
       await Promise.all(
         [...fullSizedImagesUrls, ...thumbnailImageUrls].map(url =>
           downloadQueue.add(async () =>
-            fs.promises.writeFile(
-              path.join(hentaiImageDirectory, path.basename(url)),
-              await fetch(url)
-                .then(r => {
-                  if (r.ok) return r.arrayBuffer()
-                  else throw new Error(`Failed to download ${url}`)
-                })
-                .then(b => Buffer.from(b))
-                .catch(e => {
-                  if (verbose) console.error(e)
-                  throw e
-                })
-            )
+            downloadImage(url, hentaiImageDirectory, verbose)
           )
         )
       )
