@@ -7,7 +7,7 @@ import { getImageUrl, type Hentai } from "@riffyh/commons";
 import { hentaiDirectory } from "../constants/hentaiDirectory";
 import { imageDirectory } from "../constants/imageDirectory";
 
-export const doomsday = async (concurrency = 20)=> {
+export const doomsday = async (concurrency = 20) => {
   // locate list of hentai generated into hentai directory
   const hentaiIds = await fs.promises.readdir(hentaiDirectory)
     .then(files => files.map(f => Number(f.replace('.json', ''))))
@@ -22,6 +22,15 @@ export const doomsday = async (concurrency = 20)=> {
 
   let success = 0
   let fail = 0
+
+  const log = (id: number, isSuccess: boolean) => {
+    if (isSuccess)
+      success++
+    else
+      fail++
+
+    console.log(`[${(success + fail).toLocaleString()} (S ${success.toLocaleString()} / E ${fail.toLocaleString()}) / ${idsNeedsToBeDownloaded.length.toLocaleString()}] gallery ${id} processed (${isSuccess ? 'success' : 'failed'})`)
+  }
 
   for await (const id of idsNeedsToBeDownloaded) {
     const downloadQueue = new PQueue({ concurrency })
@@ -67,12 +76,10 @@ export const doomsday = async (concurrency = 20)=> {
         )
       )
 
-      success++
+      log(id, true)
     } catch (e) {
-      fail++
-      fs.promises.rmdir(hentaiDirectory).catch(() => {})
+      log(id, false)
+      fs.promises.rmdir(hentaiImageDirectory).catch(() => {})
     }
-
-    console.log(`[${(success + fail).toLocaleString()} (S ${success.toLocaleString()} / E ${fail.toLocaleString()}) / ${idsNeedsToBeDownloaded.length.toLocaleString()}] gallery ${id} processed`)
   }
 }

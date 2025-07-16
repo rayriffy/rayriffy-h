@@ -6,6 +6,7 @@ import { hideBin } from 'yargs/helpers'
 import { fetch } from './commands/fetch'
 import { sync } from './commands/sync'
 import { doomsday } from "./commands/doomsday";
+import { version } from './commands/version';
 
 import 'dotenv/config'
 
@@ -45,5 +46,6 @@ yargs(hideBin(process.argv))
     argv => doomsday(argv.concurrency)
   )
   .command('sync', 'sync data to database', () => {}, sync)
+  .command('version', 'print version', () => {}, version)
   .demandCommand(1)
   .parse()
