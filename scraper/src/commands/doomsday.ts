@@ -55,7 +55,7 @@ export const doomsday = async (concurrency = 20)=> {
         [...fullSizedImagesUrls, ...thumbnailImageUrls].map(url =>
           downloadQueue.add(async () =>
             fs.promises.writeFile(
-              path.join(hentaiDirectory, path.basename(url)),
+              path.join(hentaiImageDirectory, path.basename(url)),
               await fetch(url)
                 .then(r => {
                   if (r.ok) return r.arrayBuffer()
