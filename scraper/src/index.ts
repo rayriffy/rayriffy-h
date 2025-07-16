@@ -33,7 +33,7 @@ yargs(hideBin(process.argv))
     },
     argv => fetch(argv.file, argv.browser, argv.headless, argv.concurrency)
   )
-  .command<{ concurrency: number }>(
+  .command<{ concurrency: number, verbose: boolean }>(
     'doomsday',
     'download all images to data partition',
     yargs => {
@@ -42,8 +42,13 @@ yargs(hideBin(process.argv))
         describe: 'number of concurrent downloads',
         default: 20,
       });
+      yargs.option('verbose', {
+        type: 'boolean',
+        describe: 'print verbose output',
+        default: false,
+      });
     },
-    argv => doomsday(argv.concurrency)
+    argv => doomsday(argv.concurrency, argv.verbose)
   )
   .command('sync', 'sync data to database', () => {}, sync)
   .command('version', 'print version', () => {}, version)
