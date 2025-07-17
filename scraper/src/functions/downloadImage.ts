@@ -15,10 +15,12 @@ export const downloadImage = async (url: string, hentaiImageDirectory: string, v
     return await fs.promises.writeFile(filePath, response)
   } catch (e) {
     if (!reattempted) {
-      // image may failed to load because of the extension switching between jpg and webp
-      // so we try to download the image with the other extension
-      const newUrl = url.replace(/\.jpg$/, '.webp').replace(/\.webp$/, '.jpg')
-      return downloadImage(newUrl, hentaiImageDirectory, verbose, true)
+      // Original URL failed but has image extension, try alternate format
+      const alternateUrl = url.endsWith('.jpg') 
+        ? url.replace('.jpg', '.webp') 
+        : url.replace('.webp', '.jpg')
+
+      return downloadImage(alternateUrl, hentaiImageDirectory, verbose, true)
     } else {
       if (verbose) console.error(e)
       throw e
