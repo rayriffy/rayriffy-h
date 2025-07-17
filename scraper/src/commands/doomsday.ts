@@ -72,7 +72,10 @@ export const doomsday = async (concurrency = 20, verbose: boolean = false) => {
       log(id, true)
     } catch (e) {
       log(id, false)
-      fs.promises.rmdir(hentaiImageDirectory).catch(() => {})
+      await fs.promises.rmdir(hentaiImageDirectory, {
+        maxRetries: 4,
+        recursive: true,
+      }).catch(() => {})
     }
   }
 }
