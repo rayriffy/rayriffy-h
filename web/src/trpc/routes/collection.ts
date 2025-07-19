@@ -2,7 +2,7 @@ import z from 'zod'
 import { destr } from 'destr'
 import PQueue from 'p-queue'
 import { TRPCError } from '@trpc/server'
-import { compress, decompress } from 'lz-string'
+import lz from 'lz-string'
 
 import { env } from '$env/dynamic/private'
 import { decrypt } from '$core/services/crypto/decrypt'
@@ -29,7 +29,7 @@ export const collectionRouter = createTRPCRouter({
       try {
         const bytebinRes = await fetch(
           `https://bytebin.lucko.me/${input.code}`
-        ).then(async o => destr<EncryptedData>(decompress(await o.text())))
+        ).then(async o => destr<EncryptedData>(lz.decompress(await o.text())))
 
         // decrypt it
         const decryptedData = decrypt(bytebinRes, env.SECRET_KEY)
@@ -91,7 +91,7 @@ export const collectionRouter = createTRPCRouter({
           {
             credentials: 'same-origin',
             method: 'POST',
-            body: compress(JSON.stringify(encryptedData)),
+            body: lz.compress(JSON.stringify(encryptedData)),
             headers: { 'Content-Type': 'application/json' },
           }
         ).then(async o => destr(await o.text()))
