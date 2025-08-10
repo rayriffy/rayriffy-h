@@ -1,6 +1,6 @@
-import { 
-  hentaiMatchesSearch, 
-  prepareSearchQueries,
+import {
+  parseAdvancedSearch,
+  hentaiMatchesAdvancedSearch,
   paginateItems
 } from '@riffyh/commons'
 import type { Hentai } from '@riffyh/commons'
@@ -11,9 +11,9 @@ export const searchHentai = (
   hentais: readonly Hentai[],
   filteredTags: string[] = []
 ) => {
-  const splittedQueries = prepareSearchQueries(query)
-  const filteredHentais = hentais.filter(hentai => 
-    hentaiMatchesSearch(hentai, splittedQueries, filteredTags)
+  const parsed = parseAdvancedSearch(query)
+  const filteredHentais = hentais.filter(hentai =>
+    hentaiMatchesAdvancedSearch(hentai, parsed, filteredTags)
   )
 
   const { totalPages, items } = paginateItems(filteredHentais, page)

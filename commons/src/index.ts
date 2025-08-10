@@ -6,6 +6,8 @@ export { getHentaiFromNH } from './functions/getHentaiFromNH'
 export { 
   filterTagsByType,
   hentaiMatchesSearch,
+  parseAdvancedSearch,
+  hentaiMatchesAdvancedSearch,
   getHentaiDisplayTitle,
   prepareSearchQueries,
   minifyHentai,
