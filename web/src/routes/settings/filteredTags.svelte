@@ -36,12 +36,12 @@
   <button class="btn btn-primary" type="submit">Add</button>
 </form>
 
-<div class="space-y-3 divide-y">
+<div class="space-y-3 divide-y divide-base-content/20">
   {#each $settings.filteredTags ?? [] as tag}
-    <div class="flex space-between pt-3">
+    <div class="flex space-between align-center pb-3">
       <p>{tag}</p>
       <button
-        class="btn btn-sm btn-square btn-neutral"
+        class="btn btn-xs btn-square btn-error"
         on:click={handleRemove(tag)}
       >
         <Minus class="w-4" />
