@@ -145,10 +145,11 @@ export const hentaiMatchesAdvancedSearch = (
   filteredTags: string[] = []
 ): boolean => {
   // 1) Global filtered tags must not exist on item
+  const normalizedFilteredTags = filteredTags.map(normalizeString)
   if (
     hentai.tags
       .map(t => normalizeString(t.name))
-      .some(t => filteredTags.map(normalizeString).includes(t))
+      .some(t => normalizedFilteredTags.includes(t))
   ) {
     return false
   }

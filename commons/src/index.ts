@@ -24,7 +24,7 @@ export {
   ensureDir
 } from './functions/fileUtils'
 export {
-  paginateItems,
+  paginateMatches,
   getPaginationParams
 } from './functions/paginationUtils'
 export { getImageUrl } from './functions/getImageUrl'
