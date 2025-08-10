@@ -11,7 +11,7 @@
     routes.includes($page.route.id ?? '') ? 'dock-active' : ''
 </script>
 
-<nav class="dock bg-base-100/80 backdrop-blur-lg container-lg">
+<nav class="dock dock-sm bg-base-100/80 backdrop-blur-lg container-lg">
   <a href="/" aria-label="home" class={printClass(['/', '/p/[page=integer]'])}>
     <HomeIcon class="h-5 w-5" />
   </a>
