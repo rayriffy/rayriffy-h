@@ -141,23 +141,12 @@ const getTagFieldsByType = (hentai: Hentai, tagType: TagType): string[] => {
  */
 export const hentaiMatchesAdvancedSearch = (
   hentai: Hentai,
-  parsed: ParsedAdvancedSearch,
-  filteredTags: string[] = []
+  parsed: ParsedAdvancedSearch
 ): boolean => {
-  // 1) Global filtered tags must not exist on item
-  const normalizedFilteredTags = filteredTags.map(normalizeString)
-  if (
-    hentai.tags
-      .map(t => normalizeString(t.name))
-      .some(t => normalizedFilteredTags.includes(t))
-  ) {
-    return false
-  }
-
-  // 2) Pages constraints
+  // 1) Pages constraints
   if (!satisfiesPages(hentai.num_pages, parsed.pages)) return false
 
-  // 3) Exclusions
+  // 2) Exclusions
   const genericFields = getGenericSearchFields(hentai)
   for (const ex of parsed.exclude) {
     if (ex.scope === 'any') {
@@ -168,7 +157,7 @@ export const hentaiMatchesAdvancedSearch = (
     }
   }
 
-  // 4) Inclusions (AND semantics; empty means pass)
+  // 3) Inclusions (AND semantics; empty means pass)
   for (const inc of parsed.include) {
     if (inc.scope === 'any') {
       if (!anyStringIncludes(genericFields, inc.term)) return false
@@ -179,6 +168,34 @@ export const hentaiMatchesAdvancedSearch = (
   }
 
   return true
+}
+
+/**
+ * Merge user query with persistent filteredTags by converting them into
+ * exclusion terms and combining with the parsed query.
+ */
+export const buildMergedAdvancedSearch = (
+  query: string,
+  filteredTags: string[] = []
+): ParsedAdvancedSearch => {
+  const base = parseAdvancedSearch(query)
+  if (!filteredTags.length) return base
+
+  // Transform filters like ["tag:big", "language:japanese"] into
+  // a negative query: "-tag:big -language:japanese"
+  const negativeQuery = filteredTags
+    .filter(s => (s ?? '').toString().trim() !== '')
+    .map(s => `-${s}`)
+    .join(' ')
+
+  const parsedFilters = parseAdvancedSearch(negativeQuery)
+
+  return {
+    include: [...base.include, ...parsedFilters.include],
+    exclude: [...base.exclude, ...parsedFilters.exclude],
+    // Do not inherit any pages constraint from filteredTags
+    pages: base.pages,
+  }
 }
 
 /**

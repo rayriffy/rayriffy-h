@@ -8,6 +8,7 @@ export {
   hentaiMatchesSearch,
   parseAdvancedSearch,
   hentaiMatchesAdvancedSearch,
+  buildMergedAdvancedSearch,
   getHentaiDisplayTitle,
   prepareSearchQueries,
   minifyHentai,

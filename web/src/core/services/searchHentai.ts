@@ -1,5 +1,5 @@
 import {
-  parseAdvancedSearch,
+  buildMergedAdvancedSearch,
   hentaiMatchesAdvancedSearch,
   paginateMatches
 } from '@riffyh/commons'
@@ -11,11 +11,11 @@ export const searchHentai = (
   hentais: readonly Hentai[],
   filteredTags: string[] = []
 ) => {
-  const parsed = parseAdvancedSearch(query)
+  const parsed = buildMergedAdvancedSearch(query, filteredTags)
   const { totalPages, items } = paginateMatches(
     hentais,
     page,
-    (hentai) => hentaiMatchesAdvancedSearch(hentai, parsed, filteredTags)
+    (hentai) => hentaiMatchesAdvancedSearch(hentai, parsed)
   )
 
   return {
