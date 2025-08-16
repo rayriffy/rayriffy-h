@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { page } from '$app/stores'
+  import { page } from '$app/state'
 
   import BlurredImage from '$core/components/BlurredImage.svelte'
   import Favorite from '$modules/reader/Favorite.svelte'
@@ -12,7 +12,7 @@
   import { api } from '$trpc/client'
 
   $: query = api.hentai.get.query({
-    code: $page.params.code,
+    code: page.params.code ?? '',
   })
 </script>
 
