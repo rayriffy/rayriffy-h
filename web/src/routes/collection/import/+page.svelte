@@ -13,7 +13,7 @@
 
   const onSubmit = (targetKey: string) => {
     $importer.mutate({
-      code: targetKey
+      code: targetKey,
     })
   }
 </script>
@@ -33,7 +33,10 @@
         <div class="alert alert-error my-2 text-sm shadow-lg">
           <div>
             <ErrorIcon class="h-6 w-6 shrink-0" />
-            <span>Unable to import collection you specified, maybe code is already expired</span>
+            <span
+              >Unable to import collection you specified, maybe code is already
+              expired</span
+            >
           </div>
         </div>
       {/if}

@@ -35,7 +35,9 @@
         <div class="alert alert-error my-2 text-sm shadow-lg">
           <div>
             <ErrorIcon class="h-6 w-6 shrink-0" />
-            <span>Unable to export collection at the moment, please try again</span>
+            <span
+              >Unable to export collection at the moment, please try again</span
+            >
           </div>
         </div>
       {/if}

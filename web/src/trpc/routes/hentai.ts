@@ -31,7 +31,7 @@ export const hentaiRouter = createTRPCRouter({
 
       return {
         hentai,
-        excludes: []
+        excludes: [],
       }
     }),
 })

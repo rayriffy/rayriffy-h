@@ -1,7 +1,7 @@
 import {
   buildMergedAdvancedSearch,
   hentaiMatchesAdvancedSearch,
-  paginateMatches
+  paginateMatches,
 } from '@riffyh/commons'
 import type { Hentai } from '@riffyh/commons'
 
@@ -12,10 +12,8 @@ export const searchHentai = (
   filteredTags: string[] = []
 ) => {
   const parsed = buildMergedAdvancedSearch(query, filteredTags)
-  const { totalPages, items } = paginateMatches(
-    hentais,
-    page,
-    (hentai) => hentaiMatchesAdvancedSearch(hentai, parsed)
+  const { totalPages, items } = paginateMatches(hentais, page, hentai =>
+    hentaiMatchesAdvancedSearch(hentai, parsed)
   )
 
   return {

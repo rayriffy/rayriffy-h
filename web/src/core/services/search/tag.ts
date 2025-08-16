@@ -18,7 +18,8 @@ export const searchTag = async ({ query, page }: Omit<SearchInput, 'mode'>) => {
   )
 
   const filteredHentais = searchKeyHentais.filter(
-    hentai => hentai.tags.find(o => o.id.toString() === query.toString()) !== undefined
+    hentai =>
+      hentai.tags.find(o => o.id.toString() === query.toString()) !== undefined
   )
 
   return {

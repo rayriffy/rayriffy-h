@@ -1,9 +1,9 @@
-import { 
+import {
   minifyHentai,
-  countTagsByType, 
-  getHentaiLanguages, 
+  countTagsByType,
+  getHentaiLanguages,
   getHentaiDisplayTitle,
-  transformHentai 
+  transformHentai,
 } from '@riffyh/commons'
 
 import { tags } from '../constants/tags'
@@ -16,14 +16,17 @@ export const hentaiToMinifiedHentaiForListing = (
 ): MinifiedHentaiForListing => {
   // First minify to remove pages
   const minified = minifyHentai(hentai)
-  
+
   // Create the transformed object with the correct types
   const result: MinifiedHentaiForListing = {
     ...minified,
-    tags: countTagsByType(minified, tags.map(tag => tag.name)),
+    tags: countTagsByType(
+      minified,
+      tags.map(tag => tag.name)
+    ),
     languages: getHentaiLanguages(minified),
     title: getHentaiDisplayTitle(minified),
   }
-  
+
   return result
 }

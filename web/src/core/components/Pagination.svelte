@@ -18,19 +18,19 @@
   const dispatch = createEventDispatcher<{ paginate: { page: number } }>()
 </script>
 
-
 <div class="join">
   {#each Array.from({ length: pageLength }) as _, i}
     {@const page = i + pageStartAt + 1}
     {#if prefix !== ''}
       <a
-              href={`${prefix}${page === 1 ? '' : `p/${page}`}`}
-              class={`join-item btn btn-sm${page === current ? ' btn-active' : ''}`}>{page}</a
+        href={`${prefix}${page === 1 ? '' : `p/${page}`}`}
+        class={`join-item btn btn-sm${page === current ? ' btn-active' : ''}`}
+        >{page}</a
       >
     {:else}
       <button
-              class={`join-item btn btn-sm${page === current ? ' btn-active' : ''}`}
-              on:click={() =>
+        class={`join-item btn btn-sm${page === current ? ' btn-active' : ''}`}
+        on:click={() =>
           dispatch('paginate', {
             page,
           })}>{page}</button

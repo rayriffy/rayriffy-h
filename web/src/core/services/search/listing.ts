@@ -15,7 +15,7 @@ export const searchListing = async ({
   excludeTags,
 }: Omit<SearchInput, 'mode'>) => {
   const cwd = process.cwd()
-  
+
   // if no search query then local search return null, otherwise return search results
   const localSearch =
     query === '' && excludeTags.length === 0
@@ -30,17 +30,19 @@ export const searchListing = async ({
   const totalListingPages =
     localSearch?.totalPages ??
     (await fs.promises.readdir(path.join(cwd, 'data/prebuiltChunks'))).length
-    
+
   const hentais =
     (localSearch?.hentais as Hentai[]) ??
-    (await readDataFile<number[]>(cwd, path.join('prebuiltChunks', `chunk-${page}.json`))
-      .then(codes =>
-        Promise.all(
-          codes.map(async code =>
-            readDataFile<Hentai>(cwd, path.join('hentai', `${code}.json`))
-          )
+    (await readDataFile<number[]>(
+      cwd,
+      path.join('prebuiltChunks', `chunk-${page}.json`)
+    ).then(codes =>
+      Promise.all(
+        codes.map(async code =>
+          readDataFile<Hentai>(cwd, path.join('hentai', `${code}.json`))
         )
-      ))
+      )
+    ))
 
   return {
     maxPage: totalListingPages,

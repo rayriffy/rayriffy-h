@@ -22,7 +22,9 @@
 <SearchBar section="collection">
   <div class="join pt-4">
     <a href="/collection/import" class="btn btn-sm join-item">Import</a>
-    <a href="/collection/export" class="btn btn-active btn-sm join-item">Export</a>
+    <a href="/collection/export" class="btn btn-active btn-sm join-item"
+      >Export</a
+    >
   </div>
 </SearchBar>
 
