@@ -14,7 +14,7 @@
   "private": true,
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build && bun tools/patchSW.ts",
+    "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "format": "prettier --write \"**/*.{ts,tsx,md,astro,svelte}\"",
@@ -60,6 +60,6 @@
     "svelte-check": "4.3.1",
     "tailwindcss": "4.1.12",
     "vite": "7.1.2",
-    "vite-plugin-pwa": "0.21.1"
+    "vite-plugin-pwa": "1.0.2"
   }
 }
