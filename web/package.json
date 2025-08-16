@@ -30,9 +30,9 @@
   "dependencies": {
     "@nanostores/persistent": "1.0.0",
     "@riffyh/commons": "workspace:*",
-    "@tanstack/svelte-query": "5.74.3",
-    "@trpc/client": "10.45.2",
-    "@trpc/server": "10.45.2",
+    "@tanstack/svelte-query": "5.85.3",
+    "@trpc/client": "11.4.4",
+    "@trpc/server": "11.4.4",
     "@urami/core": "1.4.0",
     "@urami/svelte": "1.2.0",
     "destr": "2.0.5",
@@ -41,7 +41,7 @@
     "nanostores": "1.0.1",
     "p-queue": "8.1.0",
     "sharp": "0.34.1",
-    "trpc-svelte-query": "2.1.0",
+    "trpc-svelte-query": "3.0.3",
     "zod": "3.24.2"
   },
   "devDependencies": {

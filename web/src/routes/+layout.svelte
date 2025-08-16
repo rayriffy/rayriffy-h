@@ -1,7 +1,6 @@
 <script lang="ts">
   import '../styles/tailwind.css'
 
-  import { QueryClientProvider } from '@tanstack/svelte-query'
   import { api } from '$trpc/client'
 
   import Navbar from '$core/components/Navbar.svelte'
@@ -52,20 +51,17 @@
   })
 
   $: webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : ''
-  // @ts-expect-error
-  $: client = api.hydrateFromServer(data.trpc)
+  api.hydrateFromServer(() => data.trpc)
 </script>
 
 <svelte:head>
   {@html webManifest}
 </svelte:head>
 
-<QueryClientProvider client={client}>
-  {#if ReloadPrompt}
-    <svelte:component this={ReloadPrompt} />
-  {/if}
-  <main class="pb-16">
-    <slot />
-  </main>
-  <Navbar />
-</QueryClientProvider>
+{#if ReloadPrompt}
+  <svelte:component this={ReloadPrompt} />
+{/if}
+<main class="pb-16">
+  <slot />
+</main>
+<Navbar />
