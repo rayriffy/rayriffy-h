@@ -1,18 +1,4 @@
-FROM debian:12-slim AS base
-WORKDIR /app
-
-ENV PATH="${PATH}:/root/.bun/bin"
-
-RUN apt update
-RUN apt install curl unzip patch -y
-
-RUN curl -fsSL https://bun.sh/install | bash
-
-RUN bun -v
-
-# ? -------------------------
-
-FROM base AS deps-prod
+FROM oven/bun:slim AS deps-prod
 WORKDIR /app
 
 COPY . .
@@ -20,7 +6,7 @@ RUN bun i --production
 
 # ? -------------------------
 
-FROM base AS builder
+FROM oven/bun:slim AS builder
 WORKDIR /app
 
 COPY . .
@@ -45,8 +31,7 @@ ENV HOST_HEADER x-forwarded-host
 EXPOSE 8080
 
 COPY package.json ./
-COPY --from=base /root/.bun/bin/bun bun
-# COPY --from=base /opt /
+COPY --from=deps-prod /usr/local/bin/bun bun
 COPY --from=deps-prod /app/node_modules ./build/node_modules
 COPY --from=builder /app/web/build ./build
 COPY --from=builder /app/web/.svelte-kit ./.svelte-kit
