@@ -1,4 +1,4 @@
-import type { DatabaseTag } from '../@types/DatabaseTag'
+import type { DatabaseTag } from '@riffyh/commons'
 
 export const tags: DatabaseTag[] = [
   {

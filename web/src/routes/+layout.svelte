@@ -13,13 +13,13 @@
   import { search } from '$nanostores/search'
   import { defaultSearch } from '$nanostores/constants/defaultSearch'
 
-  import type { ComponentType } from 'svelte'
+  import type { Component } from 'svelte'
 
   import type { LayoutData } from './$types'
 
   export let data: LayoutData
 
-  let ReloadPrompt: ComponentType
+  let ReloadPrompt: Component
   onMount(async () => {
     caches.delete('next-image-assets')
     caches.delete('next-galleries')

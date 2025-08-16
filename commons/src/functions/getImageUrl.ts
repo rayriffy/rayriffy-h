@@ -1,4 +1,4 @@
-import { GetImageUrlArgs } from "../@types/GetImageUrlArgs";
+import type { GetImageUrlArgs } from "../@types/GetImageUrlArgs";
 
 export const getImageUrl = (args: GetImageUrlArgs, adoptWebp = true): string => {
   const { image, type, mediaId, page } = args

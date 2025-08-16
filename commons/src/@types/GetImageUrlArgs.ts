@@ -1,4 +1,4 @@
-import { Image } from "../@types/Image";
+import type { Image } from "../@types/Image";
 
 export interface GetImageUrlArgs {
   image: Image
