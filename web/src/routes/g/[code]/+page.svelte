@@ -11,9 +11,11 @@
 
   import { api } from '$trpc/client'
 
-  $: query = api.hentai.get.query({
-    code: page.params.code ?? '',
-  })
+  let query = $derived(
+    api.hentai.get.query({
+      code: page.params.code ?? '',
+    })
+  )
 </script>
 
 <svelte:head>

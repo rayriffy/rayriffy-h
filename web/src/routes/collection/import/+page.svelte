@@ -3,7 +3,7 @@
   import { collection } from '$nanostores/collection'
   import { api } from '$trpc/client'
 
-  let inputKey: string = ''
+  let inputKey: string = $state('')
 
   const importer = api.collection.import.mutation({
     onSuccess: data => {
@@ -57,7 +57,7 @@
           type="text"
           placeholder="Temporary key"
           class="input input-bordered w-full font-mono"
-          on:input={({ target }) => {
+          oninput={({ target }) => {
             // @ts-ignore
             inputKey = target?.value ?? ''
           }}
@@ -66,7 +66,7 @@
           <button
             class="btn btn-primary"
             disabled={inputKey === ''}
-            on:click={() => onSubmit(inputKey)}
+            onclick={() => onSubmit(inputKey)}
             >{inputKey !== '' ? 'Import' : 'Missing input'}</button
           >
         </div>

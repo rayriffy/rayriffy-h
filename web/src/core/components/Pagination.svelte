@@ -1,12 +1,16 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte'
 
-  export let max: number
-  export let current: number
-  export let prefix: string = ''
+  interface Props {
+    max: number
+    current: number
+    prefix?: string
+  }
 
-  $: pageLength = max > 5 ? 5 : max
-  $: pageStartAt =
+  let { max, current, prefix = '' }: Props = $props()
+
+  let pageLength = $derived(max > 5 ? 5 : max)
+  let pageStartAt = $derived(
     max > 5
       ? current - 2 < 1
         ? 0
@@ -14,6 +18,7 @@
           ? max - pageLength
           : current - (pageLength - 2)
       : 0
+  )
 
   const dispatch = createEventDispatcher<{ paginate: { page: number } }>()
 </script>
@@ -30,7 +35,7 @@
     {:else}
       <button
         class={`join-item btn btn-sm${page === current ? ' btn-active' : ''}`}
-        on:click={() =>
+        onclick={() =>
           dispatch('paginate', {
             page,
           })}>{page}</button

@@ -17,9 +17,14 @@
 
   import type { LayoutData } from './$types'
 
-  export let data: LayoutData
+  interface Props {
+    data: LayoutData
+    children?: import('svelte').Snippet
+  }
 
-  let ReloadPrompt: Component
+  let { data, children }: Props = $props()
+
+  let ReloadPrompt: Component | undefined = $state(undefined)
   onMount(async () => {
     caches.delete('next-image-assets')
     caches.delete('next-galleries')
@@ -50,7 +55,7 @@
         .default)
   })
 
-  $: webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : ''
+  let webManifest = $derived(pwaInfo ? pwaInfo.webManifest.linkTag : '')
   api.hydrateFromServer(() => data.trpc)
 </script>
 
@@ -59,9 +64,9 @@
 </svelte:head>
 
 {#if ReloadPrompt}
-  <svelte:component this={ReloadPrompt} />
+  <ReloadPrompt />
 {/if}
 <main class="pb-16">
-  <slot />
+  {@render children?.()}
 </main>
 <Navbar />

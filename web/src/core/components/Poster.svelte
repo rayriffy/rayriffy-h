@@ -5,7 +5,11 @@
 
   import type { MinifiedHentaiForListing } from '../@types/MinifiedHentaiForListing'
 
-  export let hentai: MinifiedHentaiForListing
+  interface Props {
+    hentai: MinifiedHentaiForListing
+  }
+
+  let { hentai }: Props = $props()
 
   const availableFlags = ['english', 'japanese', 'chinese']
 </script>

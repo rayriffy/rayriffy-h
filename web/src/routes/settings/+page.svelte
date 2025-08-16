@@ -30,7 +30,7 @@
           type="checkbox"
           class="toggle toggle-primary"
           checked={$settings.safemode}
-          on:click={() => settings.setKey('safemode', !settings.get().safemode)}
+          onclick={() => settings.setKey('safemode', !settings.get().safemode)}
         />
       </div>
     </div>

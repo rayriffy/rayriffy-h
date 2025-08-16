@@ -1,15 +1,24 @@
 <script lang="ts">
   import { onDestroy } from 'svelte'
 
-  // Props
-  export let onChange: (value: string, isPasting: boolean) => void
-  export let onBackspace: () => void
-  export let onPaste: ((value: string) => void) | undefined = undefined
-  export let inputClass: string = ''
+  interface Props {
+    // Props
+    onChange: (value: string, isPasting: boolean) => void
+    onBackspace: () => void
+    onPaste?: ((value: string) => void) | undefined
+    inputClass?: string
+  }
+
+  let {
+    onChange,
+    onBackspace,
+    onPaste = undefined,
+    inputClass = '',
+  }: Props = $props()
 
   // State
-  let value: string = ''
-  let input: HTMLInputElement
+  let value: string = $state('')
+  let input: HTMLInputElement | undefined = $state()
   let inputTimeout: ReturnType<typeof setTimeout> | null = null
 
   onDestroy(() => {
@@ -31,7 +40,10 @@
     }
   }
 
-  function update(updatedValue: string, isPasting: boolean = false): void {
+  export function update(
+    updatedValue: string,
+    isPasting: boolean = false
+  ): void {
     const newValue = validateValue(updatedValue)
     if (value === newValue && !isPasting) return
 
@@ -51,7 +63,7 @@
   }
 
   export function focus(): void {
-    input.focus()
+    input?.focus()
   }
 
   export function clear(): void {
@@ -79,16 +91,16 @@
 
 <input
   class={inputClass}
-  on:input={handleChange}
-  on:keydown={handleKeyDown}
+  oninput={handleChange}
+  onkeydown={handleKeyDown}
   maxlength="1"
   autocomplete="off"
   type="tel"
   inputmode="numeric"
   pattern="[0-9]*"
   bind:this={input}
-  on:focus={handleFocus}
-  on:blur={handleBlur}
-  on:paste={handlePaste}
+  onfocus={handleFocus}
+  onblur={handleBlur}
+  onpaste={handlePaste}
   {value}
 />

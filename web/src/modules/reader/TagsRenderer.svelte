@@ -4,7 +4,11 @@
 
   import type { DatabaseTag, Tag } from '@riffyh/commons'
 
-  export let tags: Tag[]
+  interface Props {
+    tags: Tag[]
+  }
+
+  let { tags }: Props = $props()
 
   const sortedTags = tagTypes
     .map(

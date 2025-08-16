@@ -3,7 +3,12 @@
 
   import type { Search } from '$nanostores/@types/Search'
 
-  export let section: keyof Search
+  interface Props {
+    section: keyof Search
+    children?: import('svelte').Snippet
+  }
+
+  let { section, children }: Props = $props()
   let timer: NodeJS.Timeout
 
   const debounce = (value: string) => {
@@ -40,11 +45,11 @@
       autocomplete="off"
       placeholder="Keywords or 6-digit code"
       value={$search[section].query}
-      on:input={({ target }) => {
+      oninput={({ target }) => {
         // @ts-ignore
         return debounce(target?.value ?? '')
       }}
     />
   </label>
-  <slot />
+  {@render children?.()}
 </section>

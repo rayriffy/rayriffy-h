@@ -6,9 +6,13 @@
   import { settings } from '$nanostores/settings'
   import { api } from '$trpc/client'
 
-  export let section: 'main' | 'listing' | 'tag'
-  export let page: number
-  export let tagKey: string = ''
+  interface Props {
+    section: 'main' | 'listing' | 'tag'
+    page: number
+    tagKey?: string
+  }
+
+  let { section, page, tagKey = '' }: Props = $props()
 
   const prefix =
     section === 'listing'
@@ -17,12 +21,14 @@
         ? `/tag/${tagKey}/`
         : '/'
 
-  $: listing = api.hentai.search.query({
-    mode: section,
-    query: section === 'tag' ? tagKey : $search[section].query,
-    excludeTags: $settings.filteredTags ?? [],
-    page,
-  })
+  let listing = $derived(
+    api.hentai.search.query({
+      mode: section,
+      query: section === 'tag' ? tagKey : $search[section].query,
+      excludeTags: $settings.filteredTags ?? [],
+      page,
+    })
+  )
 </script>
 
 {#if $listing.isLoading}

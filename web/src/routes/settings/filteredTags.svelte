@@ -2,7 +2,7 @@
   import Minus from '$icons/minus.svelte'
   import { settings } from '$nanostores/settings'
 
-  let inputRef: HTMLInputElement | null = null
+  let inputRef: HTMLInputElement | null = $state(null)
 
   const handleSubmit = () => {
     if (!inputRef) return
@@ -26,7 +26,7 @@
   }
 </script>
 
-<form on:submit={handleSubmit} class="flex space-x-4">
+<form onsubmit={handleSubmit} class="flex space-x-4">
   <input
     bind:this={inputRef}
     type="text"
@@ -42,7 +42,7 @@
       <p>{tag}</p>
       <button
         class="btn btn-xs btn-square btn-error"
-        on:click={handleRemove(tag)}
+        onclick={handleRemove(tag)}
       >
         <Minus class="w-4" />
       </button>

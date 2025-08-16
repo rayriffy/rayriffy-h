@@ -24,7 +24,7 @@
   <div class="toast toast-end toast-top">
     <button
       class="alert alert-info px-4 py-1 text-sm"
-      on:click={() => updateServiceWorker(true)}
+      onclick={() => updateServiceWorker(true)}
     >
       <div>
         <span class="flex"

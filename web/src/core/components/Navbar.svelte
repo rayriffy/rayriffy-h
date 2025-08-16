@@ -7,8 +7,9 @@
   import BookmarksIcon from '$icons/bookmarks.svelte'
   import CogIcon from '$icons/cog.svelte'
 
-  $: printClass = (routes: string[]) =>
+  let printClass = $derived((routes: string[]) =>
     routes.includes($page.route.id ?? '') ? 'dock-active' : ''
+  )
 </script>
 
 <nav class="dock dock-sm bg-base-100/80 backdrop-blur-lg container-lg">

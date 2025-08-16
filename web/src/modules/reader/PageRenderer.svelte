@@ -2,9 +2,13 @@
   import BlurredImage from '$core/components/BlurredImage.svelte'
   import { getImageUrl, type Image } from '@riffyh/commons'
 
-  export let pages: Image[]
-  export let mediaId: string
-  export let excludes: number[]
+  interface Props {
+    pages: Image[]
+    mediaId: string
+    excludes: number[]
+  }
+
+  let { pages, mediaId, excludes }: Props = $props()
 </script>
 
 <section class="overflow-hidden container-4xl">

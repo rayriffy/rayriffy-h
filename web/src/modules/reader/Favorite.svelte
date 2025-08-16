@@ -6,10 +6,15 @@
 
   import type { Hentai } from '@riffyh/commons'
 
-  export let hentai: Hentai
+  interface Props {
+    hentai: Hentai
+  }
 
-  $: isFavorited =
+  let { hentai }: Props = $props()
+
+  let isFavorited = $derived(
     $collection.find(o => Number(o.id) === Number(hentai.id)) !== undefined
+  )
 
   const onToggleCollection = () => {
     // if exist then remove hentai from collection, otherwise add hentai to collection
@@ -30,7 +35,7 @@
   }
 </script>
 
-<button class="btn btn-square btn-secondary" on:click={onToggleCollection}>
+<button class="btn btn-square btn-secondary" onclick={onToggleCollection}>
   {#if isFavorited}
     <MinusIcon class="w-8" />
   {:else}

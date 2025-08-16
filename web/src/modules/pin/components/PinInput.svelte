@@ -2,29 +2,40 @@
   import { onMount } from 'svelte'
   import PinItem from './PinItem.svelte'
 
-  // Props
-  export let length: number
-  export let onComplete: (pin: string, index: number) => void = () => {}
-  export let focus: boolean = false
-  export let onChange: (pin: string, index: number) => void = () => {}
-  export let containerClass: string = ''
-  export let inputClass: string = ''
-
-  // Internal state
-  let values: string[] = []
-  let elements: PinItem[] = []
-
-  // Initialize empty values array when length changes
-  $: {
-    values = Array(length).fill('')
+  interface Props {
+    // Props
+    length: number
+    onComplete?: (pin: string, index: number) => void
+    focus?: boolean
+    onChange?: (pin: string, index: number) => void
+    containerClass?: string
+    inputClass?: string
   }
 
+  let {
+    length,
+    onComplete = () => {},
+    focus = false,
+    onChange = () => {},
+    containerClass = '',
+    inputClass = '',
+  }: Props = $props()
+
+  // Internal state
+  let values: string[] = $state([])
+  let elements: PinItem[] = $state([])
+
+  // Initialize empty values array when length changes
+  $effect(() => {
+    values = Array(length).fill('')
+  })
+
   // Ensure elements array is sized correctly when length changes
-  $: {
+  $effect(() => {
     if (elements.length !== length) {
       elements = Array(length)
     }
-  }
+  })
 
   onMount(() => {
     // Setting focus on the first element

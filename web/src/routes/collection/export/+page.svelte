@@ -5,7 +5,7 @@
 
   import { api } from '$trpc/client'
 
-  let exportCode: string
+  let exportCode: string = $state('')
 
   const exporter = api.collection.export.mutation({
     onSuccess: data => {
@@ -51,7 +51,7 @@
           </div>
         </div>
         <div class="card-actions justify-end pt-2">
-          <button class="btn btn-primary" on:click={handleClick}>Export</button>
+          <button class="btn btn-primary" onclick={handleClick}>Export</button>
         </div>
       {:else if $exporter.isPending}
         <div class="flex flex-col items-center pb-2 pt-8">

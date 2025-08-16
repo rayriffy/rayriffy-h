@@ -1,4 +1,12 @@
-<svg {...$$props} fill="currentColor" viewBox="0 0 24 24"
+<script lang="ts">
+  interface Props {
+    [key: string]: any
+  }
+
+  let { ...props }: Props = $props()
+</script>
+
+<svg {...props} fill="currentColor" viewBox="0 0 24 24"
   ><path
     d="M14 5H6c-1.103 0-2 .897-2 2v16l6-3.601L16 23V7c0-1.103-.897-2-2-2zm0 14.467-4-2.399-4 2.399V7h8v12.467z"
   /><path
