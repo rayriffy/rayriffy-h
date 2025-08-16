@@ -1,4 +1,4 @@
-FROM debian:12-slim as base
+FROM debian:12-slim AS base
 WORKDIR /app
 
 ENV PATH="${PATH}:/root/.bun/bin"
@@ -12,7 +12,7 @@ RUN bun -v
 
 # ? -------------------------
 
-FROM base as deps-prod
+FROM base AS deps-prod
 WORKDIR /app
 
 COPY . .
@@ -20,7 +20,7 @@ RUN bun i --production
 
 # ? -------------------------
 
-FROM base as builder
+FROM base AS builder
 WORKDIR /app
 
 COPY . .
