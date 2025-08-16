@@ -59,7 +59,7 @@
     "svelte-adapter-bun": "0.5.2",
     "svelte-check": "4.3.1",
     "tailwindcss": "4.1.12",
-    "vite": "7.1.2",
+    "vite": "npm:rolldown-vite@7.1.2",
     "vite-plugin-pwa": "1.0.2"
   }
 }
