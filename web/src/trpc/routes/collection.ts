@@ -2,7 +2,6 @@ import z from 'zod'
 import { destr } from 'destr'
 import PQueue from 'p-queue'
 import { TRPCError } from '@trpc/server'
-import lz from 'lz-string'
 
 import { env } from '$env/dynamic/private'
 import { decrypt } from '$core/services/crypto/decrypt'
@@ -29,7 +28,14 @@ export const collectionRouter = createTRPCRouter({
       try {
         const bytebinRes = await fetch(
           `https://bytebin.lucko.me/${input.code}`
-        ).then(async o => destr<EncryptedData>(lz.decompress(await o.text())))
+        ).then(async o => {
+          if (o.ok)
+            return destr<EncryptedData>(await o.text())
+          else
+            throw o
+        })
+
+        console.log(bytebinRes)
 
         // decrypt it
         const decryptedData = decrypt(bytebinRes, env.SECRET_KEY)
@@ -66,6 +72,7 @@ export const collectionRouter = createTRPCRouter({
 
         return orderedItems
       } catch (e) {
+        console.error(e)
         throw new TRPCError({
           code: 'INTERNAL_SERVER_ERROR',
         })
@@ -91,10 +98,15 @@ export const collectionRouter = createTRPCRouter({
           {
             credentials: 'same-origin',
             method: 'POST',
-            body: lz.compress(JSON.stringify(encryptedData)),
+            body: JSON.stringify(encryptedData),
             headers: { 'Content-Type': 'application/json' },
           }
-        ).then(async o => destr(await o.text()))
+        ).then(async o => {
+          if (o.ok)
+            return destr(await o.text())
+          else
+            throw o
+        })
 
         return bytebinRes.key
       } catch (e) {
