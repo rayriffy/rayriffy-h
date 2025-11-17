@@ -15,9 +15,38 @@ export const doomsday = async (concurrency = 20, verbose: boolean = false) => {
     .then(ids => ids.sort((a, b) => b - a))
   console.log('read ' + hentaiIds.length + ' items')
 
-  console.log('downloading images...')
+  console.log('scanning existing image directories...')
+  // Build a Set of existing gallery IDs for fast lookup
+  const existingIds = new Set<number>()
+  
+  try {
+    const partitions = await fs.promises.readdir(imageDirectory)
+    
+    await Promise.all(
+      partitions.map(async (partition) => {
+        const partitionPath = path.join(imageDirectory, partition)
+        const stat = await fs.promises.stat(partitionPath).catch(() => null)
+        
+        if (stat?.isDirectory()) {
+          const galleries = await fs.promises.readdir(partitionPath).catch(() => [])
+          galleries.forEach(gallery => {
+            const id = Number(gallery)
+            if (!isNaN(id)) {
+              existingIds.add(id)
+            }
+          })
+        }
+      })
+    )
+  } catch (e) {
+    // imageDirectory might not exist yet
+  }
+  
+  console.log(`found ${existingIds.size} existing galleries`)
+
+  console.log('filtering galleries to download...')
   const idsNeedsToBeDownloaded = hentaiIds
-    .filter(id => !fs.existsSync(path.join(imageDirectory, id.toString())))
+    .filter(id => !existingIds.has(id))
 
   console.log(`${idsNeedsToBeDownloaded.length} galleries needs to be downloaded`)
 
@@ -35,7 +64,8 @@ export const doomsday = async (concurrency = 20, verbose: boolean = false) => {
 
   for await (const id of idsNeedsToBeDownloaded) {
     const downloadQueue = new PQueue({ concurrency })
-    const hentaiImageDirectory = path.join(imageDirectory, id.toString())
+    const partition = Math.floor(id / 100000)
+    const hentaiImageDirectory = path.join(imageDirectory, partition.toString(), id.toString())
 
     try {
       await fs.promises.mkdir(hentaiImageDirectory, { recursive: true })
