@@ -4,10 +4,10 @@ import PQueue from "p-queue";
 import type { Browser } from "puppeteer";
 import { writeItem } from "./writeItem";
 import type { FetchResult } from "../@types/FetchResult";
-import { sanitizeContent, type Hentai } from '@riffyh/commons';
+import { type Hentai, type NhentaiGallery, sanitizeContent } from '@riffyh/commons';
 
 export const getGalleriesViaBrowser = async (
-  codes: (string | number)[], 
+  codes: (string | number)[],
   headless: boolean = false,
   concurrency: number = Number(process.env.FETCH_CONCURRENCY) || 8
 ): Promise<FetchResult> => {
@@ -63,7 +63,7 @@ export const getGalleriesViaBrowser = async (
 
 const getItem = async (code: string | number, browser: Browser) => {
   const page = await browser.newPage()
-  await page.goto(`https://nhentai.net/api/gallery/${code}`, {
+  await page.goto(`https://nhentai.net/api/v2/galleries/${code}`, {
     waitUntil: 'networkidle0',
   })
 
@@ -71,7 +71,7 @@ const getItem = async (code: string | number, browser: Browser) => {
   if ((await page.title()).toLowerCase().includes('just a moment'))
     await page.waitForNetworkIdle()
 
-  let content: Hentai = JSON.parse((await page.$eval('pre', el => el.textContent))!)
+  let content: NhentaiGallery = JSON.parse((await page.$eval('pre', el => el.textContent))!)
   await page.close()
 
   // @ts-expect-error
@@ -80,5 +80,29 @@ const getItem = async (code: string | number, browser: Browser) => {
     throw Error(`${code} has error: ${content.error}`)
   }
 
-  await writeItem(code, JSON.stringify(sanitizeContent(content)))
+  const convertedGallery: Hentai = {
+    id: content.id,
+    media_id: content.media_id,
+    title: content.title,
+    num_pages: content.num_pages,
+    images: {
+      cover: {
+        w: content.cover.width,
+        h: content.cover.height,
+        t: 'j',
+      },
+      pages: content.pages.map(page => ({
+        w: page.width,
+        h: page.height,
+        t: 'j'
+      }))
+    },
+    tags: content.tags.map(tag => ({
+      id: tag.slug,
+      name: tag.name,
+      type: tag.type,
+    }))
+  }
+
+  await writeItem(code, JSON.stringify(sanitizeContent(convertedGallery)))
 }
