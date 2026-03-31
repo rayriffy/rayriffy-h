@@ -24,14 +24,26 @@ export const searchMain = async ({
   if (query === '') query = defaultQuery
 
   interface APIResult {
-    result: NHHentai[]
+    result: {
+      id: number
+      media_id: string
+      thumbnail: string
+      thumbnail_width: number
+      thumbnail_height: number
+      english_title: string
+      japanese_title: string
+      num_pages: number
+      tag_ids: number[]
+    }[]
     num_pages: number
+    total: number
     per_page: number
   }
 
   const { result, num_pages } = await fetch(
-    `https://nhentai.net/api/galleries/search?${new URLSearchParams({
+    `https://nhentai.net/api/v2/search?${new URLSearchParams({
       query: query ?? defaultQuery,
+      sort: 'date',
       page: page?.toString() ?? '1',
     }).toString()}`
   ).then(async o => {
@@ -45,18 +57,22 @@ export const searchMain = async ({
 
   const searchResult: Hentai[] = result.map(item => ({
     id: item.id,
-    title: item.title,
+    title: {
+      english: item.english_title,
+      japanese: item.japanese_title,
+      pretty: item.english_title,
+    },
     images: {
-      cover: item.images.cover,
-      pages: item.images.pages,
+      cover: {
+        w: item.thumbnail_width,
+        h: item.thumbnail_height,
+        t: 'j'
+      },
+      pages: [],
     },
     media_id: item.media_id,
     num_pages: item.num_pages,
-    tags: item.tags.map(tag => ({
-      id: kebabCase(tag.name),
-      name: tag.name,
-      type: tag.type,
-    })),
+    tags: [],
   }))
 
   return {
