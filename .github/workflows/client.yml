@@ -22,6 +22,7 @@ jobs:
       - name: build
         run: |
           cd client
+          bun run --filter @riffyh/server build
           bun run build
       - name: configure
         uses: actions/configure-pages@v5
