@@ -27,6 +27,7 @@ jobs:
       - name: build
         run: |
           cd client
+          bun run --filter @riffyh/commons build
           bun run --filter @riffyh/server build
           bun run build
       - name: configure
