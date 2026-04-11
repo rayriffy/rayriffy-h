@@ -28,6 +28,6 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,mjs,cjs}": "bun run lint",
-    "*": "bun run fmt"
+    "!(*.lock)": "bun run fmt"
   }
 }
