@@ -73,6 +73,7 @@
         "@types/react-dom": "19.2.3",
         "@vitejs/plugin-react": "6.0.1",
         "babel-plugin-react-compiler": "1.0.0",
+        "elysia": "1.4.28",
         "vite": "8.0.1",
       },
     },
@@ -100,7 +101,7 @@
     "server": {
       "name": "@riffyh/server",
       "version": "1.0.0",
-      "bin": "./dist/index.mjs",
+      "bin": "dist/index.mjs",
       "dependencies": {
         "@elysiajs/cors": "1.4.1",
         "@elysiajs/swagger": "1.3.1",
