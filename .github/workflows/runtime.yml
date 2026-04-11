@@ -26,4 +26,4 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/rayriffy/riffyh-core
+          tags: ghcr.io/rayriffy/riffyh-core-legacy
