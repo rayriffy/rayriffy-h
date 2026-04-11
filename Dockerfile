@@ -1,39 +1,34 @@
-FROM oven/bun:slim AS deps-prod
+FROM oven/bun AS build
+
 WORKDIR /app
 
-COPY . .
-RUN bun i --production
+# Cache packages installation
+COPY package.json package.json
+COPY bun.lock bun.lock
 
-# ? -------------------------
+RUN bun install
 
-FROM oven/bun:slim AS builder
+COPY ./src ./src
+
+ENV NODE_ENV=production
+
+RUN bun build \
+	--compile \
+	--minify-whitespace \
+	--minify-syntax \
+	--outfile server \
+	src/index.ts
+
+# -----
+
+FROM gcr.io/distroless/base
+
 WORKDIR /app
 
-COPY . .
-RUN bun i
+COPY --from=build /app/server server
 
-RUN cd web && bun --bun run vite build
+ENV NODE_ENV=production
 
-# ? -------------------------
+CMD ["./server"]
 
-FROM gcr.io/distroless/cc-debian12
-WORKDIR /app
-
-ENV HOST 0.0.0.0
-ENV PORT 8080
-ENV NODE_ENV production
-
-# https://github.com/gornostay25/svelte-adapter-bun/issues/39
-ENV PROTOCOL_HEADER x-forwarded-proto
-ENV HOST_HEADER x-forwarded-host
-
-EXPOSE 8080
-
-COPY package.json ./
-COPY --from=deps-prod /usr/local/bin/bun bun
-COPY --from=deps-prod /app/node_modules ./build/node_modules
-COPY --from=builder /app/web/build ./build
-COPY --from=builder /app/web/.svelte-kit ./.svelte-kit
-# COPY public public
-
-CMD ["./bun", "./build/index.js"]
+EXPOSE 3000

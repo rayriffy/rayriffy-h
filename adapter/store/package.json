@@ -1,0 +1,27 @@
+{
+  "name": "@riffyh/adapter-store",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rayriffy/rayriffy-h.git"
+  },
+  "files": [
+    "dist/"
+  ],
+  "type": "module",
+  "main": "dist/index.mjs",
+  "types": "dist/index.d.mts",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "scripts": {
+    "build": "tsdown"
+  },
+  "dependencies": {
+    "@riffyh/commons": "workspace:*"
+  },
+  "devDependencies": {
+    "tsdown": "0.21.7"
+  }
+}

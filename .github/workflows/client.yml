@@ -1,0 +1,36 @@
+name: Deployment - Client
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: client
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v6
+      - name: bun
+        uses: oven-sh/setup-bun@v2
+      - name: install
+        run: bun i
+      - name: build
+        run: |
+          cd client
+          bun run build
+      - name: configure
+        uses: actions/configure-pages@v5
+      - name: upload
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: client/dist
+      - name: deploy
+        id: deployment
+        uses: actions/deploy-pages@v5
+      - name: "logging"
+        run: echo "Deployed at ${{ steps.deployment.outputs.page_url }}"

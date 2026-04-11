@@ -1,0 +1,39 @@
+{
+  "name": "@riffyh/server",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rayriffy/rayriffy-h.git"
+  },
+  "bin": "dist/index.mjs",
+  "files": [
+    "dist/"
+  ],
+  "type": "module",
+  "main": "dist/index.mjs",
+  "types": "dist/index.d.mts",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "bun run --watch src/index.ts",
+    "build": "tsdown",
+    "start": "bun run dist/index.mjs"
+  },
+  "dependencies": {
+    "@elysiajs/cors": "1.4.1",
+    "@elysiajs/swagger": "1.3.1",
+    "@rayriffy/filesystem": "1.0.1",
+    "@riffyh/commons": "workspace:*",
+    "@sinclair/typebox": "0.34.49",
+    "debug": "4.4.3",
+    "elysia": "1.4.28",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@types/debug": "4.1.13",
+    "tsdown": "0.21.7"
+  }
+}

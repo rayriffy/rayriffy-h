@@ -1,0 +1,31 @@
+export enum Namespace {
+  Artist = 1,
+  Circle = 2,
+  Parody = 3,
+  Magazine = 4,
+  Character = 5,
+  Cosplayer = 6,
+  Uploader = 7,
+  Male = 8,
+  Female = 9,
+  Mixed = 10,
+  Language = 11,
+  Other = 12,
+  Reclass = 13,
+}
+
+export const namespace: Record<number, string> = {
+  [Namespace.Artist]: "artist",
+  [Namespace.Circle]: "circle",
+  [Namespace.Parody]: "parody",
+  [Namespace.Magazine]: "magazine",
+  [Namespace.Character]: "character",
+  [Namespace.Cosplayer]: "cosplayer",
+  [Namespace.Uploader]: "uploader",
+  [Namespace.Male]: "male",
+  [Namespace.Female]: "female",
+  [Namespace.Mixed]: "mixed",
+  [Namespace.Language]: "language",
+  [Namespace.Other]: "other",
+  [Namespace.Reclass]: "reclass",
+};

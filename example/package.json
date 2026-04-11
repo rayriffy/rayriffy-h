@@ -1,0 +1,13 @@
+{
+  "name": "@riffyh/example",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start:server": "bunx @riffyh/server"
+  },
+  "dependencies": {
+    "@riffyh/adapter-nhentai": "workspace:*",
+    "@riffyh/adapter-niyaniya": "workspace:*",
+    "@riffyh/commons": "workspace:*"
+  }
+}

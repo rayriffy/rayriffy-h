@@ -1,11 +1,6 @@
 {
   "name": "@riffyh/commons",
-  "version": "1.2.2",
-  "main": "src/index.ts",
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org"
-  },
+  "version": "2.0.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rayriffy/rayriffy-h.git"
@@ -13,14 +8,20 @@
   "files": [
     "src/"
   ],
+  "main": "src/index.ts",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
   "scripts": {
-    "build": "tsup"
+    "build": "tsdown"
   },
   "dependencies": {
-    "lodash": "4.17.21"
+    "@sinclair/typebox": "0.34.49",
+    "lodash": "4.17.23"
   },
   "devDependencies": {
-    "@types/lodash": "4.17.15",
-    "tsup": "8.3.6"
+    "@types/lodash": "4.17.24",
+    "tsdown": "0.21.7"
   }
 }
