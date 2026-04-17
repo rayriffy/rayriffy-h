@@ -17,10 +17,8 @@
     "registry": "https://registry.npmjs.org"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts",
-    "build": "tsdown",
-    "start": "bun run dist/index.mjs"
+    "dev": "tsdown --watch",
+    "build": "tsdown"
   },
   "dependencies": {
     "@elysiajs/cors": "1.4.1",

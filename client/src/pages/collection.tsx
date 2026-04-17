@@ -1,5 +1,6 @@
 import { CenterLayout } from "modules/layout/CenterLayout";
 import { SearchBar } from "modules/layout/SearchBar";
+import { Empty } from "modules/listings/Empty";
 import { Failure } from "modules/listings/Failure";
 import { ListingResultRenderer } from "modules/listings/ListingResultRenderer";
 import { Loading } from "modules/listings/Loading";
@@ -19,6 +20,10 @@ const Page = () => {
       ) : error ? (
         <CenterLayout className="min-h-[calc(100dvh-7.75rem)]">
           <Failure error={error} />
+        </CenterLayout>
+      ) : data?.galleries.length === 0 ? (
+        <CenterLayout className="min-h-[calc(100dvh-7.75rem)]">
+          <Empty />
         </CenterLayout>
       ) : (
         <ListingResultRenderer result={data!} />

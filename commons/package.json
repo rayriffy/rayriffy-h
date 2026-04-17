@@ -16,6 +16,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "scripts": {
+    "dev": "tsdown --watch",
     "build": "tsdown"
   },
   "dependencies": {

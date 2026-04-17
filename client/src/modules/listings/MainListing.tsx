@@ -6,6 +6,7 @@ import { useSearchParams } from "react-router";
 import { Loading } from "./Loading";
 import { Failure } from "./Failure";
 import { ListingResultRenderer } from "./ListingResultRenderer";
+import { Empty } from "./Empty";
 
 export const MainListing = () => {
   const [searchParams] = useSearchParams();
@@ -42,6 +43,13 @@ export const MainListing = () => {
     return (
       <CenterLayout className="min-h-[calc(100dvh-9.75rem)]">
         <Failure error={error} />
+      </CenterLayout>
+    );
+
+  if (data?.galleries.length === 0)
+    return (
+      <CenterLayout className="min-h-[calc(100dvh-9.75rem)]">
+        <Empty />
       </CenterLayout>
     );
 

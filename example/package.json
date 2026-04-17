@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start:server": "bunx @riffyh/server"
+    "start": "bun run server",
+    "start:internal": "bun ../server/src/index.ts"
   },
   "dependencies": {
     "@riffyh/adapter-nhentai": "workspace:*",
     "@riffyh/adapter-niyaniya": "workspace:*",
-    "@riffyh/commons": "workspace:*"
+    "@riffyh/commons": "workspace:*",
+    "@riffyh/server": "workspace:*"
   }
 }

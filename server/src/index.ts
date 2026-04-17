@@ -98,6 +98,7 @@ const server = new Elysia()
         return new Response(Buffer.from(cachedImage.data), {
           headers: {
             "Content-Type": `image/${query.format}`,
+            "Cache-Control": "public, max-age=86400000",
           },
         });
 
@@ -124,6 +125,7 @@ const server = new Elysia()
       return new Response(resizedImage, {
         headers: {
           "Content-Type": `image/${query.format}`,
+          "Cache-Control": "public, max-age=86400000",
         },
       });
     },

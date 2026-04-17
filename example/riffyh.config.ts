@@ -4,7 +4,6 @@ import { niyaniya } from "@riffyh/adapter-niyaniya";
 import type { Config } from "@riffyh/commons";
 
 const config: Config = {
-  baseUrl: "http://localhost",
   dataSources: [
     nhentai(),
     niyaniya({
