@@ -36,7 +36,7 @@ const Page = () => {
   if (error || !data)
     return (
       <CenterLayout className="min-h-[calc(100dvh-4rem)]">
-        <Failure error={!data ? new Error("unalbe to parse gallery") : error!} />
+        <Failure error={!data ? new Error("unable to parse gallery") : error!} />
       </CenterLayout>
     );
 

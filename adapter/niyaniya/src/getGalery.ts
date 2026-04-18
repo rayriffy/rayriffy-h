@@ -14,7 +14,7 @@ export const getGallery = async (
 ): ReturnType<DataSource["getGallery"]> => {
   const [bookId, bookKey] = id.split(".");
 
-  if (!bookId || !bookKey) throw new Error("unalbe to parse ids");
+  if (!bookId || !bookKey) throw new Error("unable to parse ids");
 
   const [bookDetail, bookData] = await Promise.all([
     getBookDetail(bookId, bookKey, options.userAgent),
