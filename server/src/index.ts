@@ -63,7 +63,7 @@ const server = new Elysia()
     {
       query: t.Object({
         id: t.String(),
-        dataSource: t.String(),
+        dataSource: dataSourceKeys,
       }),
       response: galleryModel,
     },
