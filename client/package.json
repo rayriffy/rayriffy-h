@@ -16,6 +16,7 @@
     "@nanostores/react": "1.1.0",
     "@riffyh/commons": "workspace:*",
     "@tanstack/react-query": "5.96.2",
+    "@toon-format/toon": "git://github.com/rayriffy/toon.git#fix/decoding-bracket",
     "daisyui": "5.5.19",
     "lucide-react": "1.7.0",
     "nanostores": "1.2.0",

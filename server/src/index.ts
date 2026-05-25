@@ -2,6 +2,7 @@
 import { t, Elysia } from "elysia";
 import { swagger } from "@elysiajs/swagger";
 import { cors } from "@elysiajs/cors";
+import { toon } from "@toon-tools/elysia";
 import { defineCacheInstance } from "@rayriffy/filesystem";
 import sharp from "sharp";
 
@@ -29,6 +30,7 @@ const server = new Elysia()
       exclude: ["/_image"],
     }),
   )
+  .use(toon())
   .use(cors())
   .get("/", ({ redirect }) => redirect("/swagger"))
   .get("/health", () => "healthy")
