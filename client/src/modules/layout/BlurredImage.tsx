@@ -3,6 +3,7 @@ import { useActiveServer } from "modules/utils/useActiveServer";
 import type { FunctionComponent } from "react";
 
 interface Props {
+  type?: "cover" | "page";
   dataSource: string;
   src: string;
   width: number;
@@ -18,6 +19,7 @@ export const BlurredImage: FunctionComponent<Props> = ({
   alt,
   className,
   dataSource,
+  type = "page",
 }) => {
   const { safemode } = useSettingsAtom();
   const activeServer = useActiveServer();
@@ -25,10 +27,15 @@ export const BlurredImage: FunctionComponent<Props> = ({
   return (
     <picture>
       <source
-        srcSet={`${activeServer?.config.baseUrl}/image?${new URLSearchParams({ url: src, format: "webp", dataSource }).toString()}`}
+        srcSet={`${activeServer?.config.baseUrl}/image?${new URLSearchParams({ url: src, format: "avif", dataSource, type }).toString()}`}
+        type="image/avif"
+      />
+      <source
+        srcSet={`${activeServer?.config.baseUrl}/image?${new URLSearchParams({ url: src, format: "webp", dataSource, type }).toString()}`}
+        type="image/webp"
       />
       <img
-        src={`${activeServer?.config.baseUrl}/image?${new URLSearchParams({ url: src, format: "jpg", dataSource }).toString()}`}
+        src={`${activeServer?.config.baseUrl}/image?${new URLSearchParams({ url: src, format: "jpg", dataSource, type }).toString()}`}
         loading="lazy"
         decoding="async"
         {...{

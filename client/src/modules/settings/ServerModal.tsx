@@ -72,7 +72,7 @@ export const ServerModal = ({
 
       if (fetchError) {
         setError(
-          `Failed to fetch data sources: ${fetchError.status} ${JSON.stringify(fetchError.value)}`,
+          `Failed to fetch data sources: ${fetchError.status.toString()} ${JSON.stringify(fetchError.value)}`,
         );
         setIsLoading(false);
         return;

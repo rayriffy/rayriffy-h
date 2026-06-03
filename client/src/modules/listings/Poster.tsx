@@ -17,6 +17,7 @@ export const Poster: FunctionComponent<Props> = ({ gallery }) => {
             alt={gallery.title.display}
             width={gallery.cover.width}
             height={gallery.cover.height}
+            type="cover"
           />
         </div>
       </div>

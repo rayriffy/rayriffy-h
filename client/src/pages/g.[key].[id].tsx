@@ -50,6 +50,7 @@ const Page = () => {
             width={data.cover.width}
             height={data.cover.height}
             className="w-80"
+            type="cover"
           />
         </div>
         <article className="w-full">

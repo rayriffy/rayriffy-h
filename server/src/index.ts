@@ -1,14 +1,16 @@
 #!/usr/bin/env bun
+
 import { t, Elysia } from "elysia";
 import { swagger } from "@elysiajs/swagger";
 import { cors } from "@elysiajs/cors";
 import { toon } from "@toon-tools/elysia";
+
 import { defineCacheInstance } from "@rayriffy/filesystem";
 import sharp from "sharp";
-
 import { galleryModel, listingResultModel, type Config } from "@riffyh/commons";
 import debug from "debug";
 import path from "node:path";
+import { download, upload } from "./bytebin";
 
 const log = debug("riffyh:server");
 const cache = defineCacheInstance();
@@ -90,10 +92,18 @@ const server = new Elysia()
       response: listingResultModel,
     },
   )
+  .post("/collection/export", ({ body }) => upload(body), {
+    body: t.String(),
+  })
+  .get("/collection/import", async ({ query }) => download(query.key), {
+    query: t.Object({
+      key: t.String(),
+    }),
+  })
   .get(
     "/image",
     async ({ query }) => {
-      const cacheKeys = [query.dataSource, query.url, query.format];
+      const cacheKeys = [query.dataSource, query.url, query.format, query.type];
 
       const cachedImage = await cache.read<Buffer>(cacheKeys);
       if (cachedImage !== null)
@@ -112,7 +122,7 @@ const server = new Elysia()
       });
       const resizedImage = await sharp(fetchedImage)
         .resize({
-          width: 1280,
+          width: query.type === "cover" ? 640 : 1280,
         })
         .toFormat(query.format, {
           quality: 72,
@@ -127,14 +137,17 @@ const server = new Elysia()
       return new Response(resizedImage, {
         headers: {
           "Content-Type": `image/${query.format}`,
-          "Cache-Control": "public, max-age=86400000",
+          "Cache-Control": "public, max-age=86400",
+          "CDN-Cache-Control": "public, max-age=2592000",
+          "Cloudflare-CDN-Cache-Control": "public, max-age=2592000",
         },
       });
     },
     {
       query: t.Object({
         url: t.String(),
-        format: t.Union([t.Literal("webp"), t.Literal("jpg")]),
+        format: t.Union([t.Literal("avif"), t.Literal("webp"), t.Literal("jpg")]),
+        type: t.Union([t.Literal("cover"), t.Literal("page")]),
         dataSource: dataSourceKeys,
       }),
     },
