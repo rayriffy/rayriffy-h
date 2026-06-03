@@ -4,6 +4,7 @@ import { niyaniya } from "@riffyh/adapter-niyaniya";
 import type { Config } from "@riffyh/commons";
 
 const config: Config = {
+  secretboxKey: Bun.env.SECRETBOX_KEY!,
   dataSources: [
     nhentai(),
     niyaniya({

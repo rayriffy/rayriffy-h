@@ -11,6 +11,8 @@ import { galleryModel, listingResultModel, type Config } from "@riffyh/commons";
 import debug from "debug";
 import path from "node:path";
 import { download, upload } from "./bytebin";
+import { secretbox, randomBytes } from "tweetnacl";
+import { encodeBase64, decodeBase64 } from "tweetnacl-util";
 
 const log = debug("riffyh:server");
 const cache = defineCacheInstance();
@@ -21,6 +23,21 @@ const configFile = process.env.RIFFYH_CONFIG_PATH || "./riffyh.config.ts";
 const configPath = path.resolve(configFile);
 log(`resolving config file at ${configPath}...`);
 const config: Config = await import(configPath).then((o) => o.default);
+
+try {
+  if (
+    typeof config.secretboxKey !== "string" ||
+    decodeBase64(config.secretboxKey).length !== secretbox.keyLength
+  )
+    throw new Error("key length mismatch");
+  // oxlint-disable-next-line no-unused-vars
+} catch (_) {
+  const generatedKey = encodeBase64(randomBytes(secretbox.keyLength));
+  console.error(
+    `unable to parse secret key. please either generate key via https://tweetnacl.js.org/#/secretbox or copy following key to configuration: ${generatedKey}`,
+  );
+  process.exit(1);
+}
 
 log(`loaded configuration with ${config.dataSources.length} data sources`);
 
@@ -92,10 +109,10 @@ const server = new Elysia()
       response: listingResultModel,
     },
   )
-  .post("/collection/export", ({ body }) => upload(body), {
+  .post("/collection/export", ({ body }) => upload(body, config.secretboxKey), {
     body: t.String(),
   })
-  .get("/collection/import", async ({ query }) => download(query.key), {
+  .get("/collection/import", async ({ query }) => download(query.key, config.secretboxKey), {
     query: t.Object({
       key: t.String(),
     }),
@@ -153,8 +170,8 @@ const server = new Elysia()
     },
   )
   .listen({
-    hostname: "0.0.0.0",
-    port: 3000,
+    hostname: config.hostname ?? "0.0.0.0",
+    port: config.port ?? 3000,
   });
 
 export type Server = typeof server;
