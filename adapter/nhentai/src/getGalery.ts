@@ -5,7 +5,7 @@ import type { DataSource, Gallery } from "@riffyh/commons";
 import type { NhentaiGallery } from "./types/NhentaiGallery";
 
 const throttle = pThrottle({
-  limit: 45,
+  limit: 40,
   interval: 60 * 1000,
 });
 
