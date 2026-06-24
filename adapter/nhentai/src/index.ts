@@ -4,13 +4,15 @@ import { getListing } from "./getListing";
 import { getImage } from "./getImage";
 import { key } from "./key";
 
-export const nhentai = (): DataSource => {
+import type { Options } from "./types/Options";
+
+export const nhentai = (options?: Options): DataSource => {
   return {
     key,
     name: "nhentai",
     iconUrl: "https://nhentai.net/favicon.png",
-    getGallery,
-    getListing,
+    getGallery: getGallery(options),
+    getListing: getListing(options),
     getImage,
   };
 };
