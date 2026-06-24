@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:8.3.4
+    container_name: mongodb_dev
+    ports:
+      - "27018:27017"
+    environment:
+      - GLIBC_TUNABLES=glibc.pthread.rseq=1
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:

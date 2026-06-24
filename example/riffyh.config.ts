@@ -1,6 +1,8 @@
 import { nhentai } from "@riffyh/adapter-nhentai";
 import { niyaniya } from "@riffyh/adapter-niyaniya";
 
+import { nhentaiStore } from "./store/nhentai";
+
 import type { Config } from "@riffyh/commons";
 
 const config: Config = {
@@ -13,6 +15,7 @@ const config: Config = {
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:149.0) Gecko/20100101 Firefox/149.0",
     }),
   ],
+  store: [nhentaiStore],
 };
 
 export default config;

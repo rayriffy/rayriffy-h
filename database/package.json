@@ -1,6 +1,6 @@
 {
-  "name": "@riffyh/adapter-nhentai",
-  "version": "1.0.2",
+  "name": "@riffyh/database",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rayriffy/rayriffy-h.git"
@@ -21,9 +21,10 @@
   },
   "dependencies": {
     "@riffyh/commons": "workspace:*",
-    "p-throttle": "8.1.0"
+    "mongoose": "8.9.5"
   },
   "devDependencies": {
+    "@types/mongoose": "5.11.97",
     "tsdown": "0.21.7"
   }
 }

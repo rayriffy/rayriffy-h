@@ -10,6 +10,7 @@
     "@riffyh/adapter-nhentai": "workspace:*",
     "@riffyh/adapter-niyaniya": "workspace:*",
     "@riffyh/commons": "workspace:*",
+    "@riffyh/execute": "workspace:*",
     "@riffyh/server": "workspace:*"
   }
 }

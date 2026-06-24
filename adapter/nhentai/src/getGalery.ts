@@ -10,7 +10,7 @@ const throttle = pThrottle({
 });
 
 export const getGallery: DataSource["getGallery"] = throttle(async ({ id }) => {
-  const data = await fetch(`https://nhentai.net/api/v2/galleries/${id.toString()}`).then((o) => {
+  const data = await fetch(`https://nhentai.net/api/v2/galleries/${id}`).then((o) => {
     if (o.ok) return o.json() as Promise<NhentaiGallery>;
     else throw o;
   });

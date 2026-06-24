@@ -1,10 +1,12 @@
 {
-  "name": "@riffyh/adapter-nhentai",
-  "version": "1.0.2",
+  "name": "@riffyh/execute",
+  "version": "1.0.0",
+  "description": "Execuable command as an extension of Riffy H system",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rayriffy/rayriffy-h.git"
   },
+  "bin": "dist/index.mjs",
   "files": [
     "dist/"
   ],
@@ -21,9 +23,15 @@
   },
   "dependencies": {
     "@riffyh/commons": "workspace:*",
-    "p-throttle": "8.1.0"
+    "@riffyh/database": "workspace:*",
+    "debug": "4.4.3",
+    "mongoose": "8.9.5",
+    "tasuku": "2.3.0",
+    "yargs": "18.0.0"
   },
   "devDependencies": {
+    "@types/debug": "4.1.13",
+    "@types/yargs": "17.0.35",
     "tsdown": "0.21.7"
   }
 }

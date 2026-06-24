@@ -9,3 +9,4 @@ export { imageModel, type Image } from "./models/imageModel";
 export { listingResultModel, type ListingResult } from "./models/listingResultModel";
 export { orderedImageModel, type OrderedImage } from "./models/orderedImageModel";
 export { tagModel, type Tag } from "./models/tagModel";
+export { storeModel, type Store } from "./models/storeModel";

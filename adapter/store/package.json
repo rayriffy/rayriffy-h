@@ -20,7 +20,9 @@
     "build": "tsdown"
   },
   "dependencies": {
-    "@riffyh/commons": "workspace:*"
+    "@riffyh/commons": "workspace:*",
+    "@riffyh/database": "workspace:*",
+    "mongoose": "8.9.5"
   },
   "devDependencies": {
     "tsdown": "0.21.7"
