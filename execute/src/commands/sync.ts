@@ -47,10 +47,13 @@ const storeIterator = async (store: Store, dataSources: DataSource[]) =>
     // 3. from those list do a foreach await loop to get gallery data via dataSource.getGallery()
     for (const id of missingIds) {
       try {
-        const gallery = await dataSource.getGallery({ id });
+        const { language, ...gallery } = await dataSource.getGallery({ id });
 
         // 4. if call is success, use mongoose to push to db. otherwise log item as failed
-        await GalleryModel.create(gallery);
+        await GalleryModel.create({
+          ...gallery,
+          locale: language,
+        });
 
         successCount++;
       } catch {

@@ -25,7 +25,7 @@ export const getListing = async (options: {
       id: doc.id,
       key: doc.key,
       title: doc.title,
-      language: doc.language,
+      language: doc.locale,
       cover: doc.cover,
       tags: doc.tags,
     })),
