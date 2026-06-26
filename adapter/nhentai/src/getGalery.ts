@@ -4,6 +4,7 @@ import { key } from "./key";
 import type { DataSource, Gallery } from "@riffyh/commons";
 import type { NhentaiGallery } from "./types/NhentaiGallery";
 import type { Options } from "./types/Options";
+import { getLanguageByTagId } from "./language";
 
 export const getGallery = (options?: Options): DataSource["getGallery"] =>
   pThrottle({
@@ -33,6 +34,7 @@ export const getGallery = (options?: Options): DataSource["getGallery"] =>
         width: data.cover.width,
         height: data.cover.height,
       },
+      language: getLanguageByTagId(data.tags.map((t) => t.id)),
       pages: data.pages.map((page) => ({
         order: page.number,
         src: `https://i4.nhentai.net/${page.path}`,

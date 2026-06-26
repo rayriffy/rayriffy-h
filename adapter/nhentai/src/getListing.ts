@@ -4,6 +4,7 @@ import { key } from "./key";
 import type { DataSource, ListingResult } from "@riffyh/commons";
 import type { NhentaiSearchResult } from "./types/NhentaiSearchResult";
 import type { Options } from "./types/Options";
+import { getLanguageByTagId } from "./language";
 
 export const getListing = (options?: Options): DataSource["getListing"] =>
   pThrottle({
@@ -35,6 +36,7 @@ export const getListing = (options?: Options): DataSource["getListing"] =>
           display: result.english_title ?? result.japanese_title,
           original: null,
         },
+        language: getLanguageByTagId(result.tag_ids),
         cover: {
           src: `https://t4.nhentai.net/${result.thumbnail}`,
           width: result.thumbnail_width,

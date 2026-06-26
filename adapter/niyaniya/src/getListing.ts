@@ -1,45 +1,42 @@
-import { headers } from "./constants/headers";
 import { key } from "./key";
 
 import type { DataSource, ListingResult } from "@riffyh/commons";
-import type { NiyaSearchResult } from "./types/NiyaSearchResult";
 import type { Options } from "./types/Options";
+import { getBookSearch } from "./functions/getBookSearch";
+import { getBookDetail } from "./functions/getBookDetail";
+import { getLanugageByTags } from "./language";
 
 export const getListing = async (
   { searchQuery, page }: Parameters<DataSource["getListing"]>[0],
   options: Options,
 ): ReturnType<DataSource["getListing"]> => {
-  const payload = new URLSearchParams();
+  const bookSearch = await getBookSearch(searchQuery, page, options.userAgent);
 
-  if (searchQuery !== null && searchQuery !== "") payload.append("s", searchQuery);
-  if (page !== 1) payload.append("page", page.toString());
+  const galleries = await Promise.all(
+    bookSearch.entries.map(async (entry) => {
+      const bookDetail = await getBookDetail(entry.id.toString(), entry.key, options.userAgent);
 
-  const data = await fetch(`https://api.schale.network/books?${payload.toString()}`, {
-    headers: {
-      ...headers,
-      "User-Agent": options.userAgent,
-    },
-  }).then((o) => {
-    if (o.ok) return o.json() as Promise<NiyaSearchResult>;
-    else throw o;
-  });
+      return {
+        id: entry.id.toString() + "." + entry.key,
+        key,
+        title: {
+          display: entry.title,
+          original: null,
+        },
+        language: getLanugageByTags(bookDetail.tags),
+        cover: {
+          src: entry.thumbnail.path,
+          width: entry.thumbnail.dimensions[0],
+          height: entry.thumbnail.dimensions[1],
+        },
+      } satisfies ListingResult["galleries"][number];
+    }),
+  );
 
   const result: ListingResult = {
-    galleries: data.entries.map((result) => ({
-      id: result.id.toString() + "." + result.key,
-      key,
-      title: {
-        display: result.title,
-        original: null,
-      },
-      cover: {
-        src: result.thumbnail.path,
-        width: result.thumbnail.dimensions[0],
-        height: result.thumbnail.dimensions[1],
-      },
-    })),
+    galleries,
     currentPage: page,
-    maximumPages: Math.ceil(data.total / data.limit),
+    maximumPages: Math.ceil(bookSearch.total / bookSearch.limit),
   };
 
   return result;

@@ -10,9 +10,9 @@ const config: Config = {
   dataSources: [
     nhentai(),
     niyaniya({
-      crt: "405d25f6-08e4-4659-8f1b-c5c6d2012388",
+      crt: "2c483e82-b4c6-4b5a-be43-e0873da715b7",
       userAgent:
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:149.0) Gecko/20100101 Firefox/149.0",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:152.0) Gecko/20100101 Firefox/152.0",
     }),
   ],
   store: [nhentaiStore],

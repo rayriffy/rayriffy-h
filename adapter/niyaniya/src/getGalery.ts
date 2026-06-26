@@ -7,6 +7,7 @@ import { TagType, type DataSource, type Gallery } from "@riffyh/commons";
 import type { Options } from "./types/Options";
 import { namespace } from "./constants/namespace";
 import { tagTypeMap } from "./constants/tagTypeMap";
+import { getLanugageByTags } from "./language";
 
 export const getGallery = async (
   { id }: Parameters<DataSource["getGallery"]>[0],
@@ -52,6 +53,7 @@ export const getGallery = async (
       width: page.dimensions[0],
       height: page.dimensions[1],
     })),
+    language: getLanugageByTags(bookDetail.tags),
     tags: bookDetail.tags.map((tag) => {
       return {
         id: tag.namespace ? namespace[tag.namespace]! : "tag" + ":" + tag.name.replace(/\s+/g, "+"),
