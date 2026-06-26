@@ -1,6 +1,6 @@
 {
   "name": "@riffyh/database",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rayriffy/rayriffy-h.git"
@@ -21,10 +21,10 @@
   },
   "dependencies": {
     "@riffyh/commons": "workspace:*",
-    "mongoose": "8.9.5"
+    "mongoose": "9.7.2"
   },
   "devDependencies": {
     "@types/mongoose": "5.11.97",
-    "tsdown": "0.21.7"
+    "tsdown": "0.22.3"
   }
 }

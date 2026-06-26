@@ -1,6 +1,6 @@
 {
   "name": "@riffyh/adapter-nhentai",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rayriffy/rayriffy-h.git"
@@ -24,6 +24,6 @@
     "p-throttle": "8.1.0"
   },
   "devDependencies": {
-    "tsdown": "0.21.7"
+    "tsdown": "0.22.3"
   }
 }

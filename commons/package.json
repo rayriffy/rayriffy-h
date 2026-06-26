@@ -1,6 +1,6 @@
 {
   "name": "@riffyh/commons",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rayriffy/rayriffy-h.git"
@@ -21,10 +21,10 @@
   },
   "dependencies": {
     "@sinclair/typebox": "0.34.49",
-    "lodash": "4.17.23"
+    "lodash": "4.18.1"
   },
   "devDependencies": {
     "@types/lodash": "4.17.24",
-    "tsdown": "0.21.7"
+    "tsdown": "0.22.3"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@riffyh/adapter-store",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rayriffy/rayriffy-h.git"
@@ -22,9 +22,9 @@
   "dependencies": {
     "@riffyh/commons": "workspace:*",
     "@riffyh/database": "workspace:*",
-    "mongoose": "8.9.5"
+    "mongoose": "9.7.2"
   },
   "devDependencies": {
-    "tsdown": "0.21.7"
+    "tsdown": "0.22.3"
   }
 }

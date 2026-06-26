@@ -31,7 +31,7 @@ export const BlurredImage: FunctionComponent<Props> = ({
         type="image/webp"
       />
       <img
-        src={`${activeServer?.config.baseUrl}/image?${new URLSearchParams({ url: src, format: "jpg", dataSource, type }).toString()}`}
+        src={`${activeServer?.config.baseUrl}/image?${new URLSearchParams({ url: src, format: "jpeg", dataSource, type }).toString()}`}
         loading="lazy"
         decoding="async"
         {...{
