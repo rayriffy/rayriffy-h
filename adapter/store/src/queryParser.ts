@@ -43,6 +43,20 @@ export const parseQuery = (searchQuery: string | null): FilterQuery<GalleryDocum
       } else {
         continue;
       }
+    } else if (namespace === "language") {
+      condition = {
+        $or: [
+          { language: { $regex: safeValue, $options: "i" } },
+          {
+            tags: {
+              $elemMatch: {
+                type: "language",
+                name: { $regex: safeValue, $options: "i" },
+              },
+            },
+          },
+        ],
+      };
     } else if (namespace) {
       const type = namespace.endsWith("ies")
         ? namespace.slice(0, -3) + "y"

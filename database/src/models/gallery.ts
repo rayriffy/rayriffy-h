@@ -44,6 +44,7 @@ const GallerySchema = new Schema<GalleryDocument>(
       display: { type: String, required: true },
       original: { type: String, default: null },
     },
+    language: { type: String, enum: ["en", "jp", "cn", "kr", "th"], default: null },
     cover: { type: ImageSchema, required: true },
     pages: { type: [OrderedImageSchema], required: true },
     tags: { type: [TagSchema], required: true },
