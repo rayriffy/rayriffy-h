@@ -1,6 +1,6 @@
 {
   "name": "@riffyh/execute",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Execuable command as an extension of Riffy H system",
   "repository": {
     "type": "git",
