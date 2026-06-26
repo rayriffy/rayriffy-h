@@ -11,6 +11,6 @@ export interface NhentaiSearchResult {
     tag_ids: number[];
   }[];
   num_pages: number;
-  total: number;
+  total: number | null;
   per_page: number;
 }

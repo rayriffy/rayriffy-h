@@ -109,6 +109,26 @@ const server = new Elysia()
       response: listingResultModel,
     },
   )
+  .get(
+    "/tag",
+    async ({ query }) => {
+      const dataSource = config.dataSources.find((o) => o.key === query.dataSource);
+      if (dataSource === undefined) throw new Error(`data source ${query.dataSource} not found`);
+
+      return dataSource.getTagListing({
+        id: query.id,
+        page: query.page,
+      });
+    },
+    {
+      query: t.Object({
+        id: t.String(),
+        page: t.Number(),
+        dataSource: dataSourceKeys,
+      }),
+      response: listingResultModel,
+    },
+  )
   .post("/collection/export", ({ body }) => upload(body, config.secretboxKey), {
     body: t.String(),
   })

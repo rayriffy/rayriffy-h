@@ -56,7 +56,7 @@ export const getGallery = async (
     language: getLanugageByTags(bookDetail.tags),
     tags: bookDetail.tags.map((tag) => {
       return {
-        id: tag.namespace ? namespace[tag.namespace]! : "tag" + ":" + tag.name.replace(/\s+/g, "+"),
+        id: `${tag.namespace ? namespace[tag.namespace]! : "tag"}:${tag.name}`,
         key,
         slug: tag.name,
         name: tag.name,

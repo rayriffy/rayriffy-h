@@ -1,26 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
-import { useActiveServer } from "modules/utils/useActiveServer";
+import { ListingStateRenderer } from "modules/listings/ListingStateRenderer";
 import { useEden } from "modules/utils/useEden";
 import { useSearchParams } from "react-router";
-import { ListingStateRenderer } from "./ListingStateRenderer";
+import { useParams } from "router";
 
-export const MainListing = () => {
+export const TagListing = () => {
+  const { key, id } = useParams("/t/:key/:id");
   const [searchParams] = useSearchParams();
-  const activeServer = useActiveServer();
   const eden = useEden();
 
-  const query = searchParams.get("q");
-  const activeKey = searchParams.get("k") || activeServer?.dataSources?.[0]?.key;
   const page = Number(searchParams.get("p")) || 1;
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["listing", query, activeKey, page],
+    queryKey: ["tagListing", id, key, page],
     queryFn: async () => {
-      const response = await eden!.listing.get({
+      const response = await eden!.tag.get({
         query: {
-          query: query || undefined,
+          id: id,
           page,
-          dataSource: activeKey!,
+          dataSource: key,
         },
       });
 

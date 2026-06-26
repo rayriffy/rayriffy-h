@@ -15,6 +15,15 @@ export const dataSourceModel = t.Object({
     ],
     t.Promise(listingResultModel),
   ),
+  getTagListing: t.Function(
+    [
+      t.Object({
+        id: t.String(),
+        page: t.Integer(),
+      }),
+    ],
+    t.Promise(listingResultModel),
+  ),
   getGallery: t.Function(
     [
       t.Object({

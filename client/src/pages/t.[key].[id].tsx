@@ -1,5 +1,7 @@
+import { TagListing } from "modules/tag/TagListing";
+
 const Page = () => {
-  return <></>;
+  return <TagListing />;
 };
 
 export default Page;

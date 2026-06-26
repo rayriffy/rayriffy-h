@@ -1,22 +1,21 @@
+import type { DataSource } from "@riffyh/commons";
+import type { Options } from "./types/Options";
+import type { NhentaiSearchResult } from "./types/NhentaiSearchResult";
+import { searchResultMapper } from "./functions/searchResultMapper";
 import pThrottle from "p-throttle";
 
-import type { DataSource } from "@riffyh/commons";
-import type { NhentaiSearchResult } from "./types/NhentaiSearchResult";
-import type { Options } from "./types/Options";
-import { searchResultMapper } from "./functions/searchResultMapper";
-
-export const getListing = (options?: Options): DataSource["getListing"] =>
+export const getTagListing = (options?: Options): DataSource["getTagListing"] =>
   pThrottle({
-    limit: options?.apiKey ? 10 : 20,
+    limit: options?.apiKey ? 15 : 30,
     interval: 60 * 1000,
-  })(async ({ searchQuery, page }) => {
+  })(async ({ id, page }) => {
     const payload = new URLSearchParams({
-      query: searchQuery ?? "-thisisrandomstringtomakesurethatthereisnoanytagbeingexcluded",
+      tag_id: id,
       sort: "date",
       page: page.toString(),
     });
 
-    const data = await fetch(`https://nhentai.net/api/v2/search?${payload.toString()}`, {
+    const data = await fetch(`https://nhentai.net/api/v2/galleries?${payload.toString()}`, {
       headers: options?.apiKey
         ? {
             Authorization: `Key ${options.apiKey}`,

@@ -14,5 +14,8 @@ export const store = (): DataSource => {
     getImage: () => {
       throw new Error("not implemented");
     },
+    getTagListing: () => {
+      throw new Error("not implmented");
+    },
   };
 };
