@@ -27,11 +27,7 @@ export const DataSourceSelector = () => {
             onClick={() => handleClick(dataSource.key)}
           >
             <span className="plate">
-              <img
-                src={dataSource.iconUrl}
-                alt={dataSource.name}
-                className="w-4 h-4 rounded-sm bg-gray-200"
-              />
+              <img src={dataSource.iconUrl} alt="" className="w-4 h-4 rounded-sm bg-gray-200" />
             </span>
             <span>{dataSource.name}</span>
           </button>
