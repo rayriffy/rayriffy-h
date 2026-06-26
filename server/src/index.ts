@@ -163,7 +163,7 @@ const server = new Elysia()
     {
       query: t.Object({
         url: t.String(),
-        format: t.Union([t.Literal("avif"), t.Literal("webp"), t.Literal("jpg")]),
+        format: t.Union([t.Literal("webp"), t.Literal("jpg")]),
         type: t.Union([t.Literal("cover"), t.Literal("page")]),
         dataSource: dataSourceKeys,
       }),
