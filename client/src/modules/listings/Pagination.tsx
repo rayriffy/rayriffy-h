@@ -30,7 +30,7 @@ export const Pagination = ({ max }: Props) => {
         }
         return next;
       },
-      { preventScrollReset: false },
+      { preventScrollReset: false, replace: true },
     );
   };
 
