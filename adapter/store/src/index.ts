@@ -1,6 +1,7 @@
 import type { DataSource } from "@riffyh/commons";
 
 import { getListing } from "./getListing";
+import { getGallery } from "./getGallery";
 
 export const store = (): DataSource => {
   return {
@@ -8,9 +9,7 @@ export const store = (): DataSource => {
     name: "Store",
     iconUrl: "", // Optional: provide a local store icon
     getListing,
-    getGallery: () => {
-      throw new Error("not implemented");
-    },
+    getGallery,
     getImage: () => {
       throw new Error("not implemented");
     },

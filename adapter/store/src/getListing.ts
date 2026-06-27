@@ -15,13 +15,13 @@ export const getListing = async (options: {
 
   const [total, docs] = await Promise.all([
     GalleryModel.countDocuments(query),
-    GalleryModel.find(query).sort({ createdAt: -1 }).skip(skip).limit(limit).lean(),
+    GalleryModel.find(query).sort({ createdAt: -1 }).skip(skip).limit(limit).lean() as any,
   ]);
 
   const maximumPages = Math.ceil(total / limit);
 
   return {
-    galleries: docs.map((doc) => ({
+    galleries: docs.map((doc: any) => ({
       id: doc.id,
       key: doc.key,
       title: doc.title,

@@ -42,6 +42,7 @@ try {
 log(`loaded configuration with ${config.dataSources.length} data sources`);
 
 const dataSourceKeys = t.Union(config.dataSources.map((o) => t.Literal(o.key)));
+const isStoreExist = config.dataSources.find((dataSource) => dataSource.key === "store");
 
 const server = new Elysia()
   .use(
@@ -74,6 +75,17 @@ const server = new Elysia()
   .get(
     "/gallery",
     async ({ query }) => {
+      if (isStoreExist) {
+        const storeDataSource = config.dataSources.find((o) => o.key === "store")!;
+        const gallery = await storeDataSource
+          .getGallery({
+            id: `${query.dataSource};${query.id}`,
+          })
+          .catch(() => null);
+
+        if (gallery !== null) return gallery;
+      }
+
       const dataSource = config.dataSources.find((o) => o.key === query.dataSource);
       if (dataSource === undefined) throw new Error(`data source ${query.dataSource} not found`);
 

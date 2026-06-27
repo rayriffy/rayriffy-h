@@ -46,6 +46,7 @@
         "mongoose": "8.9.5",
       },
       "devDependencies": {
+        "@types/node": "^26.0.1",
         "tsdown": "0.22.3",
       },
     },
