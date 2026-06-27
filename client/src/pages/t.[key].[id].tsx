@@ -1,7 +1,13 @@
 import { TagListing } from "modules/tag/TagListing";
+import { TagDataSourceSelector } from "modules/tag/TagDataSourceSelector";
 
 const Page = () => {
-  return <TagListing />;
+  return (
+    <>
+      <TagDataSourceSelector />
+      <TagListing />
+    </>
+  );
 };
 
 export default Page;

@@ -2,6 +2,7 @@ import type { DataSource } from "@riffyh/commons";
 
 import { getListing } from "./getListing";
 import { getGallery } from "./getGallery";
+import { getTagListing } from "./getTagListing";
 
 export const store = (): DataSource => {
   return {
@@ -13,8 +14,6 @@ export const store = (): DataSource => {
     getImage: () => {
       throw new Error("not implemented");
     },
-    getTagListing: () => {
-      throw new Error("not implmented");
-    },
+    getTagListing,
   };
 };
