@@ -1,6 +1,6 @@
 {
   "name": "@riffyh/execute",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Execuable command as an extension of Riffy H system",
   "repository": {
     "type": "git",
@@ -26,11 +26,13 @@
     "@riffyh/database": "workspace:*",
     "debug": "4.4.3",
     "mongoose": "8.9.5",
+    "p-throttle": "8.1.0",
     "tasuku": "2.3.0",
     "yargs": "18.0.0"
   },
   "devDependencies": {
     "@types/debug": "4.1.13",
+    "@types/node": "26.0.1",
     "@types/yargs": "17.0.35",
     "tsdown": "0.22.3"
   }

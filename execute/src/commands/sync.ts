@@ -36,9 +36,9 @@ const storeIterator = async (store: Store, dataSources: DataSource[]) =>
     // 2. compute list of ids that does not yet exist in db
     const missingIds = store.ids.filter((id) => !existingIds.has(id));
 
-    let successCount = store.ids.length - missingIds.length;
+    let successCount = 0;
     let failedCount = 0;
-    const totalCount = store.ids.length;
+    const totalCount = missingIds.length;
 
     const updateTitle = () =>
       setTitle(`${dataSource.name} ${successCount} / ${totalCount} (${failedCount} failed)`);

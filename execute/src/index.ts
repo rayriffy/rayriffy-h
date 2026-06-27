@@ -6,6 +6,7 @@ import path from "node:path";
 import debug from "debug";
 
 import { sync } from "./commands/sync";
+import { migrate } from "./commands/migrate";
 
 import type { Config } from "@riffyh/commons";
 
@@ -18,5 +19,8 @@ const config: Config = await import(configPath).then((o) => o.default);
 
 yargs(hideBin(process.argv))
   .command("sync", "sync data to database", {}, () => sync(config))
+  .command("migrate <directory>", "migrate legacy hentai json files to database", {}, (argv) => {
+    migrate(config, path.resolve(argv.directory as string));
+  })
   .demandCommand(1)
   .parse();
