@@ -15,7 +15,7 @@ export const getTagListing = (options?: Options): DataSource["getTagListing"] =>
       page: page.toString(),
     });
 
-    const data = await fetch(`https://nhentai.net/api/v2/galleries?${payload.toString()}`, {
+    const data = await fetch(`https://nhentai.net/api/v2/galleries/tagged?${payload.toString()}`, {
       headers: options?.apiKey
         ? {
             Authorization: `Key ${options.apiKey}`,
