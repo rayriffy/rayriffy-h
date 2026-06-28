@@ -1,6 +1,6 @@
 {
   "name": "@riffyh/execute",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Execuable command as an extension of Riffy H system",
   "repository": {
     "type": "git",
@@ -28,6 +28,8 @@
     "mongoose": "8.9.5",
     "p-throttle": "8.1.0",
     "tasuku": "2.3.0",
+    "tweetnacl": "1.0.3",
+    "tweetnacl-util": "0.15.1",
     "yargs": "18.0.0"
   },
   "devDependencies": {

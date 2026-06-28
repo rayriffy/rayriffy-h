@@ -1,12 +1,13 @@
 {
   "name": "@riffyh/adapter-store",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rayriffy/rayriffy-h.git"
   },
   "files": [
-    "dist/"
+    "dist/",
+    "README.md"
   ],
   "type": "module",
   "main": "dist/index.mjs",

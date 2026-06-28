@@ -18,7 +18,7 @@
     },
     "adapter/nhentai": {
       "name": "@riffyh/adapter-nhentai",
-      "version": "1.2.0",
+      "version": "1.2.2",
       "dependencies": {
         "@riffyh/commons": "workspace:*",
         "p-throttle": "8.1.0",
@@ -29,7 +29,7 @@
     },
     "adapter/niyaniya": {
       "name": "@riffyh/adapter-niyaniya",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "dependencies": {
         "@riffyh/commons": "workspace:*",
       },
@@ -39,7 +39,7 @@
     },
     "adapter/store": {
       "name": "@riffyh/adapter-store",
-      "version": "1.2.2",
+      "version": "1.2.4",
       "dependencies": {
         "@riffyh/commons": "workspace:*",
         "@riffyh/database": "workspace:*",
@@ -112,6 +112,7 @@
       "dependencies": {
         "@riffyh/adapter-nhentai": "workspace:*",
         "@riffyh/adapter-niyaniya": "workspace:*",
+        "@riffyh/adapter-store": "workspace:*",
         "@riffyh/commons": "workspace:*",
         "@riffyh/execute": "workspace:*",
         "@riffyh/server": "workspace:*",
@@ -128,6 +129,8 @@
         "mongoose": "8.9.5",
         "p-throttle": "8.1.0",
         "tasuku": "2.3.0",
+        "tweetnacl": "1.0.3",
+        "tweetnacl-util": "0.15.1",
         "yargs": "18.0.0",
       },
       "devDependencies": {
@@ -139,7 +142,7 @@
     },
     "server": {
       "name": "@riffyh/server",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "bin": "dist/index.mjs",
       "dependencies": {
         "@elysiajs/cors": "1.4.2",

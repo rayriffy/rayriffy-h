@@ -9,6 +9,7 @@
   "dependencies": {
     "@riffyh/adapter-nhentai": "workspace:*",
     "@riffyh/adapter-niyaniya": "workspace:*",
+    "@riffyh/adapter-store": "workspace:*",
     "@riffyh/commons": "workspace:*",
     "@riffyh/execute": "workspace:*",
     "@riffyh/server": "workspace:*"
