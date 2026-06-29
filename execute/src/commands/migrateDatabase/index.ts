@@ -29,8 +29,8 @@ const searchTag = pThrottle({
   return res.json() as Promise<any[]>;
 });
 
-export const migrate = async (config: Config, pathToLegacyHentaiDirectory: string) =>
-  task("migrate", async ({ setError, setTitle }) => {
+export const migrateDatabase = async (config: Config, pathToLegacyHentaiDirectory: string) =>
+  task("migrate db", async ({ setError, setTitle }) => {
     if (process.env.MONGODB_URI === undefined) throw new Error("mongo url not provided");
 
     const nhentaiDataSource = config.dataSources.find((dataSource) => dataSource.key === "nh");
