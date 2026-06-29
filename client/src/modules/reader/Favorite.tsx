@@ -23,6 +23,7 @@ export const Favorite: FunctionComponent<Props> = ({ gallery }) => {
         {
           id: gallery.id,
           key: gallery.key,
+          language: gallery.language,
           title: gallery.title,
           cover: gallery.cover,
           tags: gallery.tags,
