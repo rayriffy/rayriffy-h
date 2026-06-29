@@ -27,9 +27,18 @@ yargs(hideBin(process.argv))
       .command(
         "collection <json-file>",
         "migrate legacy collection json file to database",
-        {},
+        (y) =>
+          y.option("minify", {
+            type: "boolean",
+            description: "Write output.json as minified JSON",
+            default: false,
+          }),
         (argv) => {
-          migrateCollection(config, path.resolve(argv["json-file"] as string));
+          migrateCollection(
+            config,
+            path.resolve(argv["json-file"] as string),
+            argv.minify as boolean,
+          );
         },
       )
       .command("db <directory>", "migrate legacy hentai json files to database", {}, (argv) => {

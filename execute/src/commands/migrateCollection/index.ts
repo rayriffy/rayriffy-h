@@ -5,7 +5,11 @@ import task from "tasuku";
 import mongoose from "mongoose";
 import { GalleryModel } from "@riffyh/database";
 
-export const migrateCollection = async (config: Config, pathToCollectionJson: string) =>
+export const migrateCollection = async (
+  config: Config,
+  pathToCollectionJson: string,
+  minify: boolean = false,
+) =>
   task("migrate collection", async ({ setTitle, setError }) => {
     const fileContent = await fs.readFile(pathToCollectionJson, "utf-8");
     const oldCollection = JSON.parse(fileContent) as OldCollection[];
@@ -77,7 +81,10 @@ export const migrateCollection = async (config: Config, pathToCollectionJson: st
 
     // write output.json of collection
     setTitle("writing output.json...");
-    await fs.writeFile("./output.json", JSON.stringify(collection, null, 2));
+    await fs.writeFile(
+      "./output.json",
+      minify ? JSON.stringify(collection) : JSON.stringify(collection, null, 2),
+    );
 
     if (hasMongoUrl) {
       await mongoose.disconnect();
