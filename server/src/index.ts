@@ -6,7 +6,6 @@ import { cors } from "@elysiajs/cors";
 import { toon } from "@toon-tools/elysia";
 
 import { defineCacheInstance } from "@rayriffy/filesystem";
-import sharp from "sharp";
 import { galleryModel, listingResultModel, type Config } from "@riffyh/commons";
 import debug from "debug";
 import path from "node:path";
@@ -166,17 +165,23 @@ const server = new Elysia()
       const dataSource = config.dataSources.find((o) => o.key === query.dataSource);
       if (dataSource === undefined) throw new Error(`data source ${query.dataSource} not found`);
 
-      const fetchedImage = await dataSource.getImage({
-        url: query.url,
-      });
-      const resizedImage = await sharp(fetchedImage)
-        .resize({
-          width: query.type === "cover" ? 640 : 1280,
-        })
-        .toFormat(query.format, {
+      const fetchedImage = new Bun.Image(
+        await dataSource.getImage({
+          url: query.url,
+        }),
+      ).resize(query.type === "cover" ? 640 : 1280);
+
+      // if query.format is webp, then convert to webp
+      if (query.format === "webp")
+        fetchedImage.webp({
           quality: 72,
-        })
-        .toBuffer();
+        });
+      else if (query.format === "jpeg")
+        fetchedImage.jpeg({
+          quality: 72,
+        });
+
+      const resizedImage = await fetchedImage.buffer();
       await cache.write(
         cacheKeys,
         resizedImage,
