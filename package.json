@@ -3,13 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "workspaces": [
-    "commons/",
-    "database/",
     "client/",
     "example/",
-    "execute/",
     "server/",
-    "adapter/*"
+    "adapter/*",
+    "packages/*"
   ],
   "scripts": {
     "lint": "oxlint",
