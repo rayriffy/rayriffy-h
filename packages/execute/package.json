@@ -36,6 +36,6 @@
     "@types/debug": "4.1.13",
     "@types/node": "26.0.1",
     "@types/yargs": "17.0.35",
-    "tsdown": "0.22.3"
+    "tsdown": "0.22.12"
   }
 }

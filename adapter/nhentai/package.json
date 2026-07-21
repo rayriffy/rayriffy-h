@@ -25,6 +25,6 @@
     "p-throttle": "8.1.0"
   },
   "devDependencies": {
-    "tsdown": "0.22.3"
+    "tsdown": "0.22.12"
   }
 }
