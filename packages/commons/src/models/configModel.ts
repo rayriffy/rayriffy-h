@@ -1,4 +1,4 @@
-import { Type as t, type Static } from "@sinclair/typebox";
+import { Type as t, type Static } from "typebox";
 import { dataSourceModel } from "./dataSourceModel";
 import { storeModel } from "./storeModel";
 

@@ -1,4 +1,4 @@
-import { Type as t, type Static } from "@sinclair/typebox";
+import { Type as t, type Static } from "typebox";
 
 export const languageModel = t.Union([
   t.Literal("en"), // English

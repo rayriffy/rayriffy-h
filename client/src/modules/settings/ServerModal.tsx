@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { treaty } from "@elysiajs/eden";
+import { treaty } from "@elysia/eden";
 import type { Server as AppServer } from "@riffyh/server";
 import { addServer, updateServer } from "modules/atoms/serversAtom";
 import type { Server } from "modules/types/Server";
