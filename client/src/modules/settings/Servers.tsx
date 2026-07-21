@@ -49,7 +49,7 @@ export const Servers = () => {
 
       if (error) {
         setRefreshError(
-          `Failed to refresh data sources: ${error.status} ${JSON.stringify(error.value)}`,
+          `Failed to refresh data sources: ${error.status.toString()} ${JSON.stringify(error.value)}`,
         );
       } else if (data) {
         updateServer(index, {

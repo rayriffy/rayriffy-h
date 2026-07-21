@@ -148,7 +148,7 @@
         "@elysia/cors": "2.0.0-exp.1",
         "@rayriffy/filesystem": "1.0.1",
         "@riffyh/commons": "workspace:*",
-        "@toon-tools/elysia": "1.1.0",
+        "@toon-tools/core": "1.1.0",
         "debug": "4.4.3",
         "elysia": "2.0.0-exp.46",
         "tweetnacl": "1.0.3",
@@ -631,8 +631,6 @@
     "@toon-format/toon": ["@toon-format/monorepo@github:rayriffy/toon#e4f7d6c", {}, "rayriffy-toon-e4f7d6c", "sha512-7dSSXx0f6ivlKgl7w7Xni5jMZ0coW66kOzOjAu8K+l+nRhozkIMsJYviWFcllL9R1cBMdmLVsj7tbH+9gqH5ww=="],
 
     "@toon-tools/core": ["@toon-tools/core@1.1.0", "", { "dependencies": { "@toon-format/toon": "^2.1.0" }, "peerDependencies": { "effect": ">=4.0.0-beta.1" } }, "sha512-xm3lqiN9XixcmAP+BBJKfarwkVaRBW0AixZUeYXbGU/C53QlQsk/3lAJRMKfAclT0gEMumEBVLLzRWYPNdHuiw=="],
-
-    "@toon-tools/elysia": ["@toon-tools/elysia@1.1.0", "", { "dependencies": { "@toon-tools/core": "^1.1.0" }, "peerDependencies": { "elysia": "^1.0.0" } }, "sha512-oPJa3UQHjMzNXWZoJMTI64+nd+CktzYj+Pux/jJkrI/KmGdO1znNA3GyJ1pn62mBwbW74UNOLzNvUumSB8QQhA=="],
 
     "@trickfilm400/rollup-plugin-off-main-thread": ["@trickfilm400/rollup-plugin-off-main-thread@3.0.0-pre1", "", { "dependencies": { "ejs": "^3.1.10", "json5": "^2.2.3", "magic-string": "^0.30.21", "string.prototype.matchall": "^4.0.12" } }, "sha512-/67zpWDBLV+oYAEL682s1ktXL0HgqX76f6gaVGkGnVZlBbm1zd0v4Bz8MFF2GGhoX9rvfq3KSQHubFHwa6w6/Q=="],
 

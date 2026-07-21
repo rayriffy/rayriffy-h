@@ -24,7 +24,7 @@
     "@elysia/cors": "2.0.0-exp.1",
     "@rayriffy/filesystem": "1.0.1",
     "@riffyh/commons": "workspace:*",
-    "@toon-tools/elysia": "1.1.0",
+    "@toon-tools/core": "1.1.0",
     "debug": "4.4.3",
     "elysia": "2.0.0-exp.46",
     "tweetnacl": "1.0.3",

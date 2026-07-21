@@ -3,7 +3,7 @@
 import { t, Elysia } from "elysia";
 // import { swagger } from "@elysia/swagger";
 import { cors } from "@elysia/cors";
-import { toon } from "@toon-tools/elysia";
+import { toon } from "./toon";
 
 import { defineCacheInstance } from "@rayriffy/filesystem";
 import { galleryModel, listingResultModel, type Config } from "@riffyh/commons";
