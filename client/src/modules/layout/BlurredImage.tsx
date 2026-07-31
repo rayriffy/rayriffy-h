@@ -35,8 +35,8 @@ export const BlurredImage: FunctionComponent<Props> = ({
         loading="lazy"
         decoding="async"
         {...{
-          width,
-          height,
+          width: width > 0 ? width : undefined,
+          height: height > 0 ? height : undefined,
           alt,
           className: [className, safemode ? "blur-sm [clip-path:inset(0)]" : ""]
             .filter(Boolean)
