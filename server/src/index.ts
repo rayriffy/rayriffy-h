@@ -154,13 +154,16 @@ const server = new Elysia()
       const cacheKeys = [query.dataSource, query.url, query.format, query.type];
 
       const cachedImage = await cache.read<Buffer>(cacheKeys);
-      if (cachedImage !== null)
-        return new Response(Buffer.from(cachedImage.data), {
+      if (cachedImage !== null) {
+        const image = Buffer.from(cachedImage.data);
+        const { format } = await new Bun.Image(image).metadata();
+        return new Response(image, {
           headers: {
-            "Content-Type": `image/${query.format}`,
+            "Content-Type": format === "gif" ? "image/gif" : `image/${query.format}`,
             "Cache-Control": "public, max-age=86400000",
           },
         });
+      }
 
       const dataSource = config.dataSources.find((o) => o.key === query.dataSource);
       if (dataSource === undefined) throw new Error(`data source ${query.dataSource} not found`);
@@ -168,7 +171,23 @@ const server = new Elysia()
       const image = await dataSource.getImage({
         url: query.url,
       });
-      const fetchedImage = new Bun.Image(image).resize(query.type === "cover" ? 640 : 1280);
+      const fetchedImage = new Bun.Image(image);
+      if ((await fetchedImage.metadata()).format === "gif") {
+        await cache.write(
+          cacheKeys,
+          image,
+          86_400_000, // 1 month
+        );
+        return new Response(image, {
+          headers: {
+            "Content-Type": "image/gif",
+            "Cache-Control": "public, max-age=86400",
+            "CDN-Cache-Control": "public, max-age=2592000",
+            "Cloudflare-CDN-Cache-Control": "public, max-age=2592000",
+          },
+        });
+      }
+      fetchedImage.resize(query.type === "cover" ? 640 : 1280);
 
       // if query.format is webp, then convert to webp
       if (query.format === "webp")
