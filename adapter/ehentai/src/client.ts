@@ -16,8 +16,12 @@ const defaultUserAgent =
 const exHentaiCookies = ["ipb_member_id", "ipb_pass_hash", "igneous"] as const;
 
 const galleryMetadataLimit = 25;
+const galleryPageRequests = pThrottle({
+  limit: 10,
+  interval: 1_000,
+});
 const imagePageRequests = pThrottle({
-  limit: 20,
+  limit: 25,
   interval: 1_000,
 });
 
@@ -134,10 +138,15 @@ export class EhentaiClient {
 
   async getGallery({ id }: Parameters<DataSource["getGallery"]>) {
     const reference = parseReference(id);
-    const metadata = (await this.getMetadata([reference]))[0];
+    const galleryUrl = new URL(`/g/${reference.gid}/${reference.token}/`, `${this.baseUrl}/`);
+    const [metadataResult, firstGalleryPage] = await Promise.all([
+      this.getMetadata([reference]),
+      this.fetchText(galleryUrl),
+    ]);
+    const metadata = metadataResult[0];
     if (!metadata) throw new Error(`Gallery not found: ${id}`);
 
-    const imagePages = await this.getGalleryImagePages(metadata);
+    const imagePages = await this.getGalleryImagePages(metadata, firstGalleryPage);
     const pages = await Promise.all(
       imagePages.map(({ order, url }) =>
         imagePageRequests(async () => {
@@ -210,19 +219,24 @@ export class EhentaiClient {
     return response.gmetadata?.filter((metadata) => !("error" in metadata)) ?? [];
   }
 
-  private async getGalleryImagePages(metadata: GalleryMetadata) {
+  private async getGalleryImagePages(metadata: GalleryMetadata, firstGalleryPage: string) {
     const fileCount = Number(metadata.filecount);
     const maximumPages = Math.max(1, Math.ceil(fileCount / 10));
+    const galleryPages = await Promise.all(
+      Array.from({ length: maximumPages }, (_, page) => {
+        if (page === 0) return firstGalleryPage;
+
+        const url = new URL(`/g/${metadata.gid}/${metadata.token}/`, `${this.baseUrl}/`);
+        url.searchParams.set("p", String(page));
+        return galleryPageRequests(() => this.fetchText(url))();
+      }),
+    );
     const imagePages = new Map<number, string>();
-
-    for (let page = 0; page < maximumPages && imagePages.size < fileCount; page++) {
-      const url = new URL(`/g/${metadata.gid}/${metadata.token}/`, `${this.baseUrl}/`);
-      if (page > 0) url.searchParams.set("p", String(page));
-
-      const parsed = parseGalleryImagePages(await this.fetchText(url), this.baseUrl);
-      if (parsed.length === 0) break;
-      parsed.forEach(({ order, url: imagePageUrl }) => imagePages.set(order, imagePageUrl));
-    }
+    galleryPages.forEach((galleryPage) => {
+      parseGalleryImagePages(galleryPage, this.baseUrl).forEach(({ order, url }) => {
+        imagePages.set(order, url);
+      });
+    });
 
     if (imagePages.size !== fileCount) {
       throw new Error(`Unable to resolve every image page for gallery ${metadata.gid}`);
