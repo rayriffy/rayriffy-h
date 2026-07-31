@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { DownloadIcon, UploadIcon, AlertCircleIcon, CopyIcon, CheckCircleIcon } from "lucide-react";
+import { useServersAtom } from "modules/atoms/serversAtom";
 import { useExportCollection, useImportCollection } from "./useCollectionSync";
 
 export const CollectionSync = () => {
+  const servers = useServersAtom();
   const exportMutation = useExportCollection();
   const importMutation = useImportCollection();
+  const hasServers = servers.length > 0;
 
   const [exportConfirmOpen, setExportConfirmOpen] = useState(false);
   const [shareCode, setShareCode] = useState<string | null>(null);
@@ -60,7 +63,11 @@ export const CollectionSync = () => {
           </div>
 
           <div className="flex gap-4">
-            <button className="btn btn-outline" onClick={() => setExportConfirmOpen(true)}>
+            <button
+              className="btn btn-outline"
+              onClick={() => setExportConfirmOpen(true)}
+              disabled={!hasServers}
+            >
               <UploadIcon className="w-4 h-4 mr-2" />
               Export Collection
             </button>
@@ -72,11 +79,15 @@ export const CollectionSync = () => {
                 setImportSuccessCount(null);
                 setImportCode("");
               }}
+              disabled={!hasServers}
             >
               <DownloadIcon className="w-4 h-4 mr-2" />
               Import Collection
             </button>
           </div>
+          {!hasServers && (
+            <p className="text-sm text-base-content/60">Add a server to enable collection sync.</p>
+          )}
         </div>
       </div>
 
