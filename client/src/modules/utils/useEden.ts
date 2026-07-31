@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { treaty } from "@elysiajs/eden";
+import { treaty } from "@elysia/eden";
 import type { Server } from "@riffyh/server";
 import { useActiveServer } from "./useActiveServer";
 import { decode as decodeToon } from "@toon-format/toon/packages/toon/src";

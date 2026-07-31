@@ -16,7 +16,7 @@ import {
   updateServer,
 } from "modules/atoms/serversAtom";
 import { ServerModal } from "./ServerModal";
-import { treaty } from "@elysiajs/eden";
+import { treaty } from "@elysia/eden";
 import type { Server as AppServer } from "@riffyh/server";
 import type { Server } from "modules/types/Server";
 
@@ -49,7 +49,7 @@ export const Servers = () => {
 
       if (error) {
         setRefreshError(
-          `Failed to refresh data sources: ${error.status} ${JSON.stringify(error.value)}`,
+          `Failed to refresh data sources: ${error.status.toString()} ${JSON.stringify(error.value)}`,
         );
       } else if (data) {
         updateServer(index, {

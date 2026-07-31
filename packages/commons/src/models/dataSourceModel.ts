@@ -1,6 +1,6 @@
-import { Type as t, type Static } from "@sinclair/typebox";
-import { listingResultModel } from "./listingResultModel";
-import { galleryModel } from "./galleryModel";
+import { Type as t, type Static } from "typebox";
+import type { ListingResult } from "./listingResultModel";
+import type { Gallery } from "./galleryModel";
 
 export const dataSourceModel = t.Object({
   key: t.String(),
@@ -13,7 +13,9 @@ export const dataSourceModel = t.Object({
         page: t.Integer(),
       }),
     ],
-    t.Promise(listingResultModel),
+    t.Unsafe<Promise<ListingResult>>({
+      type: "promise_listingResult",
+    }),
   ),
   getTagListing: t.Function(
     [
@@ -22,7 +24,9 @@ export const dataSourceModel = t.Object({
         page: t.Integer(),
       }),
     ],
-    t.Promise(listingResultModel),
+    t.Unsafe<Promise<ListingResult>>({
+      type: "promise_listingResult",
+    }),
   ),
   getGallery: t.Function(
     [
@@ -30,7 +34,9 @@ export const dataSourceModel = t.Object({
         id: t.String(),
       }),
     ],
-    t.Promise(galleryModel),
+    t.Unsafe<Promise<Gallery>>({
+      type: "promise_gallery",
+    }),
   ),
   getImage: t.Function(
     [
@@ -38,7 +44,9 @@ export const dataSourceModel = t.Object({
         url: t.String(),
       }),
     ],
-    t.Promise(t.Unsafe<Buffer>()),
+    t.Unsafe<Buffer>({
+      type: "buffer",
+    }),
   ),
 });
 

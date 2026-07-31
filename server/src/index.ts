@@ -1,9 +1,9 @@
 #!/usr/bin/env bun
 
 import { t, Elysia } from "elysia";
-import { swagger } from "@elysiajs/swagger";
-import { cors } from "@elysiajs/cors";
-import { toon } from "@toon-tools/elysia";
+// import { swagger } from "@elysia/swagger";
+import { cors } from "@elysia/cors";
+import { toon } from "./toon";
 
 import { defineCacheInstance } from "@rayriffy/filesystem";
 import { galleryModel, listingResultModel, type Config } from "@riffyh/commons";
@@ -44,23 +44,17 @@ const dataSourceKeys = t.Union(config.dataSources.map((o) => t.Literal(o.key)));
 const isStoreExist = config.dataSources.find((dataSource) => dataSource.key === "store");
 
 const server = new Elysia()
-  .use(
-    swagger({
-      exclude: ["/_image"],
-    }),
-  )
+  // .use(
+  //   swagger({
+  //     exclude: ["/_image"],
+  //   }),
+  // )
   .use(toon())
   .use(cors())
   .get("/", ({ redirect }) => redirect("/swagger"))
   .get("/health", () => "healthy")
   .get(
     "/dataSources",
-    () =>
-      config.dataSources.map((o) => ({
-        key: o.key,
-        name: o.name,
-        iconUrl: o.iconUrl,
-      })),
     {
       response: t.Array(
         t.Object({
@@ -70,9 +64,22 @@ const server = new Elysia()
         }),
       ),
     },
+    () =>
+      config.dataSources.map((o) => ({
+        key: o.key,
+        name: o.name,
+        iconUrl: o.iconUrl,
+      })),
   )
   .get(
     "/gallery",
+    {
+      query: t.Object({
+        id: t.String(),
+        dataSource: dataSourceKeys,
+      }),
+      response: galleryModel,
+    },
     async ({ query }) => {
       if (isStoreExist) {
         const storeDataSource = config.dataSources.find((o) => o.key === "store")!;
@@ -92,16 +99,17 @@ const server = new Elysia()
         id: query.id,
       });
     },
-    {
-      query: t.Object({
-        id: t.String(),
-        dataSource: dataSourceKeys,
-      }),
-      response: galleryModel,
-    },
   )
   .get(
     "/listing",
+    {
+      query: t.Object({
+        query: t.Optional(t.String()),
+        page: t.Number(),
+        dataSource: dataSourceKeys,
+      }),
+      response: listingResultModel,
+    },
     async ({ query }) => {
       const dataSource = config.dataSources.find((o) => o.key === query.dataSource);
       if (dataSource === undefined) throw new Error(`data source ${query.dataSource} not found`);
@@ -111,17 +119,17 @@ const server = new Elysia()
         page: query.page,
       });
     },
+  )
+  .get(
+    "/tag",
     {
       query: t.Object({
-        query: t.Optional(t.String()),
+        id: t.String(),
         page: t.Number(),
         dataSource: dataSourceKeys,
       }),
       response: listingResultModel,
     },
-  )
-  .get(
-    "/tag",
     async ({ query }) => {
       const dataSource = config.dataSources.find((o) => o.key === query.dataSource);
       if (dataSource === undefined) throw new Error(`data source ${query.dataSource} not found`);
@@ -131,25 +139,33 @@ const server = new Elysia()
         page: query.page,
       });
     },
+  )
+  .post(
+    "/collection/export",
+    {
+      body: t.String(),
+    },
+    ({ body }) => upload(body, config.secretboxKey),
+  )
+  .get(
+    "/collection/import",
     {
       query: t.Object({
-        id: t.String(),
-        page: t.Number(),
-        dataSource: dataSourceKeys,
+        key: t.String(),
       }),
-      response: listingResultModel,
     },
+    async ({ query }) => download(query.key, config.secretboxKey),
   )
-  .post("/collection/export", ({ body }) => upload(body, config.secretboxKey), {
-    body: t.String(),
-  })
-  .get("/collection/import", async ({ query }) => download(query.key, config.secretboxKey), {
-    query: t.Object({
-      key: t.String(),
-    }),
-  })
   .get(
     "/image",
+    {
+      query: t.Object({
+        url: t.String(),
+        format: t.Union([t.Literal("webp"), t.Literal("jpeg")]),
+        type: t.Union([t.Literal("cover"), t.Literal("page")]),
+        dataSource: dataSourceKeys,
+      }),
+    },
     async ({ query }) => {
       const cacheKeys = [query.dataSource, query.url, query.format, query.type];
 
@@ -196,14 +212,6 @@ const server = new Elysia()
           "Cloudflare-CDN-Cache-Control": "public, max-age=2592000",
         },
       });
-    },
-    {
-      query: t.Object({
-        url: t.String(),
-        format: t.Union([t.Literal("webp"), t.Literal("jpeg")]),
-        type: t.Union([t.Literal("cover"), t.Literal("page")]),
-        dataSource: dataSourceKeys,
-      }),
     },
   )
   .listen({

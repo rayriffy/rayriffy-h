@@ -6,5 +6,7 @@ export default defineConfig({
   dts: true,
   sourcemap: true,
   clean: true,
-  external: ["@sinclair/typebox", "lodash"],
+  deps: {
+    neverBundle: ["typebox", "lodash"],
+  },
 });
