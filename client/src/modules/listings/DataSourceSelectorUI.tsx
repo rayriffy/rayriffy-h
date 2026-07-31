@@ -26,7 +26,7 @@ export const DataSourceSelectorUI: FunctionComponent<Props> = ({
       <div className="scroll-inner">
         {dataSources.map((dataSource) => (
           <button
-            className={`chip-input ${dataSource.key === activeKey ? "active" : ""}`.trim()}
+            className={`chip-input shrink-0 ${dataSource.key === activeKey ? "active" : ""}`.trim()}
             key={`dataSource-${dataSource.key}`}
             onClick={() => onSelect(dataSource.key)}
           >
