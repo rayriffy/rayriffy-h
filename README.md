@@ -79,6 +79,7 @@ We currently provide the following officially supported data source adapters:
 
 - [`@riffyh/adapter-nhentai`](./adapter/nhentai/)
 - [`@riffyh/adapter-niyaniya`](./adapter/niyaniya/)
+- [`@riffyh/adapter-ehentai`](./adapter/ehentai/)
 - [`@riffyh/adapter-store`](./adapter/store/)
 
 Beyond these, you can easily create your own data source by writing a custom adapter that satisfies the [`DataSource`](./commons/src/models/dataSourceModel.ts) interface. This allows you to integrate essentially any data source into your server.

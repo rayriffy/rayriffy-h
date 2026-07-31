@@ -1,0 +1,32 @@
+{
+  "name": "@riffyh/adapter-ehentai",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rayriffy/rayriffy-h.git"
+  },
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "type": "module",
+  "main": "dist/index.mjs",
+  "types": "dist/index.d.mts",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "@riffyh/commons": "workspace:*",
+    "cheerio": "1.2.0",
+    "p-throttle": "8.1.0"
+  },
+  "devDependencies": {
+    "tsdown": "0.22.3"
+  }
+}

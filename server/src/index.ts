@@ -165,11 +165,10 @@ const server = new Elysia()
       const dataSource = config.dataSources.find((o) => o.key === query.dataSource);
       if (dataSource === undefined) throw new Error(`data source ${query.dataSource} not found`);
 
-      const fetchedImage = new Bun.Image(
-        await dataSource.getImage({
-          url: query.url,
-        }),
-      ).resize(query.type === "cover" ? 640 : 1280);
+      const image = await dataSource.getImage({
+        url: query.url,
+      });
+      const fetchedImage = new Bun.Image(image).resize(query.type === "cover" ? 640 : 1280);
 
       // if query.format is webp, then convert to webp
       if (query.format === "webp")
