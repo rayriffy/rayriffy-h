@@ -7,6 +7,7 @@
     "start:internal": "bun ../server/src/index.ts"
   },
   "dependencies": {
+    "@riffyh/adapter-ehentai": "workspace:*",
     "@riffyh/adapter-nhentai": "workspace:*",
     "@riffyh/adapter-niyaniya": "workspace:*",
     "@riffyh/adapter-store": "workspace:*",

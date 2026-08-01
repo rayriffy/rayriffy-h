@@ -9,6 +9,7 @@ import { defineCacheInstance } from "@rayriffy/filesystem";
 import { galleryModel, listingResultModel, type Config } from "@riffyh/commons";
 import debug from "debug";
 import path from "node:path";
+import sharp from "sharp";
 import { download, upload } from "./bytebin";
 import { secretbox, randomBytes } from "tweetnacl";
 import { encodeBase64, decodeBase64 } from "tweetnacl-util";
@@ -173,6 +174,27 @@ const server = new Elysia()
       });
       const fetchedImage = new Bun.Image(image);
       if ((await fetchedImage.metadata()).format === "gif") {
+        if (query.format === "webp") {
+          const resizedImage = await sharp(image, { animated: true })
+            .resize({
+              width: query.type === "cover" ? 640 : 1280,
+            })
+            .webp({ quality: 72 })
+            .toBuffer();
+          await cache.write(
+            cacheKeys,
+            resizedImage,
+            86_400_000, // 1 month
+          );
+          return new Response(resizedImage, {
+            headers: {
+              "Content-Type": "image/webp",
+              "Cache-Control": "public, max-age=86400",
+              "CDN-Cache-Control": "public, max-age=2592000",
+              "Cloudflare-CDN-Cache-Control": "public, max-age=2592000",
+            },
+          });
+        }
         await cache.write(
           cacheKeys,
           image,

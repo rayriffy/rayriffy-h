@@ -1,6 +1,7 @@
 import { nhentai } from "@riffyh/adapter-nhentai";
 import { niyaniya } from "@riffyh/adapter-niyaniya";
 import { store } from "@riffyh/adapter-store";
+import { ehentai, exhentai } from "@riffyh/adapter-ehentai"
 
 import { nhentaiStore } from "./store/nhentai";
 
@@ -11,9 +12,14 @@ const config: Config = {
   dataSources: [
     nhentai(),
     niyaniya({
-      crt: "2c483e82-b4c6-4b5a-be43-e0873da715b7",
-      userAgent:
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:152.0) Gecko/20100101 Firefox/152.0",
+      crt: Bun.env.NIYANIYA_CRT!,
+      userAgent: Bun.env.NIYANIYA_USER_AGENT!,
+    }),
+    ehentai(),
+    exhentai({
+      ipb_member_id: Bun.env.EHENTAI_IPB_MEMBER_ID!,
+      ipb_pass_hash: Bun.env.EHENTAI_IPB_PASS_HASH!,
+      igneous: Bun.EHENTAI_IGNEOUS!,
     }),
     store({
       mongoDBUri: Bun.env.MONGODB_URI!,

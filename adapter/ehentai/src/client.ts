@@ -136,7 +136,7 @@ export class EhentaiClient {
     });
   }
 
-  async getGallery({ id }: Parameters<DataSource["getGallery"]>) {
+  async getGallery({ id }: Parameters<DataSource["getGallery"]>[0]) {
     const reference = parseReference(id);
     const galleryUrl = new URL(`/g/${reference.gid}/${reference.token}/`, `${this.baseUrl}/`);
     const [metadataResult, firstGalleryPage] = await Promise.all([
@@ -174,7 +174,7 @@ export class EhentaiClient {
     } satisfies Gallery;
   }
 
-  async getImage({ url }: Parameters<DataSource["getImage"]>) {
+  async getImage({ url }: Parameters<DataSource["getImage"]>[0]) {
     const response = await fetch(url, {
       headers: {
         Referer: `${this.baseUrl}/`,
