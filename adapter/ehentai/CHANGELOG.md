@@ -1,5 +1,13 @@
 # @riffyh/adapter-ehentai
 
+## 1.0.3
+
+### Patch Changes
+
+- f32c149: fix publishing issue regarding to version resolution
+- Updated dependencies [f32c149]
+  - @riffyh/commons@2.2.2
+
 ## 1.0.2
 
 ### Patch Changes
