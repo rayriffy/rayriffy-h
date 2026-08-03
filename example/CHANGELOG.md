@@ -1,5 +1,19 @@
 # @riffyh/example
 
+## 1.0.2
+
+### Patch Changes
+
+- f32c149: fix publishing issue regarding to version resolution
+- Updated dependencies [f32c149]
+  - @riffyh/adapter-ehentai@1.0.3
+  - @riffyh/adapter-nhentai@1.2.4
+  - @riffyh/adapter-niyaniya@1.2.3
+  - @riffyh/adapter-store@1.2.7
+  - @riffyh/commons@2.2.2
+  - @riffyh/execute@1.0.9
+  - @riffyh/server@1.2.6
+
 ## 1.0.1
 
 ### Patch Changes
