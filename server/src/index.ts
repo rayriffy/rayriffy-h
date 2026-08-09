@@ -6,7 +6,16 @@ import { cors } from "@elysiajs/cors";
 import { toon } from "@toon-tools/elysia";
 
 import { defineCacheInstance } from "@rayriffy/filesystem";
-import { galleryModel, listingResultModel, type Config } from "@riffyh/commons";
+import {
+  galleryModel,
+  galleryPageResultModel,
+  galleryResultModel,
+  getFullGallery,
+  getGalleryPage,
+  listingResultModel,
+  type Config,
+  type DataSource,
+} from "@riffyh/commons";
 import debug from "debug";
 import path from "node:path";
 import sharp from "sharp";
@@ -44,6 +53,20 @@ log(`loaded configuration with ${config.dataSources.length} data sources`);
 const dataSourceKeys = t.Union(config.dataSources.map((o) => t.Literal(o.key)));
 const isStoreExist = config.dataSources.find((dataSource) => dataSource.key === "store");
 
+const withGallerySource = async <T>(
+  query: { id: string; dataSource: string },
+  resolve: (dataSource: DataSource, id: string) => Promise<T>,
+) => {
+  if (isStoreExist) {
+    const stored = await resolve(isStoreExist, `${query.dataSource};${query.id}`).catch(() => null);
+    if (stored !== null) return stored;
+  }
+
+  const dataSource = config.dataSources.find((candidate) => candidate.key === query.dataSource);
+  if (!dataSource) throw new Error(`data source ${query.dataSource} not found`);
+  return resolve(dataSource, query.id);
+};
+
 const server = new Elysia()
   .use(
     swagger({
@@ -72,33 +95,42 @@ const server = new Elysia()
       ),
     },
   )
+  .get("/gallery", ({ query }) => withGallerySource(query, getFullGallery), {
+    query: t.Object({
+      id: t.String(),
+      dataSource: dataSourceKeys,
+    }),
+    response: galleryModel,
+  })
   .get(
-    "/gallery",
-    async ({ query }) => {
-      if (isStoreExist) {
-        const storeDataSource = config.dataSources.find((o) => o.key === "store")!;
-        const gallery = await storeDataSource
-          .getGallery({
-            id: `${query.dataSource};${query.id}`,
-          })
-          .catch(() => null);
-
-        if (gallery !== null) return gallery;
-      }
-
-      const dataSource = config.dataSources.find((o) => o.key === query.dataSource);
-      if (dataSource === undefined) throw new Error(`data source ${query.dataSource} not found`);
-
-      return dataSource.getGallery({
-        id: query.id,
-      });
-    },
+    "/gallery/initial",
+    ({ query }) => withGallerySource(query, (dataSource, id) => dataSource.getGallery({ id })),
     {
       query: t.Object({
         id: t.String(),
         dataSource: dataSourceKeys,
       }),
-      response: galleryModel,
+      response: galleryResultModel,
+    },
+  )
+  .get(
+    "/gallery/pages",
+    ({ query }) =>
+      withGallerySource(query, (dataSource, id) =>
+        getGalleryPage(dataSource, {
+          id,
+          offset: query.offset,
+          limit: query.limit,
+        }),
+      ),
+    {
+      query: t.Object({
+        id: t.String(),
+        dataSource: dataSourceKeys,
+        offset: t.Integer({ minimum: 0 }),
+        limit: t.Integer({ minimum: 1, maximum: 100 }),
+      }),
+      response: galleryPageResultModel,
     },
   )
   .get(

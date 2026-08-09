@@ -12,6 +12,7 @@ const createDataSource = (host: "e-hentai.org" | "exhentai.org", options?: Optio
     name,
     iconUrl: "https://e-hentai.org/favicon.ico",
     getGallery: (payload) => client.getGallery(payload),
+    getGalleryPages: (payload) => client.getGalleryPages(payload),
     getImage: (payload) => client.getImage(payload),
     getListing: (payload) => client.getListing(payload),
     getTagListing: (payload) => client.getTagListing(payload),

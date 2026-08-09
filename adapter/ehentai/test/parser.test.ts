@@ -64,13 +64,9 @@ test("requires complete browser-session values for ExHentai", () => {
   ).toBe("ex");
 });
 
-test("starts gallery metadata and its first listing page together", async () => {
+test("returns gallery metadata before resolving paginated image pages", async () => {
   const originalFetch = globalThis.fetch;
   const requests: string[] = [];
-  let resolveMetadata!: (response: Response) => void;
-  const metadataResponse = new Promise<Response>((resolve) => {
-    resolveMetadata = resolve;
-  });
   const galleryPage = (from: number, to: number) =>
     `<div id="gdt">${Array.from(
       { length: to - from + 1 },
@@ -81,26 +77,8 @@ test("starts gallery metadata and its first listing page together", async () => 
   globalThis.fetch = async (input) => {
     const url = new URL(String(input));
     requests.push(url.toString());
-    if (url.pathname === "/api.php") return metadataResponse;
-    if (url.pathname === "/g/1/token/") {
-      return new Response(url.searchParams.has("p") ? galleryPage(11, 11) : galleryPage(1, 10));
-    }
-    if (url.pathname.startsWith("/s/")) {
-      return new Response(`<div id="i3"><img src="https://img.example/${url.pathname}.jpg"></div>`);
-    }
-    throw new Error(`Unexpected request: ${url}`);
-  };
-
-  try {
-    const client = new EhentaiClient("e-hentai.org");
-    const gallery = client.getGallery({ id: "1.token" });
-    await Promise.resolve();
-
-    expect(requests).toContain("https://e-hentai.org/api.php");
-    expect(requests).toContain("https://e-hentai.org/g/1/token/");
-
-    resolveMetadata(
-      new Response(
+    if (url.pathname === "/api.php") {
+      return new Response(
         JSON.stringify({
           gmetadata: [
             {
@@ -114,12 +92,40 @@ test("starts gallery metadata and its first listing page together", async () => 
             },
           ],
         }),
-      ),
-    );
+      );
+    }
+    if (url.pathname === "/g/1/token/") {
+      return new Response(url.searchParams.has("p") ? galleryPage(11, 11) : galleryPage(1, 10));
+    }
+    if (url.pathname.startsWith("/s/")) {
+      return new Response(`<div id="i3"><img src="https://img.example/${url.pathname}.jpg"></div>`);
+    }
+    throw new Error(`Unexpected request: ${url}`);
+  };
 
-    const result = await gallery;
-    expect(result.pages).toHaveLength(11);
+  try {
+    const client = new EhentaiClient("e-hentai.org");
+    const gallery = await client.getGallery({ id: "1.token" });
+
+    expect(gallery).toMatchObject({ id: "1.token", pageCount: 11 });
+    expect(gallery.tags).toContainEqual(
+      expect.objectContaining({ id: "category:misc", name: "Misc" }),
+    );
+    expect("pages" in gallery).toBe(false);
+    expect(requests).toEqual(["https://e-hentai.org/api.php"]);
+
+    const firstPage = await client.getGalleryPages({ id: "1.token", offset: 0, limit: 10 });
+    expect(firstPage.pages).toHaveLength(10);
+    expect(firstPage.nextOffset).toBe(10);
+    expect(requests).toContain("https://e-hentai.org/g/1/token/");
+
+    const secondPage = await client.getGalleryPages({ id: "1.token", offset: 10, limit: 10 });
+    expect(secondPage.pages).toHaveLength(1);
+    expect(secondPage.nextOffset).toBeNull();
     expect(requests).toContain("https://e-hentai.org/g/1/token/?p=1");
+    expect(requests.filter((request) => request === "https://e-hentai.org/api.php")).toHaveLength(
+      1,
+    );
   } finally {
     globalThis.fetch = originalFetch;
   }

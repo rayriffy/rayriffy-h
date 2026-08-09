@@ -2,7 +2,7 @@ import task from "tasuku";
 import mongoose from "mongoose";
 import { GalleryModel } from "@riffyh/database";
 
-import type { Config, Store, DataSource } from "@riffyh/commons";
+import { getFullGallery, type Config, type Store, type DataSource } from "@riffyh/commons";
 
 export const sync = async (config: Config) => {
   if (process.env.MONGODB_URI === undefined) throw new Error("mongo url not provided");
@@ -44,10 +44,10 @@ const storeIterator = async (store: Store, dataSources: DataSource[]) =>
       setTitle(`${dataSource.name} ${successCount} / ${totalCount} (${failedCount} failed)`);
     updateTitle();
 
-    // 3. from those list do a foreach await loop to get gallery data via dataSource.getGallery()
+    // 3. fetch a complete gallery, aggregating progressive adapters when needed
     for (const id of missingIds) {
       try {
-        const { language, ...gallery } = await dataSource.getGallery({ id });
+        const { language, ...gallery } = await getFullGallery(dataSource, id);
 
         // 4. if call is success, use mongoose to push to db. otherwise log item as failed
         await GalleryModel.create({

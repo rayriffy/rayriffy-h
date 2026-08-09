@@ -18,4 +18,28 @@ export const galleryModel = t.Object({
   tags: t.Array(tagModel),
 });
 
+export const galleryMetadataModel = t.Intersect([
+  t.Omit(galleryModel, ["pages"]),
+  t.Object({
+    pageCount: t.Integer({ minimum: 0 }),
+  }),
+]);
+
+export const galleryResultModel = t.Union([galleryModel, galleryMetadataModel]);
+
+export const galleryPageRequestModel = t.Object({
+  id: t.String(),
+  offset: t.Integer({ minimum: 0 }),
+  limit: t.Integer({ minimum: 1, maximum: 100 }),
+});
+
+export const galleryPageResultModel = t.Object({
+  pages: t.Array(orderedImageModel),
+  nextOffset: t.Union([t.Integer({ minimum: 0 }), t.Null()]),
+});
+
 export type Gallery = Static<typeof galleryModel>;
+export type GalleryMetadata = Static<typeof galleryMetadataModel>;
+export type GalleryResult = Static<typeof galleryResultModel>;
+export type GalleryPageRequest = Static<typeof galleryPageRequestModel>;
+export type GalleryPageResult = Static<typeof galleryPageResultModel>;

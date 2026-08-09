@@ -1,10 +1,10 @@
 import { MinusIcon, PlusIcon } from "lucide-react";
 import { useCallback, type FunctionComponent } from "react";
 import { collectionsAtom, useCollectionsAtom } from "modules/atoms/collectionsAtom";
-import type { Gallery } from "@riffyh/commons";
+import type { GalleryResult } from "@riffyh/commons";
 
 interface Props {
-  gallery: Gallery;
+  gallery: GalleryResult;
 }
 
 export const Favorite: FunctionComponent<Props> = ({ gallery }) => {

@@ -1,6 +1,10 @@
 import { Type as t, type Static } from "@sinclair/typebox";
 import { listingResultModel } from "./listingResultModel";
-import { galleryModel } from "./galleryModel";
+import {
+  galleryPageRequestModel,
+  galleryPageResultModel,
+  galleryResultModel,
+} from "./galleryModel";
 
 export const dataSourceModel = t.Object({
   key: t.String(),
@@ -30,7 +34,10 @@ export const dataSourceModel = t.Object({
         id: t.String(),
       }),
     ],
-    t.Promise(galleryModel),
+    t.Promise(galleryResultModel),
+  ),
+  getGalleryPages: t.Optional(
+    t.Function([galleryPageRequestModel], t.Promise(galleryPageResultModel)),
   ),
   getImage: t.Function(
     [

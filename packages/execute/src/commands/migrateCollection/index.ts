@@ -1,4 +1,4 @@
-import type { Config, Gallery } from "@riffyh/commons";
+import { getFullGallery, type Config, type Gallery } from "@riffyh/commons";
 import fs from "node:fs/promises";
 import type { OldCollection } from "./OldCollection";
 import task from "tasuku";
@@ -60,11 +60,9 @@ export const migrateCollection = async (
       }
 
       if (!success) {
-        const nhGallery = await nhentaiAdapter
-          .getGallery({
-            id: oldItem.id.toString(),
-          })
-          .catch(() => null);
+        const nhGallery = await getFullGallery(nhentaiAdapter, oldItem.id.toString()).catch(
+          () => null,
+        );
 
         if (nhGallery !== null) {
           const { pages: _pages, ...galleryWithoutPages } = nhGallery;

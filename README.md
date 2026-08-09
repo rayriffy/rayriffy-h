@@ -82,6 +82,15 @@ We currently provide the following officially supported data source adapters:
 - [`@riffyh/adapter-ehentai`](./adapter/ehentai/)
 - [`@riffyh/adapter-store`](./adapter/store/)
 
-Beyond these, you can easily create your own data source by writing a custom adapter that satisfies the [`DataSource`](./commons/src/models/dataSourceModel.ts) interface. This allows you to integrate essentially any data source into your server.
+Beyond these, you can easily create your own data source by writing a custom adapter that satisfies the [`DataSource`](./packages/commons/src/models/dataSourceModel.ts) interface. This allows you to integrate essentially any data source into your server.
+
+### Gallery loading protocol
+
+`getGallery({ id })` supports two response shapes:
+
+- Return a complete `Gallery` with `pages` when the upstream source already provides everything in one request.
+- Return `GalleryMetadata` with `pageCount` for a progressive source, and also implement `getGalleryPages({ id, offset, limit })`. Page results contain ordered `pages` and a nullable `nextOffset`.
+
+The server keeps `GET /gallery` as the complete-gallery compatibility endpoint. The web reader uses `GET /gallery/initial` followed by `GET /gallery/pages` only when the adapter returns metadata. `getFullGallery` from `@riffyh/commons` is available to command-line or storage consumers that always need a complete gallery.
 
 We welcome contributions to this project! If you create a custom data source adapter, feel free to submit a pull request to have your package listed as a community-supported data source.

@@ -19,7 +19,7 @@ const config: Config = {
     exhentai({
       ipb_member_id: Bun.env.EHENTAI_IPB_MEMBER_ID!,
       ipb_pass_hash: Bun.env.EHENTAI_IPB_PASS_HASH!,
-      igneous: Bun.EHENTAI_IGNEOUS!,
+      igneous: Bun.env.EHENTAI_IGNEOUS!,
     }),
     store({
       mongoDBUri: Bun.env.MONGODB_URI!,

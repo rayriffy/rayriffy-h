@@ -35,3 +35,7 @@ export default config;
 2. Open DevTools, inspect the cookies for `https://exhentai.org`, then copy the **Value** for `ipb_member_id`, `ipb_pass_hash`, and `igneous` into the options above.
 
 Treat the three values as passwords: keep the config file outside Git or ignored.
+
+## Progressive gallery loading
+
+The adapter returns title, cover, tags, language, and page count from `getGallery` without resolving every image page. `getGalleryPages` then resolves only the requested offset/limit window. The web reader requests these windows as the reader approaches them, while complete-gallery callers remain supported through the server and `getFullGallery` compatibility helper.

@@ -1,4 +1,11 @@
-import { TagType, type DataSource, type Gallery, type ListingResult } from "@riffyh/commons";
+import {
+  TagType,
+  type DataSource,
+  type GalleryMetadata as GalleryMetadataResult,
+  type GalleryPageRequest,
+  type GalleryPageResult,
+  type ListingResult,
+} from "@riffyh/commons";
 import pThrottle from "p-throttle";
 
 import { getLanguage } from "./language";
@@ -16,6 +23,8 @@ const defaultUserAgent =
 const exHentaiCookies = ["ipb_member_id", "ipb_pass_hash", "igneous"] as const;
 
 const galleryMetadataLimit = 25;
+const galleryMetadataCacheLimit = 100;
+const galleryMetadataCacheTtl = 5 * 60 * 1_000;
 const galleryPageRequests = pThrottle({
   limit: 10,
   interval: 1_000,
@@ -99,6 +108,10 @@ export class EhentaiClient {
   readonly cookie?: string;
   readonly host: GalleryHost;
   readonly userAgent: string;
+  private readonly galleryMetadataCache = new Map<
+    string,
+    { value: GalleryMetadata; expiresAt: number }
+  >();
 
   constructor(host: GalleryHost, options: Options = {}) {
     this.baseUrl = getBaseUrl(host);
@@ -138,15 +151,26 @@ export class EhentaiClient {
 
   async getGallery({ id }: Parameters<DataSource["getGallery"]>[0]) {
     const reference = parseReference(id);
-    const galleryUrl = new URL(`/g/${reference.gid}/${reference.token}/`, `${this.baseUrl}/`);
-    const [metadataResult, firstGalleryPage] = await Promise.all([
-      this.getMetadata([reference]),
-      this.fetchText(galleryUrl),
-    ]);
-    const metadata = metadataResult[0];
-    if (!metadata) throw new Error(`Gallery not found: ${id}`);
+    const metadata = await this.getSingleMetadata(reference);
 
-    const imagePages = await this.getGalleryImagePages(metadata, firstGalleryPage);
+    return this.toGalleryMetadata(metadata);
+  }
+
+  async getGalleryPages({ id, offset, limit }: GalleryPageRequest): Promise<GalleryPageResult> {
+    if (!Number.isInteger(offset) || offset < 0) {
+      throw new Error("Gallery page offset must be a non-negative integer");
+    }
+    if (!Number.isInteger(limit) || limit < 1 || limit > 100) {
+      throw new Error("Gallery page limit must be between 1 and 100");
+    }
+
+    const reference = parseReference(id);
+    const metadata = await this.getSingleMetadata(reference);
+    const pageCount = Number(metadata.filecount);
+    if (offset >= pageCount) return { pages: [], nextOffset: null };
+
+    const endOffset = Math.min(offset + limit, pageCount);
+    const imagePages = await this.getGalleryImagePages(reference, offset, endOffset);
     const pages = await Promise.all(
       imagePages.map(({ order, url }) =>
         imagePageRequests(async () => {
@@ -157,21 +181,9 @@ export class EhentaiClient {
     );
 
     return {
-      id: `${metadata.gid}.${metadata.token}`,
-      key: this.key,
-      title: {
-        display: metadata.title,
-        original: metadata.title_jpn ?? null,
-      },
-      cover: {
-        src: metadata.thumb,
-        width: 0,
-        height: 0,
-      },
-      language: getLanguage(metadata),
       pages,
-      tags: toTags(metadata, this.key),
-    } satisfies Gallery;
+      nextOffset: endOffset < pageCount ? endOffset : null,
+    };
   }
 
   async getImage({ url }: Parameters<DataSource["getImage"]>[0]) {
@@ -199,6 +211,26 @@ export class EhentaiClient {
     return responses.flat();
   }
 
+  private async getSingleMetadata(reference: GalleryReference) {
+    const id = `${reference.gid}.${reference.token}`;
+    const cached = this.galleryMetadataCache.get(id);
+    if (cached && cached.expiresAt > Date.now()) return cached.value;
+    if (cached) this.galleryMetadataCache.delete(id);
+
+    const metadata = (await this.getMetadata([reference]))[0];
+    if (!metadata) throw new Error(`Gallery not found: ${id}`);
+
+    if (this.galleryMetadataCache.size >= galleryMetadataCacheLimit) {
+      const oldest = this.galleryMetadataCache.keys().next().value;
+      if (oldest) this.galleryMetadataCache.delete(oldest);
+    }
+    this.galleryMetadataCache.set(id, {
+      value: metadata,
+      expiresAt: Date.now() + galleryMetadataCacheTtl,
+    });
+    return metadata;
+  }
+
   private async fetchMetadata(references: GalleryReference[]) {
     if (references.length === 0) return [];
 
@@ -219,15 +251,18 @@ export class EhentaiClient {
     return response.gmetadata?.filter((metadata) => !("error" in metadata)) ?? [];
   }
 
-  private async getGalleryImagePages(metadata: GalleryMetadata, firstGalleryPage: string) {
-    const fileCount = Number(metadata.filecount);
-    const maximumPages = Math.max(1, Math.ceil(fileCount / 10));
+  private async getGalleryImagePages(
+    reference: GalleryReference,
+    startOffset: number,
+    endOffset: number,
+  ) {
+    const firstGalleryPage = Math.floor(startOffset / 10);
+    const lastGalleryPage = Math.floor((endOffset - 1) / 10);
     const galleryPages = await Promise.all(
-      Array.from({ length: maximumPages }, (_, page) => {
-        if (page === 0) return firstGalleryPage;
-
-        const url = new URL(`/g/${metadata.gid}/${metadata.token}/`, `${this.baseUrl}/`);
-        url.searchParams.set("p", String(page));
+      Array.from({ length: lastGalleryPage - firstGalleryPage + 1 }, (_, index) => {
+        const page = firstGalleryPage + index;
+        const url = new URL(`/g/${reference.gid}/${reference.token}/`, `${this.baseUrl}/`);
+        if (page > 0) url.searchParams.set("p", String(page));
         return galleryPageRequests(() => this.fetchText(url))();
       }),
     );
@@ -238,13 +273,26 @@ export class EhentaiClient {
       });
     });
 
-    if (imagePages.size !== fileCount) {
-      throw new Error(`Unable to resolve every image page for gallery ${metadata.gid}`);
-    }
-
-    return [...imagePages.entries()]
+    const requestedImagePages = [...imagePages.entries()]
+      .filter(([order]) => order > startOffset && order <= endOffset)
       .map(([order, url]) => ({ order, url }))
       .sort((left, right) => left.order - right.order);
+
+    if (requestedImagePages.length !== endOffset - startOffset) {
+      throw new Error(
+        `Unable to resolve gallery pages ${startOffset + 1}-${endOffset} for ${reference.gid}`,
+      );
+    }
+
+    return requestedImagePages;
+  }
+
+  private toGalleryMetadata(metadata: GalleryMetadata): GalleryMetadataResult {
+    return {
+      ...this.toListingGallery(metadata),
+      pageCount: Number(metadata.filecount),
+      tags: toTags(metadata, this.key),
+    };
   }
 
   private toListingGallery(metadata: GalleryMetadata) {
