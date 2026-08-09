@@ -1,5 +1,12 @@
 # @riffyh/adapter-nhentai
 
+## 1.2.5
+
+### Patch Changes
+
+- Updated dependencies [a89ba05]
+  - @riffyh/commons@3.0.0
+
 ## 1.2.4
 
 ### Patch Changes

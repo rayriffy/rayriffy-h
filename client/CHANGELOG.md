@@ -1,5 +1,12 @@
 # @riffyh/client
 
+## 0.0.3
+
+### Patch Changes
+
+- Updated dependencies [a89ba05]
+  - @riffyh/commons@3.0.0
+
 ## 0.0.2
 
 ### Patch Changes

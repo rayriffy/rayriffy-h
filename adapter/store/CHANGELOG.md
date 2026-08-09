@@ -1,5 +1,13 @@
 # @riffyh/adapter-store
 
+## 1.2.8
+
+### Patch Changes
+
+- Updated dependencies [a89ba05]
+  - @riffyh/commons@3.0.0
+  - @riffyh/database@1.0.7
+
 ## 1.2.7
 
 ### Patch Changes

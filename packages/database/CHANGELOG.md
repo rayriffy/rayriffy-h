@@ -1,5 +1,12 @@
 # @riffyh/database
 
+## 1.0.7
+
+### Patch Changes
+
+- Updated dependencies [a89ba05]
+  - @riffyh/commons@3.0.0
+
 ## 1.0.6
 
 ### Patch Changes

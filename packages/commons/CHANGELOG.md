@@ -1,5 +1,11 @@
 # @riffyh/commons
 
+## 3.0.0
+
+### Major Changes
+
+- a89ba05: Add metadata-first, paginated gallery loading while preserving complete-gallery compatibility through the server and shared aggregation helper. E-Hentai now resolves image pages progressively instead of blocking its initial gallery response.
+
 ## 2.2.2
 
 ### Patch Changes
