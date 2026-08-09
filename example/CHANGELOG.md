@@ -1,5 +1,18 @@
 # @riffyh/example
 
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies [a89ba05]
+  - @riffyh/commons@3.0.0
+  - @riffyh/adapter-ehentai@2.0.0
+  - @riffyh/server@1.3.0
+  - @riffyh/execute@1.0.10
+  - @riffyh/adapter-nhentai@1.2.5
+  - @riffyh/adapter-niyaniya@1.2.4
+  - @riffyh/adapter-store@1.2.8
+
 ## 1.0.2
 
 ### Patch Changes
