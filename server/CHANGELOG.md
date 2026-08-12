@@ -1,5 +1,11 @@
 # @riffyh/server
 
+## 1.3.2
+
+### Patch Changes
+
+- efd75a3: logging for error during image optimization
+
 ## 1.3.1
 
 ### Patch Changes
