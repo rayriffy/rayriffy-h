@@ -1,5 +1,11 @@
 # @riffyh/server
 
+## 1.3.1
+
+### Patch Changes
+
+- 66f0410: Fall back to Sharp for source images Bun cannot decode, including animated WebP.
+
 ## 1.3.0
 
 ### Minor Changes
