@@ -20,6 +20,7 @@ import debug from "debug";
 import path from "node:path";
 import sharp from "sharp";
 import { download, upload } from "./bytebin";
+import { inspectSourceImage } from "./image";
 import { secretbox, randomBytes } from "tweetnacl";
 import { encodeBase64, decodeBase64 } from "tweetnacl-util";
 
@@ -189,10 +190,14 @@ const server = new Elysia()
       const cachedImage = await cache.read<Buffer>(cacheKeys);
       if (cachedImage !== null) {
         const image = Buffer.from(cachedImage.data);
-        const { format } = await new Bun.Image(image).metadata();
+        const sourceImage = await inspectSourceImage(image);
         return new Response(image, {
           headers: {
-            "Content-Type": format === "gif" ? "image/gif" : `image/${query.format}`,
+            "Content-Type":
+              sourceImage.format === "gif" ||
+              (sourceImage.format === "webp" && sourceImage.isAnimated)
+                ? `image/${sourceImage.format}`
+                : `image/${query.format}`,
             "Cache-Control": "public, max-age=86400000",
           },
         });
@@ -204,8 +209,8 @@ const server = new Elysia()
       const image = await dataSource.getImage({
         url: query.url,
       });
-      const fetchedImage = new Bun.Image(image);
-      if ((await fetchedImage.metadata()).format === "gif") {
+      const sourceImage = await inspectSourceImage(image);
+      if (sourceImage.format === "gif") {
         if (query.format === "webp") {
           const resizedImage = await sharp(image, { animated: true })
             .resize({
@@ -241,19 +246,61 @@ const server = new Elysia()
           },
         });
       }
-      fetchedImage.resize(query.type === "cover" ? 640 : 1280);
+
+      if (sourceImage.image === null) {
+        if (sourceImage.format === "webp" && sourceImage.isAnimated && query.format === "jpeg") {
+          await cache.write(
+            cacheKeys,
+            image,
+            86_400_000, // 1 month
+          );
+          return new Response(image, {
+            headers: {
+              "Content-Type": "image/webp",
+              "Cache-Control": "public, max-age=86400",
+              "CDN-Cache-Control": "public, max-age=2592000",
+              "Cloudflare-CDN-Cache-Control": "public, max-age=2592000",
+            },
+          });
+        }
+
+        const sharpImage = sharp(image, { animated: sourceImage.isAnimated }).resize({
+          width: query.type === "cover" ? 640 : 1280,
+        });
+        const resizedImage = await (
+          query.format === "webp"
+            ? sharpImage.webp({ quality: 72 })
+            : sharpImage.jpeg({ quality: 72 })
+        ).toBuffer();
+        await cache.write(
+          cacheKeys,
+          resizedImage,
+          86_400_000, // 1 month
+        );
+
+        return new Response(resizedImage, {
+          headers: {
+            "Content-Type": `image/${query.format}`,
+            "Cache-Control": "public, max-age=86400",
+            "CDN-Cache-Control": "public, max-age=2592000",
+            "Cloudflare-CDN-Cache-Control": "public, max-age=2592000",
+          },
+        });
+      }
+
+      sourceImage.image.resize(query.type === "cover" ? 640 : 1280);
 
       // if query.format is webp, then convert to webp
       if (query.format === "webp")
-        fetchedImage.webp({
+        sourceImage.image.webp({
           quality: 72,
         });
       else if (query.format === "jpeg")
-        fetchedImage.jpeg({
+        sourceImage.image.jpeg({
           quality: 72,
         });
 
-      const resizedImage = await fetchedImage.buffer();
+      const resizedImage = await sourceImage.image.buffer();
       await cache.write(
         cacheKeys,
         resizedImage,
