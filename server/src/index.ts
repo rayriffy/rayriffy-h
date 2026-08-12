@@ -185,70 +185,54 @@ const server = new Elysia()
   .get(
     "/image",
     async ({ query }) => {
-      const cacheKeys = [query.dataSource, query.url, query.format, query.type];
+      try {
+        const cacheKeys = [query.dataSource, query.url, query.format, query.type];
 
-      const cachedImage = await cache.read<Buffer>(cacheKeys);
-      if (cachedImage !== null) {
-        const image = Buffer.from(cachedImage.data);
-        const sourceImage = await inspectSourceImage(image);
-        return new Response(image, {
-          headers: {
-            "Content-Type":
-              sourceImage.format === "gif" ||
-              (sourceImage.format === "webp" && sourceImage.isAnimated)
-                ? `image/${sourceImage.format}`
-                : `image/${query.format}`,
-            "Cache-Control": "public, max-age=86400000",
-          },
-        });
-      }
-
-      const dataSource = config.dataSources.find((o) => o.key === query.dataSource);
-      if (dataSource === undefined) throw new Error(`data source ${query.dataSource} not found`);
-
-      const image = await dataSource.getImage({
-        url: query.url,
-      });
-      const sourceImage = await inspectSourceImage(image);
-      if (sourceImage.format === "gif") {
-        if (query.format === "webp") {
-          const resizedImage = await sharp(image, { animated: true })
-            .resize({
-              width: query.type === "cover" ? 640 : 1280,
-            })
-            .webp({ quality: 72 })
-            .toBuffer();
-          await cache.write(
-            cacheKeys,
-            resizedImage,
-            86_400_000, // 1 month
-          );
-          return new Response(resizedImage, {
+        const cachedImage = await cache.read<Buffer>(cacheKeys);
+        if (cachedImage !== null) {
+          const image = Buffer.from(cachedImage.data);
+          const sourceImage = await inspectSourceImage(image);
+          return new Response(image, {
             headers: {
-              "Content-Type": "image/webp",
-              "Cache-Control": "public, max-age=86400",
-              "CDN-Cache-Control": "public, max-age=2592000",
-              "Cloudflare-CDN-Cache-Control": "public, max-age=2592000",
+              "Content-Type":
+                sourceImage.format === "gif" ||
+                (sourceImage.format === "webp" && sourceImage.isAnimated)
+                  ? `image/${sourceImage.format}`
+                  : `image/${query.format}`,
+              "Cache-Control": "public, max-age=86400000",
             },
           });
         }
-        await cache.write(
-          cacheKeys,
-          image,
-          86_400_000, // 1 month
-        );
-        return new Response(image, {
-          headers: {
-            "Content-Type": "image/gif",
-            "Cache-Control": "public, max-age=86400",
-            "CDN-Cache-Control": "public, max-age=2592000",
-            "Cloudflare-CDN-Cache-Control": "public, max-age=2592000",
-          },
-        });
-      }
 
-      if (sourceImage.image === null) {
-        if (sourceImage.format === "webp" && sourceImage.isAnimated && query.format === "jpeg") {
+        const dataSource = config.dataSources.find((o) => o.key === query.dataSource);
+        if (dataSource === undefined) throw new Error(`data source ${query.dataSource} not found`);
+
+        const image = await dataSource.getImage({
+          url: query.url,
+        });
+        const sourceImage = await inspectSourceImage(image);
+        if (sourceImage.format === "gif") {
+          if (query.format === "webp") {
+            const resizedImage = await sharp(image, { animated: true })
+              .resize({
+                width: query.type === "cover" ? 640 : 1280,
+              })
+              .webp({ quality: 72 })
+              .toBuffer();
+            await cache.write(
+              cacheKeys,
+              resizedImage,
+              86_400_000, // 1 month
+            );
+            return new Response(resizedImage, {
+              headers: {
+                "Content-Type": "image/webp",
+                "Cache-Control": "public, max-age=86400",
+                "CDN-Cache-Control": "public, max-age=2592000",
+                "Cloudflare-CDN-Cache-Control": "public, max-age=2592000",
+              },
+            });
+          }
           await cache.write(
             cacheKeys,
             image,
@@ -256,7 +240,7 @@ const server = new Elysia()
           );
           return new Response(image, {
             headers: {
-              "Content-Type": "image/webp",
+              "Content-Type": "image/gif",
               "Cache-Control": "public, max-age=86400",
               "CDN-Cache-Control": "public, max-age=2592000",
               "Cloudflare-CDN-Cache-Control": "public, max-age=2592000",
@@ -264,14 +248,60 @@ const server = new Elysia()
           });
         }
 
-        const sharpImage = sharp(image, { animated: sourceImage.isAnimated }).resize({
-          width: query.type === "cover" ? 640 : 1280,
-        });
-        const resizedImage = await (
-          query.format === "webp"
-            ? sharpImage.webp({ quality: 72 })
-            : sharpImage.jpeg({ quality: 72 })
-        ).toBuffer();
+        if (sourceImage.image === null) {
+          if (sourceImage.format === "webp" && sourceImage.isAnimated && query.format === "jpeg") {
+            await cache.write(
+              cacheKeys,
+              image,
+              86_400_000, // 1 month
+            );
+            return new Response(image, {
+              headers: {
+                "Content-Type": "image/webp",
+                "Cache-Control": "public, max-age=86400",
+                "CDN-Cache-Control": "public, max-age=2592000",
+                "Cloudflare-CDN-Cache-Control": "public, max-age=2592000",
+              },
+            });
+          }
+
+          const sharpImage = sharp(image, { animated: sourceImage.isAnimated }).resize({
+            width: query.type === "cover" ? 640 : 1280,
+          });
+          const resizedImage = await (
+            query.format === "webp"
+              ? sharpImage.webp({ quality: 72 })
+              : sharpImage.jpeg({ quality: 72 })
+          ).toBuffer();
+          await cache.write(
+            cacheKeys,
+            resizedImage,
+            86_400_000, // 1 month
+          );
+
+          return new Response(resizedImage, {
+            headers: {
+              "Content-Type": `image/${query.format}`,
+              "Cache-Control": "public, max-age=86400",
+              "CDN-Cache-Control": "public, max-age=2592000",
+              "Cloudflare-CDN-Cache-Control": "public, max-age=2592000",
+            },
+          });
+        }
+
+        sourceImage.image.resize(query.type === "cover" ? 640 : 1280);
+
+        // if query.format is webp, then convert to webp
+        if (query.format === "webp")
+          sourceImage.image.webp({
+            quality: 72,
+          });
+        else if (query.format === "jpeg")
+          sourceImage.image.jpeg({
+            quality: 72,
+          });
+
+        const resizedImage = await sourceImage.image.buffer();
         await cache.write(
           cacheKeys,
           resizedImage,
@@ -286,35 +316,10 @@ const server = new Elysia()
             "Cloudflare-CDN-Cache-Control": "public, max-age=2592000",
           },
         });
+      } catch (e) {
+        console.error(e);
+        throw e;
       }
-
-      sourceImage.image.resize(query.type === "cover" ? 640 : 1280);
-
-      // if query.format is webp, then convert to webp
-      if (query.format === "webp")
-        sourceImage.image.webp({
-          quality: 72,
-        });
-      else if (query.format === "jpeg")
-        sourceImage.image.jpeg({
-          quality: 72,
-        });
-
-      const resizedImage = await sourceImage.image.buffer();
-      await cache.write(
-        cacheKeys,
-        resizedImage,
-        86_400_000, // 1 month
-      );
-
-      return new Response(resizedImage, {
-        headers: {
-          "Content-Type": `image/${query.format}`,
-          "Cache-Control": "public, max-age=86400",
-          "CDN-Cache-Control": "public, max-age=2592000",
-          "Cloudflare-CDN-Cache-Control": "public, max-age=2592000",
-        },
-      });
     },
     {
       query: t.Object({
