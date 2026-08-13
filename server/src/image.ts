@@ -6,12 +6,28 @@ export type SourceImage = {
   isAnimated: boolean;
 };
 
+const isWebp = (input: Buffer) =>
+  input.length >= 12 &&
+  input.subarray(0, 4).equals(Buffer.from("RIFF")) &&
+  input.subarray(8, 12).equals(Buffer.from("WEBP"));
+
 export const inspectSourceImage = async (input: Buffer): Promise<SourceImage> => {
-  const image = new Bun.Image(input);
+  if (isWebp(input)) {
+    const metadata = await sharp(input, { animated: true }).metadata();
+
+    return {
+      format: metadata.format,
+      image: null,
+      isAnimated: (metadata.pages ?? 1) > 1,
+    };
+  }
 
   try {
+    const image = new Bun.Image(input);
+    const metadata = await image.metadata();
+
     return {
-      format: (await image.metadata()).format,
+      format: metadata.format,
       image,
       isAnimated: false,
     };
