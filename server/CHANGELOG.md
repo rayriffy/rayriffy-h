@@ -1,5 +1,11 @@
 # @riffyh/server
 
+## 1.3.3
+
+### Patch Changes
+
+- b7fe77d: Detect RIFF/WEBP sources with Sharp before Bun image processing to prevent animated WebP decode failures.
+
 ## 1.3.2
 
 ### Patch Changes
