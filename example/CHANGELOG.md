@@ -1,5 +1,12 @@
 # @riffyh/example
 
+## 1.0.6
+
+### Patch Changes
+
+- Updated dependencies [b7fe77d]
+  - @riffyh/server@1.3.3
+
 ## 1.0.5
 
 ### Patch Changes
