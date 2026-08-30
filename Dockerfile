@@ -1,4 +1,4 @@
-FROM oven/bun:canary-slim AS build
+FROM oven/bun:1.4-slim AS build
 
 WORKDIR /app
 
