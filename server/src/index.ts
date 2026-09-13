@@ -1,9 +1,9 @@
 #!/usr/bin/env bun
 
 import { t, Elysia } from "elysia";
-import { swagger } from "@elysiajs/swagger";
-import { cors } from "@elysiajs/cors";
+import { cors } from "@elysia/cors";
 import { toon } from "@toon-tools/elysia";
+import { openapi } from "@elysia/openapi";
 
 import { defineCacheInstance } from "@rayriffy/filesystem";
 import {
@@ -69,14 +69,10 @@ const withGallerySource = async <T>(
 };
 
 const server = new Elysia()
-  .use(
-    swagger({
-      exclude: ["/_image"],
-    }),
-  )
+  .use(openapi())
   .use(toon())
   .use(cors())
-  .get("/", ({ redirect }) => redirect("/swagger"))
+  .get("/", ({ redirect }) => redirect("/openapi"))
   .get("/health", () => "healthy")
   .get(
     "/dataSources",
