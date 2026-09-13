@@ -1,5 +1,11 @@
 # @riffyh/server
 
+## 1.3.4
+
+### Patch Changes
+
+- 3346f2a: transition plugins from swagger to openapi
+
 ## 1.3.3
 
 ### Patch Changes
