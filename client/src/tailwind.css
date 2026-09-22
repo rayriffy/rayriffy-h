@@ -1,9 +1,5 @@
 @import "tailwindcss";
-@plugin "daisyui" {
-  themes:
-    winter --default,
-    dark --prefersdark;
-}
+@import "@heroui/styles";
 
 @keyframes spinnerSpin {
   0% {
@@ -12,10 +8,6 @@
   100% {
     transform: rotate(360deg);
   }
-}
-
-@utility input {
-  @apply text-[16px];
 }
 
 .spinner {
@@ -64,11 +56,11 @@
 }
 
 .chip-input {
-  @apply border border-base-content/20 rounded-lg flex space-x-2 px-2 py-0.5 text-sm font-medium items-center hover:bg-base-content/5 active:bg-base-content/10 transition duration-200 cursor-pointer;
+  @apply border border-default rounded-xl flex space-x-2 px-2.5 py-1.5 text-sm font-medium items-center hover:bg-default/60 active:bg-default transition duration-200 cursor-pointer;
 }
 
 .chip-input.active {
-  @apply bg-base-content/10;
+  @apply bg-accent text-accent-foreground border-accent;
 }
 
 .chip-input > .plate {

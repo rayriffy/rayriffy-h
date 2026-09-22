@@ -1,8 +1,9 @@
 import { Fragment, type FunctionComponent } from "react";
+import { Spinner } from "@heroui/react";
 
 export const Loading: FunctionComponent = () => (
   <Fragment>
-    <progress className="progress w-56"></progress>
-    <p className="pt-2 text-sm text-base-content">Loading...</p>
+    <Spinner size="lg" />
+    <p className="pt-3 text-sm text-muted">Loading…</p>
   </Fragment>
 );

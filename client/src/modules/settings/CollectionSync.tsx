@@ -2,6 +2,7 @@ import { useState } from "react";
 import { DownloadIcon, UploadIcon, AlertCircleIcon, CopyIcon, CheckCircleIcon } from "lucide-react";
 import { useServersAtom } from "modules/atoms/serversAtom";
 import { useExportCollection, useImportCollection } from "./useCollectionSync";
+import { Alert, Button, Card, Input, Label, Modal, Spinner, TextField } from "@heroui/react";
 
 export const CollectionSync = () => {
   const servers = useServersAtom();
@@ -54,221 +55,206 @@ export const CollectionSync = () => {
   };
 
   return (
-    <section className="card bg-base-100 border border-base-300">
-      <div className="card-body">
-        <div className="space-y-4">
-          <div>
-            <h2 className="card-title">Collection Sync</h2>
-            <p>Export or import your collection across devices.</p>
-          </div>
-
-          <div className="flex gap-4">
-            <button
-              className="btn btn-outline"
-              onClick={() => setExportConfirmOpen(true)}
-              disabled={!hasServers}
+    <>
+      <Card variant="secondary">
+        <Card.Header>
+          <Card.Title>Collection sync</Card.Title>
+          <Card.Description>Move your saved collection securely between devices.</Card.Description>
+        </Card.Header>
+        <Card.Content>
+          <div className="flex flex-wrap gap-3">
+            <Button
+              variant="outline"
+              onPress={() => setExportConfirmOpen(true)}
+              isDisabled={!hasServers}
             >
-              <UploadIcon className="w-4 h-4 mr-2" />
-              Export Collection
-            </button>
-            <button
-              className="btn btn-primary"
-              onClick={() => {
+              <UploadIcon /> Export collection
+            </Button>
+            <Button
+              onPress={() => {
                 setImportModalOpen(true);
                 setImportError(null);
                 setImportSuccessCount(null);
                 setImportCode("");
               }}
-              disabled={!hasServers}
+              isDisabled={!hasServers}
             >
-              <DownloadIcon className="w-4 h-4 mr-2" />
-              Import Collection
-            </button>
+              <DownloadIcon /> Import collection
+            </Button>
           </div>
           {!hasServers && (
-            <p className="text-sm text-base-content/60">Add a server to enable collection sync.</p>
+            <p className="mt-3 text-sm text-muted">Add a server to enable collection sync.</p>
           )}
-        </div>
-      </div>
+        </Card.Content>
+      </Card>
 
-      {/* Export Confirmation / Result Modal */}
-      {exportConfirmOpen && (
-        <dialog className="modal modal-open">
-          <div className="modal-box">
-            <h3 className="font-bold text-lg mb-4">Export Collection</h3>
-
-            {exportMutation.error && (
-              <div className="alert alert-error mb-4 text-sm p-3">
-                <AlertCircleIcon className="w-5 h-5 shrink-0" />
-                <span>
-                  {exportMutation.error instanceof Error
-                    ? exportMutation.error.message
-                    : "Failed to export"}
-                </span>
-              </div>
-            )}
-
-            {shareCode ? (
-              <div className="space-y-4">
-                <p>
-                  Your collection has been exported successfully. Use the share code below to import
-                  it on another device.
-                </p>
-                <div className="flex gap-2">
-                  <input
-                    type="text"
-                    value={shareCode}
-                    className="input input-bordered w-full"
-                    readOnly
-                  />
-                  <button
-                    className="btn btn-square btn-outline"
-                    onClick={copyToClipboard}
-                    title="Copy to clipboard"
+      <Modal
+        isOpen={exportConfirmOpen}
+        onOpenChange={(open) => !open && !exportMutation.isPending && setExportConfirmOpen(false)}
+      >
+        <Modal.Backdrop isDismissable={!exportMutation.isPending}>
+          <Modal.Container>
+            <Modal.Dialog>
+              <Modal.Header>
+                <Modal.Heading>Export collection</Modal.Heading>
+              </Modal.Header>
+              <Modal.Body className="space-y-4">
+                {exportMutation.error && (
+                  <Alert status="danger">
+                    <Alert.Indicator>
+                      <AlertCircleIcon />
+                    </Alert.Indicator>
+                    <Alert.Content>
+                      <Alert.Description>
+                        {exportMutation.error instanceof Error
+                          ? exportMutation.error.message
+                          : "Failed to export"}
+                      </Alert.Description>
+                    </Alert.Content>
+                  </Alert>
+                )}
+                {shareCode ? (
+                  <>
+                    <p>Your collection is ready. Use this share code on another device.</p>
+                    <div className="flex items-end gap-2">
+                      <TextField className="flex-1" value={shareCode} isReadOnly>
+                        <Label>Share code</Label>
+                        <Input />
+                      </TextField>
+                      <Button
+                        isIconOnly
+                        variant="outline"
+                        onPress={copyToClipboard}
+                        aria-label="Copy share code"
+                      >
+                        <CopyIcon />
+                      </Button>
+                    </div>
+                  </>
+                ) : (
+                  <p>Generate a share code for your current collection?</p>
+                )}
+              </Modal.Body>
+              <Modal.Footer>
+                {shareCode ? (
+                  <Button
+                    onPress={() => {
+                      setExportConfirmOpen(false);
+                      setShareCode(null);
+                      exportMutation.reset();
+                    }}
                   >
-                    <CopyIcon className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <p>
-                Are you sure you want to export your collection? This will generate a share code.
-              </p>
-            )}
+                    Done
+                  </Button>
+                ) : (
+                  <>
+                    <Button
+                      variant="tertiary"
+                      onPress={() => setExportConfirmOpen(false)}
+                      isDisabled={exportMutation.isPending}
+                    >
+                      Cancel
+                    </Button>
+                    <Button onPress={handleExport} isDisabled={exportMutation.isPending}>
+                      {exportMutation.isPending ? (
+                        <>
+                          <Spinner size="sm" /> Exporting…
+                        </>
+                      ) : (
+                        "Confirm export"
+                      )}
+                    </Button>
+                  </>
+                )}
+              </Modal.Footer>
+            </Modal.Dialog>
+          </Modal.Container>
+        </Modal.Backdrop>
+      </Modal>
 
-            <div className="modal-action">
-              {shareCode ? (
-                <button
-                  className="btn btn-primary"
-                  onClick={() => {
-                    setExportConfirmOpen(false);
-                    setShareCode(null);
-                    exportMutation.reset();
-                  }}
-                >
-                  Done
-                </button>
-              ) : (
-                <>
-                  <button
-                    className="btn"
-                    onClick={() => setExportConfirmOpen(false)}
-                    disabled={exportMutation.isPending}
+      <Modal
+        isOpen={importModalOpen}
+        onOpenChange={(open) => !open && !importMutation.isPending && setImportModalOpen(false)}
+      >
+        <Modal.Backdrop isDismissable={!importMutation.isPending}>
+          <Modal.Container>
+            <Modal.Dialog>
+              <Modal.Header>
+                <Modal.Heading>Import collection</Modal.Heading>
+              </Modal.Header>
+              <Modal.Body className="space-y-4">
+                {importError && (
+                  <Alert status="danger">
+                    <Alert.Indicator>
+                      <AlertCircleIcon />
+                    </Alert.Indicator>
+                    <Alert.Content>
+                      <Alert.Description>{importError}</Alert.Description>
+                    </Alert.Content>
+                  </Alert>
+                )}
+                {importSuccessCount !== null ? (
+                  <Alert status="success">
+                    <Alert.Indicator>
+                      <CheckCircleIcon />
+                    </Alert.Indicator>
+                    <Alert.Content>
+                      <Alert.Description>
+                        Successfully imported {importSuccessCount} item
+                        {importSuccessCount !== 1 ? "s" : ""}.
+                      </Alert.Description>
+                    </Alert.Content>
+                  </Alert>
+                ) : (
+                  <>
+                    <p>Enter a share code. Importing replaces your current collection.</p>
+                    <TextField
+                      value={importCode}
+                      onChange={setImportCode}
+                      isDisabled={importMutation.isPending}
+                    >
+                      <Label>Share code</Label>
+                      <Input placeholder="Enter share code…" />
+                    </TextField>
+                  </>
+                )}
+              </Modal.Body>
+              <Modal.Footer>
+                {importSuccessCount !== null ? (
+                  <Button
+                    onPress={() => {
+                      setImportModalOpen(false);
+                      setImportSuccessCount(null);
+                      importMutation.reset();
+                    }}
                   >
-                    Cancel
-                  </button>
-                  <button
-                    className="btn btn-primary"
-                    onClick={handleExport}
-                    disabled={exportMutation.isPending}
-                  >
-                    {exportMutation.isPending ? (
-                      <span className="loading loading-spinner loading-sm"></span>
-                    ) : (
-                      "Confirm Export"
-                    )}
-                  </button>
-                </>
-              )}
-            </div>
-          </div>
-          <div
-            className="modal-backdrop"
-            onClick={() => !exportMutation.isPending && !shareCode && setExportConfirmOpen(false)}
-          >
-            <button className="cursor-default">close</button>
-          </div>
-        </dialog>
-      )}
-
-      {/* Import Modal */}
-      {importModalOpen && (
-        <dialog className="modal modal-open">
-          <div className="modal-box">
-            <h3 className="font-bold text-lg mb-4">Import Collection</h3>
-
-            {importError && (
-              <div className="alert alert-error mb-4 text-sm p-3">
-                <AlertCircleIcon className="w-5 h-5 shrink-0" />
-                <span>{importError}</span>
-              </div>
-            )}
-
-            {importSuccessCount !== null ? (
-              <div className="space-y-4">
-                <div className="alert alert-success mb-4 text-sm p-3">
-                  <CheckCircleIcon className="w-5 h-5 shrink-0" />
-                  <span>
-                    Successfully imported {importSuccessCount} item
-                    {importSuccessCount !== 1 ? "s" : ""} to your collection.
-                  </span>
-                </div>
-              </div>
-            ) : (
-              <div className="space-y-4">
-                <p>
-                  Enter a share code to import a collection. This will replace your current
-                  collection.
-                </p>
-                <div className="form-control">
-                  <input
-                    type="text"
-                    placeholder="Enter share code..."
-                    className="input input-bordered w-full"
-                    value={importCode}
-                    onChange={(e) => setImportCode(e.target.value)}
-                    disabled={importMutation.isPending}
-                  />
-                </div>
-              </div>
-            )}
-
-            <div className="modal-action">
-              {importSuccessCount !== null ? (
-                <button
-                  className="btn btn-primary"
-                  onClick={() => {
-                    setImportModalOpen(false);
-                    setImportSuccessCount(null);
-                    importMutation.reset();
-                  }}
-                >
-                  Done
-                </button>
-              ) : (
-                <>
-                  <button
-                    className="btn"
-                    onClick={() => setImportModalOpen(false)}
-                    disabled={importMutation.isPending}
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    className="btn btn-primary"
-                    onClick={handleImport}
-                    disabled={importMutation.isPending}
-                  >
-                    {importMutation.isPending ? (
-                      <span className="loading loading-spinner loading-sm"></span>
-                    ) : (
-                      "Import"
-                    )}
-                  </button>
-                </>
-              )}
-            </div>
-          </div>
-          <div
-            className="modal-backdrop"
-            onClick={() =>
-              !importMutation.isPending && importSuccessCount === null && setImportModalOpen(false)
-            }
-          >
-            <button className="cursor-default">close</button>
-          </div>
-        </dialog>
-      )}
-    </section>
+                    Done
+                  </Button>
+                ) : (
+                  <>
+                    <Button
+                      variant="tertiary"
+                      onPress={() => setImportModalOpen(false)}
+                      isDisabled={importMutation.isPending}
+                    >
+                      Cancel
+                    </Button>
+                    <Button onPress={handleImport} isDisabled={importMutation.isPending}>
+                      {importMutation.isPending ? (
+                        <>
+                          <Spinner size="sm" /> Importing…
+                        </>
+                      ) : (
+                        "Import"
+                      )}
+                    </Button>
+                  </>
+                )}
+              </Modal.Footer>
+            </Modal.Dialog>
+          </Modal.Container>
+        </Modal.Backdrop>
+      </Modal>
+    </>
   );
 };

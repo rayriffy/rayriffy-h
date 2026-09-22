@@ -1,4 +1,5 @@
 import { SearchIcon } from "lucide-react";
+import { SearchField } from "@heroui/react";
 import { useState, useEffect } from "react";
 import type { FunctionComponent } from "react";
 import { useSearchParams } from "react-router";
@@ -35,17 +36,20 @@ export const SearchBar: FunctionComponent = () => {
 
   return (
     <section className="px-4 pt-4 container-lg">
-      <label className="input w-full">
-        <SearchIcon className="h-[1em] opacity-50" />
-        <input
-          type="search"
-          className="grow"
-          autoComplete="off"
-          placeholder="Search"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
-      </label>
+      <SearchField className="w-full" aria-label="Search galleries">
+        <SearchField.Group>
+          <SearchField.SearchIcon>
+            <SearchIcon />
+          </SearchField.SearchIcon>
+          <SearchField.Input
+            autoComplete="off"
+            placeholder="Search"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+          />
+          <SearchField.ClearButton />
+        </SearchField.Group>
+      </SearchField>
     </section>
   );
 };

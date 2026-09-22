@@ -19,6 +19,7 @@ import { ServerModal } from "./ServerModal";
 import { treaty } from "@elysiajs/eden";
 import type { Server as AppServer } from "@riffyh/server";
 import type { Server } from "modules/types/Server";
+import { Alert, Button, Card, Chip, Spinner, Tooltip } from "@heroui/react";
 
 export const Servers = () => {
   const servers = useServersAtom();
@@ -67,43 +68,54 @@ export const Servers = () => {
   };
 
   return (
-    <section className="card bg-base-100 border border-base-300">
-      <div className="card-body">
+    <Card variant="secondary">
+      <Card.Content>
         <div className="space-y-4">
           <div className="flex justify-between items-start">
             <div>
-              <h2 className="card-title">Servers</h2>
-              <p>Configure available servers, and select the server to use.</p>
+              <Card.Title>Servers</Card.Title>
+              <Card.Description>
+                Configure available servers and select the one to use.
+              </Card.Description>
             </div>
-            <button className="btn btn-primary btn-sm" onClick={handleAdd}>
+            <Button size="sm" onPress={handleAdd}>
               <PlusIcon className="w-4 h-4" />
               Add Server
-            </button>
+            </Button>
           </div>
 
-          <div role="alert" className="alert">
-            <InfoIcon className="stroke-info h-6 w-6 shrink-0" />
-            <span>You can follow this instruction to host your own server.</span>
-          </div>
+          <Alert status="accent">
+            <Alert.Indicator>
+              <InfoIcon />
+            </Alert.Indicator>
+            <Alert.Content>
+              <Alert.Description>
+                You can follow the documentation to host your own server.
+              </Alert.Description>
+            </Alert.Content>
+          </Alert>
 
           {refreshError && (
-            <div className="alert alert-error text-sm p-3 flex justify-between">
+            <Alert status="danger" className="text-sm">
               <div className="flex gap-2 items-center">
                 <AlertCircleIcon className="w-5 h-5 shrink-0" />
                 <span>{refreshError}</span>
               </div>
-              <button
-                onClick={() => setRefreshError(null)}
-                className="btn btn-ghost btn-xs btn-circle"
+              <Button
+                isIconOnly
+                size="sm"
+                variant="ghost"
+                onPress={() => setRefreshError(null)}
+                aria-label="Dismiss error"
               >
                 ✕
-              </button>
-            </div>
+              </Button>
+            </Alert>
           )}
 
           <div className="space-y-3 mt-4">
             {servers.length === 0 ? (
-              <div className="text-center py-8 text-base-content/50 border border-dashed border-base-300 rounded-box">
+              <div className="text-center py-8 text-muted border border-dashed border-default rounded-2xl">
                 <ServerIcon className="w-12 h-12 mx-auto mb-2 opacity-20" />
                 <p>No servers configured.</p>
               </div>
@@ -112,20 +124,22 @@ export const Servers = () => {
                 <div
                   key={`${server.config.baseUrl}-${index}`}
                   className={`flex flex-col sm:flex-row sm:items-center justify-between p-4 border rounded-box gap-4 ${
-                    server.active ? "border-primary bg-primary/5" : "border-base-300"
+                    server.active ? "border-accent bg-accent/5" : "border-default"
                   }`}
                 >
                   <div className="flex items-start gap-3">
                     <div className="mt-1">
                       <ServerIcon
-                        className={`w-5 h-5 ${server.active ? "text-primary" : "text-base-content/50"}`}
+                        className={`w-5 h-5 ${server.active ? "text-accent" : "text-muted"}`}
                       />
                     </div>
                     <div>
                       <h3 className="font-bold flex items-center gap-2">
                         {server.config.baseUrl}
                         {server.active && (
-                          <span className="badge badge-primary badge-sm">Active</span>
+                          <Chip color="accent" size="sm">
+                            Active
+                          </Chip>
                         )}
                       </h3>
                       <p className="text-sm opacity-70">
@@ -136,43 +150,63 @@ export const Servers = () => {
                   </div>
 
                   <div className="flex items-center gap-2 self-end sm:self-auto">
-                    <div className="tooltip" data-tip="Refresh Data Sources">
-                      <button
-                        className="btn btn-sm btn-ghost btn-circle"
-                        onClick={() => handleRefresh(index, server)}
-                        disabled={refreshingIndex === index}
-                      >
-                        {refreshingIndex === index ? (
-                          <span className="loading loading-spinner loading-xs"></span>
-                        ) : (
-                          <RefreshCcwIcon className="w-4 h-4" />
-                        )}
-                      </button>
-                    </div>
-                    <div className="tooltip" data-tip="Edit">
-                      <button
-                        className="btn btn-sm btn-ghost btn-circle"
-                        onClick={() => handleEdit(index)}
-                      >
-                        <PencilIcon className="w-4 h-4" />
-                      </button>
-                    </div>
-                    <div className="tooltip" data-tip="Remove">
-                      <button
-                        className="btn btn-sm btn-ghost btn-circle text-error hover:bg-error/20"
-                        onClick={() => removeServer(index)}
-                      >
-                        <Trash2Icon className="w-4 h-4" />
-                      </button>
-                    </div>
+                    <Tooltip>
+                      <Tooltip.Trigger>
+                        <Button
+                          isIconOnly
+                          size="sm"
+                          variant="ghost"
+                          aria-label="Refresh data sources"
+                          onPress={() => handleRefresh(index, server)}
+                          isDisabled={refreshingIndex === index}
+                        >
+                          {refreshingIndex === index ? (
+                            <Spinner size="sm" />
+                          ) : (
+                            <RefreshCcwIcon className="w-4 h-4" />
+                          )}
+                        </Button>
+                      </Tooltip.Trigger>
+                      <Tooltip.Content>Refresh data sources</Tooltip.Content>
+                    </Tooltip>
+                    <Tooltip>
+                      <Tooltip.Trigger>
+                        <Button
+                          isIconOnly
+                          size="sm"
+                          variant="ghost"
+                          aria-label="Edit server"
+                          onPress={() => handleEdit(index)}
+                        >
+                          <PencilIcon className="w-4 h-4" />
+                        </Button>
+                      </Tooltip.Trigger>
+                      <Tooltip.Content>Edit</Tooltip.Content>
+                    </Tooltip>
+                    <Tooltip>
+                      <Tooltip.Trigger>
+                        <Button
+                          isIconOnly
+                          size="sm"
+                          variant="danger-soft"
+                          aria-label="Remove server"
+                          onPress={() => removeServer(index)}
+                        >
+                          <Trash2Icon className="w-4 h-4" />
+                        </Button>
+                      </Tooltip.Trigger>
+                      <Tooltip.Content>Remove</Tooltip.Content>
+                    </Tooltip>
                     {!server.active && (
-                      <button
-                        className="btn btn-sm btn-outline ml-2"
-                        onClick={() => setActiveServer(index)}
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="ml-2"
+                        onPress={() => setActiveServer(index)}
                       >
                         <CheckCircleIcon className="w-4 h-4 mr-1" />
                         Set Active
-                      </button>
+                      </Button>
                     )}
                   </div>
                 </div>
@@ -180,7 +214,7 @@ export const Servers = () => {
             )}
           </div>
         </div>
-      </div>
+      </Card.Content>
 
       <ServerModal
         isOpen={isModalOpen}
@@ -188,6 +222,6 @@ export const Servers = () => {
         editServerIndex={editServerIndex}
         initialServer={editServerIndex !== undefined ? servers[editServerIndex] : undefined}
       />
-    </section>
+    </Card>
   );
 };

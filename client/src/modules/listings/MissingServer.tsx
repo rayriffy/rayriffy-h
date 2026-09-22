@@ -8,7 +8,7 @@ export const MissingServer = () => (
     <p className="pt-4 font-medium text-content">No active server</p>
     <p className="text-sm">
       Please configure a server on the{" "}
-      <Link to="/settings" className="text-primary">
+      <Link to="/settings" className="text-accent hover:underline">
         settings page
       </Link>
     </p>

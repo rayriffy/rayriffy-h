@@ -1,24 +1,28 @@
 import { settingsAtom, useSettingsAtom } from "modules/atoms/settingsAtom";
+import { Card, Switch } from "@heroui/react";
 
 export const SafeMode = () => {
   const { safemode } = useSettingsAtom();
 
   return (
-    <section className="card bg-base-100 border border-base-300">
-      <div className="card-body">
+    <Card variant="secondary">
+      <Card.Content>
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="card-title">Safe mode</h2>
-            <p>Blur image to prevent public incident</p>
+            <Card.Title>Safe mode</Card.Title>
+            <Card.Description>Blur images to avoid unexpected public exposure.</Card.Description>
           </div>
-          <input
-            type="checkbox"
-            className="toggle toggle-primary"
-            defaultChecked={safemode}
-            onClick={() => settingsAtom.setKey("safemode", !safemode)}
-          />
+          <Switch
+            isSelected={safemode}
+            onChange={(selected) => settingsAtom.setKey("safemode", selected)}
+            aria-label="Safe mode"
+          >
+            <Switch.Control>
+              <Switch.Thumb />
+            </Switch.Control>
+          </Switch>
         </div>
-      </div>
-    </section>
+      </Card.Content>
+    </Card>
   );
 };

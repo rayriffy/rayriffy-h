@@ -2,6 +2,7 @@ import { MinusIcon, PlusIcon } from "lucide-react";
 import { useCallback, type FunctionComponent } from "react";
 import { collectionsAtom, useCollectionsAtom } from "modules/atoms/collectionsAtom";
 import type { GalleryResult } from "@riffyh/commons";
+import { Button } from "@heroui/react";
 
 interface Props {
   gallery: GalleryResult;
@@ -34,8 +35,13 @@ export const Favorite: FunctionComponent<Props> = ({ gallery }) => {
   }, [isFavorite, collections, collectionsAtom]);
 
   return (
-    <button className="btn btn-square btn-secondary" onClick={handleToggleFavorite}>
+    <Button
+      isIconOnly
+      variant="secondary"
+      aria-label={isFavorite ? "Remove from collection" : "Add to collection"}
+      onPress={handleToggleFavorite}
+    >
       {isFavorite ? <MinusIcon className="w-8" /> : <PlusIcon className="w-7" />}
-    </button>
+    </Button>
   );
 };

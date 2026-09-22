@@ -4,6 +4,7 @@ import type { Server as AppServer } from "@riffyh/server";
 import { addServer, updateServer } from "modules/atoms/serversAtom";
 import type { Server } from "modules/types/Server";
 import { AlertCircleIcon, PlusIcon, Trash2Icon } from "lucide-react";
+import { Alert, Button, Input, Label, Modal, Spinner, TextField } from "@heroui/react";
 
 interface ServerModalProps {
   isOpen: boolean;
@@ -108,101 +109,101 @@ export const ServerModal = ({
     }
   };
 
-  if (!isOpen) return null;
-
   return (
-    <dialog className="modal modal-open">
-      <div className="modal-box">
-        <h3 className="font-bold text-lg mb-4">
-          {editServerIndex !== undefined ? "Edit Server" : "Add Server"}
-        </h3>
-
-        {error && (
-          <div className="alert alert-error mb-4 text-sm p-3">
-            <AlertCircleIcon className="w-5 h-5 shrink-0" />
-            <span>{error}</span>
-          </div>
-        )}
-
-        <div className="space-y-4">
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Base URL</span>
-            </label>
-            <input
-              type="text"
-              placeholder="http://localhost:3000"
-              className="input input-bordered w-full"
-              value={baseUrl}
-              onChange={(e) => setBaseUrl(e.target.value)}
-              disabled={isLoading}
-            />
-          </div>
-
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Custom Headers</span>
-            </label>
-            <div className="space-y-2">
-              {headers.map((h, i) => (
-                <div key={i} className="flex gap-2 items-center">
-                  <input
-                    type="text"
-                    placeholder="Name"
-                    className="input input-bordered input-sm flex-1"
-                    value={h.key}
-                    onChange={(e) => {
-                      const newHeaders = [...headers];
-                      newHeaders[i].key = e.target.value;
-                      setHeaders(newHeaders);
-                    }}
-                    disabled={isLoading}
-                  />
-                  <input
-                    type="text"
-                    placeholder="Value"
-                    className="input input-bordered input-sm flex-1"
-                    value={h.value}
-                    onChange={(e) => {
-                      const newHeaders = [...headers];
-                      newHeaders[i].value = e.target.value;
-                      setHeaders(newHeaders);
-                    }}
-                    disabled={isLoading}
-                  />
-                  <button
-                    className="btn btn-ghost btn-sm btn-circle text-error"
-                    onClick={() => setHeaders(headers.filter((_, idx) => idx !== i))}
-                    disabled={isLoading}
-                  >
-                    <Trash2Icon className="w-4 h-4" />
-                  </button>
-                </div>
-              ))}
-              <button
-                className="btn btn-ghost btn-sm text-primary w-full border border-dashed border-base-300"
-                onClick={() => setHeaders([...headers, { key: "", value: "" }])}
-                disabled={isLoading}
-              >
-                <PlusIcon className="w-4 h-4 mr-1" />
-                Add Header
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div className="modal-action">
-          <button className="btn" onClick={onClose} disabled={isLoading}>
-            Cancel
-          </button>
-          <button className="btn btn-primary" onClick={handleSave} disabled={isLoading}>
-            {isLoading ? <span className="loading loading-spinner loading-sm"></span> : "Save"}
-          </button>
-        </div>
-      </div>
-      <div className="modal-backdrop" onClick={() => !isLoading && onClose()}>
-        <button className="cursor-default">close</button>
-      </div>
-    </dialog>
+    <Modal isOpen={isOpen} onOpenChange={(open) => !open && !isLoading && onClose()}>
+      <Modal.Backdrop isDismissable={!isLoading}>
+        <Modal.Container>
+          <Modal.Dialog>
+            <Modal.Header>
+              <Modal.Heading>
+                {editServerIndex !== undefined ? "Edit server" : "Add server"}
+              </Modal.Heading>
+            </Modal.Header>
+            <Modal.Body className="space-y-4">
+              {error && (
+                <Alert status="danger">
+                  <Alert.Indicator>
+                    <AlertCircleIcon />
+                  </Alert.Indicator>
+                  <Alert.Content>
+                    <Alert.Description>{error}</Alert.Description>
+                  </Alert.Content>
+                </Alert>
+              )}
+              <TextField isDisabled={isLoading} value={baseUrl} onChange={setBaseUrl}>
+                <Label>Base URL</Label>
+                <Input placeholder="http://localhost:3000" />
+              </TextField>
+              <div className="space-y-2">
+                <Label>Custom headers</Label>
+                {headers.map((header, index) => (
+                  <div key={index} className="flex items-end gap-2">
+                    <TextField
+                      className="flex-1"
+                      isDisabled={isLoading}
+                      value={header.key}
+                      onChange={(value) => {
+                        const next = [...headers];
+                        next[index] = { ...next[index], key: value };
+                        setHeaders(next);
+                      }}
+                    >
+                      <Label className="sr-only">Header name</Label>
+                      <Input placeholder="Name" />
+                    </TextField>
+                    <TextField
+                      className="flex-1"
+                      isDisabled={isLoading}
+                      value={header.value}
+                      onChange={(value) => {
+                        const next = [...headers];
+                        next[index] = { ...next[index], value };
+                        setHeaders(next);
+                      }}
+                    >
+                      <Label className="sr-only">Header value</Label>
+                      <Input placeholder="Value" />
+                    </TextField>
+                    <Button
+                      isIconOnly
+                      variant="danger-soft"
+                      aria-label="Remove header"
+                      onPress={() =>
+                        setHeaders(headers.filter((_, itemIndex) => itemIndex !== index))
+                      }
+                      isDisabled={isLoading}
+                    >
+                      <Trash2Icon />
+                    </Button>
+                  </div>
+                ))}
+                <Button
+                  fullWidth
+                  variant="outline"
+                  onPress={() => setHeaders([...headers, { key: "", value: "" }])}
+                  isDisabled={isLoading}
+                >
+                  <PlusIcon /> Add header
+                </Button>
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="tertiary" onPress={onClose} isDisabled={isLoading}>
+                Cancel
+              </Button>
+              <Button onPress={handleSave} isDisabled={isLoading}>
+                {isLoading ? (
+                  <>
+                    <Spinner size="sm" /> Saving…
+                  </>
+                ) : (
+                  "Save"
+                )}
+              </Button>
+            </Modal.Footer>
+          </Modal.Dialog>
+        </Modal.Container>
+      </Modal.Backdrop>
+    </Modal>
   );
 };
