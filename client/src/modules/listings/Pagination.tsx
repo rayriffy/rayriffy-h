@@ -1,4 +1,5 @@
 import { useSearchParams } from "react-router";
+import { Pagination as HeroPagination } from "@heroui/react";
 
 interface Props {
   max: number;
@@ -37,19 +38,19 @@ export const Pagination = ({ max }: Props) => {
   if (max <= 1) return null;
 
   return (
-    <div className="join">
-      {Array.from({ length: pageLength }).map((_, i) => {
-        const page = i + pageStartAt + 1;
-        return (
-          <button
-            key={page}
-            className={`join-item btn btn-sm${page === current ? " btn-active" : ""}`}
-            onClick={() => handlePaginate(page)}
-          >
-            {page}
-          </button>
-        );
-      })}
-    </div>
+    <HeroPagination aria-label="Gallery pages">
+      <HeroPagination.Content>
+        {Array.from({ length: pageLength }).map((_, i) => {
+          const page = i + pageStartAt + 1;
+          return (
+            <HeroPagination.Item key={page}>
+              <HeroPagination.Link isActive={page === current} onPress={() => handlePaginate(page)}>
+                {page}
+              </HeroPagination.Link>
+            </HeroPagination.Item>
+          );
+        })}
+      </HeroPagination.Content>
+    </HeroPagination>
   );
 };

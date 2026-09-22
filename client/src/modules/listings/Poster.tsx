@@ -24,7 +24,7 @@ export const Poster: FunctionComponent<Props> = ({ gallery }) => {
       <section className="mt-3">
         <div className="flex justify-between space-x-2">
           {gallery.language && <img src={"/flags/" + gallery.language + ".svg"} className="w-6" />}
-          <p className="truncate font-medium text-base-content">{gallery.title.display}</p>
+          <p className="truncate font-medium text-foreground">{gallery.title.display}</p>
         </div>
       </section>
     </article>

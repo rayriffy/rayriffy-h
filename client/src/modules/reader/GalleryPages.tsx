@@ -1,6 +1,7 @@
 import type { Gallery } from "@riffyh/commons";
 import { useEffect, useRef, type FunctionComponent } from "react";
 import { BlurredImage } from "modules/layout/BlurredImage";
+import { Alert, Button, Spinner } from "@heroui/react";
 
 interface Props {
   dataSource: string;
@@ -48,25 +49,34 @@ export const GalleryPages: FunctionComponent<Props> = ({
         />
       ))}
       {error && (
-        <div className="alert alert-error mx-auto my-8 max-w-xl" role="alert">
-          <span>{error.message}</span>
-        </div>
+        <Alert status="danger" className="mx-auto my-8 max-w-xl">
+          <Alert.Content>
+            <Alert.Title>Unable to load more pages</Alert.Title>
+            <Alert.Description>{error.message}</Alert.Description>
+          </Alert.Content>
+        </Alert>
       )}
       {hasNextPage && (
         <div className="flex justify-center py-8">
-          <button
+          <Button
             ref={loadMoreRef}
             type="button"
-            className="btn btn-primary min-w-40"
-            disabled={isFetchingNextPage}
-            onClick={onLoadMore}
+            className="min-w-40"
+            isDisabled={isFetchingNextPage}
+            onPress={onLoadMore}
           >
-            {isFetchingNextPage ? "Loading pages…" : "Load more"}
-          </button>
+            {isFetchingNextPage ? (
+              <>
+                <Spinner size="sm" /> Loading pages…
+              </>
+            ) : (
+              "Load more"
+            )}
+          </Button>
         </div>
       )}
       {!hasNextPage && pages.length === 0 && !error && (
-        <p className="py-12 text-center text-sm text-base-content/60">This gallery has no pages.</p>
+        <p className="py-12 text-center text-sm text-muted">This gallery has no pages.</p>
       )}
     </section>
   );
