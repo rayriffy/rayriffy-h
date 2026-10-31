@@ -1,5 +1,14 @@
 # @riffyh/adapter-store
 
+## 1.2.9
+
+### Patch Changes
+
+- 7997ebd: Update dependencies and build tooling to their latest stable versions, including Mongoose 9, and migrate storage query types to preserve compatibility.
+- Updated dependencies [7997ebd]
+  - @riffyh/commons@3.0.1
+  - @riffyh/database@1.0.8
+
 ## 1.2.8
 
 ### Patch Changes
