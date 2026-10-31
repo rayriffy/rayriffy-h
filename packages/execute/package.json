@@ -25,17 +25,17 @@
     "@riffyh/commons": "workspace:*",
     "@riffyh/database": "workspace:*",
     "debug": "4.4.3",
-    "mongoose": "8.9.5",
-    "p-throttle": "8.1.0",
+    "mongoose": "9.11.4",
+    "p-throttle": "8.1.1",
     "tasuku": "2.3.0",
     "tweetnacl": "1.0.3",
     "tweetnacl-util": "0.15.1",
-    "yargs": "18.0.0"
+    "yargs": "18.2.0"
   },
   "devDependencies": {
     "@types/debug": "4.1.13",
-    "@types/node": "26.0.1",
+    "@types/node": "26.6.6",
     "@types/yargs": "17.0.35",
-    "tsdown": "0.22.3"
+    "tsdown": "0.23.4"
   }
 }

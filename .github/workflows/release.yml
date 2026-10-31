@@ -33,8 +33,7 @@ jobs:
         run: bun turbo run build
       - name: changesets
         id: changesets
-        uses: changesets/action@v1
+        uses: changesets/action@v2
         with:
-          publish: npx monoship
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          publish-script: npx monoship
+          github-token: ${{ secrets.GITHUB_TOKEN }}

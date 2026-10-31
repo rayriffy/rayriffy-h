@@ -20,11 +20,11 @@
     "build": "tsdown"
   },
   "dependencies": {
-    "@sinclair/typebox": "0.34.49",
+    "@sinclair/typebox": "0.34.52",
     "lodash": "4.18.1"
   },
   "devDependencies": {
-    "@types/lodash": "4.17.24",
-    "tsdown": "0.22.3"
+    "@types/lodash": "4.17.27",
+    "tsdown": "0.23.4"
   }
 }

@@ -24,9 +24,9 @@
   "dependencies": {
     "@riffyh/commons": "workspace:*",
     "cheerio": "1.2.0",
-    "p-throttle": "8.1.0"
+    "p-throttle": "8.1.1"
   },
   "devDependencies": {
-    "tsdown": "0.22.3"
+    "tsdown": "0.23.4"
   }
 }

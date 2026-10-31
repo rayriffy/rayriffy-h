@@ -21,10 +21,10 @@
   },
   "dependencies": {
     "@riffyh/commons": "workspace:*",
-    "mongoose": "8.9.5"
+    "mongoose": "9.11.4"
   },
   "devDependencies": {
     "@types/mongoose": "5.11.97",
-    "tsdown": "0.22.3"
+    "tsdown": "0.23.4"
   }
 }

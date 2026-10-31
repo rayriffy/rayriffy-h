@@ -25,16 +25,16 @@
     "@elysia/openapi": "1.4.16",
     "@rayriffy/filesystem": "1.0.1",
     "@riffyh/commons": "workspace:*",
-    "@sinclair/typebox": "0.34.49",
+    "@sinclair/typebox": "0.34.52",
     "@toon-tools/elysia": "1.1.0",
     "debug": "4.4.3",
-    "elysia": "1.4.29",
-    "sharp": "0.35.3",
+    "elysia": "1.4.30",
+    "sharp": "0.35.5",
     "tweetnacl": "1.0.3",
     "tweetnacl-util": "0.15.1"
   },
   "devDependencies": {
     "@types/debug": "4.1.13",
-    "tsdown": "0.22.3"
+    "tsdown": "0.23.4"
   }
 }

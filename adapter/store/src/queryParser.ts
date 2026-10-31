@@ -1,12 +1,12 @@
-import type { FilterQuery } from "mongoose";
+import type { QueryFilter } from "mongoose";
 import type { GalleryDocument } from "@riffyh/database";
 
-export const parseQuery = (searchQuery: string | null): FilterQuery<GalleryDocument> => {
+export const parseQuery = (searchQuery: string | null): QueryFilter<GalleryDocument> => {
   if (!searchQuery || !searchQuery.trim()) {
     return {};
   }
 
-  const conditions: FilterQuery<GalleryDocument>[] = [];
+  const conditions: QueryFilter<GalleryDocument>[] = [];
 
   const regex = /(-)?(?:([a-zA-Z0-9_-]+):)?(?:"([^"]+)"|(\S+))/g;
   let match;

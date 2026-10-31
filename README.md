@@ -4,6 +4,12 @@ A decentralized, self-hosted, modularized manga gallery viewer.
 
 This project is a complete overhaul of Riffy H v6. Unlike v6, which was deeply integrated with a single source and made creating new data sources difficult, v7 is designed from the ground up to be modular. We have separated the web client entirely from the API server, enabling you to host the API server yourself and easily integrate multiple distinct data sources.
 
+## Development
+
+Use Bun 1.4.4 and Node.js 26 LTS for the workspace toolchain. Install dependencies with `bun install --frozen-lockfile`, then build all packages with `bun turbo run build`.
+
+The storage adapter uses Mongoose 9. Custom query filters should use its `QueryFilter` type. Releases use Changesets 3 with `changesets/action@v2`; private packages retain version updates without Git tags.
+
 ## Setting Up Your Own Server
 
 1. Initialize a new project and install the `@riffyh/commons` package.
