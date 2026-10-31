@@ -1,5 +1,11 @@
 # @riffyh/commons
 
+## 3.0.1
+
+### Patch Changes
+
+- 7997ebd: Update dependencies and build tooling to their latest stable versions, including Mongoose 9, and migrate storage query types to preserve compatibility.
+
 ## 3.0.0
 
 ### Major Changes
